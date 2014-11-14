@@ -5,15 +5,11 @@ public class Render {
 	private int width;
 	private int height;
 	private int[] pixels;
-	private Spritesheet sheet;
-	private Sprite sprite;
 
 	public Render(int width, int height) {
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];
-		sheet = new Spritesheet(32,32,"/spritesheets/Ships.png");
-		sprite = new Sprite(16,16,0,0,4,sheet);
 	}
 
 	public int getPixel(int i) {
@@ -33,11 +29,10 @@ public class Render {
 	public int getHeight() {
 		return height;
 	}
-	double i = 0;
-	public void render(){
+	
+	public void render(int xOffset, int yOffset){
 		clear();
-		sprite.render(250,250,i, this);
-		i += 0.01;
+		
 	}
 	
 	public void clear(){

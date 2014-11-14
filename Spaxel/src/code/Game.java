@@ -9,7 +9,10 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import code.entity.Player;
 import code.graphics.Render;
+import code.graphics.Sprite;
+import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
 
@@ -29,6 +32,11 @@ public class Game extends Canvas implements Runnable {
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	private Keyboard keyboard;
 	private Mouse mouse;
+	private int screenXOffset = 0;
+	private int screenYOffset = 0;
+	private Player player;
+	private Spritesheet sheet;
+	private Sprite sprite;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -54,6 +62,9 @@ public class Game extends Canvas implements Runnable {
 		mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
+		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
+		sprite = new Sprite(16,16,0,0,4,sheet);
+		player = new Player(0,0, keyboard, mouse, sprite);
 	}
 
 	public synchronized void start() {
@@ -86,10 +97,15 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		requestFocus();
 		keyboard.update();
+		screenXOffset = mouse.getX()/2 - 320;
+		screenYOffset = mouse.getY()/2 - 180;
+		player.update();
+		System.out.println(player.getX() + " " + player.getY());
 	}
 
 	public void render() {
-		render.render();
+		render.render(screenXOffset,screenYOffset);
+		player.render(640-8*4 -screenXOffset, 360-8*4 -screenYOffset, render);
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

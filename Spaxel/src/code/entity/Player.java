@@ -26,7 +26,7 @@ public class Player extends Entity {
 	}
 	
 	public void render(int xPos, int yPos, Render render) {
-		rot = (double)(mouse.getY() - yPos) /(double)(mouse.getX() -xPos);
+		rot = Math.PI + Math.atan2(((double)(mouse.getX() -xPos)), (double)(mouse.getY() - yPos));
 		sprite.render(xPos, yPos, rot, render);		
 	}
 	

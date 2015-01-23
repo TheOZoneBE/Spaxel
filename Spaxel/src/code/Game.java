@@ -100,7 +100,6 @@ public class Game extends Canvas implements Runnable {
 		screenXOffset = mouse.getX()/2 - 320;
 		screenYOffset = mouse.getY()/2 - 180;
 		player.update();
-		System.out.println(player.getX() + " " + player.getY());
 	}
 
 	public void render() {

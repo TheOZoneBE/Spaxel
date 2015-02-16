@@ -9,6 +9,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import code.Level.Level;
 import code.entity.Player;
 import code.graphics.Render;
 import code.graphics.Sprite;
@@ -19,8 +20,8 @@ import code.input.Mouse;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public final int GAME_HEIGHT = 720;
-	public final int GAME_WIDTH = 1280;
+	public final static int GAME_HEIGHT = 720;
+	public final static int GAME_WIDTH = 1280;
 	public static Game game;
 	public boolean running = false;
 
@@ -35,13 +36,14 @@ public class Game extends Canvas implements Runnable {
 	private int screenXOffset = 0;
 	private int screenYOffset = 0;
 	private Player player;
+	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
 
 	public static void main(String[] args) {
 		game = new Game();
 		game.frame.setResizable(false);
-		game.frame.setTitle("Spaxel - Devbuild 0.1.0");
+		game.frame.setTitle("Spaxel - Devbuild 0.1.1");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +66,9 @@ public class Game extends Canvas implements Runnable {
 		addMouseMotionListener(mouse);
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
 		sprite = new Sprite(16,16,0,0,4,sheet);
-		player = new Player(0,0, keyboard, mouse, sprite);
+		player = new Player(0,0, sprite);
+		level = new Level();
+		level.addPlayer(player);
 	}
 
 	public synchronized void start() {
@@ -97,14 +101,12 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		requestFocus();
 		keyboard.update();
-		screenXOffset = mouse.getX()/2 - 320;
-		screenYOffset = mouse.getY()/2 - 180;
-		player.update();
+		level.update(keyboard, mouse);
 	}
 
 	public void render() {
 		render.render(screenXOffset,screenYOffset);
-		player.render(640-8*4 -screenXOffset, 360-8*4 -screenYOffset, render);
+		level.render(render);
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

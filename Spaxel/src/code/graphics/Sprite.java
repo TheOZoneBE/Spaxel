@@ -35,8 +35,7 @@ public class Sprite {
 
 		int ox = x + (width * scale / 2);
 		int oy = y + (height * scale / 2);
-		System.out.println(dx + " " + dy);
-
+		
 		for (int i = 0; i < width * scale * 2; i++) {
 			for (int j = 0; j < height * scale * 2; j++) {
 				render.setPixel(ox + (int) ((i - width * scale) * (dx / 2) + (j - height * scale) * (dy / 2))

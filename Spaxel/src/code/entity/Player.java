@@ -2,39 +2,36 @@ package code.entity;
 
 import code.graphics.Render;
 import code.graphics.Sprite;
-import code.input.Keyboard;
-import code.input.Mouse;
+
 
 public class Player extends Entity {
 	private Sprite sprite;
-	private Keyboard keyboard;
-	private Mouse mouse;
 	private double rot;
+	private int mouseX;
+	private int mouseY;
 
-	public Player(int x, int y, Keyboard keyboard, Mouse mouse, Sprite sprite) {
+	public Player(int x, int y, Sprite sprite) {
 		super(x, y);
-		this.keyboard = keyboard;
-		this.mouse = mouse;
 		this.sprite = sprite;
 	}
 
-	public void update() {
-		if(keyboard.down) y++;
-		if(keyboard.up) y--;
-		if(keyboard.left) x--;
-		if(keyboard.right) x++;		
+	public void update(int x, int y, int mouseX, int mouseY) {
+		super.x = x;
+		super.y = y;
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
 	}
-	
+
 	public void render(int xPos, int yPos, Render render) {
-		rot = Math.PI + Math.atan2(((double)(mouse.getX() -xPos)), (double)(mouse.getY() - yPos));
-		sprite.render(xPos, yPos, rot, render);		
+		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
+		sprite.render(xPos, yPos, rot, render);
 	}
-	
-	public int getX(){
+
+	public int getX() {
 		return x;
 	}
-	
-	public int getY(){
+
+	public int getY() {
 		return y;
 	}
 

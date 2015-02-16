@@ -11,7 +11,6 @@ public abstract class Entity {
 		this.y = y;
 	}
 		
-	public abstract void update();
 	
 	public abstract void render(int xPos, int yPos, Render render);
 }

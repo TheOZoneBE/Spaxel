@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.Level.Level;
+import code.entity.Laser;
 import code.entity.Player;
 import code.graphics.Render;
 import code.graphics.Sprite;
@@ -39,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
-
+	
 	public static void main(String[] args) {
 		game = new Game();
 		game.frame.setResizable(false);

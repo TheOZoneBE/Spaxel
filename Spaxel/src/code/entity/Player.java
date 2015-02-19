@@ -15,9 +15,9 @@ public class Player extends Entity {
 		this.sprite = sprite;
 	}
 
-	public void update(int x, int y, int mouseX, int mouseY) {
-		super.x = x;
-		super.y = y;
+	public void update(double x, double y, int mouseX, int mouseY) {
+		setX(x);
+		setY(y);
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 	}
@@ -27,12 +27,5 @@ public class Player extends Entity {
 		sprite.render(xPos, yPos, rot, render);
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
+	
 }

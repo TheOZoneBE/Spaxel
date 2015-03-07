@@ -6,7 +6,7 @@ public class Missile extends Projectile{
 
 	public Missile(int x, int y, Sprite sprite) {
 		super(x, y, sprite);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

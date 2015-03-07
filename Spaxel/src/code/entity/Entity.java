@@ -30,4 +30,9 @@ public abstract class Entity {
 	public void setY(double y){
 		this.y = y;
 	}
+	
+	public boolean collision(Entity e){
+		return false;
+		// TODO make collision detection
+	}
 }

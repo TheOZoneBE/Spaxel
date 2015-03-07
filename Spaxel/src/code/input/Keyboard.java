@@ -26,7 +26,6 @@ public class Keyboard implements KeyListener{
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

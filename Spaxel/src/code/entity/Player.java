@@ -3,6 +3,8 @@ package code.entity;
 import code.Level.Level;
 import code.graphics.Render;
 import code.graphics.Sprite;
+import code.input.Keyboard;
+import code.inventory.Inventory;
 
 
 public class Player extends Entity {
@@ -11,17 +13,57 @@ public class Player extends Entity {
 	private int mouseX;
 	private int mouseY;
 	private Level level;
+	private Inventory inventory;
+	private double maxspeed;
+	private double acc;
+	private double xdir;
+	private double ydir;
 
 	public Player(int x, int y, Sprite sprite) {
 		super(x, y);
 		this.sprite = sprite;
+		inventory = new Inventory();
+		maxspeed = 10;
+		acc = 0.25;
+		xdir = 0;
+		ydir = 0;
 	}
 
-	public void update(double x, double y, int mouseX, int mouseY) {
-		setX(x);
-		setY(y);
+	public void update(Keyboard keys, int mouseX, int mouseY) {
+		double dx = 0;
+		double dy = 0;
+		if (keys.down){
+			dx = Math.sin(rot) * acc;
+			dy = Math.cos(rot) * acc;
+		}			
+		if (keys.up){
+			dx = -Math.sin(rot) * acc;
+			dy = -Math.cos(rot) * acc;
+		}
+		if (keys.left){
+			dx = Math.sin(rot+ Math.PI/2) * acc;
+			dy = Math.cos(rot+ Math.PI/2) * acc;
+		}
+			
+		if (keys.right){
+			dx = Math.sin(rot - Math.PI/2) * acc;
+			dy = Math.cos(rot- Math.PI/2) * acc;
+		}
+		if (controlSpeed(xdir + dx, ydir+dy)){
+			xdir += dx;
+			ydir += dy;
+		}		
+		
+		setX(getX() + xdir);
+		setY(getY() + ydir);
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
+		inventory.update();
+	}
+	
+	public boolean controlSpeed(double dx, double dy){
+		double speed = Math.sqrt(dx*dx + dy*dy);
+		return speed < maxspeed;
 	}
 
 	public void render(int xPos, int yPos, Render render) {
@@ -34,7 +76,8 @@ public class Player extends Entity {
 	}
 	
 	public void primaryWeapon(){
-		level.addProjectile(new Laser((int)getX(), (int)getY(), sprite, rot, 200, 5.0));
+		
+		level.addProjectiles(inventory.primaryWeapon((int)getX(),(int)getY(), rot));
 	}
 	
 	public void secondaryWeapon(){

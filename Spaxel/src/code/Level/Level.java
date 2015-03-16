@@ -28,21 +28,14 @@ public class Level {
 	}
 
 	public void update(Keyboard keyboard, Mouse mouse) {
-		if (keyboard.down)
-			yOffset+=2;
-		if (keyboard.up)
-			yOffset-=2;
-		if (keyboard.left)
-			xOffset-=2;
-		if (keyboard.right)
-			xOffset+=2;
-
+		
 		mouseX = mouse.getX();
 		mouseY = mouse.getY();
 		screenXOffset = mouseX / 2 - Game.GAME_WIDTH / 4;
 		screenYOffset = mouseY / 2 - Game.GAME_HEIGHT / 4;
-		player.update(xOffset, yOffset, mouseX, mouseY);
-
+		player.update(keyboard, mouseX, mouseY);
+		xOffset = (int)player.getX();
+		yOffset = (int)player.getY();
 		if (mouse.mouse1) {
 			player.primaryWeapon();
 		}
@@ -59,6 +52,7 @@ public class Level {
 	public void render(Render render) {
 		int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
 		int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
+		render.dots(playerXPos - xOffset, playerYPos -yOffset);
 		player.render(playerXPos, playerYPos, render);
 		
 		for (Projectile p: projectiles){
@@ -73,6 +67,10 @@ public class Level {
 	
 	public void addProjectile(Projectile p){
 		projectiles.add(p);
+	}
+	
+	public void addProjectiles(List<Projectile> projs){
+		if (projs != null) projectiles.addAll(projs);
 	}
 	
 	public void cleanProjectiles(List<Projectile> projectiles){

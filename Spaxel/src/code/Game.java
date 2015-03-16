@@ -25,6 +25,7 @@ public class Game extends Canvas implements Runnable {
 	public final static int GAME_WIDTH = 1280;
 	public static Game game;
 	public boolean running = false;
+	private String gameName = "Spaxel - Devbuild 0.1.2";
 
 	private Thread thread;
 	private JFrame frame;
@@ -40,11 +41,10 @@ public class Game extends Canvas implements Runnable {
 	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
-	
+
 	public static void main(String[] args) {
 		game = new Game();
 		game.frame.setResizable(false);
-		game.frame.setTitle("Spaxel - Devbuild 0.1.1");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +58,7 @@ public class Game extends Canvas implements Runnable {
 		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
 		setPreferredSize(size);
 		frame = new JFrame();
+		frame.setTitle(gameName);
 		time = System.nanoTime();
 		render = new Render(GAME_WIDTH, GAME_HEIGHT);
 		keyboard = new Keyboard();
@@ -66,8 +67,8 @@ public class Game extends Canvas implements Runnable {
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
-		sprite = new Sprite(16,16,0,0,4,sheet);
-		player = new Player(0,0, sprite);
+		sprite = new Sprite(16, 16, 0, 0, 4, sheet);
+		player = new Player(0, 0, sprite);
 		level = new Level();
 		level.addPlayer(player);
 	}
@@ -89,13 +90,22 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void run() {
+		int ups = 0;
+		int fps = 0;
 		while (running) {
 			long deltaTime = System.nanoTime() - time;
 			if (deltaTime > 20000000) {
 				update();
 				time = System.nanoTime();
+				ups++;
 			}
 			render();
+			fps++;
+			if (ups == 50) {
+				frame.setTitle(gameName + " @ " + fps + " fps");
+				ups = 0;
+				fps = 0;
+			}
 		}
 	}
 
@@ -106,8 +116,8 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		render.render(screenXOffset,screenYOffset);
-		level.render(render);
+		render.render(screenXOffset, screenYOffset);
+				level.render(render);
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

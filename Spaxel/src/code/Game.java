@@ -9,7 +9,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import code.Level.Level;
+import code.level.Level;
+import code.sound.Sound;
 import code.entity.Laser;
 import code.entity.Player;
 import code.graphics.Render;
@@ -25,7 +26,7 @@ public class Game extends Canvas implements Runnable {
 	public final static int GAME_WIDTH = 1280;
 	public static Game game;
 	public boolean running = false;
-	private String gameName = "Spaxel - Devbuild 0.1.2";
+	private String gameName = "Spaxel - Devbuild 0.1.3";
 
 	private Thread thread;
 	private JFrame frame;
@@ -41,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
+	private Sound sound;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -71,6 +73,7 @@ public class Game extends Canvas implements Runnable {
 		player = new Player(0, 0, sprite);
 		level = new Level();
 		level.addPlayer(player);
+		sound = new Sound("/music/Bipolar Bear.wav");
 	}
 
 	public synchronized void start() {
@@ -81,6 +84,7 @@ public class Game extends Canvas implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
+		sound.close();
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
@@ -92,6 +96,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		int ups = 0;
 		int fps = 0;
+		sound.play();
 		while (running) {
 			long deltaTime = System.nanoTime() - time;
 			if (deltaTime > 20000000) {

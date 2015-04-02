@@ -18,9 +18,9 @@ public class Inventory {
 		primWeap = new ArrayList<Weapon>();
 		secWeap = new ArrayList<Weapon>();
 		shipItems = new ArrayList<Item>();
-		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
-		sprite = new Sprite(16, 16, 0, 0, 2, sheet);
-		primWeap.add(new Weapon(sprite, 10, sprite, 200, 13.0));
+		sheet = new Spritesheet(32, 32, "/spritesheets/projectiles.png");
+		sprite = new Sprite(8, 8, 0, 0, 2, sheet);
+		primWeap.add(new Weapon(sprite, 10, sprite, 200, 25.0));
 	}
 	
 	public void update(){

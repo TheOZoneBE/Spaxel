@@ -1,12 +1,16 @@
 package code.entity;
 
 import code.graphics.Render;
+import code.graphics.Sprite;
 
 public class Enemy extends Entity{
+	private double rot;
+	private Sprite sprite;
 
-	public Enemy(int x, int y) {
+	public Enemy(int x, int y, Sprite sprite) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
+		rot = 0;
+		this.sprite = sprite;
 	}
 	
 	public void update(){
@@ -15,7 +19,7 @@ public class Enemy extends Entity{
 	
 	@Override
 	public void render(int xPos, int yPos, Render render) {
-		// TODO Auto-generated method stub
+		sprite.render((int) (getX() + xPos), (int) (getY() + yPos), rot, render);
 		
 	}
 

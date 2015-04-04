@@ -85,5 +85,9 @@ public class Player extends Entity {
 	public void secondaryWeapon() {
 
 	}
+	
+	public Sprite getSprite() {
+		return sprite;
+	}
 
 }

@@ -31,5 +31,9 @@ public class Sound {
 	public void close(){
 		clip.close();
 	}
+	
+	public boolean isActive(){
+		return clip.isActive();
+	}
 
 }

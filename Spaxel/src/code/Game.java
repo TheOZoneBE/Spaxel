@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.level.Level;
+import code.sound.MusicPlayer;
 import code.sound.Sound;
 import code.entity.Laser;
 import code.entity.Player;
@@ -42,7 +43,7 @@ public class Game extends Canvas implements Runnable {
 	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
-	private Sound sound;
+	private MusicPlayer music;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -73,7 +74,7 @@ public class Game extends Canvas implements Runnable {
 		player = new Player(0, 0, sprite);
 		level = new Level();
 		level.addPlayer(player);
-		sound = new Sound("/music/Bipolar Bear.wav");
+		music = new MusicPlayer();
 	}
 
 	public synchronized void start() {
@@ -84,7 +85,7 @@ public class Game extends Canvas implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
-		sound.close();
+		music.stop();
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
@@ -96,7 +97,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		int ups = 0;
 		int fps = 0;
-		sound.play();
+		music.play();
 		while (running) {
 			long deltaTime = System.nanoTime() - time;
 			if (deltaTime > 20000000) {
@@ -118,6 +119,7 @@ public class Game extends Canvas implements Runnable {
 		requestFocus();
 		keyboard.update();
 		level.update(keyboard, mouse);
+		music.update();
 	}
 
 	public void render() {

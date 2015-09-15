@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.level.Level;
+import code.math.Matrix;
 import code.sound.MusicPlayer;
 import code.sound.Sound;
 import code.entity.Laser;
@@ -124,7 +125,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void render() {
 		render.render(screenXOffset, screenYOffset);
-				level.render(render);
+		level.render(render);
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

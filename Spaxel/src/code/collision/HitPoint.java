@@ -1,10 +1,12 @@
 package code.collision;
 
-public class HitPoint extends HitShape {
+public class HitPoint {
+	private int xOffset;
+	private int yOffset;
 
 	public HitPoint(int xOffset, int yOffset) {
-		super(xOffset, yOffset);
-		// TODO Auto-generated constructor stub
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 	
 	public HitPoint getClosestHitPoint(int x, int y){

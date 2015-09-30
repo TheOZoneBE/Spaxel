@@ -1,10 +1,12 @@
 package code.entity;
 
+import code.collision.HitShape;
 import code.graphics.Render;
 
 public abstract class Entity {
 	private double x;
 	private double y;
+	private HitShape hitShape;
 	
 	public Entity(int x, int y){
 		this.x = x;

@@ -40,13 +40,13 @@ public class Player extends Entity {
 			dy = -Math.cos(rot) * acc;
 		}
 		if (keys.left) {
-			dx = Math.sin(rot + Math.PI / 2) * acc;
-			dy = Math.cos(rot + Math.PI / 2) * acc;
+			dx = Math.sin(rot - Math.PI / 2) * acc;
+			dy = Math.cos(rot - Math.PI / 2) * acc;
 		}
 
 		if (keys.right) {
-			dx = Math.sin(rot - Math.PI / 2) * acc;
-			dy = Math.cos(rot - Math.PI / 2) * acc;
+			dx = Math.sin(rot + Math.PI / 2) * acc;
+			dy = Math.cos(rot + Math.PI / 2) * acc;
 		}
 		if (controlSpeed(xdir + dx, ydir + dy)) {
 			xdir += dx;

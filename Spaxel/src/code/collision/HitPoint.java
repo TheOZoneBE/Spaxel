@@ -1,16 +1,12 @@
 package code.collision;
 
-public class HitPoint {
-	private int xOffset;
-	private int yOffset;
+import code.math.Matrix;
 
-	public HitPoint(int xOffset, int yOffset) {
-		this.xOffset = xOffset;
-		this.yOffset = yOffset;
+public class HitPoint {
+	private Matrix vector;
+
+	public HitPoint() {
+		vector = new Matrix(3,1);
 	}
 	
-	public HitPoint getClosestHitPoint(int x, int y){
-		return this;
-	}
-
 }

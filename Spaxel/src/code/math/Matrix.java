@@ -54,6 +54,19 @@ public class Matrix {
 		}
 		return sol;
 	}
+	
+	public Vector multiplicate(Vector vec){
+		Vector sol = new Vector(n);
+		for (int i = 0; i < m; i++) {
+			double sum = 0;
+			for (int l = 0; l < n; l++) {
+				sum += (matrix[i * n + l] * vec.getValue(l));
+			}
+			sol.setValue(i, sum);
+		}
+		return sol;
+	}
+	
 	public void print(){
 		for (int i = 0; i< m; i++){
 			for (int j =0; j < n; j++){

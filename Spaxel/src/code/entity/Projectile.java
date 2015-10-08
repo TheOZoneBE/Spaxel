@@ -7,8 +7,8 @@ public class Projectile extends Entity {
 	private Sprite sprite;
 	private boolean alive;
 
-	public Projectile(int x, int y, Sprite sprite) {
-		super(x, y);
+	public Projectile(double x, double y, double rot, Sprite sprite) {
+		super(x, y, rot);
 		this.sprite = sprite;
 		alive = true;
 	}

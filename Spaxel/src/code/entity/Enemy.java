@@ -4,17 +4,15 @@ import code.graphics.Render;
 import code.graphics.Sprite;
 
 public class Enemy extends Entity{
-	private double rot;
 	private Sprite sprite;
 
-	public Enemy(int x, int y, Sprite sprite) {
-		super(x, y);
-		rot = 0;
+	public Enemy(double x, double y, double rot, Sprite sprite) {
+		super(x, y, rot);
 		this.sprite = sprite;
 	}
 	
 	public void update(){
-		// TODO lay basics of AI
+		super.update();
 	}
 	
 	@Override

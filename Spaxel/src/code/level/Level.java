@@ -69,7 +69,7 @@ public class Level {
 	public void addPlayer(Player player) {
 		this.player = player;
 		player.addLevel(this);
-		enemies.add(new Enemy(0, 0, player.getSprite()));
+		enemies.add(new Enemy(0, 0, 0, player.getSprite()));
 	}
 
 	public void addProjectile(Projectile p) {

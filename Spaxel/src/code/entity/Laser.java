@@ -5,18 +5,17 @@ import code.graphics.Sprite;
 
 public class Laser extends Projectile {
 
-	public Laser(int x, int y, Sprite sprite, double rot, int life, double speed) {
-		super(x, y, sprite);
-		this.rot = rot;
+	public Laser(double x, double y, double rot, Sprite sprite, int life, double speed) {
+		super(x, y, rot, sprite);
 		this.life = life;
 		this.speed = speed;
 	}
 
-	private double rot;
 	private int life;
 	private double speed;
 
 	public void update() {
+		super.update();
 		if (life > 0) {
 			double dx = Math.sin(rot) * speed;
 			double dy = Math.cos(rot) * speed;

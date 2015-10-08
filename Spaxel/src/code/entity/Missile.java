@@ -4,9 +4,8 @@ import code.graphics.Sprite;
 
 public class Missile extends Projectile{
 
-	public Missile(int x, int y, Sprite sprite) {
-		super(x, y, sprite);
-		
+	public Missile(double x, double y, double rot, Sprite sprite) {
+		super(x, y, rot, sprite);
 	}
 
 }

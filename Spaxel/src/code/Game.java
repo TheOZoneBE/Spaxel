@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 		addMouseMotionListener(mouse);
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
 		sprite = new Sprite(16, 16, 0, 0, 4, sheet);
-		player = new Player(0, 0, sprite);
+		player = new Player(0, 0, 0, sprite);
 		level = new Level();
 		level.addPlayer(player);
 		music = new MusicPlayer();

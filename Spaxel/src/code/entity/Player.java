@@ -8,7 +8,6 @@ import code.inventory.Inventory;
 
 public class Player extends Entity {
 	private Sprite sprite;
-	private double rot;
 	private int mouseX;
 	private int mouseY;
 	private Level level;
@@ -18,8 +17,8 @@ public class Player extends Entity {
 	private double xdir;
 	private double ydir;
 
-	public Player(int x, int y, Sprite sprite) {
-		super(x, y);
+	public Player(double x, double y, double rot, Sprite sprite) {
+		super(x, y, rot);
 		this.sprite = sprite;
 		inventory = new Inventory();
 		maxspeed = 20;
@@ -28,7 +27,7 @@ public class Player extends Entity {
 		ydir = 0;
 	}
 
-	public void update(Keyboard keys, int mouseX, int mouseY) {
+	public void update(Keyboard keys, int mouseX, int mouseY) {		
 		double dx = 0;
 		double dy = 0;
 		if (keys.down) {
@@ -61,6 +60,8 @@ public class Player extends Entity {
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 		inventory.update();
+		super.update();
+		//collision detection stuffs
 	}
 
 	public boolean controlSpeed(double dx, double dy) {

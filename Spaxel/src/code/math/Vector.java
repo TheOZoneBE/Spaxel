@@ -38,5 +38,24 @@ public class Vector {
 		return sol;
 	}
 	
+	public Vector diff(Vector vec){
+		Vector sol = new Vector(m);
+		for(int i = 0; i< m; i++){
+			sol.setValue(i, vector[i]- vec.getValue(i));
+		}
+		return sol;
+	}
+	
+	
+	/*
+	 * only works with 2d vectors!!
+	 */
+	public Vector normal(){
+		Vector sol = new Vector(m);
+		sol.setValue(0, vector[1]);
+		sol.setValue(1, -vector[0]);		
+		return sol;
+	}
+	
 	
 }

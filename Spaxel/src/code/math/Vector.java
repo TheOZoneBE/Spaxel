@@ -22,10 +22,18 @@ public class Vector {
 		vector[i] = value;
 	}
 	
-	public double multiplicate(Vector vec){
+	public double dotProduct(Vector vec){
 		int sol = 0;
 		for(int i = 0; i < m; i++){
 			sol += (vector[i]*vec.getValue(i));
+		}
+		return sol;
+	}
+	
+	public Vector multiplicate(double a){
+		Vector sol = new Vector(m);
+		for(int i = 0; i< m; i++){
+			sol.setValue(i, vector[i] * a);
 		}
 		return sol;
 	}

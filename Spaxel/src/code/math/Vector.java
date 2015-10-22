@@ -1,5 +1,7 @@
 package code.math;
 
+import code.graphics.Render;
+
 public class Vector {
 	private int m;
 	private double[] vector;
@@ -9,8 +11,8 @@ public class Vector {
 		vector = new double[m];
 	}
 	
-	public Vector(int m, double[] vector){
-		this.m = m;
+	public Vector(double[] vector){
+		m = vector.length;
 		this.vector = vector;
 	}
 	
@@ -63,6 +65,16 @@ public class Vector {
 		sol.setValue(0, vector[1]);
 		sol.setValue(1, -vector[0]);		
 		return sol;
+	}
+	
+	public void render(int xOffset, int yOffset, Render render){
+		render.setPixel((int)vector[0]+ xOffset, (int)vector[1] + yOffset, 0xffff0000);
+	}
+	
+	public void print(){
+		for(int i = 0; i< m; i++){
+			System.out.print((int)vector[i] + " ");
+		}
 	}
 	
 	

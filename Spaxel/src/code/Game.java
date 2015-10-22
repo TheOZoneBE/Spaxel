@@ -13,6 +13,8 @@ import code.level.Level;
 import code.math.Matrix;
 import code.sound.MusicPlayer;
 import code.sound.Sound;
+import code.collision.HitPoint;
+import code.collision.HitShape;
 import code.entity.Laser;
 import code.entity.Player;
 import code.graphics.Render;
@@ -20,6 +22,7 @@ import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.math.Vector;
 
 public class Game extends Canvas implements Runnable {
 
@@ -41,6 +44,8 @@ public class Game extends Canvas implements Runnable {
 	private int screenXOffset = 0;
 	private int screenYOffset = 0;
 	private Player player;
+	private HitShape hitShape;
+	private HitPoint hitPoint;
 	private Level level;
 	private Spritesheet sheet;
 	private Sprite sprite;
@@ -73,6 +78,16 @@ public class Game extends Canvas implements Runnable {
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
 		sprite = new Sprite(16, 16, 0, 0, 4, sheet);
 		player = new Player(0, 0, 0, sprite);
+		hitShape = new HitShape();
+		hitPoint = new HitPoint(new Vector(new double[] { 64, 64, 1 }));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new Vector(new double[] {64, -64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new Vector(new double[] {-64, -64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new Vector(new double[] {-64, 64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		player.setHitShape(hitShape);
 		level = new Level();
 		level.addPlayer(player);
 		music = new MusicPlayer();

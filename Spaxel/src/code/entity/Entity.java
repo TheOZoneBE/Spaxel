@@ -13,7 +13,7 @@ import code.math.MatrixMaker;
 import code.math.Projection;
 import code.math.Vector;
 
-public abstract class Entity {
+public class Entity {
 	private double x;
 	private double y;
 	protected double rot;
@@ -27,7 +27,9 @@ public abstract class Entity {
 	}
 		
 	
-	public abstract void render(int xPos, int yPos, Render render);
+	public void render(int xPos, int yPos, Render render){
+		
+	}
 	public void update(){	
 		if(oriHitShape != null){
 			Matrix updateMatrix = MatrixMaker.getTransRotMatrix(x, y, rot);
@@ -48,6 +50,10 @@ public abstract class Entity {
 	
 	public void setY(double y){
 		this.y = y;
+	}
+	
+	public void setHitShape(HitShape hitShape){
+		oriHitShape = hitShape;
 	}
 	
 	public HitShape getUpdHitShape(){
@@ -71,26 +77,32 @@ public abstract class Entity {
 		//sizes of lists
 		int aSize = hitpointsA.size();
 		int bSize = hitpointsB.size();
+		
 		//getting normals of first hitshape
-		for (int i= 0; i < aSize; i++){
-			// getting vectors for normal
-			Vector v1 = hitpointsA.get(i).getVector();
-			Vector v2 = hitpointsA.get((i + 1) % aSize).getVector();
-			//build normal
-			Axis normal = new Axis();
-			normal.initializeNormal(v1, v2);
-			normals.add(normal);
-		}
+		if(aSize > 1){
+			for (int i= 0; i < aSize; i++){
+				// getting vectors for normal
+				Vector v1 = hitpointsA.get(i).getVector();
+				Vector v2 = hitpointsA.get((i + 1) % aSize).getVector();
+				//build normal
+				Axis normal = new Axis();
+				normal.initializeNormal(v1, v2);
+				normals.add(normal);
+			}
+		}		
 		//getting normals for second hitshape
-		for (int i= 0; i < bSize; i++){
-			// getting vectors for normal
-			Vector v1 = hitpointsB.get(i).getVector();
-			Vector v2 = hitpointsB.get((i + 1) % bSize).getVector();
-			//build normal
-			Axis normal = new Axis();
-			normal.initializeNormal(v1, v2);
-			normals.add(normal);
+		if(bSize > 1){
+			for (int i= 0; i < bSize; i++){
+				// getting vectors for normal
+				Vector v1 = hitpointsB.get(i).getVector();
+				Vector v2 = hitpointsB.get((i + 1) % bSize).getVector();
+				//build normal
+				Axis normal = new Axis();
+				normal.initializeNormal(v1, v2);
+				normals.add(normal);
+			}
 		}
+		
 		//end of prep: now we have to check the projection of each normal
 		for (Axis ax: normals){
 			Projection p1 = a.project(ax);

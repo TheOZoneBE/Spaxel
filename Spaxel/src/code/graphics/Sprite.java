@@ -53,6 +53,14 @@ public class Sprite {
 			}
 		}
 	}
+	
+	public void render(int x, int y, int midWidth, int midHeight, Render render){
+		for (int i = -midWidth; i < width * scale  - midWidth; i++) {
+			for (int j = -midHeight; j < width * scale - midHeight; j++) {
+				render.setPixel(x + i, y + j, pixels[i + midWidth + (j + midHeight) * width * scale]);
+			}
+		}
+	}
 
 	public int[] getPixels() {
 		return pixels;

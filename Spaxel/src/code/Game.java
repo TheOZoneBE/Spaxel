@@ -13,6 +13,7 @@ import code.level.Level;
 import code.math.Matrix;
 import code.sound.MusicPlayer;
 import code.sound.Sound;
+import code.ui.UI;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.entity.Laser;
@@ -50,6 +51,7 @@ public class Game extends Canvas implements Runnable {
 	private Spritesheet sheet;
 	private Sprite sprite;
 	private MusicPlayer music;
+	private UI ui;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -91,6 +93,7 @@ public class Game extends Canvas implements Runnable {
 		level = new Level();
 		level.addPlayer(player);
 		music = new MusicPlayer();
+		ui = new UI(sprite);
 	}
 
 	public synchronized void start() {
@@ -136,11 +139,13 @@ public class Game extends Canvas implements Runnable {
 		keyboard.update();
 		level.update(keyboard, mouse);
 		music.update();
+		ui.update();
 	}
 
 	public void render() {
 		render.render(screenXOffset, screenYOffset);
 		level.render(render);
+		ui.render(render);
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

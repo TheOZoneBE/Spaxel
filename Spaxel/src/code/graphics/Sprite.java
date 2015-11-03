@@ -33,21 +33,23 @@ public class Sprite {
 		double dx = Math.cos(rot);
 		double dy = Math.sin(rot);
 
-		int ox = x + (width * scale / 2);
-		int oy = y + (height * scale / 2);
-		
-		for (int i = 0; i < width * scale * 2; i++) {
-			for (int j = 0; j < height * scale * 2; j++) {
-				render.setPixel(ox + (int) ((i - width * scale) * (dx / 2) + (j - height * scale) * (dy / 2))
-						, (oy + (int) ((i - width * scale) * (-dy / 2) + (j - height * scale) * (dx / 2))), pixels[i / 2 + j / 2 * width * scale]);
+		int midWidth = width * scale / 2;
+		int midHeight = height * scale / 2;
+
+		for (int i = -midWidth * 2; i < midWidth * 2; i++) {
+			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
+				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)), y + (int) ((i * -dy / 2) + (j * dx / 2)), pixels[i / 2 + midWidth
+						+ (j / 2 + midHeight) * width * scale]);
 			}
 		}
 	}
 
 	public void render(int x, int y, Render render) {
-		for (int i = 0; i < width * scale; i++) {
-			for (int j = 0; j < height * scale; j++) {
-				render.setPixel(x + i, y + j, pixels[i + j * width * scale]);
+		int midWidth = width * scale / 2;
+		int midHeight = height * scale / 2;
+		for (int i = -midWidth; i < midWidth; i++) {
+			for (int j = -midHeight; j < midHeight; j++) {
+				render.setPixel(x + i, y + j, pixels[i + midWidth + (j + midHeight) * width * scale]);
 			}
 		}
 	}

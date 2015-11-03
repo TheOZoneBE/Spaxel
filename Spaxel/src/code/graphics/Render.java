@@ -17,7 +17,7 @@ public class Render {
 	}
 
 	public void setPixel(int x, int y, int value) {
-		if (x >= 0 & x < width & y >= 0 & y < height & value != 0xffff00ff) {
+		if (x >= 0 && x < width && y >= 0 && y < height && value != 0xffff00ff) {
 			pixels[x + y * width] = value;
 		}
 	}

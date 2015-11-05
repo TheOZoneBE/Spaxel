@@ -15,6 +15,8 @@ import code.sound.MusicPlayer;
 import code.sound.Sound;
 import code.ui.MainUI;
 import code.ui.UI;
+import code.ui.UIButton;
+import code.ui.UIElement;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.entity.Laser;
@@ -53,6 +55,7 @@ public class Game extends Canvas implements Runnable {
 	private Sprite sprite;
 	private MusicPlayer music;
 	private UI ui;
+	private UIButton uiE;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -95,6 +98,9 @@ public class Game extends Canvas implements Runnable {
 		level.addPlayer(player);
 		music = new MusicPlayer();
 		ui = new MainUI(sprite);
+		uiE = new UIButton(512, 64, "startGame", sprite);
+		uiE.setHitShape(hitShape);
+		ui.addElement(uiE);
 	}
 
 	public synchronized void start() {
@@ -140,7 +146,7 @@ public class Game extends Canvas implements Runnable {
 		keyboard.update();
 		level.update(keyboard, mouse);
 		music.update();
-		ui.update();
+		ui.update(mouse);
 	}
 
 	public void render() {

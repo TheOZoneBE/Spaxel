@@ -5,6 +5,7 @@ import java.util.List;
 
 import code.graphics.Render;
 import code.graphics.Sprite;
+import code.input.Mouse;
 
 public class UI {
 	private Sprite overlay;
@@ -15,9 +16,9 @@ public class UI {
 		elements = new ArrayList<>();
 	}
 	
-	public void update(){
+	public void update(Mouse mouse){
 		for (UIElement u: elements){
-			u.update();
+			u.update(mouse.getX(), mouse.getY(), mouse.mouse1);
 		}
 	}
 	

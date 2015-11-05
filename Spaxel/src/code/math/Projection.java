@@ -7,7 +7,7 @@ public class Projection {
 	private double yMax;
 	private boolean empty;
 	
-	public Projection(Vector vec){
+	public Projection(VectorD vec){
 		xMin = vec.getValue(0);
 		xMax = vec.getValue(0);
 		yMin = vec.getValue(1);
@@ -19,7 +19,7 @@ public class Projection {
 		empty = true;
 	}
 	
-	public void addVector(Vector vec){
+	public void addVector(VectorD vec){
 		if(empty){
 			xMin = vec.getValue(0);
 			xMax = vec.getValue(0);

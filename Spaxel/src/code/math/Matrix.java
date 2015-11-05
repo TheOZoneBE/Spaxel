@@ -55,8 +55,8 @@ public class Matrix {
 		return sol;
 	}
 	
-	public Vector multiplicate(Vector vec){
-		Vector sol = new Vector(n);
+	public VectorD multiplicate(VectorD vec){
+		VectorD sol = new VectorD(n);
 		for (int i = 0; i < m; i++) {
 			double sum = 0;
 			for (int l = 0; l < n; l++) {

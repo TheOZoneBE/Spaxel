@@ -27,4 +27,13 @@ public class UI {
 			u.render(render);
 		}
 	}
+	
+	public void addElement(UIElement element){
+		element.setUI(this);
+		elements.add(element);
+	}
+	
+	public void removeElement(UIElement element){
+		elements.remove(element);
+	}
 }

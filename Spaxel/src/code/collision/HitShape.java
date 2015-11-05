@@ -7,6 +7,7 @@ import code.graphics.Render;
 import code.math.Axis;
 import code.math.Matrix;
 import code.math.Projection;
+import code.math.VectorD;
 
 
 public class HitShape {
@@ -14,6 +15,11 @@ public class HitShape {
 	
 	public HitShape(){
 		hitPoints = new ArrayList<>();
+	}
+	
+	public HitShape(HitPoint hitPoint){
+		hitPoints = new ArrayList<>();
+		hitPoints.add(hitPoint);
 	}
 	
 	public void addHitPoint(HitPoint hitPoint){
@@ -52,6 +58,54 @@ public class HitShape {
 			System.out.print(" | ");
 		}
 		System.out.println();
+	}
+	
+	/*
+	 * collision detection by the principle of SAT
+	 */
+	public boolean collision(HitShape hitshape){
+		List<Axis> normals = new ArrayList<>();
+		//getting hitpoints
+		List<HitPoint> hitpointsA = this.getHitPoints();
+		List<HitPoint> hitpointsB = hitshape.getHitPoints();
+		//sizes of lists
+		int aSize = hitpointsA.size();
+		int bSize = hitpointsB.size();
+		
+		//getting normals of first hitshape
+		if(aSize > 1){
+			for (int i= 0; i < aSize; i++){
+				// getting vectors for normal
+				VectorD v1 = hitpointsA.get(i).getVector();
+				VectorD v2 = hitpointsA.get((i + 1) % aSize).getVector();
+				//build normal
+				Axis normal = new Axis();
+				normal.initializeNormal(v1, v2);
+				normals.add(normal);
+			}
+		}		
+		//getting normals for second hitshape
+		if(bSize > 1){
+			for (int i= 0; i < bSize; i++){
+				// getting vectors for normal
+				VectorD v1 = hitpointsB.get(i).getVector();
+				VectorD v2 = hitpointsB.get((i + 1) % bSize).getVector();
+				//build normal
+				Axis normal = new Axis();
+				normal.initializeNormal(v1, v2);
+				normals.add(normal);
+			}
+		}
+		
+		//end of prep: now we have to check the projection of each normal
+		for (Axis ax: normals){
+			Projection p1 = this.project(ax);
+			Projection p2 = hitshape.project(ax);
+			if (!p1.overlap(p2)){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	

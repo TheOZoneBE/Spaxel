@@ -13,7 +13,7 @@ import code.entity.Projectile;
 import code.graphics.Render;
 import code.input.Keyboard;
 import code.input.Mouse;
-import code.math.Vector;
+import code.math.VectorD;
 
 public class Level {
 
@@ -36,7 +36,7 @@ public class Level {
 		projectiles = new ArrayList<Projectile>();
 		enemies = new ArrayList<Enemy>();
 		HitShape temp = new HitShape();
-		temp.addHitPoint(new HitPoint(new Vector(new double[]{0,0,1})));
+		temp.addHitPoint(new HitPoint(new VectorD(new double[]{0,0,1})));
 		collisionTest.setHitShape(temp);
 	}
 

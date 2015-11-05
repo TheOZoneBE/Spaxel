@@ -2,16 +2,16 @@ package code.math;
 
 import code.graphics.Render;
 
-public class Vector {
+public class VectorD {
 	private int m;
 	private double[] vector;
 	
-	public Vector(int m){
+	public VectorD(int m){
 		this.m = m;
 		vector = new double[m];
 	}
 	
-	public Vector(double[] vector){
+	public VectorD(double[] vector){
 		m = vector.length;
 		this.vector = vector;
 	}
@@ -24,7 +24,7 @@ public class Vector {
 		vector[i] = value;
 	}
 	
-	public double dotProduct(Vector vec){
+	public double dotProduct(VectorD vec){
 		int sol = 0;
 		for(int i = 0; i < m; i++){
 			sol += (vector[i]*vec.getValue(i));
@@ -32,24 +32,24 @@ public class Vector {
 		return sol;
 	}
 	
-	public Vector multiplicate(double a){
-		Vector sol = new Vector(m);
+	public VectorD multiplicate(double a){
+		VectorD sol = new VectorD(m);
 		for(int i = 0; i< m; i++){
 			sol.setValue(i, vector[i] * a);
 		}
 		return sol;
 	}
 	
-	public Vector sum(Vector vec){
-		Vector sol = new Vector(m);
+	public VectorD sum(VectorD vec){
+		VectorD sol = new VectorD(m);
 		for(int i = 0; i< m; i++){
 			sol.setValue(i, vector[i]+ vec.getValue(i));
 		}
 		return sol;
 	}
 	
-	public Vector diff(Vector vec){
-		Vector sol = new Vector(m);
+	public VectorD diff(VectorD vec){
+		VectorD sol = new VectorD(m);
 		for(int i = 0; i< m; i++){
 			sol.setValue(i, vector[i]- vec.getValue(i));
 		}
@@ -60,8 +60,8 @@ public class Vector {
 	/*
 	 * only works with 2d vectors!!
 	 */
-	public Vector normal(){
-		Vector sol = new Vector(m);
+	public VectorD normal(){
+		VectorD sol = new VectorD(m);
 		sol.setValue(0, vector[1]);
 		sol.setValue(1, -vector[0]);		
 		return sol;

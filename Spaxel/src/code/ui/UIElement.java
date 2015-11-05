@@ -3,8 +3,9 @@ package code.ui;
 import code.graphics.Render;
 
 public class UIElement {
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
+	protected UI ui;
 	
 	
 	public UIElement(int x, int y){
@@ -12,7 +13,11 @@ public class UIElement {
 		this.y = y;
 	}
 	
-	public void update(){
+	public void setUI(UI ui){
+		this.ui = ui;
+	}
+	
+	public void update(int mouseX, int mouseY, boolean clicked){
 		
 	}
 	

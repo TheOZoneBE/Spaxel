@@ -1,16 +1,14 @@
 package code.ui;
 
+import code.entity.Entity;
 import code.graphics.Render;
 
-public class UIElement {
-	protected int x;
-	protected int y;
+public class UIElement extends Entity {
 	protected UI ui;
 	
 	
 	public UIElement(int x, int y){
-		this.x = x;
-		this.y = y;
+		super(x, y, 0);
 	}
 	
 	public void setUI(UI ui){

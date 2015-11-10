@@ -14,8 +14,8 @@ import code.math.Projection;
 import code.math.VectorD;
 
 public class Entity {
-	private double x;
-	private double y;
+	protected double x;
+	protected double y;
 	protected double rot;
 	private HitShape oriHitShape;
 	private HitShape updHitShape;

@@ -46,7 +46,7 @@ public class UIButton extends UIElement {
 		if (box != null) {
 			box.render(0, 0, render);
 		}
-		sprite.render(x,y, render);
+		sprite.render((int)x,(int)y, render);
 	}
 	
 	public void highlight(){

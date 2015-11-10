@@ -13,11 +13,13 @@ public class UIButton extends UIElement {
 	String clickAction;
 	HitShape box;
 	Sprite sprite;
+	boolean click;
 
 	public UIButton(int x, int y, String clickAction, Sprite sprite) {
 		super(x, y);
 		this.sprite = sprite;
 		this.clickAction = clickAction;
+		click = false;
 	}
 
 	public void setHitShape(HitShape box) {
@@ -28,16 +30,24 @@ public class UIButton extends UIElement {
 		if (box != null) {
 			boolean inside = box.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
 			if (inside && clicked){
+				click = true;				
+			}
+			else if (inside && click){
 				try {
 					Method m = ui.getClass().getMethod(clickAction, null);
 					m.invoke(ui, null);
+					click = false;
 				}
 				catch(Exception e){
 					e.printStackTrace();
-				}	
+				}				
 			}
 			else if (inside){
 				highlight();
+				click = false;
+			}
+			else {
+				click = false;
 			}
 		}
 	}

@@ -25,6 +25,18 @@ public class Entity {
 		this.y = y;
 		this.rot = rot;
 	}
+	
+	public Entity(double x, double y){
+		this.x = x;
+		this.y = y;
+		rot = 0;
+	}
+	
+	public Entity(){
+		x = 0;
+		y = 0;
+		rot = 0;
+	}
 		
 	
 	public void render(int xPos, int yPos, Render render){

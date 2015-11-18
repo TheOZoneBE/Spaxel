@@ -6,8 +6,8 @@ public class ToggleItem extends Item{
 	private int cooldown;
 	private int cd = 0;
 
-	public ToggleItem(Sprite sprite, int cooldown) {
-		super(sprite);
+	public ToggleItem(double x, double y, Sprite sprite, int cooldown) {
+		super(x, y, sprite);
 		this.cooldown = cooldown;
 		// TODO Auto-generated constructor stub
 	}

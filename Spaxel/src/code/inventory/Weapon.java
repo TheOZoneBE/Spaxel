@@ -9,12 +9,11 @@ public class Weapon extends ToggleItem {
 	private int life;
 	private double speed;
 
-	public Weapon(Sprite sprite, int cooldown, Sprite proj, int life, double speed) {
-		super(sprite, cooldown);
+	public Weapon(double x, double y, Sprite sprite, int cooldown, Sprite proj, int life, double speed) {
+		super(x, y, sprite, cooldown);
 		this.proj = proj;
 		this.life = life;
 		this.speed = speed;
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean shoot() {

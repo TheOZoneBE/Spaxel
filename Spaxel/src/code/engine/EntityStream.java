@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 import code.entity.Entity;
-import code.entity.EntityType;
+import code.engine.EntityType;
 
 public class EntityStream {
 	private EnumMap<EntityType, List<Entity>> entities;

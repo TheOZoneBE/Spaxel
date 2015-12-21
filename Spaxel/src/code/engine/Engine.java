@@ -9,12 +9,13 @@ public class Engine {
 	private Keyboard keys;
 	private Mouse mouse;
 	private EntityStream entities;
-	private EnumMap<SystemType, System> systems;
+	private EnumMap<SystemType, GameSystem> systems;
 	
 	public Engine(){
 		keys = new Keyboard();
 		mouse = new Mouse();
 		entities = new EntityStream();
+		systems = new EnumMap<>(SystemType.class);
 		initialize();
 	}
 	
@@ -22,12 +23,20 @@ public class Engine {
 		
 	}
 	
-	public void addSystem(System system){
+	public void addSystem(GameSystem system){
 		systems.put(system.getType(), system);
 	}
 	
-	public System getSystem(SystemType type){
+	public GameSystem getSystem(SystemType type){
 		return systems.get(type);
+	}
+	
+	public void update(){
+		systems.get(SystemType.SOUND).update();
+	}
+	
+	public void render(){
+		
 	}
 
 }

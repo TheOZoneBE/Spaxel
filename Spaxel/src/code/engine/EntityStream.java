@@ -11,6 +11,7 @@ public class EntityStream {
 	private EnumMap<EntityType, List<Entity>> entities;
 	
 	public EntityStream(){
+		entities = new EnumMap<>(EntityType.class);
 		entities.put(EntityType.PLAYER, new ArrayList<>());
 		entities.put(EntityType.ENEMY, new ArrayList<>());
 		entities.put(EntityType.UI_ELEMENT, new ArrayList<>());

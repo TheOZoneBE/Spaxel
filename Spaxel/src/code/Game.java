@@ -10,7 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.level.Level;
-import code.sound.MusicPlayer;
+import code.sound.SoundSystem;
 import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
@@ -51,7 +51,6 @@ public class Game extends Canvas implements Runnable {
 	private Level level;//convert
 	private Spritesheet sheet;//move to engine
 	private Sprite sprite;//move to engine
-	private MusicPlayer music;//convert
 	private UI ui;//convert
 	private UIButton uiE;//add to entitystream
 
@@ -73,7 +72,11 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		frame.setTitle(gameName);
 		time = System.nanoTime();
-		render = new Render(GAME_WIDTH, GAME_HEIGHT);
+		engine = new Engine();
+		engine.addSystem(new SoundSystem(engine));
+		
+		
+		render = new Render(GAME_WIDTH, GAME_HEIGHT);		
 		keyboard = new Keyboard();
 		addKeyListener(keyboard);
 		mouse = new Mouse();
@@ -94,7 +97,6 @@ public class Game extends Canvas implements Runnable {
 		player.setHitShape(hitShape);
 		level = new Level();
 		level.addPlayer(player);
-		music = new MusicPlayer();
 		ui = new MainUI(sprite);
 		uiE = new UIButton(512, 64, "startGame", sprite);
 		uiE.setHitShape(hitShape);
@@ -109,7 +111,6 @@ public class Game extends Canvas implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
-		music.stop();
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
@@ -119,9 +120,9 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void run() {
+		requestFocus();
 		int ups = 0;
 		int fps = 0;
-		music.play();
 		while (running) {
 			long deltaTime = System.nanoTime() - time;
 			if (deltaTime > 20000000) {
@@ -140,16 +141,19 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
+		
+		engine.update();
 		keyboard.update();
 		level.update(keyboard, mouse);
-		music.update();
 		ui.update(mouse);
 	}
 
 	public void render() {
+		engine.render();
 		render.render(0,0);
 		level.render(render);
 		ui.render(render);
+		//have to look into getting all of this into the rendersystem
 		BufferStrategy bs = getBufferStrategy();
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);

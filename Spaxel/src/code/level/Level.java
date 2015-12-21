@@ -17,16 +17,16 @@ import code.math.VectorD;
 
 public class Level {
 
-	private Player player;
-	private int xOffset;
-	private int yOffset;
-	private int screenXOffset;
-	private int screenYOffset;
-	private int mouseX;
-	private int mouseY;
-	private List<Projectile> projectiles;
-	private List<Enemy> enemies;
-	private Entity collisionTest = new Entity(0,0,0);
+	private Player player;//entitystream
+	private int xOffset;//redundant
+	private int yOffset;//redundant
+	private int screenXOffset;//keep
+	private int screenYOffset;//keep
+	private int mouseX;//not needed
+	private int mouseY;//not needed
+	private List<Projectile> projectiles;//entitystream
+	private List<Enemy> enemies;//entitystream
+	private Entity collisionTest = new Entity(0,0,0);//entitystream
 	
 	
 

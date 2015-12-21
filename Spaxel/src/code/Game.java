@@ -10,16 +10,13 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.level.Level;
-import code.math.Matrix;
 import code.sound.MusicPlayer;
-import code.sound.Sound;
 import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
-import code.ui.UIElement;
 import code.collision.HitPoint;
 import code.collision.HitShape;
-import code.entity.Laser;
+import code.engine.Engine;
 import code.entity.Player;
 import code.graphics.Render;
 import code.graphics.Sprite;
@@ -35,27 +32,28 @@ public class Game extends Canvas implements Runnable {
 	public final static int GAME_WIDTH = 1280;
 	public static Game game;
 	public boolean running = false;
-	private String gameName = "Spaxel - Devbuild 0.1.3";
+	private String gameName = "Spaxel - Devbuild 0.1.4";
 
 	private Thread thread;
 	private JFrame frame;
 	private long time;
-	private Render render;
 	private BufferedImage image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
-	private Keyboard keyboard;
-	private Mouse mouse;
-	private int screenXOffset = 0;
-	private int screenYOffset = 0;
-	private Player player;
-	private HitShape hitShape;
-	private HitPoint hitPoint;
-	private Level level;
-	private Spritesheet sheet;
-	private Sprite sprite;
-	private MusicPlayer music;
-	private UI ui;
-	private UIButton uiE;
+	
+	private Engine engine;
+	
+	private Render render;//convert
+	private Keyboard keyboard;//done
+	private Mouse mouse;//done
+	private Player player;//add to entitystream
+	private HitShape hitShape;//move to engine
+	private HitPoint hitPoint;//move to engine
+	private Level level;//convert
+	private Spritesheet sheet;//move to engine
+	private Sprite sprite;//move to engine
+	private MusicPlayer music;//convert
+	private UI ui;//convert
+	private UIButton uiE;//add to entitystream
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -142,7 +140,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		requestFocus();
 		keyboard.update();
 		level.update(keyboard, mouse);
 		music.update();
@@ -150,7 +147,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
-		render.render(screenXOffset, screenYOffset);
+		render.render(0,0);
 		level.render(render);
 		ui.render(render);
 		BufferStrategy bs = getBufferStrategy();

@@ -4,8 +4,8 @@ import code.graphics.Sprite;
 
 public class EffectItem extends Item{
 
-	public EffectItem(Sprite sprite) {
-		super(sprite);
+	public EffectItem(double x, double y, Sprite sprite) {
+		super(x,y, sprite);
 		// TODO Auto-generated constructor stub
 	}
 	

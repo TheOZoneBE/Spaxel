@@ -1,10 +1,11 @@
 package code.level;
 
-import code.Game;
 import code.engine.Engine;
+import code.engine.EntityStream;
+import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
-import code.entity.Projectile;
+import code.entity.Player;
 import code.input.Keyboard;
 import code.input.Mouse;
 
@@ -16,22 +17,13 @@ public class PlayerSystem extends GameSystem{
 	}
 	
 	public void update(){
-		//get mouse and keys and update the right values in player
 		Mouse mouse = engine.getMouse();
 		Keyboard keys = engine.getKeyboard();
-		mouseX = mouse.getX();
-		mouseY = mouse.getY();
-		screenXOffset = mouseX / 2 - Game.GAME_WIDTH / 4;
-		screenYOffset = mouseY / 2 - Game.GAME_HEIGHT / 4;
-		player.update(keyboard, mouseX, mouseY);
-		xOffset = (int) player.getX();
-		yOffset = (int) player.getY();
-
-		for (Projectile p : projectiles) {
-			p.update();
-		}
-		cleanProjectiles(projectiles);
-		collisionTest.update();
+		EntityStream entities = engine.getEntityStream();
+		int mouseX = mouse.getX();
+		int mouseY = mouse.getY();
+		((Player)entities.getEntities(EntityType.PLAYER).get(0)).update(keys, mouseX, mouseY);
+		//todo get mousebutton input and call methods to do things with that
 	}
 
 }

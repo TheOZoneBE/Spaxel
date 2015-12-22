@@ -25,24 +25,19 @@ public class Level {
 	private int mouseX;//not needed
 	private int mouseY;//not needed
 	private List<Projectile> projectiles;//entitystream
-	private List<Enemy> enemies;//entitystream
-	private Entity collisionTest = new Entity(0,0,0);//entitystream
-	
-	
+	private List<Enemy> enemies;//entitystream	
 
 	public Level() {
 		xOffset = 0;
 		yOffset = 0;
 		projectiles = new ArrayList<Projectile>();
 		enemies = new ArrayList<Enemy>();
-		HitShape temp = new HitShape();
-		temp.addHitPoint(new HitPoint(new VectorD(new double[]{0,0,1})));
-		collisionTest.setHitShape(temp);
 	}
 
 	public void update(Keyboard keyboard, Mouse mouse) {
 		mouseX = mouse.getX();
 		mouseY = mouse.getY();
+		//move to rendersystem
 		screenXOffset = mouseX / 2 - Game.GAME_WIDTH / 4;
 		screenYOffset = mouseY / 2 - Game.GAME_HEIGHT / 4;
 		player.update(keyboard, mouseX, mouseY);
@@ -53,10 +48,10 @@ public class Level {
 			p.update();
 		}
 		cleanProjectiles(projectiles);
-		collisionTest.update();
 	}
 
 	public void render(Render render) {
+		//move to rendersystem
 		int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
 		int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
 		render.dots(playerXPos - xOffset, playerYPos - yOffset);
@@ -69,25 +64,26 @@ public class Level {
 		for (Enemy e : enemies) {
 			e.render(playerXPos - xOffset, playerYPos - yOffset, render);
 		}
-		player.getUpdHitShape().render(playerXPos - xOffset, playerYPos - yOffset, render);
-		collisionTest.getUpdHitShape().render(playerXPos - xOffset, playerYPos - yOffset, render);
 	}
 
+	//in game, add it to entitystream
 	public void addPlayer(Player player) {
 		this.player = player;
 		player.addLevel(this);
-		enemies.add(new Enemy(0, 0, 0, player.getSprite()));
 	}
 
+	//move to playersystem
 	public void addProjectile(Projectile p) {
 		projectiles.add(p);
 	}
 
+	//move to playersystem
 	public void addProjectiles(List<Projectile> projs) {
 		if (projs != null)
 			projectiles.addAll(projs);
 	}
 
+	//done
 	public void cleanProjectiles(List<Projectile> projectiles) {
 		for (int i = 0; i < projectiles.size(); i++) {
 			Projectile p = projectiles.get(i);

@@ -1,5 +1,6 @@
 package code.system;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import code.engine.Engine;
@@ -20,18 +21,14 @@ public class ProjectileSystem extends GameSystem{
 	public void update(){
 		EntityStream entities = engine.getEntityStream();
 		List<Entity> projs = entities.getEntities(EntityType.PROJECTILE);
+		List<Entity> dead = new ArrayList<>();
 		for (Entity proj : projs){
 			proj.update();
-		}
-	}
-	public void cleanProjectiles(List<Projectile> projectiles) {
-		for (int i = 0; i < projectiles.size(); i++) {
-			Projectile p = projectiles.get(i);
-			if (!p.isAlive()) {
-				projectiles.remove(p);
+			if (((Projectile)proj).isAlive()){
+				dead.add(proj);
 			}
 		}
+		projs.removeAll(dead);
 	}
-
 
 }

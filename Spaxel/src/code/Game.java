@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import code.level.Level;
+import code.level.PlayerSystem;
 import code.sound.SoundSystem;
 import code.system.ProjectileSystem;
 import code.ui.MainUI;
@@ -19,8 +20,10 @@ import code.ui.UISystem;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
+import code.engine.EntityType;
 import code.entity.Player;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
+import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.input.Keyboard;
@@ -41,21 +44,20 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private long time;
 	private BufferedImage image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+	public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	
 	private Engine engine;
 	
-	private Render render;//convert
+	private RenderBuffer render;//convert
 	private Keyboard keyboard;//done
 	private Mouse mouse;//done
 	private Player player;//add to entitystream
 	private HitShape hitShape;//move to engine
 	private HitPoint hitPoint;//move to engine
-	private Level level;//convert
 	private Spritesheet sheet;//move to engine
 	private Sprite sprite;//move to engine
-	private UI ui;//convert
-	private UIButton uiE;//add to entitystream
+	//private UI ui;//convert
+	//private UIButton uiE;//add to entitystream
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -75,19 +77,20 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		frame.setTitle(gameName);
 		time = System.nanoTime();
-		engine = new Engine();
+		keyboard = new Keyboard();
+		mouse = new Mouse();
+		addKeyListener(keyboard);		
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
+		engine = new Engine(keyboard, mouse);
 		engine.addSystem(new SoundSystem(engine));
 		engine.addSystem(new InventorySystem(engine));
 		engine.addSystem(new UISystem(engine));
 		engine.addSystem(new ProjectileSystem(engine));
+		engine.addSystem(new PlayerSystem(engine));
+		engine.addSystem(new RenderSystem(engine));
 		
-		
-		render = new Render(GAME_WIDTH, GAME_HEIGHT);		
-		keyboard = new Keyboard();
-		addKeyListener(keyboard);
-		mouse = new Mouse();
-		addMouseListener(mouse);
-		addMouseMotionListener(mouse);
+		//todo change this to loaders
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
 		sprite = new Sprite(16, 16, 0, 0, 4, sheet);
 		player = new Player(0, 0, 0, sprite);
@@ -101,12 +104,15 @@ public class Game extends Canvas implements Runnable {
 		hitPoint = new HitPoint(new VectorD(new double[] {-64, 64, 1}));
 		hitShape.addHitPoint(hitPoint);
 		player.setHitShape(hitShape);
-		level = new Level();
-		level.addPlayer(player);
-		ui = new MainUI(sprite);
-		uiE = new UIButton(512, 64, "startGame", sprite);
-		uiE.setHitShape(hitShape);
-		ui.addElement(uiE);
+		
+		engine.getEntityStream().addEntity(EntityType.PLAYER, player);
+		
+		render = new RenderBuffer(GAME_WIDTH, GAME_HEIGHT);	
+		
+		//ui = new MainUI(sprite);
+		//uiE = new UIButton(512, 64, "startGame", sprite);
+		//uiE.setHitShape(hitShape);
+		//ui.addElement(uiE);
 	}
 
 	public synchronized void start() {
@@ -147,20 +153,20 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		
 		engine.update();
 		keyboard.update();
-		level.update(keyboard, mouse);
-		ui.update(mouse);
+		//ui.update(mouse);
 	}
 
 	public void render() {
 		engine.render();
+		//this can go
 		render.render(0,0);
-		level.render(render);
-		ui.render(render);
+		//this also
+		//ui.render(render);
 		//have to look into getting all of this into the rendersystem
 		BufferStrategy bs = getBufferStrategy();
+		//this is going to happen in RenderSystem.render()
 		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
 			pixels[i] = render.getPixel(i);
 		}

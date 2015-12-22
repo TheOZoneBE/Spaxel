@@ -1,6 +1,6 @@
 package code.entity;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 
 public class Enemy extends Entity{
@@ -16,7 +16,7 @@ public class Enemy extends Entity{
 	}
 	
 	@Override
-	public void render(int xPos, int yPos, Render render) {
+	public void render(int xPos, int yPos, RenderBuffer render) {
 		sprite.render((int) (getX() + xPos), (int) (getY() + yPos), rot, render);
 		
 	}

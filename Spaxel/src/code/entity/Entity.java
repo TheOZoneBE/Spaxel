@@ -6,7 +6,7 @@ import java.util.List;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.math.Axis;
 import code.math.Matrix;
 import code.math.MatrixMaker;
@@ -39,7 +39,7 @@ public class Entity {
 	}
 		
 	
-	public void render(int xPos, int yPos, Render render){
+	public void render(int xPos, int yPos, RenderBuffer render){
 		
 	}
 	public void update(){	

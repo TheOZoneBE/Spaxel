@@ -1,7 +1,7 @@
 package code.entity;
 
 import code.level.Level;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.inventory.InventorySystem;
@@ -66,7 +66,7 @@ public class Player extends Entity {
 		return speed < maxspeed;
 	}
 
-	public void render(int xPos, int yPos, Render render) {
+	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
 		sprite.render(xPos, yPos, rot, render);
 	}

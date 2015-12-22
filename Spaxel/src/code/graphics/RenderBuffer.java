@@ -1,12 +1,12 @@
 package code.graphics;
 
-public class Render {
+public class RenderBuffer {
 
 	private int width;
 	private int height;
 	private int[] pixels;
 
-	public Render(int width, int height) {
+	public RenderBuffer(int width, int height) {
 		this.width = width;
 		this.height = height;
 		pixels = new int[width * height];

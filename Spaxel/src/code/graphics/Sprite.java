@@ -29,7 +29,7 @@ public class Sprite {
 		}
 	}
 
-	public void render(int x, int y, double rot, Render render) {
+	public void render(int x, int y, double rot, RenderBuffer render) {
 		double dx = Math.cos(rot);
 		double dy = Math.sin(rot);
 
@@ -44,7 +44,7 @@ public class Sprite {
 		}
 	}
 
-	public void render(int x, int y, Render render) {
+	public void render(int x, int y, RenderBuffer render) {
 		int midWidth = width * scale / 2;
 		int midHeight = height * scale / 2;
 		for (int i = -midWidth; i < midWidth; i++) {
@@ -54,7 +54,7 @@ public class Sprite {
 		}
 	}
 	
-	public void render(int x, int y, int midWidth, int midHeight, Render render){
+	public void render(int x, int y, int midWidth, int midHeight, RenderBuffer render){
 		for (int i = -midWidth; i < width * scale  - midWidth; i++) {
 			for (int j = -midHeight; j < width * scale - midHeight; j++) {
 				render.setPixel(x + i, y + j, pixels[i + midWidth + (j + midHeight) * width * scale]);

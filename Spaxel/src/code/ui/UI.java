@@ -3,7 +3,7 @@ package code.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Mouse;
 
@@ -23,7 +23,7 @@ public class UI{
 		}
 	}
 	
-	public void render(Render render){
+	public void render(RenderBuffer render){
 		overlay.render(0, 0, 0, 0, render);
 		for (UIElement u: elements){
 			u.render(render);

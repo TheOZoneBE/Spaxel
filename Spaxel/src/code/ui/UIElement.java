@@ -1,7 +1,7 @@
 package code.ui;
 
 import code.entity.Entity;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 
 public class UIElement extends Entity {
 	protected UI ui;
@@ -19,7 +19,7 @@ public class UIElement extends Entity {
 		
 	}
 	
-	public void render(Render render){
+	public void render(RenderBuffer render){
 		
 	}
 

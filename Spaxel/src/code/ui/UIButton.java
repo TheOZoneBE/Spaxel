@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.math.MatrixMaker;
 import code.math.VectorD;
@@ -52,7 +52,7 @@ public class UIButton extends UIElement {
 		}
 	}
 
-	public void render(Render render) {
+	public void render(RenderBuffer render) {
 		if (box != null) {
 			box.render(0, 0, render);
 		}

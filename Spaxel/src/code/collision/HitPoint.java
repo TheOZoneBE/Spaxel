@@ -1,6 +1,6 @@
 package code.collision;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.math.Matrix;
 import code.math.VectorD;
 
@@ -30,7 +30,7 @@ public class HitPoint {
 		return updated;
 	}
 
-	public void render(int xOffset, int yOffset, Render render) {
+	public void render(int xOffset, int yOffset, RenderBuffer render) {
 		vector.render(xOffset, yOffset, render);
 	}
 	

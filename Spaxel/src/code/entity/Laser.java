@@ -1,6 +1,6 @@
 package code.entity;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 
 public class Laser extends Projectile {
@@ -28,7 +28,7 @@ public class Laser extends Projectile {
 	}
 
 	@Override
-	public void render(int xPos, int yPos, Render render) {
+	public void render(int xPos, int yPos, RenderBuffer render) {
 		getSprite().render((int) (getX() + xPos), (int) (getY() + yPos), rot, render);
 
 	}

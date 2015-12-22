@@ -10,7 +10,7 @@ import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.Player;
 import code.entity.Projectile;
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.math.VectorD;
@@ -50,7 +50,7 @@ public class Level {
 		cleanProjectiles(projectiles);
 	}
 
-	public void render(Render render) {
+	public void render(RenderBuffer render) {
 		//move to rendersystem
 		int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
 		int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;

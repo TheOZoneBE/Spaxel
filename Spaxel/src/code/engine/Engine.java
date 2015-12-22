@@ -2,6 +2,7 @@ package code.engine;
 
 import java.util.EnumMap;
 
+import code.graphics.RenderSystem;
 import code.input.Keyboard;
 import code.input.Mouse;
 
@@ -11,9 +12,9 @@ public class Engine {
 	private EntityStream entities;
 	private EnumMap<SystemType, GameSystem> systems;
 	
-	public Engine(){
-		keys = new Keyboard();
-		mouse = new Mouse();
+	public Engine(Keyboard keys, Mouse mouse){
+		this.keys = keys;
+		this.mouse = mouse;
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		initialize();
@@ -48,10 +49,12 @@ public class Engine {
 		systems.get(SystemType.INVENTORY).update();
 		systems.get(SystemType.UI).update();
 		systems.get(SystemType.PROJECTILE).update();
+		systems.get(SystemType.PLAYER).update();
+		systems.get(SystemType.RENDER).update();
 	}
 	
 	public void render(){
-		
+		((RenderSystem)systems.get(SystemType.RENDER)).render();
 	}
 
 }

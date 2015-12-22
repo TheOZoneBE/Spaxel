@@ -1,6 +1,6 @@
 package code.math;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 
 public class VectorD {
 	private int m;
@@ -67,7 +67,7 @@ public class VectorD {
 		return sol;
 	}
 	
-	public void render(int xOffset, int yOffset, Render render){
+	public void render(int xOffset, int yOffset, RenderBuffer render){
 		render.setPixel((int)vector[0]+ xOffset, (int)vector[1] + yOffset, 0xffff0000);
 	}
 	

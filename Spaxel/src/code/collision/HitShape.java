@@ -3,7 +3,7 @@ package code.collision;
 import java.util.ArrayList;
 import java.util.List;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.math.Axis;
 import code.math.Matrix;
 import code.math.Projection;
@@ -46,7 +46,7 @@ public class HitShape {
 		return pro;
 	}
 	
-	public void render(int xOffset, int yOffset, Render render){
+	public void render(int xOffset, int yOffset, RenderBuffer render){
 		for (HitPoint h: hitPoints){
 			h.render(xOffset, yOffset, render);
 		}

@@ -1,6 +1,6 @@
 package code.entity;
 
-import code.graphics.Render;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 
 public class Projectile extends Entity {
@@ -22,7 +22,7 @@ public class Projectile extends Entity {
 	}
 
 	@Override
-	public void render(int xPos, int yPos, Render render) {
+	public void render(int xPos, int yPos, RenderBuffer render) {
 		sprite.render((int) (getX() + xPos), (int) (getY() + yPos), render);
 
 	}

@@ -8,6 +8,7 @@ import code.graphics.Sprite;
 import code.input.Mouse;
 
 public class UI{
+	//this class will have to be integrated into UISystem
 	private Sprite overlay;
 	private List<UIElement> elements;
 

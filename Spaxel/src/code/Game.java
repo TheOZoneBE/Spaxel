@@ -48,7 +48,6 @@ public class Game extends Canvas implements Runnable {
 	
 	private Engine engine;
 	
-	private RenderBuffer render;//convert
 	private Keyboard keyboard;//done
 	private Mouse mouse;//done
 	private Player player;//add to entitystream
@@ -105,9 +104,7 @@ public class Game extends Canvas implements Runnable {
 		hitShape.addHitPoint(hitPoint);
 		player.setHitShape(hitShape);
 		
-		engine.getEntityStream().addEntity(EntityType.PLAYER, player);
-		
-		render = new RenderBuffer(GAME_WIDTH, GAME_HEIGHT);	
+		engine.getEntityStream().addEntity(EntityType.PLAYER, player);	
 		
 		//ui = new MainUI(sprite);
 		//uiE = new UIButton(512, 64, "startGame", sprite);
@@ -160,16 +157,9 @@ public class Game extends Canvas implements Runnable {
 
 	public void render() {
 		engine.render();
-		//this can go
-		render.render(0,0);
 		//this also
 		//ui.render(render);
-		//have to look into getting all of this into the rendersystem
 		BufferStrategy bs = getBufferStrategy();
-		//this is going to happen in RenderSystem.render()
-		for (int i = 0; i < GAME_WIDTH * GAME_HEIGHT; i++) {
-			pixels[i] = render.getPixel(i);
-		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();

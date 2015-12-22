@@ -26,12 +26,18 @@ public class RenderSystem extends GameSystem {
 		EntityStream entities = engine.getEntityStream();
 		Keyboard keys = engine.getKeyboard();
 		Mouse mouse = engine.getMouse();
-		mainBuffer.clear();
+		int screenXOffset = mouse.getX() / 2 - Game.GAME_WIDTH / 4;
+		int screenYOffset = mouse.getY() / 2 - Game.GAME_HEIGHT / 4;
 		
+		int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
+		int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
+		
+		mainBuffer.clear();
+		mainBuffer.dots(playerXPos, playerYPos);
 		List<Entity> toRender = entities.getEntities(EntityType.PLAYER);
 		for (Entity e: toRender){
 			//rendering player
-			
+			e.render(playerXPos, playerYPos, mainBuffer);
 		}
 		toRender = entities.getEntities(EntityType.ENEMY);
 		for (Entity e: toRender){

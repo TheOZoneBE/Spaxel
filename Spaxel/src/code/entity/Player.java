@@ -4,14 +4,13 @@ import code.level.Level;
 import code.graphics.Render;
 import code.graphics.Sprite;
 import code.input.Keyboard;
-import code.inventory.Inventory;
+import code.inventory.InventorySystem;
 
 public class Player extends Entity {
 	private Sprite sprite;
 	private int mouseX;
 	private int mouseY;
 	private Level level;
-	private Inventory inventory;
 	private double maxspeed;
 	private double acc;
 	private double xdir;
@@ -20,7 +19,6 @@ public class Player extends Entity {
 	public Player(double x, double y, double rot, Sprite sprite) {
 		super(x, y, rot);
 		this.sprite = sprite;
-		inventory = new Inventory();
 		maxspeed = 20;
 		acc = 0.5;
 		xdir = 0;
@@ -59,7 +57,6 @@ public class Player extends Entity {
 		setY(getY() + ydir);
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
-		inventory.update();
 		super.update();
 		//collision detection stuffs
 	}
@@ -78,11 +75,11 @@ public class Player extends Entity {
 		this.level = level;
 	}
 
+	//change this to update of inventory
 	public void primaryWeapon() {
-
-		level.addProjectiles(inventory.primaryWeapon((int) getX(), (int) getY(), rot));
 	}
 
+	//change this to update of inventory
 	public void secondaryWeapon() {
 
 	}

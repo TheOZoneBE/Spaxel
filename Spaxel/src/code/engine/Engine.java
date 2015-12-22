@@ -33,6 +33,7 @@ public class Engine {
 	
 	public void update(){
 		systems.get(SystemType.SOUND).update();
+		systems.get(SystemType.INVENTORY).update();
 	}
 	
 	public void render(){

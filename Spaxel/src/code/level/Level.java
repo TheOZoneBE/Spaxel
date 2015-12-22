@@ -48,12 +48,6 @@ public class Level {
 		player.update(keyboard, mouseX, mouseY);
 		xOffset = (int) player.getX();
 		yOffset = (int) player.getY();
-		if (mouse.mouse1) {
-			player.primaryWeapon();
-		}
-		if (mouse.mouse2) {
-			player.secondaryWeapon();
-		}
 
 		for (Projectile p : projectiles) {
 			p.update();

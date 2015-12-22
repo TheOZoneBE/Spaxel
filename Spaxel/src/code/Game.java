@@ -23,6 +23,7 @@ import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.inventory.InventorySystem;
 import code.math.VectorD;
 
 public class Game extends Canvas implements Runnable {
@@ -74,6 +75,7 @@ public class Game extends Canvas implements Runnable {
 		time = System.nanoTime();
 		engine = new Engine();
 		engine.addSystem(new SoundSystem(engine));
+		engine.addSystem(new InventorySystem(engine));
 		
 		
 		render = new Render(GAME_WIDTH, GAME_HEIGHT);		

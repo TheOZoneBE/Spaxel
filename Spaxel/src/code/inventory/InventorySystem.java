@@ -3,18 +3,23 @@ package code.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import code.engine.Engine;
+import code.engine.GameSystem;
+import code.engine.SystemType;
 import code.entity.Projectile;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 
-public class Inventory {
-	private List<Weapon> primWeap;
-	private List<Weapon> secWeap;
-	private List<Item> shipItems;
-	private Spritesheet sheet;
-	private Sprite sprite;
+public class InventorySystem extends GameSystem{
+	private List<Weapon> primWeap;//move to entitystream
+	private List<Weapon> secWeap;//move to entitystream
+	private List<Item> shipItems;//move to entitystream
+	private Spritesheet sheet;//this has to go away
+	private Sprite sprite;//this also
 	
-	public Inventory(){
+	public InventorySystem(Engine engine){
+		super(engine);
+		type = SystemType.INVENTORY;
 		primWeap = new ArrayList<Weapon>();
 		secWeap = new ArrayList<Weapon>();
 		shipItems = new ArrayList<Item>();

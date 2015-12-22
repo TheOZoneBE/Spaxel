@@ -34,6 +34,7 @@ public class Engine {
 	public void update(){
 		systems.get(SystemType.SOUND).update();
 		systems.get(SystemType.INVENTORY).update();
+		systems.get(SystemType.UI).update();
 	}
 	
 	public void render(){

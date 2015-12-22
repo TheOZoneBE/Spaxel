@@ -14,6 +14,7 @@ import code.sound.SoundSystem;
 import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
+import code.ui.UISystem;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
@@ -76,6 +77,7 @@ public class Game extends Canvas implements Runnable {
 		engine = new Engine();
 		engine.addSystem(new SoundSystem(engine));
 		engine.addSystem(new InventorySystem(engine));
+		engine.addSystem(new UISystem(engine));
 		
 		
 		render = new Render(GAME_WIDTH, GAME_HEIGHT);		

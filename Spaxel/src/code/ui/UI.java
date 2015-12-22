@@ -7,7 +7,7 @@ import code.graphics.Render;
 import code.graphics.Sprite;
 import code.input.Mouse;
 
-public class UI {
+public class UI{
 	private Sprite overlay;
 	private List<UIElement> elements;
 

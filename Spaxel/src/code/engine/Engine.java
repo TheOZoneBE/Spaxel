@@ -23,6 +23,18 @@ public class Engine {
 		
 	}
 	
+	public Keyboard getKeyboard(){
+		return keys;
+	}
+	
+	public Mouse getMouse(){
+		return mouse;
+	}
+	
+	public EntityStream getEntityStream(){
+		return entities;
+	}
+	
 	public void addSystem(GameSystem system){
 		systems.put(system.getType(), system);
 	}
@@ -35,6 +47,7 @@ public class Engine {
 		systems.get(SystemType.SOUND).update();
 		systems.get(SystemType.INVENTORY).update();
 		systems.get(SystemType.UI).update();
+		systems.get(SystemType.PROJECTILE).update();
 	}
 	
 	public void render(){

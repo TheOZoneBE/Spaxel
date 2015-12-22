@@ -1,5 +1,5 @@
 package code.engine;
 
 public enum SystemType {
-	UI, AI,INVENTORY,RENDER,LEVEL,SOUND
+	UI, AI,INVENTORY,RENDER,PLAYER,SOUND,PROJECTILE
 }

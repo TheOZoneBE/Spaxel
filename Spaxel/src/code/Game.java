@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 import code.level.Level;
 import code.sound.SoundSystem;
+import code.system.ProjectileSystem;
 import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
@@ -78,6 +79,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new SoundSystem(engine));
 		engine.addSystem(new InventorySystem(engine));
 		engine.addSystem(new UISystem(engine));
+		engine.addSystem(new ProjectileSystem(engine));
 		
 		
 		render = new Render(GAME_WIDTH, GAME_HEIGHT);		

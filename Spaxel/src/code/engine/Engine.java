@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import code.graphics.RenderSystem;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.resource.SoundLoader;
 
 public class Engine {
 	private Keyboard keys;
@@ -21,7 +22,8 @@ public class Engine {
 	}
 	
 	public void initialize(){
-		
+		SoundLoader sounds = new SoundLoader();
+		sounds.loadAssets("/resources/sound.xml");
 	}
 	
 	public Keyboard getKeyboard(){

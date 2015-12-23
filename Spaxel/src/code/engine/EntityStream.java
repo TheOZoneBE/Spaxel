@@ -16,7 +16,8 @@ public class EntityStream {
 		entities.put(EntityType.ENEMY, new ArrayList<>());
 		entities.put(EntityType.UI_ELEMENT, new ArrayList<>());
 		entities.put(EntityType.PROJECTILE, new ArrayList<>());
-		entities.put(EntityType.ITEM, new ArrayList<>());		
+		entities.put(EntityType.ITEM, new ArrayList<>());
+		entities.put(EntityType.SOUND, new ArrayList<>());	
 	}
 	
 	public List<Entity> getEntities(EntityType type){

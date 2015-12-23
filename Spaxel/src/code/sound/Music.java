@@ -1,10 +1,13 @@
 package code.sound;
 
 public class Music extends Sound{
-	private int intensity;//todo: add to constructor
+	private String name;
+	private int intensity;
 
-	public Music(String path) {
+	public Music(String path, String name, int intensity) {
 		super(path);
+		this.name = name;
+		this.intensity = intensity;
 		// TODO Auto-generated constructor stub
 	}
 	

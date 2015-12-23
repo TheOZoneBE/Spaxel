@@ -6,13 +6,15 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Sound {
+import code.entity.Entity;
+
+public class Sound extends Entity{
 	
 	private String path;
 	private Clip clip;
 	
 	public Sound(String path){
-		this.path = path;		
+		this.path = path;
 	}
 	
 	public void play(){

@@ -35,7 +35,7 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void play(){
-		currentMusic = new Music(directory + currentSong);
+		currentMusic = new Music(directory + currentSong, "", -1);
 		currentMusic.play();
 	}
 	

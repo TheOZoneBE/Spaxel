@@ -56,12 +56,20 @@ public class Entity {
 		return y;
 	}
 	
+	public double getRot(){
+		return rot;
+	}
+	
 	public void setX(double x){
 		this.x = x;
 	}
 	
 	public void setY(double y){
 		this.y = y;
+	}
+	
+	public void setRot(double rot){
+		this.rot = rot;
 	}
 	
 	public void setHitShape(HitShape hitShape){

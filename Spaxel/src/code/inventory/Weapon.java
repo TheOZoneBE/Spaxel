@@ -24,7 +24,7 @@ public class Weapon extends ToggleItem {
 		return false;
 	}
 
-	public Projectile getProjectile(int x, int y, double rot) {
+	public Projectile getProjectile(double x, double y, double rot) {
 		if (shoot())
 			return new Laser(x, y, rot, proj, life, speed);
 		return null;

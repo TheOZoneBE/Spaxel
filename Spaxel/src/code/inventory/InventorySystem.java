@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import code.engine.Engine;
+import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Projectile;
@@ -26,6 +27,8 @@ public class InventorySystem extends GameSystem{
 		sheet = new Spritesheet(32, 32, "/spritesheets/projectiles.png");
 		sprite = new Sprite(8, 8, 0, 0, 2, sheet);
 		primWeap.add(new Weapon(0,0,sprite, 10, sprite, 200, 25.0));
+		//temporary to get something shooting again
+		engine.getEntityStream().addEntity(EntityType.ITEM, primWeap.get(0));
 	}
 	
 	public void update(){
@@ -40,6 +43,7 @@ public class InventorySystem extends GameSystem{
 		}
 	}
 	
+	//this has to disappear
 	public List<Projectile> primaryWeapon(int x, int y, double rot){
 		List<Projectile> projs = new ArrayList<Projectile>();
 		for (Weapon w: primWeap){

@@ -24,7 +24,7 @@ public class ProjectileSystem extends GameSystem{
 		List<Entity> dead = new ArrayList<>();
 		for (Entity proj : projs){
 			proj.update();
-			if (((Projectile)proj).isAlive()){
+			if (!((Projectile)proj).isAlive()){
 				dead.add(proj);
 			}
 		}

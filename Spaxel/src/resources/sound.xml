@@ -1,4 +1,4 @@
-<music>
+<music type="array">
 	<!-- template
 	<music_track>
 		<path>Default</path>

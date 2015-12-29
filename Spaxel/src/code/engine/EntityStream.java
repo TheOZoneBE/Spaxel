@@ -26,6 +26,10 @@ public class EntityStream {
 	
 	public void addEntity(EntityType type, Entity e){
 		entities.get(type).add(e);
-	}	
+	}
+	
+	public void addEntities(EntityType type, List<Entity> es){
+		entities.get(type).addAll(es);
+	}
 
 }

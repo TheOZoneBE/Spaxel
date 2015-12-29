@@ -23,7 +23,7 @@ public class Engine {
 	
 	public void initialize(){
 		SoundLoader sounds = new SoundLoader();
-		sounds.loadAssets("/resources/sound.xml");
+		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 	}
 	
 	public Keyboard getKeyboard(){

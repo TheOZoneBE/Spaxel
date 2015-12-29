@@ -1,24 +1,25 @@
 package code.sound;
 
+import java.util.List;
 import java.util.Random;
 
 import code.engine.Engine;
+import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
+import code.entity.Entity;
 
 public class SoundSystem extends GameSystem{
-	private String[] music = {"Själv.wav", "Beast Mode.wav", "Bipolar Bear.wav", "Catnip.wav", "Boss Ass Bits.wav", "Deambulate.wav", "Duty Cycle GB.wav"};
-	private String currentSong;
 	private Random r;
 	private Music currentMusic;
-	private String directory = "/music/";
 	
 	public SoundSystem(Engine engine){
 		super(engine);
 		type = SystemType.SOUND;
 		r = new Random();
-		int i = r.nextInt(music.length);
-		currentSong = music[i];
+		List<Entity> sounds = engine.getEntityStream().getEntities(EntityType.SOUND);
+		int i = r.nextInt(sounds.size());
+		currentMusic = (Music)sounds.get(i);
 		play();
 	}
 	
@@ -29,13 +30,13 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void nextSong(){
-		int i = r.nextInt(music.length);
-		currentSong = music[i];
+		List<Entity> sounds = engine.getEntityStream().getEntities(EntityType.SOUND);
+		int i = r.nextInt(sounds.size());
+		currentMusic = (Music)sounds.get(i);
 		play();
 	}
 	
 	public void play(){
-		currentMusic = new Music(directory + currentSong, "", -1);
 		currentMusic.play();
 	}
 	

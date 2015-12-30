@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import code.level.Level;
 import code.level.PlayerSystem;
 import code.sound.SoundSystem;
+import code.system.AISystem;
 import code.system.ProjectileSystem;
 import code.ui.MainUI;
 import code.ui.UI;
@@ -21,6 +22,7 @@ import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.entity.Enemy;
 import code.entity.Player;
 import code.graphics.RenderBuffer;
 import code.graphics.RenderSystem;
@@ -88,6 +90,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new ProjectileSystem(engine));
 		engine.addSystem(new PlayerSystem(engine));
 		engine.addSystem(new RenderSystem(engine));
+		engine.addSystem(new AISystem(engine));
 		
 		//todo change this to loaders
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
@@ -104,7 +107,10 @@ public class Game extends Canvas implements Runnable {
 		hitShape.addHitPoint(hitPoint);
 		player.setHitShape(hitShape);
 		
-		engine.getEntityStream().addEntity(EntityType.PLAYER, player);	
+		engine.getEntityStream().addEntity(EntityType.PLAYER, player);
+		Enemy temp = new Enemy(128,128,.45,sprite);
+		temp.setHitShape(hitShape);
+		engine.getEntityStream().addEntity(EntityType.ENEMY, temp);
 		
 		//ui = new MainUI(sprite);
 		//uiE = new UIButton(512, 64, "startGame", sprite);

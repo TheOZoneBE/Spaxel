@@ -17,8 +17,8 @@ public class Entity {
 	protected double x;
 	protected double y;
 	protected double rot;
-	private HitShape oriHitShape;
-	private HitShape updHitShape;
+	protected HitShape oriHitShape;
+	protected HitShape updHitShape;
 	
 	public Entity(double x, double y, double rot){
 		this.x = x;

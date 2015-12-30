@@ -52,6 +52,7 @@ public class Engine {
 		systems.get(SystemType.UI).update();
 		systems.get(SystemType.PROJECTILE).update();
 		systems.get(SystemType.PLAYER).update();
+		systems.get(SystemType.AI).update();
 		systems.get(SystemType.RENDER).update();
 	}
 	

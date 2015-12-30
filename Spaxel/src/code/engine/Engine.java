@@ -47,12 +47,12 @@ public class Engine {
 	}
 	
 	public void update(){
+		systems.get(SystemType.PLAYER).update();
+		systems.get(SystemType.AI).update();
 		systems.get(SystemType.SOUND).update();
 		systems.get(SystemType.INVENTORY).update();
 		systems.get(SystemType.UI).update();
-		systems.get(SystemType.PROJECTILE).update();
-		systems.get(SystemType.PLAYER).update();
-		systems.get(SystemType.AI).update();
+		systems.get(SystemType.PROJECTILE).update();		
 		systems.get(SystemType.RENDER).update();
 	}
 	

@@ -1,7 +1,10 @@
 package code.entity;
 
+import code.collision.HitPoint;
+import code.collision.HitShape;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
+import code.math.VectorD;
 
 public class Projectile extends Entity {
 	private Sprite sprite;
@@ -11,6 +14,10 @@ public class Projectile extends Entity {
 		super(x, y, rot);
 		this.sprite = sprite;
 		alive = true;
+		HitShape hitShape = new HitShape();
+		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
+		hitShape.addHitPoint(hitPoint);
+		setHitShape(hitShape);
 	}
 
 	public boolean isAlive() {
@@ -19,6 +26,10 @@ public class Projectile extends Entity {
 
 	public void setDead() {
 		alive = false;
+	}
+	
+	public void update(){
+		super.update();
 	}
 
 	@Override

@@ -22,10 +22,18 @@ public class ProjectileSystem extends GameSystem{
 		EntityStream entities = engine.getEntityStream();
 		List<Entity> projs = entities.getEntities(EntityType.PROJECTILE);
 		List<Entity> dead = new ArrayList<>();
+		List<Entity> enemies = entities.getEntities(EntityType.ENEMY);
 		for (Entity proj : projs){
 			proj.update();
 			if (!((Projectile)proj).isAlive()){
 				dead.add(proj);
+			}
+			else {
+				for(Entity e: enemies){
+					if(e.collision(proj)){
+						dead.add(proj);
+					}
+				}
 			}
 		}
 		projs.removeAll(dead);

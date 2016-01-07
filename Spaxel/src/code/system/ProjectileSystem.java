@@ -36,7 +36,10 @@ public class ProjectileSystem extends GameSystem{
 				for(Entity e: enemies){
 					if(e.collision(proj)){
 						dead.add(proj);
-						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 10, 5, .2, 4, 200, temp));
+						//normal
+						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 15, 2, .2, 4, 200, temp));
+						//stresstest
+						//entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 150, 100, .2, 4, 200, temp));
 					}
 				}
 			}

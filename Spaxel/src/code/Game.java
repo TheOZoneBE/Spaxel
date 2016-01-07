@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 	public final static int GAME_WIDTH = 1280;
 	public static Game game;
 	public boolean running = false;
-	private String gameName = "Spaxel - Devbuild 0.1.4";
+	private String gameName = "Spaxel - Devbuild 0.2.1";
 
 	private Thread thread;
 	private JFrame frame;
@@ -143,8 +143,8 @@ public class Game extends Canvas implements Runnable {
 		while (running) {
 			long deltaTime = System.nanoTime() - time;
 			if (deltaTime > 20000000) {
-				update();
 				time = System.nanoTime();
+				update();				
 				ups++;
 			}
 			render();

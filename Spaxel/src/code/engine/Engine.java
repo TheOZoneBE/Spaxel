@@ -52,7 +52,8 @@ public class Engine {
 		systems.get(SystemType.SOUND).update();
 		systems.get(SystemType.INVENTORY).update();
 		systems.get(SystemType.UI).update();
-		systems.get(SystemType.PROJECTILE).update();		
+		systems.get(SystemType.PROJECTILE).update();
+		systems.get(SystemType.PARTICLE).update();
 		systems.get(SystemType.RENDER).update();
 	}
 	

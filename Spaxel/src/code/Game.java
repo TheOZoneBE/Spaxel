@@ -13,6 +13,7 @@ import code.level.Level;
 import code.level.PlayerSystem;
 import code.sound.SoundSystem;
 import code.system.AISystem;
+import code.system.ParticleSystem;
 import code.system.ProjectileSystem;
 import code.ui.MainUI;
 import code.ui.UI;
@@ -91,6 +92,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new PlayerSystem(engine));
 		engine.addSystem(new RenderSystem(engine));
 		engine.addSystem(new AISystem(engine));
+		engine.addSystem(new ParticleSystem(engine));
 		
 		//todo change this to loaders
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");

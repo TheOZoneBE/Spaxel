@@ -16,7 +16,7 @@ public class ParticleSpawner extends Entity {
 	private Random rand;
 	private boolean alive;
 
-	public ParticleSpawner(double x, double y, int rate, int duration, double maxDeltaRot, double maxSpeed, int maxLifer, Sprite sprite) {
+	public ParticleSpawner(double x, double y, int rate, int duration, double maxDeltaRot, double maxSpeed, int maxLife, Sprite sprite) {
 		super(x, y, 0);
 		this.rate = rate;
 		this.duration = duration;

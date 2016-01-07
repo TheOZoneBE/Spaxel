@@ -27,6 +27,7 @@ public class ParticleSystem extends GameSystem {
 		List<Entity> spawners = entities.getEntities(EntityType.SPAWNER);
 		List<Entity> dead = new ArrayList<>();
 		List<Entity> particles = new ArrayList<>();
+		
 		for (Entity spawner : spawners){
 			spawner.update();
 			if (!((ParticleSpawner)spawner).isAlive()){

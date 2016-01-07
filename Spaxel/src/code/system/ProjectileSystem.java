@@ -9,13 +9,17 @@ import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
+import code.entity.ParticleSpawner;
 import code.entity.Projectile;
+import code.graphics.Sprite;
 
 public class ProjectileSystem extends GameSystem{
+	Sprite temp;
 
 	public ProjectileSystem(Engine engine) {
 		super(engine);
 		type = SystemType.PROJECTILE;
+		temp = new Sprite(4,4,2,0xffffffff);
 	}
 	
 	public void update(){
@@ -32,6 +36,7 @@ public class ProjectileSystem extends GameSystem{
 				for(Entity e: enemies){
 					if(e.collision(proj)){
 						dead.add(proj);
+						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 10, 5, .2, 4, 200, temp));
 					}
 				}
 			}

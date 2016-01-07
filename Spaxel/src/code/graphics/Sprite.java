@@ -19,6 +19,23 @@ public class Sprite {
 		pixels = new int[width * scale * height * scale];
 		load();
 	}
+	
+	public Sprite(int width, int height, int scale, int[] pixels){
+		this.width = width;
+		this.height = height;
+		this.scale = scale;
+		this.pixels = pixels;
+	}
+	
+	public Sprite(int width, int height, int scale, int color){
+		this.width = width;
+		this.height = height;
+		this.scale = scale;
+		pixels = new int[width * scale * height * scale];
+		for (int i = 0; i< scale*scale*width*height; i++){
+			pixels[i] = color;
+		}
+	}
 
 	public void load() {
 		int[] tempixels = spritesheet.getPixels();

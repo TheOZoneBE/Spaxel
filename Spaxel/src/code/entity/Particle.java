@@ -23,7 +23,7 @@ public class Particle extends Entity{
 	
 	public void update(){
 		life--;
-		if (life == 0){
+		if (life <= 0){
 			alive = false;
 		}
 		else{

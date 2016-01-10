@@ -1,6 +1,5 @@
 package code.entity;
 
-import code.level.Level;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Keyboard;
@@ -10,7 +9,6 @@ public class Player extends Entity {
 	private Sprite sprite;
 	private int mouseX;
 	private int mouseY;
-	private Level level;
 	private double maxspeed;
 	private double acc;
 	private double xdir;
@@ -70,10 +68,6 @@ public class Player extends Entity {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
 		sprite.render(xPos, yPos, rot, render);
 		updHitShape.render(xPos -(int)x,yPos- (int)y, render);
-	}
-
-	public void addLevel(Level level) {
-		this.level = level;
 	}
 
 	//change this to update of inventory

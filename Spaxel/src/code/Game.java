@@ -9,7 +9,6 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import code.level.Level;
 import code.level.PlayerSystem;
 import code.sound.SoundSystem;
 import code.system.AISystem;

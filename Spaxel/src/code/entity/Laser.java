@@ -5,8 +5,8 @@ import code.graphics.Sprite;
 
 public class Laser extends Projectile {
 
-	public Laser(double x, double y, double rot, Sprite sprite, int life, double speed) {
-		super(x, y, rot, sprite);
+	public Laser(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
+		super(x, y, rot, sprite, damage);
 		this.life = life;
 		this.speed = speed;
 	}

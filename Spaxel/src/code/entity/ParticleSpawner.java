@@ -39,7 +39,7 @@ public class ParticleSpawner extends Entity {
 			alive = false;
 		} else {
 			for (int i = 0; i < rate; i++) {
-				temp.add(new Particle(x, y, rot, rand.nextDouble() * maxDeltaRot, rand.nextDouble() * 2 * Math.PI, rand.nextDouble() * maxSpeed, rand
+				temp.add(new Particle(x, y, rot, (rand.nextDouble() - .5) * maxDeltaRot, rand.nextDouble() * 2 * Math.PI, rand.nextDouble() * maxSpeed, rand
 						.nextInt(maxLife), sprite));
 			}
 		}

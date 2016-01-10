@@ -8,6 +8,7 @@ import code.engine.EntityStream;
 import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
+import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.ParticleSpawner;
 import code.entity.Projectile;
@@ -36,6 +37,7 @@ public class ProjectileSystem extends GameSystem{
 				for(Entity e: enemies){
 					if(e.collision(proj)){
 						dead.add(proj);
+						((Enemy)e).hit((Projectile)proj);
 						//normal
 						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 15, 2, .2, 4, 200, temp));
 						//stresstest

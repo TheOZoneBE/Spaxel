@@ -110,7 +110,7 @@ public class Game extends Canvas implements Runnable {
 		player.setHitShape(hitShape);
 		
 		engine.getEntityStream().addEntity(EntityType.PLAYER, player);
-		Enemy temp = new Enemy(128,128,.45,sprite);
+		Enemy temp = new Enemy(128,128,.45,50,sprite);
 		temp.setHitShape(hitShape);
 		engine.getEntityStream().addEntity(EntityType.ENEMY, temp);
 		

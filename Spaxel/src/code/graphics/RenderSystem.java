@@ -50,7 +50,6 @@ public class RenderSystem extends GameSystem {
 			e.render(xOffset, yOffset, mainBuffer);
 		}
 		toRender = entities.getEntities(EntityType.PARTICLE);
-		System.out.println(toRender.size());
 		for (Entity e: toRender){
 			//rendering particles
 			e.render(xOffset, yOffset, mainBuffer);

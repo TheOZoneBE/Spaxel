@@ -9,10 +9,12 @@ import code.math.VectorD;
 public class Projectile extends Entity {
 	private Sprite sprite;
 	private boolean alive;
+	private int damage;
 
-	public Projectile(double x, double y, double rot, Sprite sprite) {
+	public Projectile(double x, double y, double rot, Sprite sprite, int damage) {
 		super(x, y, rot);
 		this.sprite = sprite;
+		this.damage = damage;
 		alive = true;
 		HitShape hitShape = new HitShape();
 		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
@@ -40,6 +42,10 @@ public class Projectile extends Entity {
 
 	public Sprite getSprite() {
 		return sprite;
+	}
+	
+	public int getDamage(){
+		return damage;
 	}
 
 }

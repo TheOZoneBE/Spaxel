@@ -30,7 +30,7 @@ public class SpriteLoader extends EntityLoader{
 		nodelist = doc.getElementsByTagName("sprite");
 		for(int i = 0; i < nodelist.getLength(); i++){
 		    Element nextChild = (Element)nodelist.item(i);
-		    String spritesheetName = "/spritesheets/" + nextChild.getElementsByTagName("path").item(0).getTextContent();
+		    String spritesheetName = nextChild.getElementsByTagName("sheetname").item(0).getTextContent();
 		    String spriteName = nextChild.getElementsByTagName("name").item(0).getTextContent();
 		    int spriteWidth = Integer.parseInt((nextChild.getElementsByTagName("width").item(0).getTextContent()));
 		    int spriteHeight = Integer.parseInt((nextChild.getElementsByTagName("height").item(0).getTextContent()));

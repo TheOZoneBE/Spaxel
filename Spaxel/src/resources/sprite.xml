@@ -8,6 +8,42 @@
 		<xpos>-1</xpos>
 		<ypos>-1</ypos>
 		<scale>-1</scale>
-	<sprite>
+	</sprite>
 	-->
+	<sprite>
+		<sheetname>ships</sheetname>
+		<name>white</name>
+		<width>16</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>ships</sheetname>
+		<name>red</name>
+		<width>16</width>
+		<height>16</height>
+		<xpos>1</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>ships</sheetname>
+		<name>blue</name>
+		<width>16</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>1</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>ships</sheetname>
+		<name>green</name>
+		<width>16</width>
+		<height>16</height>
+		<xpos>1</xpos>
+		<ypos>1</ypos>
+		<scale>4</scale>
+	</sprite>
 </sprites>

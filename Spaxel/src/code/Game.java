@@ -95,7 +95,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//todo change this to loaders
 		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
-		sprite = new Sprite(16, 16, 0, 0, 4, sheet);
+		sprite = new Sprite(16, 16, 1, 0, 4, sheet);
 		player = new Player(0, 0, 0, sprite);
 		hitShape = new HitShape();
 		hitPoint = new HitPoint(new VectorD(new double[] { 64, 64, 1 }));

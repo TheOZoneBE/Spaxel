@@ -1,16 +1,20 @@
 package code.engine;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import code.graphics.RenderSystem;
+import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.resource.SoundLoader;
+import code.resource.SpriteLoader;
 
 public class Engine {
 	private Keyboard keys;
 	private Mouse mouse;
 	private EntityStream entities;
+	private Map<String, Sprite> spriteAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
 	
 	public Engine(Keyboard keys, Mouse mouse){
@@ -24,6 +28,8 @@ public class Engine {
 	public void initialize(){
 		SoundLoader sounds = new SoundLoader();
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
+		SpriteLoader sprites = new SpriteLoader();
+		spriteAtlas = sprites.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
 	}
 	
 	public Keyboard getKeyboard(){

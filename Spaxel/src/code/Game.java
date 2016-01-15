@@ -52,11 +52,6 @@ public class Game extends Canvas implements Runnable {
 	
 	private Keyboard keyboard;//done
 	private Mouse mouse;//done
-	private Player player;//add to entitystream
-	private HitShape hitShape;//move to engine
-	private HitPoint hitPoint;//move to engine
-	private Spritesheet sheet;//move to engine
-	private Sprite sprite;//move to engine
 	//private UI ui;//convert
 	//private UIButton uiE;//add to entitystream
 
@@ -93,25 +88,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new AISystem(engine));
 		engine.addSystem(new ParticleSystem(engine));
 		
-		//todo change this to loaders
-		sheet = new Spritesheet(32, 32, "/spritesheets/ships.png");
-		sprite = new Sprite(16, 16, 1, 0, 4, sheet);
-		player = new Player(0, 0, 0, sprite);
-		hitShape = new HitShape();
-		hitPoint = new HitPoint(new VectorD(new double[] { 64, 64, 1 }));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {64, -64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {-64, -64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {-64, 64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		player.setHitShape(hitShape);
 		
-		engine.getEntityStream().addEntity(EntityType.PLAYER, player);
-		Enemy temp = new Enemy(128,128,.45,50,sprite);
-		temp.setHitShape(hitShape);
-		engine.getEntityStream().addEntity(EntityType.ENEMY, temp);
 		
 		//ui = new MainUI(sprite);
 		//uiE = new UIButton(512, 64, "startGame", sprite);

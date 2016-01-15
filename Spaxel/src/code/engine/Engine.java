@@ -3,10 +3,16 @@ package code.engine;
 import java.util.EnumMap;
 import java.util.Map;
 
+import code.collision.HitPoint;
+import code.collision.HitShape;
+import code.entity.Enemy;
+import code.entity.Player;
 import code.graphics.RenderSystem;
 import code.graphics.Sprite;
+import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.math.VectorD;
 import code.resource.SoundLoader;
 import code.resource.SpriteLoader;
 
@@ -30,6 +36,22 @@ public class Engine {
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 		SpriteLoader sprites = new SpriteLoader();
 		spriteAtlas = sprites.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
+		Player player = new Player(0, 0, 0, spriteAtlas.get("white"));
+		HitShape hitShape = new HitShape();
+		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 64, 64, 1 }));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new VectorD(new double[] {64, -64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new VectorD(new double[] {-64, -64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		hitPoint = new HitPoint(new VectorD(new double[] {-64, 64, 1}));
+		hitShape.addHitPoint(hitPoint);
+		player.setHitShape(hitShape);
+				
+		entities.addEntity(EntityType.PLAYER, player);
+		Enemy temp = new Enemy(128,128,.45,50,spriteAtlas.get("green"));
+		temp.setHitShape(hitShape);
+		entities.addEntity(EntityType.ENEMY, temp);
 	}
 	
 	public Keyboard getKeyboard(){

@@ -1,0 +1,44 @@
+<hitshapes type="array">
+	<!-- template
+	<hitshape>
+		<name>Default</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>-1</xoffset>
+				<yoffset>-1</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
+	-->
+	<hitshape>
+		<name>hitshape_white</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>24</xoffset>
+				<yoffset>8</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>24</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-24</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-24</xoffset>
+				<yoffset>8</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
+	
+
+</hitshapes>

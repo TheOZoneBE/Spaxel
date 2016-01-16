@@ -39,6 +39,93 @@
 			</hitpoint>
 		</hitpoints>
 	</hitshape>
+	<hitshape>
+		<name>hitshape_red</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>32</xoffset>
+				<yoffset>8</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>12</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-12</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-32</xoffset>
+				<yoffset>8</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
+	<hitshape>
+		<name>hitshape_blue</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>12</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>24</xoffset>
+				<yoffset>16</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>12</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-12</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-24</xoffset>
+				<yoffset>16</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-12</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
+	<hitshape>
+		<name>hitshape_green</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>32</xoffset>
+				<yoffset>12</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>32</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-32</xoffset>
+				<yoffset>32</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-32</xoffset>
+				<yoffset>12</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-8</xoffset>
+				<yoffset>-32</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
 	
 
 </hitshapes>

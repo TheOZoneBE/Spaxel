@@ -39,22 +39,10 @@ public class Engine {
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
 		Player player = new Player(0, 0, 0, spriteAtlas.get("white"));
-		/*
-		HitShape hitShape = new HitShape();
-		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 64, 64, 1 }));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {64, -64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {-64, -64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		hitPoint = new HitPoint(new VectorD(new double[] {-64, 64, 1}));
-		hitShape.addHitPoint(hitPoint);
-		*/
-		player.setHitShape(hitShapeAtlas.get("hitshape_white"));
-				
+		player.setHitShape(hitShapeAtlas.get("hitshape_white"));		
 		entities.addEntity(EntityType.PLAYER, player);
-		Enemy temp = new Enemy(128,128,.45,50,spriteAtlas.get("green"));
-		temp.setHitShape(hitShapeAtlas.get("hitshape_white"));
+		Enemy temp = new Enemy(128,128,.45,50,spriteAtlas.get("blue"));
+		temp.setHitShape(hitShapeAtlas.get("hitshape_blue"));
 		entities.addEntity(EntityType.ENEMY, temp);
 	}
 	
@@ -72,6 +60,10 @@ public class Engine {
 	
 	public Map<String, Sprite> getSpriteAtlas(){
 		return spriteAtlas;
+	}
+	
+	public Map<String, HitShape> getHitShapeAtlas(){
+		return hitShapeAtlas;
 	}
 	
 	public void addSystem(GameSystem system){

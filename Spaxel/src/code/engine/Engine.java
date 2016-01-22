@@ -38,8 +38,8 @@ public class Engine {
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
-		Player player = new Player(0, 0, 0, spriteAtlas.get("white"));
-		player.setHitShape(hitShapeAtlas.get("hitshape_white"));		
+		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
+		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		Enemy temp = new Enemy(128,128,.45,50,spriteAtlas.get("blue"));
 		temp.setHitShape(hitShapeAtlas.get("hitshape_blue"));

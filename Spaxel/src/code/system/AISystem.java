@@ -10,6 +10,7 @@ import code.engine.SystemType;
 import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.ParticleSpawner;
+import code.entity.Player;
 import code.graphics.Sprite;
 
 public class AISystem extends GameSystem {
@@ -23,8 +24,9 @@ public class AISystem extends GameSystem {
 	public void update(){
 		List<Entity> enemies = engine.getEntityStream().getEntities(EntityType.ENEMY);
 		List<Entity> dead = new ArrayList<>();
+		Player player = (Player)engine.getEntityStream().getEntities(EntityType.PLAYER);
 		for (Entity e : enemies){
-			e.update();
+			e.update(player);
 			if (!((Enemy)e).isAlive()){
 				dead.add(e);
 				engine.getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 10, 5, .5, 5, 300, new Sprite(6,6,2,0xffff0000)));

@@ -53,6 +53,7 @@ public class Player extends Entity {
 
 		setX(getX() + xdir);
 		setY(getY() + ydir);
+		
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 		super.update();

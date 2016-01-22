@@ -19,11 +19,12 @@ public class Enemy extends Entity{
 		return alive;
 	}
 	
-	public void update(){
-		super.update();
+	public void update(Player player){
 		if (health < 0){
 			alive = false;
 		}
+		rot = Math.PI + Math.atan2(((double) (player.getX() - x)), (double) (player.getY() - y));
+		super.update();		
 	}
 	
 	@Override

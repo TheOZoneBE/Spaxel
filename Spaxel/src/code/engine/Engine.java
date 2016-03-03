@@ -41,9 +41,6 @@ public class Engine {
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
-		Enemy temp = new Enemy(128,128,.45,50,spriteAtlas.get("blue"));
-		temp.setHitShape(hitShapeAtlas.get("hitshape_blue"));
-		entities.addEntity(EntityType.ENEMY, temp);
 	}
 	
 	public Keyboard getKeyboard(){

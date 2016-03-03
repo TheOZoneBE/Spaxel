@@ -12,6 +12,7 @@ import code.entity.Entity;
 import code.entity.Player;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.ui.UISystem;
 
 public class RenderSystem extends GameSystem {
 	RenderBuffer mainBuffer;
@@ -59,11 +60,13 @@ public class RenderSystem extends GameSystem {
 			//rendering items
 			e.render(xOffset, yOffset, mainBuffer);
 		}
-		toRender = entities.getEntities(EntityType.UI_ELEMENT);
+		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
+		uis.getCurrentUI().render(mainBuffer);
+		/*toRender = entities.getEntities(EntityType.UI_ELEMENT);
 		for (Entity e: toRender){
 			//rendering ui
 			e.render(xOffset, yOffset, mainBuffer);
-		}
+		}*/
 	}
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {

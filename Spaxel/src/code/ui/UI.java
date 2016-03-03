@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
 import code.input.Mouse;
 
 public class UI{
-	//this class will have to be integrated into UISystem
-	private Sprite overlay;
+	private Controller controller;
 	private List<UIElement> elements;
 
-	public UI(Sprite overlay){
-		this.overlay = overlay;
+	public UI(){
 		elements = new ArrayList<>();
 	}
 	
@@ -24,7 +21,6 @@ public class UI{
 	}
 	
 	public void render(RenderBuffer render){
-		overlay.render(0, 0, 0, 0, render);
 		for (UIElement u: elements){
 			u.render(render);
 		}
@@ -37,5 +33,9 @@ public class UI{
 	
 	public void removeElement(UIElement element){
 		elements.remove(element);
+	}
+	
+	public Controller getController(){
+		return controller;
 	}
 }

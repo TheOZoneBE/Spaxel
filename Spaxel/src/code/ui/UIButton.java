@@ -11,52 +11,47 @@ import code.math.VectorD;
 
 public class UIButton extends UIElement {
 	String clickAction;
-	HitShape box;
-	Sprite sprite;
+	Sprite normal;
+	Sprite hover;
+	Sprite clicked;
 	boolean click;
 
-	public UIButton(int x, int y, String clickAction, Sprite sprite) {
-		super(x, y);
-		this.sprite = sprite;
+	public UIButton(int x, int y, String clickAction, Sprite sprite, Sprite hover, Sprite clicked) {
+		super(x, y, sprite);
 		this.clickAction = clickAction;
 		click = false;
+		this.normal = sprite;
+		this.hover = hover;
+		this.clicked = clicked;
 	}
 
-	public void setHitShape(HitShape box) {
-		this.box = box.update(MatrixMaker.getTransRotMatrix(x, y, 0));
-	}
-
-	public void update(int mouseX, int mouseY, boolean clicked) {
-		if (box != null) {
-			boolean inside = box.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
-			if (inside && clicked){
-				click = true;				
+	public void update(int mouseX, int mouseY, boolean buttonDown) {
+		if (updHitShape != null) {
+			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
+			if (inside && buttonDown){
+				click = true;	
+				sprite = clicked;
 			}
 			else if (inside && click){
 				try {
-					Method m = ui.getClass().getMethod(clickAction, null);
+					Method m = ui.getController().getClass().getMethod(clickAction, null);
 					m.invoke(ui, null);
 					click = false;
+					sprite = normal;
 				}
 				catch(Exception e){
 					e.printStackTrace();
 				}				
 			}
 			else if (inside){
-				highlight();
+				sprite = hover;
 				click = false;
 			}
 			else {
 				click = false;
+				sprite = normal;
 			}
 		}
-	}
-
-	public void render(RenderBuffer render) {
-		if (box != null) {
-			box.render(0, 0, render);
-		}
-		sprite.render((int)x,(int)y, render);
 	}
 	
 	public void highlight(){

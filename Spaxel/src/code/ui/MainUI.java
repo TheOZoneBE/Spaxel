@@ -5,8 +5,7 @@ import code.graphics.Sprite;
 public class MainUI extends UI {
 	
 	
-	public MainUI(Sprite overlay) {
-		super(overlay);
+	public MainUI() {
 		// TODO Auto-generated constructor stub
 	}
 	

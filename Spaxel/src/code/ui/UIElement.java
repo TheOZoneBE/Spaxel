@@ -2,13 +2,16 @@ package code.ui;
 
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
+import code.graphics.Sprite;
 
 public class UIElement extends Entity {
 	protected UI ui;
+	protected Sprite sprite;
 	
 	
-	public UIElement(int x, int y){
+	public UIElement(int x, int y, Sprite sprite){
 		super(x, y, 0);
+		this.sprite = sprite;
 	}
 	
 	public void setUI(UI ui){
@@ -20,7 +23,7 @@ public class UIElement extends Entity {
 	}
 	
 	public void render(RenderBuffer render){
-		
+		sprite.render((int)x,(int)y, render);
 	}
 
 }

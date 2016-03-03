@@ -46,4 +46,40 @@
 		<ypos>1</ypos>
 		<scale>4</scale>
 	</sprite>
+	<sprite>
+		<sheetname>button</sheetname>
+		<name>button_normal</name>
+		<width>64</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>button</sheetname>
+		<name>button_hover</name>
+		<width>64</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>1</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>button</sheetname>
+		<name>button_click</name>
+		<width>64</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>2</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>button</sheetname>
+		<name>button_locked</name>
+		<width>64</width>
+		<height>16</height>
+		<xpos>0</xpos>
+		<ypos>3</ypos>
+		<scale>4</scale>
+	</sprite>
 </sprites>

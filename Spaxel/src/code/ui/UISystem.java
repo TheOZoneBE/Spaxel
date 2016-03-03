@@ -8,11 +8,11 @@ import code.engine.SystemType;
 
 public class UISystem extends GameSystem{
 	private UI currentUI;
-	private Map<String, UI> UIs;
 
 	public UISystem(Engine engine) {
 		super(engine);
 		type = SystemType.UI;
+		currentUI = engine.getUIAtlas().get("main");
 	}
 	
 	public void update(){
@@ -24,7 +24,8 @@ public class UISystem extends GameSystem{
 	}
 	
 	public void changeUI(String name){
-		currentUI = UIs.get(name);
+		currentUI = engine.getUIAtlas().get(name);
 	}
+	
 
 }

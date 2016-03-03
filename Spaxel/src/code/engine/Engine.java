@@ -16,6 +16,9 @@ import code.math.VectorD;
 import code.resource.HitShapeLoader;
 import code.resource.SoundLoader;
 import code.resource.SpriteLoader;
+import code.resource.UIElementLoader;
+import code.ui.UI;
+import code.ui.UISystem;
 
 public class Engine {
 	private Keyboard keys;
@@ -23,6 +26,7 @@ public class Engine {
 	private EntityStream entities;
 	private Map<String, Sprite> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
+	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
 	
 	public Engine(Keyboard keys, Mouse mouse){
@@ -41,6 +45,7 @@ public class Engine {
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
+		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}
 	
 	public Keyboard getKeyboard(){
@@ -61,6 +66,10 @@ public class Engine {
 	
 	public Map<String, HitShape> getHitShapeAtlas(){
 		return hitShapeAtlas;
+	}
+	
+	public Map<String, UI> getUIAtlas(){
+		return UIAtlas;
 	}
 	
 	public void addSystem(GameSystem system){

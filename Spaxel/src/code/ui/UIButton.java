@@ -11,18 +11,22 @@ import code.math.VectorD;
 
 public class UIButton extends UIElement {
 	String clickAction;
+	String label;
 	Sprite normal;
 	Sprite hover;
 	Sprite clicked;
+	Sprite locked;
 	boolean click;
 
-	public UIButton(int x, int y, String clickAction, Sprite sprite, Sprite hover, Sprite clicked) {
+	public UIButton(int x, int y, String label, String clickAction, Sprite sprite, Sprite hover, Sprite clicked, Sprite locked)  {
 		super(x, y, sprite);
+		this.label = label;
 		this.clickAction = clickAction;
 		click = false;
 		this.normal = sprite;
 		this.hover = hover;
 		this.clicked = clicked;
+		this.locked = locked;
 	}
 
 	public void update(int mouseX, int mouseY, boolean buttonDown) {

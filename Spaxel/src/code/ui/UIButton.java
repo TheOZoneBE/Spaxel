@@ -39,7 +39,7 @@ public class UIButton extends UIElement {
 			else if (inside && click){
 				try {
 					Method m = ui.getController().getClass().getMethod(clickAction, null);
-					m.invoke(ui, null);
+					m.invoke(ui.getController(), null);
 					click = false;
 					sprite = normal;
 				}

@@ -130,20 +130,20 @@
 		<name>hitshape_button</name>
 		<hitpoints type="array">
 			<hitpoint>
-				<xoffset>-32</xoffset>
-				<yoffset>-8</yoffset>
+				<xoffset>-128</xoffset>
+				<yoffset>-32</yoffset>
 			</hitpoint>
 			<hitpoint>
-				<xoffset>32</xoffset>
-				<yoffset>-8</yoffset>
+				<xoffset>128</xoffset>
+				<yoffset>-32</yoffset>
 			</hitpoint>
 			<hitpoint>
-				<xoffset>32</xoffset>
-				<yoffset>8</yoffset>
+				<xoffset>128</xoffset>
+				<yoffset>32</yoffset>
 			</hitpoint>
 			<hitpoint>
-				<xoffset>-32</xoffset>
-				<yoffset>-8</yoffset>
+				<xoffset>-128</xoffset>
+				<yoffset>32</yoffset>
 			</hitpoint>
 		</hitpoints>
 	</hitshape>

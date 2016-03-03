@@ -5,7 +5,7 @@ public class MainController extends Controller{
 	 * starts a new game
 	 */
 	public void startGame(){
-		
+		System.out.println("started");
 	}
 	
 	/*

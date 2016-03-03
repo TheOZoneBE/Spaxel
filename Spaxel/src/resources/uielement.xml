@@ -1,0 +1,28 @@
+<uielements type="array">
+	<!-- template
+	<uielement type="button">
+		<ui>Default</ui>
+		<label>Default</label>
+		<clickaction>Default</clickaction>
+		<sprite_normal>Default</sprite_normal>
+		<sprite_hover>Default</sprite_hover>
+		<sprite_click>Default</sprite_click>
+		<sprite_locked>Default</sprite_locked>
+		<xpos>-1</xpos>
+		<ypos>-1</ypos>
+		<hitshape>Default</hitshape>
+	</uielement>
+	-->
+	<uielement type="button">
+		<ui>main</ui>
+		<label>play</label>
+		<clickaction>startGame</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>256</xpos>
+		<ypos>256</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+</uielements>

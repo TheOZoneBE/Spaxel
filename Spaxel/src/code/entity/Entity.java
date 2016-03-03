@@ -44,8 +44,7 @@ public class Entity {
 	}
 	public void update(){	
 		if(oriHitShape != null){
-			Matrix updateMatrix = MatrixMaker.getTransRotMatrix(x, y, rot);
-			updHitShape = oriHitShape.update(updateMatrix);
+			updateHitShape();
 		}		
 	}
 	public double getX(){
@@ -70,6 +69,11 @@ public class Entity {
 	
 	public void setRot(double rot){
 		this.rot = rot;
+	}
+	
+	public void updateHitShape(){
+		Matrix updateMatrix = MatrixMaker.getTransRotMatrix(x, y, rot);
+		updHitShape = oriHitShape.update(updateMatrix);
 	}
 	
 	public void setHitShape(HitShape hitShape){

@@ -10,6 +10,7 @@ import code.collision.HitShape;
 import code.engine.Engine;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
+import code.ui.MainController;
 import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
@@ -21,6 +22,7 @@ public class UIElementLoader extends EntityLoader {
 		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
 		uis.put("main", new MainUI());
+		uis.get("main").setController(new MainController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){
@@ -38,6 +40,7 @@ public class UIElementLoader extends EntityLoader {
 		    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
 		    UIButton temp = new UIButton(xPos, yPos, label, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
 		    temp.setHitShape(hitShapeAtlas.get(hitshape));
+		    temp.updateHitShape();
 		    uis.get(ui).addElement(temp);
 		}
 		return uis;

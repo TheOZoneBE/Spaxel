@@ -1,6 +1,7 @@
 package code.entity;
 
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,11 @@ public class Entity {
 	public void render(int xPos, int yPos, RenderBuffer render){
 		
 	}
+	
+	public void render(Graphics g){
+		
+	}
+	
 	public void update(){	
 		if(oriHitShape != null){
 			updateHitShape();

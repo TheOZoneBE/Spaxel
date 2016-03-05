@@ -20,6 +20,7 @@ public class EntityStream {
 		entities.put(EntityType.SOUND, new ArrayList<>());	
 		entities.put(EntityType.PARTICLE, new ArrayList<>());	
 		entities.put(EntityType.SPAWNER, new ArrayList<>());	
+		entities.put(EntityType.LABEL, new ArrayList<>());	
 	}
 	
 	public List<Entity> getEntities(EntityType type){

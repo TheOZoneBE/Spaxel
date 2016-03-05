@@ -1,5 +1,7 @@
 package code.graphics;
 
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.List;
 
 import code.Game;
@@ -15,7 +17,7 @@ import code.input.Mouse;
 import code.ui.UISystem;
 
 public class RenderSystem extends GameSystem {
-	RenderBuffer mainBuffer;
+	private RenderBuffer mainBuffer;
 	//todo add more buffers to split rendering
 
 	public RenderSystem(Engine engine) {
@@ -62,17 +64,19 @@ public class RenderSystem extends GameSystem {
 		}
 		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
 		uis.getCurrentUI().render(mainBuffer);
-		/*toRender = entities.getEntities(EntityType.UI_ELEMENT);
-		for (Entity e: toRender){
-			//rendering ui
-			e.render(xOffset, yOffset, mainBuffer);
-		}*/
 	}
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
 			Game.game.pixels[i] = mainBuffer.getPixel(i);
-		}
-		
+		}		
+	}
+	
+	public void drawText(Graphics g){
+		List<Entity> toRender = engine.getEntityStream().getEntities(EntityType.LABEL);
+		for (Entity e: toRender){
+			//rendering text
+			e.render(g);
+		}		
 	}
 
 }

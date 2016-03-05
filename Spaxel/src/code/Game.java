@@ -2,10 +2,12 @@ package code;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.InputStream;
 
 import javax.swing.JFrame;
 
@@ -14,24 +16,12 @@ import code.sound.SoundSystem;
 import code.system.AISystem;
 import code.system.ParticleSystem;
 import code.system.ProjectileSystem;
-import code.ui.MainUI;
-import code.ui.UI;
-import code.ui.UIButton;
 import code.ui.UISystem;
-import code.collision.HitPoint;
-import code.collision.HitShape;
 import code.engine.Engine;
-import code.engine.EntityType;
-import code.entity.Enemy;
-import code.entity.Player;
-import code.graphics.RenderBuffer;
 import code.graphics.RenderSystem;
-import code.graphics.Sprite;
-import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.InventorySystem;
-import code.math.VectorD;
 
 public class Game extends Canvas implements Runnable {
 
@@ -50,10 +40,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private Engine engine;
 	
-	private Keyboard keyboard;//done
-	private Mouse mouse;//done
-	//private UI ui;//convert
-	//private UIButton uiE;//add to entitystream
+	private Keyboard keyboard;
+	private Mouse mouse;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -86,14 +74,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new PlayerSystem(engine));
 		engine.addSystem(new RenderSystem(engine));
 		engine.addSystem(new AISystem(engine));
-		engine.addSystem(new ParticleSystem(engine));
-		
-		
-		
-		//ui = new MainUI(sprite);
-		//uiE = new UIButton(512, 64, "startGame", sprite);
-		//uiE.setHitShape(hitShape);
-		//ui.addElement(uiE);
+		engine.addSystem(new ParticleSystem(engine));		
 	}
 
 	public synchronized void start() {
@@ -136,16 +117,25 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		engine.update();
 		keyboard.update();
-		//ui.update(mouse);
 	}
 
 	public void render() {
-		engine.render();
-		//this also
-		//ui.render(render);
 		BufferStrategy bs = getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
+		engine.render();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		engine.drawText(g);
+		/*
+		 * proof of concept
+		try {
+			Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/ARCADECLASSIC.TTF"));
+			font = font.deriveFont(20f);
+			g.setFont(font);
+		}
+		catch (Exception e){
+			
+		}
+		g.drawString("PLAY", 320, 320);*/
 		g.dispose();
 		bs.show();
 	}

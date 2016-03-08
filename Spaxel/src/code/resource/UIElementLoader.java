@@ -1,5 +1,6 @@
 package code.resource;
 
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import org.w3c.dom.NodeList;
 
 import code.collision.HitShape;
 import code.engine.Engine;
+import code.engine.EntityType;
+import code.entity.Label;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.ui.MainController;
@@ -18,6 +21,14 @@ import code.ui.UIButton;
 public class UIElementLoader extends EntityLoader {
 	
 	public Map<String, UI> loadUIElements(String elements, Engine engine){
+		Font font = null;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}		
+		
 		Map<String, UI> uis = new HashMap<>();
 		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
@@ -38,7 +49,9 @@ public class UIElementLoader extends EntityLoader {
 		    int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 		    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 		    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
-		    UIButton temp = new UIButton(xPos, yPos, label, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
+		    Label lbl = new Label(xPos, yPos, label, font, 16f);
+		    engine.getEntityStream().addEntity(EntityType.LABEL, lbl);
+		    UIButton temp = new UIButton(xPos, yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
 		    temp.setHitShape(hitShapeAtlas.get(hitshape));
 		    temp.updateHitShape();
 		    uis.get(ui).addElement(temp);

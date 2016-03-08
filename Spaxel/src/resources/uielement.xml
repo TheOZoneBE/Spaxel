@@ -15,7 +15,7 @@
 	-->
 	<uielement type="button">
 		<ui>main</ui>
-		<label>play</label>
+		<label>Play</label>
 		<clickaction>startGame</clickaction>
 		<sprite_normal>button_normal</sprite_normal>
 		<sprite_hover>button_hover</sprite_hover>

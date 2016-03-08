@@ -49,14 +49,6 @@ public class Engine {
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
-		Font temp;
-		try {
-			temp = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
-			entities.addEntity(EntityType.LABEL, new Label(256, 256, "Play Game",temp, 16f));
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}		
 	}
 	
 	public Keyboard getKeyboard(){

@@ -31,12 +31,18 @@ public class Engine {
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
+	private GameState gameState;
+	
+	public enum GameState {
+		MENU, PLAY
+	}
 	
 	public Engine(Keyboard keys, Mouse mouse){
 		this.keys = keys;
 		this.mouse = mouse;
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
+		gameState = GameState.MENU;
 		initialize();
 	}
 	
@@ -83,15 +89,30 @@ public class Engine {
 		return systems.get(type);
 	}
 	
+	public GameState getGameState(){
+		return gameState;
+	}
+	
+	public void setGameState(GameState gs){
+		gameState = gs;
+	}
+	
 	public void update(){
-		systems.get(SystemType.PLAYER).update();
-		systems.get(SystemType.AI).update();
-		systems.get(SystemType.SOUND).update();
-		systems.get(SystemType.INVENTORY).update();
-		systems.get(SystemType.UI).update();
-		systems.get(SystemType.PROJECTILE).update();
-		systems.get(SystemType.PARTICLE).update();
-		systems.get(SystemType.RENDER).update();
+		if (gameState == GameState.MENU){
+			systems.get(SystemType.SOUND).update();
+			systems.get(SystemType.UI).update();
+			systems.get(SystemType.RENDER).update();
+		}
+		else {
+			systems.get(SystemType.PLAYER).update();
+			systems.get(SystemType.AI).update();
+			systems.get(SystemType.SOUND).update();
+			systems.get(SystemType.INVENTORY).update();
+			systems.get(SystemType.UI).update();
+			systems.get(SystemType.PROJECTILE).update();
+			systems.get(SystemType.PARTICLE).update();
+			systems.get(SystemType.RENDER).update();
+		}	
 	}
 	
 	public void render(){

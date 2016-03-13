@@ -68,7 +68,7 @@ public class Player extends Entity {
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
 		sprite.render(xPos, yPos, rot, render);
-		updHitShape.render(xPos -(int)x,yPos- (int)y, render);
+		//updHitShape.render(xPos -(int)x,yPos- (int)y, render);
 	}
 
 	//change this to update of inventory

@@ -14,7 +14,6 @@ import code.entity.Label;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.ui.MainController;
-import code.ui.MainUI;
 import code.ui.UI;
 import code.ui.UIButton;
 
@@ -32,7 +31,7 @@ public class UIElementLoader extends EntityLoader {
 		Map<String, UI> uis = new HashMap<>();
 		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
-		uis.put("main", new MainUI());
+		uis.put("main", new UI());
 		uis.get("main").setController(new MainController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");

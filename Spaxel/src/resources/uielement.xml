@@ -21,8 +21,44 @@
 		<sprite_hover>button_hover</sprite_hover>
 		<sprite_click>button_click</sprite_click>
 		<sprite_locked>button_locked</sprite_locked>
-		<xpos>256</xpos>
-		<ypos>256</ypos>
+		<xpos>640</xpos>
+		<ypos>240</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>main</ui>
+		<label>Achievements</label>
+		<clickaction>achievements</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>320</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>main</ui>
+		<label>Options</label>
+		<clickaction>options</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>400</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>main</ui>
+		<label>Credits</label>
+		<clickaction>credits</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>480</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
 </uielements>

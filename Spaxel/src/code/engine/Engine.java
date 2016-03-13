@@ -1,27 +1,20 @@
 package code.engine;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.EnumMap;
 import java.util.Map;
 
-import code.collision.HitPoint;
 import code.collision.HitShape;
-import code.entity.Enemy;
-import code.entity.Label;
 import code.entity.Player;
 import code.graphics.RenderSystem;
 import code.graphics.Sprite;
-import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.Mouse;
-import code.math.VectorD;
 import code.resource.HitShapeLoader;
 import code.resource.SoundLoader;
 import code.resource.SpriteLoader;
 import code.resource.UIElementLoader;
 import code.ui.UI;
-import code.ui.UISystem;
 
 public class Engine {
 	private Keyboard keys;

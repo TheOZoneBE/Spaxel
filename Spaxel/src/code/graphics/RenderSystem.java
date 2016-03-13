@@ -72,11 +72,8 @@ public class RenderSystem extends GameSystem {
 	}
 	
 	public void drawText(Graphics g){
-		List<Entity> toRender = engine.getEntityStream().getEntities(EntityType.LABEL);
-		for (Entity e: toRender){
-			//rendering text
-			e.render(g);
-		}		
+		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
+		uis.getCurrentUI().drawText(g);
 	}
 
 }

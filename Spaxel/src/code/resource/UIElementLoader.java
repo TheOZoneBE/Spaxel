@@ -14,6 +14,7 @@ import code.entity.Label;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 import code.ui.MainController;
+import code.ui.PlayController;
 import code.ui.UI;
 import code.ui.UIButton;
 
@@ -31,8 +32,10 @@ public class UIElementLoader extends EntityLoader {
 		Map<String, UI> uis = new HashMap<>();
 		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
-		uis.put("main", new UI());
+		uis.put("main", new UI(engine));
+		uis.put("play", new UI(engine));
 		uis.get("main").setController(new MainController());
+		uis.get("play").setController(new PlayController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){
@@ -49,11 +52,12 @@ public class UIElementLoader extends EntityLoader {
 		    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 		    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
 		    Label lbl = new Label(xPos, yPos, label, font, 16f);
-		    engine.getEntityStream().addEntity(EntityType.LABEL, lbl);
+		    //engine.getEntityStream().addEntity(EntityType.LABEL, lbl);
 		    UIButton temp = new UIButton(xPos, yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
 		    temp.setHitShape(hitShapeAtlas.get(hitshape));
 		    temp.updateHitShape();
 		    uis.get(ui).addElement(temp);
+		    uis.get(ui).addLabel(lbl);
 		}
 		return uis;
 	}

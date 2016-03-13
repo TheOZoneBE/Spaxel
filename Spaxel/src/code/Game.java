@@ -125,17 +125,6 @@ public class Game extends Canvas implements Runnable {
 		engine.render();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		engine.drawText(g);
-		/*
-		 * proof of concept
-		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/ARCADECLASSIC.TTF"));
-			font = font.deriveFont(20f);
-			g.setFont(font);
-		}
-		catch (Exception e){
-			
-		}
-		g.drawString("PLAY", 320, 320);*/
 		g.dispose();
 		bs.show();
 	}

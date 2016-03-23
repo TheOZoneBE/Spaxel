@@ -12,6 +12,12 @@
 		<ypos>-1</ypos>
 		<hitshape>Default</hitshape>
 	</uielement>
+	<uielement type="overlay">
+		<ui>Default</ui>
+		<sprite_normal>Default</sprite_normal>
+		<xpos>-1</xpos>
+		<ypos>-1</ypos>
+	</uielement>
 	-->
 	<uielement type="button">
 		<ui>main</ui>
@@ -60,5 +66,11 @@
 		<xpos>640</xpos>
 		<ypos>480</ypos>
 		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="overlay">
+		<ui>play</ui>
+		<sprite_normal>ui_play_overlay</sprite_normal>
+		<xpos>640</xpos>
+		<ypos>360</ypos>
 	</uielement>
 </uielements>

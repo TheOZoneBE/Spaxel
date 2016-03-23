@@ -17,6 +17,7 @@ import code.ui.MainController;
 import code.ui.PlayController;
 import code.ui.UI;
 import code.ui.UIButton;
+import code.ui.UIOverlay;
 
 public class UIElementLoader extends EntityLoader {
 	
@@ -40,24 +41,33 @@ public class UIElementLoader extends EntityLoader {
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){
 		    Element nextChild = (Element)nodelist.item(i);
-		    //only for button need to seperate if I add more uielements
-		    String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
-		    String label = nextChild.getElementsByTagName("label").item(0).getTextContent();
-		    String clickaction = nextChild.getElementsByTagName("clickaction").item(0).getTextContent();
-		    String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
-		    String sprite_hover = nextChild.getElementsByTagName("sprite_hover").item(0).getTextContent();
-		    String sprite_click = nextChild.getElementsByTagName("sprite_click").item(0).getTextContent();
-		    String sprite_locked = nextChild.getElementsByTagName("sprite_locked").item(0).getTextContent();
-		    int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
-		    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
-		    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
-		    Label lbl = new Label(xPos, yPos, label, font, 16f);
-		    //engine.getEntityStream().addEntity(EntityType.LABEL, lbl);
-		    UIButton temp = new UIButton(xPos, yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
-		    temp.setHitShape(hitShapeAtlas.get(hitshape));
-		    temp.updateHitShape();
-		    uis.get(ui).addElement(temp);
-		    uis.get(ui).addLabel(lbl);
+		    if(nextChild.getAttribute("type").equals("button")){
+		    	String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
+			    String label = nextChild.getElementsByTagName("label").item(0).getTextContent();
+			    String clickaction = nextChild.getElementsByTagName("clickaction").item(0).getTextContent();
+			    String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
+			    String sprite_hover = nextChild.getElementsByTagName("sprite_hover").item(0).getTextContent();
+			    String sprite_click = nextChild.getElementsByTagName("sprite_click").item(0).getTextContent();
+			    String sprite_locked = nextChild.getElementsByTagName("sprite_locked").item(0).getTextContent();
+			    int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
+			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
+			    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
+			    Label lbl = new Label(xPos, yPos, label, font, 16f);
+			    //engine.getEntityStream().addEntity(EntityType.LABEL, lbl);
+			    UIButton temp = new UIButton(xPos, yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
+			    temp.setHitShape(hitShapeAtlas.get(hitshape));
+			    temp.updateHitShape();
+			    uis.get(ui).addElement(temp);
+			    uis.get(ui).addLabel(lbl);
+		    }
+		    //overlay add more ifs, if necessary
+		    else {
+		    	String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
+		    	String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
+		    	int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
+			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
+			    uis.get(ui).addElement(new UIOverlay(xPos, yPos, spriteAtlas.get(sprite_normal)));
+		    }		    
 		}
 		return uis;
 	}

@@ -82,4 +82,13 @@
 		<ypos>3</ypos>
 		<scale>4</scale>
 	</sprite>
+	<sprite>
+		<sheetname>ui_play</sheetname>
+		<name>ui_play_overlay</name>
+		<width>640</width>
+		<height>360</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>2</scale>
+	</sprite>
 </sprites>

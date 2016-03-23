@@ -25,4 +25,10 @@
 		<width>64</width>
 		<height>64</height>
 	</sheet>
+	<sheet>
+		<path>ui_play.png</path>
+		<name>ui_play</name>
+		<width>640</width>
+		<height>360</height>
+	</sheet>
 </spritesheet>

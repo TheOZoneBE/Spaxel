@@ -15,6 +15,7 @@ import code.resource.SoundLoader;
 import code.resource.SpriteLoader;
 import code.resource.UIElementLoader;
 import code.ui.UI;
+import code.ui.UIBar;
 
 public class Engine {
 	private Keyboard keys;
@@ -48,6 +49,9 @@ public class Engine {
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
+		UIBar temp = new UIBar(320,320,320,Math.PI/2,new Sprite(16,2,1,0xff00ff00));
+		temp.setPercent(.5);
+		UIAtlas.get("play").addElement(temp);
 	}
 	
 	public Keyboard getKeyboard(){

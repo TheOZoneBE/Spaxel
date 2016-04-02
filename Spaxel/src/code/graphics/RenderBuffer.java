@@ -15,6 +15,10 @@ public class RenderBuffer {
 	public int getPixel(int i) {
 		return pixels[i];
 	}
+	
+	public int getPixel(int x, int y){
+		return pixels[x + y*width];
+	}
 
 	public void setPixel(int x, int y, int value) {
 		if (x >= 0 && x < width && y >= 0 && y < height && value != 0xffff00ff) {
@@ -59,6 +63,22 @@ public class RenderBuffer {
 	public void clear() {
 		for (int i = 0; i < width * height; i++) {
 			pixels[i] = 0;
+		}
+	}
+	
+	public void distort(RenderBuffer original, double k){
+		double aspect = (double)width/(double)height;
+		aspect*=aspect;
+		for (double i = 0; i < width; i++){
+			for (double j =0; j < height; j++){
+				double r2 = aspect*i*i + j*j;
+				double f = 1+r2*k;
+				double i2 = f*i;
+				double j2 = f*j;
+				if(i2>0 && i2<width&& j2>0&&j2<height){
+					setPixel((int)i,(int)j, original.getPixel((int)(i*f), (int)(j*f)));
+				}				
+			}
 		}
 	}
 

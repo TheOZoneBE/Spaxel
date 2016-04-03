@@ -121,6 +121,31 @@ public class RenderBuffer {
 		}
 	}*/
 	
+	/*
+	 * maybe cool pixel effect
+	 *
+	public void distort(RenderBuffer original){
+		int midWidth = width/2;
+		int midHeight = height/2;
+		double distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
+		for (int i = 0; i < width; i++){
+			for (int j = 0; j < height; j++){
+				int color = original.getPixel(i, j);
+				if (color != 0){
+					int dx = i - midWidth;
+					int dy = j - midHeight;
+					double distance2 = Math.sqrt(dx*dx+dy*dy);
+					double f = distance2/distance;
+					for (int k = 0; k < f*1; k++){
+						for (int l = 0; l < f*1; l++){
+							setPixel(i+(int)(dx*f) + k,j+(int)(dy*f)+l , color);
+						}
+					}					
+				}				
+			}
+		}*/
+	}
+	
 	
 
 }

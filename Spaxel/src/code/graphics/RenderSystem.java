@@ -64,9 +64,6 @@ public class RenderSystem extends GameSystem {
 		}
 		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
 		uis.getCurrentUI().render(mainBuffer);
-		RenderBuffer test = new RenderBuffer(mainBuffer.getWidth(), mainBuffer.getHeight());
-		test.distort(mainBuffer, 0.000001);
-		mainBuffer = test;
 	}
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {

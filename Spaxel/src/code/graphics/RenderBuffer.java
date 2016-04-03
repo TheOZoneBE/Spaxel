@@ -65,7 +65,9 @@ public class RenderBuffer {
 			pixels[i] = 0;
 		}
 	}
-	
+	/*
+	 * distortion algorithm, not centered and very intensive
+	 
 	public void distort(RenderBuffer original, double k){
 		double aspect = (double)width/(double)height;
 		aspect*=aspect;
@@ -80,6 +82,45 @@ public class RenderBuffer {
 				}				
 			}
 		}
-	}
+	}*/
+	
+	/*
+	 * awful distortion
+	 
+	public void distort(RenderBuffer original){
+		int midWidth = width/2;
+		int midHeight = height/2;
+		for (int i = 0; i < width; i++){
+			for (int j = 0; j < height; j++){
+				int dx = i - midWidth;
+				int dy = j - midHeight;
+				double fx = Math.abs((double)dx/(double)midWidth);
+				double fy = Math.abs((double)dy/(double)midHeight);
+				fx = Math.sqrt(fx);
+				fy = Math.sqrt(fy);
+				setPixel(i, j, original.getPixel(midWidth+(int)(dx*fx), midHeight+(int)(dy*fy)));
+			}
+		}
+	}*/
+	
+	/*
+	 * better but still big performance hit
+	 *
+	public void distort(RenderBuffer original){
+		int midWidth = width/2;
+		int midHeight = height/2;
+		double distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
+		for (int i = 0; i < width; i++){
+			for (int j = 0; j < height; j++){
+				int dx = i - midWidth;
+				int dy = j - midHeight;
+				double distance2 = Math.sqrt(dx*dx+dy*dy);
+				double f = distance2/distance;
+				setPixel(i, j, original.getPixel(midWidth+(int)(dx*f), midHeight+(int)(dy*f)));
+			}
+		}
+	}*/
+	
+	
 
 }

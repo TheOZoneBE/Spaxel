@@ -18,6 +18,13 @@
 		<xpos>-1</xpos>
 		<ypos>-1</ypos>
 	</uielement>
+	<uielement type="bar">
+		<ui>Default</ui>
+		<sprite_normal>Default</sprite_normal>
+		<width>-1</width>
+		<xpos>-1</xpos>
+		<ypos>-1</ypos>
+	</uielement>
 	-->
 	<uielement type="button">
 		<ui>main</ui>
@@ -72,5 +79,19 @@
 		<sprite_normal>ui_play_overlay</sprite_normal>
 		<xpos>640</xpos>
 		<ypos>360</ypos>
+	</uielement>
+		<uielement type="bar">
+		<ui>play</ui>
+		<sprite_normal>hp_bar</sprite_normal>
+		<width>580</width>
+		<xpos>348</xpos>
+		<ypos>622</ypos>
+	</uielement>
+		<uielement type="bar">
+		<ui>play</ui>
+		<sprite_normal>xp_bar</sprite_normal>
+		<width>580</width>
+		<xpos>352</xpos>
+		<ypos>634</ypos>
 	</uielement>
 </uielements>

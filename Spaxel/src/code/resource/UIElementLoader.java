@@ -16,6 +16,7 @@ import code.graphics.Spritesheet;
 import code.ui.MainController;
 import code.ui.PlayController;
 import code.ui.UI;
+import code.ui.UIBar;
 import code.ui.UIButton;
 import code.ui.UIOverlay;
 
@@ -61,13 +62,23 @@ public class UIElementLoader extends EntityLoader {
 			    uis.get(ui).addLabel(lbl);
 		    }
 		    //overlay add more ifs, if necessary
-		    else {
+		    else if (nextChild.getAttribute("type").equals("overlay")){
 		    	String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
 		    	String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
 		    	int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 			    uis.get(ui).addElement(new UIOverlay(xPos, yPos, spriteAtlas.get(sprite_normal)));
-		    }		    
+		    }	
+		    else {
+		    	String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
+		    	String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
+		    	int width = Integer.parseInt((nextChild.getElementsByTagName("width").item(0).getTextContent()));
+		    	int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
+			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
+			    UIBar temp = new UIBar(xPos, yPos, width, Math.PI/2, spriteAtlas.get(sprite_normal));
+			    temp.setPercent(1);
+			    uis.get(ui).addElement(temp);
+		    }
 		}
 		return uis;
 	}

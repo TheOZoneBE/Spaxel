@@ -44,14 +44,13 @@ public class Engine {
 		SoundLoader sounds = new SoundLoader();
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
+		spriteAtlas.put("hp_bar", new Sprite(4,1,2, 0xff00ff00));
+		spriteAtlas.put("xp_bar", new Sprite(4,1,2, 0xff0000ff));
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
-		UIBar temp = new UIBar(320,320,320,Math.PI/2,new Sprite(8,2,1,0xff00ff00));
-		temp.setPercent(.5);
-		UIAtlas.get("play").addElement(temp);
 	}
 	
 	public Keyboard getKeyboard(){

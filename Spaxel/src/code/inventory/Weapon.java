@@ -1,19 +1,15 @@
 package code.inventory;
 
-import code.entity.Laser;
 import code.entity.Projectile;
+import code.factories.ProjectileFactory;
 import code.graphics.Sprite;
 
 public class Weapon extends ToggleItem {
-	private Sprite proj;
-	private int life;
-	private double speed;
+	private ProjectileFactory projFac;
 
-	public Weapon(double x, double y, Sprite sprite, int cooldown, Sprite proj, int life, double speed) {
+	public Weapon(double x, double y, Sprite sprite, int cooldown, ProjectileFactory projFac) {
 		super(x, y, sprite, cooldown);
-		this.proj = proj;
-		this.life = life;
-		this.speed = speed;
+		this.projFac = projFac;
 	}
 
 	public boolean shoot() {
@@ -26,7 +22,7 @@ public class Weapon extends ToggleItem {
 
 	public Projectile getProjectile(double x, double y, double rot) {
 		if (shoot())
-			return new Laser(x, y, rot, proj, 5, life, speed);
+			return projFac.make(x, y, rot);
 		return null;
 	}
 

@@ -8,6 +8,7 @@ import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Projectile;
+import code.factories.LaserFactory;
 import code.graphics.Sprite;
 import code.graphics.Spritesheet;
 
@@ -26,7 +27,7 @@ public class InventorySystem extends GameSystem{
 		shipItems = new ArrayList<Item>();
 		sheet = new Spritesheet(32, 32, "/spritesheets/projectiles.png");
 		sprite = new Sprite(8, 8, 0, 0, 2, sheet);
-		primWeap.add(new Weapon(0,0,sprite, 5, sprite, 100, 15.0));
+		primWeap.add(new Weapon(0,0,sprite, 5, new LaserFactory(sprite, 5, 100, 15.0)));
 		//temporary to get something shooting again
 		engine.getEntityStream().addEntity(EntityType.ITEM, primWeap.get(0));
 	}

@@ -19,8 +19,8 @@ public class UIBar extends UIElement{
 	
 	public void render(RenderBuffer render){
 		int renderWidth = (int)(width * percent);
-		double dx = Math.sin(rot);
-		double dy = Math.cos(rot);
+		double dx = Math.round(Math.sin(rot));
+		double dy = Math.round(Math.cos(rot));
 		for (int i = 0; i < renderWidth; i++){
 			sprite.render((int)(x + i*dx), (int)(y + i*dy), rot, render);
 		}

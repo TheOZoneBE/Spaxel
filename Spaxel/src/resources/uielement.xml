@@ -21,6 +21,7 @@
 	<uielement type="bar">
 		<ui>Default</ui>
 		<sprite_normal>Default</sprite_normal>
+		<rot>-1</rot>
 		<width>-1</width>
 		<xpos>-1</xpos>
 		<ypos>-1</ypos>
@@ -83,6 +84,7 @@
 		<uielement type="bar">
 		<ui>play</ui>
 		<sprite_normal>hp_bar</sprite_normal>
+		<rot>1</rot>
 		<width>580</width>
 		<xpos>348</xpos>
 		<ypos>622</ypos>
@@ -90,8 +92,9 @@
 		<uielement type="bar">
 		<ui>play</ui>
 		<sprite_normal>xp_bar</sprite_normal>
+		<rot>3</rot>
 		<width>580</width>
-		<xpos>352</xpos>
-		<ypos>634</ypos>
+		<xpos>932</xpos>
+		<ypos>636</ypos>
 	</uielement>
 </uielements>

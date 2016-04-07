@@ -43,15 +43,5 @@ public class InventorySystem extends GameSystem{
 			i.update();
 		}
 	}
-	
-	//this has to disappear
-	public List<Projectile> primaryWeapon(int x, int y, double rot){
-		List<Projectile> projs = new ArrayList<Projectile>();
-		for (Weapon w: primWeap){
-			Projectile proj = w.getProjectile(x, y, rot);
-			if (proj != null) projs.add(proj);
-		}
-		return projs;
-	}
 
 }

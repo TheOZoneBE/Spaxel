@@ -15,12 +15,10 @@ import code.entity.Projectile;
 import code.graphics.Sprite;
 
 public class ProjectileSystem extends GameSystem{
-	Sprite temp;
 
 	public ProjectileSystem(Engine engine) {
 		super(engine);
 		type = SystemType.PROJECTILE;
-		temp = new Sprite(4,4,2,0xffffffff);
 	}
 	
 	public void update(){
@@ -37,9 +35,10 @@ public class ProjectileSystem extends GameSystem{
 				for(Entity e: enemies){
 					if(e.collision(proj)){
 						dead.add(proj);
-						((Enemy)e).hit((Projectile)proj);
+						Enemy temp = (Enemy)e;
+						temp.hit((Projectile)proj);
 						//normal
-						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 15, 2, .2, 4, 150, temp));
+						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 10, 2, .2, 4, 150, temp.getSprite().getRandomPart(8,8)));
 						//stresstest
 						//entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 150, 100, .2, 4, 200, temp));
 					}

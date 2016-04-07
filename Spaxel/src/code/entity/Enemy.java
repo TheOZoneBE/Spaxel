@@ -25,6 +25,10 @@ public class Enemy extends Entity{
 		return alive;
 	}
 	
+	public Sprite getSprite(){
+		return sprite;
+	}
+	
 	public void update(Player player){
 		if (health < 0){
 			alive = false;

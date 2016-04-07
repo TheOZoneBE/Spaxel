@@ -31,7 +31,7 @@ public class AISystem extends GameSystem {
 			((Enemy)e).update(player);
 			if (!((Enemy)e).isAlive()){
 				dead.add(e);
-				engine.getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 10, 5, .5, 5, 300, new Sprite(6,6,2,0xffff0000)));
+				engine.getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(24,24)));
 			}
 		}
 		enemies.removeAll(dead);

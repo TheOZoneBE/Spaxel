@@ -1,5 +1,7 @@
 package code.graphics;
 
+import java.util.Random;
+
 public class Sprite {
 	private int width;
 	private int height;
@@ -8,6 +10,7 @@ public class Sprite {
 	private int xPos;
 	private int yPos;
 	private Spritesheet spritesheet;
+	private Random r;
 
 	public Sprite(int width, int height, int xPos, int yPos, int scale, Spritesheet spritesheet) {
 		this.width = width;
@@ -17,6 +20,7 @@ public class Sprite {
 		this.yPos = yPos;
 		this.spritesheet = spritesheet;
 		pixels = new int[width * scale * height * scale];
+		r = new Random();
 		load();
 	}
 	
@@ -25,6 +29,7 @@ public class Sprite {
 		this.height = height;
 		this.scale = scale;
 		this.pixels = pixels;
+		r = new Random();
 	}
 	
 	public Sprite(int width, int height, int scale, int color){
@@ -35,6 +40,7 @@ public class Sprite {
 		for (int i = 0; i< scale*scale*width*height; i++){
 			pixels[i] = color;
 		}
+		r = new Random();
 	}
 
 	public void load() {
@@ -59,6 +65,18 @@ public class Sprite {
 						+ (j / 2 + midHeight) * width * scale]);
 			}
 		}
+	}
+	
+	public Sprite getRandomPart(int width, int height){
+		int[] rPixels = new int[width * height];
+		int x = r.nextInt(this.width*scale - width);
+		int y = r.nextInt(this.height*scale - height);
+		for (int i = 0; i < width; i++){
+			for (int j = 0; j< height; j++){
+				rPixels[i + j*width] = pixels[x + i + (y+j)*this.width*scale];
+			}
+		}
+		return new Sprite(width, height, 1 , rPixels);
 	}
 
 	public void render(int x, int y, RenderBuffer render) {

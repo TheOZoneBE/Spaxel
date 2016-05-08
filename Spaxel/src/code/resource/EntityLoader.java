@@ -31,7 +31,7 @@ public class EntityLoader {
 		try {
 			dbf = DocumentBuilderFactory.newInstance();
 			db = dbf.newDocumentBuilder(); 
-			doc = db.parse(new File(getClass().getResource(path).getPath()));
+			doc = db.parse(getClass().getResource(path).openStream());
 		}
 		catch (Exception e){
 			e.printStackTrace();

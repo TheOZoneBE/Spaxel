@@ -16,7 +16,9 @@ public class EntityStream {
 		entities.put(EntityType.ENEMY, new ArrayList<>());
 		entities.put(EntityType.UI_ELEMENT, new ArrayList<>());
 		entities.put(EntityType.PROJECTILE, new ArrayList<>());
-		entities.put(EntityType.ITEM, new ArrayList<>());
+		entities.put(EntityType.MOUSE1ITEM, new ArrayList<>());
+		entities.put(EntityType.MOUSE2ITEM, new ArrayList<>());
+		entities.put(EntityType.OTHERITEM, new ArrayList<>());
 		entities.put(EntityType.SOUND, new ArrayList<>());	
 		entities.put(EntityType.PARTICLE, new ArrayList<>());	
 		entities.put(EntityType.SPAWNER, new ArrayList<>());	
@@ -26,6 +28,7 @@ public class EntityStream {
 	public List<Entity> getEntities(EntityType type){
 		return entities.get(type);
 	}
+
 	
 	public void addEntity(EntityType type, Entity e){
 		entities.get(type).add(e);

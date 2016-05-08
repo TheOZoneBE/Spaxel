@@ -6,10 +6,12 @@ import java.util.Map;
 
 import code.collision.HitShape;
 import code.entity.Player;
+import code.factories.LaserFactory;
 import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.inventory.Weapon;
 import code.resource.HitShapeLoader;
 import code.resource.SoundLoader;
 import code.resource.SpriteLoader;
@@ -50,6 +52,7 @@ public class Engine {
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
+		entities.addEntity(EntityType.MOUSE1ITEM, new Weapon(0,0,spriteAtlas.get("basic_laser"), 5, new LaserFactory(spriteAtlas.get("basic_laser"), 5, 100, 15.0)));
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}
 	

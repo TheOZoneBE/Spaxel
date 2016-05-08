@@ -57,7 +57,7 @@ public class RenderSystem extends GameSystem {
 			//rendering particles
 			e.render(xOffset, yOffset, mainBuffer);
 		}
-		toRender = entities.getEntities(EntityType.ITEM);
+		toRender = entities.getEntities(EntityType.MOUSE1ITEM);
 		for (Entity e: toRender){
 			//rendering items
 			e.render(xOffset, yOffset, mainBuffer);

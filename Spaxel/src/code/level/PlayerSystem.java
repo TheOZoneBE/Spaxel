@@ -28,9 +28,9 @@ public class PlayerSystem extends GameSystem{
 		int mouseX = mouse.getX();
 		int mouseY = mouse.getY();
 		player.update(keys, mouseX, mouseY);
-		//todo get mousebutton input and call methods to do things with that
+
 		if (mouse.mouse1){
-			for (Entity e : entities.getEntities(EntityType.ITEM)){
+			for (Entity e : entities.getEntities(EntityType.MOUSE1ITEM)){
 				Weapon i = (Weapon)e;
 				Projectile p = i.getProjectile(player.getX(), player.getY(), player.getRot());
 				if (p != null){
@@ -40,7 +40,13 @@ public class PlayerSystem extends GameSystem{
 			
 		}
 		if (mouse.mouse2){
-			
+			for (Entity e : entities.getEntities(EntityType.MOUSE2ITEM)){
+				Weapon i = (Weapon)e;
+				Projectile p = i.getProjectile(player.getX(), player.getY(), player.getRot());
+				if (p != null){
+					entities.addEntity(EntityType.PROJECTILE, p);
+				}
+			}
 		}
 	}
 

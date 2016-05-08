@@ -91,4 +91,13 @@
 		<ypos>0</ypos>
 		<scale>2</scale>
 	</sprite>
+	<sprite>
+		<sheetname>projectiles</sheetname>
+		<name>basic_laser</name>
+		<width>8</width>
+		<height>8</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>2</scale>
+	</sprite>
 </sprites>

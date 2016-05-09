@@ -2,6 +2,7 @@ package code.entity;
 
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
+import code.projectiles.Projectile;
 
 public class Enemy extends Entity{
 	private Sprite sprite;
@@ -33,7 +34,7 @@ public class Enemy extends Entity{
 		if (health < 0){
 			alive = false;
 		}
-		rot = Math.PI + Math.atan2(((double) (player.getX() - x)), (double) (player.getY() - y));
+		rot = Math.PI + Math.atan2(player.getX() - x, player.getY() - y);
 		double dx = 0;
 		double dy = 0;
 		

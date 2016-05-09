@@ -7,11 +7,10 @@ import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Player;
-import code.entity.Projectile;
+import code.projectiles.Projectile;
 import code.input.Keyboard;
 import code.input.Mouse;
-import code.inventory.Item;
-import code.inventory.Weapon;
+import code.inventory.ToggleItem;
 
 public class PlayerSystem extends GameSystem{
 
@@ -31,18 +30,18 @@ public class PlayerSystem extends GameSystem{
 
 		if (mouse.mouse1){
 			for (Entity e : entities.getEntities(EntityType.MOUSE1ITEM)){
-				Weapon i = (Weapon)e;
-				Projectile p = i.getProjectile(player.getX(), player.getY(), player.getRot());
+				ToggleItem i = (ToggleItem) e;
+				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PROJECTILE, p);
 				}
 			}
 			
 		}
-		if (mouse.mouse2){
-			for (Entity e : entities.getEntities(EntityType.MOUSE2ITEM)){
-				Weapon i = (Weapon)e;
-				Projectile p = i.getProjectile(player.getX(), player.getY(), player.getRot());
+		if (mouse.mouse3){
+			for (Entity e : entities.getEntities(EntityType.MOUSE3ITEM)){
+				ToggleItem i = (ToggleItem) e;
+				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PROJECTILE, p);
 				}

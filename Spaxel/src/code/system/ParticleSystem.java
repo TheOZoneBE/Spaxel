@@ -11,7 +11,6 @@ import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Particle;
 import code.entity.ParticleSpawner;
-import code.entity.Projectile;
 
 public class ParticleSystem extends GameSystem {
 

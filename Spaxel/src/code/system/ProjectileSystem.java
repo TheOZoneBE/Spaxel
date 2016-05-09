@@ -11,8 +11,7 @@ import code.engine.SystemType;
 import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.ParticleSpawner;
-import code.entity.Projectile;
-import code.graphics.Sprite;
+import code.projectiles.Projectile;
 
 public class ProjectileSystem extends GameSystem{
 

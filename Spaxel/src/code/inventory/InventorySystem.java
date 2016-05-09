@@ -1,6 +1,5 @@
 package code.inventory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import code.engine.Engine;
@@ -8,10 +7,6 @@ import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
-import code.entity.Projectile;
-import code.factories.LaserFactory;
-import code.graphics.Sprite;
-import code.graphics.Spritesheet;
 
 public class InventorySystem extends GameSystem{
 
@@ -25,7 +20,7 @@ public class InventorySystem extends GameSystem{
 		for (Entity e: updating){
 			e.update();
 		}
-		updating = engine.getEntityStream().getEntities(EntityType.MOUSE2ITEM);
+		updating = engine.getEntityStream().getEntities(EntityType.MOUSE3ITEM);
 		for (Entity e: updating){
 			e.update();
 		}

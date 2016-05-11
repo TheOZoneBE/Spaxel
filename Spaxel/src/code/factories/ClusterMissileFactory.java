@@ -2,6 +2,7 @@ package code.factories;
 
 import code.graphics.Sprite;
 import code.projectiles.BasicMissile;
+import code.projectiles.ClusterMissile;
 import code.projectiles.Projectile;
 
 /**
@@ -13,6 +14,6 @@ public class ClusterMissileFactory extends ProjectileFactory {
     }
 
     public Projectile make(double x, double y, double rot){
-        return new BasicMissile(x, y, rot, sprite, damage,life, speed);
+        return new ClusterMissile(x, y, rot, sprite, damage,life, speed);
     }
 }

@@ -1,5 +1,11 @@
-<primairyWeapon>
-	<weapon>
-	<name>basic laser</name>
-	</weapon>
+<primairyWeapon type="array">
+	<toggleItem>
+		<name>basic_laser</name>
+		<sprite>basic_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>basic_laser_factory</factory>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>15</speed>
+	</toggleItem>
 </primairyWeapon>

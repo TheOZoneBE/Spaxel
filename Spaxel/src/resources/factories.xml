@@ -1,0 +1,8 @@
+<factories type="array">
+    <factory>
+        <name>basic_laser_factory</name>
+        <class>BasicLaserFactory</class>
+        <sprite>basic_laser_projectile</sprite>
+
+    </factory>
+</factories>

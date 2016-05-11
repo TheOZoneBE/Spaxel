@@ -25,7 +25,8 @@ public class ProjectileSystem extends GameSystem{
 		List<Entity> projs = entities.getEntities(EntityType.PROJECTILE);
 		List<Entity> dead = new ArrayList<>();
 		List<Entity> enemies = entities.getEntities(EntityType.ENEMY);
-		for (Entity proj : projs){
+		List<Entity> shallowCopy = new ArrayList<>(projs);
+		for (Entity proj : shallowCopy){
 			proj.update();
 			if (!((Projectile)proj).isAlive()){
 				dead.add(proj);
@@ -33,9 +34,9 @@ public class ProjectileSystem extends GameSystem{
 			else {
 				for(Entity e: enemies){
 					if(e.collision(proj)){
-						dead.add(proj);
 						Enemy temp = (Enemy)e;
-						temp.hit((Projectile)proj);
+						Projectile p = (Projectile)proj;
+						p.hit(temp);
 						//normal
 						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 10, 2, .2, 4, 150, temp.getSprite().getRandomPart(8,8)));
 						//stresstest

@@ -2,13 +2,14 @@ package code.projectiles;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.entity.Enemy;
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.math.VectorD;
 
 public class Projectile extends Entity {
-	private Sprite sprite;
+	protected Sprite sprite;
 	protected boolean alive;
 	protected int damage;
 	protected int life;
@@ -62,4 +63,8 @@ public class Projectile extends Entity {
 		return damage;
 	}
 
+	public void hit(Enemy e){
+		e.setHealth(e.getHealth() - damage);
+		setDead();
+	}
 }

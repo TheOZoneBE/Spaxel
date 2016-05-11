@@ -6,9 +6,9 @@ import java.util.List;
 
 import code.entity.Entity;
 
-public class EntityStream {
+final public class EntityStream {
 	private EnumMap<EntityType, List<Entity>> entities;
-	
+
 	public EntityStream(){
 		entities = new EnumMap<>(EntityType.class);
 		entities.put(EntityType.PLAYER, new ArrayList<>());

@@ -96,7 +96,7 @@
 	<!-- projectiles -->
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>basic_laser</name>
+		<name>basic_laser_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>0</xpos>
@@ -105,7 +105,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>piercing_laser</name>
+		<name>piercing_laser_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>2</xpos>
@@ -114,7 +114,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>disrupt_laser</name>
+		<name>disrupt_laser_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>3</xpos>
@@ -123,7 +123,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>slowing_laser</name>
+		<name>slowing_laser_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>1</xpos>
@@ -132,7 +132,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>basic_missile</name>
+		<name>basic_missile_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>0</xpos>
@@ -141,7 +141,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>homing_missile</name>
+		<name>homing_missile_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>2</xpos>
@@ -150,7 +150,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>hacking_missile</name>
+		<name>hacking_missile_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>3</xpos>
@@ -159,7 +159,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>projectiles</sheetname>
-		<name>cluster_missile</name>
+		<name>cluster_missile_projectile</name>
 		<width>8</width>
 		<height>8</height>
 		<xpos>1</xpos>

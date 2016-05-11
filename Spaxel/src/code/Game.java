@@ -39,9 +39,6 @@ public class Game extends Canvas implements Runnable {
 	public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	
 	private Engine engine;
-	
-	private Keyboard keyboard;
-	private Mouse mouse;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -61,12 +58,10 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		frame.setTitle(gameName);
 		time = System.nanoTime();
-		keyboard = new Keyboard();
-		mouse = new Mouse();
-		addKeyListener(keyboard);		
-		addMouseListener(mouse);
-		addMouseMotionListener(mouse);
-		engine = new Engine(keyboard, mouse);
+	}
+
+	public synchronized void start() {
+		engine = Engine.getEngine();
 		engine.addSystem(new SoundSystem(engine));
 		engine.addSystem(new InventorySystem(engine));
 		engine.addSystem(new UISystem(engine));
@@ -74,10 +69,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new PlayerSystem(engine));
 		engine.addSystem(new RenderSystem(engine));
 		engine.addSystem(new AISystem(engine));
-		engine.addSystem(new ParticleSystem(engine));		
-	}
-
-	public synchronized void start() {
+		engine.addSystem(new ParticleSystem(engine));
 		running = true;
 		thread = new Thread(this, "Display");
 		thread.start();
@@ -116,7 +108,6 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		engine.update();
-		keyboard.update();
 	}
 
 	public void render() {

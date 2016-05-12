@@ -1,11 +1,42 @@
-<primairyWeapon type="array">
+<primaryWeapon type="array">
 	<toggleItem>
 		<name>basic_laser</name>
 		<sprite>basic_laser_item</sprite>
 		<cooldown>10</cooldown>
-		<factory>basic_laser_factory</factory>
+		<factory>code.factories.BasicLaserFactory</factory>
+		<projectile>basic_laser_projectile</projectile>
+		<damage>10</damage>
+		<life>100</life>
+		<speed>30</speed>
+	</toggleItem>
+	<toggleItem>
+		<name>piercing_laser</name>
+		<sprite>piercing_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.PiercingLaserFactory</factory>
+		<projectile>piercing_laser_projectile</projectile>
 		<damage>5</damage>
 		<life>100</life>
-		<speed>15</speed>
+		<speed>40</speed>
 	</toggleItem>
-</primairyWeapon>
+	<toggleItem>
+		<name>disrupt_laser</name>
+		<sprite>disrupt_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.DisruptLaserFactory</factory>
+		<projectile>disrupt_laser_projectile</projectile>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>25</speed>
+	</toggleItem>
+	<toggleItem>
+		<name>slowing_laser</name>
+		<sprite>slowing_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.SlowingLaserFactory</factory>
+		<projectile>slowing_laser_projectile</projectile>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>20</speed>
+	</toggleItem>
+</primaryWeapon>

@@ -7,19 +7,15 @@ import java.util.Map;
 import code.Game;
 import code.collision.HitShape;
 import code.entity.Player;
-import code.factories.BasicLaserFactory;
-import code.factories.BasicMissileFactory;
-import code.factories.ClusterMissileFactory;
-import code.factories.PiercingLaserFactory;
+import code.factories.*;
 import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.inventory.Item;
+import code.inventory.ItemCatalogue;
 import code.inventory.ToggleItem;
-import code.resource.HitShapeLoader;
-import code.resource.SoundLoader;
-import code.resource.SpriteLoader;
-import code.resource.UIElementLoader;
+import code.resource.*;
 import code.ui.UI;
 
 final public class Engine {
@@ -32,6 +28,7 @@ final public class Engine {
 	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
 	private GameState gameState;
+	private ItemCatalogue items;
 
 	public static Engine getEngine(){
 		return engine;
@@ -63,8 +60,9 @@ final public class Engine {
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
-		entities.addEntity(EntityType.MOUSE1ITEM, new ToggleItem(0,0,spriteAtlas.get("piercing_laser_projectile"), 5, new PiercingLaserFactory(spriteAtlas.get("piercing_laser_projectile"), 5, 100, 15.0)));
-		entities.addEntity(EntityType.MOUSE3ITEM, new ToggleItem(0,0,spriteAtlas.get("cluster_missile_projectile"), 5, new ClusterMissileFactory(spriteAtlas.get("cluster_missile_projectile"), 5, 50, 15.0)));
+		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
+		Item i = items.getRandomItem();
+		entities.addEntity(EntityType.MOUSE1ITEM, i);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}
 	

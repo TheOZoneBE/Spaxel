@@ -2,7 +2,11 @@ package code.entity;
 
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
+import code.inventory.StatusEffect;
 import code.projectiles.Projectile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Enemy extends Entity{
 	private Sprite sprite;
@@ -12,14 +16,22 @@ public class Enemy extends Entity{
 	private double acc;
 	private double xdir;
 	private double ydir;
+	private boolean canshoot;
+	private List<StatusEffect> effects;
 
 	public Enemy(double x, double y, double rot, int health, Sprite sprite) {
 		super(x, y, rot);
 		this.sprite = sprite;
 		this.health = health;
 		alive = true;
-		maxspeed = 10;
+		maxspeed = 20;
 		acc = 0.5;
+		canshoot = true;
+		effects = new ArrayList<>();
+	}
+
+	public void addStatusEffect(StatusEffect e){
+		effects.add(e);
 	}
 	
 	public boolean isAlive(){
@@ -31,6 +43,23 @@ public class Enemy extends Entity{
 	}
 	
 	public void update(Player player){
+		int healthB = health;
+		double maxspeedB = maxspeed;
+		double accB = acc;
+		boolean canshootB = canshoot;
+		List<StatusEffect> todelete = new ArrayList<>();
+		for (StatusEffect e: effects){
+			e.update();
+			if(e.isAlive()){
+				e.affect(this);
+			}
+			else{
+				todelete.add(e);
+			}
+
+		}
+		effects.removeAll(todelete);
+
 		if (health < 0){
 			alive = false;
 		}
@@ -48,8 +77,8 @@ public class Enemy extends Entity{
 				ydir += dy;
 			}
 			else {
-				xdir = 0.975 * xdir + dx;
-				ydir = 0.975 * ydir + dy;		
+				xdir = xdir - xdir/(maxspeed*2) + dx;
+				ydir = ydir - ydir/(maxspeed*2) + dy;
 			}			
 		} 
 		else {
@@ -59,7 +88,12 @@ public class Enemy extends Entity{
 
 		x+=xdir;
 		y+=ydir;
-		super.update();		
+		super.update();
+
+		health = healthB;
+		maxspeed = maxspeedB;
+		acc = accB;
+		canshoot = canshootB;
 	}
 	
 	public double distance(double x1, double y1, double x2, double y2){
@@ -87,6 +121,30 @@ public class Enemy extends Entity{
 
 	public void setHealth(int health){
 		this.health = health;
+	}
+
+	public double getMaxspeed(){
+		return maxspeed;
+	}
+
+	public void setMaxspeed(double maxspeed){
+		this.maxspeed = maxspeed;
+	}
+
+	public double getAcc(){
+		return acc;
+	}
+
+	public void setAcc(double acc){
+		this.acc = acc;
+	}
+
+	public boolean getCanShoot(){
+		return canshoot;
+	}
+
+	public void setCanshoot(boolean canshoot){
+		this.canshoot = canshoot;
 	}
 
 }

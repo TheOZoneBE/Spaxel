@@ -1,5 +1,6 @@
 package code.inventory;
 
+import code.engine.EntityType;
 import code.projectiles.Projectile;
 import code.factories.ProjectileFactory;
 import code.graphics.Sprite;
@@ -9,8 +10,8 @@ public class ToggleItem extends Item{
 	private int cd = 0;
 	private ProjectileFactory projFac;
 
-	public ToggleItem(double x, double y, Sprite sprite, int cooldown, ProjectileFactory projFac) {
-		super(x, y, sprite);
+	public ToggleItem(EntityType type,  Sprite sprite, int cooldown, ProjectileFactory projFac) {
+		super(type, sprite);
 		this.cooldown = cooldown;
 		this.projFac = projFac;
 	}

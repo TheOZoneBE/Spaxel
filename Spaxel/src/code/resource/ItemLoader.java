@@ -41,6 +41,28 @@ public class ItemLoader extends EntityLoader {
                 System.out.println("error");
             }
         }
+        nodelist = doc.getElementsByTagName("secondaryWeapon");
+        Element mouse3 = (Element)nodelist.item(0);
+        nodelist = mouse3.getElementsByTagName("toggleItem");
+        for(int i = 0; i < nodelist.getLength(); i++){
+            Element nextChild = (Element)nodelist.item(i);
+            String sprite = nextChild.getElementsByTagName("sprite").item(0).getTextContent();
+            int cooldown = Integer.parseInt((nextChild.getElementsByTagName("cooldown").item(0).getTextContent()));
+            String factory = nextChild.getElementsByTagName("factory").item(0).getTextContent();
+            String projectile = nextChild.getElementsByTagName("projectile").item(0).getTextContent();
+            int damage = Integer.parseInt((nextChild.getElementsByTagName("damage").item(0).getTextContent()));
+            int life = Integer.parseInt((nextChild.getElementsByTagName("life").item(0).getTextContent()));
+            int speed =  Integer.parseInt((nextChild.getElementsByTagName("speed").item(0).getTextContent()));
+            try {
+                Constructor constructor = Class.forName(factory).getConstructors()[0];
+                ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), damage, life, speed);
+                Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite), cooldown, projFac);
+                items.addItem(item);
+            }
+            catch (Exception e){
+                System.out.println("error");
+            }
+        }
         return items;
     }
 

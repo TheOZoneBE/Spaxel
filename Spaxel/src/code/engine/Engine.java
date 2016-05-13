@@ -62,7 +62,7 @@ final public class Engine {
 		entities.addEntity(EntityType.PLAYER, player);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
 		Item i = items.getRandomItem();
-		entities.addEntity(EntityType.MOUSE1ITEM, i);
+		entities.addEntity(i.getType(), i);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}
 	

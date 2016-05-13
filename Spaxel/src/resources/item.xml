@@ -1,3 +1,4 @@
+<items>
 <primaryWeapon type="array">
 	<toggleItem>
 		<name>basic_laser</name>
@@ -40,3 +41,49 @@
 		<speed>20</speed>
 	</toggleItem>
 </primaryWeapon>
+<secondaryWeapon>
+	<toggleItem>
+		<name>basic_missile</name>
+		<sprite>basic_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.BasicMissileFactory</factory>
+		<projectile>basic_missile_projectile</projectile>
+		<damage>30</damage>
+		<life>150</life>
+		<speed>30</speed>
+	</toggleItem>
+	<toggleItem>
+		<name>homing_missile</name>
+		<sprite>homing_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.HomingMissileFactory</factory>
+		<projectile>homing_missile_projectile</projectile>
+		<damage>20</damage>
+		<life>150</life>
+		<speed>25</speed>
+	</toggleItem>
+	<toggleItem>
+		<name>hacking_missile</name>
+		<sprite>hacking_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.HackingMissileFactory</factory>
+		<projectile>hacking_missile_projectile</projectile>
+		<damage>25</damage>
+		<life>150</life>
+		<speed>35</speed>
+	</toggleItem>
+	<toggleItem>
+		<name>cluster_missile</name>
+		<sprite>cluster_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.ClusterMissileFactory</factory>
+		<projectile>cluster_missile_projectile</projectile>
+		<damage>40</damage>
+		<life>150</life>
+		<speed>20</speed>
+	</toggleItem>
+</secondaryWeapon>
+<shipItem>
+
+</shipItem>
+</items>

@@ -24,6 +24,7 @@ public class ItemLoader extends EntityLoader {
         nodelist = mouse1.getElementsByTagName("toggleItem");
         for(int i = 0; i < nodelist.getLength(); i++){
             Element nextChild = (Element)nodelist.item(i);
+            String name = nextChild.getElementsByTagName("name").item(0).getTextContent();
             String sprite = nextChild.getElementsByTagName("sprite").item(0).getTextContent();
             int cooldown = Integer.parseInt((nextChild.getElementsByTagName("cooldown").item(0).getTextContent()));
             String factory = nextChild.getElementsByTagName("factory").item(0).getTextContent();
@@ -35,7 +36,7 @@ public class ItemLoader extends EntityLoader {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), damage, life, speed);
                 Item item = new ToggleItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), cooldown, projFac);
-                items.addItem(item);
+                items.addItem(name, item);
             }
             catch (Exception e){
                 System.out.println("error");
@@ -46,6 +47,7 @@ public class ItemLoader extends EntityLoader {
         nodelist = mouse3.getElementsByTagName("toggleItem");
         for(int i = 0; i < nodelist.getLength(); i++){
             Element nextChild = (Element)nodelist.item(i);
+            String name = nextChild.getElementsByTagName("name").item(0).getTextContent();
             String sprite = nextChild.getElementsByTagName("sprite").item(0).getTextContent();
             int cooldown = Integer.parseInt((nextChild.getElementsByTagName("cooldown").item(0).getTextContent()));
             String factory = nextChild.getElementsByTagName("factory").item(0).getTextContent();
@@ -57,7 +59,7 @@ public class ItemLoader extends EntityLoader {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), damage, life, speed);
                 Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite), cooldown, projFac);
-                items.addItem(item);
+                items.addItem(name, item);
             }
             catch (Exception e){
                 System.out.println("error");

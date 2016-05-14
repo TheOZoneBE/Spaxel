@@ -61,7 +61,7 @@ final public class Engine {
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
-		Item i = items.getRandomItem();
+		Item i = items.getItem("homing_missile");
 		entities.addEntity(i.getType(), i);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}

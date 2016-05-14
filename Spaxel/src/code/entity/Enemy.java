@@ -25,7 +25,7 @@ public class Enemy extends Entity{
 		this.health = health;
 		alive = true;
 		maxspeed = 20;
-		acc = 0.5;
+		acc = 0.25;
 		canshoot = true;
 		effects = new ArrayList<>();
 	}
@@ -70,7 +70,7 @@ public class Enemy extends Entity{
 		dx = -Math.sin(rot) * acc;
 		dy = -Math.cos(rot) * acc;
 		
-		double dist = distance(x,y, player.getX(), player.getY());
+		double dist = distanceTo(player);
 		if (dist > 250) {
 			if (controlSpeed(xdir + dx, ydir + dy)){
 				xdir += dx;
@@ -95,11 +95,7 @@ public class Enemy extends Entity{
 		acc = accB;
 		canshoot = canshootB;
 	}
-	
-	public double distance(double x1, double y1, double x2, double y2){
-		return Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2, 2));
-	}
-	
+
 	public boolean controlSpeed(double dx, double dy) {
 		double speed = Math.sqrt(dx * dx + dy * dy);
 		return speed < maxspeed;

@@ -97,4 +97,8 @@ public class Entity {
 	public boolean collision(Entity e){
 		return updHitShape.collision(e.getUpdHitShape());
 	}
+
+	public double distanceTo(Entity e){
+		return Math.sqrt(Math.pow(x-e.getX(),2) + Math.pow(y-e.getY(), 2));
+	}
 }

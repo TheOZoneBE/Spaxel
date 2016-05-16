@@ -87,7 +87,7 @@
 		<rot>1</rot>
 		<width>580</width>
 		<xpos>348</xpos>
-		<ypos>622</ypos>
+		<ypos>624</ypos>
 	</uielement>
 		<uielement type="bar">
 		<ui>play</ui>
@@ -95,6 +95,6 @@
 		<rot>3</rot>
 		<width>580</width>
 		<xpos>932</xpos>
-		<ypos>636</ypos>
+		<ypos>635</ypos>
 	</uielement>
 </uielements>

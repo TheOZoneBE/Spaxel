@@ -54,15 +54,19 @@ final public class Engine {
 		SoundLoader sounds = new SoundLoader();
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
-		spriteAtlas.put("hp_bar", new Sprite(4,1,2, 0xff00ff00));
-		spriteAtlas.put("xp_bar", new Sprite(4,1,2, 0xff0000ff));
+		spriteAtlas.put("hp_bar", new Sprite(1,4,2, 0xff00ff00));
+		spriteAtlas.put("xp_bar", new Sprite(1,4,2, 0xff0000ff));
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
 		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
 		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
 		entities.addEntity(EntityType.PLAYER, player);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
-		Item i = items.getItem("homing_missile");
+		Item i = items.getItem("basic_laser");
 		entities.addEntity(i.getType(), i);
+		i = items.getItem("piercing_laser");
+		entities.addEntity(i.getType(),i );
+		i = items.getItem("homing_missile");
+		entities.addEntity(i.getType(),i );
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 	}
 	

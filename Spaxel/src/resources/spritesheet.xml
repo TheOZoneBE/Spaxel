@@ -31,4 +31,16 @@
 		<width>640</width>
 		<height>360</height>
 	</sheet>
+	<sheet>
+		<path>items.png</path>
+		<name>items</name>
+		<width>256</width>
+		<height>256</height>
+	</sheet>
+	<sheet>
+		<path>cooldown.png</path>
+		<name>cooldown</name>
+		<width>8</width>
+		<height>32</height>
+	</sheet>
 </spritesheet>

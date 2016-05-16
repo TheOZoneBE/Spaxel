@@ -30,37 +30,58 @@ public class RenderSystem extends GameSystem {
 		EntityStream entities = engine.getEntityStream();
 		Keyboard keys = engine.getKeyboard();
 		Mouse mouse = engine.getMouse();
-		Player player = (Player)entities.getEntities(EntityType.PLAYER).get(0);
-		int screenXOffset = mouse.getX() / 2 - Game.GAME_WIDTH / 4;
-		int screenYOffset = mouse.getY() / 2 - Game.GAME_HEIGHT / 4;
-		
-		int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
-		int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
-		int xOffset = playerXPos - (int)player.getX();
-		int yOffset = playerYPos - (int)player.getY();
 		mainBuffer.clear();
-		mainBuffer.dots(xOffset, yOffset);
-		player.render(playerXPos,playerYPos, mainBuffer);
-		
-		List<Entity> toRender = entities.getEntities(EntityType.ENEMY);
-		for (Entity e: toRender){
-			//rendering enemies
-			e.render(xOffset, yOffset, mainBuffer);
-		}
-		toRender = entities.getEntities(EntityType.PROJECTILE);
-		for (Entity e: toRender){
-			//rendering projectiles
-			e.render(xOffset, yOffset, mainBuffer);
-		}
-		toRender = entities.getEntities(EntityType.PARTICLE);
-		for (Entity e: toRender){
-			//rendering particles
-			e.render(xOffset, yOffset, mainBuffer);
-		}
-		toRender = entities.getEntities(EntityType.MOUSE1ITEM);
-		for (Entity e: toRender){
-			//rendering items
-			e.render(xOffset, yOffset, mainBuffer);
+		if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
+
+			Player player = (Player)entities.getEntities(EntityType.PLAYER).get(0);
+			int screenXOffset = mouse.getX() / 2 - Game.GAME_WIDTH / 4;
+			int screenYOffset = mouse.getY() / 2 - Game.GAME_HEIGHT / 4;
+
+			int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
+			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
+			int xOffset = playerXPos - (int)player.getX();
+			int yOffset = playerYPos - (int)player.getY();
+
+			mainBuffer.dots(xOffset, yOffset);
+			player.render(playerXPos,playerYPos, mainBuffer);
+
+			List<Entity> toRender = entities.getEntities(EntityType.ENEMY);
+			for (Entity e: toRender){
+				//rendering enemies
+				e.render(xOffset, yOffset, mainBuffer);
+			}
+			toRender = entities.getEntities(EntityType.PROJECTILE);
+			for (Entity e: toRender){
+				//rendering projectiles
+				e.render(xOffset, yOffset, mainBuffer);
+			}
+			toRender = entities.getEntities(EntityType.PARTICLE);
+			for (Entity e: toRender){
+				//rendering particles
+				e.render(xOffset, yOffset, mainBuffer);
+			}
+			toRender = entities.getEntities(EntityType.MOUSE1ITEM);
+			int i = 0;
+			for (Entity e: toRender){
+				//rendering items
+				e.render(40, 40 + i * 72, mainBuffer);
+				i++;
+			}
+			toRender = entities.getEntities(EntityType.MOUSE3ITEM);
+			i= 0;
+			for (Entity e: toRender){
+				//rendering items
+				e.render(1240, 40 + i * 72, mainBuffer);
+				i++;
+			}
+			toRender = entities.getEntities(EntityType.OTHERITEM);
+			i= 0;
+			for (Entity e: toRender){
+				//rendering items
+				e.render(386 + i * 72, 680, mainBuffer);
+				i++;
+			}
+
 		}
 		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
 		uis.getCurrentUI().render(mainBuffer);
@@ -68,6 +89,7 @@ public class RenderSystem extends GameSystem {
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
 			Game.game.pixels[i] = mainBuffer.getPixel(i);
+
 		}		
 	}
 	

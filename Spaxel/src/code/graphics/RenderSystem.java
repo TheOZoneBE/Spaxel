@@ -12,18 +12,25 @@ import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Player;
+import code.entity.TrailSegment;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.ui.UISystem;
+import javafx.scene.layout.Background;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
+	private TrailSegment one;
+	private TrailSegment two;
+
 	//todo add more buffers to split rendering
 
 	public RenderSystem(Engine engine) {
 		super(engine);
 		type = SystemType.RENDER;
 		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		one = new TrailSegment(256,256, 2*Math.PI - Math.PI/4, 0xffffffff, null);
+		two = new TrailSegment(512,256, Math.PI + Math.PI/4, 0xffffffff, one);
 	}
 	
 	public void update(){
@@ -81,6 +88,9 @@ public class RenderSystem extends GameSystem {
 				e.render(386 + i * 72, 680, mainBuffer);
 				i++;
 			}
+			//two.setRot(two.getRot()+0.01);
+			//System.out.println(two.getRot());
+			two.render(xOffset, yOffset, mainBuffer);
 
 		}
 		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
@@ -89,7 +99,6 @@ public class RenderSystem extends GameSystem {
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
 			Game.game.pixels[i] = mainBuffer.getPixel(i);
-
 		}		
 	}
 	

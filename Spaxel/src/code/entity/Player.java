@@ -24,8 +24,8 @@ public class Player extends Entity {
 	}
 
 	public void update(Keyboard keys, int mouseX, int mouseY) {		
-		double dx = 0;
-		double dy = 0;
+		double dx = -xdir/(maxspeed*2);
+		double dy = -ydir/(maxspeed*2);
 		if (keys.down) {
 			dx = Math.sin(rot) * acc;
 			dy = Math.cos(rot) * acc;
@@ -47,8 +47,8 @@ public class Player extends Entity {
 			xdir += dx;
 			ydir += dy;
 		} else {
-			xdir = 0.975 * xdir + dx;
-			ydir = 0.975 * ydir + dy;
+			xdir = xdir - xdir/(maxspeed*2);
+			ydir = ydir - ydir/(maxspeed*2);
 		}
 
 		setX(getX() + xdir);

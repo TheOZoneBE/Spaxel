@@ -1,5 +1,6 @@
 package code.entity;
 
+import code.engine.Engine;
 import code.graphics.RenderBuffer;
 import javafx.scene.control.TreeItem;
 
@@ -40,13 +41,14 @@ public class TrailSegment extends Entity{
 
     public void render(int xPos, int yPos, RenderBuffer render){
         if (previous != null){
-            int steps = 50;
+            int steps = 32;
             double dx1 = Math.sin(rot+Math.PI);
             double dy1 = Math.cos(rot+Math.PI);
             double dx2 = Math.sin(previous.getRot());
             double dy2 = Math.cos(previous.getRot());
-            double xMid = (x - previous.getX())/(dx2-dx1);
-            double yMid = (y - previous.getY())/(dy2-dy1);
+            double j  = (y*dx1 - previous.getY()*dx1 + previous.getX()*dy1 - x*dy1)/(dx1*dy2 - dx2*dy1);
+            double xMid = previous.getX() + j*dx2;
+            double yMid = previous.getY() + j*dy2;
             double x1Step = (xMid - previous.getX())/steps;
             double y1Step = (yMid - previous.getY())/steps;
             double x2Step = (x - xMid)/steps;
@@ -55,6 +57,9 @@ public class TrailSegment extends Entity{
                 double xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                 double yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
                 render.setPixel((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, color);
+
+                //proof of concept to use sprites
+                //Engine.getEngine().getSpriteAtlas().get("hp_bar").render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos,Math.atan2(xStep, yStep)+Math.PI/2, render);
             }
         }
     }

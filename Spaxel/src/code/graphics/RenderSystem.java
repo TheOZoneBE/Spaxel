@@ -20,17 +20,12 @@ import javafx.scene.layout.Background;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
-	private TrailSegment one;
-	private TrailSegment two;
-
 	//todo add more buffers to split rendering
 
 	public RenderSystem(Engine engine) {
 		super(engine);
 		type = SystemType.RENDER;
 		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		one = new TrailSegment(256,256, 2*Math.PI - Math.PI/4, 0xffffffff, null);
-		two = new TrailSegment(512,256, Math.PI + Math.PI/4, 0xffffffff, one);
 	}
 	
 	public void update(){
@@ -52,7 +47,12 @@ public class RenderSystem extends GameSystem {
 			mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
 
-			List<Entity> toRender = entities.getEntities(EntityType.ENEMY);
+			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
+			for (Entity e: toRender){
+				//rendering enemies
+				e.render(xOffset, yOffset, mainBuffer);
+			}
+			toRender = entities.getEntities(EntityType.ENEMY);
 			for (Entity e: toRender){
 				//rendering enemies
 				e.render(xOffset, yOffset, mainBuffer);
@@ -88,9 +88,8 @@ public class RenderSystem extends GameSystem {
 				e.render(386 + i * 72, 680, mainBuffer);
 				i++;
 			}
-			//two.setRot(two.getRot()+0.01);
-			//System.out.println(two.getRot());
-			two.render(xOffset, yOffset, mainBuffer);
+
+
 
 		}
 		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);

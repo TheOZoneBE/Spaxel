@@ -16,6 +16,7 @@ import code.sound.SoundSystem;
 import code.system.AISystem;
 import code.system.ParticleSystem;
 import code.system.ProjectileSystem;
+import code.system.TrailSystem;
 import code.ui.UISystem;
 import code.engine.Engine;
 import code.graphics.RenderSystem;
@@ -70,6 +71,7 @@ public class Game extends Canvas implements Runnable {
 		engine.addSystem(new RenderSystem(engine));
 		engine.addSystem(new AISystem(engine));
 		engine.addSystem(new ParticleSystem(engine));
+		engine.addSystem(new TrailSystem(engine));
 		running = true;
 		thread = new Thread(this, "Display");
 		thread.start();

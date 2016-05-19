@@ -2,8 +2,11 @@ package code.projectiles;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.engine.Engine;
+import code.engine.EntityType;
 import code.entity.Enemy;
 import code.entity.Entity;
+import code.entity.TrailSegment;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.math.VectorD;
@@ -14,6 +17,7 @@ public class Projectile extends Entity {
 	protected int damage;
 	protected int life;
 	protected double speed;
+	private TrailSegment previous;
 
 	public Projectile(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
 		super(x, y, rot);
@@ -26,6 +30,8 @@ public class Projectile extends Entity {
 		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
 		hitShape.addHitPoint(hitPoint);
 		setHitShape(hitShape);
+		previous = new TrailSegment(x, y, rot, 0xffffffff, null);
+		Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 	}
 
 	public boolean isAlive() {
@@ -44,6 +50,8 @@ public class Projectile extends Entity {
 			setX(getX() - dx);
 			setY(getY() - dy);
 			life--;
+			previous = new TrailSegment(x, y, rot, 0xffffffff, previous);
+			Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 		} else {
 			setDead();
 		}

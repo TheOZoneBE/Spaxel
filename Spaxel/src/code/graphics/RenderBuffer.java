@@ -231,6 +231,26 @@ public class RenderBuffer {
         }
     }
 
+    public void pixelBlur(RenderBuffer source, int radius, int tilesize){
+        RenderBuffer temp = new RenderBuffer(source.getWidth(), source.getHeight());
+        temp.decimate(source, tilesize);
+        //RenderBuffer temp2 = new RenderBuffer(source.getWidth(), source.getHeight());
+        temp.fastblur(temp, radius);
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j< height; j++){
+                pixels[i + j*width] = temp.getPixel(i/tilesize + j/tilesize*width);
+            }
+        }
+    }
+
+    public void decimate(RenderBuffer source, int dec){
+        for (int i = 0; i < source.getWidth()/dec; i++){
+            for (int j = 0; j< source.getHeight()/dec; j++){
+                pixels[i + j*width] = source.getPixel(i*dec + j*dec*width);
+            }
+        }
+    }
+
     public void newBlur(RenderBuffer source, int radius){
         int w = source.getWidth();
         int h = source.getHeight();

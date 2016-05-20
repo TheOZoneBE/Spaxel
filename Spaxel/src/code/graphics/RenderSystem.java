@@ -20,12 +20,14 @@ import javafx.scene.layout.Background;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
+	private RenderBuffer backgroundBlur;
 	//todo add more buffers to split rendering
 
 	public RenderSystem(Engine engine) {
 		super(engine);
 		type = SystemType.RENDER;
 		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		backgroundBlur = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 	}
 	
 	public void update(){
@@ -33,6 +35,7 @@ public class RenderSystem extends GameSystem {
 		Keyboard keys = engine.getKeyboard();
 		Mouse mouse = engine.getMouse();
 		mainBuffer.clear();
+		backgroundBlur.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
 
 			Player player = (Player)entities.getEntities(EntityType.PLAYER).get(0);
@@ -44,7 +47,7 @@ public class RenderSystem extends GameSystem {
 			int xOffset = playerXPos - (int)player.getX();
 			int yOffset = playerYPos - (int)player.getY();
 
-			mainBuffer.dots(xOffset, yOffset);
+			//mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
 
 			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
@@ -88,6 +91,10 @@ public class RenderSystem extends GameSystem {
 				e.render(386 + i * 72, 680, mainBuffer);
 				i++;
 			}
+			long startTime = System.nanoTime();
+			backgroundBlur.pixelBlur(mainBuffer, 3, 2);
+			long stopTime = System.nanoTime();
+			System.out.println(stopTime - startTime);
 
 
 
@@ -97,7 +104,13 @@ public class RenderSystem extends GameSystem {
 	}
 	public void render(){
 		for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
-			Game.game.pixels[i] = mainBuffer.getPixel(i);
+			if (mainBuffer.getPixel(i) == 0){
+				Game.game.pixels[i] = backgroundBlur.getPixel(i);
+			}
+			else{
+				Game.game.pixels[i] = mainBuffer.getPixel(i);
+			}
+
 		}		
 	}
 	

@@ -91,10 +91,10 @@ public class RenderSystem extends GameSystem {
 				e.render(386 + i * 72, 680, mainBuffer);
 				i++;
 			}
-			long startTime = System.nanoTime();
-			backgroundBlur.pixelBlur(mainBuffer, 3, 2);
-			long stopTime = System.nanoTime();
-			System.out.println(stopTime - startTime);
+			//long startTime = System.nanoTime();
+			//backgroundBlur.pixelBlur2(mainBuffer, 3, 2);
+			//long stopTime = System.nanoTime();
+			//System.out.println(stopTime - startTime);
 
 
 

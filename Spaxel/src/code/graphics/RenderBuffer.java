@@ -251,67 +251,90 @@ public class RenderBuffer {
         }
     }
 
-    public void newBlur(RenderBuffer source, int radius){
+    public void pixelBlur2(RenderBuffer source, int radius, int tilesize){
         int w = source.getWidth();
         int h = source.getHeight();
-        int div = radius*2 + 1;
-        int[] preRed = new int[w*h];
-        int[] preGreen = new int[w*h];
-        int[] preBlue = new int[w*h];
-        for (int i = 0; i < w; i++){
-            for (int j = 0; j < h; j++) {
-                int dest = j*w +i;
-                int[] rgb = getRGB(source.getPixel(i, j));
+        int wTls = w/tilesize;
+        int hTls = h/tilesize;
+        int whTls = wTls*hTls;
+        int div = (radius*2 +1)*(radius*2+1);
+        int[] preRed = new int[whTls];
+        int[] preGreen = new int[whTls];
+        int[] preBlue = new int[whTls];
+        for (int i = 0; i< wTls; i++){
+            for (int j = 0; j< hTls; j++){
+                int dest = j*wTls +i;
+                int[] rgb = getRGB(source.getPixel(i*tilesize, j*tilesize));
                 preRed[dest] = rgb[0];
                 preGreen[dest] = rgb[1];
                 preBlue[dest] = rgb[2];
                 if (i != 0) {
-                    rgb = getRGB(source.getPixel(i-1, j));
-                    preRed[dest] += rgb[0];
-                    preGreen[dest] += rgb[1];
-                    preBlue[dest] += rgb[2];
-                } else if (j != 0) {
-                    rgb = getRGB(source.getPixel(i, j-1));
-                    preRed[dest] += rgb[0];
-                    preGreen[dest] += rgb[1];
-                    preBlue[dest] += rgb[2];
+                    preRed[dest] += preRed[dest - 1];
+                    preGreen[dest] += preGreen[dest -1];
+                    preBlue[dest] += preBlue[dest-1];
+                }
+                if (j != 0) {
+                    preRed[dest] += preRed[dest-wTls];
+                    preGreen[dest] += preGreen[dest-wTls];
+                    preBlue[dest] += preBlue[dest-wTls];
+                }
+                if (i!=0 && j!= 0){
+                    preRed[dest] -= preRed[dest-wTls-1];
+                    preGreen[dest] -= preGreen[dest-wTls-1];
+                    preBlue[dest] -= preBlue[dest-wTls-1];
                 }
             }
         }
-        for (int i = 0; i < w; i++){
-            for (int j = 0; j < h; j++) {
-                if (source.getPixel(i) == 0){
-                    int r = 0;
-                    int g = 0;
-                    int b = 0;
-                    if (valid(i + radius, j+radius)){
-                        r+= preRed[(j+radius)*w + i+ radius];
-                        g+= preGreen[(j+radius)*w + i+ radius];
-                        b+= preBlue[(j+radius)*w + i+ radius];
-                    }
-                    if (valid(i - radius, j-radius)){
-                        r+= preRed[(j-radius)*w + i- radius];
-                        g+= preGreen[(j-radius)*w + i- radius];
-                        b+= preBlue[(j-radius)*w + i- radius];
-                    }
-                    if (valid(i - radius, j+radius)){
-                        r+= preRed[(j+radius)*w + i- radius];
-                        g+= preGreen[(j+radius)*w + i- radius];
-                        b+= preBlue[(j+radius)*w + i- radius];
-                    }
-                    if (valid(i + radius, j-radius)){
-                        r+= preRed[(j-radius)*w + i+ radius];
-                        g+= preGreen[(j-radius)*w + i+ radius];
-                        b+= preBlue[(j-radius)*w + i+ radius];
-                    }
-                    pixels[j*w +i] = blurredPixel(r, g, b, div);
-                }
+        for (int i = 0; i< wTls; i++){
+            for (int j = 0; j< hTls; j++){
+                int[] values = {i + radius, j+radius, i-radius-1, j-radius-1};
+                int r = 0;
+                r+= preRed[getValue(values[0], values[1], wTls, hTls)];
+                r+= preRed[getValue(values[2], values[3], wTls, hTls)];
+                r-= preRed[getValue(values[2], values[1], wTls, hTls)];
+                r-= preRed[getValue(values[0], values[3], wTls, hTls)];
+                int g = 0;
+                g+= preGreen[getValue(values[0], values[1], wTls, hTls)];
+                g+= preGreen[getValue(values[2], values[3], wTls, hTls)];
+                g-= preGreen[getValue(values[2], values[1], wTls, hTls)];
+                g-= preGreen[getValue(values[0], values[3], wTls, hTls)];
+                int b = 0;
+                b+= preBlue[getValue(values[0], values[1],  wTls, hTls)];
+                b+= preBlue[getValue(values[2], values[3], wTls, hTls)];
+                b-= preBlue[getValue(values[2], values[1], wTls, hTls)];
+                b-= preBlue[getValue(values[0], values[3], wTls, hTls)];
+                pixels[j*tilesize*w +i*tilesize] = blurredPixel(r, g, b, div);
             }
+        }
+        if (tilesize > 1){
+            blowup(tilesize);
         }
     }
 
-    private boolean valid(int x, int y){
-        return x>=0 && y>=0 && x<width && y<height;
+    private int getValue(int x, int y, int w, int h){
+        int x2 = x;
+        int y2 = y;
+        if (x < 0){
+            x2 = 0;
+        }
+        else if (x >= w){
+            x2 = w-1;
+        }
+        if (y < 0){
+            y2 =0;
+        }
+        else  if (y >= h){
+            y2 = h-1;
+        }
+        return x2 + y2*w;
+    }
+
+    private void blowup(int tilesize){
+        for (int i = 0; i < width; i++){
+            for (int j =0; j <height; j++){
+                pixels[i+ j*width] = pixels[i-i%tilesize + (j-j%tilesize)*width];
+            }
+        }
     }
 
     private int[] getRGB(int i){

@@ -11,7 +11,6 @@ import java.util.List;
 public class Enemy extends Entity{
 	private Sprite sprite;
 	private int health;
-	private boolean alive;
 	private double maxspeed;
 	private double acc;
 	private double xdir;
@@ -23,7 +22,6 @@ public class Enemy extends Entity{
 		super(x, y, rot);
 		this.sprite = sprite;
 		this.health = health;
-		alive = true;
 		maxspeed = 20;
 		acc = 0.25;
 		canshoot = true;
@@ -32,10 +30,6 @@ public class Enemy extends Entity{
 
 	public void addStatusEffect(StatusEffect e){
 		effects.add(e);
-	}
-	
-	public boolean isAlive(){
-		return alive;
 	}
 	
 	public Sprite getSprite(){
@@ -103,7 +97,7 @@ public class Enemy extends Entity{
 	
 	@Override
 	public void render(int xPos, int yPos, RenderBuffer render) {
-		sprite.render((int) (getX() + xPos), (int) (getY() + yPos), rot, render);
+		sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
 		updHitShape.render(xPos,yPos, render);
 	}
 	

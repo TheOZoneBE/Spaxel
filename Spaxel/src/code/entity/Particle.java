@@ -9,7 +9,6 @@ public class Particle extends Entity{
 	private double speed;
 	private int life;
 	private Sprite sprite;
-	private boolean alive;
 	
 	public Particle(double x, double y, double rot, double deltaRot, double dir, double speed, int life, Sprite sprite){
 		super(x, y, rot);
@@ -18,7 +17,6 @@ public class Particle extends Entity{
 		this.speed = speed;
 		this.life = life;
 		this.sprite = sprite;
-		alive = true;
 	}
 	
 	public void update(){
@@ -35,12 +33,8 @@ public class Particle extends Entity{
 		}		
 	}
 	
-	public boolean isAlive(){
-		return alive;
-	}
-	
 	public void render(int xPos, int yPos, RenderBuffer render){
-		sprite.render((int) (getX() + xPos), (int) (getY() + yPos), rot, render);
+		sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
 	}
 
 }

@@ -12,11 +12,19 @@ import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
+import code.inventory.InventorySystem;
 import code.inventory.Item;
 import code.inventory.ItemCatalogue;
 import code.inventory.ToggleItem;
+import code.level.PlayerSystem;
 import code.resource.*;
+import code.sound.SoundSystem;
+import code.system.AISystem;
+import code.system.ParticleSystem;
+import code.system.ProjectileSystem;
+import code.system.TrailSystem;
 import code.ui.UI;
+import code.ui.UISystem;
 
 final public class Engine {
 	private final static Engine engine = new Engine();
@@ -47,10 +55,10 @@ final public class Engine {
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
-		initialize();
 	}
 	
 	public void initialize(){
+		//asset loading
 		SoundLoader sounds = new SoundLoader();
 		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
@@ -68,6 +76,19 @@ final public class Engine {
 		i = items.getItem("homing_missile");
 		entities.addEntity(i.getType(),i );
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
+
+		//systems
+		addSystem(new SoundSystem());
+		addSystem(new InventorySystem());
+		addSystem(new UISystem());
+		addSystem(new ProjectileSystem());
+		addSystem(new PlayerSystem());
+		addSystem(new RenderSystem());
+		addSystem(new AISystem());
+		addSystem(new ParticleSystem());
+		addSystem(new TrailSystem());
+		((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+		((UISystem)getSystem(SystemType.UI)).changeUI("main");
 	}
 	
 	public Keyboard getKeyboard(){
@@ -127,7 +148,8 @@ final public class Engine {
 			systems.get(SystemType.PARTICLE).update();
 			systems.get(SystemType.TRAIL).update();
 			systems.get(SystemType.RENDER).update();
-		}	
+		}
+		entities.cleanup();
 	}
 	
 	public void render(){

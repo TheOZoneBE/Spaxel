@@ -11,14 +11,12 @@ public class TrailSegment extends Entity{
     private int color;
     private TrailSegment previous;
     private int life;
-    private boolean alive;
 
     public TrailSegment(double x, double y, double rot, int color, TrailSegment previous){
         super(x,y, rot);
         this.color = color;
         this.previous = previous;
         life = 50;
-        alive = true;
     }
 
     public void update(){
@@ -29,14 +27,6 @@ public class TrailSegment extends Entity{
             setDead();
         }
 
-    }
-
-    public void setDead(){
-        alive = false;
-    }
-
-    public boolean isAlive(){
-        return alive;
     }
 
     public void render(int xPos, int yPos, RenderBuffer render){

@@ -26,7 +26,7 @@ public class ClusterMissile extends Projectile {
             for (int i = 0; i< 5; i++){
                 schrapnel.add(new BasicMissile(x, y,rand.nextDouble() * 2 * Math.PI, sprite, damage/5, 50, speed/2));
             }
-            Engine.getEngine().getEntityStream().addEntities(EntityType.PROJECTILE, schrapnel);
+            Engine.getEngine().getEntityStream().addEntities(EntityType.PLAYER_PROJECTILE, schrapnel);
         }
     }
 

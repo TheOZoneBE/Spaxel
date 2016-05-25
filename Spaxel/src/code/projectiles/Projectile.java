@@ -34,21 +34,13 @@ public class Projectile extends Entity {
 		Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 	}
 
-	public boolean isAlive() {
-		return alive;
-	}
-
-	public void setDead() {
-		alive = false;
-	}
-
 	public void update() {
 		super.update();
 		if (life > 0) {
 			double dx = Math.sin(rot) * speed;
 			double dy = Math.cos(rot) * speed;
-			setX(getX() - dx);
-			setY(getY() - dy);
+			x -= dx;
+			y -= dy;
 			life--;
 			previous = new TrailSegment(x, y, rot, 0xffffffff, previous);
 			Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
@@ -59,7 +51,7 @@ public class Projectile extends Entity {
 
 	@Override
 	public void render(int xPos, int yPos, RenderBuffer render) {
-		sprite.render((int) (getX() + xPos), (int) (getY() + yPos),rot, render);
+		sprite.render((int) (x + xPos), (int) (y + yPos),rot, render);
 
 	}
 

@@ -309,6 +309,7 @@ public class RenderBuffer {
         if (tilesize > 1){
             blowup(tilesize);
         }
+
     }
 
     private int getValue(int x, int y, int w, int h){

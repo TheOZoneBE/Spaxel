@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
 	public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	
-	private Engine engine;
+	//private Engine engine;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -62,16 +62,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public synchronized void start() {
-		engine = Engine.getEngine();
-		engine.addSystem(new SoundSystem(engine));
-		engine.addSystem(new InventorySystem(engine));
-		engine.addSystem(new UISystem(engine));
-		engine.addSystem(new ProjectileSystem(engine));
-		engine.addSystem(new PlayerSystem(engine));
-		engine.addSystem(new RenderSystem(engine));
-		engine.addSystem(new AISystem(engine));
-		engine.addSystem(new ParticleSystem(engine));
-		engine.addSystem(new TrailSystem(engine));
+		Engine.getEngine().initialize();
 		running = true;
 		thread = new Thread(this, "Display");
 		thread.start();
@@ -109,15 +100,15 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		engine.update();
+		Engine.getEngine().update();
 	}
 
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
-		engine.render();
+		Engine.getEngine().render();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		engine.drawText(g);
+		Engine.getEngine().drawText(g);
 		g.dispose();
 		bs.show();
 	}

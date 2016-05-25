@@ -51,13 +51,13 @@ public class Player extends Entity {
 			ydir = ydir - ydir/(maxspeed*2);
 		}
 
-		setX(getX() + xdir);
+		x+= xdir;
+		y+=ydir;
 		setY(getY() + ydir);
 		
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 		super.update();
-		//collision detection stuffs
 	}
 
 	public boolean controlSpeed(double dx, double dy) {
@@ -68,16 +68,6 @@ public class Player extends Entity {
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
 		sprite.render(xPos, yPos, rot, render);
-		//updHitShape.render(xPos -(int)x,yPos- (int)y, render);
-	}
-
-	//change this to update of inventory
-	public void primaryWeapon() {
-	}
-
-	//change this to update of inventory
-	public void secondaryWeapon() {
-
 	}
 	
 	public Sprite getSprite() {

@@ -56,9 +56,5 @@ public class UIButton extends UIElement {
 			}
 		}
 	}
-	
-	public void highlight(){
-		System.out.println("hover");
-	}
 
 }

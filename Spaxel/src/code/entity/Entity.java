@@ -20,6 +20,7 @@ public class Entity {
 	protected double rot;
 	protected HitShape oriHitShape;
 	protected HitShape updHitShape;
+	protected boolean alive = true;
 	
 	public Entity(double x, double y, double rot){
 		this.x = x;
@@ -98,7 +99,21 @@ public class Entity {
 		return updHitShape.collision(e.getUpdHitShape());
 	}
 
+	public double distanceTo(double xPos, double yPos){
+		return Math.sqrt(Math.pow(x-xPos,2) + Math.pow(y-yPos, 2));
+	}
+
 	public double distanceTo(Entity e){
 		return Math.sqrt(Math.pow(x-e.getX(),2) + Math.pow(y-e.getY(), 2));
 	}
+
+	public boolean isAlive(){
+		return alive;
+	}
+
+	public void setDead(){
+		alive = false;
+	}
+
+
 }

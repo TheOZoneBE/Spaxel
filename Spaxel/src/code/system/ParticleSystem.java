@@ -14,40 +14,28 @@ import code.entity.ParticleSpawner;
 
 public class ParticleSystem extends GameSystem {
 
-	public ParticleSystem(Engine engine) {
-		super(engine);
-		type = SystemType.PARTICLE;
-		// TODO Auto-generated constructor stub
+	public ParticleSystem() {
+		super(SystemType.PARTICLE);
 	}
 	
 	public void update(){
 		//update all spawners and acquire particles
-		EntityStream entities = engine.getEntityStream();
+		EntityStream entities = Engine.getEngine().getEntityStream();
 		List<Entity> spawners = entities.getEntities(EntityType.SPAWNER);
-		List<Entity> dead = new ArrayList<>();
 		List<Entity> particles = new ArrayList<>();
 		
 		for (Entity spawner : spawners){
 			spawner.update();
-			if (!((ParticleSpawner)spawner).isAlive()){
-				dead.add(spawner);
-			}
-			else {
+			if (((ParticleSpawner)spawner).isAlive()){
 				particles.addAll(((ParticleSpawner)spawner).spawn());
 			}
 		}
-		spawners.removeAll(dead);
 		entities.addEntities(EntityType.PARTICLE, particles);
 		//update all particles
 		particles = entities.getEntities(EntityType.PARTICLE);
-		dead.clear();
 		for (Entity particle : particles){
 			particle.update();
-			if (!((Particle)particle).isAlive()){
-				dead.add(particle);
-			}
 		}
-		particles.removeAll(dead);
 	}
 
 }

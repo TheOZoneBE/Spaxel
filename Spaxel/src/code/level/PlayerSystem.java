@@ -14,15 +14,14 @@ import code.inventory.ToggleItem;
 
 public class PlayerSystem extends GameSystem{
 
-	public PlayerSystem(Engine engine) {
-		super(engine);
-		type = SystemType.PLAYER;
+	public PlayerSystem() {
+		super(SystemType.PLAYER);
 	}
 	
 	public void update(){
-		Mouse mouse = engine.getMouse();
-		Keyboard keys = engine.getKeyboard();
-		EntityStream entities = engine.getEntityStream();
+		Mouse mouse = Engine.getEngine().getMouse();
+		Keyboard keys = Engine.getEngine().getKeyboard();
+		EntityStream entities = Engine.getEngine().getEntityStream();
 		Player player = (Player)entities.getEntities(EntityType.PLAYER).get(0);
 		int mouseX = mouse.getX();
 		int mouseY = mouse.getY();
@@ -33,7 +32,7 @@ public class PlayerSystem extends GameSystem{
 				ToggleItem i = (ToggleItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
-					entities.addEntity(EntityType.PROJECTILE, p);
+					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
 				}
 			}
 			
@@ -43,7 +42,7 @@ public class PlayerSystem extends GameSystem{
 				ToggleItem i = (ToggleItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
-					entities.addEntity(EntityType.PROJECTILE, p);
+					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
 				}
 			}
 		}

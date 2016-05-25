@@ -1,6 +1,5 @@
 package code.graphics;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.List;
 
@@ -12,28 +11,25 @@ import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Player;
-import code.entity.TrailSegment;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.ui.UISystem;
-import javafx.scene.layout.Background;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
 	private RenderBuffer backgroundBlur;
 	//todo add more buffers to split rendering
 
-	public RenderSystem(Engine engine) {
-		super(engine);
-		type = SystemType.RENDER;
+	public RenderSystem() {
+		super(SystemType.RENDER);
 		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 		backgroundBlur = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 	}
 	
 	public void update(){
-		EntityStream entities = engine.getEntityStream();
-		Keyboard keys = engine.getKeyboard();
-		Mouse mouse = engine.getMouse();
+		EntityStream entities = Engine.getEngine().getEntityStream();
+		Keyboard keys = Engine.getEngine().getKeyboard();
+		Mouse mouse = Engine.getEngine().getMouse();
 		mainBuffer.clear();
 		backgroundBlur.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
@@ -47,7 +43,7 @@ public class RenderSystem extends GameSystem {
 			int xOffset = playerXPos - (int)player.getX();
 			int yOffset = playerYPos - (int)player.getY();
 
-			//mainBuffer.dots(xOffset, yOffset);
+			mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
 
 			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
@@ -60,7 +56,7 @@ public class RenderSystem extends GameSystem {
 				//rendering enemies
 				e.render(xOffset, yOffset, mainBuffer);
 			}
-			toRender = entities.getEntities(EntityType.PROJECTILE);
+			toRender = entities.getEntities(EntityType.PLAYER_PROJECTILE);
 			for (Entity e: toRender){
 				//rendering projectiles
 				e.render(xOffset, yOffset, mainBuffer);
@@ -99,7 +95,7 @@ public class RenderSystem extends GameSystem {
 
 
 		}
-		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
+		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 		uis.getCurrentUI().render(mainBuffer);
 	}
 	public void render(){
@@ -115,7 +111,7 @@ public class RenderSystem extends GameSystem {
 	}
 	
 	public void drawText(Graphics g){
-		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
+		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 		uis.getCurrentUI().drawText(g);
 	}
 

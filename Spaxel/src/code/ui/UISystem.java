@@ -9,14 +9,12 @@ import code.engine.SystemType;
 public class UISystem extends GameSystem{
 	private UI currentUI;
 
-	public UISystem(Engine engine) {
-		super(engine);
-		type = SystemType.UI;
-		currentUI = engine.getUIAtlas().get("main");
+	public UISystem() {
+		super(SystemType.UI);
 	}
 	
 	public void update(){
-		currentUI.update(engine.getMouse());
+		currentUI.update(Engine.getEngine().getMouse());
 	}
 	
 	public UI getCurrentUI(){
@@ -24,7 +22,7 @@ public class UISystem extends GameSystem{
 	}
 	
 	public void changeUI(String name){
-		currentUI = engine.getUIAtlas().get(name);
+		currentUI = Engine.getEngine().getUIAtlas().get(name);
 	}
 	
 

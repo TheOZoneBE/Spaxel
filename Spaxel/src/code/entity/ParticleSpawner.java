@@ -14,7 +14,6 @@ public class ParticleSpawner extends Entity {
 	private int maxLife;
 	private Sprite sprite;
 	private Random rand;
-	private boolean alive;
 
 	public ParticleSpawner(double x, double y, int rate, int duration, double maxDeltaRot, double maxSpeed, int maxLife, Sprite sprite) {
 		super(x, y, 0);
@@ -25,7 +24,6 @@ public class ParticleSpawner extends Entity {
 		this.maxLife = maxLife;
 		this.sprite = sprite;
 		rand = new Random();
-		alive = true;
 	}
 
 	public void update() {
@@ -44,9 +42,5 @@ public class ParticleSpawner extends Entity {
 			}
 		}
 		return temp;
-	}
-
-	public boolean isAlive() {
-		return alive;
 	}
 }

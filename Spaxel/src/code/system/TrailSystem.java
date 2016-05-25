@@ -15,20 +15,14 @@ import java.util.List;
  */
 public class TrailSystem extends GameSystem {
 
-    public TrailSystem(Engine engine) {
-        super(engine);
-        type = SystemType.TRAIL;
+    public TrailSystem() {
+        super(SystemType.TRAIL);
     }
 
     public void update(){
         List<Entity> entities = Engine.getEngine().getEntityStream().getEntities(EntityType.TRAILSEGMENT);
-        List<Entity> toRemove = new ArrayList<>();
         for (Entity e: entities){
             e.update();
-            if (!((TrailSegment)e).isAlive()){
-                toRemove.add(e);
-            }
         }
-        entities.removeAll(toRemove);
     }
 }

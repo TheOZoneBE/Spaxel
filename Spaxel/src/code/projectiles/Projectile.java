@@ -13,15 +13,17 @@ import code.math.VectorD;
 
 public class Projectile extends Entity {
 	protected Sprite sprite;
+	protected Sprite trail;
 	protected boolean alive;
 	protected int damage;
 	protected int life;
 	protected double speed;
 	private TrailSegment previous;
 
-	public Projectile(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
+	public Projectile(double x, double y, double rot, Sprite sprite,Sprite trail, int damage, int life, double speed) {
 		super(x, y, rot);
 		this.sprite = sprite;
+		this.trail = trail;
 		this.damage = damage;
 		this.life = life;
 		this.speed = speed;
@@ -30,7 +32,7 @@ public class Projectile extends Entity {
 		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
 		hitShape.addHitPoint(hitPoint);
 		setHitShape(hitShape);
-		previous = new TrailSegment(x, y, rot, 0xffffffff, null);
+		previous = new TrailSegment(x, y, rot, trail, null);
 		Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 	}
 
@@ -42,7 +44,7 @@ public class Projectile extends Entity {
 			x -= dx;
 			y -= dy;
 			life--;
-			previous = new TrailSegment(x, y, rot, 0xffffffff, previous);
+			previous = new TrailSegment(x, y, rot, trail, previous);
 			Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 		} else {
 			setDead();

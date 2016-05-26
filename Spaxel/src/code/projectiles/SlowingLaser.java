@@ -8,8 +8,8 @@ import code.inventory.SpeedEffect;
  * Created by theo on 12-5-2016.
  */
 public class SlowingLaser extends Projectile {
-    public SlowingLaser(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
-        super(x, y, rot, sprite, damage, life, speed);
+    public SlowingLaser(double x, double y, double rot, Sprite sprite, Sprite trail, int damage, int life, double speed) {
+        super(x, y, rot, sprite, trail, damage, life, speed);
     }
 
     public void hit(Enemy e){

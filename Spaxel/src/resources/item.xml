@@ -6,6 +6,7 @@
 		<cooldown>10</cooldown>
 		<factory>code.factories.BasicLaserFactory</factory>
 		<projectile>basic_laser_projectile</projectile>
+		<trail>white_trail</trail>
 		<damage>10</damage>
 		<life>100</life>
 		<speed>30</speed>
@@ -16,6 +17,7 @@
 		<cooldown>10</cooldown>
 		<factory>code.factories.PiercingLaserFactory</factory>
 		<projectile>piercing_laser_projectile</projectile>
+		<trail>red_trail</trail>
 		<damage>5</damage>
 		<life>100</life>
 		<speed>40</speed>
@@ -26,6 +28,7 @@
 		<cooldown>10</cooldown>
 		<factory>code.factories.DisruptLaserFactory</factory>
 		<projectile>disrupt_laser_projectile</projectile>
+		<trail>green_trail</trail>
 		<damage>5</damage>
 		<life>100</life>
 		<speed>25</speed>
@@ -36,6 +39,7 @@
 		<cooldown>10</cooldown>
 		<factory>code.factories.SlowingLaserFactory</factory>
 		<projectile>slowing_laser_projectile</projectile>
+		<trail>blue_trail</trail>
 		<damage>5</damage>
 		<life>100</life>
 		<speed>20</speed>
@@ -48,6 +52,7 @@
 		<cooldown>40</cooldown>
 		<factory>code.factories.BasicMissileFactory</factory>
 		<projectile>basic_missile_projectile</projectile>
+		<trail>white_trail</trail>
 		<damage>30</damage>
 		<life>150</life>
 		<speed>30</speed>
@@ -58,6 +63,7 @@
 		<cooldown>40</cooldown>
 		<factory>code.factories.HomingMissileFactory</factory>
 		<projectile>homing_missile_projectile</projectile>
+		<trail>red_trail</trail>
 		<damage>20</damage>
 		<life>150</life>
 		<speed>25</speed>
@@ -68,6 +74,7 @@
 		<cooldown>40</cooldown>
 		<factory>code.factories.HackingMissileFactory</factory>
 		<projectile>hacking_missile_projectile</projectile>
+		<trail>green_trail</trail>
 		<damage>25</damage>
 		<life>150</life>
 		<speed>35</speed>
@@ -78,6 +85,7 @@
 		<cooldown>40</cooldown>
 		<factory>code.factories.ClusterMissileFactory</factory>
 		<projectile>cluster_missile_projectile</projectile>
+		<trail>blue_trail</trail>
 		<damage>40</damage>
 		<life>150</life>
 		<speed>20</speed>

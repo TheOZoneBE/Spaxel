@@ -66,18 +66,6 @@ public class Sprite {
 			}
 		}
 	}
-	
-	public Sprite getRandomPart(int width, int height){
-		int[] rPixels = new int[width * height];
-		int x = r.nextInt(this.width*scale - width);
-		int y = r.nextInt(this.height*scale - height);
-		for (int i = 0; i < width; i++){
-			for (int j = 0; j< height; j++){
-				rPixels[i + j*width] = pixels[x + i + (y+j)*this.width*scale];
-			}
-		}
-		return new Sprite(width, height, 1 , rPixels);
-	}
 
 	public void render(int x, int y, RenderBuffer render) {
 		int midWidth = width * scale / 2;
@@ -95,6 +83,33 @@ public class Sprite {
 				render.setPixel(x + i, y + j, pixels[i + midWidth + (j + midHeight) * width * scale]);
 			}
 		}
+	}
+
+	public void render(int x, int y, double rot, double transparency, RenderBuffer render){
+		double dx = Math.cos(rot);
+		double dy = Math.sin(rot);
+
+		int midWidth = width * scale / 2;
+		int midHeight = height * scale / 2;
+
+		for (int i = -midWidth * 2; i < midWidth * 2; i++) {
+			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
+				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)), y + (int) ((i * -dy / 2) + (j * dx / 2)),transparency,  pixels[i / 2 + midWidth
+						+ (j / 2 + midHeight) * width * scale]);
+			}
+		}
+	}
+
+	public Sprite getRandomPart(int width, int height){
+		int[] rPixels = new int[width * height];
+		int x = r.nextInt(this.width*scale - width);
+		int y = r.nextInt(this.height*scale - height);
+		for (int i = 0; i < width; i++){
+			for (int j = 0; j< height; j++){
+				rPixels[i + j*width] = pixels[x + i + (y+j)*this.width*scale];
+			}
+		}
+		return new Sprite(width, height, 1 , rPixels);
 	}
 
 	public int[] getPixels() {

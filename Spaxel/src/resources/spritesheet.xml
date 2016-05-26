@@ -43,4 +43,10 @@
 		<width>8</width>
 		<height>32</height>
 	</sheet>
+	<sheet>
+		<path>effects.png</path>
+		<name>effects</name>
+		<width>16</width>
+		<height>16</height>
+	</sheet>
 </spritesheet>

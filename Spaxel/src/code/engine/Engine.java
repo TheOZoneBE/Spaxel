@@ -71,8 +71,6 @@ final public class Engine {
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
 		Item i = items.getItem("basic_laser");
 		entities.addEntity(i.getType(), i);
-		i = items.getItem("piercing_laser");
-		entities.addEntity(i.getType(),i );
 		i = items.getItem("homing_missile");
 		entities.addEntity(i.getType(),i );
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);

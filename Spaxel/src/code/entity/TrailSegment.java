@@ -2,21 +2,24 @@ package code.entity;
 
 import code.engine.Engine;
 import code.graphics.RenderBuffer;
+import code.graphics.Sprite;
 import javafx.scene.control.TreeItem;
 
 /**
  * Created by theo on 18-5-2016.
  */
 public class TrailSegment extends Entity{
-    private int color;
+    private Sprite trail;
     private TrailSegment previous;
     private int life;
+    private double maxLife;
 
-    public TrailSegment(double x, double y, double rot, int color, TrailSegment previous){
+    public TrailSegment(double x, double y, double rot, Sprite trail, TrailSegment previous){
         super(x,y, rot);
-        this.color = color;
+        this.trail = trail;
         this.previous = previous;
         life = 50;
+        maxLife = life;
     }
 
     public void update(){
@@ -31,15 +34,12 @@ public class TrailSegment extends Entity{
 
     public void render(int xPos, int yPos, RenderBuffer render){
         if (previous != null){
-            int steps = 32;
+            int steps = 4;
             if (rot == previous.getRot()){
                 double xStep = (x - previous.getX())/steps;
                 double yStep = (y - previous.getY())/steps;
                 for (int i = 0; i < steps; i++){
-                    render.setPixel((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos, color);
-
-                    //proof of concept to use sprites
-                    //Engine.getEngine().getSpriteAtlas().get("hp_bar").render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos,rot + Math.PI/2, render);
+                    trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos,rot + Math.PI/2,1 - (life/maxLife)/2, render);
                 }
             }
             else {
@@ -57,10 +57,7 @@ public class TrailSegment extends Entity{
                 for (int i = 0; i < steps; i++){
                     double xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                     double yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
-                    render.setPixel((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, color);
-
-                    //proof of concept to use sprites
-                    //Engine.getEngine().getSpriteAtlas().get("hp_bar").render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos,Math.atan2(xStep, yStep)+Math.PI/2, render);
+                    trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos,Math.atan2(xStep, yStep)+Math.PI/2,1 - (life/maxLife)/2, render);
                 }
             }
         }

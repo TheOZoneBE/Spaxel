@@ -14,8 +14,8 @@ import java.util.Random;
  */
 public class ClusterMissile extends Projectile {
 
-    public ClusterMissile(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
-        super(x, y, rot, sprite, damage, life, speed);
+    public ClusterMissile(double x, double y, double rot, Sprite sprite,Sprite trail, int damage, int life, double speed) {
+        super(x, y, rot, sprite, trail, damage, life, speed);
     }
 
     public void update(){
@@ -24,7 +24,7 @@ public class ClusterMissile extends Projectile {
             Random rand = new Random();
             List<Entity> schrapnel = new ArrayList<>();
             for (int i = 0; i< 5; i++){
-                schrapnel.add(new BasicMissile(x, y,rand.nextDouble() * 2 * Math.PI, sprite, damage/5, 50, speed/2));
+                schrapnel.add(new BasicMissile(x, y,rand.nextDouble() * 2 * Math.PI, sprite,trail, damage/5, 50, speed/2));
             }
             Engine.getEngine().getEntityStream().addEntities(EntityType.PLAYER_PROJECTILE, schrapnel);
         }

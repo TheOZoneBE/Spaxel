@@ -29,12 +29,13 @@ public class ItemLoader extends EntityLoader {
             int cooldown = Integer.parseInt((nextChild.getElementsByTagName("cooldown").item(0).getTextContent()));
             String factory = nextChild.getElementsByTagName("factory").item(0).getTextContent();
             String projectile = nextChild.getElementsByTagName("projectile").item(0).getTextContent();
+            String trail = nextChild.getElementsByTagName("trail").item(0).getTextContent();
             int damage = Integer.parseInt((nextChild.getElementsByTagName("damage").item(0).getTextContent()));
             int life = Integer.parseInt((nextChild.getElementsByTagName("life").item(0).getTextContent()));
             int speed =  Integer.parseInt((nextChild.getElementsByTagName("speed").item(0).getTextContent()));
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
-                ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), damage, life, speed);
+                ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), spriteAtlas.get(trail),damage, life, speed);
                 Item item = new ToggleItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), cooldown,spriteAtlas.get("cooldown_bar"), projFac);
                 items.addItem(name, item);
             }
@@ -52,12 +53,13 @@ public class ItemLoader extends EntityLoader {
             int cooldown = Integer.parseInt((nextChild.getElementsByTagName("cooldown").item(0).getTextContent()));
             String factory = nextChild.getElementsByTagName("factory").item(0).getTextContent();
             String projectile = nextChild.getElementsByTagName("projectile").item(0).getTextContent();
+            String trail = nextChild.getElementsByTagName("trail").item(0).getTextContent();
             int damage = Integer.parseInt((nextChild.getElementsByTagName("damage").item(0).getTextContent()));
             int life = Integer.parseInt((nextChild.getElementsByTagName("life").item(0).getTextContent()));
             int speed =  Integer.parseInt((nextChild.getElementsByTagName("speed").item(0).getTextContent()));
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
-                ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), damage, life, speed);
+                ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile),spriteAtlas.get(trail), damage, life, speed);
                 Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite), cooldown, spriteAtlas.get("cooldown_bar"), projFac);
                 items.addItem(name, item);
             }

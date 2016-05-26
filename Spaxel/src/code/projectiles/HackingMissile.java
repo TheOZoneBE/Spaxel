@@ -9,8 +9,8 @@ import code.inventory.SpeedEffect;
  * Created by theo on 13-5-2016.
  */
 public class HackingMissile extends Projectile {
-    public HackingMissile(double x, double y, double rot, Sprite sprite, int damage, int life, double speed) {
-        super(x, y, rot, sprite, damage, life, speed);
+    public HackingMissile(double x, double y, double rot, Sprite sprite, Sprite trail, int damage, int life, double speed) {
+        super(x, y, rot, sprite,trail, damage, life, speed);
     }
 
     public void hit(Enemy e){

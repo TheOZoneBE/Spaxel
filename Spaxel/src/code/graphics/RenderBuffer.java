@@ -41,10 +41,25 @@ public class RenderBuffer {
     }
 
     public void setPixel(int i, int value) {
-        if (i >= 0 && i < pixels.length) {
+        if (i >= 0 && i < pixels.length && value != 0xffff00ff) {
             pixels[i] = value;
         }
     }
+
+    public void setPixel(int i, double tpc, int value) {
+        if (i >= 0 && i < pixels.length && value != 0xffff00ff) {
+            int original = pixels[i];
+            int r =  (original & 0xff0000) >> 16;
+            int g = (original & 0x00ff00) >> 8;
+            int b = original & 0x0000ff;
+            int rVal =  (value & 0xff0000) >> 16;
+            int gVal = (value & 0x00ff00) >> 8;
+            int bVal = value & 0x0000ff;
+            value = 0xff000000 | ((int)(r*tpc + (1-tpc)*rVal) << 16) |((int)(g*tpc + (1-tpc)*gVal) << 8) | ((int)(b*tpc + (1-tpc)*bVal));
+            pixels[i] = value;
+        }
+    }
+
 
     public int[] getPixels() {
         return pixels;

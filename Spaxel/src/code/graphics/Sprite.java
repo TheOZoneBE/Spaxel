@@ -1,6 +1,8 @@
 package code.graphics;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class Sprite {
 	private int width;
@@ -61,8 +63,8 @@ public class Sprite {
 
 		for (int i = -midWidth * 2; i < midWidth * 2; i++) {
 			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
-				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)), y + (int) ((i * -dy / 2) + (j * dx / 2)), pixels[i / 2 + midWidth
-						+ (j / 2 + midHeight) * width * scale]);
+				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)),y + (int) ((i * -dy / 2) + (j * dx / 2)), pixels[i / 2 + midWidth
+							+ (j / 2 + midHeight) * width * scale]);
 			}
 		}
 	}
@@ -96,6 +98,16 @@ public class Sprite {
 			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
 				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)), y + (int) ((i * -dy / 2) + (j * dx / 2)),transparency,  pixels[i / 2 + midWidth
 						+ (j / 2 + midHeight) * width * scale]);
+			}
+		}
+	}
+
+	public void render(int x, int y, RenderBuffer render, double transparency){
+		int midWidth = width * scale / 2;
+		int midHeight = height * scale / 2;
+		for (int i = -midWidth; i < midWidth; i++) {
+			for (int j = -midHeight; j < midHeight; j++) {
+				render.setPixel(x + i, y + j, transparency, pixels[i + midWidth + (j + midHeight) * width * scale]);
 			}
 		}
 	}

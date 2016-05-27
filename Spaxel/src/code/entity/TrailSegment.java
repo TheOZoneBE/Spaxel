@@ -34,12 +34,12 @@ public class TrailSegment extends Entity{
 
     public void render(int xPos, int yPos, RenderBuffer render){
         if (previous != null){
-            int steps = 4;
+            int steps = 6;
             if (rot == previous.getRot()){
                 double xStep = (x - previous.getX())/steps;
                 double yStep = (y - previous.getY())/steps;
                 for (int i = 0; i < steps; i++){
-                    trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos,rot + Math.PI/2,1 - (life/maxLife)/2, render);
+                    trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos, render,1 - (life/maxLife)/2);
                 }
             }
             else {
@@ -57,7 +57,7 @@ public class TrailSegment extends Entity{
                 for (int i = 0; i < steps; i++){
                     double xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                     double yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
-                    trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos,Math.atan2(xStep, yStep)+Math.PI/2,1 - (life/maxLife)/2, render);
+                    trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, render,1 - (life/maxLife)/2);
                 }
             }
         }

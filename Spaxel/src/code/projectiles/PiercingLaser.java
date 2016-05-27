@@ -1,5 +1,6 @@
 package code.projectiles;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.graphics.Sprite;
 
@@ -11,7 +12,7 @@ public class PiercingLaser extends Projectile {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 
-    public void hit(Enemy e){
-        e.setHealth(e.getHealth() - damage);
+    public void hit(Actor a){
+        a.setHealth(a.getHealth() - damage);
     }
 }

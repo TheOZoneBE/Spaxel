@@ -1,5 +1,6 @@
 package code.projectiles;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.graphics.Sprite;
 import code.inventory.ShootEffect;
@@ -13,9 +14,9 @@ public class HackingMissile extends Projectile {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 
-    public void hit(Enemy e){
-        e.addStatusEffect(new ShootEffect(150));
-        e.addStatusEffect(new SpeedEffect(150, 0));
-        super.hit(e);
+    public void hit(Actor a){
+        a.addStatusEffect(new ShootEffect(150));
+        a.addStatusEffect(new SpeedEffect(150, 0));
+        super.hit(a);
     }
 }

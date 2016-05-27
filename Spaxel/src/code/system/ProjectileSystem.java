@@ -8,6 +8,7 @@ import code.engine.EntityStream;
 import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.ParticleSpawner;
@@ -29,11 +30,25 @@ public class ProjectileSystem extends GameSystem{
 			if (((Projectile)proj).isAlive()){
 				for(Entity e: enemies){
 					if(e.collision(proj)){
-						Enemy temp = (Enemy)e;
+						Actor temp = (Actor)e;
 						Projectile p = (Projectile)proj;
 						p.hit(temp);
 						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2, 4, 150, temp.getSprite().getRandomPart(12,12)));
 					}
+				}
+			}
+		}
+		projs = entities.getEntities(EntityType.ENEMY_PROJECTILE);
+		Entity player = entities.getEntities(EntityType.PLAYER).get(0);
+		shallowCopy = new ArrayList<>(projs);
+		for (Entity proj : shallowCopy){
+			proj.update();
+			if (((Projectile)proj).isAlive()){
+				if(player.collision(proj)){
+					Actor temp = (Actor)player;
+					Projectile p = (Projectile)proj;
+					p.hit(temp);
+					entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2, 4, 150, temp.getSprite().getRandomPart(12,12)));
 				}
 			}
 		}

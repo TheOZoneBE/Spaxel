@@ -31,7 +31,7 @@ public class AISystem extends GameSystem {
 			}
 		}
 		if(enemies.size()<5){
-			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"));
+			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20, .25);
 			e.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
 			e.update(player);
 			enemies.add(e);

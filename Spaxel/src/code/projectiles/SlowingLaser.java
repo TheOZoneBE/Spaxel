@@ -1,5 +1,6 @@
 package code.projectiles;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.graphics.Sprite;
 import code.inventory.SpeedEffect;
@@ -12,8 +13,8 @@ public class SlowingLaser extends Projectile {
         super(x, y, rot, sprite, trail, damage, life, speed);
     }
 
-    public void hit(Enemy e){
-        super.hit(e);
-        e.addStatusEffect(new SpeedEffect(100, .5));
+    public void hit(Actor a){
+        super.hit(a);
+        a.addStatusEffect(new SpeedEffect(100, .5));
     }
 }

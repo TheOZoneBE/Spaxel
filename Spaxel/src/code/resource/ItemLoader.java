@@ -36,7 +36,7 @@ public class ItemLoader extends EntityLoader {
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), spriteAtlas.get(trail),damage, life, speed);
-                Item item = new ToggleItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), cooldown,spriteAtlas.get("cooldown_bar"), projFac);
+                Item item = new ToggleItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), spriteAtlas.get("cooldown_bar"),cooldown, projFac);
                 items.addItem(name, item);
             }
             catch (Exception e){
@@ -60,7 +60,7 @@ public class ItemLoader extends EntityLoader {
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile),spriteAtlas.get(trail), damage, life, speed);
-                Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite), cooldown, spriteAtlas.get("cooldown_bar"), projFac);
+                Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite),spriteAtlas.get("cooldown_bar"), cooldown,  projFac);
                 items.addItem(name, item);
             }
             catch (Exception e){

@@ -14,11 +14,12 @@ import java.util.List;
 public class BasicShield extends ShieldItem {
     private int range = 100;
 
-    public BasicShield(EntityType type, Sprite sprite, int cooldown, int maxCapactity) {
-        super(type, sprite, cooldown, maxCapactity);
+    public BasicShield(EntityType type, Sprite sprite,Sprite bar,  int cooldown, int maxCapactity) {
+        super(type, sprite,bar, cooldown, maxCapactity);
     }
 
     public void update(){
+        super.update();
         if (canUpdate()){
             List<Entity> projectiles = Engine.getEngine().getEntityStream().getEntities(EntityType.ENEMY_PROJECTILE);
             Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
@@ -31,6 +32,7 @@ public class BasicShield extends ShieldItem {
                 }
                 else {
                     cd = cooldown;
+                    currentCap = maxCapactity;
                     break;
                 }
             }

@@ -12,12 +12,14 @@ public class Item extends Entity {
 
 	private int stacks;
 	protected Sprite sprite;
+	protected UIBar cooldownBar;
 	
-	public Item(EntityType type, Sprite sprite){
+	public Item(EntityType type, Sprite sprite, Sprite bar){
 		super();
 		this.type = type;
 		stacks = 0;
 		this.sprite = sprite;
+		cooldownBar = new UIBar(0, 0, 48, Math.PI/2, bar);
 	}
 	
 	public void update(){

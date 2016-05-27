@@ -4,6 +4,7 @@ import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.TrailSegment;
@@ -65,8 +66,8 @@ public class Projectile extends Entity {
 		return damage;
 	}
 
-	public void hit(Enemy e){
-		e.setHealth(e.getHealth() - damage);
+	public void hit(Actor a){
+		a.setHealth(a.getHealth() - damage);
 		setDead();
 	}
 }

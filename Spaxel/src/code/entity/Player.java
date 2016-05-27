@@ -5,22 +5,12 @@ import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.inventory.InventorySystem;
 
-public class Player extends Entity {
-	private Sprite sprite;
+public class Player extends Actor {
 	private int mouseX;
 	private int mouseY;
-	private double maxspeed;
-	private double acc;
-	private double xdir;
-	private double ydir;
 
-	public Player(double x, double y, double rot, Sprite sprite) {
-		super(x, y, rot);
-		this.sprite = sprite;
-		maxspeed = 20;
-		acc = 0.5;
-		xdir = 0;
-		ydir = 0;
+	public Player(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
+		super(x, y, rot, health, sprite, maxspeed, acc);
 	}
 
 	public void update(Keyboard keys, int mouseX, int mouseY) {		
@@ -60,18 +50,9 @@ public class Player extends Entity {
 		super.update();
 	}
 
-	public boolean controlSpeed(double dx, double dy) {
-		double speed = Math.sqrt(dx * dx + dy * dy);
-		return speed < maxspeed;
-	}
-
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
 		sprite.render(xPos, yPos, rot, render);
-	}
-	
-	public Sprite getSprite() {
-		return sprite;
 	}
 
 }

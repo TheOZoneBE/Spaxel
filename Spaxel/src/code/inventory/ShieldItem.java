@@ -1,6 +1,7 @@
 package code.inventory;
 
 import code.engine.EntityType;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.projectiles.Projectile;
 
@@ -13,8 +14,8 @@ public class ShieldItem extends Item{
     protected int currentCap;
     protected int cd;
 
-    public ShieldItem(EntityType type, Sprite sprite, int cooldown, int maxCapactity){
-        super(type, sprite);
+    public ShieldItem(EntityType type, Sprite sprite, Sprite bar, int cooldown, int maxCapactity){
+        super(type, sprite, bar);
         this.cooldown = cooldown;
         this.maxCapactity = maxCapactity;
         currentCap = maxCapactity;
@@ -22,18 +23,30 @@ public class ShieldItem extends Item{
     }
 
     public void update(){
+        reduceCD();
+        cooldownBar.setPercent((double)cd/(double)cooldown);
+    }
+
+    public void reduceCD(){
+        if (cd != 0){
+            cd--;
+        }
     }
 
     public boolean canUpdate(){
-        cd--;
-        return cd != 0;
+        return cd <= 0;
     }
 
     public void hit(Projectile p){
-        currentCap += p.getDamage();
+        currentCap -= p.getDamage();
     }
 
     public boolean canAbsorb(){
-        return currentCap < maxCapactity;
+        return currentCap >= 0;
+    }
+
+    public void render(int xPos, int yPos, RenderBuffer render){
+        sprite.render(xPos, yPos, render);
+        cooldownBar.render(xPos - 24, yPos,render);
     }
 }

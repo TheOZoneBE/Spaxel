@@ -12,11 +12,9 @@ import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
-import code.inventory.InventorySystem;
-import code.inventory.Item;
-import code.inventory.ItemCatalogue;
-import code.inventory.ToggleItem;
+import code.inventory.*;
 import code.level.PlayerSystem;
+import code.projectiles.BasicLaser;
 import code.resource.*;
 import code.sound.SoundSystem;
 import code.system.AISystem;
@@ -65,14 +63,15 @@ final public class Engine {
 		spriteAtlas.put("hp_bar", new Sprite(1,4,2, 0xff00ff00));
 		spriteAtlas.put("xp_bar", new Sprite(1,4,2, 0xff0000ff));
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
-		Player player = new Player(0, 0, 0, spriteAtlas.get("red"));
-		player.setHitShape(hitShapeAtlas.get("hitshape_red"));		
+		Player player = new Player(0, 0, 0, 100, spriteAtlas.get("red"),20,0.5);
+		player.setHitShape(hitShapeAtlas.get("hitshape_red"));
 		entities.addEntity(EntityType.PLAYER, player);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
 		Item i = items.getItem("basic_laser");
 		entities.addEntity(i.getType(), i);
 		i = items.getItem("homing_missile");
 		entities.addEntity(i.getType(),i );
+		entities.addEntity(EntityType.OTHERITEM,new BasicShield(EntityType.OTHERITEM, spriteAtlas.get("basic_laser_item"), spriteAtlas.get("cooldown_bar"),250, 50));
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 
 		//systems

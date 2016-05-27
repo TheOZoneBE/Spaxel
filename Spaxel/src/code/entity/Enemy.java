@@ -1,140 +1,85 @@
 package code.entity;
 
+import code.engine.Engine;
+import code.engine.EntityType;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.inventory.StatusEffect;
+import code.projectiles.BasicLaser;
 import code.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy extends Entity{
-	private Sprite sprite;
-	private int health;
-	private double maxspeed;
-	private double acc;
-	private double xdir;
-	private double ydir;
-	private boolean canshoot;
-	private List<StatusEffect> effects;
+public class Enemy extends Actor {
+    private int cooldown;
 
-	public Enemy(double x, double y, double rot, int health, Sprite sprite) {
-		super(x, y, rot);
-		this.sprite = sprite;
-		this.health = health;
-		maxspeed = 20;
-		acc = 0.25;
-		canshoot = true;
-		effects = new ArrayList<>();
-	}
+    public Enemy(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
+        super(x, y, rot, health, sprite, maxspeed,acc);
+    }
 
-	public void addStatusEffect(StatusEffect e){
-		effects.add(e);
-	}
-	
-	public Sprite getSprite(){
-		return sprite;
-	}
-	
-	public void update(Player player){
-		int healthB = health;
-		double maxspeedB = maxspeed;
-		double accB = acc;
-		boolean canshootB = canshoot;
-		List<StatusEffect> todelete = new ArrayList<>();
-		for (StatusEffect e: effects){
-			e.update();
-			if(e.isAlive()){
-				e.affect(this);
-			}
-			else{
-				todelete.add(e);
-			}
+    public void update(Player player) {
+        int healthB = health;
+        double maxspeedB = maxspeed;
+        double accB = acc;
+        boolean canshootB = canshoot;
+        List<StatusEffect> todelete = new ArrayList<>();
+        for (StatusEffect e : effects) {
+            e.update();
+            if (e.isAlive()) {
+                e.affect(this);
+            } else {
+                todelete.add(e);
+            }
 
-		}
-		effects.removeAll(todelete);
+        }
+        effects.removeAll(todelete);
 
-		if (health < 0){
-			alive = false;
-		}
-		rot = Math.PI + Math.atan2(player.getX() - x, player.getY() - y);
-		double dx = 0;
-		double dy = 0;
-		
-		dx = -Math.sin(rot) * acc;
-		dy = -Math.cos(rot) * acc;
-		
-		double dist = distanceTo(player);
-		if (dist > 250) {
-			if (controlSpeed(xdir + dx, ydir + dy)){
-				xdir += dx;
-				ydir += dy;
-			}
-			else {
-				xdir = xdir - xdir/(maxspeed*2) + dx;
-				ydir = ydir - ydir/(maxspeed*2) + dy;
-			}			
-		} 
-		else {
-			xdir -= dx;
-			ydir -= dy;
-		}
+        if (health < 0) {
+            alive = false;
+        } else {
+            rot = Math.PI + Math.atan2(player.getX() - x, player.getY() - y);
+            double dx = 0;
+            double dy = 0;
 
-		x+=xdir;
-		y+=ydir;
-		super.update();
+            dx = -Math.sin(rot) * acc;
+            dy = -Math.cos(rot) * acc;
 
-		health = healthB;
-		maxspeed = maxspeedB;
-		acc = accB;
-		canshoot = canshootB;
-	}
+            double dist = distanceTo(player);
+            if (dist > 250) {
+                if (controlSpeed(xdir + dx, ydir + dy)) {
+                    xdir += dx;
+                    ydir += dy;
+                } else {
+                    xdir = xdir - xdir / (maxspeed * 2) + dx;
+                    ydir = ydir - ydir / (maxspeed * 2) + dy;
+                }
+            } else {
+                xdir -= dx;
+                ydir -= dy;
+            }
 
-	public boolean controlSpeed(double dx, double dy) {
-		double speed = Math.sqrt(dx * dx + dy * dy);
-		return speed < maxspeed;
-	}
-	
-	@Override
-	public void render(int xPos, int yPos, RenderBuffer render) {
-		sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
-		updHitShape.render(xPos,yPos, render);
-	}
-	
-	public void hit(Projectile p){
-		health -= p.getDamage();
-	}
+            x += xdir;
+            y += ydir;
+            if (canshoot && cooldown == 0) {
+                Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY_PROJECTILE, new BasicLaser(x, y, rot, Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"), Engine.getEngine().getSpriteAtlas().get("white_trail"), 5, 100, 20));
+                cooldown =100;
+            }
 
-	public int getHealth(){
-		return health;
-	}
+        }
+        cooldown--;
+        super.update();
 
-	public void setHealth(int health){
-		this.health = health;
-	}
+        health = healthB;
+        maxspeed = maxspeedB;
+        acc = accB;
+        canshoot = canshootB;
+    }
 
-	public double getMaxspeed(){
-		return maxspeed;
-	}
-
-	public void setMaxspeed(double maxspeed){
-		this.maxspeed = maxspeed;
-	}
-
-	public double getAcc(){
-		return acc;
-	}
-
-	public void setAcc(double acc){
-		this.acc = acc;
-	}
-
-	public boolean getCanShoot(){
-		return canshoot;
-	}
-
-	public void setCanshoot(boolean canshoot){
-		this.canshoot = canshoot;
-	}
+    @Override
+    public void render(int xPos, int yPos, RenderBuffer render) {
+        sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+        updHitShape.render(xPos, yPos, render);
+    }
 
 }

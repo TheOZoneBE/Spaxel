@@ -13,6 +13,7 @@ import code.entity.Entity;
 import code.entity.ParticleSpawner;
 import code.entity.Player;
 import code.graphics.Sprite;
+import code.ui.UICounter;
 
 public class AISystem extends GameSystem {
 
@@ -21,6 +22,7 @@ public class AISystem extends GameSystem {
 	}
 	
 	public void update(){
+		UICounter score = (UICounter)Engine.getEngine().getUIAtlas().get("play").getElement("score_counter");
 		Random rand = new Random();
 		List<Entity> enemies = Engine.getEngine().getEntityStream().getEntities(EntityType.ENEMY);
 		Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
@@ -28,6 +30,7 @@ public class AISystem extends GameSystem {
 			((Enemy)e).update(player);
 			if (!((Enemy)e).isAlive()){
 				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(24,24)));
+				score.addToCounter(100);
 			}
 		}
 		if(enemies.size()<5){

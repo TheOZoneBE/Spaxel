@@ -4,8 +4,10 @@ import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.engine.Engine;
 import code.entity.Label;
 import code.graphics.Sprite;
+import code.input.Mouse;
 import code.math.VectorD;
 
 public class UIButton extends UIElement {
@@ -28,7 +30,11 @@ public class UIButton extends UIElement {
 		this.locked = locked;
 	}
 
-	public void update(int mouseX, int mouseY, boolean buttonDown) {
+	public void update() {
+		Mouse mouse = Engine.getEngine().getMouse();
+		int mouseX = mouse.getX();
+		int mouseY = mouse.getY();
+		boolean buttonDown = mouse.mouse1;
 		if (updHitShape != null) {
 			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
 			if (inside && buttonDown){

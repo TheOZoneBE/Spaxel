@@ -2,7 +2,9 @@ package code.ui;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import code.engine.Engine;
 import code.entity.Label;
@@ -11,24 +13,24 @@ import code.input.Mouse;
 
 public class UI{
 	private Controller controller;
-	private List<UIElement> elements;
+	private Map<String, UIElement> elements;
 	private List<Label> labels;
 	private Engine engine;
 
 	public UI(Engine engine){
 		this.engine = engine;
-		elements = new ArrayList<>();
+		elements = new HashMap<>();
 		labels = new ArrayList<>();
 	}
 	
-	public void update(Mouse mouse){
-		for (UIElement u: elements){
-			u.update(mouse.getX(), mouse.getY(), mouse.mouse1);
+	public void update(){
+		for (UIElement u: elements.values()){
+			u.update();
 		}
 	}
 	
 	public void render(RenderBuffer render){
-		for (UIElement u: elements){
+		for (UIElement u: elements.values()){
 			u.render(render);
 		}
 	}
@@ -43,9 +45,13 @@ public class UI{
 		labels.add(label);
 	}
 	
-	public void addElement(UIElement element){
+	public void addElement(String name, UIElement element){
 		element.setUI(this);
-		elements.add(element);
+		elements.put(name, element);
+	}
+
+	public UIElement getElement(String name){
+		return elements.get(name);
 	}
 	
 	public void removeElement(UIElement element){

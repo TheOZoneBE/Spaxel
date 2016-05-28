@@ -25,5 +25,8 @@ public class Label extends Entity{
 		int height =fm.getAscent() - fm.getDescent();
 		g.drawString(text, (int)x - width/2,(int)y + height/2);
 	}
-	
+
+	public void setText(String text){
+		this.text = text;
+	}
 }

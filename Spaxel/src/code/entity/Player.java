@@ -1,16 +1,20 @@
 package code.entity;
 
+import code.engine.Engine;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.inventory.InventorySystem;
+import code.ui.UIBar;
 
 public class Player extends Actor {
 	private int mouseX;
 	private int mouseY;
+	private double maxHealth;
 
 	public Player(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
 		super(x, y, rot, health, sprite, maxspeed, acc);
+		maxHealth = health;
 	}
 
 	public void update(Keyboard keys, int mouseX, int mouseY) {		
@@ -47,6 +51,10 @@ public class Player extends Actor {
 		
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
+
+		UIBar hp = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
+		hp.setPercent(health/maxHealth);
+
 		super.update();
 	}
 

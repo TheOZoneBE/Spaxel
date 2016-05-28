@@ -23,7 +23,7 @@ public class UIElement extends Entity {
 		this.ui = ui;
 	}
 	
-	public void update(int mouseX, int mouseY, boolean clicked){
+	public void update(){
 		
 	}
 	

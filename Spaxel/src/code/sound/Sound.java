@@ -15,19 +15,19 @@ public class Sound extends Entity{
 	
 	public Sound(String path){
 		this.path = path;
-	}
-	
-	public void play(){
 		try {
 			URL url = getClass().getResource(path);
 			clip = AudioSystem.getClip();
 			AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 			clip.open(audio);
-			clip.start();
 		}
 		catch (Exception e){
-			e.printStackTrace();			
+			e.printStackTrace();
 		}
+	}
+	
+	public void play(){
+		clip.start();
 	}
 	
 	public void close(){

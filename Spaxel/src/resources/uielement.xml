@@ -29,6 +29,7 @@
 	-->
 	<uielement type="button">
 		<ui>main</ui>
+		<name>play_button</name>
 		<label>Play</label>
 		<clickaction>startGame</clickaction>
 		<sprite_normal>button_normal</sprite_normal>
@@ -41,6 +42,7 @@
 	</uielement>
 	<uielement type="button">
 		<ui>main</ui>
+		<name>ach_button</name>
 		<label>Achievements</label>
 		<clickaction>achievements</clickaction>
 		<sprite_normal>button_normal</sprite_normal>
@@ -53,6 +55,7 @@
 	</uielement>
 	<uielement type="button">
 		<ui>main</ui>
+		<name>opt_button</name>
 		<label>Options</label>
 		<clickaction>options</clickaction>
 		<sprite_normal>button_normal</sprite_normal>
@@ -65,6 +68,7 @@
 	</uielement>
 	<uielement type="button">
 		<ui>main</ui>
+		<name>cred_button</name>
 		<label>Credits</label>
 		<clickaction>credits</clickaction>
 		<sprite_normal>button_normal</sprite_normal>
@@ -77,24 +81,34 @@
 	</uielement>
 	<uielement type="overlay">
 		<ui>play</ui>
+		<name>ui_play_ovelay</name>
 		<sprite_normal>ui_play_overlay</sprite_normal>
 		<xpos>640</xpos>
 		<ypos>360</ypos>
 	</uielement>
-		<uielement type="bar">
+    <uielement type="bar">
 		<ui>play</ui>
+		<name>hp_bar</name>
 		<sprite_normal>hp_bar</sprite_normal>
 		<rot>1</rot>
 		<width>580</width>
 		<xpos>348</xpos>
 		<ypos>624</ypos>
 	</uielement>
-		<uielement type="bar">
+	<uielement type="bar">
 		<ui>play</ui>
+		<name>xp_bar</name>
 		<sprite_normal>xp_bar</sprite_normal>
 		<rot>3</rot>
 		<width>580</width>
 		<xpos>932</xpos>
 		<ypos>635</ypos>
 	</uielement>
+    <uielement type="counter">
+        <ui>play</ui>
+        <name>score_counter</name>
+        <size>32</size>
+        <xpos>640</xpos>
+        <ypos>64</ypos>
+    </uielement>
 </uielements>

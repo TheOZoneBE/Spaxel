@@ -45,6 +45,7 @@ public class RenderSystem extends GameSystem {
 
 			mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
+			Engine.getEngine().getSpriteAtlas().get("white_shield_effect").render(playerXPos, playerYPos, mainBuffer, 0.75);
 
 			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
 			for (Entity e: toRender){

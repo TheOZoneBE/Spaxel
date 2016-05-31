@@ -49,4 +49,10 @@
 		<width>16</width>
 		<height>16</height>
 	</sheet>
+	<sheet>
+		<path>shield_effects.png</path>
+		<name>shield_effects</name>
+		<width>64</width>
+		<height>64</height>
+	</sheet>
 </spritesheet>

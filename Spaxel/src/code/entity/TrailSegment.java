@@ -54,7 +54,7 @@ public class TrailSegment extends Entity{
                 double y1Step = (yMid - previous.getY())/steps;
                 double x2Step = (x - xMid)/steps;
                 double y2Step = (y - yMid)/steps;
-                for (int i = 0; i < steps; i++){
+                for (int i = 1; i <= steps; i++){
                     double xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                     double yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
                     trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, render,1 - (life/maxLife)/2);

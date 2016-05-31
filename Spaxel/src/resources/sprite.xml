@@ -285,4 +285,13 @@
 		<ypos>0</ypos>
 		<scale>2</scale>
 	</sprite>
+	<sprite>
+		<sheetname>shield_effects</sheetname>
+		<name>white_shield_effect</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
 </sprites>

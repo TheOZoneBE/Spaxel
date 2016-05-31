@@ -1,6 +1,8 @@
 package code.inventory;
 
+import code.engine.Engine;
 import code.engine.EntityType;
+import code.entity.Entity;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.projectiles.Projectile;
@@ -48,5 +50,6 @@ public class ShieldItem extends Item{
     public void render(int xPos, int yPos, RenderBuffer render){
         sprite.render(xPos, yPos, render);
         cooldownBar.render(xPos - 24, yPos,render);
+        Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
     }
 }

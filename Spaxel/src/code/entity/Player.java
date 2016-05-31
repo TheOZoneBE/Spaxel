@@ -47,7 +47,6 @@ public class Player extends Actor {
 
 		x+= xdir;
 		y+=ydir;
-		setY(getY() + ydir);
 		
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;

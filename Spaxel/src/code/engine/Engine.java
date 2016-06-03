@@ -7,14 +7,12 @@ import java.util.Map;
 import code.Game;
 import code.collision.HitShape;
 import code.entity.Player;
-import code.factories.*;
 import code.graphics.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.*;
 import code.level.PlayerSystem;
-import code.projectiles.BasicLaser;
 import code.resource.*;
 import code.sound.SoundSystem;
 import code.system.AISystem;
@@ -83,7 +81,7 @@ final public class Engine {
 		entities.addEntity(i.getType(), i);
 		i = items.getItem("homing_missile");
 		entities.addEntity(i.getType(),i );
-		entities.addEntity(EntityType.OTHERITEM,new BasicShield(EntityType.OTHERITEM, spriteAtlas.get("basic_laser_item"), spriteAtlas.get("cooldown_bar"),250, 50));
+		entities.addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50));
 
 		Game.game.loadingScreen.getMessage().setText("Loading UI");
 		Game.game.loadingScreen.getProgress().setPercent(0.8);
@@ -132,6 +130,10 @@ final public class Engine {
 	
 	public Map<String, UI> getUIAtlas(){
 		return UIAtlas;
+	}
+
+	public ItemCatalogue getItems(){
+		return items;
 	}
 	
 	public void addSystem(GameSystem system){

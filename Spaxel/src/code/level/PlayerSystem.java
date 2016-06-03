@@ -10,7 +10,7 @@ import code.entity.Player;
 import code.projectiles.Projectile;
 import code.input.Keyboard;
 import code.input.Mouse;
-import code.inventory.ToggleItem;
+import code.inventory.ProjectileItem;
 
 public class PlayerSystem extends GameSystem{
 
@@ -29,7 +29,7 @@ public class PlayerSystem extends GameSystem{
 
 		if (mouse.mouse1){
 			for (Entity e : entities.getEntities(EntityType.MOUSE1ITEM)){
-				ToggleItem i = (ToggleItem) e;
+				ProjectileItem i = (ProjectileItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
@@ -39,7 +39,7 @@ public class PlayerSystem extends GameSystem{
 		}
 		if (mouse.mouse3){
 			for (Entity e : entities.getEntities(EntityType.MOUSE3ITEM)){
-				ToggleItem i = (ToggleItem) e;
+				ProjectileItem i = (ProjectileItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);

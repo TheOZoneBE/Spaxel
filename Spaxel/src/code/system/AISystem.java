@@ -8,10 +8,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.GameSystem;
 import code.engine.SystemType;
-import code.entity.Enemy;
-import code.entity.Entity;
-import code.entity.ParticleSpawner;
-import code.entity.Player;
+import code.entity.*;
 import code.graphics.Sprite;
 import code.ui.UICounter;
 
@@ -29,8 +26,11 @@ public class AISystem extends GameSystem {
 		for (Entity e : enemies){
 			((Enemy)e).update(player);
 			if (!((Enemy)e).isAlive()){
-				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(24,24)));
+				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
 				score.addToCounter(100);
+				DroppedItem item = new DroppedItem(e.getX(), e.getY(), Engine.getEngine().getItems().getRandomItem(), 500);
+				item.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_blue"));
+				Engine.getEngine().getEntityStream().addEntity(EntityType.DROPPEDITEM, item);
 			}
 		}
 		if(enemies.size()<5){

@@ -10,18 +10,14 @@ import code.projectiles.Projectile;
 /**
  * Created by theo on 25-5-2016.
  */
-public class ShieldItem extends Item{
-    protected int cooldown;
+public class ShieldItem extends EffectItem {
     protected int maxCapactity;
     protected int currentCap;
-    protected int cd;
 
-    public ShieldItem(EntityType type, Sprite sprite, Sprite bar, int cooldown, int maxCapactity){
-        super(type, sprite, bar);
-        this.cooldown = cooldown;
+    public ShieldItem(EntityType type, Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite, int maxCapactity){
+        super(type, sprite, bar, cooldown, effectSprite);
         this.maxCapactity = maxCapactity;
         currentCap = maxCapactity;
-        cd = 0;
     }
 
     public void update(){
@@ -29,15 +25,7 @@ public class ShieldItem extends Item{
         cooldownBar.setPercent((double)cd/(double)cooldown);
     }
 
-    public void reduceCD(){
-        if (cd != 0){
-            cd--;
-        }
-    }
 
-    public boolean canUpdate(){
-        return cd <= 0;
-    }
 
     public void hit(Projectile p){
         currentCap -= p.getDamage();
@@ -45,11 +33,5 @@ public class ShieldItem extends Item{
 
     public boolean canAbsorb(){
         return currentCap >= 0;
-    }
-
-    public void render(int xPos, int yPos, RenderBuffer render){
-        sprite.render(xPos, yPos, render);
-        cooldownBar.render(xPos - 24, yPos,render);
-        Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
     }
 }

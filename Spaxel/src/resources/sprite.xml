@@ -248,6 +248,42 @@
 		<ypos>1</ypos>
 		<scale>2</scale>
 	</sprite>
+	<sprite>
+		<sheetname>items</sheetname>
+		<name>active_shield_item</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>0</xpos>
+		<ypos>2</ypos>
+		<scale>2</scale>
+	</sprite>
+	<sprite>
+		<sheetname>items</sheetname>
+		<name>basic_shield_item</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>1</xpos>
+		<ypos>2</ypos>
+		<scale>2</scale>
+	</sprite>
+	<sprite>
+		<sheetname>items</sheetname>
+		<name>force_shield_item</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>2</xpos>
+		<ypos>2</ypos>
+		<scale>2</scale>
+	</sprite>
+	<sprite>
+		<sheetname>items</sheetname>
+		<name>anti_shield_item</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>3</xpos>
+		<ypos>2</ypos>
+		<scale>2</scale>
+	</sprite>
 	<!-- effects -->
 	<sprite>
 		<sheetname>effects</sheetname>
@@ -287,11 +323,38 @@
 	</sprite>
 	<sprite>
 		<sheetname>shield_effects</sheetname>
-		<name>white_shield_effect</name>
+		<name>active_shield_effect</name>
 		<width>32</width>
 		<height>32</height>
 		<xpos>0</xpos>
 		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>shield_effects</sheetname>
+		<name>basic_shield_effect</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>1</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>shield_effects</sheetname>
+		<name>force_shield_effect</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>0</xpos>
+		<ypos>1</ypos>
+		<scale>4</scale>
+	</sprite>
+	<sprite>
+		<sheetname>shield_effects</sheetname>
+		<name>anti_shield_effect</name>
+		<width>32</width>
+		<height>32</height>
+		<xpos>1</xpos>
+		<ypos>1</ypos>
 		<scale>4</scale>
 	</sprite>
 </sprites>

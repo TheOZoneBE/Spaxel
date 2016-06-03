@@ -18,7 +18,8 @@ final public class EntityStream {
 		entities.put(EntityType.ENEMY_PROJECTILE, new ArrayList<>());
 		entities.put(EntityType.MOUSE1ITEM, new ArrayList<>());
 		entities.put(EntityType.MOUSE3ITEM, new ArrayList<>());
-		entities.put(EntityType.OTHERITEM, new ArrayList<>());
+		entities.put(EntityType.SHIPITEM, new ArrayList<>());
+		entities.put(EntityType.DROPPEDITEM, new ArrayList<>());
 		entities.put(EntityType.SOUND, new ArrayList<>());	
 		entities.put(EntityType.PARTICLE, new ArrayList<>());	
 		entities.put(EntityType.SPAWNER, new ArrayList<>());	

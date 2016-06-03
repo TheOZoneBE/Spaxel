@@ -23,7 +23,11 @@ public class InventorySystem extends GameSystem{
 		for (Entity e: updating){
 			e.update();
 		}
-		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.OTHERITEM);
+		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.SHIPITEM);
+		for (Entity e: updating){
+			e.update();
+		}
+		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.DROPPEDITEM);
 		for (Entity e: updating){
 			e.update();
 		}

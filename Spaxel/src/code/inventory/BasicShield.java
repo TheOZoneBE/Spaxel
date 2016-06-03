@@ -14,8 +14,8 @@ import java.util.List;
 public class BasicShield extends ShieldItem {
     private int range = 100;
 
-    public BasicShield(EntityType type, Sprite sprite,Sprite bar,  int cooldown, int maxCapactity) {
-        super(type, sprite,bar, cooldown, maxCapactity);
+    public BasicShield(EntityType type, Sprite sprite,Sprite bar,  int cooldown,Sprite effectSprite, int maxCapactity) {
+        super(type, sprite,bar, cooldown, effectSprite,maxCapactity );
     }
 
     public void update(){

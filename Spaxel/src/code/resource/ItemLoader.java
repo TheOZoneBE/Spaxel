@@ -1,14 +1,12 @@
 package code.resource;
 
-import code.engine.Engine;
 import code.engine.EntityType;
 import code.factories.ProjectileFactory;
 import code.graphics.Sprite;
 import code.inventory.Item;
 import code.inventory.ItemCatalogue;
-import code.inventory.ToggleItem;
+import code.inventory.ProjectileItem;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.lang.reflect.Constructor;
@@ -21,7 +19,7 @@ public class ItemLoader extends EntityLoader {
         ItemCatalogue items = new ItemCatalogue();
         NodeList nodelist = doc.getElementsByTagName("primaryWeapon");
         Element mouse1 = (Element)nodelist.item(0);
-        nodelist = mouse1.getElementsByTagName("toggleItem");
+        nodelist = mouse1.getElementsByTagName("projectileItem");
         for(int i = 0; i < nodelist.getLength(); i++){
             Element nextChild = (Element)nodelist.item(i);
             String name = nextChild.getElementsByTagName("name").item(0).getTextContent();
@@ -36,7 +34,7 @@ public class ItemLoader extends EntityLoader {
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile), spriteAtlas.get(trail),damage, life, speed);
-                Item item = new ToggleItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), spriteAtlas.get("cooldown_bar"),cooldown, projFac);
+                Item item = new ProjectileItem(EntityType.MOUSE1ITEM, spriteAtlas.get(sprite), spriteAtlas.get("cooldown_bar"),cooldown, projFac);
                 items.addItem(name, item);
             }
             catch (Exception e){
@@ -45,7 +43,7 @@ public class ItemLoader extends EntityLoader {
         }
         nodelist = doc.getElementsByTagName("secondaryWeapon");
         Element mouse3 = (Element)nodelist.item(0);
-        nodelist = mouse3.getElementsByTagName("toggleItem");
+        nodelist = mouse3.getElementsByTagName("projectileItem");
         for(int i = 0; i < nodelist.getLength(); i++){
             Element nextChild = (Element)nodelist.item(i);
             String name = nextChild.getElementsByTagName("name").item(0).getTextContent();
@@ -60,7 +58,7 @@ public class ItemLoader extends EntityLoader {
             try {
                 Constructor constructor = Class.forName(factory).getConstructors()[0];
                 ProjectileFactory projFac = (ProjectileFactory)constructor.newInstance(spriteAtlas.get(projectile),spriteAtlas.get(trail), damage, life, speed);
-                Item item = new ToggleItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite),spriteAtlas.get("cooldown_bar"), cooldown,  projFac);
+                Item item = new ProjectileItem(EntityType.MOUSE3ITEM, spriteAtlas.get(sprite),spriteAtlas.get("cooldown_bar"), cooldown,  projFac);
                 items.addItem(name, item);
             }
             catch (Exception e){

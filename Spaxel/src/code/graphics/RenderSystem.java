@@ -45,7 +45,6 @@ public class RenderSystem extends GameSystem {
 
 			mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
-			Engine.getEngine().getSpriteAtlas().get("white_shield_effect").render(playerXPos, playerYPos, mainBuffer, 0.75);
 
 			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
 			for (Entity e: toRender){
@@ -72,6 +71,11 @@ public class RenderSystem extends GameSystem {
 				//rendering particles
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			toRender = entities.getEntities(EntityType.DROPPEDITEM);
+			for (Entity e: toRender){
+				//rendering dropped items
+				e.render(xOffset, yOffset, mainBuffer);
+			}
 			toRender = entities.getEntities(EntityType.MOUSE1ITEM);
 			int i = 0;
 			for (Entity e: toRender){
@@ -86,7 +90,7 @@ public class RenderSystem extends GameSystem {
 				e.render(1240, 40 + i * 72, mainBuffer);
 				i++;
 			}
-			toRender = entities.getEntities(EntityType.OTHERITEM);
+			toRender = entities.getEntities(EntityType.SHIPITEM);
 			i= 0;
 			for (Entity e: toRender){
 				//rendering items

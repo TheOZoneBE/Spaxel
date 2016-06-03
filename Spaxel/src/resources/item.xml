@@ -1,6 +1,6 @@
 <items>
 <primaryWeapon type="array">
-	<toggleItem>
+	<projectileItem>
 		<name>basic_laser</name>
 		<sprite>basic_laser_item</sprite>
 		<cooldown>10</cooldown>
@@ -10,8 +10,8 @@
 		<damage>10</damage>
 		<life>100</life>
 		<speed>30</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>piercing_laser</name>
 		<sprite>piercing_laser_item</sprite>
 		<cooldown>10</cooldown>
@@ -21,8 +21,8 @@
 		<damage>5</damage>
 		<life>100</life>
 		<speed>40</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>disrupt_laser</name>
 		<sprite>disrupt_laser_item</sprite>
 		<cooldown>10</cooldown>
@@ -32,8 +32,8 @@
 		<damage>5</damage>
 		<life>100</life>
 		<speed>25</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>slowing_laser</name>
 		<sprite>slowing_laser_item</sprite>
 		<cooldown>10</cooldown>
@@ -43,10 +43,10 @@
 		<damage>5</damage>
 		<life>100</life>
 		<speed>20</speed>
-	</toggleItem>
+	</projectileItem>
 </primaryWeapon>
 <secondaryWeapon>
-	<toggleItem>
+	<projectileItem>
 		<name>basic_missile</name>
 		<sprite>basic_missile_item</sprite>
 		<cooldown>40</cooldown>
@@ -56,8 +56,8 @@
 		<damage>30</damage>
 		<life>150</life>
 		<speed>30</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>homing_missile</name>
 		<sprite>homing_missile_item</sprite>
 		<cooldown>40</cooldown>
@@ -67,8 +67,8 @@
 		<damage>20</damage>
 		<life>150</life>
 		<speed>25</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>hacking_missile</name>
 		<sprite>hacking_missile_item</sprite>
 		<cooldown>40</cooldown>
@@ -78,8 +78,8 @@
 		<damage>25</damage>
 		<life>150</life>
 		<speed>35</speed>
-	</toggleItem>
-	<toggleItem>
+	</projectileItem>
+	<projectileItem>
 		<name>cluster_missile</name>
 		<sprite>cluster_missile_item</sprite>
 		<cooldown>40</cooldown>
@@ -89,7 +89,7 @@
 		<damage>40</damage>
 		<life>150</life>
 		<speed>20</speed>
-	</toggleItem>
+	</projectileItem>
 </secondaryWeapon>
 <shipItem>
 

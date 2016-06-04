@@ -54,6 +54,7 @@ public class Player extends Actor {
 		UIBar hp = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
 		hp.setPercent(health/maxHealth);
 
+
 		super.update();
 	}
 

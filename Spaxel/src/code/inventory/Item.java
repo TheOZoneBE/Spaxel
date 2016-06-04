@@ -59,4 +59,12 @@ public class Item extends Entity {
 		return sprite;
 	}
 
+	public int getStacks(){
+		return stacks;
+	}
+
+	public void setStacks(int stacks){
+		this.stacks = stacks;
+	}
+
 }

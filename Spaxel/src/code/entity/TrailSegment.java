@@ -34,7 +34,7 @@ public class TrailSegment extends Entity{
 
     public void render(int xPos, int yPos, RenderBuffer render){
         if (previous != null){
-            int steps = 6;
+            int steps = 4;
             if (rot == previous.getRot()){
                 double xStep = (x - previous.getX())/steps;
                 double yStep = (y - previous.getY())/steps;

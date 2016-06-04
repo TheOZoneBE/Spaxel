@@ -22,4 +22,8 @@ public class Axis {
 		return sol;
 	}
 
+	public void print(){
+		dirVec.print();
+	}
+
 }

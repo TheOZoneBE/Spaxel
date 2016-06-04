@@ -68,10 +68,10 @@ public class Projection {
 		if (xMin > p.getXMax()){
 			return false;
 		}
-		if (yMax < p.getYMax()){
+		if (yMax < p.getYMin()){
 			return false;
 		}
-		if (yMin > p.getYMin()){
+		if (yMin > p.getYMax()){
 			return false;
 		}		
 		return true;

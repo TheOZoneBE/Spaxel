@@ -79,7 +79,6 @@ public class Enemy extends Actor {
     @Override
     public void render(int xPos, int yPos, RenderBuffer render) {
         sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
-        updHitShape.render(xPos, yPos, render);
     }
 
 }

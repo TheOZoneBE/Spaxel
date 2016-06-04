@@ -147,5 +147,26 @@
 			</hitpoint>
 		</hitpoints>
 	</hitshape>
+	<hitshape>
+		<name>hitshape_dropped_item</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>-16</xoffset>
+				<yoffset>-16</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>16</xoffset>
+				<yoffset>-16</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>16</xoffset>
+				<yoffset>16</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-16</xoffset>
+				<yoffset>16</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
 
 </hitshapes>

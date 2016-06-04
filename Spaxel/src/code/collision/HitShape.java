@@ -108,6 +108,5 @@ public class HitShape {
 		return true;
 	}
 	
-	
 
 }

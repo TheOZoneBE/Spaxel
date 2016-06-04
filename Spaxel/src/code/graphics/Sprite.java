@@ -61,14 +61,6 @@ public class Sprite {
 	public void render(int x, int y, RenderBuffer render) {
 		render(x,y, scale, render);
 	}
-	
-	public void render(int x, int y, int midWidth, int midHeight, RenderBuffer render){
-		for (int i = -midWidth; i < width * scale  - midWidth; i++) {
-			for (int j = -midHeight; j < width * scale - midHeight; j++) {
-				render.setPixel(x + i, y + j, pixels[i/scale + midWidth/scale + (j/scale + midHeight/scale) * width]);
-			}
-		}
-	}
 
 	public void render(int x, int y, double rot, RenderBuffer render,double transparency ){
 		double dx = Math.cos(rot);
@@ -79,8 +71,8 @@ public class Sprite {
 
 		for (int i = -midWidth * 2; i < midWidth * 2; i++) {
 			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
-				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)),y + (int) ((i * -dy / 2) + (j * dx / 2)),transparency,  pixels[(i/scale) / 2 + midWidth/scale
-						+ ((j/scale) / 2 + midHeight/scale) * width]);
+				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)),y + (int) ((i * -dy / 2) + (j * dx / 2)), transparency, pixels[(i/ 2 + midWidth)/scale
+						+ ((j / 2 + midHeight)/scale) * width]);
 			}
 		}
 	}
@@ -90,7 +82,7 @@ public class Sprite {
 		int midHeight = height * scale / 2;
 		for (int i = -midWidth; i < midWidth; i++) {
 			for (int j = -midHeight; j < midHeight; j++) {
-				render.setPixel(x + i, y + j, transparency, pixels[i/scale + midWidth/scale + (j/scale + midHeight/scale) * width]);
+				render.setPixel(x + i, y + j, transparency, pixels[(i + midWidth)/scale + ((j + midHeight)/scale) * width]);
 			}
 		}
 	}
@@ -104,8 +96,8 @@ public class Sprite {
 
 		for (int i = -midWidth * 2; i < midWidth * 2; i++) {
 			for (int j = -midHeight * 2; j < midHeight * 2; j++) {
-				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)),y + (int) ((i * -dy / 2) + (j * dx / 2)), pixels[(i/scale) / 2 + midWidth/scale
-						+ ((j/scale) / 2 + midHeight/scale) * width]);
+				render.setPixel(x + (int) ((i * dx / 2) + (j * dy / 2)),y + (int) ((i * -dy / 2) + (j * dx / 2)), pixels[(i/ 2 + midWidth)/scale
+						+ ((j / 2 + midHeight)/scale) * width]);
 			}
 		}
 	}
@@ -115,7 +107,7 @@ public class Sprite {
 		int midHeight = height * scale / 2;
 		for (int i = -midWidth; i < midWidth; i++) {
 			for (int j = -midHeight; j < midHeight; j++) {
-				render.setPixel(x + i, y + j, pixels[i/scale + midWidth/scale + (j/scale + midHeight/scale) * width]);
+				render.setPixel(x + i, y + j, pixels[(i + midWidth)/scale + ((j + midHeight)/scale) * width]);
 			}
 		}
 	}

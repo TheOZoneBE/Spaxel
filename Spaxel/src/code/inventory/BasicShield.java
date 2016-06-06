@@ -36,6 +36,8 @@ public class BasicShield extends ShieldItem {
                     break;
                 }
             }
+            Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY_PROJECTILE);
+            Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
         }
     }
 }

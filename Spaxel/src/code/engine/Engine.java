@@ -3,6 +3,7 @@ package code.engine;
 import java.awt.Graphics;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.concurrent.CyclicBarrier;
 
 import code.Game;
 import code.collision.HitShape;
@@ -34,6 +35,7 @@ final public class Engine {
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
+	private volatile int systemsToUpdate;
 
 	public static Engine getEngine(){
 		return engine;
@@ -44,6 +46,7 @@ final public class Engine {
 	}
 	
 	private Engine(){
+		systemsToUpdate = 9;
 		this.keys = new Keyboard();
 		this.mouse = new Mouse();
 		Game.game.addKeyListener(keys);
@@ -87,6 +90,8 @@ final public class Engine {
 		Game.game.loadingScreen.getProgress().setPercent(0.8);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 
+		entities.cleanup();
+
 		Game.game.loadingScreen.getMessage().setText("Initializing systems");
 		Game.game.loadingScreen.getProgress().setPercent(0.9);
 		//systems
@@ -101,6 +106,11 @@ final public class Engine {
 		addSystem(new TrailSystem());
 		((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		((UISystem)getSystem(SystemType.UI)).changeUI("main");
+		//starting threads
+		for (GameSystem gs: systems.values()){
+			Game.game.updater.addSystem(gs);
+		}
+
 		loading = false;
 	}
 
@@ -179,6 +189,20 @@ final public class Engine {
 	
 	public void drawText(Graphics g){
 		((RenderSystem)systems.get(SystemType.RENDER)).drawText(g);
+	}
+
+	public void systemDone(){
+		synchronized (Game.game.updater){
+			systemsToUpdate--;
+			if (systemsToUpdate == 0){
+				Game.game.updater.done();
+				Game.game.updater.notifyAll();
+			}
+		}
+	}
+
+	public void setSystemsToUpdate(int value){
+		systemsToUpdate = value;
 	}
 
 }

@@ -23,19 +23,20 @@ public class ParticleSystem extends GameSystem {
 		EntityStream entities = Engine.getEngine().getEntityStream();
 		List<Entity> spawners = entities.getEntities(EntityType.SPAWNER);
 		List<Entity> particles = new ArrayList<>();
-		
 		for (Entity spawner : spawners){
 			spawner.update();
 			if (((ParticleSpawner)spawner).isAlive()){
 				particles.addAll(((ParticleSpawner)spawner).spawn());
 			}
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.SPAWNER);
 		entities.addEntities(EntityType.PARTICLE, particles);
 		//update all particles
 		particles = entities.getEntities(EntityType.PARTICLE);
 		for (Entity particle : particles){
 			particle.update();
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.PARTICLE);
 	}
 
 }

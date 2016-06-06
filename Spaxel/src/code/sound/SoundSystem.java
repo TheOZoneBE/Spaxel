@@ -29,6 +29,7 @@ public class SoundSystem extends GameSystem{
 		int i = r.nextInt(sounds.size());
 		currentMusic = (Music)sounds.get(i);
 		play();
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.SOUND);
 	}
 	
 	public void play(){

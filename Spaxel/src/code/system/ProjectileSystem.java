@@ -26,8 +26,8 @@ public class ProjectileSystem extends GameSystem{
 		EntityStream entities = Engine.getEngine().getEntityStream();
 		List<Entity> projs = entities.getEntities(EntityType.PLAYER_PROJECTILE);
 		List<Entity> enemies = entities.getEntities(EntityType.ENEMY);
-		List<Entity> shallowCopy = new ArrayList<>(projs);
-		for (Entity proj : shallowCopy){
+		Engine.getEngine().getEntityStream().printLocks();
+		for (Entity proj : projs){
 			proj.update();
 			if (((Projectile)proj).isAlive()){
 				for(Entity e: enemies){
@@ -41,10 +41,12 @@ public class ProjectileSystem extends GameSystem{
 				}
 			}
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY);
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER_PROJECTILE);
+
 		projs = entities.getEntities(EntityType.ENEMY_PROJECTILE);
 		Entity player = entities.getEntities(EntityType.PLAYER).get(0);
-		shallowCopy = new ArrayList<>(projs);
-		for (Entity proj : shallowCopy){
+		for (Entity proj : projs){
 			proj.update();
 			if (((Projectile)proj).isAlive()){
 				if(player.collision(proj)){
@@ -55,6 +57,8 @@ public class ProjectileSystem extends GameSystem{
 				}
 			}
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY_PROJECTILE);
 	}
 
 }

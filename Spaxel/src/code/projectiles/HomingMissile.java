@@ -38,6 +38,7 @@ public class HomingMissile extends Projectile {
                 rot += 0.15;
             }
         }
+        Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY);
         super.update();
     }
 }

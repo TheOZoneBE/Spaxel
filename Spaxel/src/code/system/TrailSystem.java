@@ -22,7 +22,8 @@ public class TrailSystem extends GameSystem {
     public void update(){
         List<Entity> entities = Engine.getEngine().getEntityStream().getEntities(EntityType.TRAILSEGMENT);
         for (Entity e: entities){
-            e.update();
+                e.update();
         }
+        Engine.getEngine().getEntityStream().releaseLock(EntityType.TRAILSEGMENT);
     }
 }

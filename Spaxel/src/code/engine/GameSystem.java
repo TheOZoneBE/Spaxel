@@ -1,6 +1,6 @@
 package code.engine;
 
-public class GameSystem {
+public class GameSystem implements Runnable {
 	protected SystemType type;
 
 	public GameSystem(SystemType type){
@@ -14,4 +14,9 @@ public class GameSystem {
 		return type;
 	}
 
+	@Override
+	public void run() {
+		update();
+		Engine.getEngine().systemDone();
+	}
 }

@@ -12,6 +12,8 @@ import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.ProjectileItem;
 
+import java.util.List;
+
 public class PlayerSystem extends GameSystem{
 
 	public PlayerSystem() {
@@ -28,24 +30,31 @@ public class PlayerSystem extends GameSystem{
 		player.update(keys, mouseX, mouseY);
 
 		if (mouse.mouse1){
-			for (Entity e : entities.getEntities(EntityType.MOUSE1ITEM)){
+			List<Entity> mouse1 = entities.getEntities(EntityType.MOUSE1ITEM);
+			for (Entity e : mouse1){
 				ProjectileItem i = (ProjectileItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
 				}
+
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE1ITEM);
 			
 		}
 		if (mouse.mouse3){
-			for (Entity e : entities.getEntities(EntityType.MOUSE3ITEM)){
+			List<Entity> mouse3 = entities.getEntities(EntityType.MOUSE3ITEM);
+			for (Entity e : mouse3){
 				ProjectileItem i = (ProjectileItem) e;
 				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
 				if (p != null){
 					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
 				}
+
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE3ITEM);
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
 	}
 
 }

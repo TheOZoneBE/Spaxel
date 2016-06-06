@@ -41,6 +41,8 @@ public class AISystem extends GameSystem {
 			e.update(player);
 			enemies.add(e);
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY);
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
 	}
 
 }

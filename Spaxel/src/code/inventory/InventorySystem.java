@@ -19,18 +19,22 @@ public class InventorySystem extends GameSystem{
 		for (Entity e: updating){
 			e.update();
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE1ITEM);
 		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.MOUSE3ITEM);
 		for (Entity e: updating){
 			e.update();
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE3ITEM);
 		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.SHIPITEM);
 		for (Entity e: updating){
 			e.update();
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.SHIPITEM);
 		updating = Engine.getEngine().getEntityStream().getEntities(EntityType.DROPPEDITEM);
 		for (Entity e: updating){
 			e.update();
 		}
+		Engine.getEngine().getEntityStream().releaseLock(EntityType.DROPPEDITEM);
 	}
 
 }

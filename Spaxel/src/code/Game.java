@@ -12,6 +12,7 @@ import java.io.InputStream;
 import javax.swing.JFrame;
 
 import code.engine.LoadingScreen;
+import code.engine.SystemUpdater;
 import code.level.PlayerSystem;
 import code.sound.SoundSystem;
 import code.system.AISystem;
@@ -41,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 	public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
 	public LoadingScreen loadingScreen;
+	public SystemUpdater updater;
 	
 	//private Engine engine;
 
@@ -63,6 +65,7 @@ public class Game extends Canvas implements Runnable {
 		frame.setTitle(gameName);
 		time = System.nanoTime();
 		loadingScreen = new LoadingScreen();
+		updater = new SystemUpdater();
 	}
 
 	public synchronized void start() {
@@ -114,15 +117,18 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		Engine.getEngine().update();
+		//Engine.getEngine().update();
+		updater.update();
 	}
 
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
-		Engine.getEngine().render();
+		//Engine.getEngine().render();
+		updater.render();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		Engine.getEngine().drawText(g);
+		//Engine.getEngine().drawText(g);
+		updater.drawText(g);
 		g.dispose();
 		bs.show();
 	}

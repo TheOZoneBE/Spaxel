@@ -45,37 +45,50 @@ public class RenderSystem extends GameSystem {
 
 			mainBuffer.dots(xOffset, yOffset);
 			player.render(playerXPos,playerYPos, mainBuffer);
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
 
 			List<Entity> toRender = entities.getEntities(EntityType.TRAILSEGMENT);
 			for (Entity e: toRender){
-				//rendering enemies
+				//rendering trail
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.TRAILSEGMENT);
+
 			toRender = entities.getEntities(EntityType.ENEMY);
 			for (Entity e: toRender){
 				//rendering enemies
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY);
+
 			toRender = entities.getEntities(EntityType.PLAYER_PROJECTILE);
 			for (Entity e: toRender){
 				//rendering projectiles
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER_PROJECTILE);
+
 			toRender = entities.getEntities(EntityType.ENEMY_PROJECTILE);
 			for (Entity e: toRender){
 				//rendering projectiles
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY_PROJECTILE);
+
 			toRender = entities.getEntities(EntityType.PARTICLE);
 			for (Entity e: toRender){
 				//rendering particles
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.PARTICLE);
+
 			toRender = entities.getEntities(EntityType.DROPPEDITEM);
 			for (Entity e: toRender){
 				//rendering dropped items
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.DROPPEDITEM);
+
 			toRender = entities.getEntities(EntityType.MOUSE1ITEM);
 			int i = 0;
 			for (Entity e: toRender){
@@ -83,6 +96,8 @@ public class RenderSystem extends GameSystem {
 				e.render(40, 40 + i * 72, mainBuffer);
 				i++;
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE1ITEM);
+
 			toRender = entities.getEntities(EntityType.MOUSE3ITEM);
 			i= 0;
 			for (Entity e: toRender){
@@ -90,6 +105,8 @@ public class RenderSystem extends GameSystem {
 				e.render(1240, 40 + i * 72, mainBuffer);
 				i++;
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.MOUSE3ITEM);
+
 			toRender = entities.getEntities(EntityType.SHIPITEM);
 			i= 0;
 			for (Entity e: toRender){
@@ -97,6 +114,7 @@ public class RenderSystem extends GameSystem {
 				e.render(386 + i * 72, 680, mainBuffer);
 				i++;
 			}
+			Engine.getEngine().getEntityStream().releaseLock(EntityType.SHIPITEM);
 			//long startTime = System.nanoTime();
 			//backgroundBlur.pixelBlur2(mainBuffer, 3, 2);
 			//long stopTime = System.nanoTime();

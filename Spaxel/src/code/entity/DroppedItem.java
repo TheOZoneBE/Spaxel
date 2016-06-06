@@ -35,7 +35,9 @@ public class DroppedItem extends Entity{
                 else {
                     Engine.getEngine().getEntityStream().addEntity(item.getType(), item);
                 }
+                Engine.getEngine().getEntityStream().releaseLock(item.getType());
             }
+            Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
         }
         else {
             setDead();

@@ -1,12 +1,12 @@
 package code.engine;
 
-import code.graphics.RenderSystem;
+import code.system.GameSystem;
+import code.system.RenderSystem;
 
 import java.awt.*;
 import java.util.EnumMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by theo on 5-6-2016.
@@ -24,13 +24,12 @@ public class SystemUpdater {
         updated = false;
         Engine.getEngine().getKeyboard().update();
         if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
-            Engine.getEngine().setSystemsToUpdate(3);
+            Engine.getEngine().setSystemsToUpdate(2);
             e.execute(threads.get(SystemType.SOUND));
             e.execute(threads.get(SystemType.UI));
-            e.execute(threads.get(SystemType.RENDER));
         }
         else {
-            Engine.getEngine().setSystemsToUpdate(9);
+            Engine.getEngine().setSystemsToUpdate(8);
             e.execute(threads.get(SystemType.PLAYER));
             e.execute(threads.get(SystemType.AI));
             e.execute(threads.get(SystemType.SOUND));
@@ -39,7 +38,6 @@ public class SystemUpdater {
             e.execute(threads.get(SystemType.PROJECTILE));
             e.execute(threads.get(SystemType.PARTICLE));
             e.execute(threads.get(SystemType.TRAIL));
-            e.execute(threads.get(SystemType.RENDER));
         }
         synchronized (this){
             try{
@@ -59,7 +57,7 @@ public class SystemUpdater {
     }
 
     public void render(){
-        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render();
+        Engine.getEngine().getSystem(SystemType.RENDER).update();
     }
 
     public void drawText(Graphics g){

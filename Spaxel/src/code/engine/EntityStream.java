@@ -1,21 +1,16 @@
 package code.engine;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 import code.entity.Entity;
 
 final public class EntityStream {
 	private EnumMap<EntityType, List<Entity>> entities;
 	private EnumMap<EntityType, List<Entity>> toAdd;
-	private EnumMap<EntityType, Boolean> locks;
 
 	public EntityStream(){
 		entities = new EnumMap<>(EntityType.class);
 		toAdd = new EnumMap<>(EntityType.class);
-		locks = new EnumMap<>(EntityType.class);
 		entities.put(EntityType.PLAYER, new ArrayList<>());
 		entities.put(EntityType.ENEMY, new ArrayList<>());
 		entities.put(EntityType.UI_ELEMENT, new ArrayList<>());
@@ -31,26 +26,27 @@ final public class EntityStream {
 		entities.put(EntityType.LABEL, new ArrayList<>());
 		entities.put(EntityType.TRAILSEGMENT, new ArrayList<>());
 	}
-	
-	public List<Entity> getEntities(EntityType type){
-		synchronized (entities.get(type)){
-			try {
-				while(locks.get(type)){
-					wait();
-				}
+
+	public Iterator<Entity> getIterator(EntityType type){
+		return new Iterator<Entity>() {
+			List<Entity> iterating = entities.get(type);
+			int size = iterating.size();
+			int i = -1;
+			@Override
+			public boolean hasNext() {
+				return i < size - 1;
 			}
-			catch (InterruptedException e){
-				e.printStackTrace();
+
+			@Override
+			public Entity next() {
+				i++;
+				return iterating.get(i);
 			}
-			finally {
-				locks.put(type, true);
-				return entities.get(type);
-			}
-		}
+		};
 	}
 
-	public void releaseLock(EntityType type){
-		locks.put(type, false);
+	public List<Entity> getEntities(EntityType type){
+		return entities.get(type);
 	}
 
 	public void addEntity(EntityType type, Entity e){
@@ -71,20 +67,13 @@ final public class EntityStream {
 			}
 			List<Entity> toRemove = new ArrayList<>();
 			for (Entity e: entities.get(type)){
-				if (e!= null && !e.isAlive()){
+				if (e== null || !e.isAlive()){
 					toRemove.add(e);
 				}
 			}
 			entities.get(type).removeAll(toRemove);
 		}
 		toAdd.clear();
-	}
-
-	public void printLocks(){
-		System.out.println("---------------------------------------");
-		for (EntityType type: locks.keySet()){
-			System.out.println(type + ": " + locks.get(type));
-		}
 	}
 
 }

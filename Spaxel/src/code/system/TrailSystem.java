@@ -2,12 +2,10 @@ package code.system;
 
 import code.engine.Engine;
 import code.engine.EntityType;
-import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
-import code.entity.TrailSegment;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -20,10 +18,10 @@ public class TrailSystem extends GameSystem {
     }
 
     public void update(){
-        List<Entity> entities = Engine.getEngine().getEntityStream().getEntities(EntityType.TRAILSEGMENT);
-        for (Entity e: entities){
-                e.update();
+        Iterator<Entity> entities = Engine.getEngine().getEntityStream().getIterator(EntityType.TRAILSEGMENT);
+        while(entities.hasNext()){
+            Entity e = entities.next();
+            e.update();
         }
-        Engine.getEngine().getEntityStream().releaseLock(EntityType.TRAILSEGMENT);
     }
 }

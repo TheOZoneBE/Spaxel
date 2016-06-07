@@ -1,12 +1,12 @@
 package code.system;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import code.engine.Engine;
 import code.engine.EntityStream;
 import code.engine.EntityType;
-import code.engine.GameSystem;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Particle;
@@ -21,22 +21,23 @@ public class ParticleSystem extends GameSystem {
 	public void update(){
 		//update all spawners and acquire particles
 		EntityStream entities = Engine.getEngine().getEntityStream();
-		List<Entity> spawners = entities.getEntities(EntityType.SPAWNER);
-		List<Entity> particles = new ArrayList<>();
-		for (Entity spawner : spawners){
+		Iterator<Entity> spawners = entities.getIterator(EntityType.SPAWNER);
+		List<Entity> newParticles = new ArrayList<>();
+		while(spawners.hasNext()){
+			Entity spawner = spawners.next();
 			spawner.update();
 			if (((ParticleSpawner)spawner).isAlive()){
-				particles.addAll(((ParticleSpawner)spawner).spawn());
+				newParticles.addAll(((ParticleSpawner)spawner).spawn());
 			}
 		}
-		Engine.getEngine().getEntityStream().releaseLock(EntityType.SPAWNER);
-		entities.addEntities(EntityType.PARTICLE, particles);
+
+		entities.addEntities(EntityType.PARTICLE, newParticles);
 		//update all particles
-		particles = entities.getEntities(EntityType.PARTICLE);
-		for (Entity particle : particles){
+		Iterator<Entity>  particles = entities.getIterator(EntityType.PARTICLE);
+		while(particles.hasNext()){
+			Entity particle = particles.next();
 			particle.update();
 		}
-		Engine.getEngine().getEntityStream().releaseLock(EntityType.PARTICLE);
 	}
 
 }

@@ -3,25 +3,18 @@ package code.engine;
 import java.awt.Graphics;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.concurrent.CyclicBarrier;
 
 import code.Game;
 import code.collision.HitShape;
 import code.entity.Player;
-import code.graphics.RenderSystem;
+import code.system.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.*;
-import code.level.PlayerSystem;
+import code.system.*;
 import code.resource.*;
-import code.sound.SoundSystem;
-import code.system.AISystem;
-import code.system.ParticleSystem;
-import code.system.ProjectileSystem;
-import code.system.TrailSystem;
 import code.ui.UI;
-import code.ui.UISystem;
 
 final public class Engine {
 	private final static Engine engine = new Engine();

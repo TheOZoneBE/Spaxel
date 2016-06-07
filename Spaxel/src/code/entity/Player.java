@@ -4,7 +4,6 @@ import code.engine.Engine;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Keyboard;
-import code.inventory.InventorySystem;
 import code.ui.UIBar;
 
 public class Player extends Actor {

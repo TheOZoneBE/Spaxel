@@ -6,6 +6,7 @@ import code.entity.Entity;
 import code.graphics.Sprite;
 import code.projectiles.Projectile;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,9 +22,10 @@ public class BasicShield extends ShieldItem {
     public void update(){
         super.update();
         if (canUpdate()){
-            List<Entity> projectiles = Engine.getEngine().getEntityStream().getEntities(EntityType.ENEMY_PROJECTILE);
+            Iterator<Entity> projectiles = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
             Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
-            for (Entity p: projectiles){
+            while(projectiles.hasNext()){
+                Entity p = projectiles.next();
                 if (canAbsorb()){
                     if(p.distanceTo(player) < range){
                         ((Projectile)p).setDead();
@@ -36,8 +38,6 @@ public class BasicShield extends ShieldItem {
                     break;
                 }
             }
-            Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY_PROJECTILE);
-            Engine.getEngine().getEntityStream().releaseLock(EntityType.PLAYER);
         }
     }
 }

@@ -5,6 +5,7 @@ import code.engine.EntityType;
 import code.entity.Entity;
 import code.graphics.Sprite;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,15 +17,17 @@ public class HomingMissile extends Projectile {
     }
 
     public void update(){
-        List<Entity> enemies = Engine.getEngine().getEntityStream().getEntities(EntityType.ENEMY);
+        Iterator<Entity> enemies = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
         double minDist = 0;
         Entity closest = null;
-        for (Entity e: enemies){
+        while (enemies.hasNext()){
+            Entity e = enemies.next();
             double dis = distanceTo(e);
             if (minDist == 0 || dis < minDist){
                 minDist = dis;
                 closest = e;
             }
+
         }
         if (closest != null) {
             double rotToGet = Math.atan2(x - closest.getX(),y - closest.getY());
@@ -38,7 +41,6 @@ public class HomingMissile extends Projectile {
                 rot += 0.15;
             }
         }
-        Engine.getEngine().getEntityStream().releaseLock(EntityType.ENEMY);
         super.update();
     }
 }

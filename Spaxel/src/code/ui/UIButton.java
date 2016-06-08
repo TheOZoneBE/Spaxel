@@ -18,6 +18,7 @@ public class UIButton extends UIElement {
 	private Sprite clicked;
 	private Sprite locked;
 	private boolean click;
+	private boolean disabled;
 
 	public UIButton(int x, int y, Label label, String clickAction, Sprite sprite, Sprite hover, Sprite clicked, Sprite locked)  {
 		super(x, y, sprite);
@@ -28,39 +29,49 @@ public class UIButton extends UIElement {
 		this.hover = hover;
 		this.clicked = clicked;
 		this.locked = locked;
+		this.disabled = false;
 	}
 
 	public void update() {
-		Mouse mouse = Engine.getEngine().getMouse();
-		int mouseX = mouse.getX();
-		int mouseY = mouse.getY();
-		boolean buttonDown = mouse.mouse1;
-		if (updHitShape != null) {
-			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
-			if (inside && buttonDown){
-				click = true;	
-				sprite = clicked;
-			}
-			else if (inside && click){
-				try {
-					Method m = ui.getController().getClass().getMethod(clickAction, null);
-					m.invoke(ui.getController(), null);
+		if (disabled){
+			sprite = locked;
+		}
+		else {
+			Mouse mouse = Engine.getEngine().getMouse();
+			int mouseX = mouse.getX();
+			int mouseY = mouse.getY();
+			boolean buttonDown = mouse.mouse1;
+			if (updHitShape != null) {
+				boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
+				if (inside && buttonDown){
+					click = true;
+					sprite = clicked;
+				}
+				else if (inside && click){
+					try {
+						Method m = ui.getController().getClass().getMethod(clickAction, null);
+						m.invoke(ui.getController(), null);
+						click = false;
+						sprite = normal;
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+				else if (inside){
+					sprite = hover;
+					click = false;
+				}
+				else {
 					click = false;
 					sprite = normal;
 				}
-				catch(Exception e){
-					e.printStackTrace();
-				}				
-			}
-			else if (inside){
-				sprite = hover;
-				click = false;
-			}
-			else {
-				click = false;
-				sprite = normal;
 			}
 		}
+	}
+
+	public void setDisabled(boolean disabled){
+		this.disabled = disabled;
 	}
 
 }

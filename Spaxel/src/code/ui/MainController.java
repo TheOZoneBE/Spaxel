@@ -1,5 +1,6 @@
 package code.ui;
 
+import code.engine.Engine;
 import code.engine.Engine.GameState;
 import code.engine.SystemType;
 import code.system.UISystem;
@@ -9,8 +10,8 @@ public class MainController extends Controller{
 	 * starts a new game
 	 */
 	public void startGame(){
-		engine.setGameState(GameState.PLAY);
-		UISystem uis = (UISystem)engine.getSystem(SystemType.UI);
+		Engine.getEngine().setGameState(GameState.PLAY);
+		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 		uis.changeUI("play");
 	}
 	
@@ -32,7 +33,8 @@ public class MainController extends Controller{
 	 * opens up credits
 	 */
 	public void credits(){
-		
+		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
+		uis.changeUI("credits");
 	}
 
 }

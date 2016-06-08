@@ -15,10 +15,8 @@ public class UI{
 	private Controller controller;
 	private Map<String, UIElement> elements;
 	private List<Label> labels;
-	private Engine engine;
 
-	public UI(Engine engine){
-		this.engine = engine;
+	public UI(){
 		elements = new HashMap<>();
 		labels = new ArrayList<>();
 	}
@@ -64,6 +62,5 @@ public class UI{
 	
 	public void setController(Controller controller){
 		this.controller = controller;
-		controller.setEngine(engine);
 	}
 }

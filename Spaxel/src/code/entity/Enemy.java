@@ -24,16 +24,18 @@ public class Enemy extends Actor {
         double accB = acc;
         boolean canshootB = canshoot;
         List<StatusEffect> todelete = new ArrayList<>();
-        for (StatusEffect e : effects) {
-            e.update();
-            if (e.isAlive()) {
-                e.affect(this);
-            } else {
-                todelete.add(e);
-            }
+        synchronized (effects){
+            for (StatusEffect e : effects) {
+                e.update();
+                if (e.isAlive()) {
+                    e.affect(this);
+                } else {
+                    todelete.add(e);
+                }
 
+            }
+            effects.removeAll(todelete);
         }
-        effects.removeAll(todelete);
 
         if (health < 0) {
             alive = false;

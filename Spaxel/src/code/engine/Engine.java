@@ -15,6 +15,7 @@ import code.inventory.*;
 import code.system.*;
 import code.resource.*;
 import code.ui.UI;
+import code.ui.UIButton;
 
 final public class Engine {
 	private final static Engine engine = new Engine();
@@ -82,6 +83,9 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading UI");
 		Game.game.loadingScreen.getProgress().setPercent(0.8);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
+
+		((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
+		((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
 		entities.cleanup();
 

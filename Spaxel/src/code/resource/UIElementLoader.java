@@ -29,10 +29,12 @@ public class UIElementLoader extends EntityLoader {
 		Map<String, UI> uis = new HashMap<>();
 		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
-		uis.put("main", new UI(engine));
-		uis.put("play", new UI(engine));
+		uis.put("main", new UI());
+		uis.put("play", new UI());
+		uis.put("credits", new UI());
 		uis.get("main").setController(new MainController());
 		uis.get("play").setController(new PlayController());
+		uis.get("credits").setController(new CreditsController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){

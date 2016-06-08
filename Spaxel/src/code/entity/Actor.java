@@ -49,7 +49,9 @@ public class Actor extends Entity {
     }
 
     public void addStatusEffect(StatusEffect effect){
-        effects.add(effect);
+        synchronized (effects){
+            effects.add(effect);
+        }
     }
 
     public Sprite getSprite(){

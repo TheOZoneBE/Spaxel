@@ -81,7 +81,7 @@
 	</uielement>
 	<uielement type="overlay">
 		<ui>play</ui>
-		<name>ui_play_ovelay</name>
+		<name>ui_play_overlay</name>
 		<sprite_normal>ui_play_overlay</sprite_normal>
 		<xpos>640</xpos>
 		<ypos>360</ypos>
@@ -111,4 +111,17 @@
         <xpos>640</xpos>
         <ypos>64</ypos>
     </uielement>
+	<uielement type="button">
+		<ui>credits</ui>
+		<name>back_button</name>
+		<label>Back</label>
+		<clickaction>back</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>640</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
 </uielements>

@@ -2,11 +2,14 @@ package code.engine;
 
 import java.awt.Graphics;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
+import code.entity.Entity;
 import code.entity.Player;
+import code.sound.Sound;
 import code.system.RenderSystem;
 import code.graphics.Sprite;
 import code.input.Keyboard;
@@ -22,6 +25,7 @@ final public class Engine {
 	private Keyboard keys;
 	private Mouse mouse;
 	private EntityStream entities;
+	private List<Sound> soundList;
 	private Map<String, Sprite> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
@@ -56,7 +60,7 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
 		Game.game.loadingScreen.getProgress().setPercent(0.05);
 		SoundLoader sounds = new SoundLoader();
-		entities.addEntities(EntityType.SOUND, sounds.loadAssets("/resources/sound.xml"));
+		soundList = sounds.loadSounds("/resources/sound.xml");
 
 		Game.game.loadingScreen.getMessage().setText("Loading sprites");
 		Game.game.loadingScreen.getProgress().setPercent(0.25);
@@ -67,18 +71,11 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		Game.game.loadingScreen.getProgress().setPercent(0.4);
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
-		Player player = new Player(0, 0, 0, 100, spriteAtlas.get("red"),20,0.5);
-		player.setHitShape(hitShapeAtlas.get("hitshape_red"));
-		entities.addEntity(EntityType.PLAYER, player);
+
 
 		Game.game.loadingScreen.getMessage().setText("Loading items");
 		Game.game.loadingScreen.getProgress().setPercent(0.65);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
-		Item i = items.getItem("basic_laser");
-		entities.addEntity(i.getType(), i);
-		i = items.getItem("homing_missile");
-		entities.addEntity(i.getType(),i );
-		entities.addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50));
 
 		Game.game.loadingScreen.getMessage().setText("Loading UI");
 		Game.game.loadingScreen.getProgress().setPercent(0.8);
@@ -111,6 +108,23 @@ final public class Engine {
 		loading = false;
 	}
 
+	public void startGame(){
+		Player player = new Player(0, 0, 0, 100, spriteAtlas.get("red"),20,0.5);
+		player.setHitShape(hitShapeAtlas.get("hitshape_red"));
+		entities.addEntity(EntityType.PLAYER, player);
+
+		Item i = items.getItem("basic_laser");
+		entities.addEntity(i.getType(), i);
+		i = items.getItem("homing_missile");
+		entities.addEntity(i.getType(),i );
+		entities.addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50));
+
+	}
+
+	public void stopGame(){
+		entities.clear();
+	}
+
 	public boolean isLoading(){
 		return loading;
 	}
@@ -139,6 +153,10 @@ final public class Engine {
 		return UIAtlas;
 	}
 
+	public List<Sound> getSoundList(){
+		return soundList;
+	}
+
 	public ItemCatalogue getItems(){
 		return items;
 	}
@@ -157,35 +175,6 @@ final public class Engine {
 	
 	public void setGameState(GameState gs){
 		gameState = gs;
-	}
-	
-	public void update(){
-		keys.update();
-		if (gameState == GameState.MENU){
-			systems.get(SystemType.SOUND).update();
-			systems.get(SystemType.UI).update();
-			systems.get(SystemType.RENDER).update();
-		}
-		else {
-			systems.get(SystemType.PLAYER).update();
-			systems.get(SystemType.AI).update();
-			systems.get(SystemType.SOUND).update();
-			systems.get(SystemType.INVENTORY).update();
-			systems.get(SystemType.UI).update();
-			systems.get(SystemType.PROJECTILE).update();
-			systems.get(SystemType.PARTICLE).update();
-			systems.get(SystemType.TRAIL).update();
-			systems.get(SystemType.RENDER).update();
-		}
-		entities.cleanup();
-	}
-	
-	public void render(){
-		((RenderSystem)systems.get(SystemType.RENDER)).render();
-	}
-	
-	public void drawText(Graphics g){
-		((RenderSystem)systems.get(SystemType.RENDER)).drawText(g);
 	}
 
 	public void systemDone(){

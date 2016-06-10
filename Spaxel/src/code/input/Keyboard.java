@@ -5,13 +5,14 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener{
 	private boolean[] keys = new boolean[512];
-	public boolean up,down,left,right;
+	public boolean up,down,left,right,esc;
 
 	public void update(){
 		up = keys[KeyEvent.VK_UP];
 		down = keys[KeyEvent.VK_DOWN];
 		left = keys[KeyEvent.VK_LEFT];
 		right = keys[KeyEvent.VK_RIGHT];
+		esc = keys[KeyEvent.VK_ESCAPE];
 	}
 	
 	public void keyPressed(KeyEvent k) {
@@ -22,11 +23,10 @@ public class Keyboard implements KeyListener{
 	
 	public void keyReleased(KeyEvent k) {
 		keys[k.getKeyCode()] = false;
-		
 	}
 
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 
 }

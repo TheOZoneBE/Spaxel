@@ -124,4 +124,30 @@
 		<ypos>640</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
+	<uielement type="button">
+		<ui>pause</ui>
+		<name>resume_button</name>
+		<label>Resume</label>
+		<clickaction>resume</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>320</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>pause</ui>
+		<name>quit_button</name>
+		<label>Quit</label>
+		<clickaction>quit</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_locked</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>400</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
 </uielements>

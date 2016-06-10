@@ -32,9 +32,11 @@ public class UIElementLoader extends EntityLoader {
 		uis.put("main", new UI());
 		uis.put("play", new UI());
 		uis.put("credits", new UI());
+		uis.put("pause", new UI());
 		uis.get("main").setController(new MainController());
 		uis.get("play").setController(new PlayController());
 		uis.get("credits").setController(new CreditsController());
+		uis.get("pause").setController(new PauseController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){

@@ -9,6 +9,12 @@ import code.system.UISystem;
  */
 public class CreditsController extends Controller {
 
+    public void update(){
+        if (Engine.getEngine().getKeyboard().esc){
+            back();
+        }
+    }
+
     public void back(){
         UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
         uis.changeUI("main");

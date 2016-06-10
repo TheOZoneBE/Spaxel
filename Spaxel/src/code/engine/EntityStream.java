@@ -76,4 +76,10 @@ final public class EntityStream {
 		toAdd.clear();
 	}
 
+	public void clear(){
+		for (List<Entity> ent: entities.values()){
+			ent.clear();
+		}
+	}
+
 }

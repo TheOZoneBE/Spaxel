@@ -14,9 +14,9 @@ import code.sound.Sound;
 
 public class SoundLoader extends EntityLoader{
 	
-	public List<Entity> loadAssets(String path){
+	public List<Sound> loadSounds(String path){
 		super.loadFile(path);
-		List<Entity> sounds = new ArrayList<>();
+		List<Sound> sounds = new ArrayList<>();
 		NodeList nodelist = doc.getElementsByTagName("music_track");
 		for(int i = 0; i < nodelist.getLength(); i++){
 		    Element nextChild = (Element)nodelist.item(i);

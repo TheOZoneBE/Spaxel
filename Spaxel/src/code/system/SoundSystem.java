@@ -8,6 +8,7 @@ import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.sound.Music;
+import code.sound.Sound;
 
 public class SoundSystem extends GameSystem{
 	private Random r;
@@ -25,7 +26,7 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void nextSong(){
-		List<Entity> sounds = Engine.getEngine().getEntityStream().getEntities(EntityType.SOUND);
+		List<Sound> sounds = Engine.getEngine().getSoundList();
 		int i = r.nextInt(sounds.size());
 		currentMusic = (Music)sounds.get(i);
 		play();

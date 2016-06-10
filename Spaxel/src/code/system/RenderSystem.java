@@ -25,7 +25,6 @@ public class RenderSystem extends GameSystem {
 	private int xOffset;
 	private int yOffset;
 	private ExecutorService exs;
-	private int executing = 0;
 
 	public RenderSystem() {
 		super(SystemType.RENDER);
@@ -46,6 +45,11 @@ public class RenderSystem extends GameSystem {
 	public void update(){
 		Mouse mouse = Engine.getEngine().getMouse();
 		mainBuffer.clear();
+		particleBuffer.clear();
+		projectileBuffer.clear();
+		actorBuffer.clear();
+		UIBuffer.clear();
+		CountDownLatch latch = new CountDownLatch(1);
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 			int screenXOffset = mouse.getX() / 2 - Game.GAME_WIDTH / 4;
@@ -56,39 +60,28 @@ public class RenderSystem extends GameSystem {
 			yOffset = playerYPos - (int) player.getY();
 			mainBuffer.dots(xOffset, yOffset);
 
-			executing++;
-			exs.execute(new particleRender());
-			executing++;
-			exs.execute(new projectileRender());
-			executing++;
-			exs.execute(new actorRender());
+			latch = new CountDownLatch(4);
+			exs.execute(new particleRender(latch));
+			exs.execute(new projectileRender(latch));
+			exs.execute(new actorRender(latch));
 		}
-		executing++;
-		exs.execute(new UIRender());
-		synchronized (this){
-			try {
-				while(executing != 0){
-					this.wait();
-				}
-				render();
-			}
-			catch (InterruptedException e){
-				e.printStackTrace();
-			}
+		exs.execute(new UIRender(latch));
+		try{
+			latch.await();
+			render();
 		}
-	}
-
-	public void renderedPart(){
-		synchronized (this){
-			executing--;
-			this.notifyAll();
+		catch (InterruptedException e){
+			e.printStackTrace();
 		}
 	}
 
 	public class particleRender implements Runnable {
+		private CountDownLatch latch;
+		public particleRender(CountDownLatch latch){
+			this.latch = latch;
+		}
 		@Override
 		public void run() {
-			particleBuffer.clear();
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.TRAILSEGMENT);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
@@ -105,14 +98,17 @@ public class RenderSystem extends GameSystem {
 				Entity e = toRender.next();
 				e.render(xOffset, yOffset, particleBuffer);
 			}
-			renderedPart();
+			latch.countDown();
 		}
 	}
 
 	public class projectileRender implements Runnable {
+		private CountDownLatch latch;
+		public projectileRender(CountDownLatch latch){
+			this.latch = latch;
+		}
 		@Override
 		public void run() {
-			projectileBuffer.clear();
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PLAYER_PROJECTILE);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
@@ -124,14 +120,17 @@ public class RenderSystem extends GameSystem {
 				Entity e = toRender.next();
 				e.render(xOffset, yOffset, projectileBuffer);
 			}
-			renderedPart();
+			latch.countDown();
 		}
 	}
 
 	public class actorRender implements Runnable {
+		private CountDownLatch latch;
+		public actorRender(CountDownLatch latch){
+			this.latch = latch;
+		}
 		@Override
 		public void run() {
-			actorBuffer.clear();
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 			int playerXPos = xOffset + (int)player.getX();
 			int playerYPos = yOffset + (int)player.getY();
@@ -151,14 +150,18 @@ public class RenderSystem extends GameSystem {
 				i++;
 			}
 
-			renderedPart();
+			latch.countDown();
 		}
 	}
 
 	public class UIRender implements Runnable {
+		private CountDownLatch latch;
+		public UIRender(CountDownLatch latch){
+			this.latch = latch;
+		}
+
 		@Override
 		public void run() {
-			UIBuffer.clear();
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE1ITEM);
 			int i = 0;
 			while (toRender.hasNext()){
@@ -177,7 +180,7 @@ public class RenderSystem extends GameSystem {
 
 			UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 			uis.getCurrentUI().render(UIBuffer);
-			renderedPart();
+			latch.countDown();
 		}
 	}
 

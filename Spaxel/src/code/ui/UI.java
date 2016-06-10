@@ -22,6 +22,7 @@ public class UI{
 	}
 	
 	public void update(){
+		controller.update();
 		for (UIElement u: elements.values()){
 			u.update();
 		}

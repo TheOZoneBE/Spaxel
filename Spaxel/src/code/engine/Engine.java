@@ -19,6 +19,7 @@ import code.system.*;
 import code.resource.*;
 import code.ui.UI;
 import code.ui.UIButton;
+import code.ui.UICounter;
 
 final public class Engine {
 	private final static Engine engine = new Engine();
@@ -122,6 +123,7 @@ final public class Engine {
 	}
 
 	public void stopGame(){
+		((UICounter)UIAtlas.get("play").getElement("score_counter")).setCounter(0);
 		entities.clear();
 	}
 

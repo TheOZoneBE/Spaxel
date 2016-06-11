@@ -1,11 +1,12 @@
 package code.ui;
 
+import java.awt.*;
 import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
-import code.entity.Label;
+import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Mouse;
 import code.math.VectorD;
@@ -72,6 +73,11 @@ public class UIButton extends UIElement {
 
 	public void setDisabled(boolean disabled){
 		this.disabled = disabled;
+	}
+
+	public void render(Graphics g, RenderBuffer render){
+		sprite.render((int)x,(int)y, render);
+		label.render(g, render);
 	}
 
 }

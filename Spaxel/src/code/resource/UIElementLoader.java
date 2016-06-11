@@ -10,10 +10,8 @@ import org.w3c.dom.NodeList;
 
 import code.collision.HitShape;
 import code.engine.Engine;
-import code.engine.EntityType;
-import code.entity.Label;
+import code.ui.Label;
 import code.graphics.Sprite;
-import code.graphics.Spritesheet;
 
 public class UIElementLoader extends EntityLoader {
 	
@@ -58,7 +56,6 @@ public class UIElementLoader extends EntityLoader {
 			    temp.setHitShape(hitShapeAtlas.get(hitshape));
 			    temp.updateHitShape();
 			    uis.get(ui).addElement(name, temp);
-			    uis.get(ui).addLabel(lbl);
 		    }
 		    //overlay add more ifs, if necessary
 		    else if (nextChild.getAttribute("type").equals("overlay")){
@@ -90,7 +87,6 @@ public class UIElementLoader extends EntityLoader {
 				Label lbl = new Label(xPos, yPos, "", font, size);
 				UICounter temp = new UICounter(xPos, yPos, lbl);
 				uis.get(ui).addElement(name, temp);
-				uis.get(ui).addLabel(lbl);
 			}
 		}
 		return uis;

@@ -45,10 +45,6 @@ public class Entity {
 		
 	}
 	
-	public void render(Graphics g){
-		
-	}
-	
 	public void update(){	
 		if(oriHitShape != null){
 			updateHitShape();

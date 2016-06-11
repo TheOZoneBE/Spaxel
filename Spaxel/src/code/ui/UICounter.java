@@ -1,8 +1,8 @@
 package code.ui;
 
-import code.entity.Label;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+
+import java.awt.*;
 
 /**
  * Created by theo on 28-5-2016.
@@ -25,8 +25,8 @@ public class UICounter extends UIElement {
         counter += add;
     }
 
-    public void render(RenderBuffer  render){
-
+    public void render(Graphics g, RenderBuffer  render){
+        label.render(g, render);
     }
 
     public void update(){

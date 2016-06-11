@@ -4,6 +4,8 @@ import code.entity.Entity;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 
+import java.awt.*;
+
 public class UIElement extends Entity {
 	protected UI ui;
 	protected Sprite sprite;
@@ -27,7 +29,7 @@ public class UIElement extends Entity {
 		
 	}
 	
-	public void render(RenderBuffer render){
+	public void render(Graphics g, RenderBuffer render){
 		sprite.render((int)x,(int)y, render);
 	}
 

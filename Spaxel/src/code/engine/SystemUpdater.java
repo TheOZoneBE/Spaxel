@@ -56,12 +56,8 @@ public class SystemUpdater {
         updated = true;
     }
 
-    public void render(){
-        Engine.getEngine().getSystem(SystemType.RENDER).update();
-    }
-
-    public void drawText(Graphics g){
-        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).drawText(g);
+    public void render(Graphics g){
+        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render(g);
     }
 
     public void addSystem(GameSystem system){

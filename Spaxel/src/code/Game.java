@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.awt.image.Raster;
 
 import javax.swing.JFrame;
 
@@ -25,7 +26,9 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private BufferedImage image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private BufferedImage textBuffer = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 	public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+	private int[] textReset = ((DataBufferInt) textBuffer.getRaster().getDataBuffer()).getData();
 
 	public LoadingScreen loadingScreen;
 	public SystemUpdater updater;
@@ -79,9 +82,7 @@ public class Game extends Canvas implements Runnable {
 			long start = System.nanoTime();
 			if (accTime >= 20000000) {
 				accTime -= 20000000;
-				if (Engine.getEngine().isLoading()) {
-					loadingScreen.update();
-				} else {
+				if (!Engine.getEngine().isLoading()) {
 					update();
 				}
 				ups++;
@@ -110,25 +111,33 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void render() {
+		clearText();
 		BufferStrategy bs = getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
-		//Engine.getEngine().render();
-		updater.render();
+		Graphics g2 = textBuffer.getGraphics();
+		updater.render(g2);
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		//Engine.getEngine().drawText(g);
-		updater.drawText(g);
+		g.drawImage(textBuffer, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();
 	}
 
 	public void renderLoading(){
+		clearText();
 		BufferStrategy bs = getBufferStrategy();
 		Graphics g = bs.getDrawGraphics();
-		loadingScreen.render();
+		Graphics g2 = textBuffer.getGraphics();
+		loadingScreen.render(g2);
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		loadingScreen.drawText(g);
+		g.drawImage(textBuffer, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();
+	}
+
+	public void clearText(){
+		for (int i = 0; i < GAME_WIDTH*GAME_HEIGHT; i++){
+			textReset[i] = 0;
+		}
 	}
 
 }

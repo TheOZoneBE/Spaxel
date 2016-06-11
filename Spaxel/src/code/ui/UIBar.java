@@ -3,6 +3,8 @@ package code.ui;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 
+import java.awt.*;
+
 public class UIBar extends UIElement{
 	private int width;
 	private double percent;
@@ -17,7 +19,7 @@ public class UIBar extends UIElement{
 		this.percent = percent;
 	}
 	
-	public void render(RenderBuffer render){
+	public void render(Graphics g, RenderBuffer render){
 		int renderWidth = (int)(width * percent);
 		double dx = Math.round(Math.sin(rot));
 		double dy = Math.round(Math.cos(rot));

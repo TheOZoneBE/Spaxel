@@ -1,7 +1,7 @@
 package code.engine;
 
 import code.Game;
-import code.entity.Label;
+import code.ui.Label;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.ui.UIBar;
@@ -20,6 +20,8 @@ public class LoadingScreen {
 
     private RenderBuffer buffer;
 
+    private Label title;
+
     public LoadingScreen(){
         Font font = null;
         try {
@@ -28,10 +30,11 @@ public class LoadingScreen {
         catch (Exception e){
             e.printStackTrace();
         }
-        overlay = new Sprite(1280, 720,1, 0xff00ffff);
+        overlay = new Sprite(1280, 720,1, 0xff000000);
         progress = new UIBar(320,640,640, Math.PI/2, new Sprite(1,8,2, 0xffffffff));
         message = new Label(640,680, "",font , 16f);
         buffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+        title = new Label(640, 320, "SPAXEL", font, 128f);
     }
 
     public UIBar getProgress(){
@@ -42,18 +45,13 @@ public class LoadingScreen {
         return message;
     }
 
-    public void update(){
+    public void render(Graphics g){
         overlay.render(640,360,buffer);
-        progress.render(buffer);
-    }
-
-    public void render(){
+        progress.render(g, buffer);
         for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
             Game.game.pixels[i] = buffer.getPixel(i);
         }
-    }
-
-    public void drawText(Graphics g){
-        message.render(g);
+        message.render(g, buffer);
+        title.render(g, buffer);
     }
 }

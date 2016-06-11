@@ -6,19 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import code.engine.Engine;
-import code.entity.Label;
 import code.graphics.RenderBuffer;
-import code.input.Mouse;
 
 public class UI{
 	private Controller controller;
 	private Map<String, UIElement> elements;
-	private List<Label> labels;
 
 	public UI(){
 		elements = new HashMap<>();
-		labels = new ArrayList<>();
 	}
 	
 	public void update(){
@@ -28,22 +23,12 @@ public class UI{
 		}
 	}
 	
-	public void render(RenderBuffer render){
+	public void render(Graphics g, RenderBuffer render){
 		for (UIElement u: elements.values()){
-			u.render(render);
+			u.render(g, render);
 		}
 	}
-	
-	public void drawText(Graphics g){
-		for(Label l: labels){
-			l.render(g);
-		}
-	}
-	
-	public void addLabel(Label label){
-		labels.add(label);
-	}
-	
+
 	public void addElement(String name, UIElement element){
 		element.setUI(this);
 		elements.put(name, element);

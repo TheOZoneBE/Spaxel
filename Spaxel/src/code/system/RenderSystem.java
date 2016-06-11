@@ -42,7 +42,7 @@ public class RenderSystem extends GameSystem {
 		exs = Executors.newCachedThreadPool();
 	}
 
-	public void update(){
+	public void update(Graphics g){
 		Mouse mouse = Engine.getEngine().getMouse();
 		mainBuffer.clear();
 		particleBuffer.clear();
@@ -65,10 +65,9 @@ public class RenderSystem extends GameSystem {
 			exs.execute(new projectileRender(latch));
 			exs.execute(new actorRender(latch));
 		}
-		exs.execute(new UIRender(latch));
+		exs.execute(new UIRender(g, latch));
 		try{
 			latch.await();
-			render();
 		}
 		catch (InterruptedException e){
 			e.printStackTrace();
@@ -156,8 +155,10 @@ public class RenderSystem extends GameSystem {
 
 	public class UIRender implements Runnable {
 		private CountDownLatch latch;
-		public UIRender(CountDownLatch latch){
+		Graphics graphics;
+		public UIRender(Graphics g, CountDownLatch latch){
 			this.latch = latch;
+			graphics = g;
 		}
 
 		@Override
@@ -179,7 +180,7 @@ public class RenderSystem extends GameSystem {
 			}
 
 			UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-			uis.getCurrentUI().render(UIBuffer);
+			uis.getCurrentUI().render(graphics, UIBuffer);
 			latch.countDown();
 		}
 	}
@@ -209,7 +210,8 @@ public class RenderSystem extends GameSystem {
 		}
 	}
 
-	public void render(){
+	public void render(Graphics g){
+		update(g);
 		CountDownLatch latch = new CountDownLatch(8*8);
 		for (int i = 0; i < 8; i++){
 			for (int j = 0; j < 8; j++){
@@ -222,11 +224,6 @@ public class RenderSystem extends GameSystem {
 		catch (InterruptedException e){
 			e.printStackTrace();
 		}
-	}
-	
-	public void drawText(Graphics g){
-		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-		uis.getCurrentUI().drawText(g);
 	}
 
 }

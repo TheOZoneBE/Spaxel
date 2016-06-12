@@ -2,6 +2,7 @@ package code.ui;
 
 import code.engine.Engine;
 import code.engine.SystemType;
+import code.input.Keyboard;
 import code.system.UISystem;
 
 /**
@@ -10,8 +11,10 @@ import code.system.UISystem;
 public class CreditsController extends Controller {
 
     public void update(){
-        if (Engine.getEngine().getKeyboard().esc){
+        Keyboard k = Engine.getEngine().getKeyboard();
+        if (k.esc && !k.previous[k.escCode]){
             back();
+            k.previous[k.escCode] = true;
         }
     }
 

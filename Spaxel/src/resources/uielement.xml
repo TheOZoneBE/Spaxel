@@ -37,7 +37,7 @@
 		<sprite_click>button_click</sprite_click>
 		<sprite_locked>button_locked</sprite_locked>
 		<xpos>640</xpos>
-		<ypos>240</ypos>
+		<ypos>280</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
 	<uielement type="button">
@@ -50,7 +50,7 @@
 		<sprite_click>button_click</sprite_click>
 		<sprite_locked>button_locked</sprite_locked>
 		<xpos>640</xpos>
-		<ypos>320</ypos>
+		<ypos>360</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
 	<uielement type="button">
@@ -63,7 +63,7 @@
 		<sprite_click>button_click</sprite_click>
 		<sprite_locked>button_locked</sprite_locked>
 		<xpos>640</xpos>
-		<ypos>400</ypos>
+		<ypos>440</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
 	<uielement type="button">
@@ -76,7 +76,7 @@
 		<sprite_click>button_click</sprite_click>
 		<sprite_locked>button_locked</sprite_locked>
 		<xpos>640</xpos>
-		<ypos>480</ypos>
+		<ypos>520</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
 	<uielement type="overlay">
@@ -149,5 +149,54 @@
 		<xpos>640</xpos>
 		<ypos>400</ypos>
 		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>Programming / Graphics</label>
+		<size>24</size>
+		<xpos>640</xpos>
+		<ypos>120</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>Theo Dedeken</label>
+		<size>16</size>
+		<xpos>640</xpos>
+		<ypos>180</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>@TheOZoneBE</label>
+		<size>16</size>
+		<xpos>640</xpos>
+		<ypos>220</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>Music</label>
+		<size>24</size>
+		<xpos>640</xpos>
+		<ypos>360</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>Goncalo Gomes</label>
+		<size>16</size>
+		<xpos>640</xpos>
+		<ypos>420</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>credits</ui>
+		<label>@azureflux_</label>
+		<size>16</size>
+		<xpos>640</xpos>
+		<ypos>460</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>main</ui>
+		<label>SPAXEL</label>
+		<size>64</size>
+		<xpos>640</xpos>
+		<ypos>120</ypos>
 	</uielement>
 </uielements>

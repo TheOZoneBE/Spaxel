@@ -78,6 +78,15 @@ public class UIElementLoader extends EntityLoader {
 			    temp.setPercent(1);
 			    uis.get(ui).addElement(name, temp);
 		    }
+			else if (nextChild.getAttribute("type").equals("label")) {
+				String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
+				String label = nextChild.getElementsByTagName("label").item(0).getTextContent();
+				int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
+				int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
+				int size = Integer.parseInt((nextChild.getElementsByTagName("size").item(0).getTextContent()));
+				Label temp = new Label(xPos, yPos, label, font, size);
+				uis.get(ui).addElement(label, temp);
+			}
 			else {
 				String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
 				String name = nextChild.getElementsByTagName("name").item(0).getTextContent();

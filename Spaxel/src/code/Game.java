@@ -83,31 +83,28 @@ public class Game extends Canvas implements Runnable {
 			if (accTime >= 20000000) {
 				accTime -= 20000000;
 				if (!Engine.getEngine().isLoading()) {
-					update();
+					updater.generalUpdate();
+					updater.renderUpdate();
 				}
 				ups++;
 			}
-			if (fps < ups){
-				if (Engine.getEngine().isLoading()) {
-					renderLoading();
-				} else {
-					render();
-				}
-				fps++;
+			updater.renderUpdate();
+			if (Engine.getEngine().isLoading()) {
+				renderLoading();
+			} else {
+				render();
 			}
+			fps++;
 
 			if (ups == 50) {
 				frame.setTitle(gameName + " @ " + fps + " fps");
 				ups = 0;
 				fps = 0;
 			}
-			accTime += System.nanoTime() - start;
+			long deltatime = System.nanoTime() - start;
+			Engine.getEngine().setUpdateTime((double)deltatime/ 20000000);
+			accTime += deltatime;
 		}
-	}
-
-	public void update() {
-		//Engine.getEngine().update();
-		updater.update();
 	}
 
 	public void render() {

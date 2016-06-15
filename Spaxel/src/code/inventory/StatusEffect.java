@@ -1,5 +1,6 @@
 package code.inventory;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 import code.entity.Entity;
 
@@ -14,7 +15,11 @@ public class StatusEffect{
         this.life= life;
     }
 
-    public void affect(Enemy e){
+    public void affect(Actor e){
+
+    }
+
+    public void undo(Actor e){
 
     }
 

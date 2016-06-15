@@ -21,6 +21,7 @@ public class Entity {
 	protected HitShape oriHitShape;
 	protected HitShape updHitShape;
 	protected boolean alive = true;
+	protected int life;
 	
 	public Entity(double x, double y, double rot){
 		this.x = x;
@@ -49,6 +50,15 @@ public class Entity {
 		if(oriHitShape != null){
 			updateHitShape();
 		}		
+	}
+
+	public void reduceLife(){
+		if (life > 0){
+			life--;
+		}
+		if (life == 0){
+			setDead();
+		}
 	}
 	public double getX(){
 		return x;

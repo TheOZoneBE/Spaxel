@@ -44,8 +44,8 @@ public class Player extends Actor {
 			ydir = ydir - ydir/(maxspeed*2);
 		}
 
-		x+= xdir;
-		y+=ydir;
+		x+= xdir*Engine.getEngine().getUpdateTime();
+		y+=ydir*Engine.getEngine().getUpdateTime();
 		
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;

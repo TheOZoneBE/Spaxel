@@ -14,6 +14,7 @@ public class UIElement extends Entity {
 	public UIElement(int x, int y, Sprite sprite){
 		super(x, y);
 		this.sprite = sprite;
+		life = -1;
 	}
 	
 	public UIElement(int x, int y, double rot, Sprite sprite){

@@ -5,6 +5,7 @@ import code.system.RenderSystem;
 
 import java.awt.*;
 import java.util.EnumMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,54 +14,90 @@ import java.util.concurrent.Executors;
  */
 public class SystemUpdater {
     private EnumMap<SystemType, Thread> threads;
+    private EnumMap<SystemType, GameSystem> systems;
     private ExecutorService e = Executors.newCachedThreadPool();
-    private volatile boolean updated = true;
 
     public SystemUpdater(){
         threads = new EnumMap<>(SystemType.class);
     }
 
-    public void update(){
-        updated = false;
-        Engine.getEngine().getKeyboard().update();
-        if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
-            Engine.getEngine().setSystemsToUpdate(2);
-            e.execute(threads.get(SystemType.SOUND));
-            e.execute(threads.get(SystemType.UI));
-        }
-        else {
-            Engine.getEngine().setSystemsToUpdate(8);
-            e.execute(threads.get(SystemType.PLAYER));
-            e.execute(threads.get(SystemType.AI));
-            e.execute(threads.get(SystemType.SOUND));
-            e.execute(threads.get(SystemType.INVENTORY));
-            e.execute(threads.get(SystemType.UI));
-            e.execute(threads.get(SystemType.PROJECTILE));
-            e.execute(threads.get(SystemType.PARTICLE));
-            e.execute(threads.get(SystemType.TRAIL));
-        }
-        synchronized (this){
-            try{
-                while(!updated){
-                    this.wait();
-                }
-            }
-            catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }
-        Engine.getEngine().getEntityStream().cleanup();
+    public void setSystems(EnumMap<SystemType, GameSystem> systems){
+        this.systems = systems;
     }
 
-    public void done(){
-        updated = true;
+    public class SystemWrapper implements Runnable{
+        private GameSystem system;
+        private CountDownLatch latch;
+
+        public SystemWrapper(GameSystem system, CountDownLatch latch){
+            this.system = system;
+            this.latch = latch;
+        }
+        @Override
+        public void run() {
+            system.update();
+            latch.countDown();
+        }
+    }
+
+    /**
+     * general update 50 times a second
+     *
+     * LifeSystem in entities.cleanup
+     * UISystem
+     * InventorySystem
+     * SoundSystem
+     * TrailSystem
+     *
+     */
+    public void generalUpdate(){
+        CountDownLatch latch;
+        Engine.getEngine().getKeyboard().update();
+        if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
+            latch = new CountDownLatch(2);
+            e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
+        }
+        else {
+            latch = new CountDownLatch(6);
+            e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
+        }
+        try{
+            latch.await();
+            Engine.getEngine().getEntityStream().cleanup();
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * updates all the entities that change more than 50 times a second
+     */
+    public void renderUpdate(){
+        CountDownLatch latch = new CountDownLatch(0);
+        Engine.getEngine().getKeyboard().update();
+        if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
+            latch = new CountDownLatch(3);
+            e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.PROJECTILE), latch));
+            e.execute(new SystemWrapper(systems.get(SystemType.PARTICLE), latch));
+        }
+        try{
+            latch.await();
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     public void render(Graphics g){
         ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render(g);
-    }
-
-    public void addSystem(GameSystem system){
-        threads.put(system.getType(),new Thread(system));
     }
 }

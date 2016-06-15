@@ -11,7 +11,6 @@ import javafx.scene.control.TreeItem;
 public class TrailSegment extends Entity{
     private Sprite trail;
     private TrailSegment previous;
-    private int life;
     private double maxLife;
 
     public TrailSegment(double x, double y, double rot, Sprite trail, TrailSegment previous){
@@ -23,13 +22,6 @@ public class TrailSegment extends Entity{
     }
 
     public void update(){
-        if (life > 0){
-            life--;
-        }
-        else {
-            setDead();
-        }
-
     }
 
     public void render(int xPos, int yPos, RenderBuffer render){

@@ -18,21 +18,15 @@ public class Enemy extends Actor {
         super(x, y, rot, health, sprite, maxspeed,acc);
     }
 
-    public void update(Player player) {
-        int healthB = health;
-        double maxspeedB = maxspeed;
-        double accB = acc;
-        boolean canshootB = canshoot;
+    public void updateAI(Player player){
         List<StatusEffect> todelete = new ArrayList<>();
         synchronized (effects){
             for (StatusEffect e : effects) {
                 e.update();
-                if (e.isAlive()) {
-                    e.affect(this);
-                } else {
+                if (!e.isAlive()) {
+                    e.undo(this);
                     todelete.add(e);
                 }
-
             }
             effects.removeAll(todelete);
         }
@@ -60,22 +54,18 @@ public class Enemy extends Actor {
                 xdir -= dx;
                 ydir -= dy;
             }
-
-            x += xdir;
-            y += ydir;
             if (canshoot && cooldown == 0) {
                 Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY_PROJECTILE, new BasicLaser(x, y, rot, Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"), Engine.getEngine().getSpriteAtlas().get("white_trail"), 5, 100, 20));
                 cooldown =100;
             }
-
         }
         cooldown--;
-        super.update();
+    }
 
-        health = healthB;
-        maxspeed = maxspeedB;
-        acc = accB;
-        canshoot = canshootB;
+    public void update() {
+        x += xdir*Engine.getEngine().getUpdateTime();
+        y += ydir*Engine.getEngine().getUpdateTime();
+        super.update();
     }
 
     @Override

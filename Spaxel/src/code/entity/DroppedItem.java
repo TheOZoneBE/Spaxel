@@ -10,7 +10,6 @@ import code.inventory.Item;
  */
 public class DroppedItem extends Entity{
     private Item item;
-    private int life;
 
     public DroppedItem(double x, double y, Item item, int life) {
         super(x, y);
@@ -23,22 +22,16 @@ public class DroppedItem extends Entity{
     }
 
     public void update(){
-        life--;
-        if (life != 0){
-            super.update();
-            Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
-            if (collision(player)){
-                setDead();
-                if (Engine.getEngine().getEntityStream().getEntities(item.getType()).contains(item)){
-                    item.setStacks(item.getStacks()+1);
-                }
-                else {
-                    Engine.getEngine().getEntityStream().addEntity(item.getType(), item);
-                }
-            }
-        }
-        else {
+        super.update();
+        Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+        if (collision(player)){
             setDead();
+            if (Engine.getEngine().getEntityStream().getEntities(item.getType()).contains(item)){
+                item.setStacks(item.getStacks()+1);
+            }
+            else {
+                Engine.getEngine().getEntityStream().addEntity(item.getType(), item);
+            }
         }
     }
 

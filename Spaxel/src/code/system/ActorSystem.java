@@ -12,12 +12,11 @@ import code.input.Mouse;
 import code.inventory.ProjectileItem;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class PlayerSystem extends GameSystem{
+public class ActorSystem extends GameSystem{
 
-	public PlayerSystem() {
-		super(SystemType.PLAYER);
+	public ActorSystem() {
+		super(SystemType.ACTOR);
 	}
 	
 	public void update(){
@@ -50,6 +49,12 @@ public class PlayerSystem extends GameSystem{
 					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
 				}
 			}
+		}
+
+		Iterator<Entity> enemies = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
+		while (enemies.hasNext()){
+			Entity e = enemies.next();
+			e.update();
 		}
 	}
 

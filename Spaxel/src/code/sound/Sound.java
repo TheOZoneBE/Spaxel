@@ -15,6 +15,7 @@ public class Sound extends Entity{
 	
 	public Sound(String path){
 		this.path = path;
+		life = -1;
 		try {
 			URL url = getClass().getResource(path);
 			clip = AudioSystem.getClip();

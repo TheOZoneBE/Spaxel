@@ -1,5 +1,6 @@
 package code.inventory;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 
 /**
@@ -13,7 +14,11 @@ public class SpeedEffect extends StatusEffect {
         this.speedModifier = speedModifier;
     }
 
-    public void affect(Enemy e){
+    public void affect(Actor e){
         e.setMaxspeed(e.getMaxspeed()*speedModifier);
+    }
+
+    public void undo(Actor e){
+        e.setMaxspeed(e.getMaxspeed()/speedModifier);
     }
 }

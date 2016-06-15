@@ -29,6 +29,7 @@ public class Actor extends Entity {
         xdir =0;
         ydir = 0;
         canshoot = true;
+        this.life = -1;
     }
 
     public void update(){
@@ -50,9 +51,12 @@ public class Actor extends Entity {
 
     public void addStatusEffect(StatusEffect effect){
         synchronized (effects){
+            effect.affect(this);
             effects.add(effect);
         }
     }
+
+
 
     public Sprite getSprite(){
         return sprite;

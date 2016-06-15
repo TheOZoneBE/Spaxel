@@ -1,13 +1,11 @@
 package code.engine;
 
-import java.awt.Graphics;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
-import code.entity.Entity;
 import code.entity.Player;
 import code.sound.Sound;
 import code.system.RenderSystem;
@@ -34,7 +32,7 @@ final public class Engine {
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
-	private volatile int systemsToUpdate;
+	private double updateTime;
 
 	public static Engine getEngine(){
 		return engine;
@@ -45,7 +43,6 @@ final public class Engine {
 	}
 	
 	private Engine(){
-		systemsToUpdate = 9;
 		this.keys = new Keyboard();
 		this.mouse = new Mouse();
 		Game.game.addKeyListener(keys);
@@ -94,18 +91,16 @@ final public class Engine {
 		addSystem(new InventorySystem());
 		addSystem(new UISystem());
 		addSystem(new ProjectileSystem());
-		addSystem(new PlayerSystem());
+		addSystem(new ActorSystem());
 		addSystem(new RenderSystem());
 		addSystem(new AISystem());
 		addSystem(new ParticleSystem());
 		addSystem(new TrailSystem());
+		addSystem(new SpawnerSystem());
 		((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		((UISystem)getSystem(SystemType.UI)).changeUI("main");
 		//starting threads
-		for (GameSystem gs: systems.values()){
-			Game.game.updater.addSystem(gs);
-		}
-
+		Game.game.updater.setSystems(systems);
 		loading = false;
 	}
 
@@ -179,18 +174,12 @@ final public class Engine {
 		gameState = gs;
 	}
 
-	public void systemDone(){
-		synchronized (Game.game.updater){
-			systemsToUpdate--;
-			if (systemsToUpdate == 0){
-				Game.game.updater.done();
-				Game.game.updater.notifyAll();
-			}
-		}
+	public double getUpdateTime(){
+		return updateTime;
 	}
 
-	public void setSystemsToUpdate(int value){
-		systemsToUpdate = value;
+	public void setUpdateTime(double updateTime){
+		this.updateTime = updateTime;
 	}
 
 }

@@ -24,7 +24,7 @@ public class AISystem extends GameSystem {
 		int k = 0;
 		while (enemies.hasNext()){
 			Entity e = enemies.next();
-			((Enemy)e).update(player);
+			((Enemy)e).updateAI(player);
 			if (!((Enemy)e).isAlive()){
 				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
 				score.addToCounter(100);
@@ -39,7 +39,7 @@ public class AISystem extends GameSystem {
 		if(k < 5){
 			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20, .25);
 			e.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
-			e.update(player);
+			e.update();
 			Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY, e);
 		}
 	}

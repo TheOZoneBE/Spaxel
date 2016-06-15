@@ -17,11 +17,7 @@ import code.input.Mouse;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
-	private RenderBuffer particleBuffer; //particle, trailsegment, droppeditem
-	private RenderBuffer projectileBuffer; //enemy_projectile, player_projectile
-	private RenderBuffer actorBuffer; //player, enemy
 	private RenderBuffer UIBuffer; //mouse1item, mouse3item, shipitem, uielement
-	private RenderBuffer[] buffers;
 	private int xOffset;
 	private int yOffset;
 	private ExecutorService exs;
@@ -29,26 +25,13 @@ public class RenderSystem extends GameSystem {
 	public RenderSystem() {
 		super(SystemType.RENDER);
 		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		particleBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		projectileBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		actorBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 		UIBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		buffers = new RenderBuffer[5];
-		buffers[0] = mainBuffer;
-		buffers[1] = particleBuffer;
-		buffers[2] = projectileBuffer;
-		buffers[3] = actorBuffer;
-		buffers[4] = UIBuffer;
 		exs = Executors.newCachedThreadPool();
 	}
 
 	public void update(Graphics g){
 		Mouse mouse = Engine.getEngine().getMouse();
 		mainBuffer.clear();
-		particleBuffer.clear();
-		projectileBuffer.clear();
-		actorBuffer.clear();
-		UIBuffer.clear();
 		CountDownLatch latch = new CountDownLatch(1);
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
@@ -60,10 +43,8 @@ public class RenderSystem extends GameSystem {
 			yOffset = playerYPos - (int) player.getY();
 			mainBuffer.dots(xOffset, yOffset);
 
-			latch = new CountDownLatch(4);
-			exs.execute(new particleRender(latch));
-			exs.execute(new projectileRender(latch));
-			exs.execute(new actorRender(latch));
+			latch = new CountDownLatch(2);
+			exs.execute(new mainRender(latch));
 		}
 		exs.execute(new UIRender(g, latch));
 		try{
@@ -74,83 +55,55 @@ public class RenderSystem extends GameSystem {
 		}
 	}
 
-	public class particleRender implements Runnable {
+	public class mainRender implements Runnable {
 		private CountDownLatch latch;
-		public particleRender(CountDownLatch latch){
+
+		public mainRender(CountDownLatch latch){
 			this.latch = latch;
 		}
+
 		@Override
 		public void run() {
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.TRAILSEGMENT);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, particleBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
 			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PARTICLE);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, particleBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
 
 			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.DROPPEDITEM);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, particleBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
-			latch.countDown();
-		}
-	}
-
-	public class projectileRender implements Runnable {
-		private CountDownLatch latch;
-		public projectileRender(CountDownLatch latch){
-			this.latch = latch;
-		}
-		@Override
-		public void run() {
-			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PLAYER_PROJECTILE);
+			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PLAYER_PROJECTILE);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, projectileBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
 
 			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, projectileBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
-			latch.countDown();
-		}
-	}
-
-	public class actorRender implements Runnable {
-		private CountDownLatch latch;
-		public actorRender(CountDownLatch latch){
-			this.latch = latch;
-		}
-		@Override
-		public void run() {
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 			int playerXPos = xOffset + (int)player.getX();
 			int playerYPos = yOffset + (int)player.getY();
-			player.render(playerXPos,playerYPos, actorBuffer);
+			player.render(playerXPos,playerYPos, mainBuffer);
 
-			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
+			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
-				e.render(xOffset, yOffset, actorBuffer);
+				e.render(xOffset, yOffset, mainBuffer);
 			}
-
-			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.SHIPITEM);
-			int i= 0;
-			while (toRender.hasNext()){
-				Entity e = toRender.next();
-				e.render(386 + i * 72, 680, actorBuffer);
-				i++;
-			}
-
 			latch.countDown();
 		}
+
 	}
 
 	public class UIRender implements Runnable {
@@ -163,6 +116,7 @@ public class RenderSystem extends GameSystem {
 
 		@Override
 		public void run() {
+			UIBuffer.clear();
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE1ITEM);
 			int i = 0;
 			while (toRender.hasNext()){
@@ -179,6 +133,14 @@ public class RenderSystem extends GameSystem {
 				i++;
 			}
 
+			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.SHIPITEM);
+			i= 0;
+			while (toRender.hasNext()){
+				Entity e = toRender.next();
+				e.render(386 + i * 72, 680, mainBuffer);
+				i++;
+			}
+
 			UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 			uis.getCurrentUI().render(graphics, UIBuffer);
 			latch.countDown();
@@ -188,22 +150,33 @@ public class RenderSystem extends GameSystem {
 	public class RenderBatch implements Runnable {
 		private int x;
 		private int y;
+		private int w;
+		private int h;
 		private CountDownLatch latch;
-		public RenderBatch(int x, int y, CountDownLatch latch){
+		public RenderBatch(int x, int y, int w, int h, CountDownLatch latch){
 			this.x = x;
 			this.y = y;
+			this.w = w;
+			this.h = h;
 			this.latch = latch;
 		}
 
 		@Override
 		public void run() {
-			for (int i = 0; i < 160; i++){
-				for (int j = 0; j < 90; j++){
-					int k = 4;
-					while (k != 0 && buffers[k].getPixel(x + i, y + j) == 0){
-						k--;
+			for (int i = 0; i < w; i++){
+				for (int j = 0; j < h; j++){
+					if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
+						if (UIBuffer.getPixel(x+i, y+j) != 0){
+							Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
+						}
+						else {
+							Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = mainBuffer.getPixel(x +i, y +j);
+						}
 					}
-					Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = buffers[k].getPixel(x +i, y +j);
+					else {
+						Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
+					}
+
 				}
 			}
 			latch.countDown();
@@ -212,10 +185,13 @@ public class RenderSystem extends GameSystem {
 
 	public void render(Graphics g){
 		update(g);
-		CountDownLatch latch = new CountDownLatch(8*8);
-		for (int i = 0; i < 8; i++){
-			for (int j = 0; j < 8; j++){
-				exs.execute(new RenderBatch(i*160, j*90, latch));
+		int stepsize = 16;
+		CountDownLatch latch = new CountDownLatch(stepsize*stepsize);
+		int w = Game.game.GAME_WIDTH/stepsize;
+		int h = Game.game.GAME_HEIGHT/stepsize;
+		for (int i = 0; i < stepsize; i++){
+			for (int j = 0; j < stepsize; j++){
+				exs.execute(new RenderBatch(i*w, j*h, w, h, latch));
 			}
 		}
 		try{

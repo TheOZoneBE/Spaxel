@@ -17,7 +17,6 @@ public class Projectile extends Entity {
 	protected Sprite trail;
 	protected boolean alive;
 	protected int damage;
-	protected int life;
 	protected double speed;
 	private TrailSegment previous;
 
@@ -33,29 +32,27 @@ public class Projectile extends Entity {
 		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
 		hitShape.addHitPoint(hitPoint);
 		setHitShape(hitShape);
-		previous = new TrailSegment(x, y, rot, trail, null);
-		Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
+		//previous = new TrailSegment(x, y, rot, trail, null);
+		//Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 	}
 
 	public void update() {
 		super.update();
-		if (life > 0) {
-			double dx = Math.sin(rot) * speed;
-			double dy = Math.cos(rot) * speed;
-			x -= dx;
-			y -= dy;
-			life--;
-			previous = new TrailSegment(x, y, rot, trail, previous);
-			Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
-		} else {
-			setDead();
-		}
+		double dx = Math.sin(rot) * speed;
+		double dy = Math.cos(rot) * speed;
+		x -= dx*Engine.getEngine().getUpdateTime();
+		y -= dy*Engine.getEngine().getUpdateTime();
 	}
 
 	@Override
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		sprite.render((int) (x + xPos), (int) (y + yPos),rot, render);
 
+	}
+
+	public TrailSegment leaveTrail(){
+		previous = new TrailSegment(x, y, rot, trail, previous);
+		return previous;
 	}
 
 	public Sprite getSprite() {

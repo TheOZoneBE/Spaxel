@@ -1,5 +1,6 @@
 package code.inventory;
 
+import code.entity.Actor;
 import code.entity.Enemy;
 
 /**
@@ -10,7 +11,11 @@ public class ShootEffect extends StatusEffect{
         super(life);
     }
 
-    public void affect(Enemy e){
-        e.setCanshoot(!e.getCanShoot());
+    public void affect(Actor e){
+        e.setCanshoot(false);
+    }
+
+    public void undo(Actor e){
+        e.setCanshoot(true);
     }
 }

@@ -23,6 +23,7 @@ public class Item extends Entity {
 		cooldownBar = new UIBar(0, 0, 48, Math.PI/2, bar);
 		this.cooldown = cooldown;
 		cd = 0;
+		life = -1;
 	}
 
 	public void reduceCD(){

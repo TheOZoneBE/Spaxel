@@ -67,6 +67,9 @@ final public class EntityStream {
 			}
 			List<Entity> toRemove = new ArrayList<>();
 			for (Entity e: entities.get(type)){
+				if (e != null){
+					e.reduceLife();
+				}
 				if (e== null || !e.isAlive()){
 					toRemove.add(e);
 				}

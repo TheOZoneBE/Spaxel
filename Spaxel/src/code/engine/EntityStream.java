@@ -30,11 +30,10 @@ final public class EntityStream {
 	public Iterator<Entity> getIterator(EntityType type){
 		return new Iterator<Entity>() {
 			List<Entity> iterating = entities.get(type);
-			int size = iterating.size();
 			int i = -1;
 			@Override
 			public boolean hasNext() {
-				return i < size - 1;
+				return i < iterating.size() - 1;
 			}
 
 			@Override

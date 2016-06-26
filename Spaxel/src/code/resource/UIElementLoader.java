@@ -31,10 +31,14 @@ public class UIElementLoader extends EntityLoader {
 		uis.put("play", new UI());
 		uis.put("credits", new UI());
 		uis.put("pause", new UI());
+		uis.put("class_selection", new UI());
+		uis.put("game_over", new UI());
 		uis.get("main").setController(new MainController());
 		uis.get("play").setController(new PlayController());
 		uis.get("credits").setController(new CreditsController());
 		uis.get("pause").setController(new PauseController());
+		uis.get("class_selection").setController(new ClassSelectionController());
+		uis.get("game_over").setController(new GameOverController());
 		super.loadFile(elements);
 		NodeList nodelist = doc.getElementsByTagName("uielement");
 		for(int i = 0; i < nodelist.getLength(); i++){

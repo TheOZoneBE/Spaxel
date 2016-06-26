@@ -20,7 +20,7 @@ public class ClusterMissile extends Projectile {
 
     public void update(){
         super.update();
-        if (!alive){
+        if (life == 1){
             Random rand = new Random();
             List<Entity> schrapnel = new ArrayList<>();
             for (int i = 0; i< 5; i++){

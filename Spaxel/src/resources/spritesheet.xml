@@ -55,4 +55,10 @@
 		<width>64</width>
 		<height>64</height>
 	</sheet>
+	<sheet>
+		<path>class_select.png</path>
+		<name>class_select</name>
+		<width>48</width>
+		<height>24</height>
+	</sheet>
 </spritesheet>

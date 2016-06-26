@@ -111,6 +111,20 @@
         <xpos>640</xpos>
         <ypos>64</ypos>
     </uielement>
+	<uielement type="label">
+		<ui>play</ui>
+		<label>hp_label</label>
+		<size>8</size>
+		<xpos>640</xpos>
+		<ypos>624</ypos>
+	</uielement>
+	<uielement type="label">
+		<ui>play</ui>
+		<label>xp_label</label>
+		<size>8</size>
+		<xpos>640</xpos>
+		<ypos>636</ypos>
+	</uielement>
 	<uielement type="button">
 		<ui>credits</ui>
 		<name>back_button</name>
@@ -198,5 +212,90 @@
 		<size>64</size>
 		<xpos>640</xpos>
 		<ypos>120</ypos>
+	</uielement>
+	<uielement type="button">
+		<ui>class_selection</ui>
+		<name>select_white</name>
+		<label></label>
+		<clickaction>selectWhite</clickaction>
+		<sprite_normal>white</sprite_normal>
+		<sprite_hover>class_select_hover</sprite_hover>
+		<sprite_click>class_select_click</sprite_click>
+		<sprite_locked>white</sprite_locked>
+		<xpos>190</xpos>
+		<ypos>360</ypos>
+		<hitshape>hitshape_class_select</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>class_selection</ui>
+		<name>select_red</name>
+		<label></label>
+		<clickaction>selectRed</clickaction>
+		<sprite_normal>red</sprite_normal>
+		<sprite_hover>class_select_hover</sprite_hover>
+		<sprite_click>class_select_click</sprite_click>
+		<sprite_locked>red</sprite_locked>
+		<xpos>490</xpos>
+		<ypos>360</ypos>
+		<hitshape>hitshape_class_select</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>class_selection</ui>
+		<name>select_green</name>
+		<label></label>
+		<clickaction>selectGreen</clickaction>
+		<sprite_normal>green</sprite_normal>
+		<sprite_hover>class_select_hover</sprite_hover>
+		<sprite_click>class_select_click</sprite_click>
+		<sprite_locked>green</sprite_locked>
+		<xpos>790</xpos>
+		<ypos>360</ypos>
+		<hitshape>hitshape_class_select</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>class_selection</ui>
+		<name>select_blue</name>
+		<label></label>
+		<clickaction>selectBlue</clickaction>
+		<sprite_normal>blue</sprite_normal>
+		<sprite_hover>class_select_hover</sprite_hover>
+		<sprite_click>class_select_click</sprite_click>
+		<sprite_locked>blue</sprite_locked>
+		<xpos>1090</xpos>
+		<ypos>360</ypos>
+		<hitshape>hitshape_class_select</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>game_over</ui>
+		<name>play_again</name>
+		<label>Play Again</label>
+		<clickaction>play</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_lockec</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>560</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="button">
+		<ui>game_over</ui>
+		<name>main_menu</name>
+		<label>Main Menu</label>
+		<clickaction>main</clickaction>
+		<sprite_normal>button_normal</sprite_normal>
+		<sprite_hover>button_hover</sprite_hover>
+		<sprite_click>button_click</sprite_click>
+		<sprite_locked>button_lockec</sprite_locked>
+		<xpos>640</xpos>
+		<ypos>640</ypos>
+		<hitshape>hitshape_button</hitshape>
+	</uielement>
+	<uielement type="label">
+		<ui>game_over</ui>
+		<label>GAME OVER</label>
+		<size>96</size>
+		<xpos>640</xpos>
+		<ypos>240</ypos>
 	</uielement>
 </uielements>

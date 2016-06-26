@@ -15,7 +15,6 @@ import code.math.VectorD;
 public class Projectile extends Entity {
 	protected Sprite sprite;
 	protected Sprite trail;
-	protected boolean alive;
 	protected int damage;
 	protected double speed;
 	private TrailSegment previous;
@@ -32,8 +31,6 @@ public class Projectile extends Entity {
 		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
 		hitShape.addHitPoint(hitPoint);
 		setHitShape(hitShape);
-		//previous = new TrailSegment(x, y, rot, trail, null);
-		//Engine.getEngine().getEntityStream().addEntity(EntityType.TRAILSEGMENT, previous);
 	}
 
 	public void update() {

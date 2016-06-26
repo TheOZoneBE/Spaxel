@@ -20,6 +20,7 @@ public class UIButton extends UIElement {
 	private Sprite locked;
 	private boolean click;
 	private boolean disabled;
+	private boolean hovering;
 
 	public UIButton(int x, int y, Label label, String clickAction, Sprite sprite, Sprite hover, Sprite clicked, Sprite locked)  {
 		super(x, y, sprite);
@@ -31,6 +32,7 @@ public class UIButton extends UIElement {
 		this.clicked = clicked;
 		this.locked = locked;
 		this.disabled = false;
+		this.hovering = false;
 	}
 
 	public void update() {
@@ -42,33 +44,30 @@ public class UIButton extends UIElement {
 			int mouseX = mouse.getX();
 			int mouseY = mouse.getY();
 			boolean buttonDown = mouse.mouse1;
-			if (updHitShape != null) {
-				boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
-				if (inside && buttonDown){
-					click = true;
-					sprite = clicked;
-				}
-				else if (inside && click){
-					try {
-						Method m = ui.getController().getClass().getMethod(clickAction, null);
-						m.invoke(ui.getController(), null);
-						click = false;
-						sprite = normal;
-					}
-					catch(Exception e){
-						e.printStackTrace();
-					}
-				}
-				else if (inside){
-					sprite = hover;
+			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
+			if (inside && buttonDown){
+				click = true;
+			}
+			else if (inside && click){
+				try {
+					Method m = ui.getController().getClass().getMethod(clickAction, null);
+					m.invoke(ui.getController(), null);
 					click = false;
 				}
-				else {
-					click = false;
-					sprite = normal;
+				catch(Exception e){
+					e.printStackTrace();
 				}
 			}
+			else if (inside){
+				hovering = true;
+				click = false;
+			}
+			else {
+				hovering = false;
+				click = false;
+			}
 		}
+
 	}
 
 	public void setDisabled(boolean disabled){
@@ -77,6 +76,12 @@ public class UIButton extends UIElement {
 
 	public void render(Graphics g, RenderBuffer render){
 		sprite.render((int)x,(int)y, render);
+		if (click){
+			clicked.render((int)x,(int)y, render);
+		}
+		else if (hovering){
+			hover.render((int)x,(int)y, render);
+		}
 		label.render(g, render);
 	}
 

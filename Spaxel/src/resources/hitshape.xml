@@ -168,5 +168,26 @@
 			</hitpoint>
 		</hitpoints>
 	</hitshape>
+	<hitshape>
+		<name>hitshape_class_select</name>
+		<hitpoints type="array">
+			<hitpoint>
+				<xoffset>-64</xoffset>
+				<yoffset>-64</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>64</xoffset>
+				<yoffset>-64</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>64</xoffset>
+				<yoffset>64</yoffset>
+			</hitpoint>
+			<hitpoint>
+				<xoffset>-64</xoffset>
+				<yoffset>64</yoffset>
+			</hitpoint>
+		</hitpoints>
+	</hitshape>
 
 </hitshapes>

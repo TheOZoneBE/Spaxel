@@ -357,4 +357,22 @@
 		<ypos>1</ypos>
 		<scale>4</scale>
 	</sprite>
+	<sprite>
+		<sheetname>class_select</sheetname>
+		<name>class_select_hover</name>
+		<width>24</width>
+		<height>24</height>
+		<xpos>0</xpos>
+		<ypos>0</ypos>
+		<scale>4</scale>
+	</sprite><sprite>
+	<sheetname>class_select</sheetname>
+	<name>class_select_click</name>
+	<width>24</width>
+	<height>24</height>
+	<xpos>1</xpos>
+	<ypos>0</ypos>
+	<scale>4</scale>
+</sprite>
+
 </sprites>

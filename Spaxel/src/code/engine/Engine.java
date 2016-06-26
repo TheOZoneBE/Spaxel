@@ -104,19 +104,6 @@ final public class Engine {
 		loading = false;
 	}
 
-	public void startGame(){
-		Player player = new Player(0, 0, 0, 100, spriteAtlas.get("red"),20,0.5);
-		player.setHitShape(hitShapeAtlas.get("hitshape_red"));
-		entities.addEntity(EntityType.PLAYER, player);
-
-		Item i = items.getItem("basic_laser");
-		entities.addEntity(i.getType(), i);
-		i = items.getItem("homing_missile");
-		entities.addEntity(i.getType(),i );
-		entities.addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50));
-
-	}
-
 	public void stopGame(){
 		((UICounter)UIAtlas.get("play").getElement("score_counter")).setCounter(0);
 		entities.clear();

@@ -18,7 +18,7 @@ public enum ActorType {
             Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("basic_missile");
             Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
+            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM,"basic_shield", Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -31,7 +31,7 @@ public enum ActorType {
             Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("homing_missile");
             Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
+            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM,"basic_shield", Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -44,7 +44,7 @@ public enum ActorType {
             Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("hacking_missile");
             Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
+            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, "basic_shield",Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -57,7 +57,7 @@ public enum ActorType {
             Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("cluster_missile");
             Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
+            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, "basic_shield",Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     };

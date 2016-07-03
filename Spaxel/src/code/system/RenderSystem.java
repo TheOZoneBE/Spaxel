@@ -101,7 +101,9 @@ public class RenderSystem extends GameSystem {
 				Entity e = toRender.next();
 				e.render(xOffset, yOffset, mainBuffer);
 			}
+			//Engine.getEngine().temp.render(xOffset, yOffset, mainBuffer);
 			latch.countDown();
+
 		}
 
 	}

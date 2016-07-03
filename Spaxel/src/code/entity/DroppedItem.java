@@ -27,7 +27,9 @@ public class DroppedItem extends Entity{
         if (collision(player)){
             setDead();
             if (Engine.getEngine().getEntityStream().getEntities(item.getType()).contains(item)){
-                item.setStacks(item.getStacks()+1);
+                int index = Engine.getEngine().getEntityStream().getEntities(item.getType()).indexOf(item);
+                Item i = (Item)Engine.getEngine().getEntityStream().getEntities(item.getType()).get(index);
+                i.setStacks(item.getStacks()+1);
             }
             else {
                 Engine.getEngine().getEntityStream().addEntity(item.getType(), item);

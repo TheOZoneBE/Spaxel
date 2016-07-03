@@ -11,8 +11,8 @@ import code.ui.UIBar;
 public class ProjectileItem extends Item{
 	private ProjectileFactory projFac;
 
-	public ProjectileItem(EntityType type, Sprite sprite, Sprite bar, int cooldown, ProjectileFactory projFac) {
-		super(type, sprite, bar, cooldown);
+	public ProjectileItem(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, ProjectileFactory projFac) {
+		super(type,name,  sprite, bar, cooldown);
 		this.projFac = projFac;
 
 	}
@@ -40,5 +40,10 @@ public class ProjectileItem extends Item{
 		reduceCD();
 		cooldownBar.setPercent((double)cd/(double)cooldown);
 	}
+
+	public Item copy(){
+		return new ProjectileItem(type,name, sprite, bar, cooldown, projFac);
+	}
+
 
 }

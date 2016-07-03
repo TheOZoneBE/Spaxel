@@ -22,10 +22,10 @@ public class ItemCatalogue {
 
     public Item getRandomItem(){
         List<Item> temp = new ArrayList<>(items.values());
-        return temp.get(random.nextInt(items.size()));
+        return temp.get(random.nextInt(items.size())).copy();
     }
 
     public Item getItem(String name){
-        return items.get(name);
+        return items.get(name).copy();
     }
 }

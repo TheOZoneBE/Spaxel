@@ -1,6 +1,5 @@
 package code.inventory;
 
-import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
@@ -14,10 +13,14 @@ public class Item extends Entity {
 	protected UIBar cooldownBar;
 	protected int cooldown;
 	protected int cd;
+	protected Sprite bar;
+	protected String name;
 	
-	public Item(EntityType type, Sprite sprite, Sprite bar, int cooldown){
+	public Item(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown){
 		super();
 		this.type = type;
+		this.bar = bar;
+		this.name = name;
 		stacks = 0;
 		this.sprite = sprite;
 		cooldownBar = new UIBar(0, 0, 48, Math.PI/2, bar);
@@ -66,6 +69,19 @@ public class Item extends Entity {
 
 	public void setStacks(int stacks){
 		this.stacks = stacks;
+	}
+
+	public Item copy(){
+		return null;
+	}
+
+	public boolean equals(Object o){
+		if (o instanceof Item){
+			return name.equals(((Item)o).name);
+		}
+		else {
+			return false;
+		}
 	}
 
 }

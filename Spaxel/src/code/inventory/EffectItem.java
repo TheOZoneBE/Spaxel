@@ -10,10 +10,10 @@ import code.input.Mouse;
 
 
 public class EffectItem extends Item{
-	private Sprite effectSprite;
+	protected Sprite effectSprite;
 
-	public EffectItem(EntityType type, Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite) {
-		super(type, sprite, bar, cooldown);
+	public EffectItem(EntityType type,String name,  Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite) {
+		super(type,name,  sprite, bar, cooldown);
 		this.effectSprite = effectSprite;
 	}
 

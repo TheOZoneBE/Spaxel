@@ -66,6 +66,7 @@ public class SystemUpdater {
             e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
             e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
             e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
+            //Engine.getEngine().temp.update();
         }
         try{
             latch.await();

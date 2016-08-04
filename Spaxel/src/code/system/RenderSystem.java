@@ -169,14 +169,14 @@ public class RenderSystem extends GameSystem {
 				for (int j = 0; j < h; j++){
 					if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
 						if (UIBuffer.getPixel(x+i, y+j) != 0){
-							Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
+							Game.game.pixels[x +i + (y+j)* Game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
 						}
 						else {
-							Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = mainBuffer.getPixel(x +i, y +j);
+							Game.game.pixels[x +i + (y+j)* Game.GAME_WIDTH] = mainBuffer.getPixel(x +i, y +j);
 						}
 					}
 					else {
-						Game.game.pixels[x +i + (y+j)*Game.game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
+						Game.game.pixels[x +i + (y+j)* Game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
 					}
 
 				}
@@ -189,8 +189,8 @@ public class RenderSystem extends GameSystem {
 		update(g);
 		int stepsize = 16;
 		CountDownLatch latch = new CountDownLatch(stepsize*stepsize);
-		int w = Game.game.GAME_WIDTH/stepsize;
-		int h = Game.game.GAME_HEIGHT/stepsize;
+		int w = Game.GAME_WIDTH /stepsize;
+		int h = Game.GAME_HEIGHT /stepsize;
 		for (int i = 0; i < stepsize; i++){
 			for (int j = 0; j < stepsize; j++){
 				exs.execute(new RenderBatch(i*w, j*h, w, h, latch));

@@ -71,10 +71,7 @@ public class Projection {
 		if (yMax < p.getYMin()){
 			return false;
 		}
-		if (yMin > p.getYMax()){
-			return false;
-		}		
-		return true;
+		return yMin <= p.getYMax();
 	}
 	
 	public void print(){

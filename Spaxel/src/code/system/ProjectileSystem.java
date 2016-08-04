@@ -26,7 +26,7 @@ public class ProjectileSystem extends GameSystem{
 		while (projs.hasNext()){
 			Entity proj = projs.next();
 			proj.update();
-			if (((Projectile)proj).isAlive()){
+			if (proj.isAlive()){
 				Iterator<Entity> enemies = entities.getIterator(EntityType.ENEMY);
 				while(enemies.hasNext()){
 					Entity e = enemies.next();
@@ -46,7 +46,7 @@ public class ProjectileSystem extends GameSystem{
 		while(projs.hasNext()){
 			Entity proj = projs.next();
 			proj.update();
-			if (((Projectile)proj).isAlive()){
+			if (proj.isAlive()){
 				if(player.collision(proj)){
 					Actor temp = (Actor)player;
 					Projectile p = (Projectile)proj;

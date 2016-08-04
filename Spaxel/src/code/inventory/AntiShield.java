@@ -3,19 +3,20 @@ package code.inventory;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
+import code.entity.Player;
 import code.graphics.Sprite;
 import code.projectiles.Projectile;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
- * Created by theo on 25-5-2016.
+ * Created by theo on 4-8-2016.
  */
-public class BasicShield extends ShieldItem {
+public class AntiShield extends ShieldItem{
     private int range = 100;
+    private double healingPerc = .25;
 
-    public BasicShield(EntityType type, String name, Sprite sprite,Sprite bar,  int cooldown,Sprite effectSprite, int maxCapactity) {
+    public AntiShield(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite, int maxCapactity) {
         super(type, name, sprite,bar, cooldown, effectSprite,maxCapactity );
     }
 
@@ -28,8 +29,14 @@ public class BasicShield extends ShieldItem {
                 Entity p = projectiles.next();
                 if (canAbsorb()){
                     if(p.distanceTo(player) < range){
-                        p.setDead();
-                        hit((Projectile)p);
+                        Projectile ins = (Projectile)p;
+                        hit(ins);
+                        Player pl = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+                        if(pl.getHealth() < pl.getMaxHealth()){
+                            double total = pl.getHealth() + healingPerc*ins.getDamage();
+                            pl.setHealth(total < pl.getMaxHealth() ? (int)total : pl.getMaxHealth());
+                        }
+                        ins.setDead();
                     }
                 }
                 else {
@@ -42,6 +49,6 @@ public class BasicShield extends ShieldItem {
     }
 
     public Item copy(){
-        return new BasicShield(type,name, sprite, bar, cooldown, effectSprite, maxCapactity);
+        return new AntiShield(type,name, sprite, bar, cooldown, effectSprite, maxCapactity);
     }
 }

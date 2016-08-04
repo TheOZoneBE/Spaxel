@@ -12,14 +12,12 @@ import code.ui.UIBar;
 public class Player extends Actor {
 	private int mouseX;
 	private int mouseY;
-	private double maxHealth;
 	private int xpToLevel;
 	private int xp;
 	private int level;
 
 	public Player(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
 		super(x, y, rot, health, sprite, maxspeed, acc);
-		maxHealth = health;
 		xpToLevel = 100;
 		level = 1;
 	}
@@ -69,17 +67,17 @@ public class Player extends Actor {
 			xp-= xpToLevel;
 			xpToLevel*=1.5;
 			maxHealth*=1.5;
-			health = (int)maxHealth;
+			health = maxHealth;
 		}
 
 		UIBar hp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
-		hp_bar.setPercent(health/maxHealth);
+		hp_bar.setPercent(health/(double)maxHealth);
 		UIBar xp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("xp_bar");
 		xp_bar.setPercent(xp/(double)xpToLevel);
 
 		Label hp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
 		Label xp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
-		hp_label.setText(health + " / " + (int)maxHealth);
+		hp_label.setText(health + " / " + maxHealth);
 		xp_label.setText(xp + " / " + xpToLevel);
 
 
@@ -104,6 +102,7 @@ public class Player extends Actor {
 
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
+		sprite.renderBlur(xPos, yPos, rot, render, .5);
 		sprite.render(xPos, yPos, rot, render);
 	}
 

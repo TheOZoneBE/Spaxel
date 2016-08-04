@@ -7,16 +7,15 @@ import code.graphics.Sprite;
 import code.projectiles.Projectile;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
- * Created by theo on 25-5-2016.
+ * Created by theo on 4-8-2016.
  */
-public class BasicShield extends ShieldItem {
+public class ForceShield extends ShieldItem {
     private int range = 100;
 
-    public BasicShield(EntityType type, String name, Sprite sprite,Sprite bar,  int cooldown,Sprite effectSprite, int maxCapactity) {
-        super(type, name, sprite,bar, cooldown, effectSprite,maxCapactity );
+    public ForceShield(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite, int maxCapactity) {
+        super(type, name, sprite, bar, cooldown, effectSprite, maxCapactity);
     }
 
     public void update(){
@@ -28,8 +27,10 @@ public class BasicShield extends ShieldItem {
                 Entity p = projectiles.next();
                 if (canAbsorb()){
                     if(p.distanceTo(player) < range){
-                        p.setDead();
-                        hit((Projectile)p);
+                        Projectile ins = (Projectile) p;
+                        hit(ins);
+                        ins.setRot(ins.getRot()+Math.PI);
+
                     }
                 }
                 else {
@@ -42,6 +43,6 @@ public class BasicShield extends ShieldItem {
     }
 
     public Item copy(){
-        return new BasicShield(type,name, sprite, bar, cooldown, effectSprite, maxCapactity);
+        return new ForceShield(type,name, sprite, bar, cooldown, effectSprite, maxCapactity);
     }
 }

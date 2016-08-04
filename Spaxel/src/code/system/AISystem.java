@@ -25,7 +25,7 @@ public class AISystem extends GameSystem {
 		while (enemies.hasNext()){
 			Entity e = enemies.next();
 			((Enemy)e).updateAI(player);
-			if (!((Enemy)e).isAlive()){
+			if (!e.isAlive()){
 				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
 				score.addToCounter(100);
 				player.setXp(player.getXp()+25);

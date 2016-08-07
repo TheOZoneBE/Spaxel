@@ -1,12 +1,14 @@
 package code.ui;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import code.engine.Engine;
+import code.engine.EntityType;
+import code.entity.Entity;
+import code.entity.Player;
 import code.graphics.RenderBuffer;
+import code.inventory.Item;
 
 public class UI{
 	private Controller controller;
@@ -26,6 +28,33 @@ public class UI{
 	public void render(Graphics g, RenderBuffer render){
 		for (UIElement u: elements.values()){
 			u.render(g, render);
+		}
+		List<Entity> players = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER);
+		if (!players.isEmpty()){
+			Player player = (Player)players.get(0);
+			Iterator<Item> toRender = player.getItemIterator(EntityType.MOUSE1ITEM);
+			int i = 0;
+			while (toRender.hasNext()){
+				Item e = toRender.next();
+				e.render(40, 40 + i * 72, g,  render);
+				i++;
+			}
+
+			toRender = player.getItemIterator(EntityType.MOUSE3ITEM);
+			i= 0;
+			while (toRender.hasNext()){
+				Item e = toRender.next();
+				e.render(1240, 40 + i * 72, g, render);
+				i++;
+			}
+
+			toRender = player.getItemIterator(EntityType.SHIPITEM);
+			i= 0;
+			while (toRender.hasNext()){
+				Item e = toRender.next();
+				e.render(386 + i * 72, 680,g,  render);
+				i++;
+			}
 		}
 	}
 

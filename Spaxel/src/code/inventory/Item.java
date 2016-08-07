@@ -1,29 +1,36 @@
 package code.inventory;
 
+import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
+import code.ui.Label;
 import code.ui.UIBar;
+import code.ui.UIElement;
 
-public class Item extends Entity {
+import java.awt.*;
+
+public class Item extends UIElement {
 	protected EntityType type;
 	protected int stacks;
 	protected Sprite sprite;
 	protected UIBar cooldownBar;
+	protected Label stackCounter;
 	protected int cooldown;
 	protected int cd;
 	protected Sprite bar;
 	protected String name;
 	
 	public Item(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown){
-		super();
+		super(0,0,null);
 		this.type = type;
 		this.bar = bar;
 		this.name = name;
 		stacks = 0;
 		this.sprite = sprite;
 		cooldownBar = new UIBar(0, 0, 48, Math.PI/2, bar);
+		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), Engine.getEngine().getFont(), 8);
 		this.cooldown = cooldown;
 		cd = 0;
 		life = -1;
@@ -43,8 +50,9 @@ public class Item extends Entity {
 		return type;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, Graphics g,  RenderBuffer render){
 		sprite.render(xPos, yPos, render);
+		stackCounter.render(xPos + 20, yPos + 20, g, render);
 	}
 
 	public int getCooldown(){
@@ -69,6 +77,7 @@ public class Item extends Entity {
 
 	public void setStacks(int stacks){
 		this.stacks = stacks;
+		stackCounter.setText(String.valueOf(stacks + 1));
 	}
 
 	public Item copy(){

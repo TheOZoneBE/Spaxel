@@ -14,10 +14,11 @@ public enum ActorType {
             Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("white"),20,0.5);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_white"));
             Item i = Engine.getEngine().getItems().getItem("basic_laser");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
+            player.addItem(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("basic_missile");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new ActiveShield(EntityType.SHIPITEM,"active_shield", Engine.getEngine().getSpriteAtlas().get("active_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("active_shield_effect"),50));
+            player.addItem(i.getType(), i);
+            i = new ActiveShield(EntityType.SHIPITEM,"active_shield", Engine.getEngine().getSpriteAtlas().get("active_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("active_shield_effect"),50);
+            player.addItem(i.getType(), i);
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -27,10 +28,11 @@ public enum ActorType {
             Player player = new Player(0, 0, 0, 100000, Engine.getEngine().getSpriteAtlas().get("red"),20,0.5);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_red"));
             Item i = Engine.getEngine().getItems().getItem("piercing_laser");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
+            player.addItem(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("homing_missile");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new ForceShield(EntityType.SHIPITEM,"force_shield", Engine.getEngine().getSpriteAtlas().get("force_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("force_shield_effect"),50));
+            player.addItem(i.getType(), i);
+            i = new ForceShield(EntityType.SHIPITEM,"force_shield", Engine.getEngine().getSpriteAtlas().get("force_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("force_shield_effect"),50);
+            player.addItem(i.getType(), i);
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -40,10 +42,11 @@ public enum ActorType {
             Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("green"),20,0.5);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
             Item i = Engine.getEngine().getItems().getItem("disrupt_laser");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
+            player.addItem(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("hacking_missile");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new AntiShield(EntityType.SHIPITEM, "anti_shield",Engine.getEngine().getSpriteAtlas().get("anti_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("anti_shield_effect"),50));
+            player.addItem(i.getType(), i);
+            i = new AntiShield(EntityType.SHIPITEM, "anti_shield",Engine.getEngine().getSpriteAtlas().get("anti_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("anti_shield_effect"),50);
+            player.addItem(i.getType(), i);
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -53,10 +56,11 @@ public enum ActorType {
             Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("blue"),20,0.5);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_blue"));
             Item i = Engine.getEngine().getItems().getItem("slowing_laser");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(), i);
+            player.addItem(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("cluster_missile");
-            Engine.getEngine().getEntityStream().addEntity(i.getType(),i );
-            Engine.getEngine().getEntityStream().addEntity(EntityType.SHIPITEM,new BasicShield(EntityType.SHIPITEM, "basic_shield",Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50));
+            player.addItem(i.getType(), i);
+            i = new BasicShield(EntityType.SHIPITEM, "basic_shield",Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50);
+            player.addItem(i.getType(), i);
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     };

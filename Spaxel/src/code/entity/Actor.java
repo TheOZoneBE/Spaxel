@@ -1,11 +1,11 @@
 package code.entity;
 
+import code.engine.EntityType;
 import code.graphics.Sprite;
 import code.inventory.Item;
 import code.inventory.StatusEffect;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by theo on 27-5-2016.
@@ -20,9 +20,7 @@ public class Actor extends Entity {
     protected double ydir;
     protected boolean canshoot;
     protected List<StatusEffect> effects;
-    protected List<Item> mouse1Items;
-    protected List<Item> mouse3Items;
-    protected List<Item> shipItems;
+    protected Map<EntityType, List<Item>> itemMap;
 
     public Actor(double x, double y, double rot,int health, Sprite sprite, double maxspeed, double acc){
         super(x, y, rot);
@@ -32,9 +30,11 @@ public class Actor extends Entity {
         this.acc = acc;
         maxHealth = health;
         effects = new ArrayList<>();
-        mouse1Items = new ArrayList<>();
-        mouse3Items = new ArrayList<>();
-        shipItems = new ArrayList<>();
+        itemMap = new HashMap<>();
+        itemMap.put(EntityType.MOUSE1ITEM, new ArrayList<>());
+        itemMap.put(EntityType.MOUSE3ITEM, new ArrayList<>());
+        itemMap.put(EntityType.SHIPITEM, new ArrayList<>());
+
         xdir =0;
         ydir = 0;
         canshoot = true;
@@ -101,5 +101,30 @@ public class Actor extends Entity {
 
     public void setMaxHealth(int maxHealth){
         this.maxHealth = maxHealth;
+    }
+
+    public List<Item> getItems(EntityType type){
+        return itemMap.get(type);
+    }
+
+    public Iterator<Item> getItemIterator(EntityType type){
+        return new Iterator<Item>() {
+            List<Item> iterating = itemMap.get(type);
+            int i = -1;
+            @Override
+            public boolean hasNext() {
+                return i < iterating.size() - 1;
+            }
+
+            @Override
+            public Item next() {
+                i++;
+                return iterating.get(i);
+            }
+        };
+    }
+
+    public void addItem(EntityType type, Item i){
+        itemMap.get(type).add(i);
     }
 }

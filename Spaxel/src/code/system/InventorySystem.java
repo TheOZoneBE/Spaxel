@@ -7,6 +7,8 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.Entity;
+import code.entity.Player;
+import code.inventory.Item;
 
 public class InventorySystem extends GameSystem{
 
@@ -15,24 +17,25 @@ public class InventorySystem extends GameSystem{
 	}
 	
 	public void update(){
-		Iterator<Entity> updating = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE1ITEM);
+		Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+		Iterator<Item> updating = player.getItemIterator(EntityType.MOUSE1ITEM);
 		while (updating.hasNext()){
 			Entity e = updating.next();
 			e.update();
 		}
-		updating = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE3ITEM);
+		updating = player.getItemIterator(EntityType.MOUSE3ITEM);
 		while (updating.hasNext()){
 			Entity e = updating.next();
 			e.update();
 		}
-		updating = Engine.getEngine().getEntityStream().getIterator(EntityType.SHIPITEM);
+		updating =player.getItemIterator(EntityType.SHIPITEM);
 		while (updating.hasNext()){
 			Entity e = updating.next();
 			e.update();
 		}
-		updating = Engine.getEngine().getEntityStream().getIterator(EntityType.DROPPEDITEM);
-		while (updating.hasNext()){
-			Entity e = updating.next();
+		Iterator<Entity> dropped = Engine.getEngine().getEntityStream().getIterator(EntityType.DROPPEDITEM);
+		while (dropped.hasNext()){
+			Entity e = dropped.next();
 			e.update();
 		}
 	}

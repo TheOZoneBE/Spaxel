@@ -3,6 +3,7 @@ package code.inventory;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
+import code.entity.Player;
 import code.graphics.Sprite;
 import code.projectiles.Projectile;
 
@@ -22,14 +23,16 @@ public class ActiveShield extends ShieldItem{
         super.update();
         if (canUpdate()){
             Iterator<Entity> projectiles = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
-            Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+            Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
             while(projectiles.hasNext()){
                 Entity p = projectiles.next();
                 if (canAbsorb()){
                     if(p.distanceTo(player) < range){
                         Projectile ins = (Projectile)p;
                         hit(ins);
-                        //todo: implement when items are in lists
+                        reduceCooldown(player.getItemIterator(EntityType.MOUSE1ITEM));
+                        reduceCooldown(player.getItemIterator(EntityType.MOUSE3ITEM));
+                        reduceCooldown(player.getItemIterator(EntityType.SHIPITEM));
                         ins.setDead();
                     }
                 }
@@ -39,6 +42,13 @@ public class ActiveShield extends ShieldItem{
                     break;
                 }
             }
+        }
+    }
+
+    public void reduceCooldown(Iterator<Item> items){
+        while (items.hasNext()){
+            Item i = items.next();
+            i.setCD(i.getCD() == 0 ? 0 : i.getCD()-1);
         }
     }
 

@@ -12,8 +12,10 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.Entity;
+import code.entity.Player;
 import code.graphics.RenderBuffer;
 import code.input.Mouse;
+import code.inventory.Item;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer mainBuffer;
@@ -64,6 +66,7 @@ public class RenderSystem extends GameSystem {
 
 		@Override
 		public void run() {
+
 			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.TRAILSEGMENT);
 			while(toRender.hasNext()){
 				Entity e = toRender.next();
@@ -119,30 +122,6 @@ public class RenderSystem extends GameSystem {
 		@Override
 		public void run() {
 			UIBuffer.clear();
-			Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE1ITEM);
-			int i = 0;
-			while (toRender.hasNext()){
-				Entity e = toRender.next();
-				e.render(40, 40 + i * 72, UIBuffer);
-				i++;
-			}
-
-			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.MOUSE3ITEM);
-			i= 0;
-			while (toRender.hasNext()){
-				Entity e = toRender.next();
-				e.render(1240, 40 + i * 72, UIBuffer);
-				i++;
-			}
-
-			toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.SHIPITEM);
-			i= 0;
-			while (toRender.hasNext()){
-				Entity e = toRender.next();
-				e.render(386 + i * 72, 680, mainBuffer);
-				i++;
-			}
-
 			UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 			uis.getCurrentUI().render(graphics, UIBuffer);
 			latch.countDown();

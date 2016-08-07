@@ -1,5 +1,6 @@
 package code.engine;
 
+import java.awt.*;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ final public class Engine {
 	private boolean loading = true;
 	private double updateTime;
 	public SpaceCarrier temp;
+	private Font font;
 
 	public static Engine getEngine(){
 		return engine;
@@ -58,6 +60,14 @@ final public class Engine {
 	}
 	
 	public void initialize(){
+		font = null;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+
 		//asset loading
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
 		Game.game.loadingScreen.getProgress().setPercent(0.05);
@@ -185,6 +195,14 @@ final public class Engine {
 
 	public void setUpdateTime(double updateTime){
 		this.updateTime = updateTime;
+	}
+
+	public void setFont(Font font){
+		this.font = font;
+	}
+
+	public Font getFont(){
+		return font;
 	}
 
 }

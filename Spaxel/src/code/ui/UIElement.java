@@ -34,4 +34,8 @@ public class UIElement extends Entity {
 		sprite.render((int)x,(int)y, render);
 	}
 
+	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
+		sprite.render(xPos,yPos, render);
+	}
+
 }

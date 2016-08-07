@@ -6,6 +6,7 @@ import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Player;
+import code.inventory.Item;
 import code.projectiles.Projectile;
 import code.input.Keyboard;
 import code.input.Mouse;
@@ -29,7 +30,7 @@ public class ActorSystem extends GameSystem{
 		player.update(keys, mouseX, mouseY);
 
 		if (mouse.mouse1){
-			Iterator<Entity> mouse1 = entities.getIterator(EntityType.MOUSE1ITEM);
+			Iterator<Item> mouse1 = player.getItemIterator(EntityType.MOUSE1ITEM);
 			while (mouse1.hasNext()){
 				Entity e = mouse1.next();
 				ProjectileItem i = (ProjectileItem) e;
@@ -40,7 +41,7 @@ public class ActorSystem extends GameSystem{
 			}
 		}
 		if (mouse.mouse3){
-			Iterator<Entity> mouse3 = entities.getIterator(EntityType.MOUSE3ITEM);
+			Iterator<Item> mouse3 = player.getItemIterator(EntityType.MOUSE3ITEM);
 			while (mouse3.hasNext()){
 				Entity e = mouse3.next();
 				ProjectileItem i = (ProjectileItem) e;

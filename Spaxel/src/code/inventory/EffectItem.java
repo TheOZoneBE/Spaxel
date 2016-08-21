@@ -8,6 +8,8 @@ import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Mouse;
 
+import java.awt.*;
+
 
 public class EffectItem extends Item{
 	protected Sprite effectSprite;
@@ -17,8 +19,8 @@ public class EffectItem extends Item{
 		this.effectSprite = effectSprite;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
-		sprite.render(xPos, yPos, render);
+	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
+		super.render(xPos, yPos, g, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 		if (canUpdate()){
 			Mouse mouse = Engine.getEngine().getMouse();

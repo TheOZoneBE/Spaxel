@@ -28,6 +28,7 @@ public enum ActorType {
             Player player = new Player(0, 0, 0, 100000, Engine.getEngine().getSpriteAtlas().get("red"),20,0.5);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_red"));
             Item i = Engine.getEngine().getItems().getItem("piercing_laser");
+            i.setStacks(5);
             player.addItem(i.getType(), i);
             i = Engine.getEngine().getItems().getItem("homing_missile");
             player.addItem(i.getType(), i);

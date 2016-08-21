@@ -2,11 +2,16 @@ package code.inventory;
 
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.entity.Entity;
 import code.graphics.RenderBuffer;
 import code.projectiles.Projectile;
 import code.factories.ProjectileFactory;
 import code.graphics.Sprite;
 import code.ui.UIBar;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectileItem extends Item{
 	private ProjectileFactory projFac;
@@ -17,10 +22,16 @@ public class ProjectileItem extends Item{
 
 	}
 
-	public Projectile activate(double x, double y, double rot){
-		if (canActivate())
-			return projFac.make(x, y, rot);
-		return null;
+	public void activate(double x, double y, double rot){
+		if (canActivate()){
+			double offset = stacks*-0.05;
+			List<Entity> projectiles = new ArrayList<>();
+			for (int i = 0; i<=stacks; i++){
+				projectiles.add(projFac.make(x, y, rot + offset));
+				offset += 0.1;
+			}
+			Engine.getEngine().getEntityStream().addEntities(EntityType.PLAYER_PROJECTILE, projectiles);
+		}
 	}
 
 	public boolean canActivate(){
@@ -31,8 +42,8 @@ public class ProjectileItem extends Item{
 		return false;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
-		sprite.render(xPos, yPos, render);
+	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
+		super.render(xPos, yPos, g, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 	}
 

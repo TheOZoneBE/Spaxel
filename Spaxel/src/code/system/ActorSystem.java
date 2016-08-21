@@ -12,7 +12,9 @@ import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.ProjectileItem;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ActorSystem extends GameSystem{
 
@@ -34,10 +36,7 @@ public class ActorSystem extends GameSystem{
 			while (mouse1.hasNext()){
 				Entity e = mouse1.next();
 				ProjectileItem i = (ProjectileItem) e;
-				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
-				if (p != null){
-					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
-				}
+				i.activate(player.getX(), player.getY(), player.getRot());
 			}
 		}
 		if (mouse.mouse3){
@@ -45,10 +44,7 @@ public class ActorSystem extends GameSystem{
 			while (mouse3.hasNext()){
 				Entity e = mouse3.next();
 				ProjectileItem i = (ProjectileItem) e;
-				Projectile p = i.activate(player.getX(), player.getY(), player.getRot());
-				if (p != null){
-					entities.addEntity(EntityType.PLAYER_PROJECTILE, p);
-				}
+				i.activate(player.getX(), player.getY(), player.getRot());
 			}
 		}
 

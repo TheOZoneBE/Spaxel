@@ -51,9 +51,10 @@ final public class Engine {
 	private Engine(){
 		this.keys = new Keyboard();
 		this.mouse = new Mouse();
+		/*
 		Game.game.addKeyListener(keys);
 		Game.game.addMouseListener(mouse);
-		Game.game.addMouseMotionListener(mouse);
+		Game.game.addMouseMotionListener(mouse);*/
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;

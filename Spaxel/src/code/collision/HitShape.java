@@ -5,9 +5,9 @@ import java.util.List;
 
 import code.graphics.RenderBuffer;
 import code.math.Axis;
-import code.math.Matrix;
+import code.math.MatrixF;
 import code.math.Projection;
-import code.math.VectorD;
+import code.math.VectorF;
 
 
 public class HitShape {
@@ -30,10 +30,10 @@ public class HitShape {
 		return hitPoints;
 	}
 	
-	public HitShape update(Matrix updateMatrix){
+	public HitShape update(MatrixF updateMatrixF){
 		HitShape updated = new HitShape();
 		for (HitPoint h: hitPoints){
-			updated.addHitPoint(h.update(updateMatrix));
+			updated.addHitPoint(h.update(updateMatrixF));
 		}
 		return updated;
 	}
@@ -76,8 +76,8 @@ public class HitShape {
 		if(aSize > 1){
 			for (int i= 0; i < aSize; i++){
 				// getting vectors for normal
-				VectorD v1 = hitpointsA.get(i).getVector();
-				VectorD v2 = hitpointsA.get((i + 1) % aSize).getVector();
+				VectorF v1 = hitpointsA.get(i).getVector();
+				VectorF v2 = hitpointsA.get((i + 1) % aSize).getVector();
 				//build normal
 				Axis normal = new Axis();
 				normal.initializeNormal(v1, v2);
@@ -88,8 +88,8 @@ public class HitShape {
 		if(bSize > 1){
 			for (int i= 0; i < bSize; i++){
 				// getting vectors for normal
-				VectorD v1 = hitpointsB.get(i).getVector();
-				VectorD v2 = hitpointsB.get((i + 1) % bSize).getVector();
+				VectorF v1 = hitpointsB.get(i).getVector();
+				VectorF v2 = hitpointsB.get((i + 1) % bSize).getVector();
 				//build normal
 				Axis normal = new Axis();
 				normal.initializeNormal(v1, v2);

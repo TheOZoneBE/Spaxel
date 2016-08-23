@@ -34,7 +34,7 @@ public class ProjectileSystem extends GameSystem{
 						Actor temp = (Actor)e;
 						Projectile p = (Projectile)proj;
 						p.hit(temp);
-						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2, 4, 150, temp.getSprite().getRandomPart(3,3)));
+						entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2f, 4, 150, temp.getSprite().getRandomPart(3,3)));
 						score.addToCounter(p.getDamage());
 					}
 				}
@@ -51,7 +51,7 @@ public class ProjectileSystem extends GameSystem{
 					Actor temp = (Actor)player;
 					Projectile p = (Projectile)proj;
 					p.hit(temp);
-					entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2, 4, 150, temp.getSprite().getRandomPart(3,3)));
+					entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .2f, 4, 150, temp.getSprite().getRandomPart(3,3)));
 				}
 			}
 		}

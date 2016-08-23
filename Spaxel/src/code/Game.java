@@ -4,20 +4,21 @@ import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.awt.image.Raster;
-import java.nio.ByteBuffer;
 
 import code.engine.LoadingScreen;
 import code.engine.SystemUpdater;
-import code.engine.Engine;
+import code.graphics.Spritesheet;
+import code.math.MatrixF;
+import code.math.MatrixMaker;
+import code.util.BufferUtils;
+import code.util.ShaderUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -41,6 +42,27 @@ public class Game implements Runnable {
 
 	public LoadingScreen loadingScreen;
 	public SystemUpdater updater;
+
+	public float[] testVertices = new float[]{
+			-160,-160,0,
+			-160,160,0,
+			160,160,0,
+			160,-160,0
+	};
+
+	byte[] indices = new byte[] {
+			0, 1, 3,
+			3, 1, 2
+	};
+
+	float[] tcs = new float[] {
+			0, 0,
+			0, 1,
+			1, 1,
+			1, 0
+	};
+
+	int shaderprogram;
 
 	public static void main(String[] args) {
 		game = new Game();
@@ -74,6 +96,9 @@ public class Game implements Runnable {
 		}
 
 	}
+
+	private int vbo, vao,ibo, tbo;
+	private Spritesheet test;
 
 	public void intitialize(){
 		GLFWErrorCallback.createPrint(System.err).set();
@@ -116,6 +141,40 @@ public class Game implements Runnable {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
+
+		shaderprogram = ShaderUtils.load("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
+
+		MatrixF projection_matrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
+
+		glUseProgram(shaderprogram);
+
+		int uniform_pr = glGetUniformLocation(shaderprogram, "projection_matrix");
+		int uniform_sa = glGetUniformLocation(shaderprogram, "tex_sampler");
+
+		glUniformMatrix4fv(uniform_pr, false, projection_matrix.toFloatBuffer());
+		glUniform1i(uniform_sa, 1);
+
+		vao = glGenVertexArrays();
+		glBindVertexArray(vao);
+
+		vbo = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(testVertices), GL_STATIC_DRAW);
+		glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+		glEnableVertexAttribArray(0);
+
+		tbo = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, tbo);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(tcs), GL_STATIC_DRAW);
+		glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
+		glEnableVertexAttribArray(1);
+
+		ibo = glGenBuffers();
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.createByteBuffer(indices), GL_STATIC_DRAW);
+
+		test = new Spritesheet(32,32,"/spritesheets/ships.png");
+		glBindTexture(GL_TEXTURE_2D, test.getId());
 		/*
 		Shader.loadAll();
 
@@ -166,7 +225,7 @@ public class Game implements Runnable {
 				fps = 0;
 			}
 			long deltatime = System.nanoTime() - start;
-			Engine.getEngine().setUpdateTime((double)deltatime/ 20000000);
+			Engine.getEngine().setUpdateTime((float)deltatime/ 20000000);
 			accTime += deltatime;*/
 		}
 
@@ -175,12 +234,14 @@ public class Game implements Runnable {
 
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
+		glBindTexture(GL_TEXTURE_2D, test.getId());
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
 		glfwSwapBuffers(window); // swap the color buffers
 
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
 		glfwPollEvents();
+
 		/*
 		clearText();
 		BufferStrategy bs = getBufferStrategy();

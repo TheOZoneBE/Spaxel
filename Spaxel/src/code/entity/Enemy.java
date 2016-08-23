@@ -14,7 +14,7 @@ import java.util.List;
 public class Enemy extends Actor {
     private int cooldown;
 
-    public Enemy(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
+    public Enemy(float x, float y, float rot, int health, Sprite sprite, float maxspeed, float acc) {
         super(x, y, rot, health, sprite, maxspeed,acc);
     }
 
@@ -34,14 +34,14 @@ public class Enemy extends Actor {
         if (health < 0) {
             alive = false;
         } else {
-            rot = Math.PI + Math.atan2(player.getX() - x, player.getY() - y);
-            double dx = 0;
-            double dy = 0;
+            rot = (float)(Math.PI + Math.atan2(player.getX() - x, player.getY() - y));
+            float dx = 0;
+            float dy = 0;
 
-            dx = -Math.sin(rot) * acc;
-            dy = -Math.cos(rot) * acc;
+            dx =(float)-Math.sin(rot) * acc;
+            dy = (float)-Math.cos(rot) * acc;
 
-            double dist = distanceTo(player);
+            float dist = distanceTo(player);
             if (dist > 250) {
                 if (controlSpeed(xdir + dx, ydir + dy)) {
                     xdir += dx;

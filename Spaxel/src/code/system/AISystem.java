@@ -26,7 +26,7 @@ public class AISystem extends GameSystem {
 			Entity e = enemies.next();
 			((Enemy)e).updateAI(player);
 			if (!e.isAlive()){
-				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
+				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .5f, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
 				score.addToCounter(100);
 				player.setXp(player.getXp()+25);
 				if (rand.nextInt(100) < 25){
@@ -38,7 +38,7 @@ public class AISystem extends GameSystem {
 			k++;
 		}
 		if(k < 5){
-			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20, .25);
+			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20, .25f);
 			e.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
 			e.update();
 			Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY, e);

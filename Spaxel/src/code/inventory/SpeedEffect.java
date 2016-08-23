@@ -7,9 +7,9 @@ import code.entity.Enemy;
  * Created by theo on 12-5-2016.
  */
 public class SpeedEffect extends StatusEffect {
-    private double speedModifier;
+    private float speedModifier;
 
-    public SpeedEffect(int life, double speedModifier){
+    public SpeedEffect(int life, float speedModifier){
         super(life);
         this.speedModifier = speedModifier;
     }

@@ -10,7 +10,7 @@ import code.inventory.SpeedEffect;
  * Created by theo on 13-5-2016.
  */
 public class HackingMissile extends Projectile {
-    public HackingMissile(double x, double y, double rot, Sprite sprite, Sprite trail, int damage, int life, double speed) {
+    public HackingMissile(float x, float y, float rot, Sprite sprite, Sprite trail, int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 

@@ -29,7 +29,7 @@ public class ForceShield extends ShieldItem {
                     if(p.distanceTo(player) < range){
                         Projectile ins = (Projectile) p;
                         hit(ins);
-                        ins.setRot(ins.getRot()+Math.PI);
+                        ins.setRot((float)(ins.getRot()+Math.PI));
 
                     }
                 }

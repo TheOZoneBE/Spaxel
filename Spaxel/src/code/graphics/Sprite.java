@@ -100,8 +100,8 @@ public class Sprite {
 	//scale not hardcoded, just the responsibility of the calling entity
 	//if rot is 0 its ignored, same with transparency, blur considers scale and will have a matrix of size 2*scale+1 and calculates it at runtime
 	//maybe consider caching this to improve performance
-	//render(int x, int y, int scale, double rot, double transparency, boolean blur, RenderBuffer render)
-	public void renderSprite(int x, int y, int scale, double rot, double transparency, boolean blur, RenderBuffer render){
+	//render(int x, int y, int scale, float rot, float transparency, boolean blur, RenderBuffer render)
+	public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, RenderBuffer render){
 		boolean trans = transparency != 0;
 
 		int midWidth;
@@ -120,8 +120,8 @@ public class Sprite {
 		}
 
 		if (rot != 0){
-			double dx = Math.cos(rot);
-			double dy = Math.sin(rot);
+			float dx = (float)Math.cos(rot);
+			float dy = (float)Math.sin(rot);
 
 			Integer[] blurredPixels = blurCache.get(scale);
 
@@ -162,9 +162,9 @@ public class Sprite {
 		return null;
 	}
 
-	public void renderBlur(int x, int y, double rot, RenderBuffer render,double transparency ){
-		double dx = Math.cos(rot);
-		double dy = Math.sin(rot);
+	public void renderBlur(int x, int y, float rot, RenderBuffer render,float transparency ){
+		float dx = (float)Math.cos(rot);
+		float dy = (float)Math.sin(rot);
 
 		int midWidth = (width + 2) * scale / 2;
 		int midHeight = (height + 2) * scale / 2;
@@ -177,7 +177,7 @@ public class Sprite {
 		}
 	}
 
-	public void renderBlur(int x, int y, RenderBuffer render, double transparency){
+	public void renderBlur(int x, int y, RenderBuffer render, float transparency){
 		int midWidth = (width + 2) * scale / 2;
 		int midHeight = (height + 2) * scale / 2;
 
@@ -188,9 +188,9 @@ public class Sprite {
 		}
 	}
 
-	public void renderBlur(int x, int y, double rot, int scale, RenderBuffer render) {
-		double dx = Math.cos(rot);
-		double dy = Math.sin(rot);
+	public void renderBlur(int x, int y, float rot, int scale, RenderBuffer render) {
+		float dx = (float)Math.cos(rot);
+		float dy = (float)Math.sin(rot);
 
 		int midWidth = width * scale / 2;
 		int midHeight = height * scale / 2;
@@ -213,7 +213,7 @@ public class Sprite {
 		}
 	}
 
-	public void render(int x, int y, double rot, RenderBuffer render) {
+	public void render(int x, int y, float rot, RenderBuffer render) {
 		render(x, y, rot,scale, render);
 	}
 
@@ -221,9 +221,9 @@ public class Sprite {
 		render(x,y, scale, render);
 	}
 
-	public void render(int x, int y, double rot, RenderBuffer render,double transparency ){
-		double dx = Math.cos(rot);
-		double dy = Math.sin(rot);
+	public void render(int x, int y, float rot, RenderBuffer render,float transparency ){
+		float dx = (float)Math.cos(rot);
+		float dy = (float)Math.sin(rot);
 
 		int midWidth = width * scale / 2;
 		int midHeight = height * scale / 2;
@@ -236,7 +236,7 @@ public class Sprite {
 		}
 	}
 
-	public void render(int x, int y, RenderBuffer render, double transparency){
+	public void render(int x, int y, RenderBuffer render, float transparency){
 		int midWidth = width * scale / 2;
 		int midHeight = height * scale / 2;
 		for (int i = -midWidth; i < midWidth; i++) {
@@ -246,9 +246,9 @@ public class Sprite {
 		}
 	}
 
-	public void render(int x, int y, double rot, int scale, RenderBuffer render) {
-		double dx = Math.cos(rot);
-		double dy = Math.sin(rot);
+	public void render(int x, int y, float rot, int scale, RenderBuffer render) {
+		float dx = (float)Math.cos(rot);
+		float dy = (float)Math.sin(rot);
 
 		int midWidth = width * scale / 2;
 		int midHeight = height * scale / 2;

@@ -22,7 +22,7 @@ public class ShieldItem extends EffectItem {
 
     public void update(){
         reduceCD();
-        cooldownBar.setPercent((double)cd/(double)cooldown);
+        cooldownBar.setPercent((float)cd/(float)cooldown);
     }
 
 

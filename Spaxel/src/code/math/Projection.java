@@ -1,13 +1,13 @@
 package code.math;
 
 public class Projection {
-	private double xMin;
-	private double xMax;
-	private double yMin;
-	private double yMax;
+	private float xMin;
+	private float xMax;
+	private float yMin;
+	private float yMax;
 	private boolean empty;
 	
-	public Projection(VectorD vec){
+	public Projection(VectorF vec){
 		xMin = vec.getValue(0);
 		xMax = vec.getValue(0);
 		yMin = vec.getValue(1);
@@ -19,7 +19,7 @@ public class Projection {
 		empty = true;
 	}
 	
-	public void addVector(VectorD vec){
+	public void addVector(VectorF vec){
 		if(empty){
 			xMin = vec.getValue(0);
 			xMax = vec.getValue(0);
@@ -28,8 +28,8 @@ public class Projection {
 			empty = false;
 		}
 		else{
-			double x = vec.getValue(0);
-			double y = vec.getValue(1);
+			float x = vec.getValue(0);
+			float y = vec.getValue(1);
 			if (x < xMin){
 				xMin = x;
 			}
@@ -45,19 +45,19 @@ public class Projection {
 		}		
 	}
 	
-	public double getXMin(){
+	public float getXMin(){
 		return xMin;
 	}
 	
-	public double getXMax(){
+	public float getXMax(){
 		return xMax;
 	}
 	
-	public double getYMin(){
+	public float getYMin(){
 		return yMin;
 	}
 	
-	public double getYMax(){
+	public float getYMax(){
 		return yMax;
 	}
 	

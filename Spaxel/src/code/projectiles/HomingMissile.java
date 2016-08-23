@@ -12,17 +12,17 @@ import java.util.List;
  * Created by theo on 13-5-2016.
  */
 public class HomingMissile extends Projectile {
-    public HomingMissile(double x, double y, double rot, Sprite sprite,Sprite trail,  int damage, int life, double speed) {
+    public HomingMissile(float x, float y, float rot, Sprite sprite,Sprite trail,  int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 
     public void update(){
         Iterator<Entity> enemies = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
-        double minDist = 0;
+        float minDist = 0;
         Entity closest = null;
         while (enemies.hasNext()){
             Entity e = enemies.next();
-            double dis = distanceTo(e);
+            float dis = distanceTo(e);
             if (minDist == 0 || dis < minDist){
                 minDist = dis;
                 closest = e;
@@ -30,7 +30,7 @@ public class HomingMissile extends Projectile {
 
         }
         if (closest != null) {
-            double rotToGet = Math.atan2(x - closest.getX(),y - closest.getY());
+            float rotToGet = (float) Math.atan2(x - closest.getX(),y - closest.getY());
             if (rotToGet < 0){
                 rotToGet += 2*Math.PI;
             }

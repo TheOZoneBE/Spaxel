@@ -9,7 +9,7 @@ import code.engine.Engine;
 import code.graphics.RenderBuffer;
 import code.graphics.Sprite;
 import code.input.Mouse;
-import code.math.VectorD;
+import code.math.VectorF;
 
 public class UIButton extends UIElement {
 	private String clickAction;
@@ -44,7 +44,7 @@ public class UIButton extends UIElement {
 			int mouseX = mouse.getX();
 			int mouseY = mouse.getY();
 			boolean buttonDown = mouse.mouse1;
-			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
+			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
 			if (inside && buttonDown){
 				click = true;
 			}

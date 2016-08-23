@@ -36,7 +36,7 @@ final public class Engine {
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
-	private double updateTime;
+	private float updateTime;
 	public SpaceCarrier temp;
 	private Font font;
 
@@ -71,27 +71,27 @@ final public class Engine {
 
 		//asset loading
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.05);
+		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
 		soundList = sounds.loadSounds("/resources/sound.xml");
 
 		Game.game.loadingScreen.getMessage().setText("Loading sprites");
-		Game.game.loadingScreen.getProgress().setPercent(0.25);
+		Game.game.loadingScreen.getProgress().setPercent(0.25f);
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
 		spriteAtlas.put("hp_bar", new Sprite(1,4,2, 0xff00ff00));
 		spriteAtlas.put("xp_bar", new Sprite(1,4,2, 0xff0000ff));
 
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
-		Game.game.loadingScreen.getProgress().setPercent(0.4);
+		Game.game.loadingScreen.getProgress().setPercent(0.4f);
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
 
 
 		Game.game.loadingScreen.getMessage().setText("Loading items");
-		Game.game.loadingScreen.getProgress().setPercent(0.65);
+		Game.game.loadingScreen.getProgress().setPercent(0.65f);
 		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
 
 		Game.game.loadingScreen.getMessage().setText("Loading UI");
-		Game.game.loadingScreen.getProgress().setPercent(0.8);
+		Game.game.loadingScreen.getProgress().setPercent(0.8f);
 		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 
 		((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
@@ -100,7 +100,7 @@ final public class Engine {
 		entities.cleanup();
 
 		Game.game.loadingScreen.getMessage().setText("Initializing systems");
-		Game.game.loadingScreen.getProgress().setPercent(0.9);
+		Game.game.loadingScreen.getProgress().setPercent(0.9f);
 		//systems
 		addSystem(new SoundSystem());
 		addSystem(new InventorySystem());
@@ -190,11 +190,11 @@ final public class Engine {
 		gameState = gs;
 	}
 
-	public double getUpdateTime(){
+	public float getUpdateTime(){
 		return updateTime;
 	}
 
-	public void setUpdateTime(double updateTime){
+	public void setUpdateTime(float updateTime){
 		this.updateTime = updateTime;
 	}
 

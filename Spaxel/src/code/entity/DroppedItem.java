@@ -11,7 +11,7 @@ import code.inventory.Item;
 public class DroppedItem extends Entity{
     private Item item;
 
-    public DroppedItem(double x, double y, Item item, int life) {
+    public DroppedItem(float x, float y, Item item, int life) {
         super(x, y);
         this.item = item;
         this.life = life;

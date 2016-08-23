@@ -26,7 +26,7 @@ public class RenderBuffer {
         }
     }
 
-    public void setPixel(int x, int y, double tpc, int value){
+    public void setPixel(int x, int y, float tpc, int value){
         if (x >= 0 && x < width && y >= 0 && y < height && value != 0xffff00ff) {
             int original = pixels[x + y * width];
             int r =  (original & 0xff0000) >> 16;
@@ -46,7 +46,7 @@ public class RenderBuffer {
         }
     }
 
-    public void setPixel(int i, double tpc, int value) {
+    public void setPixel(int i, float tpc, int value) {
         if (i >= 0 && i < pixels.length && value != 0xffff00ff) {
             if (value == 0){
                 pixels[i] = value;
@@ -102,15 +102,15 @@ public class RenderBuffer {
     /*
 	 * distortion algorithm, not centered and very intensive
 	 
-	public void distort(RenderBuffer original, double k){
-		double aspect = (double)width/(double)height;
+	public void distort(RenderBuffer original, float k){
+		float aspect = (float)width/(float)height;
 		aspect*=aspect;
-		for (double i = 0; i < width; i++){
-			for (double j =0; j < height; j++){
-				double r2 = aspect*i*i + j*j;
-				double f = 1+r2*k;
-				double i2 = f*i;
-				double j2 = f*j;
+		for (float i = 0; i < width; i++){
+			for (float j =0; j < height; j++){
+				float r2 = aspect*i*i + j*j;
+				float f = 1+r2*k;
+				float i2 = f*i;
+				float j2 = f*j;
 				if(i2>0 && i2<width&& j2>0&&j2<height){
 					setPixel((int)i,(int)j, original.getPixel((int)(i*f), (int)(j*f)));
 				}				
@@ -128,8 +128,8 @@ public class RenderBuffer {
 			for (int j = 0; j < height; j++){
 				int dx = i - midWidth;
 				int dy = j - midHeight;
-				double fx = Math.abs((double)dx/(double)midWidth);
-				double fy = Math.abs((double)dy/(double)midHeight);
+				float fx = Math.abs((float)dx/(float)midWidth);
+				float fy = Math.abs((float)dy/(float)midHeight);
 				fx = Math.sqrt(fx);
 				fy = Math.sqrt(fy);
 				setPixel(i, j, original.getPixel(midWidth+(int)(dx*fx), midHeight+(int)(dy*fy)));
@@ -143,13 +143,13 @@ public class RenderBuffer {
 	public void distort(RenderBuffer original){
 		int midWidth = width/2;
 		int midHeight = height/2;
-		double distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
+		float distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
 		for (int i = 0; i < width; i++){
 			for (int j = 0; j < height; j++){
 				int dx = i - midWidth;
 				int dy = j - midHeight;
-				double distance2 = Math.sqrt(dx*dx+dy*dy);
-				double f = distance2/distance;
+				float distance2 = Math.sqrt(dx*dx+dy*dy);
+				float f = distance2/distance;
 				setPixel(i, j, original.getPixel(midWidth+(int)(dx*f), midHeight+(int)(dy*f)));
 			}
 		}
@@ -161,15 +161,15 @@ public class RenderBuffer {
 	public void distort(RenderBuffer original){
 		int midWidth = width/2;
 		int midHeight = height/2;
-		double distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
+		float distance = Math.sqrt(midWidth*midWidth + midHeight*midHeight);
 		for (int i = 0; i < width; i++){
 			for (int j = 0; j < height; j++){
 				int color = original.getPixel(i, j);
 				if (color != 0){
 					int dx = i - midWidth;
 					int dy = j - midHeight;
-					double distance2 = Math.sqrt(dx*dx+dy*dy);
-					double f = distance2/distance;
+					float distance2 = Math.sqrt(dx*dx+dy*dy);
+					float f = distance2/distance;
 					for (int k = 0; k < f*1; k++){
 						for (int l = 0; l < f*1; l++){
 							setPixel(i+(int)(dx*f) + k,j+(int)(dy*f)+l , color);

@@ -8,7 +8,7 @@ import code.graphics.Sprite;
  * Created by theo on 11-5-2016.
  */
 public class PiercingLaser extends Projectile {
-    public PiercingLaser(double x, double y, double rot, Sprite sprite,Sprite trail, int damage, int life, double speed) {
+    public PiercingLaser(float x, float y, float rot, Sprite sprite,Sprite trail, int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 

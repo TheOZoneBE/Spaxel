@@ -22,9 +22,9 @@ public class ProjectileItem extends Item{
 
 	}
 
-	public void activate(double x, double y, double rot){
+	public void activate(float x, float y, float rot){
 		if (canActivate()){
-			double offset = stacks*-0.05;
+			float offset = stacks*-0.05f;
 			List<Entity> projectiles = new ArrayList<>();
 			for (int i = 0; i<=stacks; i++){
 				projectiles.add(projFac.make(x, y, rot + offset));
@@ -49,7 +49,7 @@ public class ProjectileItem extends Item{
 
 	public void update(){
 		reduceCD();
-		cooldownBar.setPercent((double)cd/(double)cooldown);
+		cooldownBar.setPercent((float)cd/(float)cooldown);
 	}
 
 	public Item copy(){

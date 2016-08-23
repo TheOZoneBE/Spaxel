@@ -78,7 +78,7 @@ public class UIElementLoader extends EntityLoader {
 		    	int width = Integer.parseInt((nextChild.getElementsByTagName("width").item(0).getTextContent()));
 		    	int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
-			    UIBar temp = new UIBar(xPos, yPos, width, rot*Math.PI/2, spriteAtlas.get(sprite_normal));
+			    UIBar temp = new UIBar(xPos, yPos, width, rot*(float)Math.PI/2, spriteAtlas.get(sprite_normal));
 			    temp.setPercent(1);
 			    uis.get(ui).addElement(name, temp);
 		    }

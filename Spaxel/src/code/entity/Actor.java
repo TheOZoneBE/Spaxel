@@ -14,15 +14,15 @@ public class Actor extends Entity {
     protected int health;
     protected int maxHealth;
     protected Sprite sprite;
-    protected double maxspeed;
-    protected double acc;
-    protected double xdir;
-    protected double ydir;
+    protected float maxspeed;
+    protected float acc;
+    protected float xdir;
+    protected float ydir;
     protected boolean canshoot;
     protected List<StatusEffect> effects;
     protected Map<EntityType, List<Item>> itemMap;
 
-    public Actor(double x, double y, double rot,int health, Sprite sprite, double maxspeed, double acc){
+    public Actor(float x, float y, float rot,int health, Sprite sprite, float maxspeed, float acc){
         super(x, y, rot);
         this.health = health;
         this.sprite = sprite;
@@ -45,8 +45,8 @@ public class Actor extends Entity {
         super.update();
     }
 
-    public boolean controlSpeed(double dx, double dy) {
-        double speed = Math.sqrt(dx * dx + dy * dy);
+    public boolean controlSpeed(float dx, float dy) {
+        float speed = (float)Math.sqrt(dx * dx + dy * dy);
         return speed < maxspeed;
     }
 
@@ -71,19 +71,19 @@ public class Actor extends Entity {
         return sprite;
     }
 
-    public double getMaxspeed() {
+    public float getMaxspeed() {
         return maxspeed;
     }
 
-    public void setMaxspeed(double maxspeed) {
+    public void setMaxspeed(float maxspeed) {
         this.maxspeed = maxspeed;
     }
 
-    public double getAcc() {
+    public float getAcc() {
         return acc;
     }
 
-    public void setAcc(double acc) {
+    public void setAcc(float acc) {
         this.acc = acc;
     }
 

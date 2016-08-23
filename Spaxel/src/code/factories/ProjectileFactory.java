@@ -9,9 +9,9 @@ public class ProjectileFactory {
 	protected Sprite trail;
 	protected int damage;
 	protected int life;
-	protected double speed;
+	protected float speed;
 	
-	public ProjectileFactory(Sprite sprite, Sprite trail, int damage, int life, double speed){
+	public ProjectileFactory(Sprite sprite, Sprite trail, int damage, int life, float speed){
 		this.sprite = sprite;
 		this.trail = trail;
 		this.damage = damage;
@@ -19,7 +19,7 @@ public class ProjectileFactory {
 		this.speed = speed;
 	}
 	
-	public Projectile make(double x, double y, double rot){
+	public Projectile make(float x, float y, float rot){
 		return null;
 	}
 	

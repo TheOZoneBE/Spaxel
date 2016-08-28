@@ -30,4 +30,10 @@ public class BufferUtils {
 		return result;
 	}
 
+	public static FloatBuffer combineFloatBuffers(FloatBuffer one, FloatBuffer two){
+		FloatBuffer result = FloatBuffer.allocate(one.capacity() + two.capacity());
+		result.put(one).put(two).flip();
+		return result;
+	}
+
 }

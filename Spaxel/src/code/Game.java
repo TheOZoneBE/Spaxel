@@ -7,10 +7,13 @@ import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL31.*;
+import static org.lwjgl.opengl.GL33.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.nio.FloatBuffer;
 
 import code.engine.LoadingScreen;
 import code.engine.SystemUpdater;
@@ -97,8 +100,9 @@ public class Game implements Runnable {
 
 	}
 
-	private int vbo, vao,ibo, tbo;
+	private int vbo, vao,ibo, tbo, textureID_Alpha, offset;
 	private Spritesheet test;
+	private int uniform_tr;
 
 	public void intitialize(){
 		GLFWErrorCallback.createPrint(System.err).set();
@@ -150,9 +154,13 @@ public class Game implements Runnable {
 
 		int uniform_pr = glGetUniformLocation(shaderprogram, "projection_matrix");
 		int uniform_sa = glGetUniformLocation(shaderprogram, "tex_sampler");
+		uniform_tr = glGetUniformLocation(shaderprogram, "transformation_matrix");
+
+		MatrixF temp = MatrixMaker.getTransformationMatrix(150,150,50,.5f);
 
 		glUniformMatrix4fv(uniform_pr, false, projection_matrix.toFloatBuffer());
 		glUniform1i(uniform_sa, 1);
+		glUniformMatrix3fv(uniform_tr, false, temp.toFloatBuffer());
 
 		vao = glGenVertexArrays();
 		glBindVertexArray(vao);
@@ -175,6 +183,19 @@ public class Game implements Runnable {
 
 		test = new Spritesheet(32,32,"/spritesheets/ships.png");
 		glBindTexture(GL_TEXTURE_2D, test.getId());
+
+		offset = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, offset);
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2,4,GL_FLOAT, false, 4*4,0);
+		glVertexAttribDivisor(2,1);
+
+		textureID_Alpha = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, textureID_Alpha);
+		glEnableVertexAttribArray(3);
+		glVertexAttribPointer(3,3,GL_FLOAT, false, 3*4,0);
+		glVertexAttribDivisor(3,1);
+
 		/*
 		Shader.loadAll();
 
@@ -195,14 +216,22 @@ public class Game implements Runnable {
 
 		int ups = 0;
 		int fps = 0;
-		long accTime = 20000000;
+		long accTime = 0;
 		while (running) {
 			if (glfwWindowShouldClose(window)){
 				stop();
 			}
-			render();
-			/*
 			long start = System.nanoTime();
+			render();
+			fps++;
+			accTime+= System.nanoTime() - start;
+			if ( accTime >= 20000000*50){
+				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
+				fps = 0;
+				accTime = 0;
+			}
+			/*
+
 			if (accTime >= 20000000) {
 				accTime -= 20000000;
 				if (!Engine.getEngine().isLoading()) {
@@ -231,13 +260,22 @@ public class Game implements Runnable {
 
 
 	}
-
+	private float i = 0;
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-		glBindTexture(GL_TEXTURE_2D, test.getId());
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
-		glfwSwapBuffers(window); // swap the color buffers
 
+		glBindBuffer(GL_ARRAY_BUFFER, offset);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{50f,50f, i, 1f, -50f, -50f, -i, 1f}), GL_DYNAMIC_DRAW);
+
+		glBindBuffer(GL_ARRAY_BUFFER, textureID_Alpha);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{0,0,1,.5f,.5f,.5f}), GL_DYNAMIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER,0);
+
+		glBindTexture(GL_TEXTURE_2D, test.getId());
+		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,2);
+
+		glfwSwapBuffers(window); // swap the color buffers
+		i+=.005;
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
 		glfwPollEvents();

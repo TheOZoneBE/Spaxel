@@ -77,7 +77,7 @@ public class Entity {
 	}
 	
 	public void updateHitShape(){
-		MatrixF updateMatrixF = MatrixMaker.getTransformationMatrix(x, y, rot);
+		MatrixF updateMatrixF = MatrixMaker.getTransformationMatrix(x, y, rot,1);
 		updHitShape = oriHitShape.update(updateMatrixF);
 	}
 	

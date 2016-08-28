@@ -84,4 +84,22 @@ public class MatrixF {
 		return BufferUtils.createFloatBuffer(matrix);
 	}
 
+	public MatrixF multiply(float value){
+		float[] sol = new float[m*n];
+		for (int i = 0; i< m*n; i++){
+			sol[i] = matrix[i]*value;
+		}
+		return new MatrixF(m , n , sol);
+	}
+
+	public MatrixF transpose(){
+		float[] sol = new float[m*n];
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				sol[i*n+j] = matrix[i+j*m];
+			}
+		}
+		return new MatrixF(n, m, sol);
+	}
+
 }

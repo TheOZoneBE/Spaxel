@@ -1,19 +1,17 @@
 package code.entity;
 
-import code.engine.Engine;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
-import javafx.scene.control.TreeItem;
+import code.graphics.SpriteData;
 
 /**
  * Created by theo on 18-5-2016.
  */
 public class TrailSegment extends Entity{
-    private Sprite trail;
+    private SpriteData trail;
     private TrailSegment previous;
     private float maxLife;
 
-    public TrailSegment(float x, float y, float rot, Sprite trail, TrailSegment previous){
+    public TrailSegment(float x, float y, float rot, SpriteData trail, TrailSegment previous){
         super(x,y, rot);
         this.trail = trail;
         this.previous = previous;
@@ -31,7 +29,7 @@ public class TrailSegment extends Entity{
                 float xStep = (x - previous.getX())/steps;
                 float yStep = (y - previous.getY())/steps;
                 for (int i = 0; i < steps; i++){
-                    trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos, render,1 - (life/maxLife)/2);
+                    //TODO trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos, render,1 - (life/maxLife)/2);
                 }
             }
             else {
@@ -49,7 +47,7 @@ public class TrailSegment extends Entity{
                 for (int i = 1; i <= steps; i++){
                     float xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                     float yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
-                    trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, render,1 - (life/maxLife)/2);
+                    //TODO trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, render,1 - (life/maxLife)/2);
                 }
             }
         }

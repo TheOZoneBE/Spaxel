@@ -2,15 +2,15 @@ package code.entity;
 
 import code.engine.Engine;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class Particle extends Entity{
 	private float deltaRot;
 	private float dir;
 	private float speed;
-	private Sprite sprite;
+	private SpriteData sprite;
 	
-	public Particle(float x, float y, float rot, float deltaRot, float dir, float speed, int life, Sprite sprite){
+	public Particle(float x, float y, float rot, float deltaRot, float dir, float speed, int life, SpriteData sprite){
 		super(x, y, rot);
 		this.deltaRot = deltaRot;
 		this.dir = dir;
@@ -28,7 +28,7 @@ public class Particle extends Entity{
 	}
 	
 	public void render(int xPos, int yPos, RenderBuffer render){
-		sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+		//TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
 	}
 
 }

@@ -2,22 +2,22 @@ package code.ui;
 
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 import java.awt.*;
 
 public class UIElement extends Entity {
 	protected UI ui;
-	protected Sprite sprite;
+	protected SpriteData sprite;
 	
 	
-	public UIElement(int x, int y, Sprite sprite){
+	public UIElement(int x, int y, SpriteData sprite){
 		super(x, y);
 		this.sprite = sprite;
 		life = -1;
 	}
 	
-	public UIElement(int x, int y, float rot, Sprite sprite){
+	public UIElement(int x, int y, float rot, SpriteData sprite){
 		super(x, y, rot);
 		this.sprite = sprite;
 	}
@@ -31,11 +31,11 @@ public class UIElement extends Entity {
 	}
 	
 	public void render(Graphics g, RenderBuffer render){
-		sprite.render((int)x,(int)y, render);
+		//TODO sprite.render((int)x,(int)y, render);
 	}
 
 	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
-		sprite.render(xPos,yPos, render);
+		//TODO sprite.render(xPos,yPos, render);
 	}
 
 }

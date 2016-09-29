@@ -3,7 +3,7 @@ package code.entity;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.system.UISystem;
 import code.ui.Label;
@@ -16,7 +16,7 @@ public class Player extends Actor {
 	private int xp;
 	private int level;
 
-	public Player(float x, float y, float rot, int health, Sprite sprite, float maxspeed, float acc) {
+	public Player(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc) {
 		super(x, y, rot, health, sprite, maxspeed, acc);
 		xpToLevel = 100;
 		level = 1;
@@ -102,8 +102,8 @@ public class Player extends Actor {
 
 	public void render(int xPos, int yPos, RenderBuffer render) {
 		rot = (float)(Math.PI + Math.atan2(((float) (mouseX - xPos)), (float) (mouseY - yPos)));
-		sprite.renderBlur(xPos, yPos, rot, render, .5f);
-		sprite.render(xPos, yPos, rot, render);
+		//TODO sprite.renderBlur(xPos, yPos, rot, render, .5f);
+		//TODO sprite.render(xPos, yPos, rot, render);
 	}
 
 }

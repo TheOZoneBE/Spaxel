@@ -14,12 +14,17 @@ import static org.lwjgl.system.MemoryUtil.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import code.engine.LoadingScreen;
 import code.engine.SystemUpdater;
+import code.graphics.SpriteData;
 import code.graphics.Spritesheet;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
+import code.resource.SpriteLoader;
 import code.util.BufferUtils;
 import code.util.ShaderUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -103,6 +108,7 @@ public class Game implements Runnable {
 	private int vbo, vao,ibo, tbo, textureID_Alpha, offset;
 	private Spritesheet test;
 	private int uniform_tr;
+	private Map<String, SpriteData> sprites;
 
 	public void intitialize(){
 		GLFWErrorCallback.createPrint(System.err).set();
@@ -140,7 +146,7 @@ public class Game implements Runnable {
 		// Set the clear color
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-		glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_DEPTH_TEST);
 		glActiveTexture(GL_TEXTURE1);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -181,7 +187,10 @@ public class Game implements Runnable {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.createByteBuffer(indices), GL_STATIC_DRAW);
 
-		test = new Spritesheet(32,32,"/spritesheets/ships.png");
+		SpriteLoader loader = new SpriteLoader();
+		sprites = loader.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
+		test = loader.spritesheetMap.get("uisheet");
+		//test = new Spritesheet(32,32,"/spritesheets/ships.png");
 		glBindTexture(GL_TEXTURE_2D, test.getId());
 
 		offset = glGenBuffers();
@@ -193,7 +202,7 @@ public class Game implements Runnable {
 		textureID_Alpha = glGenBuffers();
 		glBindBuffer(GL_ARRAY_BUFFER, textureID_Alpha);
 		glEnableVertexAttribArray(3);
-		glVertexAttribPointer(3,3,GL_FLOAT, false, 3*4,0);
+		glVertexAttribPointer(3,4,GL_FLOAT, false, 4*4,0);
 		glVertexAttribDivisor(3,1);
 
 		/*
@@ -264,18 +273,23 @@ public class Game implements Runnable {
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
+		SpriteData classselect = sprites.get("class_select_hover");
+		SpriteData classselect2 = sprites.get("class_select_click");
+
 		glBindBuffer(GL_ARRAY_BUFFER, offset);
 		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{50f,50f, i, 1f, -50f, -50f, -i, 1f}), GL_DYNAMIC_DRAW);
 
+
+
 		glBindBuffer(GL_ARRAY_BUFFER, textureID_Alpha);
-		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{0,0,1,.5f,.5f,.5f}), GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.combineFloatBuffers(classselect.getProperties(), classselect2.getProperties()), GL_DYNAMIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER,0);
 
 		glBindTexture(GL_TEXTURE_2D, test.getId());
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,2);
 
 		glfwSwapBuffers(window); // swap the color buffers
-		i+=.005;
+		//i+=.005;
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
 		glfwPollEvents();

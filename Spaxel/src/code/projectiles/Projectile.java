@@ -7,17 +7,17 @@ import code.entity.Actor;
 import code.entity.Entity;
 import code.entity.TrailSegment;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.math.VectorF;
 
 public class Projectile extends Entity {
-	protected Sprite sprite;
-	protected Sprite trail;
+	protected SpriteData sprite;
+	protected SpriteData trail;
 	protected int damage;
 	protected float speed;
 	private TrailSegment previous;
 
-	public Projectile(float x, float y, float rot, Sprite sprite,Sprite trail, int damage, int life, float speed) {
+	public Projectile(float x, float y, float rot, SpriteData sprite, SpriteData trail, int damage, int life, float speed) {
 		super(x, y, rot);
 		this.sprite = sprite;
 		this.trail = trail;
@@ -41,7 +41,7 @@ public class Projectile extends Entity {
 
 	@Override
 	public void render(int xPos, int yPos, RenderBuffer render) {
-		sprite.render((int) (x + xPos), (int) (y + yPos),rot, render);
+		//TODO sprite.render((int) (x + xPos), (int) (y + yPos),rot, render);
 
 	}
 
@@ -50,7 +50,7 @@ public class Projectile extends Entity {
 		return previous;
 	}
 
-	public Sprite getSprite() {
+	public SpriteData getSprite() {
 		return sprite;
 	}
 	

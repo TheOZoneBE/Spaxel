@@ -3,10 +3,9 @@ package code.entity;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.inventory.StatusEffect;
 import code.projectiles.BasicLaser;
-import code.projectiles.Projectile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class Enemy extends Actor {
     private int cooldown;
 
-    public Enemy(float x, float y, float rot, int health, Sprite sprite, float maxspeed, float acc) {
+    public Enemy(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc) {
         super(x, y, rot, health, sprite, maxspeed,acc);
     }
 
@@ -70,7 +69,7 @@ public class Enemy extends Actor {
 
     @Override
     public void render(int xPos, int yPos, RenderBuffer render) {
-        sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+        //TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
     }
 
 }

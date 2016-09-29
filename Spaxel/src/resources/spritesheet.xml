@@ -7,6 +7,7 @@
 		<height>-1</height>
 	</sheet>
 	-->
+	<!--
 	<sheet>
 		<path>projectiles.png</path>
 		<name>projectiles</name>
@@ -60,5 +61,12 @@
 		<name>class_select</name>
 		<width>48</width>
 		<height>24</height>
+	</sheet>-->
+	<!-- new -->
+	<sheet>
+		<path>UISheet.png</path>
+		<name>uisheet</name>
+		<width>512</width>
+		<height>512</height>
 	</sheet>
 </spritesheet>

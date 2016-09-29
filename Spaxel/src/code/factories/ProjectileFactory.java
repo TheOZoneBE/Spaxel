@@ -1,17 +1,17 @@
 package code.factories;
 
 import code.projectiles.Projectile;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class ProjectileFactory {
 
-	protected Sprite sprite;
-	protected Sprite trail;
+	protected SpriteData sprite;
+	protected SpriteData trail;
 	protected int damage;
 	protected int life;
 	protected float speed;
 	
-	public ProjectileFactory(Sprite sprite, Sprite trail, int damage, int life, float speed){
+	public ProjectileFactory(SpriteData sprite, SpriteData trail, int damage, int life, float speed){
 		this.sprite = sprite;
 		this.trail = trail;
 		this.damage = damage;

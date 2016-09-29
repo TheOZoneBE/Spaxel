@@ -5,13 +5,13 @@ package code.graphics;
  */
 public class AnimSprite {
     private int nrOfFrames;
-    private Sprite[] frames;
+    private SpriteData[] frames;
     private int currentFrame;
     private int frameDuration;
     private int frameTime;
     private boolean pause;
 
-    public AnimSprite(int nrOfFrames,int frameDuration, Sprite[] frames){
+    public AnimSprite(int nrOfFrames,int frameDuration, SpriteData[] frames){
         this.nrOfFrames = nrOfFrames;
         this.frameDuration = frameDuration;
         this.frames = frames;
@@ -53,27 +53,27 @@ public class AnimSprite {
     }
 
     public void render(int x, int y, float rot, RenderBuffer render) {
-        frames[currentFrame].render(x, y, rot, render);
+        //TODO frames[currentFrame].render(x, y, rot, render);
     }
 
     public void render(int x, int y, RenderBuffer render) {
-        frames[currentFrame].render(x,y, render);
+        //TODO frames[currentFrame].render(x,y, render);
     }
 
     public void render(int x, int y, float rot, RenderBuffer render,float transparency ){
-        frames[currentFrame].render(x,y, rot, render, transparency);
+        //TODO frames[currentFrame].render(x,y, rot, render, transparency);
     }
 
     public void render(int x, int y, RenderBuffer render, float transparency){
-        frames[currentFrame].render(x, y, render, transparency);
+        //TODO frames[currentFrame].render(x, y, render, transparency);
     }
 
     public void render(int x, int y, float rot, int scale, RenderBuffer render) {
-        frames[currentFrame].render(x, y, rot, scale, render);
+        //TODO frames[currentFrame].render(x, y, rot, scale, render);
     }
 
     public void render(int x, int y, int scale, RenderBuffer render) {
-        frames[currentFrame].render(x, y, scale, render);
+        //TODO frames[currentFrame].render(x, y, scale, render);
     }
 
 

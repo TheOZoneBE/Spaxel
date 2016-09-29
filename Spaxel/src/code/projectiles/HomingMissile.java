@@ -3,16 +3,15 @@ package code.projectiles;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by theo on 13-5-2016.
  */
 public class HomingMissile extends Projectile {
-    public HomingMissile(float x, float y, float rot, Sprite sprite,Sprite trail,  int damage, int life, float speed) {
+    public HomingMissile(float x, float y, float rot, SpriteData sprite, SpriteData trail, int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 

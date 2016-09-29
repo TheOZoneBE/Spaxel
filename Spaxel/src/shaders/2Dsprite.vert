@@ -3,7 +3,7 @@
 layout (location = 0) in vec4 position;
 layout (location = 1) in vec2 tex_coord;
 layout (location = 2) in vec4 tfm_comp;
-layout (location = 3) in vec3 tex_offset_alpha;
+layout (location = 3) in vec4 tex_offset_alpha;
 
 
 uniform mat4 projection_matrix;
@@ -11,7 +11,7 @@ uniform mat4 view_matrix = mat4(1.0);
 uniform mat3 transformation_matrix = mat3(1.0);
 
 out vec2 pass_tex_coord;
-out vec3 pass_tex_offset_alpha;
+out vec4 pass_tex_offset_alpha;
 
 void main()
 {

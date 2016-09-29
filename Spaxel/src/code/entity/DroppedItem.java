@@ -38,6 +38,6 @@ public class DroppedItem extends Entity{
     }
 
     public void render (int xPos, int yPos, RenderBuffer render){
-        item.getSprite().render((int) (x + xPos), (int) (y+ yPos), 1, render);
+        //TODO item.getSprite().render((int) (x + xPos), (int) (y+ yPos), 1, render);
     }
 }

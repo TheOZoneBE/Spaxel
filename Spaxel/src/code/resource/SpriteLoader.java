@@ -6,14 +6,15 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.graphics.Spritesheet;
 
 public class SpriteLoader extends EntityLoader{
+	public Map<String, Spritesheet> spritesheetMap = new HashMap<>();
 	
-	public Map<String, Sprite> loadSprites(String sheets, String sprites){
+	public Map<String, SpriteData> loadSprites(String sheets, String sprites){
 		Map<String, Spritesheet> spritesheetAtlas = new HashMap<String, Spritesheet>();
-		Map<String, Sprite> spriteAtlas = new HashMap<String, Sprite>();		
+		Map<String, SpriteData> spriteAtlas = new HashMap<String, SpriteData>();
 		super.loadFile(sheets);
 		//load all the spritesheets
 		NodeList nodelist = doc.getElementsByTagName("sheet");
@@ -36,9 +37,13 @@ public class SpriteLoader extends EntityLoader{
 		    int spriteHeight = Integer.parseInt((nextChild.getElementsByTagName("height").item(0).getTextContent()));
 		    int spriteXPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 		    int spriteYPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
-		    int spriteScale = Integer.parseInt((nextChild.getElementsByTagName("scale").item(0).getTextContent()));		    
-		    spriteAtlas.put(spriteName, new Sprite(spriteWidth, spriteHeight,spriteXPos, spriteYPos, spriteScale, spritesheetAtlas.get(spritesheetName)));
+		    int spriteScale = Integer.parseInt((nextChild.getElementsByTagName("scale").item(0).getTextContent()));
+			//TODO change this
+			if(spritesheetName.equals("uisheet")){
+				spriteAtlas.put(spriteName, new SpriteData(spriteWidth, spriteHeight,spriteXPos, spriteYPos, spriteScale, spritesheetAtlas.get(spritesheetName)));
+			}
 		}
+		spritesheetMap = spritesheetAtlas;
 		return spriteAtlas;
 	}
 

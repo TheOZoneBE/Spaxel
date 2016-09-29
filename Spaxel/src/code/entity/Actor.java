@@ -1,7 +1,7 @@
 package code.entity;
 
 import code.engine.EntityType;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.inventory.Item;
 import code.inventory.StatusEffect;
 
@@ -13,7 +13,7 @@ import java.util.*;
 public class Actor extends Entity {
     protected int health;
     protected int maxHealth;
-    protected Sprite sprite;
+    protected SpriteData sprite;
     protected float maxspeed;
     protected float acc;
     protected float xdir;
@@ -22,7 +22,7 @@ public class Actor extends Entity {
     protected List<StatusEffect> effects;
     protected Map<EntityType, List<Item>> itemMap;
 
-    public Actor(float x, float y, float rot,int health, Sprite sprite, float maxspeed, float acc){
+    public Actor(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc){
         super(x, y, rot);
         this.health = health;
         this.sprite = sprite;
@@ -67,7 +67,7 @@ public class Actor extends Entity {
 
 
 
-    public Sprite getSprite(){
+    public SpriteData getSprite(){
         return sprite;
     }
 

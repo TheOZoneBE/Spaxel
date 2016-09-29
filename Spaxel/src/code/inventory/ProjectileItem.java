@@ -4,10 +4,8 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.graphics.RenderBuffer;
-import code.projectiles.Projectile;
 import code.factories.ProjectileFactory;
-import code.graphics.Sprite;
-import code.ui.UIBar;
+import code.graphics.SpriteData;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import java.util.List;
 public class ProjectileItem extends Item{
 	private ProjectileFactory projFac;
 
-	public ProjectileItem(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, ProjectileFactory projFac) {
+	public ProjectileItem(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown, ProjectileFactory projFac) {
 		super(type,name,  sprite, bar, cooldown);
 		this.projFac = projFac;
 

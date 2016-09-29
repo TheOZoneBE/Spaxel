@@ -7,22 +7,22 @@ import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.input.Mouse;
 import code.math.VectorF;
 
 public class UIButton extends UIElement {
 	private String clickAction;
 	private Label label;
-	private Sprite normal;
-	private Sprite hover;
-	private Sprite clicked;
-	private Sprite locked;
+	private SpriteData normal;
+	private SpriteData hover;
+	private SpriteData clicked;
+	private SpriteData locked;
 	private boolean click;
 	private boolean disabled;
 	private boolean hovering;
 
-	public UIButton(int x, int y, Label label, String clickAction, Sprite sprite, Sprite hover, Sprite clicked, Sprite locked)  {
+	public UIButton(int x, int y, Label label, String clickAction, SpriteData sprite, SpriteData hover, SpriteData clicked, SpriteData locked)  {
 		super(x, y, sprite);
 		this.label = label;
 		this.clickAction = clickAction;
@@ -75,12 +75,12 @@ public class UIButton extends UIElement {
 	}
 
 	public void render(Graphics g, RenderBuffer render){
-		sprite.render((int)x,(int)y, render);
+		//TODO sprite.render((int)x,(int)y, render);
 		if (click){
-			clicked.render((int)x,(int)y, render);
+			//TODO clicked.render((int)x,(int)y, render);
 		}
 		else if (hovering){
-			hover.render((int)x,(int)y, render);
+			//TODO hover.render((int)x,(int)y, render);
 		}
 		label.render(g, render);
 	}

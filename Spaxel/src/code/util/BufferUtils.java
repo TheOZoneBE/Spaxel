@@ -31,7 +31,7 @@ public class BufferUtils {
 	}
 
 	public static FloatBuffer combineFloatBuffers(FloatBuffer one, FloatBuffer two){
-		FloatBuffer result = FloatBuffer.allocate(one.capacity() + two.capacity());
+		FloatBuffer result = ByteBuffer.allocateDirect((one.capacity() + two.capacity())<<2).order(ByteOrder.nativeOrder()).asFloatBuffer();
 		result.put(one).put(two).flip();
 		return result;
 	}

@@ -7,13 +7,10 @@ import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
-import code.entity.Player;
 import code.entity.SpaceCarrier;
-import code.graphics.AnimSprite;
-import code.graphics.Spritesheet;
 import code.sound.Sound;
 import code.system.RenderSystem;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.input.Mouse;
 import code.inventory.*;
@@ -29,7 +26,7 @@ final public class Engine {
 	private Mouse mouse;
 	private EntityStream entities;
 	private List<Sound> soundList;
-	private Map<String, Sprite> spriteAtlas;
+	private Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
@@ -78,8 +75,8 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading sprites");
 		Game.game.loadingScreen.getProgress().setPercent(0.25f);
 		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
-		spriteAtlas.put("hp_bar", new Sprite(1,4,2, 0xff00ff00));
-		spriteAtlas.put("xp_bar", new Sprite(1,4,2, 0xff0000ff));
+		spriteAtlas.put("hp_bar", new SpriteData(1,4,2, 0xff00ff00));
+		spriteAtlas.put("xp_bar", new SpriteData(1,4,2, 0xff0000ff));
 
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		Game.game.loadingScreen.getProgress().setPercent(0.4f);
@@ -154,7 +151,7 @@ final public class Engine {
 		return entities;
 	}
 	
-	public Map<String, Sprite> getSpriteAtlas(){
+	public Map<String, SpriteData> getSpriteAtlas(){
 		return spriteAtlas;
 	}
 	

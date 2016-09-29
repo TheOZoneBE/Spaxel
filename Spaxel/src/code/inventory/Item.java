@@ -2,9 +2,8 @@ package code.inventory;
 
 import code.engine.Engine;
 import code.engine.EntityType;
-import code.entity.Entity;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.ui.Label;
 import code.ui.UIBar;
 import code.ui.UIElement;
@@ -14,15 +13,15 @@ import java.awt.*;
 public class Item extends UIElement {
 	protected EntityType type;
 	protected int stacks;
-	protected Sprite sprite;
+	protected SpriteData sprite;
 	protected UIBar cooldownBar;
 	protected Label stackCounter;
 	protected int cooldown;
 	protected int cd;
-	protected Sprite bar;
+	protected SpriteData bar;
 	protected String name;
 	
-	public Item(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown){
+	public Item(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown){
 		super(0,0,null);
 		this.type = type;
 		this.bar = bar;
@@ -51,7 +50,7 @@ public class Item extends UIElement {
 	}
 
 	public void render(int xPos, int yPos, Graphics g,  RenderBuffer render){
-		sprite.render(xPos, yPos, render);
+		//TODO sprite.render(xPos, yPos, render);
 		stackCounter.render(xPos + 20, yPos + 20, g, render);
 	}
 
@@ -67,7 +66,7 @@ public class Item extends UIElement {
 		this.cd = cd;
 	}
 
-	public Sprite getSprite(){
+	public SpriteData getSprite(){
 		return sprite;
 	}
 

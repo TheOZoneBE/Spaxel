@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 import code.collision.HitShape;
 import code.engine.Engine;
 import code.ui.Label;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class UIElementLoader extends EntityLoader {
 	
@@ -25,7 +25,7 @@ public class UIElementLoader extends EntityLoader {
 		}		
 		
 		Map<String, UI> uis = new HashMap<>();
-		Map<String, Sprite> spriteAtlas = engine.getSpriteAtlas();
+		Map<String, SpriteData> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
 		uis.put("main", new UI());
 		uis.put("play", new UI());

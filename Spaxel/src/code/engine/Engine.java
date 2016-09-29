@@ -19,6 +19,8 @@ import code.resource.*;
 import code.ui.UI;
 import code.ui.UIButton;
 import code.ui.UICounter;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GLCapabilities;
 
 final public class Engine {
 	private final static Engine engine = new Engine();
@@ -36,6 +38,7 @@ final public class Engine {
 	private float updateTime;
 	public SpaceCarrier temp;
 	private Font font;
+	public GLCapabilities capabilities;
 
 	public static Engine getEngine(){
 		return engine;

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import code.engine.Engine;
 import code.engine.LoadingScreen;
 import code.engine.SystemUpdater;
 import code.graphics.SpriteData;
@@ -30,6 +31,7 @@ import code.util.ShaderUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GLCapabilities;
 
 
 public class Game implements Runnable {
@@ -50,12 +52,13 @@ public class Game implements Runnable {
 
 	public LoadingScreen loadingScreen;
 	public SystemUpdater updater;
+	public GLCapabilities capabilities;
 
 	public float[] testVertices = new float[]{
-			-160,-160,0,
-			-160,160,0,
-			160,160,0,
-			160,-160,0
+			-1,-1,0,
+			-1,1,0,
+			1,1,0,
+			1,-1,0
 	};
 
 	byte[] indices = new byte[] {
@@ -81,16 +84,17 @@ public class Game implements Runnable {
 	}
 
 	public Game() {
-		/*
 		loadingScreen = new LoadingScreen();
-		updater = new SystemUpdater();*/
+		updater = new SystemUpdater();
 	}
 
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
+		initialize();
 		thread.start();
-		//Engine.getEngine().initialize();
+		Engine.getEngine().initialize();
+
 	}
 
 	public synchronized void stop() {
@@ -105,12 +109,12 @@ public class Game implements Runnable {
 
 	}
 
-	private int vbo, vao,ibo, tbo, textureID_Alpha, offset;
+	private int vbo, vao,ibo, tbo, textureID_Alpha, offset, sin_cos;
 	private Spritesheet test;
 	private int uniform_tr;
 	private Map<String, SpriteData> sprites;
 
-	public void intitialize(){
+	public void initialize(){
 		GLFWErrorCallback.createPrint(System.err).set();
 
 		if ( !glfwInit() )
@@ -142,6 +146,7 @@ public class Game implements Runnable {
 		glfwShowWindow(window);
 
 		GL.createCapabilities();
+		capabilities = GL.getCapabilities();
 
 		// Set the clear color
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -205,25 +210,16 @@ public class Game implements Runnable {
 		glVertexAttribPointer(3,4,GL_FLOAT, false, 4*4,0);
 		glVertexAttribDivisor(3,1);
 
-		/*
-		Shader.loadAll();
-
-		Matrix4f pr_matrix = Matrix4f.orthographic(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
-		Shader.BG.setUniformMat4f("pr_matrix", pr_matrix);
-		Shader.BG.setUniform1i("tex", 1);
-
-		Shader.BIRD.setUniformMat4f("pr_matrix", pr_matrix);
-		Shader.BIRD.setUniform1i("tex", 1);
-
-		Shader.PIPE.setUniformMat4f("pr_matrix", pr_matrix);
-		Shader.PIPE.setUniform1i("tex", 1);*/
+		sin_cos = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, sin_cos);
+		glEnableVertexAttribArray(4);
+		glVertexAttribPointer(4,3,GL_FLOAT, false, 3*4,0);
+		glVertexAttribDivisor(4,1);
 	}
 
 	public void run() {
-		intitialize();
+		GL.setCapabilities(Game.game.capabilities);
 
-
-		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
 		while (running) {
@@ -231,53 +227,40 @@ public class Game implements Runnable {
 				stop();
 			}
 			long start = System.nanoTime();
-			render();
-			fps++;
-			accTime+= System.nanoTime() - start;
-			if ( accTime >= 20000000*50){
-				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
-				fps = 0;
-				accTime = 0;
+			if (!Engine.getEngine().isLoading()) {
+				updater.generalUpdate();
+				updater.renderUpdate();
 			}
-			/*
-
-			if (accTime >= 20000000) {
-				accTime -= 20000000;
-				if (!Engine.getEngine().isLoading()) {
-					updater.generalUpdate();
-					updater.renderUpdate();
-				}
-				ups++;
-			}
-			updater.renderUpdate();
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
 			} else {
 				render();
 			}
 			fps++;
-
-			if (ups == 50) {
-				frame.setTitle(gameName + " @ " + fps + " fps");
-				ups = 0;
-				fps = 0;
-			}
 			long deltatime = System.nanoTime() - start;
+			accTime+= deltatime;
+			if ( accTime >= 20000000*50){
+				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
+				fps = 0;
+				accTime = 0;
+			}
 			Engine.getEngine().setUpdateTime((float)deltatime/ 20000000);
-			accTime += deltatime;*/
 		}
-
-
 	}
+
 	private float i = 0;
+
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-		SpriteData classselect = sprites.get("class_select_hover");
+		SpriteData classselect = sprites.get("button_hover");
 		SpriteData classselect2 = sprites.get("class_select_click");
 
 		glBindBuffer(GL_ARRAY_BUFFER, offset);
-		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{50f,50f, i, 1f, -50f, -50f, -i, 1f}), GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{50f,50f,64f, 16f, -50f, -50f, 24f, 24f}), GL_DYNAMIC_DRAW);
+
+		glBindBuffer(GL_ARRAY_BUFFER, sin_cos);
+		glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(new float[]{(float)Math.sin(i),(float) Math.cos(i), 1,(float) Math.sin(-i),(float) Math.cos(-i), 1}), GL_DYNAMIC_DRAW);
 
 
 
@@ -289,7 +272,7 @@ public class Game implements Runnable {
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,2);
 
 		glfwSwapBuffers(window); // swap the color buffers
-		//i+=.005;
+		i+=.005;
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
 		glfwPollEvents();

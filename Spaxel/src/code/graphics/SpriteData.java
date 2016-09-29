@@ -64,9 +64,7 @@ public class SpriteData {
 	}
 
 	public FloatBuffer getProperties(){
-		//TODO remove alpha;
-		//System.out.println(sheetXcoord + " " + sheetYcoord + " " + sheetXscale);
-		return BufferUtils.createFloatBuffer(new float[]{sheetXcoord, sheetYcoord, sheetXscale, 1f});
+		return BufferUtils.createFloatBuffer(new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale});
 	}
 
 	public void load() {

@@ -50,7 +50,7 @@ public class Item extends UIElement {
 	}
 
 	public void render(int xPos, int yPos, Graphics g,  RenderBuffer render){
-		//TODO sprite.render(xPos, yPos, render);
+		sprite.renderSprite(xPos, yPos, 2, 0, 1, false, render);
 		stackCounter.render(xPos + 20, yPos + 20, g, render);
 	}
 

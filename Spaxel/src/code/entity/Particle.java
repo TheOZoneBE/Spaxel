@@ -28,7 +28,7 @@ public class Particle extends Entity{
 	}
 	
 	public void render(int xPos, int yPos, RenderBuffer render){
-		//TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+		sprite.renderSprite((int) (x + xPos), (int) (y + yPos), 4, rot,1, false, render);
 	}
 
 }

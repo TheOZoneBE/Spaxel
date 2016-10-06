@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.List;
 
 public class BufferUtils {
 
@@ -33,6 +34,15 @@ public class BufferUtils {
 	public static FloatBuffer combineFloatBuffers(FloatBuffer one, FloatBuffer two){
 		FloatBuffer result = ByteBuffer.allocateDirect((one.capacity() + two.capacity())<<2).order(ByteOrder.nativeOrder()).asFloatBuffer();
 		result.put(one).put(two).flip();
+		return result;
+	}
+
+	public static FloatBuffer combineFloatBuffers(List<FloatBuffer> bufferList){
+		FloatBuffer result = ByteBuffer.allocateDirect((bufferList.size() * 4)<<2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+		for (FloatBuffer buffer: bufferList){
+			result.put(buffer);
+		}
+		result.flip();
 		return result;
 	}
 

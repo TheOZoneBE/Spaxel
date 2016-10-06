@@ -33,7 +33,7 @@ public class SpaceCarrier extends Actor {
         float dy1 = (float)Math.sin(rot+Math.PI/2);
         float dx2 = (float)Math.cos(rot+Math.PI);
         float dy2 = (float)Math.sin(rot+Math.PI);
-        SpriteData test =new SpriteData(1,1,2,0xffff0000);
+        //TODO SpriteData test =new SpriteData(1,1,2,0xffff0000);
         //TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
         //TODO turret.render((int) (x + dx1*4*5 + dx2*4*21 + xPos), (int) (y + dy1*4*5 + dy2*4*21 + yPos), rot+turretRot, render);
         //TODO doors.render((int) (x + dx1*4*8 + dx2*4*5 + xPos), (int) (y + dy1*4*8 + dy2*4*5 + yPos), rot, render);

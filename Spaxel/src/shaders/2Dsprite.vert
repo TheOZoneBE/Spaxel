@@ -4,8 +4,7 @@ layout (location = 0) in vec4 position;
 layout (location = 1) in vec2 tex_coord;
 layout (location = 2) in vec4 trsc_comp;
 layout (location = 3) in vec4 tex_offset_scale;
-layout (location = 4) in vec3 sin_cos_alpha;
-
+layout (location = 4) in vec4 sin_cos_alpha;
 
 uniform mat4 projection_matrix;
 uniform mat4 view_matrix = mat4(1.0);

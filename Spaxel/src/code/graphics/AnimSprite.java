@@ -52,29 +52,8 @@ public class AnimSprite {
         }
     }
 
-    public void render(int x, int y, float rot, RenderBuffer render) {
-        //TODO frames[currentFrame].render(x, y, rot, render);
+    public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, RenderBuffer render){
+        frames[currentFrame].renderSprite(x, y, scale, rot, transparency, blur, render);
     }
-
-    public void render(int x, int y, RenderBuffer render) {
-        //TODO frames[currentFrame].render(x,y, render);
-    }
-
-    public void render(int x, int y, float rot, RenderBuffer render,float transparency ){
-        //TODO frames[currentFrame].render(x,y, rot, render, transparency);
-    }
-
-    public void render(int x, int y, RenderBuffer render, float transparency){
-        //TODO frames[currentFrame].render(x, y, render, transparency);
-    }
-
-    public void render(int x, int y, float rot, int scale, RenderBuffer render) {
-        //TODO frames[currentFrame].render(x, y, rot, scale, render);
-    }
-
-    public void render(int x, int y, int scale, RenderBuffer render) {
-        //TODO frames[currentFrame].render(x, y, scale, render);
-    }
-
 
 }

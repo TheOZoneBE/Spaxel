@@ -8,7 +8,6 @@ public class Music extends Sound{
 		super(path);
 		this.name = name;
 		this.intensity = intensity;
-		// TODO Auto-generated constructor stub
 	}
 	
 	

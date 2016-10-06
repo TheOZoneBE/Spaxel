@@ -68,7 +68,8 @@ public class VectorF {
 	}
 	
 	public void render(int xOffset, int yOffset, RenderBuffer render){
-		render.setPixel((int)vector[0]+ xOffset, (int)vector[1] + yOffset, 0xffff0000);
+
+		//render.setPixel((int)vector[0]+ xOffset, (int)vector[1] + yOffset, 0xffff0000);
 	}
 	
 	public void print(){

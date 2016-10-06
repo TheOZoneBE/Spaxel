@@ -29,7 +29,7 @@ public class TrailSegment extends Entity{
                 float xStep = (x - previous.getX())/steps;
                 float yStep = (y - previous.getY())/steps;
                 for (int i = 0; i < steps; i++){
-                    //TODO trail.render((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos, render,1 - (life/maxLife)/2);
+                    trail.renderSprite((int)(previous.getX() + i*xStep) +xPos,(int)(previous.getY() + i*yStep)+yPos,2, rot ,1 - (life/maxLife)/2, false, render);
                 }
             }
             else {
@@ -47,7 +47,8 @@ public class TrailSegment extends Entity{
                 for (int i = 1; i <= steps; i++){
                     float xStep = ((xMid + i*x2Step) - (previous.getX() + i*x1Step))/steps;
                     float yStep = ((yMid + i*y2Step) - (previous.getY() + i*y1Step))/steps;
-                    //TODO trail.render((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, render,1 - (life/maxLife)/2);
+                    //TODO calculate rotation of intermediary trailsegments
+                    trail.renderSprite((int)(previous.getX() + i*x1Step + i*xStep) +xPos,(int)(previous.getY() + i*y1Step + i*yStep)+yPos, 2, rot,1 - (life/maxLife)/2, false, render);
                 }
             }
         }

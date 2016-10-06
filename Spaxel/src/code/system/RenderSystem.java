@@ -26,8 +26,8 @@ public class RenderSystem extends GameSystem {
 
 	public RenderSystem() {
 		super(SystemType.RENDER);
-		mainBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		UIBuffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		mainBuffer = new RenderBuffer();
+		UIBuffer = new RenderBuffer();
 		exs = Executors.newCachedThreadPool();
 	}
 
@@ -43,7 +43,7 @@ public class RenderSystem extends GameSystem {
 			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
 			xOffset = playerXPos - (int) player.getX();
 			yOffset = playerYPos - (int) player.getY();
-			mainBuffer.dots(xOffset, yOffset);
+			//mainBuffer.dots(xOffset, yOffset);
 
 			latch = new CountDownLatch(2);
 			exs.execute(new mainRender(latch));
@@ -146,6 +146,8 @@ public class RenderSystem extends GameSystem {
 		public void run() {
 			for (int i = 0; i < w; i++){
 				for (int j = 0; j < h; j++){
+					/*
+					//TODO use opengl rendering here
 					if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
 						if (UIBuffer.getPixel(x+i, y+j) != 0){
 							Game.game.pixels[x +i + (y+j)* Game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
@@ -156,7 +158,7 @@ public class RenderSystem extends GameSystem {
 					}
 					else {
 						Game.game.pixels[x +i + (y+j)* Game.GAME_WIDTH] = UIBuffer.getPixel(x +i, y +j);
-					}
+					}*/
 
 				}
 			}

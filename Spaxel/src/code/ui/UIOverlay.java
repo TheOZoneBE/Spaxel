@@ -6,7 +6,6 @@ public class UIOverlay extends UIElement {
 
 	public UIOverlay(int x, int y, SpriteData sprite) {
 		super(x, y, sprite);
-		// TODO Auto-generated constructor stub
 	}
 
 }

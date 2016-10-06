@@ -70,16 +70,17 @@ final public class Engine {
 		}
 
 		//asset loading
+		/*
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
 		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
 		soundList = sounds.loadSounds("/resources/sound.xml");
-
+		*/
 		Game.game.loadingScreen.getMessage().setText("Loading sprites");
 		Game.game.loadingScreen.getProgress().setPercent(0.25f);
-		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
-		spriteAtlas.put("hp_bar", new SpriteData(1,4,2, 0xff00ff00));
-		spriteAtlas.put("xp_bar", new SpriteData(1,4,2, 0xff0000ff));
+		//TODO rework
+		//spriteAtlas.put("hp_bar", new SpriteData(1,4,2, 0xff00ff00));
+		//spriteAtlas.put("xp_bar", new SpriteData(1,4,2, 0xff0000ff));
 
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		Game.game.loadingScreen.getProgress().setPercent(0.4f);
@@ -112,7 +113,7 @@ final public class Engine {
 		addSystem(new ParticleSystem());
 		addSystem(new TrailSystem());
 		addSystem(new SpawnerSystem());
-		((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+		//((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		((UISystem)getSystem(SystemType.UI)).changeUI("main");
 		//starting threads
 		Game.game.updater.setSystems(systems);

@@ -38,7 +38,7 @@ public class SpriteLoader extends EntityLoader{
 		    int spriteXPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 		    int spriteYPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 		    int spriteScale = Integer.parseInt((nextChild.getElementsByTagName("scale").item(0).getTextContent()));
-			spriteAtlas.put(spriteName, new SpriteData(spriteWidth, spriteHeight,spriteXPos, spriteYPos, spriteScale, spritesheetAtlas.get(spritesheetName)));
+			spriteAtlas.put(spriteName, new SpriteData(spriteWidth, spriteHeight,spriteXPos, spriteYPos, spritesheetAtlas.get(spritesheetName)));
 
 		}
 		spritesheetMap = spritesheetAtlas;

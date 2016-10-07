@@ -23,5 +23,5 @@ void main()
 	gl_Position = projection_matrix * view_matrix * vec4(temp_pos.xy, 0, 1);
 	pass_tex_coord = tex_coord;
 	pass_tex_offset_scale = tex_offset_scale;
-	pass_alpha = vec2(sin_cos_alpha.z,0);
+	pass_alpha = vec2(sin_cos_alpha.zw);
 }

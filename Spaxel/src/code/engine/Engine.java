@@ -8,6 +8,7 @@ import java.util.Map;
 import code.Game;
 import code.collision.HitShape;
 import code.entity.SpaceCarrier;
+import code.graphics.Spritesheet;
 import code.sound.Sound;
 import code.system.RenderSystem;
 import code.graphics.SpriteData;
@@ -28,6 +29,7 @@ final public class Engine {
 	private Mouse mouse;
 	private EntityStream entities;
 	private List<Sound> soundList;
+	private Map<String, Spritesheet> spritesheets;
 	private Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
@@ -78,9 +80,12 @@ final public class Engine {
 		*/
 		Game.game.loadingScreen.getMessage().setText("Loading sprites");
 		Game.game.loadingScreen.getProgress().setPercent(0.25f);
-		//TODO rework
-		//spriteAtlas.put("hp_bar", new SpriteData(1,4,2, 0xff00ff00));
-		//spriteAtlas.put("xp_bar", new SpriteData(1,4,2, 0xff0000ff));
+		SpriteLoader spriteLoader = new SpriteLoader();
+		spriteAtlas = spriteLoader.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
+		spritesheets = spriteLoader.spritesheetMap;
+		//TODO scale in entity (2)
+		spriteAtlas.put("hp_bar", new SpriteData(1,4, 0xff00ff00));
+		spriteAtlas.put("xp_bar", new SpriteData(1,4, 0xff0000ff));
 
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		Game.game.loadingScreen.getProgress().setPercent(0.4f);
@@ -205,6 +210,10 @@ final public class Engine {
 
 	public Font getFont(){
 		return font;
+	}
+
+	public Map<String, Spritesheet> getSpritesheets(){
+		return spritesheets;
 	}
 
 }

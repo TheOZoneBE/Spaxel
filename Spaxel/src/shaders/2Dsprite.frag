@@ -12,8 +12,12 @@ void main()
 {
     mat2 scale = mat2(pass_tex_offset_scale.z,0,0,pass_tex_offset_scale.w);
     vec2 atlas_coord = scale * pass_tex_coord + pass_tex_offset_scale.xy;
-
-	color = texture(tex_sampler, atlas_coord);
+    if (pass_alpha.y) {
+        color = texture(tex_sampler, atlas_coord);
+    }
+    else {
+        color = pass_alpha.y;
+    }
 	if (color == vec4(1.0,0.0,1.0,1.0)) {
 	    discard;
 	}

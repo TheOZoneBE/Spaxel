@@ -98,7 +98,7 @@ public class SystemUpdater {
         }
     }
 
-    public void render(Graphics g){
-        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render(g);
+    public void render(){
+        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render();
     }
 }

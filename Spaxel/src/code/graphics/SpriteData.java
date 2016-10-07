@@ -15,6 +15,7 @@ public class SpriteData {
 	private float sheetXscale;
 	private float sheetYscale;
 	private Spritesheet spritesheet;
+	private int color;
 	private Random r;
 
 	public SpriteData(int width, int height, int xPos, int yPos, Spritesheet spritesheet) {
@@ -27,23 +28,16 @@ public class SpriteData {
 		sheetYcoord = (float)yPos / spritesheet.getHeigth();
 		sheetXscale = (float)width / spritesheet.getWidth();
 		sheetYscale = (float)height / spritesheet.getHeigth();
+		color = 0;
 		r = new Random();
-	}
-
-	/*
-	public SpriteData(int width, int height, int scale, int[] pixels){
-		this.width = width;
-		this.height = height;
-		r = new Random();
-		//loadBlur();
 	}
 	
-	public SpriteData(int width, int height, int scale, int color){
+	public SpriteData(int width, int height, int color){
 		this.width = width;
 		this.height = height;
-		this.scale = scale;
+		this.color = color;
 		r = new Random();
-	}*/
+	}
 
 	public FloatBuffer getProperties(){
 		return BufferUtils.createFloatBuffer(new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale});
@@ -57,7 +51,7 @@ public class SpriteData {
 		}));
 
 		render.addSinCos(BufferUtils.createFloatBuffer(new float[]{
-				(float)Math.sin(rot), (float)Math.cos(rot), transparency, 0
+				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
 		}));
 
 		render.addTexOffset(getProperties());

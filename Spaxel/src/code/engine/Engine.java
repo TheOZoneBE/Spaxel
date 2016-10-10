@@ -29,8 +29,8 @@ final public class Engine {
 	private Mouse mouse;
 	private EntityStream entities;
 	private List<Sound> soundList;
-	private Map<String, Spritesheet> spritesheets;
-	private Map<String, SpriteData> spriteAtlas;
+	public Map<String, Spritesheet> spritesheets;
+	public Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
@@ -40,7 +40,6 @@ final public class Engine {
 	private float updateTime;
 	public SpaceCarrier temp;
 	private Font font;
-	public GLCapabilities capabilities;
 
 	public static Engine getEngine(){
 		return engine;
@@ -63,6 +62,7 @@ final public class Engine {
 	}
 	
 	public void initialize(){
+
 		font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
@@ -90,7 +90,6 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		Game.game.loadingScreen.getProgress().setPercent(0.4f);
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
-
 
 		Game.game.loadingScreen.getMessage().setText("Loading items");
 		Game.game.loadingScreen.getProgress().setPercent(0.65f);

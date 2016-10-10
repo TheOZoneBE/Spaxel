@@ -25,8 +25,8 @@ public class UICounter extends UIElement {
         counter += add;
     }
 
-    public void render(Graphics g, RenderBuffer  render){
-        label.render(g, render);
+    public void render(RenderBuffer  render){
+        label.render(render);
     }
 
     public void update(){

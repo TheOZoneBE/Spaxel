@@ -19,7 +19,7 @@ public class UIBar extends UIElement{
 		this.percent = percent;
 	}
 	
-	public void render(Graphics g, RenderBuffer render){
+	public void render(RenderBuffer render){
 		int renderWidth = (int)(width * percent);
 		float dx = Math.round(Math.sin(rot));
 		float dy = Math.round(Math.cos(rot));

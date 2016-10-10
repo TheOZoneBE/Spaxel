@@ -44,10 +44,6 @@ public class Game implements Runnable {
 
 	private Thread thread;
 	private long window;
-	//private BufferedImage image = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
-	//private BufferedImage textBuffer = new BufferedImage(GAME_WIDTH, GAME_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-	//public int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
-	//private int[] textReset = ((DataBufferInt) textBuffer.getRaster().getDataBuffer()).getData();
 
 	public LoadingScreen loadingScreen;
 	public SystemUpdater updater;
@@ -56,8 +52,6 @@ public class Game implements Runnable {
 	public static void main(String[] args) {
 		game = new Game();
 
-		/*
-		*/
 		game.start();
 	}
 
@@ -69,14 +63,14 @@ public class Game implements Runnable {
 	public synchronized void start() {
 		running = true;
 		thread = new Thread(this, "Display");
-		initialize();
+
 		thread.start();
-		Engine.getEngine().initialize();
 
 	}
 
 	public synchronized void stop() {
 		running = false;
+		updater.shutdown();
 		try {
 			glfwFreeCallbacks(window);
 			glfwDestroyWindow(window);
@@ -118,22 +112,32 @@ public class Game implements Runnable {
 		glfwMakeContextCurrent(window);
 		glfwShowWindow(window);
 
+
+
+		// Set the clear color
+
+
+		//glEnable(GL_DEPTH_TEST);
+
+
+
 		GL.createCapabilities();
 		capabilities = GL.getCapabilities();
 
-		// Set the clear color
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-		//glEnable(GL_DEPTH_TEST);
 		glActiveTexture(GL_TEXTURE1);
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
 	}
 
 	public void run() {
-		GL.setCapabilities(Game.game.capabilities);
+		initialize();
 
+		Engine.getEngine().initialize();
+
+		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
 		while (running) {
@@ -142,8 +146,14 @@ public class Game implements Runnable {
 			}
 			long start = System.nanoTime();
 			if (!Engine.getEngine().isLoading()) {
-				updater.generalUpdate();
-				updater.renderUpdate();
+				if (accTime >= 20000000){
+					accTime -= 20000000;
+					updater.generalUpdate();
+					ups++;
+				}
+				else {
+					updater.renderUpdate();
+				}
 			}
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
@@ -153,16 +163,17 @@ public class Game implements Runnable {
 			fps++;
 			long deltatime = System.nanoTime() - start;
 			accTime+= deltatime;
-			if ( accTime >= 20000000*50){
+			if (ups == 50){
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
 				fps = 0;
 				accTime = 0;
+				ups = 0;
 			}
 			Engine.getEngine().setUpdateTime((float)deltatime/ 20000000);
 		}
 	}
 
-	private float i = 0;
+	private int i = 0;
 
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
@@ -172,7 +183,7 @@ public class Game implements Runnable {
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
-
+		i++;
 		//TODO text rendering
 		/*
 		clearText();
@@ -200,12 +211,5 @@ public class Game implements Runnable {
 		bs.show();
 		*/
 	}
-
-	/*
-	public void clearText(){
-		for (int i = 0; i < GAME_WIDTH*GAME_HEIGHT; i++){
-			textReset[i] = 0;
-		}
-	}*/
 
 }

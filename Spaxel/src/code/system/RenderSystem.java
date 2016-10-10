@@ -114,8 +114,8 @@ public class RenderSystem extends GameSystem {
 		}
 
 		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-		//TODO rework
-		//uis.getCurrentUI().render(graphics, UIBuffer);
+		//TODO text rendering
+		uis.getCurrentUI().render(UIBuffer);
 		master.render(UIBuffer, Engine.getEngine().getSpritesheets().get("uisheet").getId());
 	}
 }

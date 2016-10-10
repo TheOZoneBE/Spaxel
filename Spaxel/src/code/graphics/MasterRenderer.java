@@ -28,16 +28,14 @@ import org.lwjgl.opengl.GLCapabilities;
 public class MasterRenderer {
 
 
+    public MasterRenderer(){
+        initialize();
+    }
+
     private void loadBuffer(int bufferID, FloatBuffer buffer){
         glBindBuffer(GL_ARRAY_BUFFER, bufferID);
         glBufferData(GL_ARRAY_BUFFER, buffer, GL_DYNAMIC_DRAW);
     }
-
-    public void render(RenderBuffer buffer){
-
-    }
-
-    private GLCapabilities capabilities;
 
     public float[] testVertices = new float[]{
             -1,-1,0,
@@ -63,16 +61,10 @@ public class MasterRenderer {
     private int vbo, vao,ibo, tbo, texOffsetScale, trSc, sinCosAlpha;
 
     public void initialize(){
-        capabilities = Game.game.capabilities;
-
-        //glEnable(GL_DEPTH_TEST);
-        glActiveTexture(GL_TEXTURE1);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
         shaderprogram = ShaderUtils.load("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
 
         MatrixF projection_matrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
+        projection_matrix.print();
 
         glUseProgram(shaderprogram);
 
@@ -121,14 +113,17 @@ public class MasterRenderer {
     }
 
     public void render(RenderBuffer buffer, int spritesheet) {
-        loadBuffer(trSc, BufferUtils.combineFloatBuffers(buffer.getTrscBuffer()));
-        loadBuffer(sinCosAlpha, BufferUtils.combineFloatBuffers(buffer.getSinCosBuffer()));
-        loadBuffer(texOffsetScale, BufferUtils.combineFloatBuffers(buffer.getTexOffsetBuffer()));
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        if (buffer.size() >0){
+            loadBuffer(trSc, BufferUtils.combineFloatBuffers(buffer.getTrscBuffer()));
+            loadBuffer(sinCosAlpha, BufferUtils.combineFloatBuffers(buffer.getSinCosBuffer()));
+            loadBuffer(texOffsetScale, BufferUtils.combineFloatBuffers(buffer.getTexOffsetBuffer()));
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        glBindTexture(GL_TEXTURE_2D, spritesheet);
+            glBindTexture(GL_TEXTURE_2D, spritesheet);
 
-        glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,buffer.size());
+            glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,buffer.size());
+        }
+
 
         //TODO text rendering
 

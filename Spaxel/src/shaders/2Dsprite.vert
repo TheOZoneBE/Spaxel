@@ -7,7 +7,6 @@ layout (location = 3) in vec4 tex_offset_scale;
 layout (location = 4) in vec4 sin_cos_alpha;
 
 uniform mat4 projection_matrix;
-uniform mat4 view_matrix = mat4(1.0);
 uniform mat3 transformation_matrix = mat3(1.0);
 
 out vec2 pass_tex_coord;
@@ -20,8 +19,9 @@ void main()
     mat3 scale = mat3(trsc_comp.z, 0,0,0,trsc_comp.w,0,0,0,1);
     vec3 temp_pos = transformation *scale * vec3(position.xyw);
 
-	gl_Position = projection_matrix * view_matrix * vec4(temp_pos.xy, 0, 1);
+	gl_Position = projection_matrix * vec4(temp_pos.xy, 0, 1.0);
+	gl_Position += vec4(-1,-1,0,0);
 	pass_tex_coord = tex_coord;
 	pass_tex_offset_scale = tex_offset_scale;
-	pass_alpha = vec2(sin_cos_alpha.zw);
+	pass_alpha = sin_cos_alpha.zw;
 }

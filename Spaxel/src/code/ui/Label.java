@@ -19,22 +19,25 @@ public class Label extends UIElement{
 		this.font = font.deriveFont(size);
 	}
 	
-	public void render(Graphics g, RenderBuffer render){
+	public void render(RenderBuffer render){
+		//TODO text rendering
+		/*
 		g.setColor(Color.WHITE);
 		g.setFont(font);
 		FontMetrics fm = g.getFontMetrics();
 		int width = fm.stringWidth(text);
 		int height =fm.getAscent() - fm.getDescent();
-		g.drawString(text, (int)x - width/2,(int)y + height/2);
+		g.drawString(text, (int)x - width/2,(int)y + height/2);*/
 	}
 
-	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
-		g.setColor(Color.WHITE);
+	public void render(int xPos, int yPos, RenderBuffer render){
+		//TODO text rendering
+		/*g.setColor(Color.WHITE);
 		g.setFont(font);
 		FontMetrics fm = g.getFontMetrics();
 		int width = fm.stringWidth(text);
 		int height =fm.getAscent() - fm.getDescent();
-		g.drawString(text, xPos - width/2,yPos + height/2);
+		g.drawString(text, xPos - width/2,yPos + height/2);*/
 	}
 
 

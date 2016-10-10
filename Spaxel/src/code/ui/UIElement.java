@@ -29,13 +29,18 @@ public class UIElement extends Entity {
 	public void update(){
 		
 	}
-	
+
+	public void render(RenderBuffer render){
+		sprite.renderSprite((int)x,(int)y, 2,0,1,false, render);
+	}
+	//TODO text rendering
 	public void render(Graphics g, RenderBuffer render){
-		//TODO sprite.render((int)x,(int)y, render);
+
 	}
 
 	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
-		//TODO sprite.render(xPos,yPos, render);
+		//TODO scale in entity
+		sprite.renderSprite(xPos,yPos, 2,0, 1, false,  render);
 	}
 
 }

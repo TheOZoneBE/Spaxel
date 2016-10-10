@@ -74,7 +74,7 @@ public class UIButton extends UIElement {
 		this.disabled = disabled;
 	}
 
-	public void render(Graphics g, RenderBuffer render){
+	public void render(RenderBuffer render){
 		sprite.renderSprite((int)x,(int)y,2, 0, 1, false ,render);
 		if (click){
 			clicked.renderSprite((int)x,(int)y,2,0,1, false, render);
@@ -82,7 +82,7 @@ public class UIButton extends UIElement {
 		else if (hovering){
 			hover.renderSprite((int)x,(int)y,2, 0,1,false, render);
 		}
-		label.render(g, render);
+		label.render(render);
 	}
 
 }

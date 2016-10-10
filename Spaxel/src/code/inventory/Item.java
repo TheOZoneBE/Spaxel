@@ -49,9 +49,9 @@ public class Item extends UIElement {
 		return type;
 	}
 
-	public void render(int xPos, int yPos, Graphics g,  RenderBuffer render){
+	public void render(int xPos, int yPos, RenderBuffer render){
 		sprite.renderSprite(xPos, yPos, 2, 0, 1, false, render);
-		stackCounter.render(xPos + 20, yPos + 20, g, render);
+		stackCounter.render(xPos + 20, yPos + 20, render);
 	}
 
 	public int getCooldown(){

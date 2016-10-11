@@ -1,6 +1,5 @@
 package code.ui;
 
-import java.awt.*;
 import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
@@ -8,7 +7,7 @@ import code.collision.HitShape;
 import code.engine.Engine;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
-import code.input.Mouse;
+import code.input.MouseWrapper;
 import code.math.VectorF;
 
 public class UIButton extends UIElement {
@@ -40,10 +39,10 @@ public class UIButton extends UIElement {
 			sprite = locked;
 		}
 		else {
-			Mouse mouse = Engine.getEngine().getMouse();
-			int mouseX = mouse.getX();
-			int mouseY = mouse.getY();
-			boolean buttonDown = mouse.mouse1;
+			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
+			int mouseX = mouseWrapper.getX();
+			int mouseY = mouseWrapper.getY();
+			boolean buttonDown = mouseWrapper.mouse1;
 			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
 			if (inside && buttonDown){
 				click = true;

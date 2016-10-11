@@ -23,6 +23,7 @@ import code.engine.LoadingScreen;
 import code.engine.SystemUpdater;
 import code.graphics.SpriteData;
 import code.graphics.Spritesheet;
+import code.input.MouseWrapper;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
 import code.resource.SpriteLoader;
@@ -44,6 +45,7 @@ public class Game implements Runnable {
 
 	private Thread thread;
 	private long window;
+	private MouseWrapper mouseWrapper;
 
 	public LoadingScreen loadingScreen;
 	public SystemUpdater updater;
@@ -96,9 +98,17 @@ public class Game implements Runnable {
 
 		//convert input
 		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-			if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
+			if ( key == GLFW_KEY_X && action == GLFW_RELEASE )
 				glfwSetWindowShouldClose(window, true); // We will detect this in our rendering loop
 		});
+
+		mouseWrapper = new MouseWrapper(window);
+
+
+		glfwSetCursorPosCallback(window, mouseWrapper);
+
+		Engine.getEngine().setMouseWrapper(mouseWrapper);
+		Engine.getEngine().setWindow(window);
 
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
@@ -107,6 +117,7 @@ public class Game implements Runnable {
 				(vidmode.width() - GAME_WIDTH) / 2,
 				(vidmode.height() - GAME_HEIGHT) / 2
 		);
+
 
 
 		glfwMakeContextCurrent(window);

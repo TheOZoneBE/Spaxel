@@ -64,7 +64,7 @@ public class MasterRenderer {
         shaderprogram = ShaderUtils.load("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
 
         MatrixF projection_matrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
-        projection_matrix.print();
+
 
         glUseProgram(shaderprogram);
 

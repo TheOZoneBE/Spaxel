@@ -13,20 +13,18 @@ import code.sound.Sound;
 import code.system.RenderSystem;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
-import code.input.Mouse;
+import code.input.MouseWrapper;
 import code.inventory.*;
 import code.system.*;
 import code.resource.*;
 import code.ui.UI;
 import code.ui.UIButton;
 import code.ui.UICounter;
-import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GLCapabilities;
 
 final public class Engine {
 	private final static Engine engine = new Engine();
 	private Keyboard keys;
-	private Mouse mouse;
+	private MouseWrapper mouseWrapper;
 	private EntityStream entities;
 	private List<Sound> soundList;
 	public Map<String, Spritesheet> spritesheets;
@@ -40,6 +38,7 @@ final public class Engine {
 	private float updateTime;
 	public SpaceCarrier temp;
 	private Font font;
+	private long window;
 
 	public static Engine getEngine(){
 		return engine;
@@ -50,19 +49,14 @@ final public class Engine {
 	}
 	
 	private Engine(){
-		this.keys = new Keyboard();
-		this.mouse = new Mouse();
-		/*
-		Game.game.addKeyListener(keys);
-		Game.game.addMouseListener(mouse);
-		Game.game.addMouseMotionListener(mouse);*/
+
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
 	}
 	
 	public void initialize(){
-
+		this.keys = new Keyboard(window);
 		font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
@@ -143,6 +137,10 @@ final public class Engine {
 		entities.clear();
 	}
 
+	public void setWindow(long window){
+		this.window = window;
+	}
+
 	public boolean isLoading(){
 		return loading;
 	}
@@ -151,8 +149,12 @@ final public class Engine {
 		return keys;
 	}
 	
-	public Mouse getMouse(){
-		return mouse;
+	public MouseWrapper getMouseWrapper(){
+		return mouseWrapper;
+	}
+
+	public void setMouseWrapper(MouseWrapper wrapper){
+		this.mouseWrapper = wrapper;
 	}
 	
 	public EntityStream getEntityStream(){

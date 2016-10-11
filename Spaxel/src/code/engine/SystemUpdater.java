@@ -53,7 +53,9 @@ public class SystemUpdater {
     public void generalUpdate(){
         if (!e.isShutdown()){
             CountDownLatch latch;
+            Engine.getEngine().getMouseWrapper().update();
             Engine.getEngine().getKeyboard().update();
+
             if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
                 latch = new CountDownLatch(2);
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
@@ -84,7 +86,7 @@ public class SystemUpdater {
      */
     public void renderUpdate(){
         CountDownLatch latch = new CountDownLatch(0);
-        Engine.getEngine().getKeyboard().update();
+
         if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
             latch = new CountDownLatch(3);
             e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));

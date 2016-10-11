@@ -1,22 +1,15 @@
 package code.system;
 
-import java.awt.Graphics;
 import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import code.Game;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.Entity;
-import code.entity.Player;
 import code.graphics.MasterRenderer;
 import code.graphics.RenderBuffer;
-import code.input.Mouse;
-import code.inventory.Item;
+import code.input.MouseWrapper;
 
 public class RenderSystem extends GameSystem {
 	private RenderBuffer actorBuffer; //actors
@@ -38,15 +31,15 @@ public class RenderSystem extends GameSystem {
 	}
 
 	public void render(){
-		Mouse mouse = Engine.getEngine().getMouse();
+		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		actorBuffer.clear();
 		particleBuffer.clear();
 		effectBuffer.clear();
 		UIBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
-			int screenXOffset = mouse.getX() / 2 - Game.GAME_WIDTH / 4;
-			int screenYOffset = mouse.getY() / 2 - Game.GAME_HEIGHT / 4;
+			int screenXOffset = mouseWrapper.getX() / 2 - Game.GAME_WIDTH / 4;
+			int screenYOffset = mouseWrapper.getY() / 2 - Game.GAME_HEIGHT / 4;
 			int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
 			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
 			xOffset = playerXPos - (int) player.getX();

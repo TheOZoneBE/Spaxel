@@ -7,14 +7,11 @@ import code.engine.SystemType;
 import code.entity.Entity;
 import code.entity.Player;
 import code.inventory.Item;
-import code.projectiles.Projectile;
 import code.input.Keyboard;
-import code.input.Mouse;
+import code.input.MouseWrapper;
 import code.inventory.ProjectileItem;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class ActorSystem extends GameSystem{
 
@@ -23,15 +20,15 @@ public class ActorSystem extends GameSystem{
 	}
 	
 	public void update(){
-		Mouse mouse = Engine.getEngine().getMouse();
+		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		Keyboard keys = Engine.getEngine().getKeyboard();
 		EntityStream entities = Engine.getEngine().getEntityStream();
 		Player player = (Player)entities.getEntities(EntityType.PLAYER).get(0);
-		int mouseX = mouse.getX();
-		int mouseY = mouse.getY();
+		int mouseX = mouseWrapper.getX();
+		int mouseY = mouseWrapper.getY();
 		player.update(keys, mouseX, mouseY);
 
-		if (mouse.mouse1){
+		if (mouseWrapper.mouse1){
 			Iterator<Item> mouse1 = player.getItemIterator(EntityType.MOUSE1ITEM);
 			while (mouse1.hasNext()){
 				Entity e = mouse1.next();
@@ -39,7 +36,7 @@ public class ActorSystem extends GameSystem{
 				i.activate(player.getX(), player.getY(), player.getRot());
 			}
 		}
-		if (mouse.mouse3){
+		if (mouseWrapper.mouse3){
 			Iterator<Item> mouse3 = player.getItemIterator(EntityType.MOUSE3ITEM);
 			while (mouse3.hasNext()){
 				Entity e = mouse3.next();

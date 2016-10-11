@@ -5,9 +5,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
-import code.input.Mouse;
-
-import java.awt.*;
+import code.input.MouseWrapper;
 
 
 public class EffectItem extends Item{
@@ -22,9 +20,9 @@ public class EffectItem extends Item{
 		super.render(xPos, yPos, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 		if (canUpdate()){
-			Mouse mouse = Engine.getEngine().getMouse();
-			int xPlayer = 3* Game.GAME_WIDTH /4 - 8*4 - mouse.getX()/2;
-			int yPlayer = 3* Game.GAME_HEIGHT /4 - 8*4 - mouse.getY()/2;
+			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
+			int xPlayer = 3* Game.GAME_WIDTH /4 - 8*4 - mouseWrapper.getX()/2;
+			int yPlayer = 3* Game.GAME_HEIGHT /4 - 8*4 - mouseWrapper.getY()/2;
 			effectSprite.renderSprite(xPlayer, yPlayer, 2, 0, .75f, false, render);
 		}
 	}

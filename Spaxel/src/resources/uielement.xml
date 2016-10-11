@@ -81,7 +81,7 @@
 	</uielement>
 	<uielement type="overlay">
 		<ui>play</ui>
-		<name>ui_play_overlay</name>
+		<name>ui_play_left</name>
 		<sprite_normal>ui_play_overlay</sprite_normal>
 		<xpos>640</xpos>
 		<ypos>360</ypos>

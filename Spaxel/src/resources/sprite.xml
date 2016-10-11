@@ -52,7 +52,7 @@
 	<!-- uisheet -->
 	<sprite>
 		<sheetname>uisheet</sheetname>
-		<name>ui_left</name>
+		<name>ui_play_left</name>
 		<width>44</width>
 		<height>332</height>
 		<xpos>0</xpos>
@@ -61,7 +61,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>uisheet</sheetname>
-		<name>ui_right</name>
+		<name>ui_play_right</name>
 		<width>44</width>
 		<height>332</height>
 		<xpos>45</xpos>
@@ -70,7 +70,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>uisheet</sheetname>
-		<name>ui_bottom</name>
+		<name>ui_play_bottom</name>
 		<width>256</width>
 		<height>48</height>
 		<xpos>0</xpos>
@@ -79,7 +79,7 @@
 	</sprite>
 	<sprite>
 		<sheetname>uisheet</sheetname>
-		<name>ui_left</name>
+		<name>ui_play_left</name>
 		<width>362</width>
 		<height>53</height>
 		<xpos>0</xpos>
@@ -131,7 +131,7 @@
 		<width>64</width>
 		<height>16</height>
 		<xpos>212</xpos>
-		<ypos>1</ypos>
+		<ypos>0</ypos>
 		<scale>4</scale>
 	</sprite>
 	<sprite>

@@ -3,6 +3,7 @@ package code.inventory;
 import code.Game;
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.input.MouseWrapper;
@@ -16,7 +17,7 @@ public class EffectItem extends Item{
 		this.effectSprite = effectSprite;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		super.render(xPos, yPos, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 		if (canUpdate()){

@@ -7,6 +7,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.entity.Player;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.inventory.Item;
 
@@ -25,7 +26,7 @@ public class UI{
 		}
 	}
 	
-	public void render( RenderBuffer render){
+	public void render( MasterBuffer render){
 		for (UIElement u: elements.values()){
 			u.render(render);
 		}

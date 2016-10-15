@@ -1,8 +1,7 @@
 package code.graphics;
 
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RenderBuffer {
 
@@ -10,11 +9,14 @@ public class RenderBuffer {
     private List<FloatBuffer> sinCosBuffer;
     private List<FloatBuffer> texOffsetBuffer;
 
+
     public RenderBuffer() {
+
         trscBuffer = new ArrayList<>();
         sinCosBuffer = new ArrayList<>();
         texOffsetBuffer = new ArrayList<>();
     }
+
 
     public void addTrsc(FloatBuffer trsc){
         trscBuffer.add(trsc);
@@ -40,6 +42,7 @@ public class RenderBuffer {
         return texOffsetBuffer;
     }
 
+
     public void clear() {
         trscBuffer.clear();
         sinCosBuffer.clear();
@@ -49,4 +52,6 @@ public class RenderBuffer {
     public int size(){
         return trscBuffer.size();
     }
+
+
 }

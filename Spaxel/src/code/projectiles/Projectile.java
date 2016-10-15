@@ -6,6 +6,7 @@ import code.engine.Engine;
 import code.entity.Actor;
 import code.entity.Entity;
 import code.entity.TrailSegment;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.math.VectorF;
@@ -40,7 +41,7 @@ public class Projectile extends Entity {
 	}
 
 	@Override
-	public void render(int xPos, int yPos, RenderBuffer render) {
+	public void render(int xPos, int yPos, MasterBuffer render) {
 		sprite.renderSprite((int) (x + xPos), (int) (y + yPos),2, rot, 1, false, render);
 
 	}

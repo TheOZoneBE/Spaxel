@@ -52,7 +52,7 @@ public class AnimSprite {
         }
     }
 
-    public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, RenderBuffer render){
+    public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
         frames[currentFrame].renderSprite(x, y, scale, rot, transparency, blur, render);
     }
 

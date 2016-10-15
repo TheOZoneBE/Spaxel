@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.input.MouseWrapper;
@@ -73,7 +74,7 @@ public class UIButton extends UIElement {
 		this.disabled = disabled;
 	}
 
-	public void render(RenderBuffer render){
+	public void render(MasterBuffer render){
 		sprite.renderSprite((int)x,(int)y,2, 0, 1, false ,render);
 		if (click){
 			clicked.renderSprite((int)x,(int)y,2,0,1, false, render);

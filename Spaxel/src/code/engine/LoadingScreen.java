@@ -48,14 +48,14 @@ public class LoadingScreen {
     }
 
     public void render(Graphics g){
-        overlay.renderSprite(0,0,1, 0,1,false, buffer);
-        progress.render(g, buffer);
+        //overlay.renderSprite(0,0,1, 0,1,false, buffer);
+        //progress.render(g, buffer);
 
         for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
             //Game.game.pixels[i] = buffer.getPixel(i);
         }
-        message.render(g, buffer);
-        title.render(g, buffer);
+        //message.render(g, buffer);
+        //title.render(g, buffer);
 
     }
 }

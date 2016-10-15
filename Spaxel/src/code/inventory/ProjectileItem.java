@@ -3,6 +3,7 @@ package code.inventory;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.factories.ProjectileFactory;
 import code.graphics.SpriteData;
@@ -40,7 +41,7 @@ public class ProjectileItem extends Item{
 		return false;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		super.render(xPos, yPos, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 	}

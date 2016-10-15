@@ -11,6 +11,7 @@ import static org.lwjgl.opengl.GL31.*;
 import static org.lwjgl.opengl.GL33.*;
 
 import java.nio.FloatBuffer;
+import java.util.Map;
 
 import code.Game;
 import code.math.MatrixF;
@@ -110,6 +111,13 @@ public class MasterRenderer {
         glEnableVertexAttribArray(4);
         glVertexAttribPointer(4,4,GL_FLOAT, false, 4*4,0);
         glVertexAttribDivisor(4,1);
+    }
+
+    public void render(MasterBuffer masterBuffer){
+        Map<Integer, RenderBuffer> buffers = masterBuffer.getBuffers();
+        for(Integer i: buffers.keySet()){
+            render(buffers.get(i), i);
+        }
     }
 
     public void render(RenderBuffer buffer, int spritesheet) {

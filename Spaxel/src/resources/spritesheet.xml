@@ -7,14 +7,18 @@
 		<height>-1</height>
 	</sheet>
 	-->
-	<!--
 	<sheet>
 		<path>projectiles.png</path>
 		<name>projectiles</name>
 		<width>64</width>
 		<height>64</height>
 	</sheet>
-
+	<sheet>
+		<path>ships.png</path>
+		<name>ships</name>
+		<width>32</width>
+		<height>32</height>
+	</sheet>
 	<sheet>
 		<path>button.png</path>
 		<name>button</name>
@@ -56,24 +60,5 @@
 		<name>class_select</name>
 		<width>48</width>
 		<height>24</height>
-	</sheet>-->
-	<!-- new -->
-	<sheet>
-		<path>UISheet.png</path>
-		<name>uisheet</name>
-		<width>512</width>
-		<height>512</height>
-	</sheet>
-	<sheet>
-		<path>EffectSheet.png</path>
-		<name>effect_sheet</name>
-		<width>128</width>
-		<height>128</height>
-	</sheet>
-	<sheet>
-		<path>ships.png</path>
-		<name>ships</name>
-		<width>32</width>
-		<height>32</height>
 	</sheet>
 </spritesheet>

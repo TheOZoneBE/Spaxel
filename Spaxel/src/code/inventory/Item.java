@@ -2,6 +2,7 @@ package code.inventory;
 
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.ui.Label;
@@ -49,7 +50,7 @@ public class Item extends UIElement {
 		return type;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		sprite.renderSprite(xPos, yPos, 2, 0, 1, false, render);
 		stackCounter.render(xPos + 20, yPos + 20, render);
 	}

@@ -1,5 +1,6 @@
 package code.entity;
 
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 
@@ -22,7 +23,7 @@ public class TrailSegment extends Entity{
     public void update(){
     }
 
-    public void render(int xPos, int yPos, RenderBuffer render){
+    public void render(int xPos, int yPos, MasterBuffer render){
         if (previous != null){
             int steps = 4;
             if (rot == previous.getRot()){

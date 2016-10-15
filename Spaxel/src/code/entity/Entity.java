@@ -2,6 +2,7 @@ package code.entity;
 
 
 import code.collision.HitShape;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
@@ -34,7 +35,7 @@ public class Entity {
 	}
 		
 	
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		
 	}
 	

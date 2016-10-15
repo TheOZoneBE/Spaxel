@@ -1,6 +1,7 @@
 package code.entity;
 
 import code.engine.Engine;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 
@@ -27,7 +28,7 @@ public class Particle extends Entity{
 		y -= dy*Engine.getEngine().getUpdateTime();
 	}
 	
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		sprite.renderSprite((int) (x + xPos), (int) (y + yPos), 4, rot,1, false, render);
 	}
 

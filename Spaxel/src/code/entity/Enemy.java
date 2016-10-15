@@ -2,6 +2,7 @@ package code.entity;
 
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.inventory.StatusEffect;
@@ -68,7 +69,7 @@ public class Enemy extends Actor {
     }
 
     @Override
-    public void render(int xPos, int yPos, RenderBuffer render) {
+    public void render(int xPos, int yPos, MasterBuffer render) {
         //TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
     }
 

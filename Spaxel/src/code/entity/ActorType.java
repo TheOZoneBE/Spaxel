@@ -19,6 +19,7 @@ public enum ActorType {
             player.addItem(i.getType(), i);
             i = new ActiveShield(EntityType.SHIPITEM,"active_shield", Engine.getEngine().getSpriteAtlas().get("active_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("active_shield_effect"),50);
             player.addItem(i.getType(), i);
+            player.update();
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -34,6 +35,7 @@ public enum ActorType {
             player.addItem(i.getType(), i);
             i = new ForceShield(EntityType.SHIPITEM,"force_shield", Engine.getEngine().getSpriteAtlas().get("force_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("force_shield_effect"),50);
             player.addItem(i.getType(), i);
+            player.update();
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -48,6 +50,7 @@ public enum ActorType {
             player.addItem(i.getType(), i);
             i = new AntiShield(EntityType.SHIPITEM, "anti_shield",Engine.getEngine().getSpriteAtlas().get("anti_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("anti_shield_effect"),50);
             player.addItem(i.getType(), i);
+            player.update();
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     },
@@ -62,6 +65,7 @@ public enum ActorType {
             player.addItem(i.getType(), i);
             i = new BasicShield(EntityType.SHIPITEM, "basic_shield",Engine.getEngine().getSpriteAtlas().get("basic_shield_item"), Engine.getEngine().getSpriteAtlas().get("cooldown_bar"),250, Engine.getEngine().getSpriteAtlas().get("basic_shield_effect"),50);
             player.addItem(i.getType(), i);
+            player.update();
             Engine.getEngine().getEntityStream().addEntity(EntityType.PLAYER, player);
         }
     };

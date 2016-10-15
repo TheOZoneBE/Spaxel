@@ -6,6 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import code.entity.Entity;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.ui.UIElement;
 
@@ -19,7 +20,7 @@ public class Label extends UIElement{
 		this.font = font.deriveFont(size);
 	}
 	
-	public void render(RenderBuffer render){
+	public void render(MasterBuffer render){
 		//TODO text rendering
 		/*
 		g.setColor(Color.WHITE);
@@ -30,7 +31,7 @@ public class Label extends UIElement{
 		g.drawString(text, (int)x - width/2,(int)y + height/2);*/
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		//TODO text rendering
 		/*g.setColor(Color.WHITE);
 		g.setFont(font);

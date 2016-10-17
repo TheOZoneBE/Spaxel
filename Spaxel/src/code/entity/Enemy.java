@@ -70,7 +70,7 @@ public class Enemy extends Actor {
 
     @Override
     public void render(int xPos, int yPos, MasterBuffer render) {
-        //TODO sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+        sprite.renderSprite((int) (x + xPos), (int) (y + yPos),4, (float)(rot+Math.PI),1, false, render);
     }
 
 }

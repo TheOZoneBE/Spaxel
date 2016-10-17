@@ -25,16 +25,16 @@ public class UIBar extends UIElement{
 		float dx = Math.round(Math.sin(rot));
 		float dy = Math.round(Math.cos(rot));
 		for (int i = 0; i < renderWidth; i++){
-			//TODO sprite.renderSprite((int)(x + i*dx), (int)(y + i*dy), rot - (float)Math.PI/2, render);
+			sprite.renderSprite((int)(x + i*dx), (int)(y + i*dy),2, rot - (float)Math.PI/2,1,false, render);
 		}
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		int renderWidth = (int)(width * percent);
 		float dx = Math.round(Math.sin(rot));
 		float dy = Math.round(Math.cos(rot));
 		for (int i = 0; i < renderWidth; i++){
-			//TODO sprite.render((int)(xPos + i*dx), (int)(yPos + i*dy), rot - (float)Math.PI/2, render);
+			sprite.renderSprite((int)(xPos + i*dx), (int)(yPos + i*dy),2, rot - (float)Math.PI/2,1, false, render);
 		}
 	}
 

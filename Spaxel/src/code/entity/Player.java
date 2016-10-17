@@ -2,12 +2,14 @@ package code.entity;
 
 import code.engine.Engine;
 import code.engine.SystemType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.system.UISystem;
 import code.ui.Label;
 import code.ui.UIBar;
+import com.sun.xml.internal.bind.v2.TODO;
 
 public class Player extends Actor {
 	private int mouseX;
@@ -100,10 +102,10 @@ public class Player extends Actor {
 		this.xpToLevel = xpToLevel;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render) {
+	public void render(int xPos, int yPos, MasterBuffer render) {
 		rot = (float)(Math.PI + Math.atan2(((float) (mouseX - xPos)), (float) (mouseY - yPos)));
 		//TODO sprite.renderBlur(xPos, yPos, rot, render, .5f);
-		//TODO sprite.render(xPos, yPos, rot, render);
+		sprite.renderSprite(xPos, yPos,4, (float)(rot+Math.PI), 1, false, render);
 	}
 
 }

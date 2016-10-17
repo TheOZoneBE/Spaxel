@@ -37,7 +37,7 @@ public class UI{
 			int i = 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(40, 40 + i * 72,  render);
+				e.render(40, 680 - i * 72,  render);
 				i++;
 			}
 
@@ -45,7 +45,7 @@ public class UI{
 			i= 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(1240, 40 + i * 72, render);
+				e.render(1240, 680 - i * 72, render);
 				i++;
 			}
 
@@ -53,7 +53,7 @@ public class UI{
 			i= 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(386 + i * 72, 680,  render);
+				e.render(386 + i * 72, 40,  render);
 				i++;
 			}
 		}

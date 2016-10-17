@@ -75,12 +75,12 @@ public class UIButton extends UIElement {
 	}
 
 	public void render(MasterBuffer render){
-		sprite.renderSprite((int)x,(int)y,2, 0, 1, false ,render);
+		sprite.renderSprite((int)x,(int)y,4, 0, 1, false ,render);
 		if (click){
-			clicked.renderSprite((int)x,(int)y,2,0,1, false, render);
+			clicked.renderSprite((int)x,(int)y,4,0,1, false, render);
 		}
 		else if (hovering){
-			hover.renderSprite((int)x,(int)y,2, 0,1,false, render);
+			hover.renderSprite((int)x,(int)y,4, 0,1,false, render);
 		}
 		label.render(render);
 	}

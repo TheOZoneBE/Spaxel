@@ -36,7 +36,7 @@ public class ActorSystem extends GameSystem{
 				i.activate(player.getX(), player.getY(), player.getRot());
 			}
 		}
-		if (mouseWrapper.mouse3){
+		if (mouseWrapper.mouse2){
 			Iterator<Item> mouse3 = player.getItemIterator(EntityType.MOUSE3ITEM);
 			while (mouse3.hasNext()){
 				Entity e = mouse3.next();

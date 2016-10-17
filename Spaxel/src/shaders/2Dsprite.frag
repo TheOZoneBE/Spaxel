@@ -10,8 +10,6 @@ uniform sampler2D tex_sampler;
 
 void main()
 {
-    color = vec4(1.0,1.0,1.0,1.0);
-
     mat2 scale = mat2(pass_tex_offset_scale.z,0,0,pass_tex_offset_scale.w);
     vec2 atlas_coord = scale * pass_tex_coord + pass_tex_offset_scale.xy;
     if (pass_alpha.y == 0) {
@@ -29,7 +27,6 @@ void main()
 	    discard;
 	}
 	else {
-	    color = vec4(1.0,1.0,1.0,1.0);
 	    color.w = pass_alpha.x;
 	}
 }

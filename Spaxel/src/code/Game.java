@@ -151,11 +151,14 @@ public class Game implements Runnable {
 		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
+		long start = 0;
+		long test = 0;
+		long deltatime = 0;
 		while (running) {
 			if (glfwWindowShouldClose(window)){
 				stop();
 			}
-			long start = System.nanoTime();
+			start = System.nanoTime();
 			if (!Engine.getEngine().isLoading()) {
 				if (accTime >= 20000000){
 					accTime -= 20000000;
@@ -166,13 +169,17 @@ public class Game implements Runnable {
 					updater.renderUpdate();
 				}
 			}
+			test = System.nanoTime() -start;
+			System.out.print("update: " + test);
+			//TODO analyse what makes the rendertime so long
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
 			} else {
 				render();
 			}
 			fps++;
-			long deltatime = System.nanoTime() - start;
+			deltatime = System.nanoTime() - start;
+			System.out.println(" render: "+ (deltatime - test));
 			accTime+= deltatime;
 			if (ups == 50){
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");

@@ -14,7 +14,7 @@ public class SpriteData {
 	private float sheetYcoord;
 	private float sheetXscale;
 	private float sheetYscale;
-	private Spritesheet spritesheet;
+	private int spritesheetID;
 	private int color;
 	private Random r;
 
@@ -23,7 +23,7 @@ public class SpriteData {
 		this.height = height;
 		this.xPos = xPos*width;
 		this.yPos = yPos*height;
-		this.spritesheet = spritesheet;
+		this.spritesheetID = spritesheet.getId();
 		sheetXcoord = (float)this.xPos / spritesheet.getWidth();
 		sheetYcoord = (float)this.yPos / spritesheet.getHeigth();
 		sheetXscale = (float)width / spritesheet.getWidth();
@@ -36,6 +36,7 @@ public class SpriteData {
 		this.width = width;
 		this.height = height;
 		this.color = color;
+		this.spritesheetID = 0;
 		r = new Random();
 	}
 
@@ -55,7 +56,7 @@ public class SpriteData {
 				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
 		});
 
-		render.addNewSprite(spritesheet.getId(), trsc, sinCos, getProperties());
+		render.addNewSprite(spritesheetID, trsc, sinCos, getProperties());
 	}
 
 /*

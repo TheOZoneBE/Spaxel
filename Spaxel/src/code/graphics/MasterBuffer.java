@@ -14,6 +14,7 @@ public class MasterBuffer {
         buffers = new HashMap<>();
         for (Spritesheet sheet: spritesheets.values()){
             buffers.put(sheet.getId(), new RenderBuffer());
+            buffers.put(0, new RenderBuffer());
         }
     }
 

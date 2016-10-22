@@ -170,8 +170,8 @@ public class Game implements Runnable {
 				}
 			}
 			test = System.nanoTime() -start;
-			System.out.print("update: " + test);
-			//TODO analyse what makes the rendertime so long
+			//System.out.print("update: " + test);
+			Engine.getEngine().tempTime = System.nanoTime();
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
 			} else {
@@ -179,7 +179,7 @@ public class Game implements Runnable {
 			}
 			fps++;
 			deltatime = System.nanoTime() - start;
-			System.out.println(" render: "+ (deltatime - test));
+			//System.out.println(" render: "+ (deltatime - test));
 			accTime+= deltatime;
 			if (ups == 50){
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");

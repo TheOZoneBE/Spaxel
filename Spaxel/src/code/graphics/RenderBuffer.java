@@ -1,23 +1,46 @@
 package code.graphics;
 
+import code.entity.Entity;
+import code.util.BufferUtils;
+import org.lwjgl.system.CallbackI;
+
 import java.nio.FloatBuffer;
 import java.util.*;
 
 public class RenderBuffer {
 
-    private List<FloatBuffer> trscBuffer;
-    private List<FloatBuffer> sinCosBuffer;
-    private List<FloatBuffer> texOffsetBuffer;
+    //private List<FloatBuffer> trscBuffer;
+    //private List<FloatBuffer> sinCosBuffer;
+    //private List<FloatBuffer> texOffsetBuffer;
+
+    private FloatBuffer trscBuffer;
+    private FloatBuffer sinCosBuffer;
+    private FloatBuffer texOffsetBuffer;
+
+    private int size;
 
 
-    public RenderBuffer() {
+    public RenderBuffer(List<RenderData> rdata) {
+        size = rdata.size();
+        trscBuffer = BufferUtils.allocateFloatBuffer(size);
+        sinCosBuffer = BufferUtils.allocateFloatBuffer(size);
+        texOffsetBuffer = BufferUtils.allocateFloatBuffer(size);
+        for(RenderData r: rdata){
+            trscBuffer.put(r.getTrSc());
+            sinCosBuffer.put(r.getSinCos());
+            texOffsetBuffer.put(r.getTexOffset());
+        }
+        trscBuffer.flip();
+        sinCosBuffer.flip();
+        texOffsetBuffer.flip();
 
-        trscBuffer = new ArrayList<>();
-        sinCosBuffer = new ArrayList<>();
-        texOffsetBuffer = new ArrayList<>();
+
+        //trscBuffer = new ArrayList<>();
+        //sinCosBuffer = new ArrayList<>();
+        //texOffsetBuffer = new ArrayList<>();
     }
 
-
+/*
     public void addTrsc(FloatBuffer trsc){
         trscBuffer.add(trsc);
     }
@@ -28,17 +51,17 @@ public class RenderBuffer {
 
     public void addTexOffset(FloatBuffer texOffset){
         texOffsetBuffer.add(texOffset);
-    }
+    }*/
 
-    public List<FloatBuffer> getTrscBuffer(){
+    public FloatBuffer getTrscBuffer(){
         return trscBuffer;
     }
 
-    public List<FloatBuffer> getSinCosBuffer(){
+    public FloatBuffer getSinCosBuffer(){
         return sinCosBuffer;
     }
 
-    public List<FloatBuffer> getTexOffsetBuffer(){
+    public FloatBuffer getTexOffsetBuffer(){
         return texOffsetBuffer;
     }
 
@@ -50,7 +73,7 @@ public class RenderBuffer {
     }
 
     public int size(){
-        return trscBuffer.size();
+        return size;
     }
 
 

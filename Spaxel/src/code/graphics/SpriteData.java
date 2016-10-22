@@ -10,6 +10,7 @@ public class SpriteData {
 	private int height;
 	private int xPos;
 	private int yPos;
+	private float[] spriteProperties;
 	private float sheetXcoord;
 	private float sheetYcoord;
 	private float sheetXscale;
@@ -28,6 +29,7 @@ public class SpriteData {
 		sheetYcoord = (float)this.yPos / spritesheet.getHeigth();
 		sheetXscale = (float)width / spritesheet.getWidth();
 		sheetYscale = (float)height / spritesheet.getHeigth();
+		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
 		color = 0;
 		r = new Random();
 	}
@@ -37,6 +39,7 @@ public class SpriteData {
 		this.height = height;
 		this.color = color;
 		this.spritesheetID = 0;
+		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
 		r = new Random();
 	}
 
@@ -48,6 +51,7 @@ public class SpriteData {
 	//new render method, just send all the information to a buffer
 	public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
 
+		/*
 		FloatBuffer trsc  = BufferUtils.createFloatBuffer(new float[]{
 				x, y, width*scale, height*scale
 		});
@@ -56,7 +60,17 @@ public class SpriteData {
 				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
 		});
 
-		render.addNewSprite(spritesheetID, trsc, sinCos, getProperties());
+		render.addNewSprite(spritesheetID, trsc, sinCos, getProperties());*/
+
+		float[] trsc = new float[]{
+				x, y, width*scale, height*scale
+		};
+
+		float[] sinCos = new float[]{
+				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
+		};
+
+		render.addNewSprite(spritesheetID, new RenderData(trsc, sinCos, spriteProperties));
 	}
 
 /*

@@ -11,6 +11,7 @@ import static org.lwjgl.opengl.GL31.*;
 import static org.lwjgl.opengl.GL33.*;
 
 import java.nio.FloatBuffer;
+import java.util.List;
 import java.util.Map;
 
 import code.Game;
@@ -114,17 +115,17 @@ public class MasterRenderer {
     }
 
     public void render(MasterBuffer masterBuffer){
-        Map<Integer, RenderBuffer> buffers = masterBuffer.getBuffers();
+        Map<Integer, List<RenderData>> buffers = masterBuffer.getData();
         for(Integer i: buffers.keySet()){
-            render(buffers.get(i), i);
+            render(new RenderBuffer(buffers.get(i)), i);
         }
     }
 
     public void render(RenderBuffer buffer, int spritesheet) {
         if (buffer.size() >0){
-            loadBuffer(trSc, BufferUtils.combineFloatBuffers(buffer.getTrscBuffer()));
-            loadBuffer(sinCosAlpha, BufferUtils.combineFloatBuffers(buffer.getSinCosBuffer()));
-            loadBuffer(texOffsetScale, BufferUtils.combineFloatBuffers(buffer.getTexOffsetBuffer()));
+            loadBuffer(trSc, buffer.getTrscBuffer());
+            loadBuffer(sinCosAlpha, buffer.getSinCosBuffer());
+            loadBuffer(texOffsetScale, buffer.getTexOffsetBuffer());
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindTexture(GL_TEXTURE_2D, spritesheet);

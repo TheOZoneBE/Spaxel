@@ -35,11 +35,14 @@ public class RenderSystem extends GameSystem {
 
 	public void render(){
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
+		long tempTime = Engine.getEngine().tempTime;
 		//actorBuffer.clear();
 		//particleBuffer.clear();
 		//effectBuffer.clear();
 		//UIBuffer.clear();
 		bufferBuffer.clear();
+		System.out.print("clear: " + (System.nanoTime() - tempTime));
+		tempTime = System.nanoTime();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 			int screenXOffset = mouseWrapper.getX() / 2 - Game.GAME_WIDTH / 4;
@@ -53,7 +56,10 @@ public class RenderSystem extends GameSystem {
 			renderEffects();
 		}
 		renderUI();
+		System.out.print(" buffer: " + (System.nanoTime() - tempTime));
+		tempTime = System.nanoTime();
 		master.render(bufferBuffer);
+		System.out.println(" render: " + (System.nanoTime() - tempTime));
 	}
 
 	public void renderActors(){

@@ -24,6 +24,10 @@ public class BufferUtils {
 		result.put(array).flip();
 		return result;
 	}
+
+	public static FloatBuffer allocateFloatBuffer(int size){
+		return ByteBuffer.allocateDirect((size * 4) << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+	}
 	
 	public static IntBuffer createIntBuffer(int[] array) {
 		IntBuffer result = ByteBuffer.allocateDirect(array.length << 2).order(ByteOrder.nativeOrder()).asIntBuffer();

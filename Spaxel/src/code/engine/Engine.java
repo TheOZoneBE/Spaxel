@@ -37,6 +37,7 @@ final public class Engine {
 	private ItemCatalogue items;
 	private boolean loading = true;
 	private float updateTime;
+	public long tempTime;
 	public SpaceCarrier temp;
 	private Font font;
 	private long window;

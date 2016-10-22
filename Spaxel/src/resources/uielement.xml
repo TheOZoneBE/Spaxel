@@ -107,21 +107,21 @@
     <uielement type="counter">
         <ui>play</ui>
         <name>score_counter</name>
-        <size>32</size>
+        <size>4</size>
         <xpos>640</xpos>
         <ypos>64</ypos>
     </uielement>
 	<uielement type="label">
 		<ui>play</ui>
 		<label>hp_label</label>
-		<size>8</size>
+		<size>1</size>
 		<xpos>640</xpos>
 		<ypos>624</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>play</ui>
 		<label>xp_label</label>
-		<size>8</size>
+		<size>1</size>
 		<xpos>640</xpos>
 		<ypos>636</ypos>
 	</uielement>
@@ -167,49 +167,49 @@
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>Programming / Graphics</label>
-		<size>24</size>
+		<size>3</size>
 		<xpos>640</xpos>
 		<ypos>120</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>Theo Dedeken</label>
-		<size>16</size>
+		<size>2</size>
 		<xpos>640</xpos>
 		<ypos>180</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>@TheOZoneBE</label>
-		<size>16</size>
+		<size>2</size>
 		<xpos>640</xpos>
 		<ypos>220</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>Music</label>
-		<size>24</size>
+		<size>3</size>
 		<xpos>640</xpos>
 		<ypos>360</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>Goncalo Gomes</label>
-		<size>16</size>
+		<size>2</size>
 		<xpos>640</xpos>
 		<ypos>420</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>credits</ui>
 		<label>@azureflux_</label>
-		<size>16</size>
+		<size>2</size>
 		<xpos>640</xpos>
 		<ypos>460</ypos>
 	</uielement>
 	<uielement type="label">
 		<ui>main</ui>
 		<label>SPAXEL</label>
-		<size>64</size>
+		<size>8</size>
 		<xpos>640</xpos>
 		<ypos>120</ypos>
 	</uielement>
@@ -294,7 +294,7 @@
 	<uielement type="label">
 		<ui>game_over</ui>
 		<label>GAME OVER</label>
-		<size>96</size>
+		<size>12</size>
 		<xpos>640</xpos>
 		<ypos>240</ypos>
 	</uielement>

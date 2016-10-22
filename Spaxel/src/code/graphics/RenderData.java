@@ -4,6 +4,7 @@ package code.graphics;
 /**
  * Created by theod on 22/10/2016.
  */
+
 public class RenderData {
     private float[] trSc;
     private float[] sinCos;

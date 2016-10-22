@@ -61,4 +61,10 @@
 		<width>48</width>
 		<height>24</height>
 	</sheet>
+	<sheet>
+		<path>font.png</path>
+		<name>font</name>
+		<width>96</width>
+		<height>96</height>
+	</sheet>
 </spritesheet>

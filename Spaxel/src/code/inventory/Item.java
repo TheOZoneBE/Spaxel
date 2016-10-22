@@ -30,7 +30,7 @@ public class Item extends UIElement {
 		stacks = 0;
 		this.sprite = sprite;
 		cooldownBar = new UIBar(0, 0, 48, (float)Math.PI/2, bar);
-		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), Engine.getEngine().getFont(), 8);
+		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), 1);
 		this.cooldown = cooldown;
 		cd = 0;
 		life = -1;

@@ -1,17 +1,11 @@
 package code.graphics;
 
-import code.entity.Entity;
 import code.util.BufferUtils;
-import org.lwjgl.system.CallbackI;
 
 import java.nio.FloatBuffer;
 import java.util.*;
 
 public class RenderBuffer {
-
-    //private List<FloatBuffer> trscBuffer;
-    //private List<FloatBuffer> sinCosBuffer;
-    //private List<FloatBuffer> texOffsetBuffer;
 
     private FloatBuffer trscBuffer;
     private FloatBuffer sinCosBuffer;
@@ -34,24 +28,7 @@ public class RenderBuffer {
         sinCosBuffer.flip();
         texOffsetBuffer.flip();
 
-
-        //trscBuffer = new ArrayList<>();
-        //sinCosBuffer = new ArrayList<>();
-        //texOffsetBuffer = new ArrayList<>();
     }
-
-/*
-    public void addTrsc(FloatBuffer trsc){
-        trscBuffer.add(trsc);
-    }
-
-    public void addSinCos(FloatBuffer sinCos){
-        sinCosBuffer.add(sinCos);
-    }
-
-    public void addTexOffset(FloatBuffer texOffset){
-        texOffsetBuffer.add(texOffset);
-    }*/
 
     public FloatBuffer getTrscBuffer(){
         return trscBuffer;
@@ -65,12 +42,6 @@ public class RenderBuffer {
         return texOffsetBuffer;
     }
 
-
-    public void clear() {
-        trscBuffer.clear();
-        sinCosBuffer.clear();
-        texOffsetBuffer.clear();
-    }
 
     public int size(){
         return size;

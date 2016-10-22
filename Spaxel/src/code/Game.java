@@ -152,7 +152,6 @@ public class Game implements Runnable {
 		int fps = 0;
 		long accTime = 0;
 		long start = 0;
-		long test = 0;
 		long deltatime = 0;
 		while (running) {
 			if (glfwWindowShouldClose(window)){
@@ -169,9 +168,6 @@ public class Game implements Runnable {
 					updater.renderUpdate();
 				}
 			}
-			test = System.nanoTime() -start;
-			//System.out.print("update: " + test);
-			Engine.getEngine().tempTime = System.nanoTime();
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
 			} else {
@@ -179,7 +175,6 @@ public class Game implements Runnable {
 			}
 			fps++;
 			deltatime = System.nanoTime() - start;
-			//System.out.println(" render: "+ (deltatime - test));
 			accTime+= deltatime;
 			if (ups == 50){
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");

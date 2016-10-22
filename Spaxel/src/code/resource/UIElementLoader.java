@@ -55,7 +55,7 @@ public class UIElementLoader extends EntityLoader {
 			    int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 			    int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 			    String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
-			    Label lbl = new Label(xPos,720 - yPos, label, font, 16f);
+			    Label lbl = new Label(xPos,720 - yPos, label, 2);
 			    UIButton temp = new UIButton(xPos,720 - yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
 			    temp.setHitShape(hitShapeAtlas.get(hitshape));
 			    temp.updateHitShape();
@@ -88,7 +88,7 @@ public class UIElementLoader extends EntityLoader {
 				int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 				int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 				int size = Integer.parseInt((nextChild.getElementsByTagName("size").item(0).getTextContent()));
-				Label temp = new Label(xPos,720 - yPos, label, font, size);
+				Label temp = new Label(xPos,720 - yPos, label, size);
 				uis.get(ui).addElement(label, temp);
 			}
 			else {
@@ -97,7 +97,7 @@ public class UIElementLoader extends EntityLoader {
 				int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
 				int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
 				int size = Integer.parseInt((nextChild.getElementsByTagName("size").item(0).getTextContent()));
-				Label lbl = new Label(xPos,720 - yPos, "", font, size);
+				Label lbl = new Label(xPos,720 - yPos, "",  size);
 				UICounter temp = new UICounter(xPos, 720 -yPos, lbl);
 				uis.get(ui).addElement(name, temp);
 			}

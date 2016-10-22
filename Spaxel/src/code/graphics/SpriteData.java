@@ -43,25 +43,8 @@ public class SpriteData {
 		r = new Random();
 	}
 
-	public FloatBuffer getProperties(){
-		return BufferUtils.createFloatBuffer(new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale});
-	}
-
-
 	//new render method, just send all the information to a buffer
 	public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
-
-		/*
-		FloatBuffer trsc  = BufferUtils.createFloatBuffer(new float[]{
-				x, y, width*scale, height*scale
-		});
-
-		FloatBuffer sinCos =BufferUtils.createFloatBuffer(new float[]{
-				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
-		});
-
-		render.addNewSprite(spritesheetID, trsc, sinCos, getProperties());*/
-
 		float[] trsc = new float[]{
 				x, y, width*scale, height*scale
 		};

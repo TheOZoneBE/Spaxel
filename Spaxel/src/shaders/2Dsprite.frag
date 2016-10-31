@@ -21,7 +21,7 @@ void main()
         int g = (c & 0x00ff00) >> 8;
         int b = (c & 0x0000ff);
         int a = (c & 0xff000000) >> 24;
-        color = vec4(r/256,g/256,b/256, a/256);
+        color = vec4(r/255.0,g/255.0,b/255.0, a/255.0);
     }
 	if (color == vec4(1.0,0.0,1.0,1.0)) {
 	    discard;

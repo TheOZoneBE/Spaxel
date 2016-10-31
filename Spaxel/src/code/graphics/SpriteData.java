@@ -16,15 +16,17 @@ public class SpriteData {
 	private float sheetXscale;
 	private float sheetYscale;
 	private int spritesheetID;
+	private Spritesheet spritesheet;
 	private int color;
 	private Random r;
 
 	public SpriteData(int width, int height, int xPos, int yPos, Spritesheet spritesheet) {
 		this.width = width;
 		this.height = height;
-		this.xPos = xPos*width;
-		this.yPos = yPos*height;
+		this.xPos = xPos;
+		this.yPos = yPos;
 		this.spritesheetID = spritesheet.getId();
+		this.spritesheet = spritesheet;
 		sheetXcoord = (float)this.xPos / spritesheet.getWidth();
 		sheetYcoord = (float)this.yPos / spritesheet.getHeigth();
 		sheetXscale = (float)width / spritesheet.getWidth();
@@ -56,18 +58,9 @@ public class SpriteData {
 		render.addNewSprite(spritesheetID, new RenderData(trsc, sinCos, spriteProperties));
 	}
 
-/*
-	//TODO rewrite this to work with opengl textures
 	public SpriteData getRandomPart(int width, int height){
-		int[] rPixels = new int[width * height];
 		int x = r.nextInt(this.width - width);
 		int y = r.nextInt(this.height - height);
-		for (int i = 0; i < width; i++){
-			for (int j = 0; j< height; j++){
-				rPixels[i + j*width] = pixels[x + i + (y+j)*this.width];
-			}
-		}
-		return new SpriteData(width, height, scale , rPixels);
+		return new SpriteData(width, height, xPos + x, yPos + y, spritesheet);
 	}
-*/
 }

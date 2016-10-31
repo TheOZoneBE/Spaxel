@@ -26,7 +26,7 @@ public class UI{
 		}
 	}
 	
-	public void render( MasterBuffer render){
+	public void render(MasterBuffer render){
 		for (UIElement u: elements.values()){
 			u.render(render);
 		}

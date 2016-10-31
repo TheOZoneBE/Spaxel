@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class ParticleSpawner extends Entity {
 	private int rate;
-	private double maxDeltaRot;
-	private double maxSpeed;
+	private float maxDeltaRot;
+	private float maxSpeed;
 	private int maxLife;
-	private Sprite sprite;
+	private SpriteData sprite;
 	private Random rand;
 
-	public ParticleSpawner(double x, double y, int rate, int duration, double maxDeltaRot, double maxSpeed, int maxLife, Sprite sprite) {
+	public ParticleSpawner(float x, float y, int rate, int duration, float maxDeltaRot, float maxSpeed, int maxLife, SpriteData sprite) {
 		super(x, y, 0);
 		this.rate = rate;
 		this.life = duration;
@@ -32,7 +32,7 @@ public class ParticleSpawner extends Entity {
 	public List<Particle> spawn() {
 		List<Particle> temp = new ArrayList<>();
 		for (int i = 0; i < rate; i++) {
-			temp.add(new Particle(x, y, rot, (rand.nextDouble() - .5) * maxDeltaRot, rand.nextDouble() * 2 * Math.PI, rand.nextDouble() * maxSpeed, rand
+			temp.add(new Particle(x, y, rot, (rand.nextFloat() - .5f) * maxDeltaRot, rand.nextFloat() * 2 * (float)Math.PI, rand.nextFloat() * maxSpeed, rand
 					.nextInt(maxLife), sprite));
 		}
 		return temp;

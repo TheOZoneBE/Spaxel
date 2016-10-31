@@ -2,7 +2,7 @@ package code.resource;
 
 import code.engine.EntityType;
 import code.factories.ProjectileFactory;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.inventory.Item;
 import code.inventory.ItemCatalogue;
 import code.inventory.ProjectileItem;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ItemLoader extends EntityLoader {
 
-    public ItemCatalogue loadItems(String path, Map<String, Sprite> spriteAtlas){
+    public ItemCatalogue loadItems(String path, Map<String, SpriteData> spriteAtlas){
         super.loadFile(path);
         ItemCatalogue items = new ItemCatalogue();
         NodeList nodelist = doc.getElementsByTagName("primaryWeapon");

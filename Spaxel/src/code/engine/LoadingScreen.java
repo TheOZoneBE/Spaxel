@@ -3,7 +3,7 @@ package code.engine;
 import code.Game;
 import code.ui.Label;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.ui.UIBar;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.*;
  * Created by theo on 31-5-2016.
  */
 public class LoadingScreen {
-    private Sprite overlay;
+    private SpriteData overlay;
 
     private UIBar progress;
 
@@ -30,11 +30,13 @@ public class LoadingScreen {
         catch (Exception e){
             e.printStackTrace();
         }
-        overlay = new Sprite(1280, 720,1, 0xff000000);
-        progress = new UIBar(320,640,640, Math.PI/2, new Sprite(1,8,2, 0xffffffff));
-        message = new Label(640,680, "",font , 16f);
-        buffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-        title = new Label(640, 320, "SPAXEL", font, 128f);
+        //TODO scale in entity
+        overlay = new SpriteData(1280, 720, 0xff000000);
+        //scale 2
+        progress = new UIBar(320,640,640, (float)Math.PI/2, new SpriteData(1,8, 0xffffffff));
+        message = new Label(640,680, "",2);
+        //buffer = new RenderBuffer(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+        title = new Label(640, 320, "SPAXEL", 18);
     }
 
     public UIBar getProgress(){
@@ -46,14 +48,14 @@ public class LoadingScreen {
     }
 
     public void render(Graphics g){
-        overlay.render(640,360,buffer);
-        progress.render(g, buffer);
+        //overlay.renderSprite(0,0,1, 0,1,false, buffer);
+        //progress.render(g, buffer);
 
         for (int i = 0; i < Game.GAME_WIDTH * Game.GAME_HEIGHT; i++) {
-            Game.game.pixels[i] = buffer.getPixel(i);
+            //Game.game.pixels[i] = buffer.getPixel(i);
         }
-        message.render(g, buffer);
-        title.render(g, buffer);
+        //message.render(g, buffer);
+        //title.render(g, buffer);
 
     }
 }

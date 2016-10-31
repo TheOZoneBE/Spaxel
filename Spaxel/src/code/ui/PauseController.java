@@ -12,10 +12,12 @@ public class PauseController extends Controller {
 
     public void update(){
         Keyboard k = Engine.getEngine().getKeyboard();
+        //TODO rework
+        /*
         if (k.esc && !k.previous[k.escCode]){
             resume();
             k.previous[k.escCode] = true;
-        }
+        }*/
     }
 
     public void resume(){

@@ -1,15 +1,14 @@
 package code.projectiles;
 
 import code.entity.Actor;
-import code.entity.Enemy;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.inventory.ShootEffect;
 
 /**
  * Created by theo on 12-5-2016.
  */
 public class DisruptLaser extends Projectile {
-    public DisruptLaser(double x, double y, double rot, Sprite sprite,Sprite trail,  int damage, int life, double speed) {
+    public DisruptLaser(float x, float y, float rot, SpriteData sprite, SpriteData trail, int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 

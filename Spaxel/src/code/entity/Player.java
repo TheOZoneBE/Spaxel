@@ -2,12 +2,14 @@ package code.entity;
 
 import code.engine.Engine;
 import code.engine.SystemType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.system.UISystem;
 import code.ui.Label;
 import code.ui.UIBar;
+import com.sun.xml.internal.bind.v2.TODO;
 
 public class Player extends Actor {
 	private int mouseX;
@@ -16,31 +18,31 @@ public class Player extends Actor {
 	private int xp;
 	private int level;
 
-	public Player(double x, double y, double rot, int health, Sprite sprite, double maxspeed, double acc) {
+	public Player(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc) {
 		super(x, y, rot, health, sprite, maxspeed, acc);
 		xpToLevel = 100;
 		level = 1;
 	}
 
 	public void update(Keyboard keys, int mouseX, int mouseY) {		
-		double dx = -xdir/(maxspeed*2);
-		double dy = -ydir/(maxspeed*2);
+		float dx = -xdir/(maxspeed*2);
+		float dy = -ydir/(maxspeed*2);
 		if (keys.down) {
-			dx = Math.sin(rot) * acc;
-			dy = Math.cos(rot) * acc;
+			dx = (float)Math.sin(rot) * acc;
+			dy = (float)Math.cos(rot) * acc;
 		}
 		if (keys.up) {
-			dx = -Math.sin(rot) * acc;
-			dy = -Math.cos(rot) * acc;
+			dx = (float)-Math.sin(rot) * acc;
+			dy = (float)-Math.cos(rot) * acc;
 		}
 		if (keys.left) {
-			dx = Math.sin(rot - Math.PI / 2) * acc;
-			dy = Math.cos(rot - Math.PI / 2) * acc;
+			dx = (float)Math.sin(rot - Math.PI / 2) * acc;
+			dy = (float)Math.cos(rot - Math.PI / 2) * acc;
 		}
 
 		if (keys.right) {
-			dx = Math.sin(rot + Math.PI / 2) * acc;
-			dy = Math.cos(rot + Math.PI / 2) * acc;
+			dx = (float)Math.sin(rot + Math.PI / 2) * acc;
+			dy = (float)Math.cos(rot + Math.PI / 2) * acc;
 		}
 		if (controlSpeed(xdir + dx, ydir + dy)) {
 			xdir += dx;
@@ -71,9 +73,9 @@ public class Player extends Actor {
 		}
 
 		UIBar hp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
-		hp_bar.setPercent(health/(double)maxHealth);
+		hp_bar.setPercent(health/(float)maxHealth);
 		UIBar xp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("xp_bar");
-		xp_bar.setPercent(xp/(double)xpToLevel);
+		xp_bar.setPercent(xp/(float)xpToLevel);
 
 		Label hp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
 		Label xp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
@@ -100,10 +102,10 @@ public class Player extends Actor {
 		this.xpToLevel = xpToLevel;
 	}
 
-	public void render(int xPos, int yPos, RenderBuffer render) {
-		rot = Math.PI + Math.atan2(((double) (mouseX - xPos)), (double) (mouseY - yPos));
-		sprite.renderBlur(xPos, yPos, rot, render, .5);
-		sprite.render(xPos, yPos, rot, render);
+	public void render(int xPos, int yPos, MasterBuffer render) {
+		rot = (float)(Math.PI + Math.atan2(((float) (mouseX - xPos)), (float) (mouseY - yPos)));
+		//TODO sprite.renderBlur(xPos, yPos, rot, render, .5f);
+		sprite.renderSprite(xPos, yPos,4, (float)(rot+Math.PI), 1, false, render);
 	}
 
 }

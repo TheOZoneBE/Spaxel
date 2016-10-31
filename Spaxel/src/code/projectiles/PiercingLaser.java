@@ -1,14 +1,13 @@
 package code.projectiles;
 
 import code.entity.Actor;
-import code.entity.Enemy;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 /**
  * Created by theo on 11-5-2016.
  */
 public class PiercingLaser extends Projectile {
-    public PiercingLaser(double x, double y, double rot, Sprite sprite,Sprite trail, int damage, int life, double speed) {
+    public PiercingLaser(float x, float y, float rot, SpriteData sprite, SpriteData trail, int damage, int life, float speed) {
         super(x, y, rot, sprite,trail, damage, life, speed);
     }
 

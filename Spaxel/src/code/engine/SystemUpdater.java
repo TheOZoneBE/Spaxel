@@ -51,31 +51,34 @@ public class SystemUpdater {
      *
      */
     public void generalUpdate(){
-        CountDownLatch latch;
-        Engine.getEngine().getKeyboard().update();
-        if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
-            latch = new CountDownLatch(2);
-            e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
-        }
-        else {
-            latch = new CountDownLatch(6);
-            e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
-            //Engine.getEngine().temp.update();
-        }
-        try{
-            latch.await();
-            Engine.getEngine().getEntityStream().cleanup();
-        }
-        catch (InterruptedException e){
-            e.printStackTrace();
-        }
+        if (!e.isShutdown()){
+            CountDownLatch latch;
+            Engine.getEngine().getMouseWrapper().update();
+            Engine.getEngine().getKeyboard().update();
 
+            if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
+                latch = new CountDownLatch(2);
+                e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
+            }
+            else {
+                latch = new CountDownLatch(6);
+                e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
+                //Engine.getEngine().temp.update();
+            }
+            try{
+                latch.await();
+                Engine.getEngine().getEntityStream().cleanup();
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -83,7 +86,7 @@ public class SystemUpdater {
      */
     public void renderUpdate(){
         CountDownLatch latch = new CountDownLatch(0);
-        Engine.getEngine().getKeyboard().update();
+
         if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
             latch = new CountDownLatch(3);
             e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));
@@ -98,7 +101,11 @@ public class SystemUpdater {
         }
     }
 
-    public void render(Graphics g){
-        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render(g);
+    public void render(){
+        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render();
+    }
+
+    public void shutdown(){
+        e.shutdown();
     }
 }

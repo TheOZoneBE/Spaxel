@@ -7,6 +7,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.entity.Player;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.inventory.Item;
 
@@ -25,9 +26,9 @@ public class UI{
 		}
 	}
 	
-	public void render(Graphics g, RenderBuffer render){
+	public void render( MasterBuffer render){
 		for (UIElement u: elements.values()){
-			u.render(g, render);
+			u.render(render);
 		}
 		List<Entity> players = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER);
 		if (!players.isEmpty()){
@@ -36,7 +37,7 @@ public class UI{
 			int i = 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(40, 40 + i * 72, g,  render);
+				e.render(40, 680 - i * 72,  render);
 				i++;
 			}
 
@@ -44,7 +45,7 @@ public class UI{
 			i= 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(1240, 40 + i * 72, g, render);
+				e.render(1240, 680 - i * 72, render);
 				i++;
 			}
 
@@ -52,7 +53,7 @@ public class UI{
 			i= 0;
 			while (toRender.hasNext()){
 				Item e = toRender.next();
-				e.render(386 + i * 72, 680,g,  render);
+				e.render(386 + i * 72, 40,  render);
 				i++;
 			}
 		}

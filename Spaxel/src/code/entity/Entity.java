@@ -1,35 +1,28 @@
 package code.entity;
 
 
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
-
-import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.math.Axis;
-import code.math.Matrix;
+import code.math.MatrixF;
 import code.math.MatrixMaker;
-import code.math.Projection;
-import code.math.VectorD;
 
 public class Entity {
-	protected double x;
-	protected double y;
-	protected double rot;
+	protected float x;
+	protected float y;
+	protected float rot;
 	protected HitShape oriHitShape;
 	protected HitShape updHitShape;
 	protected boolean alive = true;
 	protected int life;
 	
-	public Entity(double x, double y, double rot){
+	public Entity(float x, float y, float rot){
 		this.x = x;
 		this.y = y;
 		this.rot = rot;
 	}
 	
-	public Entity(double x, double y){
+	public Entity(float x, float y){
 		this.x = x;
 		this.y = y;
 		rot = 0;
@@ -42,7 +35,7 @@ public class Entity {
 	}
 		
 	
-	public void render(int xPos, int yPos, RenderBuffer render){
+	public void render(int xPos, int yPos, MasterBuffer render){
 		
 	}
 	
@@ -60,33 +53,33 @@ public class Entity {
 			setDead();
 		}
 	}
-	public double getX(){
+	public float getX(){
 		return x;
 	}
 	
-	public double getY(){
+	public float getY(){
 		return y;
 	}
 	
-	public double getRot(){
+	public float getRot(){
 		return rot;
 	}
 	
-	public void setX(double x){
+	public void setX(float x){
 		this.x = x;
 	}
 	
-	public void setY(double y){
+	public void setY(float y){
 		this.y = y;
 	}
 	
-	public void setRot(double rot){
+	public void setRot(float rot){
 		this.rot = rot;
 	}
 	
 	public void updateHitShape(){
-		Matrix updateMatrix = MatrixMaker.getTransRotMatrix(x, y, rot);
-		updHitShape = oriHitShape.update(updateMatrix);
+		MatrixF updateMatrixF = MatrixMaker.getTransformationMatrix(x, y, rot,1);
+		updHitShape = oriHitShape.update(updateMatrixF);
 	}
 	
 	public void setHitShape(HitShape hitShape){
@@ -105,12 +98,12 @@ public class Entity {
 		return updHitShape.collision(e.getUpdHitShape());
 	}
 
-	public double distanceTo(double xPos, double yPos){
-		return Math.sqrt(Math.pow(x-xPos,2) + Math.pow(y-yPos, 2));
+	public float distanceTo(float xPos, float yPos){
+		return (float)Math.sqrt(Math.pow(x-xPos,2) + Math.pow(y-yPos, 2));
 	}
 
-	public double distanceTo(Entity e){
-		return Math.sqrt(Math.pow(x-e.getX(),2) + Math.pow(y-e.getY(), 2));
+	public float distanceTo(Entity e){
+		return (float)Math.sqrt(Math.pow(x-e.getX(),2) + Math.pow(y-e.getY(), 2));
 	}
 
 	public boolean isAlive(){

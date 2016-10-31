@@ -2,6 +2,7 @@ package code.entity;
 
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.inventory.Item;
 
@@ -11,7 +12,7 @@ import code.inventory.Item;
 public class DroppedItem extends Entity{
     private Item item;
 
-    public DroppedItem(double x, double y, Item item, int life) {
+    public DroppedItem(float x, float y, Item item, int life) {
         super(x, y);
         this.item = item;
         this.life = life;
@@ -37,7 +38,7 @@ public class DroppedItem extends Entity{
         }
     }
 
-    public void render (int xPos, int yPos, RenderBuffer render){
-        item.getSprite().render((int) (x + xPos), (int) (y+ yPos), 1, render);
+    public void render (int xPos, int yPos, MasterBuffer render){
+        item.getSprite().renderSprite((int) (x + xPos), (int) (y+ yPos), 1, rot, 1, false,  render);
     }
 }

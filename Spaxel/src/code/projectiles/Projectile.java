@@ -3,23 +3,22 @@ package code.projectiles;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.entity.Actor;
-import code.entity.Enemy;
 import code.entity.Entity;
 import code.entity.TrailSegment;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
-import code.math.VectorD;
+import code.graphics.SpriteData;
+import code.math.VectorF;
 
 public class Projectile extends Entity {
-	protected Sprite sprite;
-	protected Sprite trail;
+	protected SpriteData sprite;
+	protected SpriteData trail;
 	protected int damage;
-	protected double speed;
+	protected float speed;
 	private TrailSegment previous;
 
-	public Projectile(double x, double y, double rot, Sprite sprite,Sprite trail, int damage, int life, double speed) {
+	public Projectile(float x, float y, float rot, SpriteData sprite, SpriteData trail, int damage, int life, float speed) {
 		super(x, y, rot);
 		this.sprite = sprite;
 		this.trail = trail;
@@ -28,22 +27,22 @@ public class Projectile extends Entity {
 		this.speed = speed;
 		alive = true;
 		HitShape hitShape = new HitShape();
-		HitPoint hitPoint = new HitPoint(new VectorD(new double[] { 0, 0, 1 }));
+		HitPoint hitPoint = new HitPoint(new VectorF(new float[] { 0, 0, 1 }));
 		hitShape.addHitPoint(hitPoint);
 		setHitShape(hitShape);
 	}
 
 	public void update() {
 		super.update();
-		double dx = Math.sin(rot) * speed;
-		double dy = Math.cos(rot) * speed;
+		float dx = (float)Math.sin(rot) * speed;
+		float dy = (float)Math.cos(rot) * speed;
 		x -= dx*Engine.getEngine().getUpdateTime();
 		y -= dy*Engine.getEngine().getUpdateTime();
 	}
 
 	@Override
-	public void render(int xPos, int yPos, RenderBuffer render) {
-		sprite.render((int) (x + xPos), (int) (y + yPos),rot, render);
+	public void render(int xPos, int yPos, MasterBuffer render) {
+		sprite.renderSprite((int) (x + xPos), (int) (y + yPos),2, rot, 1, false, render);
 
 	}
 
@@ -52,7 +51,7 @@ public class Projectile extends Entity {
 		return previous;
 	}
 
-	public Sprite getSprite() {
+	public SpriteData getSprite() {
 		return sprite;
 	}
 	

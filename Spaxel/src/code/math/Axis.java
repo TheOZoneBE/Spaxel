@@ -1,23 +1,23 @@
 package code.math;
 
 public class Axis {
-	private VectorD dirVec;
+	private VectorF dirVec;
 	
 	public Axis(){
-		dirVec = new VectorD(2);
+		dirVec = new VectorF(2);
 	}
 	
-	public void initializeAxis(VectorD vec1, VectorD vec2){
+	public void initializeAxis(VectorF vec1, VectorF vec2){
 		dirVec = vec1.diff(vec2);
 	}
 	
-	public void initializeNormal(VectorD vec1, VectorD vec2){
+	public void initializeNormal(VectorF vec1, VectorF vec2){
 		dirVec = vec1.diff(vec2).normal();
 	}
 	
-	public VectorD project(VectorD vec){
-		VectorD sol = new VectorD(2);
-		double mul = dirVec.dotProduct(vec)/ dirVec.dotProduct(dirVec);
+	public VectorF project(VectorF vec){
+		VectorF sol = new VectorF(2);
+		float mul = dirVec.dotProduct(vec)/ dirVec.dotProduct(dirVec);
 		sol = dirVec.multiplicate(mul);
 		return sol;
 	}

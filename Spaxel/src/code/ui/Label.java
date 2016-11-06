@@ -27,7 +27,6 @@ public class Label extends UIElement{
 	}
 	
 	public void render(MasterBuffer render){
-		//TODO text rendering
 		int offset = calculateOffset();
 		for (int i = 0; i < text.length(); i++){
 			String c = text.substring(i, i+1).toLowerCase();
@@ -39,18 +38,9 @@ public class Label extends UIElement{
 			}
 			offset += 12*scale;
 		}
-
-		/*
-		g.setColor(Color.WHITE);
-		g.setFont(font);
-		FontMetrics fm = g.getFontMetrics();
-		int width = fm.stringWidth(text);
-		int height =fm.getAscent() - fm.getDescent();
-		g.drawString(text, (int)x - width/2,(int)y + height/2);*/
 	}
 
 	public void render(int xPos, int yPos, MasterBuffer render){
-		//TODO text rendering
 		int offset = calculateOffset();
 		for (int i = 0; i < text.length(); i++){
 			String c = text.substring(i, i+1).toLowerCase();
@@ -62,12 +52,6 @@ public class Label extends UIElement{
 			}
 			offset += 12*scale;
 		}
-		/*g.setColor(Color.WHITE);
-		g.setFont(font);
-		FontMetrics fm = g.getFontMetrics();
-		int width = fm.stringWidth(text);
-		int height =fm.getAscent() - fm.getDescent();
-		g.drawString(text, xPos - width/2,yPos + height/2);*/
 	}
 
 

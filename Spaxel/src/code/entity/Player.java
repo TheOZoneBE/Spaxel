@@ -27,20 +27,20 @@ public class Player extends Actor {
 	public void update(Keyboard keys, int mouseX, int mouseY) {		
 		float dx = -xdir/(maxspeed*2);
 		float dy = -ydir/(maxspeed*2);
-		if (keys.down) {
+		if (keys.downState.getState()) {
 			dx = (float)Math.sin(rot) * acc;
 			dy = (float)Math.cos(rot) * acc;
 		}
-		if (keys.up) {
+		if (keys.upState.getState()) {
 			dx = (float)-Math.sin(rot) * acc;
 			dy = (float)-Math.cos(rot) * acc;
 		}
-		if (keys.left) {
+		if (keys.leftState.getState()) {
 			dx = (float)Math.sin(rot - Math.PI / 2) * acc;
 			dy = (float)Math.cos(rot - Math.PI / 2) * acc;
 		}
 
-		if (keys.right) {
+		if (keys.rightState.getState()) {
 			dx = (float)Math.sin(rot + Math.PI / 2) * acc;
 			dy = (float)Math.cos(rot + Math.PI / 2) * acc;
 		}

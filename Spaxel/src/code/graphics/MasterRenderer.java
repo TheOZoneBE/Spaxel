@@ -132,10 +132,6 @@ public class MasterRenderer {
 
             glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,buffer.size());
         }
-
-
-        //TODO text rendering
-
     }
 
 }

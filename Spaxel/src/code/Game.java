@@ -197,17 +197,6 @@ public class Game implements Runnable {
 
 		glfwPollEvents();
 		i++;
-		//TODO text rendering
-		/*
-		clearText();
-		BufferStrategy bs = getBufferStrategy();
-		Graphics g = bs.getDrawGraphics();
-		Graphics g2 = textBuffer.getGraphics();
-		updater.render(g2);
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.drawImage(textBuffer, 0, 0, getWidth(), getHeight(), null);
-		g.dispose();
-		bs.show();*/
 	}
 
 	public void renderLoading(){

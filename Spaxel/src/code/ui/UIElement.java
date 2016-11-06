@@ -34,7 +34,7 @@ public class UIElement extends Entity {
 	public void render(MasterBuffer render){
 		sprite.renderSprite((int)x,(int)y, 2,0,1,false, render);
 	}
-	//TODO text rendering
+
 	public void render(Graphics g, MasterBuffer render){
 
 	}

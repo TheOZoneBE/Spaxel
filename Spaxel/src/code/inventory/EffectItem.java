@@ -24,7 +24,7 @@ public class EffectItem extends Item{
 			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 			int xPlayer = 3* Game.GAME_WIDTH /4 - 8*4 - mouseWrapper.getX()/2;
 			int yPlayer = 3* Game.GAME_HEIGHT /4 - 8*4 - mouseWrapper.getY()/2;
-			effectSprite.renderSprite(xPlayer, yPlayer, 2, 0, .75f, false, render);
+			effectSprite.renderSprite(xPlayer, yPlayer, 4, 0, .75f, false, render);
 		}
 	}
 

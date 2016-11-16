@@ -2,9 +2,9 @@ package code.inventory;
 
 import code.engine.Engine;
 import code.engine.EntityType;
-import code.entity.Entity;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.ui.Label;
 import code.ui.UIBar;
 import code.ui.UIElement;
@@ -14,23 +14,23 @@ import java.awt.*;
 public class Item extends UIElement {
 	protected EntityType type;
 	protected int stacks;
-	protected Sprite sprite;
+	protected SpriteData sprite;
 	protected UIBar cooldownBar;
 	protected Label stackCounter;
 	protected int cooldown;
 	protected int cd;
-	protected Sprite bar;
+	protected SpriteData bar;
 	protected String name;
 	
-	public Item(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown){
+	public Item(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown){
 		super(0,0,null);
 		this.type = type;
 		this.bar = bar;
 		this.name = name;
 		stacks = 0;
 		this.sprite = sprite;
-		cooldownBar = new UIBar(0, 0, 48, Math.PI/2, bar);
-		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), Engine.getEngine().getFont(), 8);
+		cooldownBar = new UIBar(0, 0, 48, (float)Math.PI/2, bar);
+		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), 1);
 		this.cooldown = cooldown;
 		cd = 0;
 		life = -1;
@@ -50,9 +50,9 @@ public class Item extends UIElement {
 		return type;
 	}
 
-	public void render(int xPos, int yPos, Graphics g,  RenderBuffer render){
-		sprite.render(xPos, yPos, render);
-		stackCounter.render(xPos + 20, yPos + 20, g, render);
+	public void render(int xPos, int yPos, MasterBuffer render){
+		sprite.renderSprite(xPos, yPos, 2, 0, 1, false, render);
+		stackCounter.render(xPos + 20, yPos + 20, render);
 	}
 
 	public int getCooldown(){
@@ -67,7 +67,7 @@ public class Item extends UIElement {
 		this.cd = cd;
 	}
 
-	public Sprite getSprite(){
+	public SpriteData getSprite(){
 		return sprite;
 	}
 

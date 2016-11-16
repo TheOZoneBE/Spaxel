@@ -7,15 +7,13 @@ import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
-import code.entity.Player;
 import code.entity.SpaceCarrier;
-import code.graphics.AnimSprite;
 import code.graphics.Spritesheet;
 import code.sound.Sound;
 import code.system.RenderSystem;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.input.Keyboard;
-import code.input.Mouse;
+import code.input.MouseWrapper;
 import code.inventory.*;
 import code.system.*;
 import code.resource.*;
@@ -23,22 +21,25 @@ import code.ui.UI;
 import code.ui.UIButton;
 import code.ui.UICounter;
 
+
 final public class Engine {
 	private final static Engine engine = new Engine();
 	private Keyboard keys;
-	private Mouse mouse;
+	private MouseWrapper mouseWrapper;
 	private EntityStream entities;
 	private List<Sound> soundList;
-	private Map<String, Sprite> spriteAtlas;
+	public Map<String, Spritesheet> spritesheets;
+	public Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<String, UI> UIAtlas;
 	private EnumMap<SystemType, GameSystem> systems;
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
-	private double updateTime;
+	private float updateTime;
 	public SpaceCarrier temp;
 	private Font font;
+	private long window;
 
 	public static Engine getEngine(){
 		return engine;
@@ -49,72 +50,68 @@ final public class Engine {
 	}
 	
 	private Engine(){
-		this.keys = new Keyboard();
-		this.mouse = new Mouse();
-		Game.game.addKeyListener(keys);
-		Game.game.addMouseListener(mouse);
-		Game.game.addMouseMotionListener(mouse);
+
 		entities = new EntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
 	}
 	
 	public void initialize(){
-		font = null;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
+        SpriteLoader spriteLoader = new SpriteLoader();
+        spriteAtlas = spriteLoader.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
+        spritesheets = spriteLoader.spritesheetMap;
 
-		//asset loading
+        spriteAtlas.put("hp_bar", new SpriteData(1,4, 0xff00ff00));
+        spriteAtlas.put("xp_bar", new SpriteData(1,4, 0xff0000ff));
+
+        addSystem(new RenderSystem());
+
+        Game.game.updater.setSystems(systems);
+	}
+
+	public void startLoading(){
+        this.keys = new Keyboard(window);
+
+        //asset loading
+		/*
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.05);
+		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
-		soundList = sounds.loadSounds("/resources/sound.xml");
+		soundList = sounds.loadSounds("/resources/sound.xml");  */
 
-		Game.game.loadingScreen.getMessage().setText("Loading sprites");
-		Game.game.loadingScreen.getProgress().setPercent(0.25);
-		spriteAtlas = new SpriteLoader().loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
-		spriteAtlas.put("hp_bar", new Sprite(1,4,2, 0xff00ff00));
-		spriteAtlas.put("xp_bar", new Sprite(1,4,2, 0xff0000ff));
+        Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
+        Game.game.loadingScreen.getProgress().setPercent(0.4f);
+        hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
 
-		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
-		Game.game.loadingScreen.getProgress().setPercent(0.4);
-		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
+        Game.game.loadingScreen.getMessage().setText("Loading items");
+        Game.game.loadingScreen.getProgress().setPercent(0.65f);
+        items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
 
+        Game.game.loadingScreen.getMessage().setText("Loading UI");
+        Game.game.loadingScreen.getProgress().setPercent(0.8f);
+        UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
 
-		Game.game.loadingScreen.getMessage().setText("Loading items");
-		Game.game.loadingScreen.getProgress().setPercent(0.65);
-		items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
+        ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
+        ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
-		Game.game.loadingScreen.getMessage().setText("Loading UI");
-		Game.game.loadingScreen.getProgress().setPercent(0.8);
-		UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
+        entities.cleanup();
 
-		((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
-		((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
-
-		entities.cleanup();
-
-		Game.game.loadingScreen.getMessage().setText("Initializing systems");
-		Game.game.loadingScreen.getProgress().setPercent(0.9);
-		//systems
-		addSystem(new SoundSystem());
-		addSystem(new InventorySystem());
-		addSystem(new UISystem());
-		addSystem(new ProjectileSystem());
-		addSystem(new ActorSystem());
-		addSystem(new RenderSystem());
-		addSystem(new AISystem());
-		addSystem(new ParticleSystem());
-		addSystem(new TrailSystem());
-		addSystem(new SpawnerSystem());
-		((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
-		((UISystem)getSystem(SystemType.UI)).changeUI("main");
-		//starting threads
-		Game.game.updater.setSystems(systems);
+        Game.game.loadingScreen.getMessage().setText("Initializing systems");
+        Game.game.loadingScreen.getProgress().setPercent(0.9f);
+        //systems
+        addSystem(new SoundSystem());
+        addSystem(new InventorySystem());
+        addSystem(new UISystem());
+        addSystem(new ProjectileSystem());
+        addSystem(new ActorSystem());
+        addSystem(new AISystem());
+        addSystem(new ParticleSystem());
+        addSystem(new TrailSystem());
+        addSystem(new SpawnerSystem());
+        //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+        ((UISystem)getSystem(SystemType.UI)).changeUI("main");
+        //starting threads
+        Game.game.updater.setSystems(systems);
 
 		/*
 		Spritesheet spaceCar = new Spritesheet(64,64, "/spritesheets/space_carrier.png");
@@ -129,12 +126,16 @@ final public class Engine {
 		temp = new SpaceCarrier(0,0,0,1000,hull, turret, as, 1, 0.5);
 		*/
 
-		loading = false;
-	}
+        loading = false;
+    }
 
 	public void stopGame(){
 		((UICounter)UIAtlas.get("play").getElement("score_counter")).setCounter(0);
 		entities.clear();
+	}
+
+	public void setWindow(long window){
+		this.window = window;
 	}
 
 	public boolean isLoading(){
@@ -145,15 +146,19 @@ final public class Engine {
 		return keys;
 	}
 	
-	public Mouse getMouse(){
-		return mouse;
+	public MouseWrapper getMouseWrapper(){
+		return mouseWrapper;
+	}
+
+	public void setMouseWrapper(MouseWrapper wrapper){
+		this.mouseWrapper = wrapper;
 	}
 	
 	public EntityStream getEntityStream(){
 		return entities;
 	}
 	
-	public Map<String, Sprite> getSpriteAtlas(){
+	public Map<String, SpriteData> getSpriteAtlas(){
 		return spriteAtlas;
 	}
 	
@@ -189,11 +194,11 @@ final public class Engine {
 		gameState = gs;
 	}
 
-	public double getUpdateTime(){
+	public float getUpdateTime(){
 		return updateTime;
 	}
 
-	public void setUpdateTime(double updateTime){
+	public void setUpdateTime(float updateTime){
 		this.updateTime = updateTime;
 	}
 
@@ -203,6 +208,10 @@ final public class Engine {
 
 	public Font getFont(){
 		return font;
+	}
+
+	public Map<String, Spritesheet> getSpritesheets(){
+		return spritesheets;
 	}
 
 }

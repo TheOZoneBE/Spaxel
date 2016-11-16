@@ -3,11 +3,10 @@ package code.inventory;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.projectiles.Projectile;
 import code.factories.ProjectileFactory;
-import code.graphics.Sprite;
-import code.ui.UIBar;
+import code.graphics.SpriteData;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,15 +15,15 @@ import java.util.List;
 public class ProjectileItem extends Item{
 	private ProjectileFactory projFac;
 
-	public ProjectileItem(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, ProjectileFactory projFac) {
+	public ProjectileItem(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown, ProjectileFactory projFac) {
 		super(type,name,  sprite, bar, cooldown);
 		this.projFac = projFac;
 
 	}
 
-	public void activate(double x, double y, double rot){
+	public void activate(float x, float y, float rot){
 		if (canActivate()){
-			double offset = stacks*-0.05;
+			float offset = stacks*-0.05f;
 			List<Entity> projectiles = new ArrayList<>();
 			for (int i = 0; i<=stacks; i++){
 				projectiles.add(projFac.make(x, y, rot + offset));
@@ -42,14 +41,14 @@ public class ProjectileItem extends Item{
 		return false;
 	}
 
-	public void render(int xPos, int yPos, Graphics g, RenderBuffer render){
-		super.render(xPos, yPos, g, render);
+	public void render(int xPos, int yPos, MasterBuffer render){
+		super.render(xPos, yPos, render);
 		cooldownBar.render(xPos - 24, yPos,render);
 	}
 
 	public void update(){
 		reduceCD();
-		cooldownBar.setPercent((double)cd/(double)cooldown);
+		cooldownBar.setPercent((float)cd/(float)cooldown);
 	}
 
 	public Item copy(){

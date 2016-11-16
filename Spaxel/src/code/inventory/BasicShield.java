@@ -3,11 +3,10 @@ package code.inventory;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.projectiles.Projectile;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by theo on 25-5-2016.
@@ -15,7 +14,7 @@ import java.util.List;
 public class BasicShield extends ShieldItem {
     private int range = 100;
 
-    public BasicShield(EntityType type, String name, Sprite sprite,Sprite bar,  int cooldown,Sprite effectSprite, int maxCapactity) {
+    public BasicShield(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown, SpriteData effectSprite, int maxCapactity) {
         super(type, name, sprite,bar, cooldown, effectSprite,maxCapactity );
     }
 

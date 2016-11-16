@@ -1,5 +1,6 @@
 package code.ui;
 
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 
 import java.awt.*;
@@ -25,8 +26,8 @@ public class UICounter extends UIElement {
         counter += add;
     }
 
-    public void render(Graphics g, RenderBuffer  render){
-        label.render(g, render);
+    public void render(MasterBuffer render){
+        label.render(render);
     }
 
     public void update(){

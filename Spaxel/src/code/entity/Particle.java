@@ -1,16 +1,17 @@
 package code.entity;
 
 import code.engine.Engine;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class Particle extends Entity{
-	private double deltaRot;
-	private double dir;
-	private double speed;
-	private Sprite sprite;
+	private float deltaRot;
+	private float dir;
+	private float speed;
+	private SpriteData sprite;
 	
-	public Particle(double x, double y, double rot, double deltaRot, double dir, double speed, int life, Sprite sprite){
+	public Particle(float x, float y, float rot, float deltaRot, float dir, float speed, int life, SpriteData sprite){
 		super(x, y, rot);
 		this.deltaRot = deltaRot;
 		this.dir = dir;
@@ -21,14 +22,14 @@ public class Particle extends Entity{
 	
 	public void update(){
 		rot += deltaRot;
-		double dx = Math.sin(dir) * speed;
-		double dy = Math.cos(dir) * speed;
+		float dx = (float)Math.sin(dir) * speed;
+		float dy = (float)Math.cos(dir) * speed;
 		x -= dx* Engine.getEngine().getUpdateTime();
 		y -= dy*Engine.getEngine().getUpdateTime();
 	}
 	
-	public void render(int xPos, int yPos, RenderBuffer render){
-		sprite.render((int) (x + xPos), (int) (y + yPos), rot, render);
+	public void render(int xPos, int yPos, MasterBuffer render){
+		sprite.renderSprite((int) (x + xPos), (int) (y + yPos), 4, rot,1, false, render);
 	}
 
 }

@@ -1,31 +1,31 @@
 package code.collision;
 
 import code.graphics.RenderBuffer;
-import code.math.Matrix;
-import code.math.VectorD;
+import code.math.MatrixF;
+import code.math.VectorF;
 
 public class HitPoint {
-	private VectorD vector;
+	private VectorF vector;
 
 	public HitPoint() {
-		vector = new VectorD(3);
+		vector = new VectorF(3);
 	}
 
-	public HitPoint(VectorD vector) {
+	public HitPoint(VectorF vector) {
 		this.vector = vector;
 	}
 
-	public void updateVector(VectorD vector) {
+	public void updateVector(VectorF vector) {
 		this.vector = vector;
 	}
 
-	public VectorD getVector() {
+	public VectorF getVector() {
 		return vector;
 	}
 
-	public HitPoint update(Matrix updateMatrix) {
+	public HitPoint update(MatrixF updateMatrixF) {
 		HitPoint updated = new HitPoint();
-		VectorD v = updateMatrix.multiplicate(vector);
+		VectorF v = updateMatrixF.multiplicate(vector);
 		updated.updateVector(v);
 		return updated;
 	}

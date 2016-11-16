@@ -12,9 +12,9 @@ public class CreditsController extends Controller {
 
     public void update(){
         Keyboard k = Engine.getEngine().getKeyboard();
-        if (k.esc && !k.previous[k.escCode]){
+        if (k.escState.getState() && !k.escState.getPrevState()){
+
             back();
-            k.previous[k.escCode] = true;
         }
     }
 

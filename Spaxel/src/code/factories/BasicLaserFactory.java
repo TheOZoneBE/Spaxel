@@ -1,17 +1,17 @@
 package code.factories;
 
 import code.projectiles.BasicLaser;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 
 public class BasicLaserFactory extends ProjectileFactory{
 	
 
 	
-	public BasicLaserFactory(Sprite sprite,Sprite trail, int damage, int life, double speed){
+	public BasicLaserFactory(SpriteData sprite, SpriteData trail, int damage, int life, float speed){
 		super(sprite,trail, damage, life, speed);
 	}
 	
-	public BasicLaser make(double x, double y, double rot){
+	public BasicLaser make(float x, float y, float rot){
 		return new BasicLaser(x,y, rot, sprite, trail,damage, life, speed);
 	}
 

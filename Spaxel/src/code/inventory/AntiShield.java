@@ -4,7 +4,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.entity.Entity;
 import code.entity.Player;
-import code.graphics.Sprite;
+import code.graphics.SpriteData;
 import code.projectiles.Projectile;
 
 import java.util.Iterator;
@@ -14,9 +14,9 @@ import java.util.Iterator;
  */
 public class AntiShield extends ShieldItem{
     private int range = 100;
-    private double healingPerc = .25;
+    private float healingPerc = .25f;
 
-    public AntiShield(EntityType type, String name, Sprite sprite, Sprite bar, int cooldown, Sprite effectSprite, int maxCapactity) {
+    public AntiShield(EntityType type, String name, SpriteData sprite, SpriteData bar, int cooldown, SpriteData effectSprite, int maxCapactity) {
         super(type, name, sprite,bar, cooldown, effectSprite,maxCapactity );
     }
 
@@ -33,7 +33,7 @@ public class AntiShield extends ShieldItem{
                         hit(ins);
                         Player pl = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
                         if(pl.getHealth() < pl.getMaxHealth()){
-                            double total = pl.getHealth() + healingPerc*ins.getDamage();
+                            float total = pl.getHealth() + healingPerc*ins.getDamage();
                             pl.setHealth(total < pl.getMaxHealth() ? (int)total : pl.getMaxHealth());
                         }
                         ins.setDead();

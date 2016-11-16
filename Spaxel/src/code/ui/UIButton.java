@@ -1,28 +1,28 @@
 package code.ui;
 
-import java.awt.*;
 import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
+import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
-import code.graphics.Sprite;
-import code.input.Mouse;
-import code.math.VectorD;
+import code.graphics.SpriteData;
+import code.input.MouseWrapper;
+import code.math.VectorF;
 
 public class UIButton extends UIElement {
 	private String clickAction;
 	private Label label;
-	private Sprite normal;
-	private Sprite hover;
-	private Sprite clicked;
-	private Sprite locked;
+	private SpriteData normal;
+	private SpriteData hover;
+	private SpriteData clicked;
+	private SpriteData locked;
 	private boolean click;
 	private boolean disabled;
 	private boolean hovering;
 
-	public UIButton(int x, int y, Label label, String clickAction, Sprite sprite, Sprite hover, Sprite clicked, Sprite locked)  {
+	public UIButton(int x, int y, Label label, String clickAction, SpriteData sprite, SpriteData hover, SpriteData clicked, SpriteData locked)  {
 		super(x, y, sprite);
 		this.label = label;
 		this.clickAction = clickAction;
@@ -40,11 +40,11 @@ public class UIButton extends UIElement {
 			sprite = locked;
 		}
 		else {
-			Mouse mouse = Engine.getEngine().getMouse();
-			int mouseX = mouse.getX();
-			int mouseY = mouse.getY();
-			boolean buttonDown = mouse.mouse1;
-			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY ,0}))));
+			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
+			int mouseX = mouseWrapper.getX();
+			int mouseY = mouseWrapper.getY();
+			boolean buttonDown = mouseWrapper.mouse1;
+			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
 			if (inside && buttonDown){
 				click = true;
 			}
@@ -74,15 +74,15 @@ public class UIButton extends UIElement {
 		this.disabled = disabled;
 	}
 
-	public void render(Graphics g, RenderBuffer render){
-		sprite.render((int)x,(int)y, render);
+	public void render(MasterBuffer render){
+		sprite.renderSprite((int)x,(int)y,4, 0, 1, false ,render);
 		if (click){
-			clicked.render((int)x,(int)y, render);
+			clicked.renderSprite((int)x,(int)y,4,0,1, false, render);
 		}
 		else if (hovering){
-			hover.render((int)x,(int)y, render);
+			hover.renderSprite((int)x,(int)y,4, 0,1,false, render);
 		}
-		label.render(g, render);
+		label.render(render);
 	}
 
 }

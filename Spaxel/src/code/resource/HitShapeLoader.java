@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
-import code.math.VectorD;
+import code.math.VectorF;
 
 
 public class HitShapeLoader extends EntityLoader{
@@ -26,7 +26,7 @@ public class HitShapeLoader extends EntityLoader{
 		    	Element nextHitPoint = (Element)hitPoints.item(j);
 			    int xOffset = Integer.parseInt((nextHitPoint.getElementsByTagName("xoffset").item(0).getTextContent()));
 			    int yOffset = Integer.parseInt((nextHitPoint.getElementsByTagName("yoffset").item(0).getTextContent()));
-			    hitShape.addHitPoint(new HitPoint(new VectorD(new double[] {xOffset, yOffset, 1})));
+			    hitShape.addHitPoint(new HitPoint(new VectorF(new float[] {xOffset, yOffset, 1})));
 		    }
 		    hitShapeAtlas.put(hitShapeName, hitShape);
 		}

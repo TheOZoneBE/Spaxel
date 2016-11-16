@@ -5,18 +5,16 @@ import java.util.Iterator;
 import code.Game;
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.engine.LoadingScreen;
 import code.engine.SystemType;
 import code.entity.Entity;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.graphics.RenderBuffer;
 import code.input.MouseWrapper;
+import sun.rmi.server.LoaderHandler;
 
 public class RenderSystem extends GameSystem {
-	//private RenderBuffer actorBuffer; //actors
-	//private RenderBuffer particleBuffer; //particles
-	//private RenderBuffer effectBuffer; //projectile, effects, trails
-	//private RenderBuffer UIBuffer; //mouse1item, mouse3item, shipitem, uielement
 	private MasterBuffer bufferBuffer;
 
 	private MasterRenderer master;
@@ -26,11 +24,13 @@ public class RenderSystem extends GameSystem {
 	public RenderSystem() {
 		super(SystemType.RENDER);
 		bufferBuffer = new MasterBuffer(Engine.getEngine().getSpritesheets());
-		//actorBuffer = new RenderBuffer();
-		//particleBuffer = new RenderBuffer();
-		//effectBuffer = new RenderBuffer();
-		//UIBuffer = new RenderBuffer();
 		master = new MasterRenderer();
+	}
+
+	public void renderloading(LoadingScreen loading){
+		bufferBuffer.clear();
+		loading.render(bufferBuffer);
+		master.render(bufferBuffer);
 	}
 
 	public void render(){

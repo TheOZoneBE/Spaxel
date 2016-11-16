@@ -105,6 +105,10 @@ public class SystemUpdater {
         ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render();
     }
 
+    public void renderloading(LoadingScreen loading) {
+        ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).renderloading(loading);
+    }
+
     public void shutdown(){
         e.shutdown();
     }

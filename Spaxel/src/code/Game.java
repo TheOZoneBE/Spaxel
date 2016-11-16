@@ -68,6 +68,7 @@ public class Game implements Runnable {
 
 		thread.start();
 
+
 	}
 
 	public synchronized void stop() {
@@ -148,6 +149,11 @@ public class Game implements Runnable {
 
 		Engine.getEngine().initialize();
 
+		Thread load = new Thread(() -> Engine.getEngine().startLoading());
+		load.start();
+
+		Engine.getEngine().startLoading();
+
 		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
@@ -186,8 +192,6 @@ public class Game implements Runnable {
 		}
 	}
 
-	private int i = 0;
-
 	public void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
@@ -196,22 +200,16 @@ public class Game implements Runnable {
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
-		i++;
 	}
 
 	public void renderLoading(){
-		//TODO loadingscreen
-		/*
-		clearText();
-		BufferStrategy bs = getBufferStrategy();
-		Graphics g = bs.getDrawGraphics();
-		Graphics g2 = textBuffer.getGraphics();
-		loadingScreen.render(g2);
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.drawImage(textBuffer, 0, 0, getWidth(), getHeight(), null);
-		g.dispose();
-		bs.show();
-		*/
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+
+		updater.renderloading(loadingScreen);
+
+		glfwSwapBuffers(window);
+
+		glfwPollEvents();
 	}
 
 }

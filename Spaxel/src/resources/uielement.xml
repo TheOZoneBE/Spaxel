@@ -86,6 +86,13 @@
 		<xpos>640</xpos>
 		<ypos>360</ypos>
 	</uielement>
+	<uielement type="overlay">
+		<ui>pause</ui>
+		<name>ui_pause_overlay</name>
+		<sprite_normal>ui_play_overlay</sprite_normal>
+		<xpos>640</xpos>
+		<ypos>360</ypos>
+	</uielement>
     <uielement type="bar">
 		<ui>play</ui>
 		<name>hp_bar</name>

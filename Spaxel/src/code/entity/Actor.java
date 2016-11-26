@@ -15,6 +15,7 @@ public class Actor extends Entity {
     protected int maxHealth;
     protected SpriteData sprite;
     protected float maxspeed;
+    protected float turnrate;
     protected float acc;
     protected float xdir;
     protected float ydir;
@@ -22,11 +23,12 @@ public class Actor extends Entity {
     protected List<StatusEffect> effects;
     protected Map<EntityType, List<Item>> itemMap;
 
-    public Actor(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc){
+    public Actor(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float turnrate, float acc){
         super(x, y, rot);
         this.health = health;
         this.sprite = sprite;
         this.maxspeed = maxspeed;
+        this.turnrate = turnrate;
         this.acc = acc;
         maxHealth = health;
         effects = new ArrayList<>();

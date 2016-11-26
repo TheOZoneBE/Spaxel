@@ -11,7 +11,7 @@ public enum ActorType {
     WHITE{
         @Override
         public void initialize(){
-            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("white"),20,0.5f);
+            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("white"),20,.25f, 0.5f);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_white"));
             Item i = Engine.getEngine().getItems().getItem("basic_laser");
             player.addItem(i.getType(), i);
@@ -26,7 +26,7 @@ public enum ActorType {
     RED{
         @Override
         public void initialize(){
-            Player player = new Player(0, 0, 0, 100000, Engine.getEngine().getSpriteAtlas().get("red"),20,0.5f);
+            Player player = new Player(0, 0, 0, 100000, Engine.getEngine().getSpriteAtlas().get("red"),20,.25f, 0.5f);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_red"));
             Item i = Engine.getEngine().getItems().getItem("piercing_laser");
             i.setStacks(5);
@@ -42,7 +42,7 @@ public enum ActorType {
     GREEN{
         @Override
         public void initialize(){
-            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("green"),20,0.5f);
+            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("green"),20, .25f, 0.5f);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
             Item i = Engine.getEngine().getItems().getItem("disrupt_laser");
             player.addItem(i.getType(), i);
@@ -57,7 +57,7 @@ public enum ActorType {
     BLUE{
         @Override
         public void initialize(){
-            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("blue"),20,0.5f);
+            Player player = new Player(0, 0, 0, 100, Engine.getEngine().getSpriteAtlas().get("blue"),20,.25f,0.5f);
             player.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_blue"));
             Item i = Engine.getEngine().getItems().getItem("slowing_laser");
             player.addItem(i.getType(), i);

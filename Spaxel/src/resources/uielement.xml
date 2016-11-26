@@ -220,10 +220,10 @@
 		<xpos>640</xpos>
 		<ypos>120</ypos>
 	</uielement>
-	<uielement type="button">
+	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_white</name>
-		<label></label>
+		<label>white</label>
 		<clickaction>selectWhite</clickaction>
 		<sprite_normal>white</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -233,10 +233,10 @@
 		<ypos>360</ypos>
 		<hitshape>hitshape_class_select</hitshape>
 	</uielement>
-	<uielement type="button">
+	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_red</name>
-		<label></label>
+		<label>red</label>
 		<clickaction>selectRed</clickaction>
 		<sprite_normal>red</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -246,10 +246,10 @@
 		<ypos>360</ypos>
 		<hitshape>hitshape_class_select</hitshape>
 	</uielement>
-	<uielement type="button">
+	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_green</name>
-		<label></label>
+		<label>green</label>
 		<clickaction>selectGreen</clickaction>
 		<sprite_normal>green</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -259,10 +259,10 @@
 		<ypos>360</ypos>
 		<hitshape>hitshape_class_select</hitshape>
 	</uielement>
-	<uielement type="button">
+	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_blue</name>
-		<label></label>
+		<label>blue</label>
 		<clickaction>selectBlue</clickaction>
 		<sprite_normal>blue</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>

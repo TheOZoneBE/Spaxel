@@ -223,7 +223,7 @@
 	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_white</name>
-		<label>white</label>
+		<label>white\Standard ship</label>
 		<clickaction>selectWhite</clickaction>
 		<sprite_normal>white</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -236,7 +236,7 @@
 	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_red</name>
-		<label>red</label>
+		<label>red\more speed\weaker weapons</label>
 		<clickaction>selectRed</clickaction>
 		<sprite_normal>red</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -249,7 +249,7 @@
 	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_green</name>
-		<label>green</label>
+		<label>green\stronger weapons\less health</label>
 		<clickaction>selectGreen</clickaction>
 		<sprite_normal>green</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>
@@ -262,7 +262,7 @@
 	<uielement type="class_select">
 		<ui>class_selection</ui>
 		<name>select_blue</name>
-		<label>blue</label>
+		<label>blue\more health\slower</label>
 		<clickaction>selectBlue</clickaction>
 		<sprite_normal>blue</sprite_normal>
 		<sprite_hover>class_select_hover</sprite_hover>

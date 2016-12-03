@@ -22,35 +22,52 @@ public class Label extends UIElement{
 		this.text = text;
 	}
 
-	public int calculateOffset(){
-		return -(text.length() - 1) * 6 * scale;
+	public int calculateOffset(int i){
+		int index = text.indexOf('\\', i);
+		if (index == -1) {
+			index = text.length();
+		}
+		return (1-index + i) * 6 * scale;
 	}
 	
 	public void render(MasterBuffer render){
-		int offset = calculateOffset();
+		int xOffset = calculateOffset(0);
+		int yOffset = 0;
 		for (int i = 0; i < text.length(); i++){
 			String c = text.substring(i, i+1).toLowerCase();
 			if (!c.equals(" ")){
 				SpriteData cSprite = Engine.getEngine().getSpriteAtlas().get(c);
 				if (cSprite != null){
-					cSprite.renderSprite((int)(x + offset), (int)y, scale, 0, 1, false, render);
+					cSprite.renderSprite((int)(x + xOffset), (int)(y+yOffset), scale, 0, 1, false, render);
 				}
 			}
-			offset += 12*scale;
+			if (c.equals("\\")){
+				yOffset -= 16 * scale;
+				xOffset = calculateOffset(i+1);
+			}
+			else{
+				xOffset += 12*scale;
+			}
+
 		}
 	}
 
 	public void render(int xPos, int yPos, MasterBuffer render){
-		int offset = calculateOffset();
+		int xOffset = calculateOffset(0);
+		int yOffset = 0;
 		for (int i = 0; i < text.length(); i++){
 			String c = text.substring(i, i+1).toLowerCase();
 			if (!c.equals(" ")){
 				SpriteData cSprite = Engine.getEngine().getSpriteAtlas().get(c);
 				if (cSprite != null){
-					cSprite.renderSprite(xPos + offset, yPos, scale, 0, 1, false, render);
+					cSprite.renderSprite(xPos + xOffset, yPos, scale, 0, 1, false, render);
 				}
 			}
-			offset += 12*scale;
+			if (c.equals("\\")){
+				yOffset -= 16 * scale;
+				xOffset = calculateOffset(i+1);
+			}
+			xOffset += 12*scale;
 		}
 	}
 

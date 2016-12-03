@@ -90,7 +90,7 @@ public class Game implements Runnable {
 		if ( !glfwInit() )
 			throw new IllegalStateException("Unable to initialize GLFW");
 
-		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 		window = glfwCreateWindow(GAME_WIDTH, GAME_HEIGHT, gameName, NULL, NULL);
 		if (window == NULL) {
 			System.err.println("Could not create GLFW window!");

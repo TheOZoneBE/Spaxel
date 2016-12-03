@@ -27,7 +27,7 @@ public class Item extends UIElement {
 		this.type = type;
 		this.bar = bar;
 		this.name = name;
-		stacks = 0;
+		this.stacks = 0;
 		this.sprite = sprite;
 		cooldownBar = new UIBar(0, 0, 48, (float)Math.PI/2, bar);
 		stackCounter = new Label(0,0,String.valueOf(stacks+ 1), 1);
@@ -72,11 +72,13 @@ public class Item extends UIElement {
 	}
 
 	public int getStacks(){
+		System.out.println("returned " +  stacks + " stacks");
 		return stacks;
 	}
 
-	public void setStacks(int stacks){
-		this.stacks = stacks;
+	public void setStacks(int s){
+		System.out.println("set stacks to: " + s);
+		stacks = s;
 		stackCounter.setText(String.valueOf(stacks + 1));
 	}
 

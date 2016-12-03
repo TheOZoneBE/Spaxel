@@ -42,7 +42,7 @@ public class Projectile extends Entity {
 
 	@Override
 	public void render(int xPos, int yPos, MasterBuffer render) {
-		sprite.renderSprite((int) (x + xPos), (int) (y + yPos),2, rot, 1, false, render);
+		sprite.renderSprite((int) (x + xPos), (int) (y + yPos),2, rot+(float)Math.PI, 1, false, render);
 
 	}
 

@@ -15,7 +15,7 @@ public class HackingMissile extends Projectile {
 
     public void hit(Actor a){
         a.addStatusEffect(new ShootEffect(150));
-        a.addStatusEffect(new SpeedEffect(150, 0));
+        a.addStatusEffect(new SpeedEffect(150, 0.5f));
         super.hit(a);
     }
 }

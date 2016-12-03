@@ -30,7 +30,7 @@ public class DroppedItem extends Entity{
             if (player.getItems(item.getType()).contains(item)){
                 int index = player.getItems(item.getType()).indexOf(item);
                 Item i = player.getItems(item.getType()).get(index);
-                i.setStacks(item.getStacks()+1);
+                i.setStacks(i.getStacks()+1);
             }
             else {
                 player.addItem(item.getType(), item);

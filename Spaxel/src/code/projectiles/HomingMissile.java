@@ -30,14 +30,31 @@ public class HomingMissile extends Projectile {
         }
         if (closest != null) {
             float rotToGet = (float) Math.atan2(x - closest.getX(),y - closest.getY());
+            rot%= 2*Math.PI;
             if (rotToGet < 0){
                 rotToGet += 2*Math.PI;
             }
-            if (Math.abs(rot - rotToGet) > Math.abs(rot - rotToGet - 0.1)){
-                rot -= 0.15;
+            if (rot < 0){
+                rot += 2*Math.PI;
+            }
+            if (Math.abs(rot- rotToGet) < .15){
+                rot = rotToGet;
+            }
+            else if (rot - rotToGet < 0){
+                if (rot - rotToGet < -Math.PI){
+                    rot -= .15;
+                }
+                else{
+                    rot += .15;
+                }
             }
             else {
-                rot += 0.15;
+                if (rot -rotToGet > Math.PI){
+                    rot += .15;
+                }
+                else {
+                    rot -= .15;
+                }
             }
         }
         super.update();

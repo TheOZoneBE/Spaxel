@@ -13,14 +13,14 @@ import code.math.VectorF;
 
 public class UIButton extends UIElement {
 	private String clickAction;
-	private Label label;
-	private SpriteData normal;
-	private SpriteData hover;
-	private SpriteData clicked;
-	private SpriteData locked;
-	private boolean click;
-	private boolean disabled;
-	private boolean hovering;
+	protected Label label;
+	protected SpriteData normal;
+	protected SpriteData hover;
+	protected SpriteData clicked;
+	protected SpriteData locked;
+	protected boolean click;
+	protected boolean disabled;
+	protected boolean hovering;
 
 	public UIButton(int x, int y, Label label, String clickAction, SpriteData sprite, SpriteData hover, SpriteData clicked, SpriteData locked)  {
 		super(x, y, sprite);

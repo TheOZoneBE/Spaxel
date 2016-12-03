@@ -56,7 +56,7 @@ public class SystemUpdater {
             Engine.getEngine().getMouseWrapper().update();
             Engine.getEngine().getKeyboard().update();
 
-            if (Engine.getEngine().getGameState() == Engine.GameState.MENU){
+            if (Engine.getEngine().getGameState() != Engine.GameState.PLAY){
                 latch = new CountDownLatch(2);
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
@@ -73,7 +73,9 @@ public class SystemUpdater {
             }
             try{
                 latch.await();
-                Engine.getEngine().getEntityStream().cleanup();
+                if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
+                    Engine.getEngine().getEntityStream().cleanup();
+                }
             }
             catch (InterruptedException e){
                 e.printStackTrace();

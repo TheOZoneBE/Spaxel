@@ -46,7 +46,7 @@ final public class Engine {
 	}
 
 	public enum GameState {
-		MENU, PLAY
+		MENU, PLAY, PAUSE
 	}
 	
 	private Engine(){

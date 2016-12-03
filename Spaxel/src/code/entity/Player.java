@@ -18,8 +18,8 @@ public class Player extends Actor {
 	private int xp;
 	private int level;
 
-	public Player(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc) {
-		super(x, y, rot, health, sprite, maxspeed, acc);
+	public Player(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float turnrate, float acc) {
+		super(x, y, rot, health, sprite, maxspeed,turnrate, acc);
 		xpToLevel = 100;
 		level = 1;
 	}

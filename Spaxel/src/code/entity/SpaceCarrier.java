@@ -12,8 +12,8 @@ public class SpaceCarrier extends Actor {
     private AnimSprite doors;
     private float turretRot;
 
-    public SpaceCarrier(float x, float y, float rot, int health, SpriteData sprite, SpriteData turret, AnimSprite doors, float maxspeed, float acc) {
-        super(x, y, rot, health, sprite, maxspeed, acc);
+    public SpaceCarrier(float x, float y, float rot, int health, SpriteData sprite, SpriteData turret, AnimSprite doors, float maxspeed,float turnrate, float acc) {
+        super(x, y, rot, health, sprite, maxspeed, turnrate, acc);
         this.turret = turret;
         this.doors = doors;
         turretRot = 0;

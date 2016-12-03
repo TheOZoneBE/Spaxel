@@ -16,14 +16,6 @@ import code.graphics.SpriteData;
 public class UIElementLoader extends EntityLoader {
 	
 	public Map<String, UI> loadUIElements(String elements, Engine engine){
-		Font font = null;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/fonts/8-bit.ttf"));
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}		
-		
 		Map<String, UI> uis = new HashMap<>();
 		Map<String, SpriteData> spriteAtlas = engine.getSpriteAtlas();
 		Map<String, HitShape> hitShapeAtlas = engine.getHitShapeAtlas();
@@ -61,6 +53,24 @@ public class UIElementLoader extends EntityLoader {
 			    temp.updateHitShape();
 			    uis.get(ui).addElement(name, temp);
 		    }
+			else if(nextChild.getAttribute("type").equals("class_select")){
+				String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();
+				String name = nextChild.getElementsByTagName("name").item(0).getTextContent();
+				String label = nextChild.getElementsByTagName("label").item(0).getTextContent();
+				String clickaction = nextChild.getElementsByTagName("clickaction").item(0).getTextContent();
+				String sprite_normal = nextChild.getElementsByTagName("sprite_normal").item(0).getTextContent();
+				String sprite_hover = nextChild.getElementsByTagName("sprite_hover").item(0).getTextContent();
+				String sprite_click = nextChild.getElementsByTagName("sprite_click").item(0).getTextContent();
+				String sprite_locked = nextChild.getElementsByTagName("sprite_locked").item(0).getTextContent();
+				int xPos = Integer.parseInt((nextChild.getElementsByTagName("xpos").item(0).getTextContent()));
+				int yPos = Integer.parseInt((nextChild.getElementsByTagName("ypos").item(0).getTextContent()));
+				String hitshape = nextChild.getElementsByTagName("hitshape").item(0).getTextContent();
+				Label lbl = new Label(xPos,648 - yPos, label, 1);
+				UIButton temp = new UIClassSelect(xPos,720 - yPos, lbl, clickaction,spriteAtlas.get(sprite_normal),spriteAtlas.get(sprite_hover),spriteAtlas.get(sprite_click),spriteAtlas.get(sprite_locked));
+				temp.setHitShape(hitShapeAtlas.get(hitshape));
+				temp.updateHitShape();
+				uis.get(ui).addElement(name, temp);
+			}
 		    //overlay add more ifs, if necessary
 		    else if (nextChild.getAttribute("type").equals("overlay")){
 		    	String ui = nextChild.getElementsByTagName("ui").item(0).getTextContent();

@@ -3,9 +3,7 @@ package code.resource;
 import code.engine.EntityType;
 import code.factories.ProjectileFactory;
 import code.graphics.SpriteData;
-import code.inventory.Item;
-import code.inventory.ItemCatalogue;
-import code.inventory.ProjectileItem;
+import code.inventory.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -65,7 +63,19 @@ public class ItemLoader extends EntityLoader {
                 System.out.println("error");
             }
         }
+        loadOthers(items, spriteAtlas);
         return items;
+    }
+
+    public void loadOthers(ItemCatalogue items, Map<String, SpriteData> spriteAtlas){
+        Item i = new ActiveShield(EntityType.SHIPITEM,"active_shield", spriteAtlas.get("active_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("active_shield_effect"),50);
+        items.addItem("active_shield", i);
+        i = new ForceShield(EntityType.SHIPITEM,"force_shield", spriteAtlas.get("force_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("force_shield_effect"),50);
+        items.addItem("force_shield", i);
+        i = new AntiShield(EntityType.SHIPITEM, "anti_shield", spriteAtlas.get("anti_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("anti_shield_effect"),50);
+        items.addItem("anti_shield", i);
+        i = new BasicShield(EntityType.SHIPITEM, "basic_shield", spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50);
+        items.addItem("basic_shield", i);
     }
 
 }

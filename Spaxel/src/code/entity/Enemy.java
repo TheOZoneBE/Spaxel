@@ -14,8 +14,8 @@ import java.util.List;
 public class Enemy extends Actor {
     private int cooldown;
 
-    public Enemy(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float acc) {
-        super(x, y, rot, health, sprite, maxspeed,acc);
+    public Enemy(float x, float y, float rot, int health, SpriteData sprite, float maxspeed, float turnrate, float acc) {
+        super(x, y, rot, health, sprite, maxspeed,turnrate, acc);
     }
 
     public void updateAI(Player player){
@@ -34,7 +34,33 @@ public class Enemy extends Actor {
         if (health < 0) {
             alive = false;
         } else {
-            rot = (float)(Math.PI + Math.atan2(player.getX() - x, player.getY() - y));
+            float rotToGet = (float)(Math.PI + Math.atan2(player.getX() - x, player.getY() - y));
+            rot%= 2*Math.PI;
+            if (rotToGet < 0){
+                rotToGet += 2*Math.PI;
+            }
+            if (rot < 0){
+                rot += 2*Math.PI;
+            }
+            if (Math.abs(rot- rotToGet) < turnrate){
+                rot = rotToGet;
+            }
+            else if (rot - rotToGet < 0){
+                if (rot - rotToGet < -Math.PI){
+                    rot -= turnrate;
+                }
+                else{
+                    rot += turnrate;
+                }
+            }
+            else {
+                if (rot -rotToGet > Math.PI){
+                    rot += turnrate;
+                }
+                else {
+                    rot -= turnrate;
+                }
+            }
             float dx = 0;
             float dy = 0;
 

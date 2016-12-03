@@ -12,7 +12,7 @@ public class PlayController extends Controller{
         if (k.escState.getState() && !k.escState.getPrevState()){
             UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
             uis.changeUI("pause");
-            Engine.getEngine().setGameState(Engine.GameState.MENU);
+            Engine.getEngine().setGameState(Engine.GameState.PAUSE);
         }
     }
 

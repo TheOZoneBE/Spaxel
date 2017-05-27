@@ -1,0 +1,97 @@
+<items>
+<primaryWeapon type="array">
+	<projectileItem>
+		<name>basic_laser</name>
+		<sprite>basic_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.BasicLaserFactory</factory>
+		<projectile>basic_laser_projectile</projectile>
+		<trail>white_trail</trail>
+		<damage>10</damage>
+		<life>100</life>
+		<speed>30</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>piercing_laser</name>
+		<sprite>piercing_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.PiercingLaserFactory</factory>
+		<projectile>piercing_laser_projectile</projectile>
+		<trail>red_trail</trail>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>40</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>disrupt_laser</name>
+		<sprite>disrupt_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.DisruptLaserFactory</factory>
+		<projectile>disrupt_laser_projectile</projectile>
+		<trail>green_trail</trail>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>25</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>slowing_laser</name>
+		<sprite>slowing_laser_item</sprite>
+		<cooldown>10</cooldown>
+		<factory>code.factories.SlowingLaserFactory</factory>
+		<projectile>slowing_laser_projectile</projectile>
+		<trail>blue_trail</trail>
+		<damage>5</damage>
+		<life>100</life>
+		<speed>20</speed>
+	</projectileItem>
+</primaryWeapon>
+<secondaryWeapon>
+	<projectileItem>
+		<name>basic_missile</name>
+		<sprite>basic_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.BasicMissileFactory</factory>
+		<projectile>basic_missile_projectile</projectile>
+		<trail>white_trail</trail>
+		<damage>30</damage>
+		<life>150</life>
+		<speed>30</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>homing_missile</name>
+		<sprite>homing_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.HomingMissileFactory</factory>
+		<projectile>homing_missile_projectile</projectile>
+		<trail>red_trail</trail>
+		<damage>20</damage>
+		<life>150</life>
+		<speed>25</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>hacking_missile</name>
+		<sprite>hacking_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.HackingMissileFactory</factory>
+		<projectile>hacking_missile_projectile</projectile>
+		<trail>green_trail</trail>
+		<damage>25</damage>
+		<life>150</life>
+		<speed>35</speed>
+	</projectileItem>
+	<projectileItem>
+		<name>cluster_missile</name>
+		<sprite>cluster_missile_item</sprite>
+		<cooldown>40</cooldown>
+		<factory>code.factories.ClusterMissileFactory</factory>
+		<projectile>cluster_missile_projectile</projectile>
+		<trail>blue_trail</trail>
+		<damage>40</damage>
+		<life>150</life>
+		<speed>20</speed>
+	</projectileItem>
+</secondaryWeapon>
+<shipItem>
+
+</shipItem>
+</items>

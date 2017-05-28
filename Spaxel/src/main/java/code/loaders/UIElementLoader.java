@@ -1,6 +1,5 @@
-package code.resource;
+package code.loaders;
 
-import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 

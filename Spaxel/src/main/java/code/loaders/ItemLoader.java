@@ -1,4 +1,4 @@
-package code.resource;
+package code.loaders;
 
 import code.engine.EntityType;
 import code.factories.ProjectileFactory;

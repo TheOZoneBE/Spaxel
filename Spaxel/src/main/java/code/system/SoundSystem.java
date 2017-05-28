@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.SystemType;
-import code.entity.Entity;
 import code.sound.Music;
 import code.sound.Sound;
 
@@ -27,7 +25,7 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void nextSong(){
-		List<Sound> sounds = Engine.getEngine().getSoundList();
+		List<Music> sounds = Engine.getEngine().getMusicList();
 		int i = r.nextInt(sounds.size());
 		currentMusic = (Music)sounds.get(i);
 		play();

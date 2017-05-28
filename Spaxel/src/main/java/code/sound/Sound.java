@@ -12,10 +12,17 @@ public class Sound extends Entity{
 	
 	private String path;
 	private Clip clip;
-	
+
+	public Sound(){
+
+	}
+
 	public Sound(String path){
 		this.path = path;
 		life = -1;
+	}
+
+	public void initialize(){
 		try {
 			URL url = getClass().getResource(path);
 			clip = AudioSystem.getClip();
@@ -26,7 +33,15 @@ public class Sound extends Entity{
 			e.printStackTrace();
 		}
 	}
-	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
 	public void play(){
 		clip.start();
 	}

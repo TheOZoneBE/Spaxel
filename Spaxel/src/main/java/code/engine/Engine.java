@@ -9,6 +9,7 @@ import code.Game;
 import code.collision.HitShape;
 import code.entity.SpaceCarrier;
 import code.graphics.Spritesheet;
+import code.sound.Music;
 import code.sound.Sound;
 import code.system.RenderSystem;
 import code.graphics.SpriteData;
@@ -16,7 +17,7 @@ import code.input.Keyboard;
 import code.input.MouseWrapper;
 import code.inventory.*;
 import code.system.*;
-import code.resource.*;
+import code.loaders.*;
 import code.ui.UI;
 import code.ui.UIButton;
 import code.ui.UICounter;
@@ -27,7 +28,7 @@ final public class Engine {
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
 	private EntityStream entities;
-	private List<Sound> soundList;
+	private List<Music> musicList;
 	public Map<String, Spritesheet> spritesheets;
 	public Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
@@ -75,9 +76,9 @@ final public class Engine {
         //asset loading
 		/*
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.05f);
+		Game.game.loadingScreen.getProgress().setPercent(0.05f);*/
 		SoundLoader sounds = new SoundLoader();
-		soundList = sounds.loadSounds("/resources/sound.xml");  */
+		musicList = sounds.loadSounds("/resources/sound.json");
 
         Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
         Game.game.loadingScreen.getProgress().setPercent(0.4f);
@@ -108,7 +109,7 @@ final public class Engine {
         addSystem(new ParticleSystem());
         addSystem(new TrailSystem());
         addSystem(new SpawnerSystem());
-        //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+        ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads
         Game.game.updater.setSystems(systems);
@@ -170,8 +171,8 @@ final public class Engine {
 		return UIAtlas;
 	}
 
-	public List<Sound> getSoundList(){
-		return soundList;
+	public List<Music> getMusicList(){
+		return musicList;
 	}
 
 	public ItemCatalogue getItems(){

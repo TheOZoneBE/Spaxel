@@ -1,4 +1,4 @@
-package code.resource;
+package code.loaders;
 
 import java.util.HashMap;
 import java.util.Map;

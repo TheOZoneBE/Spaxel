@@ -82,7 +82,7 @@ final public class Engine {
 
         Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
         Game.game.loadingScreen.getProgress().setPercent(0.4f);
-        hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.xml");
+        hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
 
         Game.game.loadingScreen.getMessage().setText("Loading items");
         Game.game.loadingScreen.getProgress().setPercent(0.65f);

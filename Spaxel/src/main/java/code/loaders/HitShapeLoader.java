@@ -1,8 +1,12 @@
 package code.loaders;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -11,10 +15,21 @@ import code.collision.HitShape;
 import code.math.VectorF;
 
 
-public class HitShapeLoader extends EntityLoader{
+public class HitShapeLoader extends Loader{
 	
 	public Map<String, HitShape> loadHitShapes(String path){
-		super.loadFile(path);
+		try {
+			super.loadFile(path);
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, HitShape> hitShapeMap = mapper.readValue(file, new TypeReference<Map<String, HitShape>>(){});
+			return hitShapeMap;
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		return null;
+
+		/*
 		Map<String, HitShape> hitShapeAtlas = new HashMap<>();
 		NodeList nodelist = doc.getElementsByTagName("hitshape");
 		for(int i = 0; i < nodelist.getLength(); i++){
@@ -30,7 +45,7 @@ public class HitShapeLoader extends EntityLoader{
 		    }
 		    hitShapeAtlas.put(hitShapeName, hitShape);
 		}
-		return hitShapeAtlas;
+		return hitShapeAtlas;*/
 	}
 
 }

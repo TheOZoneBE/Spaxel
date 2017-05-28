@@ -29,7 +29,11 @@ public class HitShape {
 	public List<HitPoint> getHitPoints(){
 		return hitPoints;
 	}
-	
+
+	public void setHitPoints(List<HitPoint> hitPoints) {
+		this.hitPoints = hitPoints;
+	}
+
 	public HitShape update(MatrixF updateMatrixF){
 		HitShape updated = new HitShape();
 		for (HitPoint h: hitPoints){

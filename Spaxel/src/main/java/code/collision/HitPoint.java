@@ -3,6 +3,8 @@ package code.collision;
 import code.graphics.RenderBuffer;
 import code.math.MatrixF;
 import code.math.VectorF;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HitPoint {
 	private VectorF vector;
@@ -13,6 +15,11 @@ public class HitPoint {
 
 	public HitPoint(VectorF vector) {
 		this.vector = vector;
+	}
+
+	@JsonCreator
+	public HitPoint(@JsonProperty("xOffset")float xOffset, @JsonProperty("yOffset")float yOffset){
+		this.vector = new VectorF(new float[]{xOffset, yOffset, 1});
 	}
 
 	public void updateVector(VectorF vector) {

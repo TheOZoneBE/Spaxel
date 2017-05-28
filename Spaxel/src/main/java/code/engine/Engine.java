@@ -10,7 +10,6 @@ import code.collision.HitShape;
 import code.entity.SpaceCarrier;
 import code.graphics.Spritesheet;
 import code.sound.Music;
-import code.sound.Sound;
 import code.system.RenderSystem;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
@@ -58,9 +57,11 @@ final public class Engine {
 	}
 	
 	public void initialize(){
-        SpriteLoader spriteLoader = new SpriteLoader();
-        spriteAtlas = spriteLoader.loadSprites("/resources/spritesheet.xml", "/resources/sprite.xml");
-        spritesheets = spriteLoader.spritesheetMap;
+		SpritesheetLoader spritesheetLoader = new SpritesheetLoader();
+		spritesheets = spritesheetLoader.loadSpritesheets("/resources/spritesheet.json");
+		SpriteDataLoader spriteDataLoader = new SpriteDataLoader();
+        spriteAtlas = spriteDataLoader.loadSpriteDatas( "/resources/sprite.json");
+
 
         spriteAtlas.put("hp_bar", new SpriteData(1,4, 0xff00ff00));
         spriteAtlas.put("xp_bar", new SpriteData(1,4, 0xff0000ff));

@@ -1,8 +1,8 @@
 package code.graphics;
 
-import code.util.BufferUtils;
+import code.engine.Engine;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
-import java.nio.FloatBuffer;
 import java.util.Random;
 
 public class SpriteData {
@@ -10,6 +10,7 @@ public class SpriteData {
 	private int height;
 	private int xPos;
 	private int yPos;
+
 	private float[] spriteProperties;
 	private float sheetXcoord;
 	private float sheetYcoord;
@@ -20,17 +21,25 @@ public class SpriteData {
 	private int color;
 	private Random r;
 
+	private SpriteData(){
+
+	}
+
 	public SpriteData(int width, int height, int xPos, int yPos, Spritesheet spritesheet) {
 		this.width = width;
 		this.height = height;
 		this.xPos = xPos;
 		this.yPos = yPos;
-		this.spritesheetID = spritesheet.getId();
 		this.spritesheet = spritesheet;
-		sheetXcoord = (float)this.xPos / spritesheet.getWidth();
-		sheetYcoord = (float)this.yPos / spritesheet.getHeigth();
+		initialize();
+	}
+
+	public void initialize(){
+		this.spritesheetID = spritesheet.getId();
+		sheetXcoord = (float)this.xPos*width / spritesheet.getWidth();
+		sheetYcoord = (float)this.yPos*height / spritesheet.getHeight();
 		sheetXscale = (float)width / spritesheet.getWidth();
-		sheetYscale = (float)height / spritesheet.getHeigth();
+		sheetYscale = (float)height / spritesheet.getHeight();
 		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
 		color = 0;
 		r = new Random();
@@ -62,5 +71,42 @@ public class SpriteData {
 		int x = r.nextInt(this.width - width);
 		int y = r.nextInt(this.height - height);
 		return new SpriteData(width, height, xPos + x, yPos + y, spritesheet);
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getxPos() {
+		return xPos;
+	}
+
+	public void setxPos(int xPos) {
+		this.xPos = xPos;
+	}
+
+	public int getyPos() {
+		return yPos;
+	}
+
+	public void setyPos(int yPos) {
+		this.yPos = yPos;
+	}
+
+	@JsonSetter("sheetName")
+	public void setSpritesheet(String sheetname){
+		this.spritesheet = Engine.getEngine().getSpritesheets().get(sheetname);
 	}
 }

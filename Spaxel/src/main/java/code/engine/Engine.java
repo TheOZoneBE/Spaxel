@@ -27,6 +27,7 @@ final public class Engine {
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
 	private EntityStream entities;
+	private NEntityStream nentities;
 	private List<Music> musicList;
 	public Map<String, Spritesheet> spritesheets;
 	public Map<String, SpriteData> spriteAtlas;
@@ -52,6 +53,7 @@ final public class Engine {
 	private Engine(){
 
 		entities = new EntityStream();
+		nentities = new NEntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
 	}
@@ -75,9 +77,8 @@ final public class Engine {
         this.keys = new Keyboard(window);
 
         //asset loading
-		/*
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.05f);*/
+		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
 		musicList = sounds.loadSounds("/resources/sound.json");
 
@@ -97,6 +98,7 @@ final public class Engine {
         ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
         entities.cleanup();
+        nentities.cleanup();
 
         Game.game.loadingScreen.getMessage().setText("Initializing systems");
         Game.game.loadingScreen.getProgress().setPercent(0.9f);
@@ -134,6 +136,7 @@ final public class Engine {
 	public void stopGame(){
 		((UICounter)UIAtlas.get("play").getElement("score_counter")).setCounter(0);
 		entities.clear();
+		nentities.clear();
 	}
 
 	public void setWindow(long window){
@@ -158,6 +161,10 @@ final public class Engine {
 	
 	public EntityStream getEntityStream(){
 		return entities;
+	}
+
+	public NEntityStream getNEntityStream() {
+		return nentities;
 	}
 	
 	public Map<String, SpriteData> getSpriteAtlas(){

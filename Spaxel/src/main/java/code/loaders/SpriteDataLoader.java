@@ -13,7 +13,6 @@ import code.graphics.SpriteData;
 import code.graphics.Spritesheet;
 
 public class SpriteDataLoader extends Loader{
-	public Map<String, Spritesheet> spritesheetMap = new HashMap<>();
 	
 	public Map<String, SpriteData> loadSpriteDatas(String sprites){
 		try {

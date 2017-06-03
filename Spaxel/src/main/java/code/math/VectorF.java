@@ -1,6 +1,7 @@
 package code.math;
 
 import code.graphics.RenderBuffer;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VectorF {
 	private int m;
@@ -14,6 +15,11 @@ public class VectorF {
 	public VectorF(float[] vector){
 		m = vector.length;
 		this.vector = vector;
+	}
+
+	public VectorF(@JsonProperty("x") float x,@JsonProperty("y") float y){
+		m = 3;
+		this.vector = new float[]{x, y, 1};
 	}
 	
 	public float getValue(int i){

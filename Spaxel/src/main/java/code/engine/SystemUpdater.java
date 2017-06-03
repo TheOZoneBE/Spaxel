@@ -75,6 +75,7 @@ public class SystemUpdater {
                 latch.await();
                 if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
                     Engine.getEngine().getEntityStream().cleanup();
+                    Engine.getEngine().getNEntityStream().cleanup();
                 }
             }
             catch (InterruptedException e){

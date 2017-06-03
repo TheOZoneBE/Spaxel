@@ -19,4 +19,19 @@ public class NEntity {
     public EnumMap<ComponentType, Component> getComponents(){
         return components;
     }
+
+    public Component getComponent(ComponentType type){
+        return components.get(type);
+    }
+
+    public void addComponent(Component component){
+        components.put(component.getType(), component);
+        Engine.getEngine().getNEntityStream().addComponent(component.getType(), this);
+    }
+
+    public void removeComponent(Component component){
+        components.remove(component.getType());
+        Engine.getEngine().getNEntityStream().removeComponent(component.getType(), this);
+    }
+
 }

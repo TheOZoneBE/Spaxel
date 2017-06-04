@@ -1,9 +1,6 @@
 package code.system;
 
-import code.engine.Engine;
-import code.engine.EntityStream;
-import code.engine.EntityType;
-import code.engine.SystemType;
+import code.engine.*;
 import code.entity.Entity;
 import code.entity.ParticleSpawner;
 
@@ -22,13 +19,14 @@ public class SpawnerSystem extends GameSystem {
     public void update(){
         //update all spawners and acquire particles
         EntityStream entities = Engine.getEngine().getEntityStream();
+        NEntityStream nentities = Engine.getEngine().getNEntityStream();
         Iterator<Entity> spawners = entities.getIterator(EntityType.SPAWNER);
-        List<Entity> newParticles = new ArrayList<>();
+        List<NEntity> newParticles = new ArrayList<>();
         while(spawners.hasNext()){
             Entity spawner = spawners.next();
             newParticles.addAll(((ParticleSpawner)spawner).spawn());
         }
-        entities.addEntities(EntityType.PARTICLE, newParticles);
+        nentities.addEntities(EntityType.PARTICLE, newParticles);
     }
 
 

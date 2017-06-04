@@ -4,50 +4,52 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.entity.Entity;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by theo on 31/05/17.
  */
 public class NEntityStream {
-    private EnumMap<EntityType, List<NEntity>> entityTypeMap;
-    private EnumMap<EntityType, List<NEntity>> toAddEntityTypeMap;
-    private EnumMap<EntityType, List<NEntity>> toRemoveEntityTypeMap;
-    private EnumMap<ComponentType, List<NEntity>> componentTypeMap;
-    private EnumMap<ComponentType, List<NEntity>> toAddComponentTypeMap;
-    private EnumMap<ComponentType, List<NEntity>> toRemoveComponentTypeMap;
+    private EnumMap<EntityType, Set<NEntity>> entityTypeMap;
+    private EnumMap<EntityType, Set<NEntity>> toAddEntityTypeMap;
+    private EnumMap<EntityType, Set<NEntity>> toRemoveEntityTypeMap;
+    private EnumMap<ComponentType, Set<NEntity>> componentTypeMap;
+    private EnumMap<ComponentType, Set<NEntity>> toAddComponentTypeMap;
+    private EnumMap<ComponentType, Set<NEntity>> toRemoveComponentTypeMap;
 
     public NEntityStream(){
         entityTypeMap = new EnumMap<>(EntityType.class);
         toAddEntityTypeMap = new EnumMap<>(EntityType.class);
         toRemoveEntityTypeMap = new EnumMap<>(EntityType.class);
         for (EntityType eType : EntityType.values()){
-            entityTypeMap.put(eType, new ArrayList<>());
-            toAddEntityTypeMap.put(eType, new ArrayList<>());
-            toRemoveEntityTypeMap.put(eType, new ArrayList<>());
+            entityTypeMap.put(eType, new HashSet<>());
+            toAddEntityTypeMap.put(eType, new HashSet<>());
+            toRemoveEntityTypeMap.put(eType, new HashSet<>());
         }
         componentTypeMap = new EnumMap<>(ComponentType.class);
         toAddComponentTypeMap = new EnumMap<>(ComponentType.class);
         toRemoveComponentTypeMap = new EnumMap<>(ComponentType.class);
         for (ComponentType cType : ComponentType.values()){
-            componentTypeMap.put(cType, new ArrayList<>());
-            toAddComponentTypeMap.put(cType, new ArrayList<>());
-            toRemoveComponentTypeMap.put(cType, new ArrayList<>());
+            componentTypeMap.put(cType, new HashSet<>());
+            toAddComponentTypeMap.put(cType, new HashSet<>());
+            toRemoveComponentTypeMap.put(cType, new HashSet<>());
         }
     }
 
-    public List<NEntity> getEntities(EntityType type){
+    public Set<NEntity> getEntities(EntityType type){
         return entityTypeMap.get(type);
     }
 
-    public List<NEntity> getEntities(ComponentType type){
+    public Set<NEntity> getEntities(ComponentType type){
         return componentTypeMap.get(type);
     }
 
     public void addEntity(NEntity entity){
         toAddEntityTypeMap.get(entity.getType()).add(entity);
+    }
+
+    public void addEntities(EntityType type, List<NEntity> entities){
+        toAddEntityTypeMap.get(type).addAll(entities);
     }
 
     public void removeEntity(NEntity entity){
@@ -68,7 +70,7 @@ public class NEntityStream {
             entityTypeMap.get(type).addAll(toAddEntityTypeMap.get(type));
             for (NEntity e: toAddEntityTypeMap.get(type)){
                 for (Component c: e.getComponents().values()){
-                    toAddComponentTypeMap.get(c).add(e);
+                    toAddComponentTypeMap.get(c.getType()).add(e);
                 }
             }
         }
@@ -78,7 +80,7 @@ public class NEntityStream {
             entityTypeMap.get(type).removeAll(toRemoveEntityTypeMap.get(type));
             for (NEntity e: toRemoveEntityTypeMap.get(type)){
                 for (Component c: e.getComponents().values()){
-                    toRemoveComponentTypeMap.get(c).add(e);
+                    toRemoveComponentTypeMap.get(c.getType()).add(e);
                 }
             }
         }

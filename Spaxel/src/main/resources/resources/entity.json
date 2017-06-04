@@ -1,0 +1,23 @@
+{
+  "test": {
+    "factories":[
+      {
+        "type":"POSITION",
+        "coord": {
+          "x": 1,
+          "y": 1
+        },
+        "rot": 0.15
+      },
+      {
+        "type": "AGE",
+        "life":100,
+        "maxLife":100
+      },
+      {
+        "type": "SPRITE",
+        "sprite": "anti_shield_effect"
+      }
+    ]
+  }
+}

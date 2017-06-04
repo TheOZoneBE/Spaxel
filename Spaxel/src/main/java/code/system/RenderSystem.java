@@ -1,18 +1,17 @@
 package code.system;
 
 import java.util.Iterator;
+import java.util.Set;
 
 import code.Game;
-import code.engine.Engine;
-import code.engine.EntityType;
-import code.engine.LoadingScreen;
-import code.engine.SystemType;
+import code.components.ComponentType;
+import code.components.RendererComponent;
+import code.engine.*;
 import code.entity.Entity;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
-import code.graphics.RenderBuffer;
 import code.input.MouseWrapper;
-import sun.rmi.server.LoaderHandler;
+import code.math.VectorF;
 
 public class RenderSystem extends GameSystem {
 	private MasterBuffer bufferBuffer;
@@ -70,6 +69,11 @@ public class RenderSystem extends GameSystem {
 		while(toRender.hasNext()){
 			Entity e = toRender.next();
 			e.render(xOffset, yOffset, bufferBuffer);
+		}
+		//TODO temporary
+		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDERER);
+		for (NEntity ne: NtoRender){
+			((RendererComponent)ne.getComponent(ComponentType.RENDERER)).render(new VectorF(xOffset, yOffset), ne, bufferBuffer);
 		}
 
 	}

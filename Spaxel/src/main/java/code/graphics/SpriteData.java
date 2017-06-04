@@ -1,6 +1,7 @@
 package code.graphics;
 
 import code.engine.Engine;
+import code.math.VectorF;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.Random;
@@ -55,9 +56,24 @@ public class SpriteData {
 	}
 
 	//new render method, just send all the information to a buffer
+	//TODO depricate
 	public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
 		float[] trsc = new float[]{
 				x, y, width*scale, height*scale
+		};
+
+		float[] sinCos = new float[]{
+				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
+		};
+
+		render.addNewSprite(spritesheetID, new RenderData(trsc, sinCos, spriteProperties));
+	}
+
+	//again a new render method
+	//TODO temporary: render rework move this out of spritedata
+	public void renderSprite(VectorF pos, int scale, float rot, float transparency, MasterBuffer render){
+		float[] trsc = new float[]{
+				pos.getValue(0), pos.getValue(1), width*scale, height*scale
 		};
 
 		float[] sinCos = new float[]{

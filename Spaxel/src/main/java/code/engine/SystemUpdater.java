@@ -62,13 +62,17 @@ public class SystemUpdater {
                 e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
             }
             else {
-                latch = new CountDownLatch(6);
+                //TODO increment for each new system + temporary clean this up with config or smth
+                latch = new CountDownLatch(8);
                 e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
+                //TODO new systems
+                e.execute(new SystemWrapper(systems.get(SystemType.AGE), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.VELOCITY), latch));
                 //Engine.getEngine().temp.update();
             }
             try{

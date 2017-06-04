@@ -7,7 +7,10 @@ import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
+import code.components.ComponentType;
+import code.components.PositionComponent;
 import code.entity.SpaceCarrier;
+import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
 import code.sound.Music;
 import code.system.RenderSystem;
@@ -29,6 +32,7 @@ final public class Engine {
 	private EntityStream entities;
 	private NEntityStream nentities;
 	private List<Music> musicList;
+	private Map<String, EntityIndustry> industryMap;
 	public Map<String, Spritesheet> spritesheets;
 	public Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
@@ -97,6 +101,9 @@ final public class Engine {
         ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
         ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
+        //industryMap = new IndustryLoader().loadEntityIndustries("/resources/entity.json");
+
+
         entities.cleanup();
         nentities.cleanup();
 
@@ -112,6 +119,9 @@ final public class Engine {
         addSystem(new ParticleSystem());
         addSystem(new TrailSystem());
         addSystem(new SpawnerSystem());
+  		//TODO new systems
+        addSystem(new AgeSystem());
+        addSystem(new VelocitySystem());
         ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads

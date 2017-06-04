@@ -2,7 +2,6 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.HealthComponent;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -14,7 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = PositionComponentFactory.class, name = "POSITION"),
         @JsonSubTypes.Type(value = CollisionComponentFactory.class, name = "COLLISION"),
         @JsonSubTypes.Type(value = AgeComponentFactory.class, name = "AGE"),
-        @JsonSubTypes.Type(value = HealthComponentFactory.class, name = "HEALTH")
+        @JsonSubTypes.Type(value = HealthComponentFactory.class, name = "HEALTH"),
+        @JsonSubTypes.Type(value = SpriteComponentFactory.class, name = "SPRITE"),
+        @JsonSubTypes.Type(value = MoveComponentFactory.class, name = "MOVE"),
+        @JsonSubTypes.Type(value = VelocityComponentFactory.class, name = "VELOCITY")
 })
 public class ComponentFactory {
     private ComponentType type;

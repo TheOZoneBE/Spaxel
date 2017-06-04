@@ -83,6 +83,10 @@ public class VectorF {
 			System.out.print((int)vector[i] + " ");
 		}
 	}
+
+	public VectorF clone(){
+		return new VectorF(vector);
+	}
 	
 	
 }

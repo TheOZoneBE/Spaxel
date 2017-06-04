@@ -258,7 +258,7 @@
         "height": "32",
         "xPos": "0",
         "yPos": "1"      },
-  "anti_shield_item":
+  "anti_shield_effect":
       {
         "sheetName": "shield_effects",
         "width": "32",

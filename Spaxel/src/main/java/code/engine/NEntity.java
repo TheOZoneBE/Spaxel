@@ -2,6 +2,7 @@ package code.engine;
 
 import code.components.Component;
 import code.components.ComponentType;
+import code.entity.Entity;
 
 import java.util.EnumMap;
 
@@ -12,12 +13,21 @@ public class NEntity {
     private EntityType type;
     private EnumMap<ComponentType, Component> components;
 
+    public NEntity(EntityType type){
+        this.type = type;
+        this.components = new EnumMap<>(ComponentType.class);
+    }
+
     public EntityType getType(){
         return type;
     }
 
     public EnumMap<ComponentType, Component> getComponents(){
         return components;
+    }
+
+    public void setComponents(EnumMap<ComponentType, Component> components){
+        this.components = components;
     }
 
     public Component getComponent(ComponentType type){

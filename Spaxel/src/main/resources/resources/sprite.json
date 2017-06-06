@@ -4,533 +4,533 @@
         "sheetName": "cooldown",
         "width": "8",
         "height": "32",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "white":
       {
         "sheetName": "ships",
         "width": "16",
         "height": "16",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "red":
       {
         "sheetName": "ships",
         "width": "16",
         "height": "16",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "blue":
       {
         "sheetName": "ships",
         "width": "16",
         "height": "16",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "green":
       {
         "sheetName": "ships",
         "width": "16",
         "height": "16",
-        "xPos": "1",
-        "yPos": "1"      },
+        "xPosRel": "1",
+        "yPosRel": "1"      },
   "button_normal":
       {
         "sheetName": "button",
         "width": "64",
         "height": "16",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "button_hover":
       {
         "sheetName": "button",
         "width": "64",
         "height": "16",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "button_click":
       {
         "sheetName": "button",
         "width": "64",
         "height": "16",
-        "xPos": "0",
-        "yPos": "2"      },
+        "xPosRel": "0",
+        "yPosRel": "2"      },
   "button_locked":
       {
         "sheetName": "button",
         "width": "64",
         "height": "16",
-        "xPos": "0",
-        "yPos": "3"      },
+        "xPosRel": "0",
+        "yPosRel": "3"      },
   "ui_play_overlay":
       {
         "sheetName": "ui_play",
         "width": "640",
         "height": "360",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "basic_laser_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "piercing_laser_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "2",
-        "yPos": "0"      },
+        "xPosRel": "2",
+        "yPosRel": "0"      },
   "disrupt_laser_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "3",
-        "yPos": "0"      },
+        "xPosRel": "3",
+        "yPosRel": "0"      },
   "slowing_laser_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "basic_missile_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "homing_missile_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "2",
-        "yPos": "1"      },
+        "xPosRel": "2",
+        "yPosRel": "1"      },
   "hacking_missile_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "3",
-        "yPos": "1"      },
+        "xPosRel": "3",
+        "yPosRel": "1"      },
   "cluster_missile_projectile":
       {
         "sheetName": "projectiles",
         "width": "8",
         "height": "8",
-        "xPos": "1",
-        "yPos": "1"      },
+        "xPosRel": "1",
+        "yPosRel": "1"      },
   "basic_laser_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "slowing_laser_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "piercing_laser_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "2",
-        "yPos": "0"      },
+        "xPosRel": "2",
+        "yPosRel": "0"      },
   "disrupt_laser_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "3",
-        "yPos": "0"      },
+        "xPosRel": "3",
+        "yPosRel": "0"      },
   "basic_missile_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "cluster_missile_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "1",
-        "yPos": "1"      },
+        "xPosRel": "1",
+        "yPosRel": "1"      },
   "homing_missile_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "2",
-        "yPos": "1"      },
+        "xPosRel": "2",
+        "yPosRel": "1"      },
   "hacking_missile_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "3",
-        "yPos": "1"      },
+        "xPosRel": "3",
+        "yPosRel": "1"      },
   "active_shield_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "0",
-        "yPos": "2"      },
+        "xPosRel": "0",
+        "yPosRel": "2"      },
   "basic_shield_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "1",
-        "yPos": "2"      },
+        "xPosRel": "1",
+        "yPosRel": "2"      },
   "force_shield_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "2",
-        "yPos": "2"      },
+        "xPosRel": "2",
+        "yPosRel": "2"      },
   "anti_shield_item":
       {
         "sheetName": "items",
         "width": "32",
         "height": "32",
-        "xPos": "3",
-        "yPos": "2"      },
+        "xPosRel": "3",
+        "yPosRel": "2"      },
   "white_trail":
       {
         "sheetName": "effects",
         "width": "4",
         "height": "4",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "red_trail":
       {
         "sheetName": "effects",
         "width": "4",
         "height": "4",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "green_trail":
       {
         "sheetName": "effects",
         "width": "4",
         "height": "4",
-        "xPos": "2",
-        "yPos": "0"      },
+        "xPosRel": "2",
+        "yPosRel": "0"      },
   "blue_trail":
       {
         "sheetName": "effects",
         "width": "4",
         "height": "4",
-        "xPos": "3",
-        "yPos": "0"      },
+        "xPosRel": "3",
+        "yPosRel": "0"      },
   "active_shield_effect":
       {
         "sheetName": "shield_effects",
         "width": "32",
         "height": "32",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "basic_shield_effect":
       {
         "sheetName": "shield_effects",
         "width": "32",
         "height": "32",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "force_shield_effect":
       {
         "sheetName": "shield_effects",
         "width": "32",
         "height": "32",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "anti_shield_effect":
       {
         "sheetName": "shield_effects",
         "width": "32",
         "height": "32",
-        "xPos": "1",
-        "yPos": "1"      },
+        "xPosRel": "1",
+        "yPosRel": "1"      },
   "class_select_hover":
       {
         "sheetName": "class_select",
         "width": "24",
         "height": "24",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "class_select_click":
       {
         "sheetName": "class_select",
         "width": "24",
         "height": "24",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "a":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "0",
-        "yPos": "0"      },
+        "xPosRel": "0",
+        "yPosRel": "0"      },
   "b":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "1",
-        "yPos": "0"      },
+        "xPosRel": "1",
+        "yPosRel": "0"      },
   "c":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "2",
-        "yPos": "0"      },
+        "xPosRel": "2",
+        "yPosRel": "0"      },
   "d":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "3",
-        "yPos": "0"      },
+        "xPosRel": "3",
+        "yPosRel": "0"      },
   "e":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "4",
-        "yPos": "0"      },
+        "xPosRel": "4",
+        "yPosRel": "0"      },
   "f":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "5",
-        "yPos": "0"      },
+        "xPosRel": "5",
+        "yPosRel": "0"      },
   "g":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "6",
-        "yPos": "0"      },
+        "xPosRel": "6",
+        "yPosRel": "0"      },
   "h":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "7",
-        "yPos": "0"      },
+        "xPosRel": "7",
+        "yPosRel": "0"      },
   "i":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "0",
-        "yPos": "1"      },
+        "xPosRel": "0",
+        "yPosRel": "1"      },
   "j":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "1",
-        "yPos": "1"      },
+        "xPosRel": "1",
+        "yPosRel": "1"      },
   "k":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "2",
-        "yPos": "1"      },
+        "xPosRel": "2",
+        "yPosRel": "1"      },
   "l":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "3",
-        "yPos": "1"      },
+        "xPosRel": "3",
+        "yPosRel": "1"      },
   "m":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "4",
-        "yPos": "1"      },
+        "xPosRel": "4",
+        "yPosRel": "1"      },
   "n":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "5",
-        "yPos": "1"      },
+        "xPosRel": "5",
+        "yPosRel": "1"      },
   "o":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "6",
-        "yPos": "1"      },
+        "xPosRel": "6",
+        "yPosRel": "1"      },
   "p":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "7",
-        "yPos": "1"      },
+        "xPosRel": "7",
+        "yPosRel": "1"      },
   "q":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "0",
-        "yPos": "2"      },
+        "xPosRel": "0",
+        "yPosRel": "2"      },
   "r":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "1",
-        "yPos": "2"      },
+        "xPosRel": "1",
+        "yPosRel": "2"      },
   "s":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "2",
-        "yPos": "2"      },
+        "xPosRel": "2",
+        "yPosRel": "2"      },
   "t":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "3",
-        "yPos": "2"      },
+        "xPosRel": "3",
+        "yPosRel": "2"      },
   "u":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "4",
-        "yPos": "2"      },
+        "xPosRel": "4",
+        "yPosRel": "2"      },
   "v":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "5",
-        "yPos": "2"      },
+        "xPosRel": "5",
+        "yPosRel": "2"      },
   "w":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "6",
-        "yPos": "2"      },
+        "xPosRel": "6",
+        "yPosRel": "2"      },
   "x":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "7",
-        "yPos": "2"      },
+        "xPosRel": "7",
+        "yPosRel": "2"      },
   "y":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "0",
-        "yPos": "3"      },
+        "xPosRel": "0",
+        "yPosRel": "3"      },
   "z":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "1",
-        "yPos": "3"      },
+        "xPosRel": "1",
+        "yPosRel": "3"      },
   "0":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "2",
-        "yPos": "3"      },
+        "xPosRel": "2",
+        "yPosRel": "3"      },
   "1":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "3",
-        "yPos": "3"      },
+        "xPosRel": "3",
+        "yPosRel": "3"      },
   "2":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "4",
-        "yPos": "3"      },
+        "xPosRel": "4",
+        "yPosRel": "3"      },
   "3":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "5",
-        "yPos": "3"      },
+        "xPosRel": "5",
+        "yPosRel": "3"      },
   "4":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "6",
-        "yPos": "3"      },
+        "xPosRel": "6",
+        "yPosRel": "3"      },
   "5":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "7",
-        "yPos": "3"      },
+        "xPosRel": "7",
+        "yPosRel": "3"      },
   "6":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "0",
-        "yPos": "4"      },
+        "xPosRel": "0",
+        "yPosRel": "4"      },
   "7":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "1",
-        "yPos": "4"      },
+        "xPosRel": "1",
+        "yPosRel": "4"      },
   "8":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "2",
-        "yPos": "4"      },
+        "xPosRel": "2",
+        "yPosRel": "4"      },
   "9":
       {
         "sheetName": "font",
         "width": "12",
         "height": "12",
-        "xPos": "3",
-        "yPos": "4"
+        "xPosRel": "3",
+        "yPosRel": "4"
               }
     
   }

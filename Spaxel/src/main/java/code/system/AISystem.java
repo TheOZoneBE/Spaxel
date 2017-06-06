@@ -4,10 +4,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import code.components.PositionComponent;
+import code.components.SpriteComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.SystemType;
 import code.entity.*;
+import code.factories.entities.SpawnerIndustry;
+import code.math.VectorF;
 import code.ui.UICounter;
 
 public class AISystem extends GameSystem {
@@ -22,11 +26,17 @@ public class AISystem extends GameSystem {
 		Iterator<Entity> enemies = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
 		Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 		int k = 0;
+		SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
 		while (enemies.hasNext()){
 			Entity e = enemies.next();
 			((Enemy)e).updateAI(player);
 			if (!e.isAlive()){
 				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .15f, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
+				//TODO revisit
+				PositionComponent pc = new PositionComponent(new VectorF(e.getX(), e.getY()), 0);
+				SpriteComponent sc = new SpriteComponent(((Enemy)e).getSprite().getRandomPart(6,6), 4);
+				Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(pc, sc));
+
 				score.addToCounter(100);
 				player.setXp(player.getXp()+25);
 				if (rand.nextInt(100) < 25){

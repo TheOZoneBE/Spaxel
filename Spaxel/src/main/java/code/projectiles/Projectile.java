@@ -3,9 +3,11 @@ package code.projectiles;
 import code.collision.HitPoint;
 import code.collision.HitShape;
 import code.engine.Engine;
+import code.engine.NEntity;
 import code.entity.Actor;
 import code.entity.Entity;
 import code.entity.TrailSegment;
+import code.factories.entities.TrailSegmentIndustry;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
@@ -46,9 +48,11 @@ public class Projectile extends Entity {
 
 	}
 
-	public TrailSegment leaveTrail(){
-		previous = new TrailSegment(x, y, rot, trail, previous);
-		return previous;
+	public NEntity leaveTrail(){
+		//TODO reimplement trajectory if needed
+		//previous = new TrailSegment(x, y, rot, trail, previous);
+		TrailSegmentIndustry tsi = (TrailSegmentIndustry)Engine.getEngine().getIndustryMap().get("trail_segment_industry");
+		return tsi.produce(new VectorF(x, y), rot, trail,2);
 	}
 
 	public SpriteData getSprite() {

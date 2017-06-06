@@ -5,7 +5,7 @@ import java.util.Set;
 
 import code.Game;
 import code.components.ComponentType;
-import code.components.RendererComponent;
+import code.components.RenderComponent;
 import code.engine.*;
 import code.entity.Entity;
 import code.graphics.MasterBuffer;
@@ -43,6 +43,7 @@ public class RenderSystem extends GameSystem {
 			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
 			xOffset = playerXPos - (int) player.getX();
 			yOffset = playerYPos - (int) player.getY();
+			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
 			renderActors();
 			renderParticles();
 			renderEffects();
@@ -65,15 +66,15 @@ public class RenderSystem extends GameSystem {
 	}
 
 	public void renderParticles(){
-		Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PARTICLE);
+		Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.HITPARTICLE);
 		while(toRender.hasNext()){
 			Entity e = toRender.next();
 			e.render(xOffset, yOffset, bufferBuffer);
 		}
 		//TODO temporary
-		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDERER);
+		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
 		for (NEntity ne: NtoRender){
-			((RendererComponent)ne.getComponent(ComponentType.RENDERER)).render(new VectorF(xOffset, yOffset), ne, bufferBuffer);
+			((RenderComponent)ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
 
 	}

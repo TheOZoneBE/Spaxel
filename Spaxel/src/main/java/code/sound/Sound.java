@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 
 import code.entity.Entity;
 
-public class Sound extends Entity{
+public class Sound{
 	
 	private String path;
 	private Clip clip;
@@ -19,7 +19,6 @@ public class Sound extends Entity{
 
 	public Sound(String path){
 		this.path = path;
-		life = -1;
 	}
 
 	public void initialize(){

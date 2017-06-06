@@ -20,8 +20,8 @@ public class MasterBuffer {
         data.put(0, new ArrayList<>());
     }
 
-    public void addNewSprite(int spritesheetID, RenderData rdata){
-        data.get(spritesheetID).add(rdata);
+    public void addNewSprite(RenderData rdata){
+        data.get(rdata.getSpriteSheetID()).add(rdata);
     }
 
     public void clear(){

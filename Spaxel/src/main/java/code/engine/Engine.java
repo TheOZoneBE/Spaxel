@@ -12,6 +12,7 @@ import code.components.PositionComponent;
 import code.entity.SpaceCarrier;
 import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
+import code.math.VectorF;
 import code.sound.Music;
 import code.system.RenderSystem;
 import code.graphics.SpriteData;
@@ -45,6 +46,7 @@ final public class Engine {
 	public SpaceCarrier temp;
 	private Font font;
 	private long window;
+	private VectorF screenOffset;
 
 	public static Engine getEngine(){
 		return engine;
@@ -101,7 +103,7 @@ final public class Engine {
         ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
         ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
-        //industryMap = new IndustryLoader().loadEntityIndustries("/resources/entity.json");
+        industryMap = new IndustryLoader().loadEntityIndustries("/resources/entity.json");
 
 
         entities.cleanup();
@@ -233,4 +235,15 @@ final public class Engine {
 		return spritesheets;
 	}
 
+	public Map<String, EntityIndustry> getIndustryMap() {
+		return industryMap;
+	}
+
+	public VectorF getScreenOffset() {
+		return screenOffset;
+	}
+
+	public void setScreenOffset(VectorF screenOffset) {
+		this.screenOffset = screenOffset;
+	}
 }

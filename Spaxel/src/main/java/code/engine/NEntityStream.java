@@ -73,6 +73,7 @@ public class NEntityStream {
                     toAddComponentTypeMap.get(c.getType()).add(e);
                 }
             }
+            toAddEntityTypeMap.get(type).clear();
         }
 
         //remove entities
@@ -83,6 +84,7 @@ public class NEntityStream {
                     toRemoveComponentTypeMap.get(c.getType()).add(e);
                 }
             }
+            toRemoveEntityTypeMap.get(type).clear();
         }
 
         //add components

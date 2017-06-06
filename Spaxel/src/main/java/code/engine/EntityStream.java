@@ -21,7 +21,7 @@ final public class EntityStream {
 		entities.put(EntityType.SHIPITEM, new ArrayList<>());
 		entities.put(EntityType.DROPPEDITEM, new ArrayList<>());
 		entities.put(EntityType.SOUND, new ArrayList<>());	
-		entities.put(EntityType.PARTICLE, new ArrayList<>());	
+		entities.put(EntityType.HITPARTICLE, new ArrayList<>());
 		entities.put(EntityType.SPAWNER, new ArrayList<>());	
 		entities.put(EntityType.LABEL, new ArrayList<>());
 		entities.put(EntityType.TRAILSEGMENT, new ArrayList<>());

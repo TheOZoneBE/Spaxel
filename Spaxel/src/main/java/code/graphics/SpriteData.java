@@ -11,6 +11,8 @@ public class SpriteData {
 	private int height;
 	private int xPos;
 	private int yPos;
+	private int xPosRel;
+	private int yPosRel;
 
 	private float[] spriteProperties;
 	private float sheetXcoord;
@@ -37,8 +39,10 @@ public class SpriteData {
 
 	public void initialize(){
 		this.spritesheetID = spritesheet.getId();
-		sheetXcoord = (float)this.xPos*width / spritesheet.getWidth();
-		sheetYcoord = (float)this.yPos*height / spritesheet.getHeight();
+		if (xPosRel!= 0) xPos = xPosRel*width;
+		if (yPosRel!= 0) yPos = yPosRel*height;
+		sheetXcoord = (float)this.xPos / spritesheet.getWidth();
+		sheetYcoord = (float)this.yPos / spritesheet.getHeight();
 		sheetXscale = (float)width / spritesheet.getWidth();
 		sheetYscale = (float)height / spritesheet.getHeight();
 		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
@@ -66,7 +70,7 @@ public class SpriteData {
 				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
 		};
 
-		render.addNewSprite(spritesheetID, new RenderData(trsc, sinCos, spriteProperties));
+		render.addNewSprite(new RenderData(spritesheetID, trsc, sinCos, spriteProperties));
 	}
 
 	//again a new render method
@@ -80,7 +84,7 @@ public class SpriteData {
 				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
 		};
 
-		render.addNewSprite(spritesheetID, new RenderData(trsc, sinCos, spriteProperties));
+		render.addNewSprite(new RenderData(spritesheetID, trsc, sinCos, spriteProperties));
 	}
 
 	public SpriteData getRandomPart(int width, int height){
@@ -121,8 +125,32 @@ public class SpriteData {
 		this.yPos = yPos;
 	}
 
+	public int getxPosRel() {
+		return xPosRel;
+	}
+
+	public void setxPosRel(int xPosRel) {
+		this.xPosRel = xPosRel;
+	}
+
+	public int getyPosRel() {
+		return yPosRel;
+	}
+
+	public void setyPosRel(int yPosRel) {
+		this.yPosRel = yPosRel;
+	}
+
 	@JsonSetter("sheetName")
 	public void setSpritesheet(String sheetname){
 		this.spritesheet = Engine.getEngine().getSpritesheets().get(sheetname);
+	}
+
+	public float[] getSpriteProperties() {
+		return spriteProperties;
+	}
+
+	public int getSpritesheetID() {
+		return spritesheetID;
 	}
 }

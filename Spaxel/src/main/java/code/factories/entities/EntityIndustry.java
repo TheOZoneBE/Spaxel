@@ -6,6 +6,9 @@ import code.components.Component;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.factories.components.ComponentFactory;
+import code.factories.components.PositionComponentFactory;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -13,6 +16,12 @@ import java.util.List;
 /**
  * Created by theo on 3/06/17.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type",visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = HitParticleIndustry.class, name = "HITPARTICLE"),
+        @JsonSubTypes.Type(value = TrailSegmentIndustry.class, name = "TRAILSEGMENT"),
+        @JsonSubTypes.Type(value = SpawnerIndustry.class, name = "SPAWNER"),
+})
 public class EntityIndustry {
     private EntityType type;
     private List<ComponentFactory> factories;
@@ -23,13 +32,17 @@ public class EntityIndustry {
 
     public NEntity produce(){
         NEntity entity = new NEntity(type);
+        entity.setComponents(buildComponents());
+        return entity;
+    }
+
+    public EnumMap<ComponentType, Component> buildComponents(){
         EnumMap<ComponentType, Component> components = new EnumMap<>(ComponentType.class);
         for (ComponentFactory factory: factories){
             Component c = factory.make();
             components.put(c.getType(), c);
         }
-        entity.setComponents(components);
-        return entity;
+        return components;
     }
 
     public List<ComponentFactory> getFactories() {

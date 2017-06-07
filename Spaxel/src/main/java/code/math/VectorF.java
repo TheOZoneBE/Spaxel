@@ -84,6 +84,10 @@ public class VectorF {
 		}
 	}
 
+	public float length(){
+		return (float)Math.sqrt(dotProduct(this) -1);
+	}
+
 	public VectorF clone(){
 		return new VectorF(vector);
 	}

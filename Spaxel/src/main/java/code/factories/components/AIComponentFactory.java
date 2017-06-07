@@ -1,0 +1,29 @@
+package code.factories.components;
+
+import code.components.AIType;
+import code.components.BasicEnemyAIComponent;
+import code.components.Component;
+
+/**
+ * Created by theo on 7/06/17.
+ */
+public class AIComponentFactory extends ComponentFactory {
+    private AIType subType;
+
+    public Component make(){
+        switch(subType){
+            case BASICENEMY:
+                return new BasicEnemyAIComponent();
+            default:
+                return null;
+        }
+    }
+
+    public AIType getSubType() {
+        return subType;
+    }
+
+    public void setSubType(AIType subType) {
+        this.subType = subType;
+    }
+}

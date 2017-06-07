@@ -1,0 +1,50 @@
+{
+  "enemy_green_industry": {
+    "type": "ENEMY",
+    "factories": [
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_green"
+      },
+      {
+        "type": "VELOCITY",
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "deltaRot": 0
+      },
+      {
+        "type": "HEALTH",
+        "health": 50,
+        "maxHealth": 50
+      },
+      {
+        "type": "SPRITE",
+        "sprite": "green",
+        "scale": 4
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 20,
+        "turnRate": 0.25,
+        "acc": 0.25
+      },
+      {
+        "type": "AI",
+        "subType": "BASICENEMY"
+      }
+    ]
+  }
+}

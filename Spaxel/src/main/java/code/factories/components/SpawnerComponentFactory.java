@@ -18,6 +18,7 @@ public class SpawnerComponentFactory extends ComponentFactory {
     private int maxLife;
 
     public Component make(){
+        //TODO switch
         if(subType == SpawnerType.HITPARTICLE){
             return new HitParticleSpawnerComponent(rate, maxDeltaRot, maxSpeed, maxLife);
         }

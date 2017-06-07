@@ -28,21 +28,21 @@ public class Player extends Actor {
 		float dx = -xdir/(maxspeed*2);
 		float dy = -ydir/(maxspeed*2);
 		if (keys.downState.getState()) {
+			dx = (float)+Math.sin(rot) * acc;
+			dy = (float)+Math.cos(rot) * acc;
+		}
+		if (keys.upState.getState()) {
 			dx = (float)Math.sin(rot) * acc;
 			dy = (float)Math.cos(rot) * acc;
 		}
-		if (keys.upState.getState()) {
-			dx = (float)-Math.sin(rot) * acc;
-			dy = (float)-Math.cos(rot) * acc;
-		}
 		if (keys.leftState.getState()) {
-			dx = (float)Math.sin(rot - Math.PI / 2) * acc;
-			dy = (float)Math.cos(rot - Math.PI / 2) * acc;
+			dx = (float)Math.sin(rot + Math.PI / 2) * acc;
+			dy = (float)Math.cos(rot + Math.PI / 2) * acc;
 		}
 
 		if (keys.rightState.getState()) {
-			dx = (float)Math.sin(rot + Math.PI / 2) * acc;
-			dy = (float)Math.cos(rot + Math.PI / 2) * acc;
+			dx = (float)Math.sin(rot - Math.PI / 2) * acc;
+			dy = (float)Math.cos(rot - Math.PI / 2) * acc;
 		}
 		if (controlSpeed(xdir + dx, ydir + dy)) {
 			xdir += dx;
@@ -103,9 +103,9 @@ public class Player extends Actor {
 	}
 
 	public void render(int xPos, int yPos, MasterBuffer render) {
-		rot = (float)(Math.PI + Math.atan2(((float) (mouseX - xPos)), (float) (mouseY - yPos)));
+		rot = (float)(Math.atan2(((float) (mouseX - xPos)), (float) (mouseY - yPos)));
 		//TODO sprite.renderBlur(xPos, yPos, rot, render, .5f);
-		sprite.renderSprite(xPos, yPos,4, (float)(rot+Math.PI), 1, false, render);
+		sprite.renderSprite(xPos, yPos,4, rot, 1, false, render);
 	}
 
 }

@@ -6,7 +6,7 @@ import code.components.HealthComponent;
 /**
  * Created by theo on 3/06/17.
  */
-public class HealthComponentFactory {
+public class HealthComponentFactory extends ComponentFactory{
     private int health;
     private int maxHealth;
 

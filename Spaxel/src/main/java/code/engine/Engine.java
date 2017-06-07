@@ -103,7 +103,7 @@ final public class Engine {
         ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
         ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
-        industryMap = new IndustryLoader().loadEntityIndustries("/resources/entity.json");
+        industryMap = new IndustryLoader().loadEntityIndustries(new String[]{"/resources/entity.json", "/resources/actor.json"});
 
 
         entities.cleanup();

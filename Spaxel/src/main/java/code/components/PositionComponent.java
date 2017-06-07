@@ -28,6 +28,13 @@ public class PositionComponent extends Component{
     }
 
     public void setRot(float rot) {
-        this.rot = rot;
+        System.out.println("trying to set rot to " + rot);
+        if (rot < 0){
+            this.rot = (float)(rot + 2*Math.PI);
+        }
+        else {
+            this.rot = (float)(rot % (2*Math.PI));
+        }
+
     }
 }

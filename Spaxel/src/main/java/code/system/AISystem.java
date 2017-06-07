@@ -3,13 +3,15 @@ package code.system;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
-import code.components.PositionComponent;
-import code.components.SpriteComponent;
+import code.components.*;
 import code.engine.Engine;
 import code.engine.EntityType;
+import code.engine.NEntity;
 import code.engine.SystemType;
 import code.entity.*;
+import code.factories.entities.EnemyIndustry;
 import code.factories.entities.SpawnerIndustry;
 import code.math.VectorF;
 import code.ui.UICounter;
@@ -23,13 +25,17 @@ public class AISystem extends GameSystem {
 	public void update(){
 		UICounter score = (UICounter)Engine.getEngine().getUIAtlas().get("play").getElement("score_counter");
 		Random rand = new Random();
-		Iterator<Entity> enemies = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
+		Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(ComponentType.AI);
 		Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 		int k = 0;
 		SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
-		while (enemies.hasNext()){
-			Entity e = enemies.next();
-			((Enemy)e).updateAI(player);
+		for (NEntity e: enemies){
+			AIComponent aic = (AIComponent)e.getComponent(ComponentType.AI);
+
+			aic.execute(new PositionComponent(new VectorF(player.getX(), player.getY()), player.getRot()), e);
+			//TODO revisit
+			//((Enemy)e).updateAI(player);
+			/*
 			if (!e.isAlive()){
 				Engine.getEngine().getEntityStream().addEntity(EntityType.SPAWNER, new ParticleSpawner(e.getX(), e.getY(), 5, 2, .15f, 5, 300, ((Enemy)e).getSprite().getRandomPart(6,6)));
 				//TODO revisit
@@ -44,14 +50,18 @@ public class AISystem extends GameSystem {
 					item.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_dropped_item"));
 					Engine.getEngine().getEntityStream().addEntity(EntityType.DROPPEDITEM, item);
 				}
-			}
+			}*/
 			k++;
 		}
+		//TODO move to its own system
 		if(k < 5){
-			Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20,.25f, .25f);
+			/*Enemy e = new Enemy(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128,0,50,Engine.getEngine().getSpriteAtlas().get("green"), 20,.25f, .25f);
 			e.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_green"));
 			e.update();
-			Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY, e);
+			Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY, e);*/
+			EnemyIndustry ei = (EnemyIndustry)Engine.getEngine().getIndustryMap().get("enemy_green_industry");
+			NEntity entity = ei.produce(new VectorF(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128), 0);
+			Engine.getEngine().getNEntityStream().addEntity(entity);
 		}
 	}
 

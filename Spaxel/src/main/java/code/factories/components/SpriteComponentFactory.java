@@ -4,6 +4,7 @@ import code.components.Component;
 import code.components.SpriteComponent;
 import code.engine.Engine;
 import code.graphics.SpriteData;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * Created by theo on 3/06/17.
@@ -28,8 +29,9 @@ public class SpriteComponentFactory extends ComponentFactory {
         this.sprite = sprite;
     }
 
+    @JsonSetter("sprite")
     public void setSprite(String spriteName){
-        this.sprite = Engine.getEngine().getSpriteAtlas().get("spriteName");
+        this.sprite = Engine.getEngine().getSpriteAtlas().get(spriteName);
     }
 
     public int getScale() {

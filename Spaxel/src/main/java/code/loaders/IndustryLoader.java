@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,11 +13,14 @@ import java.util.Map;
  */
 public class IndustryLoader extends Loader {
 
-    public Map<String, EntityIndustry> loadEntityIndustries(String industries){
+    public Map<String, EntityIndustry> loadEntityIndustries(String[] industries){
         try {
-            loadFile(industries);
-            ObjectMapper mapper = new ObjectMapper();
-            Map<String, EntityIndustry> industryMap = mapper.readValue(file, new TypeReference<Map<String, EntityIndustry>>(){});
+            Map<String, EntityIndustry> industryMap = new HashMap<>();
+            for (String s: industries){
+                loadFile(s);
+                ObjectMapper mapper = new ObjectMapper();
+                industryMap.putAll(mapper.readValue(file, new TypeReference<Map<String, EntityIndustry>>(){}));
+            }
             return industryMap;
         }
         catch (IOException e){

@@ -2,8 +2,8 @@ package code.factories.components;
 
 
 import code.components.Component;
-import code.components.RenderComponent;
-import code.components.subcomponents.Renderer;
+import code.components.render.RenderComponent;
+import code.components.render.subcomponents.Renderer;
 
 import java.util.List;
 

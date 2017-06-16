@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.MoveComponent;
+import code.components.move.MoveComponent;
 
 /**
  * Created by theo on 3/06/17.

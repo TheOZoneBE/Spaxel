@@ -1,6 +1,6 @@
 package code.factories.components;
 
-import code.components.AgeComponent;
+import code.components.age.AgeComponent;
 import code.components.Component;
 
 /**

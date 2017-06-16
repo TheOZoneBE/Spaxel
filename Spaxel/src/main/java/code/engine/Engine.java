@@ -7,8 +7,6 @@ import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
-import code.components.ComponentType;
-import code.components.PositionComponent;
 import code.entity.SpaceCarrier;
 import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
@@ -124,6 +122,8 @@ final public class Engine {
   		//TODO new systems
         addSystem(new AgeSystem());
         addSystem(new VelocitySystem());
+        addSystem(new DamageSystem());
+        addSystem(new HealthSystem());
         ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads

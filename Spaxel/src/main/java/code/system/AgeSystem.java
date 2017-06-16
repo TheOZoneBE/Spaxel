@@ -1,6 +1,6 @@
 package code.system;
 
-import code.components.AgeComponent;
+import code.components.age.AgeComponent;
 import code.components.ComponentType;
 import code.engine.Engine;
 import code.engine.NEntity;

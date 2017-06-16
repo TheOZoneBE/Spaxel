@@ -1,11 +1,8 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.HitParticleSpawnerComponent;
-import code.components.SpawnerComponent;
-import code.components.SpawnerType;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import code.components.spawner.HitParticleSpawnerComponent;
+import code.components.spawner.SpawnerType;
 
 /**
  * Created by theo on 5/06/17.

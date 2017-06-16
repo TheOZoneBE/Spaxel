@@ -44,6 +44,9 @@
       {
         "type": "AI",
         "subType": "BASICENEMY"
+      },
+      {
+        "type": "DAMAGE"
       }
     ]
   }

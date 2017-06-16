@@ -28,8 +28,8 @@ public class Player extends Actor {
 		float dx = -xdir/(maxspeed*2);
 		float dy = -ydir/(maxspeed*2);
 		if (keys.downState.getState()) {
-			dx = (float)+Math.sin(rot) * acc;
-			dy = (float)+Math.cos(rot) * acc;
+			dx = (float)-Math.sin(rot) * acc;
+			dy = (float)-Math.cos(rot) * acc;
 		}
 		if (keys.upState.getState()) {
 			dx = (float)Math.sin(rot) * acc;

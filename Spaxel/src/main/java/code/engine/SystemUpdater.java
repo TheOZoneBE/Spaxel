@@ -2,6 +2,7 @@ package code.engine;
 
 import code.system.GameSystem;
 import code.system.RenderSystem;
+import org.lwjgl.system.CallbackI;
 
 import java.awt.*;
 import java.util.EnumMap;
@@ -63,7 +64,7 @@ public class SystemUpdater {
             }
             else {
                 //TODO increment for each new system + temporary clean this up with config or smth
-                latch = new CountDownLatch(8);
+                latch = new CountDownLatch(10);
                 e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
@@ -73,6 +74,8 @@ public class SystemUpdater {
                 //TODO new systems
                 e.execute(new SystemWrapper(systems.get(SystemType.AGE), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.VELOCITY), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.DAMAGE), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.HEALTH), latch));
                 //Engine.getEngine().temp.update();
             }
             try{

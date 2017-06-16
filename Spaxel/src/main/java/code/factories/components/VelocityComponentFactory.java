@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.VelocityComponent;
+import code.components.velocity.VelocityComponent;
 import code.math.VectorF;
 
 /**

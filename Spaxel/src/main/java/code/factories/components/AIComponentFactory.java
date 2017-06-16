@@ -1,7 +1,7 @@
 package code.factories.components;
 
-import code.components.AIType;
-import code.components.BasicEnemyAIComponent;
+import code.components.ai.AIType;
+import code.components.ai.BasicEnemyAIComponent;
 import code.components.Component;
 
 /**

@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.collision.HitShape;
-import code.components.CollisionComponent;
+import code.components.collision.CollisionComponent;
 import code.components.Component;
 import code.engine.Engine;
 import com.fasterxml.jackson.annotation.JsonSetter;

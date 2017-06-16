@@ -2,7 +2,7 @@ package code.factories.entities;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.PositionComponent;
+import code.components.position.PositionComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.math.VectorF;

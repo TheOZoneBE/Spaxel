@@ -6,6 +6,7 @@ import code.graphics.MasterBuffer;
 import code.graphics.RenderBuffer;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
+import code.math.VectorF;
 
 public class Entity {
 	protected float x;
@@ -78,7 +79,7 @@ public class Entity {
 	}
 	
 	public void updateHitShape(){
-		MatrixF updateMatrixF = MatrixMaker.getTransformationMatrix(x, y, rot,1);
+		MatrixF updateMatrixF = MatrixMaker.getTransformationMatrix(new VectorF(x, y), rot,1);
 		updHitShape = oriHitShape.update(updateMatrixF);
 	}
 	

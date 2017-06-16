@@ -5,7 +5,7 @@ import java.util.Set;
 
 import code.Game;
 import code.components.ComponentType;
-import code.components.RenderComponent;
+import code.components.render.RenderComponent;
 import code.engine.*;
 import code.entity.Entity;
 import code.graphics.MasterBuffer;

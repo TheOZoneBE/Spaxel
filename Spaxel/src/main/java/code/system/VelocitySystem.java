@@ -1,8 +1,8 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.PositionComponent;
-import code.components.VelocityComponent;
+import code.components.position.PositionComponent;
+import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;

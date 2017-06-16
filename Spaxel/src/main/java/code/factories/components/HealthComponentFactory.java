@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.HealthComponent;
+import code.components.health.HealthComponent;
 
 /**
  * Created by theo on 3/06/17.

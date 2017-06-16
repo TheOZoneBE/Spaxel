@@ -2,8 +2,8 @@ package code.factories.entities;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.PositionComponent;
-import code.components.SpriteComponent;
+import code.components.position.PositionComponent;
+import code.components.sprite.SpriteComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 

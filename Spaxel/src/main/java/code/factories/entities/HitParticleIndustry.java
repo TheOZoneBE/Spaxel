@@ -1,6 +1,10 @@
 package code.factories.entities;
 
 import code.components.*;
+import code.components.age.AgeComponent;
+import code.components.position.PositionComponent;
+import code.components.sprite.SpriteComponent;
+import code.components.velocity.VelocityComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.graphics.SpriteData;

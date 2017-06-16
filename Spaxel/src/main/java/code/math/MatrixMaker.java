@@ -2,10 +2,10 @@ package code.math;
 
 public class MatrixMaker {
 
-	public static MatrixF getTransformationMatrix(float x, float y, float rot, float scale) {
+	public static MatrixF getTransformationMatrix(VectorF coord,  float rot, float scale) {
 		float sin = (float)Math.sin(rot);
 		float cos = (float)Math.cos(rot);
-		MatrixF mat = new MatrixF(3, 3, new float[] { (float)cos, (float)sin, x, (float)-sin, (float)cos, y, 0, 0, 1 });
+		MatrixF mat = new MatrixF(3, 3, new float[] { cos, sin, coord.getValue(0),-sin, cos, coord.getValue(1), 0, 0, 1 });
 		return mat.multiply(scale);
 	}
 

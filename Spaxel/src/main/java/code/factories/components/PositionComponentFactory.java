@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.PositionComponent;
+import code.components.position.PositionComponent;
 import code.math.VectorF;
 
 /**

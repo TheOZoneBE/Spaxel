@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.SpriteComponent;
+import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.graphics.SpriteData;
 import com.fasterxml.jackson.annotation.JsonSetter;

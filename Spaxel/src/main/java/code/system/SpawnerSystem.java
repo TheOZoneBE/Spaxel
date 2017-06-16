@@ -1,13 +1,10 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.SpawnerComponent;
+import code.components.spawner.SpawnerComponent;
 import code.engine.*;
-import code.entity.Entity;
-import code.entity.ParticleSpawner;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 

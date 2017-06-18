@@ -92,7 +92,7 @@ public class BasicEnemyAIComponent extends AIComponent {
         //TODO primary, secondary, ship items components
         /*
         if (canshoot && cooldown == 0) {
-            Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY_PROJECTILE, new BasicLaser(x, y, rot, Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"), Engine.getEngine().getSpriteAtlas().get("white_trail"), 5, 100, 20));
+            Engine.getEngine().getEntityStream().addEntity(EntityType.PROJECTILE, new BasicLaser(x, y, rot, Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"), Engine.getEngine().getSpriteAtlas().get("white_trail"), 5, 100, 20));
             cooldown =100;
         }
 

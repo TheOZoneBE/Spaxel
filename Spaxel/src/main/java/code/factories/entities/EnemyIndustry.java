@@ -14,10 +14,10 @@ import java.util.EnumMap;
  * Created by theo on 7/06/17.
  */
 public class EnemyIndustry extends EntityIndustry {
-    public NEntity produce(VectorF coord, float rot){
+    public NEntity produce(PositionComponent pc){
         NEntity entity = new NEntity(EntityType.ENEMY);
         EnumMap<ComponentType, Component> components = buildComponents();
-        components.put(ComponentType.POSITION, new PositionComponent(coord, rot));
+        components.put(pc.getType(), pc);
         entity.setComponents(components);
         return entity;
     }

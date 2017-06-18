@@ -170,5 +170,13 @@
         "yOffset": "64"
       }
     ]
+  },
+  "hitshape_single_point": {
+    "hitPoints": [
+      {
+        "xOffset": 0,
+        "yOffset": 0
+      }
+    ]
   }
 }

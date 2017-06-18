@@ -21,7 +21,7 @@ public class ForceShield extends ShieldItem {
     public void update(){
         super.update();
         if (canUpdate()){
-            Iterator<Entity> projectiles = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
+            Iterator<Entity> projectiles = Engine.getEngine().getEntityStream().getIterator(EntityType.PROJECTILE);
             Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
             while(projectiles.hasNext()){
                 Entity p = projectiles.next();

@@ -51,7 +51,7 @@
       },
       {
         "type": "SPAWNER",
-        "subType": "HITPARTICLE",
+        "spawnerType": "HITPARTICLE",
         "rate": 5,
         "maxDeltaRot": 0.1,
         "maxSpeed": 4,

@@ -39,7 +39,8 @@ public class AISystem extends GameSystem {
 			e.update();
 			Engine.getEngine().getEntityStream().addEntity(EntityType.ENEMY, e);*/
 			EnemyIndustry ei = (EnemyIndustry)Engine.getEngine().getIndustryMap().get("enemy_green_industry");
-			NEntity entity = ei.produce(new VectorF(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128), 0);
+			NEntity entity = ei.produce(
+					new PositionComponent(new VectorF(player.getX() + rand.nextInt(256) - 128, player.getY() + rand.nextInt(256) - 128), 0));
 			Engine.getEngine().getNEntityStream().addEntity(entity);
 		}
 	}

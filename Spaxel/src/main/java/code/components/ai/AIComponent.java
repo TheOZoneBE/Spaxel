@@ -9,22 +9,22 @@ import code.engine.NEntity;
  * Created by theo on 7/06/17.
  */
 public class AIComponent extends Component {
-    private AIType subType;
+    private AIType aiType;
 
     public AIComponent(AIType subType) {
         super(ComponentType.AI);
-        this.subType = subType;
+        this.aiType = subType;
     }
 
     public void execute(PositionComponent playerPos, NEntity entity){
 
     }
 
-    public AIType getSubType() {
-        return subType;
+    public AIType getAiType() {
+        return aiType;
     }
 
-    public void setSubType(AIType subType) {
-        this.subType = subType;
+    public void setAiType(AIType aiType) {
+        this.aiType = aiType;
     }
 }

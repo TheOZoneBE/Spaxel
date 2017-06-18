@@ -12,12 +12,12 @@ import java.util.Random;
  */
 public class SpawnerComponent extends Component {
     protected int rate;
-    private SpawnerType subType;
+    private SpawnerType spawnerType;
     protected Random rand;
 
-    public SpawnerComponent(SpawnerType subType, int rate) {
+    public SpawnerComponent(SpawnerType spawnerType, int rate) {
         super(ComponentType.SPAWNER);
-        this.subType = subType;
+        this.spawnerType = spawnerType;
         this.rate = rate;
         this.rand = new Random();
     }
@@ -34,11 +34,11 @@ public class SpawnerComponent extends Component {
         this.rate = rate;
     }
 
-    public SpawnerType getSubType() {
-        return subType;
+    public SpawnerType getSpawnerType() {
+        return spawnerType;
     }
 
-    public void setSubType(SpawnerType subType) {
-        this.subType = subType;
+    public void setSpawnerType(SpawnerType spawnerType) {
+        this.spawnerType = spawnerType;
     }
 }

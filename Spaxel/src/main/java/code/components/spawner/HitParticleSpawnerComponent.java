@@ -1,8 +1,11 @@
 package code.components.spawner;
 
 import code.components.ComponentType;
+import code.components.age.AgeComponent;
+import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
+import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.HitParticleIndustry;
@@ -30,7 +33,7 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
         List<NEntity> temp = new ArrayList<>();
         HitParticleIndustry hpi = (HitParticleIndustry) Engine.getEngine().getIndustryMap().get("hit_particle_industry");
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
+        ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
         for (int i = 0; i < rate; i++) {
             int life = rand.nextInt(maxLife);
             float dir = rand.nextFloat() * 2 * (float)Math.PI;
@@ -38,7 +41,10 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
             float deltaRot = (rand.nextFloat() - .5f) * maxDeltaRot;
             float dx = (float)Math.sin(dir) * speed;
             float dy = (float)Math.cos(dir) * speed;
-            temp.add(hpi.produce(pc.getCoord(), pc.getRot(), life, life, new VectorF(dx, dy), deltaRot, sc.getSprite(), sc.getScale()));
+            temp.add(hpi.produce(pc,
+                    new AgeComponent(life, life),
+                    new VelocityComponent(new VectorF(dx, dy), deltaRot),
+                    new SpriteComponent(pac.getParticle(), pac.getScale())));
         }
         return temp;
     }

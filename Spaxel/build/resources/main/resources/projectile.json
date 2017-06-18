@@ -1,0 +1,46 @@
+{
+  "basic_laser_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "basic_laser_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 30
+      },
+      {
+        "type": "HIT",
+        "hitType": "BASIC_LASER",
+        "damage": 10
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "white_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      }
+    ]
+  }
+}

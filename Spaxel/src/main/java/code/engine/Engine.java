@@ -81,10 +81,11 @@ final public class Engine {
         this.keys = new Keyboard(window);
 
         //asset loading
+		/*
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
 		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
-		musicList = sounds.loadSounds("/resources/sound.json");
+		musicList = sounds.loadSounds("/resources/sound.json");*/
 
         Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
         Game.game.loadingScreen.getProgress().setPercent(0.4f);
@@ -101,7 +102,11 @@ final public class Engine {
         ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
         ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
-        industryMap = new IndustryLoader().loadEntityIndustries(new String[]{"/resources/entity.json", "/resources/actor.json"});
+        industryMap = new IndustryLoader().loadEntityIndustries(new String[]{
+        		"/resources/entity.json",
+				"/resources/actor.json",
+				"/resources/projectile.json"
+        });
 
 
         entities.cleanup();
@@ -124,7 +129,7 @@ final public class Engine {
         addSystem(new VelocitySystem());
         addSystem(new DamageSystem());
         addSystem(new HealthSystem());
-        ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+        //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads
         Game.game.updater.setSystems(systems);

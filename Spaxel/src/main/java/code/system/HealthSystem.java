@@ -2,6 +2,7 @@ package code.system;
 
 import code.components.ComponentType;
 import code.components.health.HealthComponent;
+import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
@@ -38,7 +39,7 @@ public class HealthSystem extends GameSystem {
                 //TODO revisit
 
                 SpriteComponent sc = new SpriteComponent(esc.getSprite().getRandomPart(6,6), esc.getScale());
-                Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, sc));
+                Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, new ParticleComponent(sc.getSprite(), sc.getScale())));
 
                 score.addToCounter(100);
                 player.setXp(player.getXp()+25);

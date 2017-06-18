@@ -7,6 +7,7 @@ import code.components.*;
 import code.components.collision.CollisionComponent;
 import code.components.damage.Damage;
 import code.components.damage.DamageComponent;
+import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.*;
@@ -51,14 +52,14 @@ public class ProjectileSystem extends GameSystem{
 						//TODO revisit
 						PositionComponent ppc = new PositionComponent(new VectorF(proj.getX(), proj.getY()), 0);
 						SpriteComponent psc = new SpriteComponent(esc.getSprite().getRandomPart(3,3), esc.getScale());
-						Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(ppc, psc));
+						Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(ppc, new ParticleComponent(psc.getSprite(), psc.getScale())));
 						score.addToCounter(p.getDamage());
 					}
 				}
 			}
 		}
 
-		projs = entities.getIterator(EntityType.ENEMY_PROJECTILE);
+		projs = entities.getIterator(EntityType.PROJECTILE);
 		Entity player = entities.getEntities(EntityType.PLAYER).get(0);
 		while(projs.hasNext()){
 			Entity proj = projs.next();
@@ -72,7 +73,7 @@ public class ProjectileSystem extends GameSystem{
 					//TODO revisit
 					PositionComponent pc = new PositionComponent(new VectorF(proj.getX(), proj.getY()), 0);
 					SpriteComponent sc = new SpriteComponent(temp.getSprite().getRandomPart(3,3), 4);
-					Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(pc, sc));
+					Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(pc,new ParticleComponent(sc.getSprite(), sc.getScale())));
 				}
 			}
 		}

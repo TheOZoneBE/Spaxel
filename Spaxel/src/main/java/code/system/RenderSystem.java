@@ -92,7 +92,7 @@ public class RenderSystem extends GameSystem {
 			e.render(xOffset, yOffset, bufferBuffer);
 		}
 
-		toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
+		toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.PROJECTILE);
 		while(toRender.hasNext()){
 			Entity e = toRender.next();
 			e.render(xOffset, yOffset, bufferBuffer);

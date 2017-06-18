@@ -45,6 +45,7 @@ public class ParticleSpawner extends Entity {
 		return temp;
 	}*/
 
+	/*
 	public List<NEntity> spawn(){
 		List<NEntity> temp = new ArrayList<>();
 		HitParticleIndustry hpi = (HitParticleIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_industry");
@@ -58,5 +59,5 @@ public class ParticleSpawner extends Entity {
 			temp.add(hpi.produce(new VectorF(x, y), rot, life, life, new VectorF(dx, dy), deltaRot, sprite, 4));
 		}
 		return temp;
-	}
+	}*/
 }

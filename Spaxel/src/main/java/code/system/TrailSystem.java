@@ -26,7 +26,7 @@ public class TrailSystem extends GameSystem {
             Projectile e = (Projectile) entities.next();
             trailsegments.add(e.leaveTrail());
         }
-        entities = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY_PROJECTILE);
+        entities = Engine.getEngine().getEntityStream().getIterator(EntityType.PROJECTILE);
         while(entities.hasNext()){
             Projectile e = (Projectile) entities.next();
             trailsegments.add(e.leaveTrail());

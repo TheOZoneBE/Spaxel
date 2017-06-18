@@ -2,6 +2,8 @@ package code.projectiles;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.components.position.PositionComponent;
+import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.entity.Actor;
@@ -52,7 +54,7 @@ public class Projectile extends Entity {
 		//TODO reimplement trajectory if needed
 		//previous = new TrailSegment(x, y, rot, trail, previous);
 		TrailSegmentIndustry tsi = (TrailSegmentIndustry)Engine.getEngine().getIndustryMap().get("trail_segment_industry");
-		return tsi.produce(new VectorF(x, y), rot, trail,2);
+		return tsi.produce(new PositionComponent(new VectorF(x, y), rot),new SpriteComponent(trail,2));
 	}
 
 	public SpriteData getSprite() {

@@ -15,11 +15,9 @@ import java.util.EnumMap;
  * Created by theo on 5/06/17.
  */
 public class TrailSegmentIndustry extends EntityIndustry{
-    public NEntity produce(VectorF pos, float rot, SpriteData sprite, int scale){
+    public NEntity produce(PositionComponent pc, SpriteComponent rc){
         NEntity entity = new NEntity(EntityType.HITPARTICLE);
         EnumMap<ComponentType, Component> components = buildComponents();
-        PositionComponent pc = new PositionComponent(pos, rot);
-        SpriteComponent rc = new SpriteComponent(sprite,scale);
         components.put(pc.getType(), pc);
         components.put(rc.getType(), rc);
         entity.setComponents(components);

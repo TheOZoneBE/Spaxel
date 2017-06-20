@@ -16,6 +16,10 @@ public class Component {
 
     }
 
+    public Component clone(){
+        return new Component(type);
+    }
+
     public ComponentType getType(){
         return type;
     }

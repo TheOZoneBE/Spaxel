@@ -64,7 +64,7 @@ public class SystemUpdater {
             }
             else {
                 //TODO increment for each new system + temporary clean this up with config or smth
-                latch = new CountDownLatch(10);
+                latch = new CountDownLatch(12);
                 e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
@@ -76,6 +76,8 @@ public class SystemUpdater {
                 e.execute(new SystemWrapper(systems.get(SystemType.VELOCITY), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.DAMAGE), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.HEALTH), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.COOLDOWN), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.HIT), latch));
                 //Engine.getEngine().temp.update();
             }
             try{

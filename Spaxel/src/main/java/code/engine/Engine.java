@@ -105,7 +105,8 @@ final public class Engine {
         industryMap = new IndustryLoader().loadEntityIndustries(new String[]{
         		"/resources/entity.json",
 				"/resources/actor.json",
-				"/resources/projectile.json"
+				"/resources/projectile.json",
+				"/resources/item.json"
         });
 
 
@@ -129,6 +130,8 @@ final public class Engine {
         addSystem(new VelocitySystem());
         addSystem(new DamageSystem());
         addSystem(new HealthSystem());
+        addSystem(new CooldownSystem());
+        addSystem(new HitSystem());
         //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads

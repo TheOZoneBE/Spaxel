@@ -24,6 +24,9 @@ public class TrailSegmentSpawnerComponent extends SpawnerComponent {
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
         TrailSegmentIndustry tsi = (TrailSegmentIndustry) Engine.getEngine().getIndustryMap().get("trail_segment_industry");
-        return Collections.singletonList(tsi.produce(pc,new SpriteComponent(pac.getParticle(), pac.getScale())));
+        return Collections.singletonList(
+                tsi.produce(
+                        (PositionComponent)pc.clone(),
+                        new SpriteComponent(pac.getParticle(), pac.getScale())));
     }
 }

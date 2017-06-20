@@ -47,6 +47,12 @@
       },
       {
         "type": "DAMAGE"
+      },
+      {
+        "type": "PRIMARY",
+        "itemIndustries": [
+          "basic_laser_item_industry"
+        ]
       }
     ]
   }

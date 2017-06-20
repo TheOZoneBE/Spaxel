@@ -1,8 +1,10 @@
 package code.components.ai;
 
 import code.components.ComponentType;
+import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
+import code.components.primary.PrimaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.NEntity;
 import code.math.VectorF;
@@ -65,12 +67,9 @@ public class BasicEnemyAIComponent extends AIComponent {
                 entityVel.setDeltaRot(entityMov.getTurnRate());
             }
         }
-        //float dx = 0;
-        //float dy = 0;
+
 
         VectorF velChange = new VectorF((float)Math.sin(entityPos.getRot()), (float)Math.cos(entityPos.getRot())).multiplicate(entityMov.getAcc());
-        //dx =(float)-Math.sin(rot) * acc;
-        //dy = (float)-Math.cos(rot) * acc;
 
         float dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
         if (dist > 250) {
@@ -82,20 +81,15 @@ public class BasicEnemyAIComponent extends AIComponent {
                                 .sum(entityVel.getVelocity()
                                         .multiplicate(-1/entityMov.getMaxSpeed()*2))
                                 .sum(velChange));
-
-                //xdir = xdir - xdir / (maxspeed * 2) + dx;
-                //ydir = ydir - ydir / (maxspeed * 2) + dy;
             }
         } else {
             entityVel.setVelocity(entityVel.getVelocity().sum(velChange.multiplicate(-1)));
         }
         //TODO primary, secondary, ship items components
-        /*
-        if (canshoot && cooldown == 0) {
-            Engine.getEngine().getEntityStream().addEntity(EntityType.PROJECTILE, new BasicLaser(x, y, rot, Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"), Engine.getEngine().getSpriteAtlas().get("white_trail"), 5, 100, 20));
-            cooldown =100;
+        PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
+        for (NEntity e: prc.getItems()){
+            ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);
+            ic.activate(e);
         }
-
-        cooldown--;*/
     }
 }

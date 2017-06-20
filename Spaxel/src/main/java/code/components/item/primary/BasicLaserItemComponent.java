@@ -5,10 +5,14 @@ import code.components.cooldown.CooldownComponent;
 import code.components.item.ItemComponent;
 import code.components.item.ItemType;
 import code.components.link.LinkComponent;
+import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
+import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
+import code.factories.entities.ProjectileIndustry;
+import code.math.VectorF;
 import code.projectiles.BasicLaser;
 
 /**
@@ -22,14 +26,15 @@ public class BasicLaserItemComponent extends ItemComponent {
     public void activate(NEntity entity){
         CooldownComponent cc = (CooldownComponent)entity.getComponent(ComponentType.COOLDOWN);
         if (cc.getCd() == 0){
-            //TODO VERY TEMPORARY rework to factory if projectiles get reworked
             NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent)parent.getComponent(ComponentType.POSITION);
-            Engine.getEngine().getEntityStream().addEntity(EntityType.PROJECTILE,
-                    new BasicLaser(pc.getCoord().getValue(0), pc.getCoord().getValue(1), pc.getRot(),
-                            Engine.getEngine().getSpriteAtlas().get("basic_laser_projectile"),
-                            Engine.getEngine().getSpriteAtlas().get("white_trail"),
-            10, 100, 300));
+            ProjectileIndustry pri = (ProjectileIndustry)Engine.getEngine().getIndustryMap().get("basic_laser_projectile_industry");
+            NEntity projectile = pri.produce((PositionComponent)pc.clone(), new LinkComponent(parent));
+            MoveComponent pmc = (MoveComponent)projectile.getComponent(ComponentType.MOVE);
+            float dx = (float)Math.sin(pc.getRot()) * pmc.getMaxSpeed();
+            float dy = (float)Math.cos(pc.getRot()) * pmc.getMaxSpeed();
+            projectile.addComponent(new VelocityComponent(new VectorF(dx, dy), 0));
+            Engine.getEngine().getNEntityStream().addEntity(projectile);
             cc.setCd(cc.getCdAmount());
         }
     }

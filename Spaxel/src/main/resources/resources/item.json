@@ -1,0 +1,24 @@
+{
+  "basic_laser_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "basic_laser_item"
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 20
+      },
+      {
+        "type": "ITEM",
+        "name": "basic_laser"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      }
+    ]
+  }
+}

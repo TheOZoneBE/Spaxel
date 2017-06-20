@@ -46,7 +46,7 @@ public class ProjectileSystem extends GameSystem{
 						DamageComponent edc = (DamageComponent)e.getComponent(ComponentType.DAMAGE);
 						SpriteComponent esc = (SpriteComponent)e.getComponent(ComponentType.SPRITE);
 						Projectile p = (Projectile)proj;
-						edc.addDamage(new Damage(p.getDamage()));
+						//edc.addDamage(new Damage(p.getDamage()));
 						//p.hit(temp);
 						//entities.addEntity(EntityType.SPAWNER, new ParticleSpawner(proj.getX(), proj.getY(), 5, 2, .1f, 4, 150, temp.getSprite().getRandomPart(3,3)));
 						//TODO revisit

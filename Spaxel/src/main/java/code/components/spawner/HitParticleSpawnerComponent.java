@@ -41,7 +41,8 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
             float deltaRot = (rand.nextFloat() - .5f) * maxDeltaRot;
             float dx = (float)Math.sin(dir) * speed;
             float dy = (float)Math.cos(dir) * speed;
-            temp.add(hpi.produce(pc,
+            temp.add(hpi.produce(
+                    (PositionComponent)pc.clone(),
                     new AgeComponent(life, life),
                     new VelocityComponent(new VectorF(dx, dy), deltaRot),
                     new SpriteComponent(pac.getParticle(), pac.getScale())));

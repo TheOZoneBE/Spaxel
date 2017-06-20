@@ -14,11 +14,10 @@ import java.util.EnumMap;
  * Created by theo on 18/06/17.
  */
 public class ProjectileIndustry extends EntityIndustry {
-    public NEntity produce(PositionComponent pc, VelocityComponent vc, LinkComponent lc){
+    public NEntity produce(PositionComponent pc, LinkComponent lc){
         NEntity entity = new NEntity(EntityType.PROJECTILE);
         EnumMap<ComponentType, Component> components = buildComponents();
         components.put(pc.getType(), pc);
-        components.put(vc.getType(), vc);
         components.put(lc.getType(), lc);
         entity.setComponents(components);
         return entity;

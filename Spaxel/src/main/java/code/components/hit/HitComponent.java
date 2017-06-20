@@ -17,7 +17,7 @@ public class HitComponent extends Component{
         this.damage = damage;
     }
 
-    public void hit(NEntity entity){
+    public void hit(NEntity entity, NEntity victim){
 
     }
 

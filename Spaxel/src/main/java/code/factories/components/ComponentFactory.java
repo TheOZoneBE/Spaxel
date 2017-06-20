@@ -2,6 +2,7 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.ComponentType;
+import code.components.cooldown.CooldownComponent;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -22,7 +23,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = AIComponentFactory.class, name = "AI"),
         @JsonSubTypes.Type(value = DamageComponentFactory.class, name = "DAMAGE"),
         @JsonSubTypes.Type(value = ParticleComponentFactory.class, name = "PARTICLE"),
-        @JsonSubTypes.Type(value = HitComponentFactory.class, name = "HIT")
+        @JsonSubTypes.Type(value = HitComponentFactory.class, name = "HIT"),
+        @JsonSubTypes.Type(value = PrimaryComponentFactory.class, name = "PRIMARY"),
+        @JsonSubTypes.Type(value = SecondaryComponentFactory.class, name = "SECONDARY"),
+        @JsonSubTypes.Type(value = ShipComponentFactory.class, name = "SHIP"),
+        @JsonSubTypes.Type(value = CooldownComponentFactory.class, name = "COOLDOWN"),
+        @JsonSubTypes.Type(value = ItemComponentFactory.class, name = "ITEM"),
+        @JsonSubTypes.Type(value = StackComponentFactory.class, name = "STACK")
 })
 public class ComponentFactory {
     private ComponentType type;

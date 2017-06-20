@@ -12,6 +12,8 @@ public class HealthComponent extends Component {
 
     public HealthComponent(int health, int maxHealth) {
         super(ComponentType.HEALTH);
+        this.health = health;
+        this.maxHealth = maxHealth;
     }
 
     public int getHealth() {

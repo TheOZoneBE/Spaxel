@@ -89,7 +89,7 @@ public class VectorF {
 	}
 
 	public VectorF clone(){
-		return new VectorF(vector);
+		return new VectorF(vector.clone());
 	}
 	
 	

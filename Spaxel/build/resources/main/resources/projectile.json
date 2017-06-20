@@ -9,7 +9,7 @@
       },
       {
         "type": "MOVE",
-        "maxSpeed": 30
+        "maxSpeed": 20
       },
       {
         "type": "HIT",
@@ -40,6 +40,11 @@
             "type": "VELOCITY"
           }
         ]
+      },
+      {
+        "type": "AGE",
+        "life": 100,
+        "maxLife": 100
       }
     ]
   }

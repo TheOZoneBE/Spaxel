@@ -1,6 +1,7 @@
 package code.ui;
 
 import code.engine.Engine;
+import code.engine.NEntity;
 import code.engine.SystemType;
 import code.entity.ActorType;
 import code.system.UISystem;
@@ -12,7 +13,9 @@ public class ClassSelectionController extends Controller{
 
     public void selectWhite(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        ActorType.WHITE.initialize();
+        NEntity player = Engine.getEngine().getIndustryMap().get("player_white_industry").produce();
+        Engine.getEngine().getNEntityStream().addEntity(player);
+        //ActorType.WHITE.initialize();
         UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
         uis.changeUI("play");
     }

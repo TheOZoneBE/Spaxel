@@ -29,7 +29,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ShipComponentFactory.class, name = "SHIP"),
         @JsonSubTypes.Type(value = CooldownComponentFactory.class, name = "COOLDOWN"),
         @JsonSubTypes.Type(value = ItemComponentFactory.class, name = "ITEM"),
-        @JsonSubTypes.Type(value = StackComponentFactory.class, name = "STACK")
+        @JsonSubTypes.Type(value = StackComponentFactory.class, name = "STACK"),
+        @JsonSubTypes.Type(value = InputComponentFactory.class, name = "INPUT"),
 })
 public class ComponentFactory {
     private ComponentType type;

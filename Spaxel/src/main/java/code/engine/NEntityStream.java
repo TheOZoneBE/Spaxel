@@ -45,14 +45,19 @@ public class NEntityStream {
     }
 
     public void addEntity(NEntity entity){
+        entity.addCascade();
         toAddEntityTypeMap.get(entity.getType()).add(entity);
     }
 
     public void addEntities(EntityType type, List<NEntity> entities){
+        for (NEntity e: entities){
+            e.addCascade();
+        }
         toAddEntityTypeMap.get(type).addAll(entities);
     }
 
     public void removeEntity(NEntity entity){
+        entity.removeCascade();
         toRemoveEntityTypeMap.get(entity.getType()).add(entity);
     }
 

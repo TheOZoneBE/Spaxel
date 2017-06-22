@@ -1,0 +1,67 @@
+{
+  "player_white_industry":{
+    "type": "PLAYER",
+    "factories": [
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_white"
+      },
+      {
+        "type": "VELOCITY",
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "deltaRot": 0
+      },
+      {
+        "type": "HEALTH",
+        "health": 500000,
+        "maxHealth": 500000
+      },
+      {
+        "type": "SPRITE",
+        "sprite": "white",
+        "scale": 4
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 20,
+        "turnRate": 0.25,
+        "acc": 0.25
+      },
+      {
+        "type": "INPUT",
+        "inputType": "PLAYER"
+      },
+      {
+        "type": "DAMAGE"
+      },
+      {
+        "type": "PRIMARY",
+        "itemIndustries": [
+          "basic_laser_item_industry"
+        ]
+      },
+      {
+        "type": "POSITION",
+        "coord": {
+          "x": 0,
+          "y": 0
+        },
+        "rot": 0
+      }
+    ]
+  }
+}

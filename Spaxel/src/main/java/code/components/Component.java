@@ -20,6 +20,14 @@ public class Component {
         return new Component(type);
     }
 
+    public void addCascade(NEntity entity){
+
+    }
+
+    public void removeCascade(){
+
+    }
+
     public ComponentType getType(){
         return type;
     }

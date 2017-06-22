@@ -35,13 +35,27 @@ public class NEntity {
     }
 
     public void addComponent(Component component){
+        component.addCascade(this);
         components.put(component.getType(), component);
         Engine.getEngine().getNEntityStream().addComponent(component.getType(), this);
     }
 
     public void removeComponent(Component component){
+        component.removeCascade();
         components.remove(component.getType());
         Engine.getEngine().getNEntityStream().removeComponent(component.getType(), this);
+    }
+
+    public void addCascade(){
+        for (Component c: components.values()){
+            c.addCascade(this);
+        }
+    }
+
+    public void removeCascade(){
+        for(Component c: components.values()){
+            c.removeCascade();
+        }
     }
 
 }

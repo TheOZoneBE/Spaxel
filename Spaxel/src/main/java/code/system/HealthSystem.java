@@ -27,7 +27,7 @@ public class HealthSystem extends GameSystem {
 
     public void update(){
         Random rand = new Random();
-        Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+        //Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
         UICounter score = (UICounter)Engine.getEngine().getUIAtlas().get("play").getElement("score_counter");
         Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HEALTH);
         SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
@@ -42,7 +42,8 @@ public class HealthSystem extends GameSystem {
                 Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, new ParticleComponent(sc.getSprite(), sc.getScale())));
 
                 score.addToCounter(100);
-                player.setXp(player.getXp()+25);
+                //TODO experience system
+                //player.setXp(player.getXp()+25);
                 if (rand.nextInt(100) < 25){
                     DroppedItem item = new DroppedItem(epc.getCoord().getValue(0), epc.getCoord().getValue(1), Engine.getEngine().getItems().getRandomItem(), 500);
                     item.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_dropped_item"));

@@ -106,7 +106,8 @@ final public class Engine {
         		"/resources/entity.json",
 				"/resources/actor.json",
 				"/resources/projectile.json",
-				"/resources/item.json"
+				"/resources/item.json",
+				"/resources/player.json"
         });
 
 
@@ -117,10 +118,10 @@ final public class Engine {
         Game.game.loadingScreen.getProgress().setPercent(0.9f);
         //systems
         addSystem(new SoundSystem());
-        addSystem(new InventorySystem());
+        //addSystem(new InventorySystem());
         addSystem(new UISystem());
-        addSystem(new ProjectileSystem());
-        addSystem(new ActorSystem());
+        //addSystem(new ProjectileSystem());
+        //addSystem(new ActorSystem());
         addSystem(new AISystem());
         addSystem(new ParticleSystem());
         addSystem(new TrailSystem());
@@ -132,6 +133,7 @@ final public class Engine {
         addSystem(new HealthSystem());
         addSystem(new CooldownSystem());
         addSystem(new HitSystem());
+        addSystem(new InputSystem());
         //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads

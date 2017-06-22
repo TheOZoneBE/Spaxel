@@ -2,6 +2,8 @@ package code.components.primary;
 
 import code.components.Component;
 import code.components.ComponentType;
+import code.components.link.LinkComponent;
+import code.engine.Engine;
 import code.engine.NEntity;
 
 import java.util.List;
@@ -23,5 +25,18 @@ public class PrimaryComponent extends Component {
 
     public void setItems(List<NEntity> items) {
         this.items = items;
+    }
+
+    public void addCascade(NEntity entity){
+        for (NEntity e: items){
+            e.addComponent(new LinkComponent(entity));
+            Engine.getEngine().getNEntityStream().addEntity(e);
+        }
+    }
+
+    public void removeCascade(){
+        for (NEntity e: items){
+            Engine.getEngine().getNEntityStream().removeEntity(e);
+        }
     }
 }

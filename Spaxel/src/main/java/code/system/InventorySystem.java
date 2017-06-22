@@ -17,6 +17,7 @@ public class InventorySystem extends GameSystem{
 	}
 	
 	public void update(){
+		//TODO rework to only ship item update
 		Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 		Iterator<Item> updating = player.getItemIterator(EntityType.MOUSE1ITEM);
 		while (updating.hasNext()){

@@ -63,11 +63,11 @@ public class SystemUpdater {
                 e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
             }
             else {
-                //TODO increment for each new system + temporary clean this up with config or smth
+                //TODO increment for each new system + temporary, clean this up with config or smth
                 latch = new CountDownLatch(12);
                 e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
+                //e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
@@ -78,6 +78,7 @@ public class SystemUpdater {
                 e.execute(new SystemWrapper(systems.get(SystemType.HEALTH), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.COOLDOWN), latch));
                 e.execute(new SystemWrapper(systems.get(SystemType.HIT), latch));
+                e.execute(new SystemWrapper(systems.get(SystemType.INPUT), latch));
                 //Engine.getEngine().temp.update();
             }
             try{
@@ -100,9 +101,9 @@ public class SystemUpdater {
         CountDownLatch latch = new CountDownLatch(0);
 
         if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
-            latch = new CountDownLatch(3);
-            e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.PROJECTILE), latch));
+            latch = new CountDownLatch(1);
+            //e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));
+            //e.execute(new SystemWrapper(systems.get(SystemType.PROJECTILE), latch));
             e.execute(new SystemWrapper(systems.get(SystemType.PARTICLE), latch));
         }
         try{

@@ -22,12 +22,7 @@ public class EnemyIndustry extends EntityIndustry {
         EnumMap<ComponentType, Component> components = buildComponents();
         components.put(pc.getType(), pc);
         entity.setComponents(components);
-        PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
-        for (NEntity e: prc.getItems()){
-            e.addComponent(new LinkComponent(entity));
-            Engine.getEngine().getNEntityStream().addEntity(e);
-        }
-        //TODO secondary, ship
+        //TODO secondary, ship*/
         return entity;
     }
 }

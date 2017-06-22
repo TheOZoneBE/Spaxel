@@ -1,10 +1,12 @@
 package code.system;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
 import code.Game;
 import code.components.ComponentType;
+import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.*;
 import code.entity.Entity;
@@ -36,13 +38,16 @@ public class RenderSystem extends GameSystem {
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
-			Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
+			//TODO revisit
+			Set<NEntity> playerSet = Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER);
+			NEntity player = new ArrayList<>(playerSet).get(0);
+			PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
 			int screenXOffset = mouseWrapper.getX() / 2 - Game.GAME_WIDTH / 4;
 			int screenYOffset = mouseWrapper.getY() / 2 - Game.GAME_HEIGHT / 4;
 			int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
 			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
-			xOffset = playerXPos - (int) player.getX();
-			yOffset = playerYPos - (int) player.getY();
+			xOffset = playerXPos - (int) playerPos.getCoord().getValue(0);
+			yOffset = playerYPos - (int) playerPos.getCoord().getValue(1);
 			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
 			renderActors();
 			renderParticles();
@@ -53,10 +58,11 @@ public class RenderSystem extends GameSystem {
 	}
 
 	public void renderActors(){
+		/*
 		Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 		int playerXPos = xOffset + (int)player.getX();
 		int playerYPos = yOffset + (int)player.getY();
-		player.render(playerXPos,playerYPos, bufferBuffer);
+		player.render(playerXPos,playerYPos, bufferBuffer);*/
 
 		Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
 		while(toRender.hasNext()){

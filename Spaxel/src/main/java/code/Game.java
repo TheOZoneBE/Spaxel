@@ -151,9 +151,6 @@ public class Game implements Runnable {
 					updater.generalUpdate();
 					ups++;
 				}
-				else {
-					updater.renderUpdate();
-				}
 			}
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();

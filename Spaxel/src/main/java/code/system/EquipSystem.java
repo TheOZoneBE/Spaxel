@@ -52,15 +52,15 @@ public class EquipSystem extends GameSystem {
                     switch(ic.getItemType()){
                         case SHIP:
                             ShipComponent sc = (ShipComponent)collider.getComponent(ComponentType.SHIP);
-                            sc.getItems().add(entity);
+                            sc.addItem(entity);
                             break;
                         case PRIMARY:
                             PrimaryComponent prc = (PrimaryComponent)collider.getComponent(ComponentType.PRIMARY);
-                            prc.getItems().add(entity);
+                            prc.addItem(entity);
                             break;
                         case SECONDARY:
                             SecondaryComponent sdc = (SecondaryComponent)collider.getComponent(ComponentType.SECONDARY);
-                            sdc.getItems().add(entity);
+                            sdc.addItem(entity);
                             break;
                     }
                     entity.addComponent(new LinkComponent(collider));

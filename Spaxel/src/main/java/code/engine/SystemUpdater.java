@@ -46,72 +46,39 @@ public class SystemUpdater {
      *
      * LifeSystem in entities.cleanup
      * UISystem
-     * InventorySystem
      * SoundSystem
-     * TrailSystem
      *
      */
     public void generalUpdate(){
         if (!e.isShutdown()){
-            CountDownLatch latch;
             Engine.getEngine().getMouseWrapper().update();
             Engine.getEngine().getKeyboard().update();
 
             if (Engine.getEngine().getGameState() != Engine.GameState.PLAY){
-                latch = new CountDownLatch(2);
-                e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
+                systems.get(SystemType.SOUND).update();
+                systems.get(SystemType.UI).update();
             }
             else {
                 //TODO increment for each new system + temporary, clean this up with config or smth
-                latch = new CountDownLatch(13);
-                e.execute(new SystemWrapper(systems.get(SystemType.AI), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.SOUND), latch));
-                //e.execute(new SystemWrapper(systems.get(SystemType.INVENTORY), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.UI), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.SPAWNER), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.TRAIL), latch));
+                systems.get(SystemType.AI).update();
+                systems.get(SystemType.SOUND).update();
+                systems.get(SystemType.UI).update();
+                systems.get(SystemType.SPAWNER).update();
                 //TODO new systems
-                e.execute(new SystemWrapper(systems.get(SystemType.AGE), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.VELOCITY), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.DAMAGE), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.HEALTH), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.COOLDOWN), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.HIT), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.INPUT), latch));
-                e.execute(new SystemWrapper(systems.get(SystemType.EQUIP), latch));
+                systems.get(SystemType.AGE).update();
+                systems.get(SystemType.VELOCITY).update();
+                systems.get(SystemType.DAMAGE).update();
+                systems.get(SystemType.HEALTH).update();
+                systems.get(SystemType.COOLDOWN).update();
+                systems.get(SystemType.HIT).update();
+                systems.get(SystemType.INPUT).update();
+                systems.get(SystemType.EQUIP).update();
                 //Engine.getEngine().temp.update();
             }
-            try{
-                latch.await();
-                if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
-                    Engine.getEngine().getEntityStream().cleanup();
-                    Engine.getEngine().getNEntityStream().cleanup();
-                }
+            if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
+                Engine.getEngine().getEntityStream().cleanup();
+                Engine.getEngine().getNEntityStream().cleanup();
             }
-            catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * updates all the entities that change more than 50 times a second
-     */
-    public void renderUpdate(){
-        CountDownLatch latch = new CountDownLatch(0);
-
-        if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
-            latch = new CountDownLatch(1);
-            //e.execute(new SystemWrapper(systems.get(SystemType.ACTOR), latch));
-            //e.execute(new SystemWrapper(systems.get(SystemType.PROJECTILE), latch));
-            e.execute(new SystemWrapper(systems.get(SystemType.PARTICLE), latch));
-        }
-        try{
-            latch.await();
-        }
-        catch (InterruptedException e){
-            e.printStackTrace();
         }
     }
 

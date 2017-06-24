@@ -117,15 +117,9 @@ final public class Engine {
         Game.game.loadingScreen.getProgress().setPercent(0.9f);
         //systems
         addSystem(new SoundSystem());
-        //addSystem(new InventorySystem());
         addSystem(new UISystem());
-        //addSystem(new ProjectileSystem());
-        //addSystem(new ActorSystem());
         addSystem(new AISystem());
-        addSystem(new ParticleSystem());
-        addSystem(new TrailSystem());
         addSystem(new SpawnerSystem());
-  		//TODO new systems
         addSystem(new AgeSystem());
         addSystem(new VelocitySystem());
         addSystem(new DamageSystem());

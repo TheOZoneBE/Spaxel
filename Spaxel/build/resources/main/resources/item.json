@@ -4,7 +4,8 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "basic_laser_item"
+        "sprite": "basic_laser_item",
+        "scale": 2
       },
       {
         "type": "COOLDOWN",

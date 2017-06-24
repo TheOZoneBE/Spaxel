@@ -45,6 +45,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(epc.clone());
             item.addComponent(entity.getComponent(ComponentType.VELOCITY));
             item.addComponent(entity.getComponent(ComponentType.RENDER));
+            System.out.println("dropped item");
             Engine.getEngine().getNEntityStream().addEntity(item);
             //TODO cleanup
             /*

@@ -2,6 +2,7 @@ package code.system;
 
 import code.components.age.AgeComponent;
 import code.components.ComponentType;
+import code.components.death.DeathComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;
@@ -25,6 +26,10 @@ public class AgeSystem extends GameSystem {
                 ac.setLife(ac.getLife() - 1);
             }
             else{
+                DeathComponent dc = (DeathComponent)ne.getComponent(ComponentType.DEATH);
+                if(dc != null){
+                    dc.die(ne);
+                }
                 Engine.getEngine().getNEntityStream().removeEntity(ne);
             }
         }

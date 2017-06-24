@@ -55,7 +55,6 @@ final public class Engine {
 	}
 	
 	private Engine(){
-
 		entities = new EntityStream();
 		nentities = new NEntityStream();
 		systems = new EnumMap<>(SystemType.class);
@@ -93,7 +92,7 @@ final public class Engine {
 
         Game.game.loadingScreen.getMessage().setText("Loading items");
         Game.game.loadingScreen.getProgress().setPercent(0.65f);
-        items = new ItemLoader().loadItems("/resources/item.xml", spriteAtlas);
+        items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
 
         Game.game.loadingScreen.getMessage().setText("Loading UI");
         Game.game.loadingScreen.getProgress().setPercent(0.8f);
@@ -134,6 +133,7 @@ final public class Engine {
         addSystem(new CooldownSystem());
         addSystem(new HitSystem());
         addSystem(new InputSystem());
+        addSystem(new EquipSystem());
         //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
         ((UISystem)getSystem(SystemType.UI)).changeUI("main");
         //starting threads

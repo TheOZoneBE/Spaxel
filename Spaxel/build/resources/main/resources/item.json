@@ -18,6 +18,10 @@
       {
         "type": "STACK",
         "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
       }
     ]
   }

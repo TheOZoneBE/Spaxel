@@ -16,7 +16,7 @@ public class BasicEnemyAIComponent extends AIComponent {
 
 
     public BasicEnemyAIComponent(){
-        super(AIType.BASICENEMY);
+        super(AIType.BASIC_ENEMY);
     }
 
     public void execute(PositionComponent playerPos, NEntity entity){

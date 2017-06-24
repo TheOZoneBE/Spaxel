@@ -1,0 +1,8 @@
+[
+  {
+    "name": "basic_laser",
+    "industry": "basic_laser_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  }
+]

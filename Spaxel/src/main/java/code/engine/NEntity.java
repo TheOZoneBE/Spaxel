@@ -40,10 +40,10 @@ public class NEntity {
         Engine.getEngine().getNEntityStream().addComponent(component.getType(), this);
     }
 
-    public void removeComponent(Component component){
-        component.removeCascade();
-        components.remove(component.getType());
-        Engine.getEngine().getNEntityStream().removeComponent(component.getType(), this);
+    public void removeComponent(ComponentType type){
+        components.get(type).removeCascade();
+        components.remove(type);
+        Engine.getEngine().getNEntityStream().removeComponent(type, this);
     }
 
     public void addCascade(){

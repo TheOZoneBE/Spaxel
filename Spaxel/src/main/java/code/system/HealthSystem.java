@@ -1,6 +1,7 @@
 package code.system;
 
 import code.components.ComponentType;
+import code.components.death.DeathComponent;
 import code.components.health.HealthComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
@@ -33,22 +34,11 @@ public class HealthSystem extends GameSystem {
         SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
         for (NEntity e: entities){
             if(((HealthComponent)e.getComponent(ComponentType.HEALTH)).getHealth() < 0){
-                Engine.getEngine().getNEntityStream().removeEntity(e);
-                SpriteComponent esc = (SpriteComponent)e.getComponent(ComponentType.SPRITE);
-                PositionComponent epc = (PositionComponent)e.getComponent(ComponentType.POSITION);
-                //TODO revisit
-
-                SpriteComponent sc = new SpriteComponent(esc.getSprite().getRandomPart(6,6), esc.getScale());
-                Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, new ParticleComponent(sc.getSprite(), sc.getScale())));
-
-                score.addToCounter(100);
-                //TODO experience system
-                //player.setXp(player.getXp()+25);
-                if (rand.nextInt(100) < 25){
-                    DroppedItem item = new DroppedItem(epc.getCoord().getValue(0), epc.getCoord().getValue(1), Engine.getEngine().getItems().getRandomItem(), 500);
-                    item.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_dropped_item"));
-                    Engine.getEngine().getEntityStream().addEntity(EntityType.DROPPEDITEM, item);
+                DeathComponent dc = (DeathComponent)e.getComponent(ComponentType.DEATH);
+                if(dc != null){
+                    dc.die(e);
                 }
+                Engine.getEngine().getNEntityStream().removeEntity(e);
             }
         }
     }

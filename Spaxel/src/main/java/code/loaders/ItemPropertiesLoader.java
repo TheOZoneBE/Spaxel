@@ -4,16 +4,32 @@ import code.engine.EntityType;
 import code.factories.ProjectileFactory;
 import code.graphics.SpriteData;
 import code.inventory.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.util.List;
 import java.util.Map;
 
-public class ItemLoader extends EntityLoader {
+public class ItemPropertiesLoader extends Loader {
 
-    public ItemCatalogue loadItems(String path, Map<String, SpriteData> spriteAtlas){
-        super.loadFile(path);
+    public ItemCatalogue loadItems(String path){
+        try {
+            super.loadFile(path);
+            ObjectMapper mapper = new ObjectMapper();
+            List<ItemProperties> itemProperties = mapper.readValue(file, new TypeReference<List<ItemProperties>>(){});
+            return new ItemCatalogue(itemProperties);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+
+        //TODO cleanup
+        /*
         ItemCatalogue items = new ItemCatalogue();
         NodeList nodelist = doc.getElementsByTagName("primaryWeapon");
         Element mouse1 = (Element)nodelist.item(0);
@@ -65,8 +81,10 @@ public class ItemLoader extends EntityLoader {
         }
         loadOthers(items, spriteAtlas);
         return items;
+        */
     }
 
+    /*
     public void loadOthers(ItemCatalogue items, Map<String, SpriteData> spriteAtlas){
         Item i = new ActiveShield(EntityType.SHIPITEM,"active_shield", spriteAtlas.get("active_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("active_shield_effect"),50);
         items.addItem("active_shield", i);
@@ -76,6 +94,6 @@ public class ItemLoader extends EntityLoader {
         items.addItem("anti_shield", i);
         i = new BasicShield(EntityType.SHIPITEM, "basic_shield", spriteAtlas.get("basic_shield_item"), spriteAtlas.get("cooldown_bar"),250, spriteAtlas.get("basic_shield_effect"),50);
         items.addItem("basic_shield", i);
-    }
+    }*/
 
 }

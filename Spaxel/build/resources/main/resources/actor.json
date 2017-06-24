@@ -43,7 +43,7 @@
       },
       {
         "type": "AI",
-        "subType": "BASICENEMY"
+        "subType": "BASIC_ENEMY"
       },
       {
         "type": "DAMAGE"
@@ -53,6 +53,10 @@
         "itemIndustries": [
           "basic_laser_item_industry"
         ]
+      },
+      {
+        "type": "DEATH",
+        "deathType": "BASIC_ENEMY"
       }
     ]
   }

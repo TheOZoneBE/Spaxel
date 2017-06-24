@@ -12,7 +12,7 @@ public class AIComponentFactory extends ComponentFactory {
 
     public Component make(){
         switch(subType){
-            case BASICENEMY:
+            case BASIC_ENEMY:
                 return new BasicEnemyAIComponent();
             default:
                 return null;

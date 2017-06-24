@@ -61,6 +61,10 @@
           "y": 0
         },
         "rot": 0
+      },
+      {
+        "type": "DEATH",
+        "deathType": "PLAYER"
       }
     ]
   }

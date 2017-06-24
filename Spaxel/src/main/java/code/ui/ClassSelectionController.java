@@ -22,21 +22,24 @@ public class ClassSelectionController extends Controller{
 
     public void selectRed(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        ActorType.RED.initialize();
+        //TODO red player
+        //ActorType.RED.initialize();
         UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
         uis.changeUI("play");
     }
 
     public void selectGreen(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        ActorType.GREEN.initialize();
+        //TODO green player
+        //ActorType.GREEN.initialize();
         UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
         uis.changeUI("play");
     }
 
     public void selectBlue(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        ActorType.BLUE.initialize();
+        //TODO blue player
+        //ActorType.BLUE.initialize();
         UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
         uis.changeUI("play");
     }

@@ -8,6 +8,8 @@ import code.inventory.*;
  * Created by theo on 21-6-2016.
  */
 public enum ActorType {
+    //TODO see if still necessary
+    /*
     WHITE{
         @Override
         public void initialize(){
@@ -71,5 +73,5 @@ public enum ActorType {
     };
 
     public abstract void initialize();
-
+*/
 }

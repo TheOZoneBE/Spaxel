@@ -27,58 +27,7 @@
 		<ypos>-1</ypos>
 	</uielement>
 	-->
-	<uielement type="button">
-		<ui>main</ui>
-		<name>play_button</name>
-		<label>Play</label>
-		<clickaction>startGame</clickaction>
-		<sprite_normal>button_normal</sprite_normal>
-		<sprite_hover>button_hover</sprite_hover>
-		<sprite_click>button_click</sprite_click>
-		<sprite_locked>button_locked</sprite_locked>
-		<xpos>640</xpos>
-		<ypos>280</ypos>
-		<hitshape>hitshape_button</hitshape>
-	</uielement>
-	<uielement type="button">
-		<ui>main</ui>
-		<name>ach_button</name>
-		<label>Achievements</label>
-		<clickaction>achievements</clickaction>
-		<sprite_normal>button_normal</sprite_normal>
-		<sprite_hover>button_hover</sprite_hover>
-		<sprite_click>button_click</sprite_click>
-		<sprite_locked>button_locked</sprite_locked>
-		<xpos>640</xpos>
-		<ypos>360</ypos>
-		<hitshape>hitshape_button</hitshape>
-	</uielement>
-	<uielement type="button">
-		<ui>main</ui>
-		<name>opt_button</name>
-		<label>Options</label>
-		<clickaction>options</clickaction>
-		<sprite_normal>button_normal</sprite_normal>
-		<sprite_hover>button_hover</sprite_hover>
-		<sprite_click>button_click</sprite_click>
-		<sprite_locked>button_locked</sprite_locked>
-		<xpos>640</xpos>
-		<ypos>440</ypos>
-		<hitshape>hitshape_button</hitshape>
-	</uielement>
-	<uielement type="button">
-		<ui>main</ui>
-		<name>cred_button</name>
-		<label>Credits</label>
-		<clickaction>credits</clickaction>
-		<sprite_normal>button_normal</sprite_normal>
-		<sprite_hover>button_hover</sprite_hover>
-		<sprite_click>button_click</sprite_click>
-		<sprite_locked>button_locked</sprite_locked>
-		<xpos>640</xpos>
-		<ypos>520</ypos>
-		<hitshape>hitshape_button</hitshape>
-	</uielement>
+
 	<uielement type="overlay">
 		<ui>play</ui>
 		<name>ui_play_overlay</name>
@@ -132,19 +81,7 @@
 		<xpos>640</xpos>
 		<ypos>636</ypos>
 	</uielement>
-	<uielement type="button">
-		<ui>credits</ui>
-		<name>back_button</name>
-		<label>Back</label>
-		<clickaction>back</clickaction>
-		<sprite_normal>button_normal</sprite_normal>
-		<sprite_hover>button_hover</sprite_hover>
-		<sprite_click>button_click</sprite_click>
-		<sprite_locked>button_locked</sprite_locked>
-		<xpos>640</xpos>
-		<ypos>640</ypos>
-		<hitshape>hitshape_button</hitshape>
-	</uielement>
+
 	<uielement type="button">
 		<ui>pause</ui>
 		<name>resume_button</name>
@@ -171,107 +108,9 @@
 		<ypos>400</ypos>
 		<hitshape>hitshape_button</hitshape>
 	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>Programming / Graphics</label>
-		<size>3</size>
-		<xpos>640</xpos>
-		<ypos>120</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>Theo Dedeken</label>
-		<size>2</size>
-		<xpos>640</xpos>
-		<ypos>180</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>@TheOZoneBE</label>
-		<size>2</size>
-		<xpos>640</xpos>
-		<ypos>220</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>Music</label>
-		<size>3</size>
-		<xpos>640</xpos>
-		<ypos>360</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>Goncalo Gomes</label>
-		<size>2</size>
-		<xpos>640</xpos>
-		<ypos>420</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>credits</ui>
-		<label>@azureflux_</label>
-		<size>2</size>
-		<xpos>640</xpos>
-		<ypos>460</ypos>
-	</uielement>
-	<uielement type="label">
-		<ui>main</ui>
-		<label>SPAXEL</label>
-		<size>8</size>
-		<xpos>640</xpos>
-		<ypos>120</ypos>
-	</uielement>
-	<uielement type="class_select">
-		<ui>class_selection</ui>
-		<name>select_white</name>
-		<label>white\Standard ship</label>
-		<clickaction>selectWhite</clickaction>
-		<sprite_normal>white</sprite_normal>
-		<sprite_hover>class_select_hover</sprite_hover>
-		<sprite_click>class_select_click</sprite_click>
-		<sprite_locked>white</sprite_locked>
-		<xpos>190</xpos>
-		<ypos>360</ypos>
-		<hitshape>hitshape_class_select</hitshape>
-	</uielement>
-	<uielement type="class_select">
-		<ui>class_selection</ui>
-		<name>select_red</name>
-		<label>red\more speed\weaker weapons</label>
-		<clickaction>selectRed</clickaction>
-		<sprite_normal>red</sprite_normal>
-		<sprite_hover>class_select_hover</sprite_hover>
-		<sprite_click>class_select_click</sprite_click>
-		<sprite_locked>red</sprite_locked>
-		<xpos>490</xpos>
-		<ypos>360</ypos>
-		<hitshape>hitshape_class_select</hitshape>
-	</uielement>
-	<uielement type="class_select">
-		<ui>class_selection</ui>
-		<name>select_green</name>
-		<label>green\stronger weapons\less health</label>
-		<clickaction>selectGreen</clickaction>
-		<sprite_normal>green</sprite_normal>
-		<sprite_hover>class_select_hover</sprite_hover>
-		<sprite_click>class_select_click</sprite_click>
-		<sprite_locked>green</sprite_locked>
-		<xpos>790</xpos>
-		<ypos>360</ypos>
-		<hitshape>hitshape_class_select</hitshape>
-	</uielement>
-	<uielement type="class_select">
-		<ui>class_selection</ui>
-		<name>select_blue</name>
-		<label>blue\more health\slower</label>
-		<clickaction>selectBlue</clickaction>
-		<sprite_normal>blue</sprite_normal>
-		<sprite_hover>class_select_hover</sprite_hover>
-		<sprite_click>class_select_click</sprite_click>
-		<sprite_locked>blue</sprite_locked>
-		<xpos>1090</xpos>
-		<ypos>360</ypos>
-		<hitshape>hitshape_class_select</hitshape>
-	</uielement>
+
+
+
 	<uielement type="button">
 		<ui>game_over</ui>
 		<name>play_again</name>

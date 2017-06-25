@@ -4,6 +4,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;
 import code.system.UISystem;
+import code.ui.UI;
 
 /**
  * Created by theo on 24/06/17.
@@ -18,8 +19,7 @@ public class PlayerDeathComponent extends DeathComponent {
         //show game over
         //TODO revisit maybe
         Engine.getEngine().stopGame();
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("game_over");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.GAME_OVER));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
     }
 }

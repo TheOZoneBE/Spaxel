@@ -1,0 +1,106 @@
+<UIElement class="UIElement">
+    <id>credits_root</id>
+    <controller ui="CREDITS"/>
+    <children>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>600</y>
+                </coord>
+            </position>
+            <scale>3</scale>
+            <text>Programming / Graphics</text>
+        </UILabel>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>540</y>
+                </coord>
+            </position>
+            <scale>2</scale>
+            <text>Theo Dedeken</text>
+        </UILabel>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>500</y>
+                </coord>
+            </position>
+            <scale>2</scale>
+            <text>@TheOZoneBE</text>
+        </UILabel>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>360</y>
+                </coord>
+            </position>
+            <scale>3</scale>
+            <text>Music</text>
+        </UILabel>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>300</y>
+                </coord>
+            </position>
+            <scale>2</scale>
+            <text>Goncalo Gomes</text>
+        </UILabel>
+        <UILabel class="UILabel">
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>260</y>
+                </coord>
+            </position>
+            <scale>2</scale>
+            <text>@azureflux_</text>
+        </UILabel>
+        <UIButton class="UIButton">
+            <id>credits_back_button</id>
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>80</y>
+                </coord>
+            </position>
+            <onClick>back</onClick>
+            <sprite>
+                <sprite>button_normal</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>button_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>button_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <locked>
+                <sprite>button_locked</sprite>
+                <scale>4</scale>
+            </locked>
+            <hitShape>hitshape_button</hitShape>
+            <children>
+                <Label class="UILabel">
+                    <id>credit_back_button_label</id>
+                    <position>
+                        <coord>
+                            <x>640</x>
+                            <y>80</y>
+                        </coord>
+                    </position>
+                    <text>Back</text>
+                    <scale>2</scale>
+                </Label>
+            </children>
+        </UIButton>
+    </children>
+</UIElement>

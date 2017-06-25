@@ -49,20 +49,26 @@ public class RenderSystem extends GameSystem {
 			xOffset = playerXPos - (int) playerPos.getCoord().getValue(0);
 			yOffset = playerYPos - (int) playerPos.getCoord().getValue(1);
 			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
-			renderActors();
-			renderParticles();
-			renderEffects();
 		}
-		renderUI();
+		renderEntities();
 		master.render(bufferBuffer);
 	}
 
+	public void renderEntities(){
+		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
+		for (NEntity ne: NtoRender){
+			((RenderComponent)ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
+		}
+		Engine.getEngine().getController().render(bufferBuffer);
+	}
+
+	/*
 	public void renderActors(){
-		/*
+
 		Entity player = Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
 		int playerXPos = xOffset + (int)player.getX();
 		int playerYPos = yOffset + (int)player.getY();
-		player.render(playerXPos,playerYPos, bufferBuffer);*/
+		player.render(playerXPos,playerYPos, bufferBuffer);
 
 		Iterator<Entity> toRender = Engine.getEngine().getEntityStream().getIterator(EntityType.ENEMY);
 		while(toRender.hasNext()){
@@ -78,10 +84,7 @@ public class RenderSystem extends GameSystem {
 			e.render(xOffset, yOffset, bufferBuffer);
 		}
 		//TODO temporary
-		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
-		for (NEntity ne: NtoRender){
-			((RenderComponent)ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
-		}
+
 
 	}
 
@@ -117,5 +120,5 @@ public class RenderSystem extends GameSystem {
 		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
 		uis.getCurrentUI().render(bufferBuffer);
 
-	}
+	}*/
 }

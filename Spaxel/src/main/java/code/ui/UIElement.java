@@ -1,47 +1,88 @@
 package code.ui;
 
-import code.entity.Entity;
+import code.components.position.PositionComponent;
 import code.graphics.MasterBuffer;
-import code.graphics.RenderBuffer;
-import code.graphics.SpriteData;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UIElement extends Entity {
-	protected UI ui;
-	protected SpriteData sprite;
-	
-	
-	public UIElement(int x, int y, SpriteData sprite){
-		super(x, y);
-		this.sprite = sprite;
-		life = -1;
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property="class")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = UIElement.class, name= "UIElement"),
+		@JsonSubTypes.Type(value = UILabel.class, name= "UILabel"),
+		@JsonSubTypes.Type(value = UIButton.class, name= "UIButton"),
+		@JsonSubTypes.Type(value = UIVisual.class, name= "UIVisual"),
+		@JsonSubTypes.Type(value = UIBar.class, name= "UIBar"),
+
+})
+public class UIElement {
+	protected String id;
+	protected PositionComponent position;
+	protected Controller controller;
+	protected List<UIElement> children;
+
+	public UIElement(){
+		children = new ArrayList<>();
 	}
-	
-	public UIElement(int x, int y, float rot, SpriteData sprite){
-		super(x, y, rot);
-		this.sprite = sprite;
-	}
-	
-	public void setUI(UI ui){
-		this.ui = ui;
-	}
-	
+
 	public void update(){
-		
+		for (UIElement child: children){
+			child.update();
+		}
 	}
 
-	public void render(MasterBuffer render){
-		sprite.renderSprite((int)x,(int)y, 2,0,1,false, render);
+	public void render(MasterBuffer buffer){
+		for(UIElement child: children){
+			child.render(buffer);
+		}
 	}
 
-	public void render(Graphics g, MasterBuffer render){
-
+	public String getId() {
+		return id;
 	}
 
-	public void render(int xPos, int yPos, Graphics g, MasterBuffer render){
-		//TODO scale in entity
-		sprite.renderSprite(xPos,yPos, 2,0, 1, false,  render);
+	public void setId(String id) {
+		this.id = id;
 	}
 
+	public PositionComponent getPosition() {
+		return position;
+	}
+
+	public void setPosition(PositionComponent position) {
+		this.position = position;
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
+	public List<UIElement> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<UIElement> children) {
+		this.children = children;
+	}
+
+	public UIElement findById(String id){
+		if (id.equals(this.id)){
+			return this;
+		}
+		else {
+			for (UIElement element: children){
+				UIElement found = element.findById(id);
+				if (found != null){
+					return found;
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -10,16 +10,19 @@ import code.system.UISystem;
  */
 public class CreditsController extends Controller {
 
+    public CreditsController() {
+        super(UI.CREDITS);
+    }
+
     public void update(){
+        super.update();
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.escState.getState() && !k.escState.getPrevState()){
-
             back();
         }
     }
 
     public void back(){
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("main");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
     }
 }

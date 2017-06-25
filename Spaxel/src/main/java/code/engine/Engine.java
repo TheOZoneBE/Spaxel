@@ -19,9 +19,9 @@ import code.input.MouseWrapper;
 import code.inventory.*;
 import code.system.*;
 import code.loaders.*;
+import code.ui.Controller;
 import code.ui.UI;
 import code.ui.UIButton;
-import code.ui.UICounter;
 
 
 final public class Engine {
@@ -35,7 +35,8 @@ final public class Engine {
 	public Map<String, Spritesheet> spritesheets;
 	public Map<String, SpriteData> spriteAtlas;
 	private Map<String, HitShape> hitShapeAtlas;
-	private Map<String, UI> UIAtlas;
+	private EnumMap<UI, Controller> UIAtlas;
+	private Controller controller;
 	private EnumMap<SystemType, GameSystem> systems;
 	private GameState gameState;
 	private ItemCatalogue items;
@@ -45,6 +46,7 @@ final public class Engine {
 	private Font font;
 	private long window;
 	private VectorF screenOffset;
+	private GameProperties gameProperties;
 
 	public static Engine getEngine(){
 		return engine;
@@ -55,6 +57,7 @@ final public class Engine {
 	}
 	
 	private Engine(){
+		gameProperties = new GameProperties();
 		entities = new EntityStream();
 		nentities = new NEntityStream();
 		systems = new EnumMap<>(SystemType.class);
@@ -85,21 +88,26 @@ final public class Engine {
 		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
 		musicList = sounds.loadSounds("/resources/sound.json");*/
-
-        Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
-        Game.game.loadingScreen.getProgress().setPercent(0.4f);
+		//TODO fix loading screen
+        //Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
+        //Game.game.loadingScreen.getProgress().setPercent(0.4f);
         hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
 
-        Game.game.loadingScreen.getMessage().setText("Loading items");
-        Game.game.loadingScreen.getProgress().setPercent(0.65f);
+        //Game.game.loadingScreen.getMessage().setText("Loading items");
+        //Game.game.loadingScreen.getProgress().setPercent(0.65f);
         items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
 
-        Game.game.loadingScreen.getMessage().setText("Loading UI");
-        Game.game.loadingScreen.getProgress().setPercent(0.8f);
-        UIAtlas = new UIElementLoader().loadUIElements("/resources/uielement.xml", this);
+        //Game.game.loadingScreen.getMessage().setText("Loading UI");
+        //Game.game.loadingScreen.getProgress().setPercent(0.8f);
+        UIAtlas = new UIElementLoader().loadUIElements(new String[]{
+        		"/ui/main.xml",
+				"/ui/credits.xml",
+				"/ui/class_selection.xml"
+		});
 
-        ((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
-        ((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
+        //TODO in properties
+        //((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
+        //((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
         industryMap = new IndustryLoader().loadEntityIndustries(new String[]{
         		"/resources/entity.json",
@@ -113,8 +121,8 @@ final public class Engine {
         entities.cleanup();
         nentities.cleanup();
 
-        Game.game.loadingScreen.getMessage().setText("Initializing systems");
-        Game.game.loadingScreen.getProgress().setPercent(0.9f);
+        //Game.game.loadingScreen.getMessage().setText("Initializing systems");
+        //Game.game.loadingScreen.getProgress().setPercent(0.9f);
         //systems
         addSystem(new SoundSystem());
         addSystem(new UISystem());
@@ -129,7 +137,7 @@ final public class Engine {
         addSystem(new InputSystem());
         addSystem(new EquipSystem());
         //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
-        ((UISystem)getSystem(SystemType.UI)).changeUI("main");
+		controller = UIAtlas.get(UI.MAIN);
         //starting threads
         Game.game.updater.setSystems(systems);
 
@@ -150,7 +158,6 @@ final public class Engine {
     }
 
 	public void stopGame(){
-		((UICounter)UIAtlas.get("play").getElement("score_counter")).setCounter(0);
 		entities.clear();
 		nentities.clear();
 	}
@@ -191,7 +198,7 @@ final public class Engine {
 		return hitShapeAtlas;
 	}
 	
-	public Map<String, UI> getUIAtlas(){
+	public EnumMap<UI, Controller> getUIAtlas(){
 		return UIAtlas;
 	}
 
@@ -249,5 +256,21 @@ final public class Engine {
 
 	public void setScreenOffset(VectorF screenOffset) {
 		this.screenOffset = screenOffset;
+	}
+
+	public GameProperties getGameProperties() {
+		return gameProperties;
+	}
+
+	public void setGameProperties(GameProperties gameProperties) {
+		this.gameProperties = gameProperties;
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 }

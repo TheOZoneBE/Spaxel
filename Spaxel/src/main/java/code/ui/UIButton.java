@@ -4,54 +4,45 @@ import java.lang.reflect.Method;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
+import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
-import code.graphics.RenderBuffer;
-import code.graphics.SpriteData;
 import code.input.MouseWrapper;
+import code.math.MatrixF;
+import code.math.MatrixMaker;
 import code.math.VectorF;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-public class UIButton extends UIElement {
-	private String clickAction;
-	protected Label label;
-	protected SpriteData normal;
-	protected SpriteData hover;
-	protected SpriteData clicked;
-	protected SpriteData locked;
+public class UIButton extends UIVisual {
+	protected String onClick;
+	protected HitShape hitShape;
+	protected SpriteComponent hover;
+	protected SpriteComponent clicked;
+	protected SpriteComponent locked;
+
+	//protected UILabel label;
 	protected boolean click;
 	protected boolean disabled;
 	protected boolean hovering;
 
-	public UIButton(int x, int y, Label label, String clickAction, SpriteData sprite, SpriteData hover, SpriteData clicked, SpriteData locked)  {
-		super(x, y, sprite);
-		this.label = label;
-		this.clickAction = clickAction;
-		click = false;
-		this.normal = sprite;
-		this.hover = hover;
-		this.clicked = clicked;
-		this.locked = locked;
-		this.disabled = false;
-		this.hovering = false;
-	}
-
 	public void update() {
-		if (disabled){
-			sprite = locked;
-		}
-		else {
+		if (!disabled) {
 			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
 			boolean buttonDown = mouseWrapper.mouse1;
-			boolean inside = updHitShape.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
+			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1);
+			HitShape updated = hitShape.update(transform);
+			boolean inside = updated.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
+			//TODO revisit
 			if (inside && buttonDown){
 				click = true;
 			}
 			else if (inside && click){
 				try {
-					Method m = ui.getController().getClass().getMethod(clickAction, null);
-					m.invoke(ui.getController(), null);
+					Method m = controller.getClass().getMethod(onClick, null);
+					m.invoke(controller, null);
 					click = false;
 				}
 				catch(Exception e){
@@ -67,22 +58,97 @@ public class UIButton extends UIElement {
 				click = false;
 			}
 		}
-
+		for(UIElement child: children){
+			child.update();
+		}
 	}
 
 	public void setDisabled(boolean disabled){
 		this.disabled = disabled;
 	}
 
-	public void render(MasterBuffer render){
-		sprite.renderSprite((int)x,(int)y,4, 0, 1, false ,render);
+	public void render(MasterBuffer buffer){
+		SpriteComponent toRender;
 		if (click){
-			clicked.renderSprite((int)x,(int)y,4,0,1, false, render);
+			toRender = clicked;
 		}
-		else if (hovering){
-			hover.renderSprite((int)x,(int)y,4, 0,1,false, render);
+		else if(hovering) {
+			toRender = hover;
 		}
-		label.render(render);
+		else if(disabled){
+			toRender = locked;
+		}
+		else {
+			toRender = sprite;
+		}
+		toRender.getSprite().renderSprite(position.getCoord(), toRender.getScale(), position.getRot(), 1, buffer);
+		for(UIElement child: children){
+			child.render(buffer);
+		}
 	}
 
+	public String getOnClick() {
+		return onClick;
+	}
+
+	public void setOnClick(String onClick) {
+		this.onClick = onClick;
+	}
+
+	public HitShape getHitShape() {
+		return hitShape;
+	}
+
+	public void setHitShape(HitShape hitShape) {
+		this.hitShape = hitShape;
+	}
+
+	@JsonSetter("hitShape")
+	public void setHitShape(String hitShapeName) {
+		this.hitShape = Engine.getEngine().getHitShapeAtlas().get(hitShapeName);
+	}
+
+	public SpriteComponent getHover() {
+		return hover;
+	}
+
+	public void setHover(SpriteComponent hover) {
+		this.hover = hover;
+	}
+
+	public SpriteComponent getClicked() {
+		return clicked;
+	}
+
+	public void setClicked(SpriteComponent clicked) {
+		this.clicked = clicked;
+	}
+
+	public SpriteComponent getLocked() {
+		return locked;
+	}
+
+	public void setLocked(SpriteComponent locked) {
+		this.locked = locked;
+	}
+
+	public boolean isClick() {
+		return click;
+	}
+
+	public void setClick(boolean click) {
+		this.click = click;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public boolean isHovering() {
+		return hovering;
+	}
+
+	public void setHovering(boolean hovering) {
+		this.hovering = hovering;
+	}
 }

@@ -33,12 +33,11 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         //add particle effect
         Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, pac));
 
-        //TODO add to score
-        //Engine.getEngine().addToCounter(100);
+        Engine.getEngine().getGameProperties().addScore(100);
         //TODO experience system
         //player.setXp(player.getXp()+25);
         //chance of dropping item
-        if (random.nextInt(100) < 100){
+        if (random.nextInt(100) < 25){
             NEntity item = Engine.getEngine().getItems().produceRandom();
             item.addComponent(new EquipComponent());
             item.addComponent(new AgeComponent(500,500));
@@ -47,11 +46,6 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(entity.getComponent(ComponentType.RENDER));
             System.out.println("dropped item");
             Engine.getEngine().getNEntityStream().addEntity(item);
-            //TODO cleanup
-            /*
-            DroppedItem item = new DroppedItem(epc.getCoord().getValue(0), epc.getCoord().getValue(1), Engine.getEngine().getItems().getRandomItem(), 500);
-            item.setHitShape(Engine.getEngine().getHitShapeAtlas().get("hitshape_dropped_item"));
-            Engine.getEngine().getEntityStream().addEntity(EntityType.DROPPEDITEM, item);*/
         }
     }
 }

@@ -43,7 +43,7 @@ public class ProjectileItem extends Item{
 
 	public void render(int xPos, int yPos, MasterBuffer render){
 		super.render(xPos, yPos, render);
-		cooldownBar.render(xPos - 24, yPos,render);
+		//cooldownBar.render(xPos - 24, yPos,render);
 	}
 
 	public void update(){

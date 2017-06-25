@@ -9,13 +9,15 @@ import code.system.UISystem;
  */
 public class GameOverController extends Controller {
 
+    public GameOverController() {
+        super(UI.GAME_OVER);
+    }
+
     public void play(){
-        UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("class_selection");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.CLASS_SELECTION));
     }
 
     public void main(){
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("main");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
     }
 }

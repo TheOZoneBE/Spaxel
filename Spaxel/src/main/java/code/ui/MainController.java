@@ -6,12 +6,15 @@ import code.engine.SystemType;
 import code.system.UISystem;
 
 public class MainController extends Controller{
+	public MainController() {
+		super(UI.MAIN);
+	}
+
 	/*
-	 * starts a new game
-	 */
+         * starts a new game
+         */
 	public void startGame(){
-		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-		uis.changeUI("class_selection");
+		Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.CLASS_SELECTION));
 	}
 	
 	/*
@@ -32,8 +35,7 @@ public class MainController extends Controller{
 	 * opens up credits
 	 */
 	public void credits(){
-		UISystem uis = (UISystem)Engine.getEngine().getSystem(SystemType.UI);
-		uis.changeUI("credits");
+		Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.CREDITS));
 	}
 
 }

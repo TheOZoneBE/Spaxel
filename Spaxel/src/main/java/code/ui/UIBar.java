@@ -1,41 +1,36 @@
 package code.ui;
 
 import code.graphics.MasterBuffer;
-import code.graphics.RenderBuffer;
-import code.graphics.SpriteData;
+import code.math.VectorF;
 
-import java.awt.*;
-
-public class UIBar extends UIElement{
+public class UIBar extends UIVisual{
 	private int width;
 	private float percent;
 	
-	public UIBar(int x, int y, int width, float rot, SpriteData sprite) {
-		super(x, y, rot, sprite);
-		this.width = width;
-		percent = 0;
+	public void render(MasterBuffer buffer){
+		int renderWidth = (int)(width * percent);
+		VectorF dxy = new VectorF(Math.round(Math.sin(position.getRot())), Math.round(Math.cos(position.getRot())));
+		for (int i = 0; i < renderWidth; i++){
+			sprite.getSprite().renderSprite(position.getCoord().sum(dxy.multiplicate(i)), sprite.getScale(), position.getRot() - (float)Math.PI/2, 1, buffer);
+		}
+		for(UIElement child: children){
+			child.render(buffer);
+		}
 	}
-	
-	public void setPercent(float percent){
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public float getPercent() {
+		return percent;
+	}
+
+	public void setPercent(float percent) {
 		this.percent = percent;
 	}
-	
-	public void render(MasterBuffer render){
-		int renderWidth = (int)(width * percent);
-		float dx = Math.round(Math.sin(rot));
-		float dy = Math.round(Math.cos(rot));
-		for (int i = 0; i < renderWidth; i++){
-			sprite.renderSprite((int)(x + i*dx), (int)(y + i*dy),2, rot - (float)Math.PI/2,1,false, render);
-		}
-	}
-
-	public void render(int xPos, int yPos, MasterBuffer render){
-		int renderWidth = (int)(width * percent);
-		float dx = Math.round(Math.sin(rot));
-		float dy = Math.round(Math.cos(rot));
-		for (int i = 0; i < renderWidth; i++){
-			sprite.renderSprite((int)(xPos + i*dx), (int)(yPos + i*dy),2, rot - (float)Math.PI/2,1, false, render);
-		}
-	}
-
 }

@@ -123,8 +123,8 @@ public class PlayerInputComponent extends InputComponent {
         UIBar xp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("xp_bar");
         xp_bar.setPercent(xp/(float)xpToLevel);
 
-        Label hp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
-        Label xp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
+        UILabel hp_label = (UILabel)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
+        UILabel xp_label = (UILabel)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
         hp_label.setText(health + " / " + maxHealth);
         xp_label.setText(xp + " / " + xpToLevel);
         */

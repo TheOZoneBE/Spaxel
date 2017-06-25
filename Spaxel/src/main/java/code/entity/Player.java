@@ -3,13 +3,11 @@ package code.entity;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.graphics.MasterBuffer;
-import code.graphics.RenderBuffer;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.system.UISystem;
-import code.ui.Label;
+import code.ui.UILabel;
 import code.ui.UIBar;
-import com.sun.xml.internal.bind.v2.TODO;
 
 public class Player extends Actor {
 	private int mouseX;
@@ -58,12 +56,13 @@ public class Player extends Actor {
 		this.mouseX = mouseX;
 		this.mouseY = mouseY;
 
+		/*
 		if (health <= 0){
 			Engine.getEngine().stopGame();
 			UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
 			uis.changeUI("game_over");
 			Engine.getEngine().setGameState(Engine.GameState.MENU);
-		}
+		}*/
 
 		if (xp >= xpToLevel){
 			xp-= xpToLevel;
@@ -72,15 +71,15 @@ public class Player extends Actor {
 			health = maxHealth;
 		}
 
-		UIBar hp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
+		/*UIBar hp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("hp_bar");
 		hp_bar.setPercent(health/(float)maxHealth);
 		UIBar xp_bar = (UIBar) Engine.getEngine().getUIAtlas().get("play").getElement("xp_bar");
 		xp_bar.setPercent(xp/(float)xpToLevel);
 
-		Label hp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
-		Label xp_label = (Label)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
+		UILabel hp_label = (UILabel)Engine.getEngine().getUIAtlas().get("play").getElement("hp_label");
+		UILabel xp_label = (UILabel)Engine.getEngine().getUIAtlas().get("play").getElement("xp_label");
 		hp_label.setText(health + " / " + maxHealth);
-		xp_label.setText(xp + " / " + xpToLevel);
+		xp_label.setText(xp + " / " + xpToLevel);*/
 
 
 		super.update();

@@ -5,23 +5,12 @@ import code.engine.SystemType;
 import code.ui.UI;
 
 public class UISystem extends GameSystem{
-	private UI currentUI;
 
 	public UISystem() {
 		super(SystemType.UI);
 	}
 	
 	public void update(){
-		currentUI.update();
+		Engine.getEngine().getController().update();
 	}
-	
-	public UI getCurrentUI(){
-		return currentUI;
-	}
-	
-	public void changeUI(String name){
-		currentUI = Engine.getEngine().getUIAtlas().get(name);
-	}
-	
-
 }

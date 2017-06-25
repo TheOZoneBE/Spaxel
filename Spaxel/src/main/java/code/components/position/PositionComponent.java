@@ -11,6 +11,10 @@ public class PositionComponent extends Component {
     private VectorF coord;
     private float rot;
 
+    private PositionComponent(){
+        super(ComponentType.POSITION);
+    }
+
     public PositionComponent(VectorF coord, float rot) {
         super(ComponentType.POSITION);
         this.coord = coord;

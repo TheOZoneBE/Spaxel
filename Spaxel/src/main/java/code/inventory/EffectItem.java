@@ -19,7 +19,7 @@ public class EffectItem extends Item{
 
 	public void render(int xPos, int yPos, MasterBuffer render){
 		super.render(xPos, yPos, render);
-		cooldownBar.render(xPos - 24, yPos,render);
+		//cooldownBar.render(xPos - 24, yPos,render);
 		if (canUpdate()){
 			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 			int xPlayer = 3* Game.GAME_WIDTH /4 - 8*4 - mouseWrapper.getX()/2;

@@ -1,0 +1,255 @@
+<!--<uielement type="class_select">
+    <ui>class_selection</ui>
+    <name>select_white</name>
+    <label>white\Standard ship</label>
+    <clickaction>selectWhite</clickaction>
+    <sprite_normal>white</sprite_normal>
+    <sprite_hover>class_select_hover</sprite_hover>
+    <sprite_click>class_select_click</sprite_click>
+    <sprite_locked>white</sprite_locked>
+    <xpos>190</xpos>
+    <ypos>360</ypos>
+    <hitshape>hitshape_class_select</hitshape>
+</uielement>
+<uielement type="class_select">
+<ui>class_selection</ui>
+<name>select_red</name>
+<label>red\more speed\weaker weapons</label>
+<clickaction>selectRed</clickaction>
+<sprite_normal>red</sprite_normal>
+<sprite_hover>class_select_hover</sprite_hover>
+<sprite_click>class_select_click</sprite_click>
+<sprite_locked>red</sprite_locked>
+<xpos>490</xpos>
+<ypos>360</ypos>
+<hitshape>hitshape_class_select</hitshape>
+</uielement>
+<uielement type="class_select">
+<ui>class_selection</ui>
+<name>select_green</name>
+<label>green\stronger weapons\less health</label>
+<clickaction>selectGreen</clickaction>
+<sprite_normal>green</sprite_normal>
+<sprite_hover>class_select_hover</sprite_hover>
+<sprite_click>class_select_click</sprite_click>
+<sprite_locked>green</sprite_locked>
+<xpos>790</xpos>
+<ypos>360</ypos>
+<hitshape>hitshape_class_select</hitshape>
+</uielement>
+<uielement type="class_select">
+<ui>class_selection</ui>
+<name>select_blue</name>
+<label>blue\more health\slower</label>
+<clickaction>selectBlue</clickaction>
+<sprite_normal>blue</sprite_normal>
+<sprite_hover>class_select_hover</sprite_hover>
+<sprite_click>class_select_click</sprite_click>
+<sprite_locked>blue</sprite_locked>
+<xpos>1090</xpos>
+<ypos>360</ypos>
+<hitshape>hitshape_class_select</hitshape>
+</uielement>-->
+
+<UIElement class="UIElement">
+    <id>class_selection_root</id>
+    <controller ui="CLASS_SELECTION"/>
+    <children>
+        <UIButton class="UIButton">
+            <id>class_select_white_select</id>
+            <position>
+                <coord>
+                    <x>190</x>
+                    <y>360</y>
+                </coord>
+            </position>
+            <onClick>selectWhite</onClick>
+            <sprite>
+                <sprite>white</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>class_select_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>class_select_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <hitShape>hitshape_class_select</hitShape>
+            <children>
+                <UIVisual class="UIVisual">
+                    <id>class_select_white_sprite</id>
+                    <position>
+                        <coord>
+                            <x>190</x>
+                            <y>360</y>
+                        </coord>
+                    </position>
+                    <sprite>
+                        <sprite>white</sprite>
+                        <scale>4</scale>
+                    </sprite>
+                </UIVisual>
+                <Label class="UILabel">
+                    <id>class_select_white_text</id>
+                    <position>
+                        <coord>
+                            <x>190</x>
+                            <y>300</y>
+                        </coord>
+                    </position>
+                    <text>white\Standard ship</text>
+                    <scale>1</scale>
+                </Label>
+            </children>
+        </UIButton>
+        <UIButton class="UIButton">
+            <id>class_select_red_select</id>
+            <position>
+                <coord>
+                    <x>490</x>
+                    <y>360</y>
+                </coord>
+            </position>
+            <onClick>selectRed</onClick>
+            <sprite>
+                <sprite>red</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>class_select_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>class_select_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <hitShape>hitshape_class_select</hitShape>
+            <children>
+                <UIVisual class="UIVisual">
+                    <id>class_select_red_sprite</id>
+                    <position>
+                        <coord>
+                            <x>490</x>
+                            <y>360</y>
+                        </coord>
+                    </position>
+                    <sprite>
+                        <sprite>red</sprite>
+                        <scale>4</scale>
+                    </sprite>
+                </UIVisual>
+                <Label class="UILabel">
+                    <id>class_select_red_text</id>
+                    <position>
+                        <coord>
+                            <x>490</x>
+                            <y>300</y>
+                        </coord>
+                    </position>
+                    <text>red\more speed\weaker weapons</text>
+                    <scale>1</scale>
+                </Label>
+            </children>
+        </UIButton>
+        <UIButton class="UIButton">
+            <id>class_select_green_select</id>
+            <position>
+                <coord>
+                    <x>790</x>
+                    <y>360</y>
+                </coord>
+            </position>
+            <onClick>selectGreen</onClick>
+            <sprite>
+                <sprite>green</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>class_select_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>class_select_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <hitShape>hitshape_class_select</hitShape>
+            <children>
+                <UIVisual class="UIVisual">
+                    <id>class_select_green_sprite</id>
+                    <position>
+                        <coord>
+                            <x>790</x>
+                            <y>360</y>
+                        </coord>
+                    </position>
+                    <sprite>
+                        <sprite>green</sprite>
+                        <scale>4</scale>
+                    </sprite>
+                </UIVisual>
+                <Label class="UILabel">
+                    <id>class_select_green_text</id>
+                    <position>
+                        <coord>
+                            <x>790</x>
+                            <y>300</y>
+                        </coord>
+                    </position>
+                    <text>green\stronger weapons\less health</text>
+                    <scale>1</scale>
+                </Label>
+            </children>
+        </UIButton>
+        <UIButton class="UIButton">
+            <id>class_select_blue_select</id>
+            <position>
+                <coord>
+                    <x>1090</x>
+                    <y>360</y>
+                </coord>
+            </position>
+            <onClick>selectBlue</onClick>
+            <sprite>
+                <sprite>blue</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>class_select_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>class_select_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <hitShape>hitshape_class_select</hitShape>
+            <children>
+                <UIVisual class="UIVisual">
+                    <id>class_select_blue_sprite</id>
+                    <position>
+                        <coord>
+                            <x>1090</x>
+                            <y>360</y>
+                        </coord>
+                    </position>
+                    <sprite>
+                        <sprite>blue</sprite>
+                        <scale>4</scale>
+                    </sprite>
+                </UIVisual>
+                <Label class="UILabel">
+                    <id>class_select_blue_text</id>
+                    <position>
+                        <coord>
+                            <x>1090</x>
+                            <y>300</y>
+                        </coord>
+                    </position>
+                    <text>blue\more health\slower</text>
+                    <scale>1</scale>
+                </Label>
+            </children>
+        </UIButton>
+    </children>
+</UIElement>

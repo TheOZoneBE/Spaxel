@@ -10,6 +10,10 @@ import code.system.UISystem;
  */
 public class PauseController extends Controller {
 
+    public PauseController() {
+        super(UI.PAUSE);
+    }
+
     public void update(){
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.escState.getState() && !k.escState.getPrevState()){
@@ -18,14 +22,12 @@ public class PauseController extends Controller {
     }
 
     public void resume(){
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("play");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
     }
 
     public void quit(){
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("main");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
         Engine.getEngine().stopGame();
     }

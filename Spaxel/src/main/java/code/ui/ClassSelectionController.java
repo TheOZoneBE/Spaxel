@@ -11,36 +11,37 @@ import code.system.UISystem;
  */
 public class ClassSelectionController extends Controller{
 
+
+    public ClassSelectionController() {
+        super(UI.CLASS_SELECTION);
+    }
+
     public void selectWhite(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_white_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
         //ActorType.WHITE.initialize();
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("play");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectRed(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         //TODO red player
         //ActorType.RED.initialize();
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("play");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectGreen(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         //TODO green player
         //ActorType.GREEN.initialize();
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("play");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectBlue(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         //TODO blue player
         //ActorType.BLUE.initialize();
-        UISystem uis = (UISystem) Engine.getEngine().getSystem(SystemType.UI);
-        uis.changeUI("play");
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 }

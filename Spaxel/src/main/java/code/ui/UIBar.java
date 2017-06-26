@@ -9,9 +9,9 @@ public class UIBar extends UIVisual{
 	
 	public void render(MasterBuffer buffer){
 		int renderWidth = (int)(width * percent);
-		VectorF dxy = new VectorF(Math.round(Math.sin(position.getRot())), Math.round(Math.cos(position.getRot())));
+		VectorF dxy = new VectorF(Math.round(Math.sin(position.getRot()*Math.PI/2)), Math.round(Math.cos(position.getRot()*Math.PI/2)));
 		for (int i = 0; i < renderWidth; i++){
-			sprite.getSprite().renderSprite(position.getCoord().sum(dxy.multiplicate(i)), sprite.getScale(), position.getRot() - (float)Math.PI/2, 1, buffer);
+			sprite.getSprite().renderSprite(position.getCoord().sum(dxy.multiplicate(i)), sprite.getScale(), (float)Math.PI/2*(position.getRot() -1), 1, buffer);
 		}
 		for(UIElement child: children){
 			child.render(buffer);

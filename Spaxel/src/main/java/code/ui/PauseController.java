@@ -15,6 +15,7 @@ public class PauseController extends Controller {
     }
 
     public void update(){
+        super.update();
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.escState.getState() && !k.escState.getPrevState()){
             resume();

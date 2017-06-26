@@ -102,12 +102,11 @@ final public class Engine {
         UIAtlas = new UIElementLoader().loadUIElements(new String[]{
         		"/ui/main.xml",
 				"/ui/credits.xml",
-				"/ui/class_selection.xml"
+				"/ui/class_selection.xml",
+				"/ui/play.xml",
+				"/ui/pause.xml",
+				"/ui/game_over.xml"
 		});
-
-        //TODO in properties
-        //((UIButton)UIAtlas.get("main").getElement("ach_button")).setDisabled(true);
-        //((UIButton)UIAtlas.get("main").getElement("opt_button")).setDisabled(true);
 
         industryMap = new IndustryLoader().loadEntityIndustries(new String[]{
         		"/resources/entity.json",

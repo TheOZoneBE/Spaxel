@@ -16,6 +16,7 @@ public class NEntityStream {
     private EnumMap<ComponentType, Set<NEntity>> componentTypeMap;
     private EnumMap<ComponentType, Set<NEntity>> toAddComponentTypeMap;
     private EnumMap<ComponentType, Set<NEntity>> toRemoveComponentTypeMap;
+    public boolean clear;
 
     public NEntityStream(){
         entityTypeMap = new EnumMap<>(EntityType.class);
@@ -70,42 +71,53 @@ public class NEntityStream {
     }
 
     public void cleanup(){
-        //add entities
-        for(EntityType type: entityTypeMap.keySet()){
-            entityTypeMap.get(type).addAll(toAddEntityTypeMap.get(type));
-            for (NEntity e: toAddEntityTypeMap.get(type)){
-                for (Component c: e.getComponents().values()){
-                    toAddComponentTypeMap.get(c.getType()).add(e);
+        if(!clear){
+            //add entities
+            for(EntityType type: entityTypeMap.keySet()){
+                entityTypeMap.get(type).addAll(toAddEntityTypeMap.get(type));
+                for (NEntity e: toAddEntityTypeMap.get(type)){
+                    for (Component c: e.getComponents().values()){
+                        toAddComponentTypeMap.get(c.getType()).add(e);
+                    }
                 }
+                toAddEntityTypeMap.get(type).clear();
             }
-            toAddEntityTypeMap.get(type).clear();
-        }
 
-        //remove entities
-        for(EntityType type: entityTypeMap.keySet()){
-            entityTypeMap.get(type).removeAll(toRemoveEntityTypeMap.get(type));
-            for (NEntity e: toRemoveEntityTypeMap.get(type)){
-                for (Component c: e.getComponents().values()){
-                    toRemoveComponentTypeMap.get(c.getType()).add(e);
+            //remove entities
+            for(EntityType type: entityTypeMap.keySet()){
+                entityTypeMap.get(type).removeAll(toRemoveEntityTypeMap.get(type));
+                for (NEntity e: toRemoveEntityTypeMap.get(type)){
+                    for (Component c: e.getComponents().values()){
+                        toRemoveComponentTypeMap.get(c.getType()).add(e);
+                    }
                 }
+                toRemoveEntityTypeMap.get(type).clear();
             }
-            toRemoveEntityTypeMap.get(type).clear();
+
+            //add components
+            for (ComponentType type: componentTypeMap.keySet()){
+                componentTypeMap.get(type).addAll(toAddComponentTypeMap.get(type));
+                toAddComponentTypeMap.get(type).clear();
+            }
+
+            //remove components
+            for (ComponentType type: componentTypeMap.keySet()){
+                componentTypeMap.get(type).removeAll(toRemoveComponentTypeMap.get(type));
+                toRemoveComponentTypeMap.get(type).clear();
+            }
+        }
+        else {
+            clearEntities();
+            clear =false;
         }
 
-        //add components
-        for (ComponentType type: componentTypeMap.keySet()){
-            componentTypeMap.get(type).addAll(toAddComponentTypeMap.get(type));
-            toAddComponentTypeMap.get(type).clear();
-        }
-
-        //remove components
-        for (ComponentType type: componentTypeMap.keySet()){
-            componentTypeMap.get(type).removeAll(toRemoveComponentTypeMap.get(type));
-            toRemoveComponentTypeMap.get(type).clear();
-        }
     }
 
     public void clear(){
+        clear = true;
+    }
+
+    private void clearEntities(){
         for (EntityType type: EntityType.values()){
             entityTypeMap.get(type).clear();
             toAddEntityTypeMap.get(type).clear();

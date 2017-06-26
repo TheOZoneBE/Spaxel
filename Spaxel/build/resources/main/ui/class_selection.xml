@@ -1,56 +1,3 @@
-<!--<uielement type="class_select">
-    <ui>class_selection</ui>
-    <name>select_white</name>
-    <label>white\Standard ship</label>
-    <clickaction>selectWhite</clickaction>
-    <sprite_normal>white</sprite_normal>
-    <sprite_hover>class_select_hover</sprite_hover>
-    <sprite_click>class_select_click</sprite_click>
-    <sprite_locked>white</sprite_locked>
-    <xpos>190</xpos>
-    <ypos>360</ypos>
-    <hitshape>hitshape_class_select</hitshape>
-</uielement>
-<uielement type="class_select">
-<ui>class_selection</ui>
-<name>select_red</name>
-<label>red\more speed\weaker weapons</label>
-<clickaction>selectRed</clickaction>
-<sprite_normal>red</sprite_normal>
-<sprite_hover>class_select_hover</sprite_hover>
-<sprite_click>class_select_click</sprite_click>
-<sprite_locked>red</sprite_locked>
-<xpos>490</xpos>
-<ypos>360</ypos>
-<hitshape>hitshape_class_select</hitshape>
-</uielement>
-<uielement type="class_select">
-<ui>class_selection</ui>
-<name>select_green</name>
-<label>green\stronger weapons\less health</label>
-<clickaction>selectGreen</clickaction>
-<sprite_normal>green</sprite_normal>
-<sprite_hover>class_select_hover</sprite_hover>
-<sprite_click>class_select_click</sprite_click>
-<sprite_locked>green</sprite_locked>
-<xpos>790</xpos>
-<ypos>360</ypos>
-<hitshape>hitshape_class_select</hitshape>
-</uielement>
-<uielement type="class_select">
-<ui>class_selection</ui>
-<name>select_blue</name>
-<label>blue\more health\slower</label>
-<clickaction>selectBlue</clickaction>
-<sprite_normal>blue</sprite_normal>
-<sprite_hover>class_select_hover</sprite_hover>
-<sprite_click>class_select_click</sprite_click>
-<sprite_locked>blue</sprite_locked>
-<xpos>1090</xpos>
-<ypos>360</ypos>
-<hitshape>hitshape_class_select</hitshape>
-</uielement>-->
-
 <UIElement class="UIElement">
     <id>class_selection_root</id>
     <controller ui="CLASS_SELECTION"/>
@@ -91,7 +38,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>class_select_white_text</id>
                     <position>
                         <coord>
@@ -101,7 +48,7 @@
                     </position>
                     <text>white\Standard ship</text>
                     <scale>1</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -140,7 +87,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>class_select_red_text</id>
                     <position>
                         <coord>
@@ -150,7 +97,7 @@
                     </position>
                     <text>red\more speed\weaker weapons</text>
                     <scale>1</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -189,7 +136,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>class_select_green_text</id>
                     <position>
                         <coord>
@@ -199,7 +146,7 @@
                     </position>
                     <text>green\stronger weapons\less health</text>
                     <scale>1</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -238,7 +185,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>class_select_blue_text</id>
                     <position>
                         <coord>
@@ -248,7 +195,7 @@
                     </position>
                     <text>blue\more health\slower</text>
                     <scale>1</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
     </children>

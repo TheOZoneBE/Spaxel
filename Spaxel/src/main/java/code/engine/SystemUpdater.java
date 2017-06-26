@@ -75,10 +75,8 @@ public class SystemUpdater {
                 systems.get(SystemType.EQUIP).update();
                 //Engine.getEngine().temp.update();
             }
-            if (Engine.getEngine().getGameState() == Engine.GameState.PLAY){
-                Engine.getEngine().getEntityStream().cleanup();
-                Engine.getEngine().getNEntityStream().cleanup();
-            }
+            Engine.getEngine().getEntityStream().cleanup();
+            Engine.getEngine().getNEntityStream().cleanup();
         }
     }
 

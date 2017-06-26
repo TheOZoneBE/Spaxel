@@ -89,7 +89,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>credit_back_button_label</id>
                     <position>
                         <coord>
@@ -99,7 +99,7 @@
                     </position>
                     <text>Back</text>
                     <scale>2</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
     </children>

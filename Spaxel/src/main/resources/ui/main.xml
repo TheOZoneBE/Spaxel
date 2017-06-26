@@ -46,7 +46,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>main_button_play_label</id>
                     <position>
                         <coord>
@@ -56,7 +56,7 @@
                     </position>
                     <text>Play</text>
                     <scale>2</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -87,7 +87,7 @@
             <disabled>true</disabled>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>main_button_achievements_label</id>
                     <position>
                         <coord>
@@ -97,7 +97,7 @@
                     </position>
                     <text>Achievements</text>
                     <scale>2</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -128,7 +128,7 @@
             <disabled>true</disabled>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>main_button_options_label</id>
                     <position>
                         <coord>
@@ -138,7 +138,7 @@
                     </position>
                     <text>Options</text>
                     <scale>2</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
         <UIButton class="UIButton">
@@ -168,7 +168,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <Label class="UILabel">
+                <UILabel class="UILabel">
                     <id>main_button_credits_label</id>
                     <position>
                         <coord>
@@ -178,7 +178,7 @@
                     </position>
                     <text>Credits</text>
                     <scale>2</scale>
-                </Label>
+                </UILabel>
             </children>
         </UIButton>
     </children>

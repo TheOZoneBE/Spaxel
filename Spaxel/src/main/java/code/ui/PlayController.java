@@ -52,6 +52,9 @@ public class PlayController extends Controller{
             Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PAUSE));
             Engine.getEngine().setGameState(Engine.GameState.PAUSE);
         }
+        if (k.iState.getState() && !k.iState.getPrevState()){
+            Engine.getEngine().getGameProperties().setDebug(!Engine.getEngine().getGameProperties().isDebug());
+        }
     }
 
 }

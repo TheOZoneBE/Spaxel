@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Keyboard {
-	public KeyState upState, downState, rightState, leftState, escState;
+	public KeyState upState, downState, rightState, leftState, escState, iState, lState;
 	private long window;
 
 
@@ -17,6 +17,8 @@ public class Keyboard {
 		rightState = new KeyState();
 		leftState = new KeyState();
 		escState = new KeyState();
+		iState = new KeyState();
+		lState = new KeyState();
 	}
 
 	public void update() {
@@ -25,5 +27,7 @@ public class Keyboard {
 		leftState.setState(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS);
 		rightState.setState(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS);
 		escState.setState(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS);
+		iState.setState(glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS);
+		lState.setState(glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS);
 	}
 }

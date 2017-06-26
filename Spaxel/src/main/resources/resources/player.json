@@ -16,8 +16,8 @@
       },
       {
         "type": "HEALTH",
-        "health": 50,
-        "maxHealth": 50
+        "health": 5000,
+        "maxHealth": 5000
       },
       {
         "type": "SPRITE",

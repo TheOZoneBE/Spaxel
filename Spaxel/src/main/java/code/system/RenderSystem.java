@@ -13,6 +13,7 @@ import code.entity.Entity;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.input.MouseWrapper;
+import code.logger.DebugRenderer;
 import code.math.VectorF;
 
 public class RenderSystem extends GameSystem {
@@ -51,6 +52,9 @@ public class RenderSystem extends GameSystem {
 			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
 		}
 		renderEntities();
+		if (Engine.getEngine().getGameProperties().isDebug()){
+			DebugRenderer.renderDebug(bufferBuffer);
+		}
 		master.render(bufferBuffer);
 	}
 

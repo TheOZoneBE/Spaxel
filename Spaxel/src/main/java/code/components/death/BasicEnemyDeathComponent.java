@@ -3,6 +3,7 @@ package code.components.death;
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
 import code.components.equip.EquipComponent;
+import code.components.experience.ExperienceComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
@@ -12,6 +13,7 @@ import code.engine.NEntity;
 import code.entity.DroppedItem;
 import code.factories.entities.SpawnerIndustry;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -34,8 +36,10 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, pac));
 
         Engine.getEngine().getGameProperties().addScore(100);
-        //TODO experience system
-        //player.setXp(player.getXp()+25);
+        //add experience
+        NEntity player = new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        ExperienceComponent exp = (ExperienceComponent)player.getComponent(ComponentType.EXPERIENCE);
+        exp.setXp(exp.getXp() + 25);
         //chance of dropping item
         if (random.nextInt(100) < 25){
             NEntity item = Engine.getEngine().getItems().produceRandom();

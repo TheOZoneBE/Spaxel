@@ -73,6 +73,7 @@ public class SystemUpdater {
                 systems.get(SystemType.HIT).update();
                 systems.get(SystemType.INPUT).update();
                 systems.get(SystemType.EQUIP).update();
+                systems.get(SystemType.EXPERIENCE).update();
                 //Engine.getEngine().temp.update();
             }
             Engine.getEngine().getEntityStream().cleanup();

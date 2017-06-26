@@ -16,6 +16,11 @@ public class HealthComponent extends Component {
         this.maxHealth = maxHealth;
     }
 
+    public void levelUp(int level){
+        maxHealth = 25 * level * level + 25 * level + 50;
+        health = maxHealth;
+    }
+
     public int getHealth() {
         return health;
     }

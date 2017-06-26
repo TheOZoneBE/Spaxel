@@ -135,6 +135,7 @@ final public class Engine {
         addSystem(new HitSystem());
         addSystem(new InputSystem());
         addSystem(new EquipSystem());
+        addSystem(new ExperienceSystem());
         //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
         //starting threads

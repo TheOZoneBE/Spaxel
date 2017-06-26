@@ -1,6 +1,7 @@
 package code.ui;
 
 import code.components.ComponentType;
+import code.components.experience.ExperienceComponent;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
@@ -33,6 +34,9 @@ public class PlayController extends Controller{
     private void updateElements(){
         NEntity player =new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
         //TODO experience
+        ExperienceComponent ec = (ExperienceComponent)player.getComponent(ComponentType.EXPERIENCE);
+        xpBar.setPercent((float)ec.getXp()/(float)ec.getXpToLevel());
+        xpLabel.setText(ec.getXp() + " / " + ec.getXpToLevel());
         HealthComponent hc = (HealthComponent)player.getComponent(ComponentType.HEALTH);
         hpBar.setPercent((float)hc.getHealth()/(float)hc.getMaxHealth());
         hpLabel.setText(hc.getHealth() + " / " + hc.getMaxHealth());

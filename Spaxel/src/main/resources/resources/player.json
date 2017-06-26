@@ -39,7 +39,7 @@
         "type": "MOVE",
         "maxSpeed": 20,
         "turnRate": 0.25,
-        "acc": 0.25
+        "acc": 0.5
       },
       {
         "type": "INPUT",
@@ -65,6 +65,11 @@
       {
         "type": "DEATH",
         "deathType": "PLAYER"
+      },
+      {
+        "type": "EXPERIENCE",
+        "xp": 0,
+        "level": 0
       }
     ]
   }

@@ -1,7 +1,28 @@
 package code.engine;
 
 public enum SystemType {
-	UI, AI,RENDER,SOUND, SPAWNER,
-	//TODO new systems
-	AGE, VELOCITY, DAMAGE, HEALTH, COOLDOWN, HIT, INPUT, EQUIP, EXPERIENCE
+	UI("ui"),
+	AI("ai"),
+	RENDER("render"),
+	SOUND("sound"),
+	SPAWNER("spawner"),
+	AGE("age"),
+	VELOCITY("velocity"),
+	DAMAGE("damage"),
+	HEALTH("health"),
+	COOLDOWN("cooldown"),
+	HIT("hit"),
+	INPUT("input"),
+	EQUIP("equip"),
+	EXPERIENCE("experience");
+
+	private final String name;
+
+	SystemType(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return name;
+	}
 }

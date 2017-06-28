@@ -8,9 +8,17 @@ import code.math.VectorF;
 public class UILabel extends UIElement{
 	private String text;
 	private int scale;
+	private boolean alignLeft;
 
 	public void render(MasterBuffer buffer){
-		VectorF offset = new VectorF(calculateOffset(0), 0);
+		VectorF offset;
+		if (alignLeft){
+			offset = new VectorF(0,0);
+		}
+		else {
+			offset = new VectorF(calculateOffset(0), 0);
+		}
+
 		for (int i = 0; i < text.length(); i++){
 			String c = text.substring(i, i+1).toLowerCase();
 			if (!c.equals(" ")){
@@ -20,7 +28,13 @@ public class UILabel extends UIElement{
 				}
 			}
 			if (c.equals("\\")){
-				offset.setValue(0, calculateOffset(i+1));
+				if (alignLeft){
+					offset.setValue(0, 0);
+				}
+				else{
+					offset.setValue(0, calculateOffset(i+1));
+				}
+
 				offset.setValue(1, offset.getValue(1)- 16 *scale);
 			}
 			else{
@@ -55,5 +69,13 @@ public class UILabel extends UIElement{
 
 	public void setScale(int scale) {
 		this.scale = scale;
+	}
+
+	public boolean isAlignLeft() {
+		return alignLeft;
+	}
+
+	public void setAlignLeft(boolean alignLeft) {
+		this.alignLeft = alignLeft;
 	}
 }

@@ -8,6 +8,7 @@ import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
 import code.input.Keyboard;
+import code.logger.Logger;
 import code.system.UISystem;
 
 import java.util.ArrayList;
@@ -54,6 +55,15 @@ public class PlayController extends Controller{
         }
         if (k.iState.getState() && !k.iState.getPrevState()){
             Engine.getEngine().getGameProperties().setDebug(!Engine.getEngine().getGameProperties().isDebug());
+        }
+        if (k.lState.getState() && !k.lState.getPrevState()){
+            Engine.getEngine().getGameProperties().setLogging(!Engine.getEngine().getGameProperties().isLogging());
+            if (Engine.getEngine().getGameProperties().isLogging()){
+                Engine.getEngine().setLogger(new Logger(1000,100));
+            }
+            else {
+                Engine.getEngine().setLogger(null);
+            }
         }
     }
 

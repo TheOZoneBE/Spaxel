@@ -10,6 +10,7 @@ import code.collision.HitShape;
 import code.entity.SpaceCarrier;
 import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
+import code.logger.Logger;
 import code.math.VectorF;
 import code.sound.Music;
 import code.system.RenderSystem;
@@ -47,6 +48,7 @@ final public class Engine {
 	private long window;
 	private VectorF screenOffset;
 	private GameProperties gameProperties;
+	private Logger logger;
 
 	public static Engine getEngine(){
 		return engine;
@@ -160,6 +162,8 @@ final public class Engine {
 	public void stopGame(){
 		entities.clear();
 		nentities.clear();
+		gameProperties = new GameProperties();
+		logger = null;
 	}
 
 	public void setWindow(long window){
@@ -272,5 +276,13 @@ final public class Engine {
 
 	public void setController(Controller controller) {
 		this.controller = controller;
+	}
+
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
 	}
 }

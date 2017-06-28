@@ -60,24 +60,37 @@ public class SystemUpdater {
             }
             else {
                 //TODO increment for each new system + temporary, clean this up with config or smth
-                systems.get(SystemType.AI).update();
-                systems.get(SystemType.SOUND).update();
-                systems.get(SystemType.UI).update();
-                systems.get(SystemType.SPAWNER).update();
-                //TODO new systems
-                systems.get(SystemType.AGE).update();
-                systems.get(SystemType.VELOCITY).update();
-                systems.get(SystemType.DAMAGE).update();
-                systems.get(SystemType.HEALTH).update();
-                systems.get(SystemType.COOLDOWN).update();
-                systems.get(SystemType.HIT).update();
-                systems.get(SystemType.INPUT).update();
-                systems.get(SystemType.EQUIP).update();
-                systems.get(SystemType.EXPERIENCE).update();
+                update(SystemType.AI);
+                update(SystemType.SOUND);
+                update(SystemType.SPAWNER);
+                update(SystemType.AGE);
+                update(SystemType.VELOCITY);
+                update(SystemType.DAMAGE);
+                update(SystemType.HEALTH);
+                update(SystemType.COOLDOWN);
+                update(SystemType.HIT);
+                update(SystemType.INPUT);
+                update(SystemType.EQUIP);
+                update(SystemType.EXPERIENCE);
+                update(SystemType.UI);
                 //Engine.getEngine().temp.update();
             }
             Engine.getEngine().getEntityStream().cleanup();
             Engine.getEngine().getNEntityStream().cleanup();
+            if(Engine.getEngine().getGameProperties().isLogging()){
+                Engine.getEngine().getLogger().cleanup();
+            }
+        }
+    }
+
+    public void update(SystemType type){
+        if (Engine.getEngine().getGameProperties().isLogging()){
+            Engine.getEngine().getLogger().registerStart(type);
+            systems.get(type).update();
+            Engine.getEngine().getLogger().registerEnd(type);
+        }
+        else {
+            systems.get(type).update();
         }
     }
 

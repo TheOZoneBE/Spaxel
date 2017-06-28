@@ -22,6 +22,7 @@ public class Logger {
         rollingSum = new EnumMap<>(SystemType.class);
         for (SystemType type: SystemType.values()){
             history.put(type, new LinkedList<>());
+            rollingSum.put(type,0l);
         }
     }
 
@@ -33,6 +34,9 @@ public class Logger {
                 }
             }
         }
+        if (history.get(SystemType.SOUND).size() < avgAmount + 1){
+            currentAvg = history.get(SystemType.SOUND).size();
+        }
     }
 
     public void registerStart(SystemType type){
@@ -43,7 +47,19 @@ public class Logger {
         history.get(type).getLast().setEnd(System.nanoTime());
         rollingSum.put(type, rollingSum.get(type) + history.get(type).getLast().getDifference());
         if (currentAvg == avgAmount){
-            rollingSum.put(type, rollingSum.get(type) - history.get(type).get(history.size() - avgAmount - 1).getDifference());
+            rollingSum.put(type, rollingSum.get(type) - history.get(type).get(history.get(type).size() - avgAmount - 1).getDifference());
         }
+    }
+
+    public EnumMap<SystemType, LinkedList<LogResult>> getHistory(){
+        return history;
+    }
+
+    public int getCurrentAvg(){
+        return currentAvg;
+    }
+
+    public EnumMap<SystemType, Long> getRollingSum(){
+        return rollingSum;
     }
 }

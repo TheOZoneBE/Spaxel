@@ -4,5 +4,23 @@
     "industry": "basic_laser_item_industry",
     "spawnRate": 100,
     "rarety": "COMMON"
+  },
+  {
+    "name": "piercing_laser",
+    "industry": "piercing_laser_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "disrupt_laser",
+    "industry": "disrupt_laser_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "slowing_laser",
+    "industry": "slowing_laser_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
   }
 ]

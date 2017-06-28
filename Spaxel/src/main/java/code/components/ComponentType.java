@@ -27,7 +27,10 @@ public enum ComponentType {
     INPUT("input"),
     EQUIP("equip"),
     DEATH("death"),
-    EXPERIENCE("experience");
+    EXPERIENCE("experience"),
+    AFFECT("affect"),
+    EFFECT("effect"),
+    ACTOR("actor");
 
     private final String name;
     ComponentType(String name){

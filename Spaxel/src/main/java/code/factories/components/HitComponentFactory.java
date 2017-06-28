@@ -1,8 +1,9 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.hit.BasicLaserHitComponent;
-import code.components.hit.HitType;
+import code.components.hit.*;
+import code.components.item.primary.PiercingLaserItemComponent;
+import code.components.item.primary.SlowingLaserItemComponent;
 
 /**
  * Created by theo on 18/06/17.
@@ -15,6 +16,12 @@ public class HitComponentFactory extends ComponentFactory {
         switch (hitType) {
             case BASIC_LASER:
                 return new BasicLaserHitComponent(damage);
+            case PIERCING_LASER:
+                return new PiercingLaserHitComponent(damage);
+            case DISRUPT_LASER:
+                return new DisruptLaserHitComponent(damage);
+            case SLOWING_LASER:
+                return new SlowingLaserHitComponent(damage);
         }
         return null;
     }

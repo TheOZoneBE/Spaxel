@@ -1,0 +1,19 @@
+package code.components.affect;
+
+import code.components.ComponentType;
+import code.components.move.MoveComponent;
+import code.engine.NEntity;
+
+/**
+ * Created by theod on 28-6-2017.
+ */
+public class SlowAffectComponent extends AffectComponent {
+    public SlowAffectComponent(float factor) {
+        super(AffectType.SLOW, factor);
+    }
+
+    public void affect(NEntity entity, NEntity victim){
+        MoveComponent mc = (MoveComponent)victim.getComponent(ComponentType.MOVE);
+        mc.setAcc(mc.getAcc()*factor);
+    }
+}

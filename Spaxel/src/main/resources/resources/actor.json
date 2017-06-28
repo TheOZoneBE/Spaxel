@@ -57,6 +57,14 @@
       {
         "type": "DEATH",
         "deathType": "BASIC_ENEMY"
+      },
+      {
+        "type": "ACTOR",
+        "canShoot": true,
+        "canMove": true
+      },
+      {
+        "type": "EFFECT"
       }
     ]
   }

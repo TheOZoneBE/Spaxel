@@ -25,5 +25,86 @@
         "hitShape": "hitshape_dropped_item"
       }
     ]
+  },
+  "piercing_laser_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "piercing_laser_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 30
+      },
+      {
+        "type": "ITEM",
+        "name": "piercing_laser"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "disrupt_laser_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "disrupt_laser_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 25
+      },
+      {
+        "type": "ITEM",
+        "name": "disrupt_laser"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "slowing_laser_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "slowing_laser_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 25
+      },
+      {
+        "type": "ITEM",
+        "name": "slowing_laser"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
   }
 }

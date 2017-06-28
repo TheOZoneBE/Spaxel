@@ -1,5 +1,6 @@
 package code.components.ai;
 
+import code.components.actor.ActorComponent;
 import code.components.ComponentType;
 import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
@@ -33,63 +34,62 @@ public class BasicEnemyAIComponent extends AIComponent {
             }
             effects.removeAll(todelete);
         }*/
-
-        //TODO healthcomponent
-        /*if (health < 0) {
-            alive = false;
-        } else {
-            */
+        ActorComponent ac = (ActorComponent)entity.getComponent(ComponentType.ACTOR);
         PositionComponent entityPos = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         MoveComponent entityMov = (MoveComponent)entity.getComponent(ComponentType.MOVE);
         VelocityComponent entityVel = (VelocityComponent)entity.getComponent(ComponentType.VELOCITY);
         VectorF diff = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1));
-        float rotToGet = (float)(Math.atan2(diff.getValue(0), diff.getValue(1)));
-        if (rotToGet < 0){
-            rotToGet += 2*Math.PI;
-        }
-        float rotChange = rotToGet - entityPos.getRot();
-        if (Math.abs(rotChange) < entityMov.getTurnRate()){
-            entityVel.setDeltaRot(rotChange);
-        }
-        else if (rotChange < 0){
-            if (rotChange < -Math.PI){
-                entityVel.setDeltaRot(entityMov.getTurnRate());
+        if (ac.canMove()){
+            float rotToGet = (float)(Math.atan2(diff.getValue(0), diff.getValue(1)));
+            if (rotToGet < 0){
+                rotToGet += 2*Math.PI;
+            }
+            float rotChange = rotToGet - entityPos.getRot();
+            if (Math.abs(rotChange) < entityMov.getTurnRate()){
+                entityVel.setDeltaRot(rotChange);
+            }
+            else if (rotChange < 0){
+                if (rotChange < -Math.PI){
+                    entityVel.setDeltaRot(entityMov.getTurnRate());
+                }
+                else {
+                    entityVel.setDeltaRot(-entityMov.getTurnRate());
+                }
             }
             else {
-                entityVel.setDeltaRot(-entityMov.getTurnRate());
+                if (rotChange > Math.PI){
+                    entityVel.setDeltaRot(-entityMov.getTurnRate());
+                }
+                else {
+                    entityVel.setDeltaRot(entityMov.getTurnRate());
+                }
             }
-        }
-        else {
-            if (rotChange > Math.PI){
-                entityVel.setDeltaRot(-entityMov.getTurnRate());
-            }
-            else {
-                entityVel.setDeltaRot(entityMov.getTurnRate());
-            }
-        }
 
 
-        VectorF velChange = new VectorF((float)Math.sin(entityPos.getRot()), (float)Math.cos(entityPos.getRot())).multiplicate(entityMov.getAcc());
+            VectorF velChange = new VectorF((float)Math.sin(entityPos.getRot()), (float)Math.cos(entityPos.getRot())).multiplicate(entityMov.getAcc());
 
-        float dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
-        if (dist > 250) {
-            if (entityVel.getVelocity().sum(velChange).length() < entityMov.getMaxSpeed()) {
-                entityVel.setVelocity(entityVel.getVelocity().sum(velChange));
+            float dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
+            if (dist > 250) {
+                if (entityVel.getVelocity().sum(velChange).length() < entityMov.getMaxSpeed()) {
+                    entityVel.setVelocity(entityVel.getVelocity().sum(velChange));
+                } else {
+                    entityVel.setVelocity(
+                            entityVel.getVelocity()
+                                    .sum(entityVel.getVelocity()
+                                            .multiplicate(-1/entityMov.getMaxSpeed()*2))
+                                    .sum(velChange));
+                }
             } else {
-                entityVel.setVelocity(
-                        entityVel.getVelocity()
-                                .sum(entityVel.getVelocity()
-                                        .multiplicate(-1/entityMov.getMaxSpeed()*2))
-                                .sum(velChange));
+                entityVel.setVelocity(entityVel.getVelocity().sum(velChange.multiplicate(-1)));
             }
-        } else {
-            entityVel.setVelocity(entityVel.getVelocity().sum(velChange.multiplicate(-1)));
         }
-        //TODO primary, secondary, ship items components
-        PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
-        for (NEntity e: prc.getItems()){
-            ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);
-            ic.activate(e);
+        if (ac.canShoot()){
+            //TODO primary, secondary, ship items components
+            PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
+            for (NEntity e: prc.getItems()){
+                ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);
+                ic.activate(e);
+            }
         }
     }
 }

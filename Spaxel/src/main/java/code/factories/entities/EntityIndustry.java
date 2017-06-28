@@ -25,6 +25,8 @@ import java.util.List;
         @JsonSubTypes.Type(value = ProjectileIndustry.class, name = "PROJECTILE"),
         @JsonSubTypes.Type(value = ItemIndustry.class, name = "ITEM"),
         @JsonSubTypes.Type(value = PlayerIndustry.class, name = "PLAYER"),
+        @JsonSubTypes.Type(value = EffectIndustry.class, name = "EFFECT"),
+
 })
 public class EntityIndustry {
     private EntityType type;

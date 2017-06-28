@@ -37,8 +37,8 @@
       },
       {
         "type": "MOVE",
-        "maxSpeed": 20,
-        "turnRate": 0.25,
+        "maxSpeed": 25,
+        "turnRate": 0.15,
         "acc": 0.5
       },
       {
@@ -51,7 +51,7 @@
       {
         "type": "PRIMARY",
         "itemIndustries": [
-          "basic_laser_item_industry"
+          "piercing_laser_item_industry"
         ]
       },
       {
@@ -70,6 +70,14 @@
         "type": "EXPERIENCE",
         "xp": 0,
         "level": 0
+      },
+      {
+        "type": "EFFECT"
+      },
+      {
+        "type": "ACTOR",
+        "canShoot": true,
+        "canMove": true
       }
     ]
   }

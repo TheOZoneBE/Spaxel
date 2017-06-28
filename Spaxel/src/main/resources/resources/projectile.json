@@ -47,5 +47,152 @@
         "maxLife": 100
       }
     ]
+  },
+  "piercing_laser_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "piercing_laser_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 30
+      },
+      {
+        "type": "HIT",
+        "hitType": "PIERCING_LASER",
+        "damage": 5
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "red_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 75,
+        "maxLife": 75
+      }
+    ]
+  },
+  "disrupt_laser_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "disrupt_laser_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 20
+      },
+      {
+        "type": "HIT",
+        "hitType": "DISRUPT_LASER",
+        "damage": 5
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "green_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 100,
+        "maxLife": 100
+      }
+    ]
+  },
+  "slowing_laser_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "slowing_laser_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 15
+      },
+      {
+        "type": "HIT",
+        "hitType": "SLOWING_LASER",
+        "damage": 10
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "blue_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 125,
+        "maxLife": 125
+      }
+    ]
   }
 }

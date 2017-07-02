@@ -22,5 +22,11 @@
     "industry": "slowing_laser_item_industry",
     "spawnRate": 100,
     "rarety": "COMMON"
+  },
+  {
+    "name": "basic_missile",
+    "industry": "basic_missile_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
   }
 ]

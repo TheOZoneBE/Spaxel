@@ -6,6 +6,10 @@ import code.components.item.primary.BasicLaserItemComponent;
 import code.components.item.primary.DisruptLaserItemComponent;
 import code.components.item.primary.PiercingLaserItemComponent;
 import code.components.item.primary.SlowingLaserItemComponent;
+import code.components.item.secondary.BasicMissileItemComponent;
+import code.components.item.secondary.ClusterMissileItemComponent;
+import code.components.item.secondary.HackingMissileItemComponent;
+import code.components.item.secondary.HomingMissileItemComponent;
 
 /**
  * Created by theo on 19/06/17.
@@ -23,6 +27,14 @@ public class ItemComponentFactory extends ComponentFactory {
                 return new DisruptLaserItemComponent();
             case "slowing_laser":
                 return new SlowingLaserItemComponent();
+            case "basic_missile":
+                return new BasicMissileItemComponent();
+            case "hacking_missile":
+                return new HackingMissileItemComponent();
+            case "homing_missile":
+                return new HomingMissileItemComponent();
+            case "cluster_missile":
+                return new ClusterMissileItemComponent();
         }
         return null;
     }

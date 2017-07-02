@@ -51,12 +51,14 @@
       {
         "type": "PRIMARY",
         "itemIndustries": [
-          "slowing_laser_item_industry"
+          "basic_laser_item_industry"
         ]
       },
       {
         "type": "SECONDARY",
-        "itemIndustries": []
+        "itemIndustries": [
+          "basic_missile_item_industry"
+        ]
       },
       {
         "type": "SHIP",

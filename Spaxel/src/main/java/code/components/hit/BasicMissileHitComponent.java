@@ -11,19 +11,19 @@ import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
 
 /**
- * Created by theo on 18/06/17.
+ * Created by theod on 2-7-2017.
  */
-public class BasicLaserHitComponent extends HitComponent {
-    public BasicLaserHitComponent(int damage) {
-        super(HitType.BASIC_LASER, damage);
+public class BasicMissileHitComponent extends HitComponent {
+    public BasicMissileHitComponent(int damage) {
+        super(HitType.BASIC_MISSILE, damage);
     }
 
     public void hit(NEntity entity, NEntity victim){
         DamageComponent dc = (DamageComponent)victim.getComponent(ComponentType.DAMAGE);
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("laser_hit_particle_spawner_industry");
+        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get("missile_hit_particle_spawner_industry");
         dc.addDamage(new Damage(damage));
-        ParticleComponent pac = new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale());
+        ParticleComponent pac = new ParticleComponent(sc.getSprite().getRandomPart(4,4), sc.getScale());
         Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(
                 (PositionComponent)entity.getComponent(ComponentType.POSITION).clone(), pac
         ));

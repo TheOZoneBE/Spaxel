@@ -22,6 +22,8 @@ public class HitComponentFactory extends ComponentFactory {
                 return new DisruptLaserHitComponent(damage);
             case SLOWING_LASER:
                 return new SlowingLaserHitComponent(damage);
+            case BASIC_MISSILE:
+                return new BasicLaserHitComponent(damage);
         }
         return null;
     }

@@ -6,6 +6,7 @@ import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.primary.PrimaryComponent;
+import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
@@ -87,10 +88,17 @@ public class PlayerInputComponent extends InputComponent {
         }
 
         if (ac.canShoot()){
-            //TODO shooting cont.
             if(mouse.mouse1){
                 PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
                 List<NEntity> items = prc.getItems();
+                for (NEntity item: items){
+                    ItemComponent ic = (ItemComponent)item.getComponent(ComponentType.ITEM);
+                    ic.activate(item);
+                }
+            }
+            if(mouse.mouse2){
+                SecondaryComponent src = (SecondaryComponent)entity.getComponent(ComponentType.SECONDARY);
+                List<NEntity> items = src.getItems();
                 for (NEntity item: items){
                     ItemComponent ic = (ItemComponent)item.getComponent(ComponentType.ITEM);
                     ic.activate(item);

@@ -194,5 +194,54 @@
         "maxLife": 125
       }
     ]
+  },
+  "basic_missile_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "basic_missile_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 25
+      },
+      {
+        "type": "HIT",
+        "hitType": "BASIC_MISSILE",
+        "damage": 25
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "white_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 150,
+        "maxLife": 150
+      }
+    ]
   }
 }

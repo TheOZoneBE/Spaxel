@@ -21,7 +21,7 @@ public class PiercingLaserHitComponent extends HitComponent {
     public void hit(NEntity entity, NEntity victim){
         DamageComponent dc = (DamageComponent)victim.getComponent(ComponentType.DAMAGE);
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
+        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get("laser_hit_particle_spawner_industry");
         dc.addDamage(new Damage(damage));
         ParticleComponent pac = new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale());
         Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(

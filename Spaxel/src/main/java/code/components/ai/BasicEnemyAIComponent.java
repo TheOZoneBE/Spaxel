@@ -6,6 +6,7 @@ import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.primary.PrimaryComponent;
+import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.NEntity;
 import code.math.VectorF;
@@ -87,6 +88,11 @@ public class BasicEnemyAIComponent extends AIComponent {
             //TODO primary, secondary, ship items components
             PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
             for (NEntity e: prc.getItems()){
+                ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);
+                ic.activate(e);
+            }
+            SecondaryComponent src = (SecondaryComponent)entity.getComponent(ComponentType.SECONDARY);
+            for (NEntity e: src.getItems()){
                 ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);
                 ic.activate(e);
             }

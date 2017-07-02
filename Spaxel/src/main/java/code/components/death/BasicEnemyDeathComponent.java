@@ -28,7 +28,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
     }
 
     public void die(NEntity entity){
-        SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
+        SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("enemy_death_particle_spawner_industry");
         SpriteComponent esc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
         PositionComponent epc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         ParticleComponent pac = new ParticleComponent(esc.getSprite().getRandomPart(6,6), esc.getScale());

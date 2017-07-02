@@ -15,5 +15,6 @@ public class SlowAffectComponent extends AffectComponent {
     public void affect(NEntity entity, NEntity victim){
         MoveComponent mc = (MoveComponent)victim.getComponent(ComponentType.MOVE);
         mc.setAcc(mc.getAcc()*factor);
+        mc.setMaxSpeed(mc.getMaxSpeed()*factor);
     }
 }

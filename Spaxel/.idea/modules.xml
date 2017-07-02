@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Spaxel.iml" filepath="$PROJECT_DIR$/.idea/modules/Spaxel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Spaxel_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Spaxel_main.iml" group="Spaxel" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Spaxel_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Spaxel_test.iml" group="Spaxel" />
     </modules>
   </component>
 </project>

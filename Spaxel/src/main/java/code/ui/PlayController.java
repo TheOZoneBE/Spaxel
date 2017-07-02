@@ -3,15 +3,21 @@ package code.ui;
 import code.components.ComponentType;
 import code.components.experience.ExperienceComponent;
 import code.components.health.HealthComponent;
+import code.components.primary.PrimaryComponent;
+import code.components.secondary.SecondaryComponent;
+import code.components.ship.ShipComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
+import code.factories.uielements.ItemViewFactory;
 import code.input.Keyboard;
 import code.logger.Logger;
+import code.math.VectorF;
 import code.system.UISystem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayController extends Controller{
     UIBar xpBar;
@@ -19,6 +25,10 @@ public class PlayController extends Controller{
     UILabel xpLabel;
     UILabel hpLabel;
     UILabel scoreCounter;
+    UIElement primaryContainer;
+    UIElement secondaryContainer;
+    UIElement shipContainer;
+    ItemViewFactory itemViewFactory;
 
     public void initialize(){
         xpBar = (UIBar)root.findById("play_xp_bar");
@@ -26,15 +36,17 @@ public class PlayController extends Controller{
         xpLabel = (UILabel)root.findById("play_xp_label");
         hpLabel = (UILabel)root.findById("play_hp_label");
         scoreCounter = (UILabel)root.findById("play_score_counter");
+        primaryContainer = root.findById("play_primary_container");
+        secondaryContainer = root.findById("play_secondary_container");
+        shipContainer = root.findById("play_ship_container");
+        itemViewFactory = new ItemViewFactory();
     }
 
     public PlayController() {
         super(UI.PLAY);
     }
 
-    private void updateElements(){
-        NEntity player =new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
-        //TODO experience
+    private void updateElements(NEntity player){
         ExperienceComponent ec = (ExperienceComponent)player.getComponent(ComponentType.EXPERIENCE);
         xpBar.setPercent((float)ec.getXp()/(float)ec.getXpToLevel());
         xpLabel.setText(ec.getXp() + " / " + ec.getXpToLevel());
@@ -44,10 +56,40 @@ public class PlayController extends Controller{
         scoreCounter.setText(String.valueOf(Engine.getEngine().getGameProperties().getScore()));
     }
 
+    public void updateItems(NEntity player) {
+        PrimaryComponent pc = (PrimaryComponent) player.getComponent(ComponentType.PRIMARY);
+        SecondaryComponent sc = (SecondaryComponent) player.getComponent(ComponentType.SECONDARY);
+        ShipComponent shc = (ShipComponent) player.getComponent(ComponentType.SHIP);
+        //TODO figure out real offsets
+        VectorF primOffset = new VectorF(40,680);
+        ArrayList<UIElement> primChildren = new ArrayList();
+        for (NEntity item : pc.getItems()){
+            primChildren.add(itemViewFactory.produce(primOffset, item));
+            primOffset = primOffset.sum(new VectorF(0, -72));
+        }
+        primaryContainer.setChildren(primChildren);
+        VectorF secOffset = new VectorF(1240,680);
+        ArrayList<UIElement> secChildren = new ArrayList();
+        for (NEntity item : sc.getItems()){
+            secChildren.add(itemViewFactory.produce(secOffset, item));
+            secOffset = secOffset.sum(new VectorF(0, -72));
+        }
+        secondaryContainer.setChildren(secChildren);
+        VectorF shipOffset = new VectorF(400,40);
+        ArrayList<UIElement> shipChildren = new ArrayList();
+        for (NEntity item : shc.getItems()){
+            shipChildren.add(itemViewFactory.produce(shipOffset, item));
+            shipOffset = shipOffset.sum(new VectorF(72,0));
+        }
+        shipContainer.setChildren(shipChildren);
+    }
+
     public void update(){
-        //TODO update score and labels and items
+        //TODO update and labels and items
         super.update();
-        updateElements();
+        NEntity player =new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        updateElements(player);
+        updateItems(player);
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.escState.getState() && !k.escState.getPrevState()){
             Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PAUSE));

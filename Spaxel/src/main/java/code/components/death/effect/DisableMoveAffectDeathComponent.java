@@ -21,6 +21,6 @@ public class DisableMoveAffectDeathComponent extends DeathComponent {
         ActorComponent mc = (ActorComponent)parent.getComponent(ComponentType.ACTOR);
         mc.setCanMove(true);
         EffectComponent ec = (EffectComponent)parent.getComponent(ComponentType.EFFECT);
-        ec.getItems().remove(entity);
+        ec.getEffects().remove(entity);
     }
 }

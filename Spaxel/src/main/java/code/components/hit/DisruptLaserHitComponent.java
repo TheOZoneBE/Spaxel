@@ -34,8 +34,8 @@ public class DisruptLaserHitComponent extends HitComponent {
         ));
         EffectIndustry efi = (EffectIndustry)Engine.getEngine().getIndustryMap().get("disable_move_effect_industry");
         NEntity effect = efi.produce();
-        effect.addComponent(new LinkComponent(entity));
-        ((AffectComponent)effect.getComponent(ComponentType.AFFECT)).affect(effect, entity);
+        effect.addComponent(new LinkComponent(victim));
+        ((AffectComponent)effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
         ec.getEffects().add(effect);
         Engine.getEngine().getNEntityStream().addEntity(effect);
         Engine.getEngine().getNEntityStream().removeEntity(entity);

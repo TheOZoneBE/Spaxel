@@ -55,6 +55,14 @@
         ]
       },
       {
+        "type": "SECONDARY",
+        "itemIndustries": []
+      },
+      {
+        "type": "SHIP",
+        "itemIndustries": []
+      },
+      {
         "type": "DEATH",
         "deathType": "BASIC_ENEMY"
       },

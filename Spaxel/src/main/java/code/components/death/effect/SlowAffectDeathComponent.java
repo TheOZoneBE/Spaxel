@@ -22,7 +22,8 @@ public class SlowAffectDeathComponent extends DeathComponent {
         NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
         MoveComponent mc = (MoveComponent)parent.getComponent(ComponentType.MOVE);
         mc.setAcc(mc.getAcc()/ac.getFactor());
+        mc.setMaxSpeed(mc.getMaxSpeed()/ac.getFactor());
         EffectComponent ec = (EffectComponent)parent.getComponent(ComponentType.EFFECT);
-        ec.getItems().remove(entity);
+        ec.getEffects().remove(entity);
     }
 }

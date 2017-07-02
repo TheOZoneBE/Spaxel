@@ -11,6 +11,6 @@ import java.util.List;
  */
 public class EffectComponentFactory extends ComponentFactory {
     public Component make(){
-        return new EffectComponent(new ArrayList<>());
+        return new EffectComponent();
     }
 }

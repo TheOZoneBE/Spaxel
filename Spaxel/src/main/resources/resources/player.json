@@ -51,7 +51,7 @@
       {
         "type": "PRIMARY",
         "itemIndustries": [
-          "piercing_laser_item_industry"
+          "slowing_laser_item_industry"
         ]
       },
       {

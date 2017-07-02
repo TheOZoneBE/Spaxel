@@ -115,7 +115,8 @@ final public class Engine {
 				"/resources/actor.json",
 				"/resources/projectile.json",
 				"/resources/item.json",
-				"/resources/player.json"
+				"/resources/player.json",
+				"/resources/effect.json"
         });
 
 

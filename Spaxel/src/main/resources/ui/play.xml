@@ -75,5 +75,14 @@
             </sprite>
             <width>580</width>
         </UIBar>
+        <UIElement class="UIElement">
+            <id>play_primary_container</id>
+        </UIElement>
+        <UIElement class="UIElement">
+            <id>play_secondary_container</id>
+        </UIElement>
+        <UIElement class="UIElement">
+            <id>play_ship_container</id>
+        </UIElement>
     </children>
 </UIVisual>

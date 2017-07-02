@@ -61,25 +61,25 @@ public class PlayController extends Controller{
         SecondaryComponent sc = (SecondaryComponent) player.getComponent(ComponentType.SECONDARY);
         ShipComponent shc = (ShipComponent) player.getComponent(ComponentType.SHIP);
         //TODO figure out real offsets
-        VectorF primOffset = new VectorF(32,700);
+        VectorF primOffset = new VectorF(40,680);
         ArrayList<UIElement> primChildren = new ArrayList();
         for (NEntity item : pc.getItems()){
             primChildren.add(itemViewFactory.produce(primOffset, item));
-            primOffset.sum(new VectorF(0, -32));
+            primOffset = primOffset.sum(new VectorF(0, -72));
         }
         primaryContainer.setChildren(primChildren);
-        VectorF secOffset = new VectorF(1240,700);
+        VectorF secOffset = new VectorF(1240,680);
         ArrayList<UIElement> secChildren = new ArrayList();
         for (NEntity item : sc.getItems()){
             secChildren.add(itemViewFactory.produce(secOffset, item));
-            secOffset.sum(new VectorF(0, -32));
+            secOffset = secOffset.sum(new VectorF(0, -72));
         }
         secondaryContainer.setChildren(secChildren);
-        VectorF shipOffset = new VectorF(32,32);
+        VectorF shipOffset = new VectorF(400,40);
         ArrayList<UIElement> shipChildren = new ArrayList();
         for (NEntity item : shc.getItems()){
             shipChildren.add(itemViewFactory.produce(shipOffset, item));
-            shipOffset.sum(new VectorF(32,0));
+            shipOffset = shipOffset.sum(new VectorF(72,0));
         }
         shipContainer.setChildren(shipChildren);
     }

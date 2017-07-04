@@ -1,7 +1,9 @@
-package code.components.death;
+package code.components.death.actor;
 
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
+import code.components.death.DeathComponent;
+import code.components.death.DeathType;
 import code.components.equip.EquipComponent;
 import code.components.experience.ExperienceComponent;
 import code.components.particle.ParticleComponent;

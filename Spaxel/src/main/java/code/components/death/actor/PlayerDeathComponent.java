@@ -1,5 +1,7 @@
-package code.components.death;
+package code.components.death.actor;
 
+import code.components.death.DeathComponent;
+import code.components.death.DeathType;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;

@@ -243,5 +243,107 @@
         "maxLife": 150
       }
     ]
+  },
+  "cluster_missile_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "cluster_missile_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 15
+      },
+      {
+        "type": "HIT",
+        "hitType": "CLUSTER_MISSILE",
+        "damage": 20
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "blue_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 30,
+        "maxLife": 30
+      },
+      {
+        "type": "DEATH",
+        "deathType": "CLUSTER_MISSILE"
+      }
+    ]
+  },
+  "cluster_shrapnel_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "cluster_missile_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 10
+      },
+      {
+        "type": "HIT",
+        "hitType": "BASIC_MISSILE",
+        "damage": 5
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "blue_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 20,
+        "maxLife": 20
+      }
+    ]
   }
 }

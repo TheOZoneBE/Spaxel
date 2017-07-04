@@ -28,5 +28,11 @@
     "industry": "basic_missile_item_industry",
     "spawnRate": 100,
     "rarety": "COMMON"
+  },
+  {
+    "name": "cluster_missile",
+    "industry": "cluster_missile_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
   }
 ]

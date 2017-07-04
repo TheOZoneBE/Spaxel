@@ -57,7 +57,7 @@
       {
         "type": "SECONDARY",
         "itemIndustries": [
-          "basic_missile_item_industry"
+          "cluster_missile_item_industry"
         ]
       },
       {

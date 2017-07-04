@@ -30,13 +30,6 @@ public class ShootItemComponent extends ItemComponent {
             PositionComponent pc = (PositionComponent)parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent)entity.getComponent(ComponentType.STACK);
             ProjectileIndustry pri = (ProjectileIndustry) Engine.getEngine().getIndustryMap().get(factory);
-            /*
-            NEntity projectile = pri.produce((PositionComponent)pc.clone(), new LinkComponent(parent));
-            MoveComponent pmc = (MoveComponent)projectile.getComponent(ComponentType.MOVE);
-            float dx = (float)Math.sin(pc.getRot()) * pmc.getMaxSpeed();
-            float dy = (float)Math.cos(pc.getRot()) * pmc.getMaxSpeed();
-            projectile.addComponent(new VelocityComponent(new VectorF(dx, dy), 0));
-            Engine.getEngine().getNEntityStream().addEntity(projectile);*/
 
 
             float offset = (sc.getStacks()-1)*-0.05f;

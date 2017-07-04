@@ -1,13 +1,13 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.ComponentType;
-import code.components.death.BasicEnemyDeathComponent;
+import code.components.death.actor.BasicEnemyDeathComponent;
 import code.components.death.DeathType;
-import code.components.death.PlayerDeathComponent;
+import code.components.death.actor.PlayerDeathComponent;
 import code.components.death.effect.DisableMoveAffectDeathComponent;
 import code.components.death.effect.DisableShootAffectDeathComponent;
 import code.components.death.effect.SlowAffectDeathComponent;
+import code.components.death.projectile.ClusterMissileDeathComponent;
 
 /**
  * Created by theo on 24/06/17.
@@ -27,6 +27,8 @@ public class DeathComponentFactory extends ComponentFactory {
                 return new DisableMoveAffectDeathComponent();
             case DISABLE_SHOOT_AFFECT:
                 return new DisableShootAffectDeathComponent();
+            case CLUSTER_MISSILE:
+                return new ClusterMissileDeathComponent();
         }
         return null;
     }

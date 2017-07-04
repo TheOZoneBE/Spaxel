@@ -4,6 +4,7 @@ import code.components.Component;
 import code.components.hit.*;
 import code.components.item.primary.PiercingLaserItemComponent;
 import code.components.item.primary.SlowingLaserItemComponent;
+import code.components.item.secondary.ClusterMissileItemComponent;
 
 /**
  * Created by theo on 18/06/17.
@@ -24,6 +25,8 @@ public class HitComponentFactory extends ComponentFactory {
                 return new SlowingLaserHitComponent(damage);
             case BASIC_MISSILE:
                 return new BasicLaserHitComponent(damage);
+            case CLUSTER_MISSILE:
+                return new ClusterMissileHitComponent(damage);
         }
         return null;
     }

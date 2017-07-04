@@ -19,14 +19,11 @@ public class BasicMissileHitComponent extends HitComponent {
     }
 
     public void hit(NEntity entity, NEntity victim){
-        DamageComponent dc = (DamageComponent)victim.getComponent(ComponentType.DAMAGE);
+        dealDamage(victim);
+
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get("missile_hit_particle_spawner_industry");
-        dc.addDamage(new Damage(damage));
-        ParticleComponent pac = new ParticleComponent(sc.getSprite().getRandomPart(4,4), sc.getScale());
-        Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(
-                (PositionComponent)entity.getComponent(ComponentType.POSITION).clone(), pac
-        ));
+        addParticleSpawner(entity, victim, new ParticleComponent(sc.getSprite().getRandomPart(4,4), sc.getScale()), "missile_hit_particle_spawner_industry");
+
         Engine.getEngine().getNEntityStream().removeEntity(entity);
     }
 }

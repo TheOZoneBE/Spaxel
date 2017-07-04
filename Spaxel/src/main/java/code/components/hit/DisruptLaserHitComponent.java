@@ -23,21 +23,13 @@ public class DisruptLaserHitComponent extends HitComponent {
     }
 
     public void hit(NEntity entity, NEntity victim){
-        DamageComponent dc = (DamageComponent)victim.getComponent(ComponentType.DAMAGE);
+        dealDamage(victim);
+
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        EffectComponent ec = (EffectComponent)victim.getComponent(ComponentType.EFFECT);
-        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get("laser_hit_particle_spawner_industry");
-        dc.addDamage(new Damage(damage));
-        ParticleComponent pac = new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale());
-        Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(
-                (PositionComponent)entity.getComponent(ComponentType.POSITION).clone(), pac
-        ));
-        EffectIndustry efi = (EffectIndustry)Engine.getEngine().getIndustryMap().get("disable_move_effect_industry");
-        NEntity effect = efi.produce();
-        effect.addComponent(new LinkComponent(victim));
-        ((AffectComponent)effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
-        ec.getEffects().add(effect);
-        Engine.getEngine().getNEntityStream().addEntity(effect);
+        addParticleSpawner(entity, victim,new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale()), "laser_hit_particle_spawner_industry");
+
+        addEffect(victim, "disable_move_effect_industry");
+
         Engine.getEngine().getNEntityStream().removeEntity(entity);
     }
 }

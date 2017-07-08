@@ -52,6 +52,7 @@ public class EquipSystem extends GameSystem {
                     switch(ic.getItemType()){
                         case SHIP:
                             ShipComponent sc = (ShipComponent)collider.getComponent(ComponentType.SHIP);
+                            //TODO add renderer + link to effect
                             sc.addItem(entity);
                             break;
                         case PRIMARY:

@@ -27,6 +27,10 @@ public class HitComponentFactory extends ComponentFactory {
                 return new BasicLaserHitComponent(damage);
             case CLUSTER_MISSILE:
                 return new ClusterMissileHitComponent(damage);
+            case HACKING_MISSILE:
+                return new HackingMissileHitComponent(damage);
+            case HOMING_MISSILE:
+                return new HomingMissileHitComponent(damage);
         }
         return null;
     }

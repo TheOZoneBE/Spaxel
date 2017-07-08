@@ -26,6 +26,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -57,7 +58,7 @@
       {
         "type": "SECONDARY",
         "itemIndustries": [
-          "cluster_missile_item_industry"
+          "homing_missile_item_industry"
         ]
       },
       {

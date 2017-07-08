@@ -14,18 +14,22 @@ import java.util.List;
  */
 public class RenderComponent extends Component {
     private List<Renderer> renderers;
+    private boolean visible;
 
-    public RenderComponent(List<Renderer> renderers) {
+    public RenderComponent(List<Renderer> renderers, boolean visible) {
         super(ComponentType.RENDER);
         this.renderers = renderers;
+        this.visible = visible;
     }
 
     public void render(NEntity entity, MasterBuffer buffer){
-        RenderData renderData = new RenderData();
-        for (Renderer r: renderers){
-            r.apply(renderData, entity);
+        if(visible){
+            RenderData renderData = new RenderData();
+            for (Renderer r: renderers){
+                r.apply(renderData, entity);
+            }
+            buffer.addNewSprite(renderData);
         }
-        buffer.addNewSprite(renderData);
     }
 
     public List<Renderer> getRenderers() {
@@ -34,5 +38,13 @@ public class RenderComponent extends Component {
 
     public void setRenderers(List<Renderer> renderers) {
         this.renderers = renderers;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

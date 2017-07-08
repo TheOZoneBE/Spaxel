@@ -8,8 +8,12 @@ import code.components.position.PositionComponent;
 import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
+import code.engine.Engine;
+import code.engine.EntityType;
 import code.engine.NEntity;
 import code.math.VectorF;
+
+import java.util.ArrayList;
 
 /**
  * Created by theo on 7/06/17.
@@ -21,20 +25,9 @@ public class BasicEnemyAIComponent extends AIComponent {
         super(AIType.BASIC_ENEMY);
     }
 
-    public void execute(PositionComponent playerPos, NEntity entity){
-        //TODO effectComponent
-        /*
-        List<StatusEffect> todelete = new ArrayList<>();
-        synchronized (effects){
-            for (StatusEffect e : effects) {
-                e.update();
-                if (!e.isAlive()) {
-                    e.undo(this);
-                    todelete.add(e);
-                }
-            }
-            effects.removeAll(todelete);
-        }*/
+    public void execute(NEntity entity){
+        PositionComponent playerPos = (PositionComponent)new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0).getComponent(ComponentType.POSITION);
+
         ActorComponent ac = (ActorComponent)entity.getComponent(ComponentType.ACTOR);
         PositionComponent entityPos = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         MoveComponent entityMov = (MoveComponent)entity.getComponent(ComponentType.MOVE);

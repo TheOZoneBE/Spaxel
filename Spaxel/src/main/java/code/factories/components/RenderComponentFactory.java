@@ -11,10 +11,11 @@ import java.util.List;
  * Created by theo on 5/06/17.
  */
 public class RenderComponentFactory extends ComponentFactory {
-    List<Renderer> renderers;
+    private List<Renderer> renderers;
+    private boolean visible;
 
     public Component make(){
-        return new RenderComponent(renderers);
+        return new RenderComponent(renderers, visible);
     }
 
     public List<Renderer> getRenderers() {
@@ -23,5 +24,13 @@ public class RenderComponentFactory extends ComponentFactory {
 
     public void setRenderers(List<Renderer> renderers) {
         this.renderers = renderers;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

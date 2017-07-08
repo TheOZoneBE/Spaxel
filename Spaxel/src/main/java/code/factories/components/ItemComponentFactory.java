@@ -10,12 +10,17 @@ import code.components.item.secondary.BasicMissileItemComponent;
 import code.components.item.secondary.ClusterMissileItemComponent;
 import code.components.item.secondary.HackingMissileItemComponent;
 import code.components.item.secondary.HomingMissileItemComponent;
+import code.components.item.ship.BasicShieldItemComponent;
+import code.factories.entities.EntityIndustry;
 
 /**
  * Created by theo on 19/06/17.
  */
 public class ItemComponentFactory extends ComponentFactory {
     private String name;
+    private int capacity;
+    private int maxCapacity;
+    private EntityIndustry effectIndustry;
 
     public Component make(){
         switch(name){
@@ -35,6 +40,8 @@ public class ItemComponentFactory extends ComponentFactory {
                 return new HomingMissileItemComponent();
             case "cluster_missile":
                 return new ClusterMissileItemComponent();
+            case "basic_shield":
+                return new BasicShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
         }
         return null;
     }
@@ -45,5 +52,29 @@ public class ItemComponentFactory extends ComponentFactory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public EntityIndustry getEffectIndustry() {
+        return effectIndustry;
+    }
+
+    public void setEffectIndustry(EntityIndustry effectIndustry) {
+        this.effectIndustry = effectIndustry;
     }
 }

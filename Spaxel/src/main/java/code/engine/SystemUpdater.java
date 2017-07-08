@@ -2,9 +2,7 @@ package code.engine;
 
 import code.system.GameSystem;
 import code.system.RenderSystem;
-import org.lwjgl.system.CallbackI;
 
-import java.awt.*;
 import java.util.EnumMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -65,6 +63,7 @@ public class SystemUpdater {
                 update(SystemType.SPAWNER);
                 update(SystemType.AGE);
                 update(SystemType.VELOCITY);
+                update(SystemType.SHIP);
                 update(SystemType.DAMAGE);
                 update(SystemType.HEALTH);
                 update(SystemType.COOLDOWN);
@@ -73,6 +72,7 @@ public class SystemUpdater {
                 update(SystemType.EQUIP);
                 update(SystemType.EXPERIENCE);
                 update(SystemType.UI);
+
                 //Engine.getEngine().temp.update();
             }
             Engine.getEngine().getEntityStream().cleanup();

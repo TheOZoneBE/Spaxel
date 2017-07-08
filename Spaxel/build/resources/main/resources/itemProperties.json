@@ -34,5 +34,23 @@
     "industry": "cluster_missile_item_industry",
     "spawnRate": 100,
     "rarety": "COMMON"
+  },
+  {
+    "name": "hacking_missile",
+    "industry": "hacking_missile_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "homing_missile",
+    "industry": "homing_missile_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "basic_shield",
+    "industry": "basic_shield_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
   }
 ]

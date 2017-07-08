@@ -32,6 +32,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -81,6 +82,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -130,6 +132,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -179,6 +182,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -228,6 +232,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -277,6 +282,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -330,6 +336,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -343,6 +350,111 @@
         "type": "AGE",
         "life": 25,
         "maxLife": 25
+      }
+    ]
+  },
+  "hacking_missile_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "hacking_missile_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 15
+      },
+      {
+        "type": "HIT",
+        "hitType": "HACKING_MISSILE",
+        "damage": 20
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "green_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "visible": true,
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 125,
+        "maxLife": 125
+      }
+    ]
+  },
+  "homing_missile_projectile_industry": {
+    "type": "PROJECTILE",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "homing_missile_projectile",
+        "scale": 2
+      },
+      {
+        "type": "MOVE",
+        "maxSpeed": 20,
+        "turnRate": 0.25
+      },
+      {
+        "type": "HIT",
+        "hitType": "HOMING_MISSILE",
+        "damage": 25
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_single_point"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "red_trail",
+        "scale": 2
+      },
+      {
+        "type": "RENDER",
+        "visible": true,
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "VELOCITY"
+          }
+        ]
+      },
+      {
+        "type": "AGE",
+        "life": 100,
+        "maxLife": 100
+      },
+      {
+        "type": "AI",
+        "subType": "HOMING_MISSILE"
       }
     ]
   }

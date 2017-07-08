@@ -16,7 +16,7 @@ public class AIComponent extends Component {
         this.aiType = subType;
     }
 
-    public void execute(PositionComponent playerPos, NEntity entity){
+    public void execute(NEntity entity){
 
     }
 

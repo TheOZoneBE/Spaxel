@@ -31,7 +31,7 @@ public class AISystem extends GameSystem {
 		for (NEntity e: enemies){
 			AIComponent aic = (AIComponent)e.getComponent(ComponentType.AI);
 
-			aic.execute(playerPos, e);
+			aic.execute(e);
 			k++;
 		}
 		//TODO move to its own system

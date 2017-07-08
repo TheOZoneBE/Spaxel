@@ -160,5 +160,110 @@
         "hitShape": "hitshape_dropped_item"
       }
     ]
+  },
+  "hacking_missile_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "hacking_missile_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 65
+      },
+      {
+        "type": "ITEM",
+        "name": "hacking_missile"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "homing_missile_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "homing_missile_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 90
+      },
+      {
+        "type": "ITEM",
+        "name": "homing_missile"
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "basic_shield_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "basic_shield_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 100
+      },
+      {
+        "type": "ITEM",
+        "name": "basic_shield",
+        "capacity": 50,
+        "maxCapacity": 50,
+        "effectIndustry": {
+          "type": "VISUAL_EFFECT",
+          "factories": [
+            {
+              "type": "SPRITE",
+              "sprite": "basic_shield_effect",
+              "scale": 2
+            },
+            {
+              "type": "RENDER",
+              "visible": false,
+              "renderers": [
+                {
+                  "type": "SPRITESHEET"
+                },
+                {
+                  "type": "LINK_VELOCITY"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
   }
 }

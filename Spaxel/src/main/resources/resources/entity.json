@@ -4,6 +4,7 @@
     "factories": [
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -26,6 +27,7 @@
       },
       {
         "type": "RENDER",
+        "visible": true,
         "renderers": [
           {
             "type": "SPRITESHEET"

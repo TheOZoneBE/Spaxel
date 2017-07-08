@@ -312,7 +312,7 @@
       {
         "type": "HIT",
         "hitType": "BASIC_MISSILE",
-        "damage": 5
+        "damage": 10
       },
       {
         "type": "COLLISION",
@@ -341,8 +341,8 @@
       },
       {
         "type": "AGE",
-        "life": 20,
-        "maxLife": 20
+        "life": 25,
+        "maxLife": 25
       }
     ]
   }

@@ -2,6 +2,7 @@ package code.math;
 
 import code.graphics.RenderBuffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.deser.impl.ManagedReferenceProperty;
 
 public class VectorF {
 	private int m;
@@ -84,8 +85,9 @@ public class VectorF {
 		}
 	}
 
+	//only works with 2d vectors
 	public float length(){
-		return (float)Math.sqrt(dotProduct(this) -1);
+		return (float)Math.sqrt((vector[0]*vector[0]) +  (vector[1]*vector[1]));
 	}
 
 	public VectorF clone(){

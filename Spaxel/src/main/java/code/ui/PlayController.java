@@ -75,7 +75,7 @@ public class PlayController extends Controller{
             secOffset = secOffset.sum(new VectorF(0, -72));
         }
         secondaryContainer.setChildren(secChildren);
-        VectorF shipOffset = new VectorF(400,40);
+        VectorF shipOffset = new VectorF(388,40);
         ArrayList<UIElement> shipChildren = new ArrayList();
         for (NEntity item : shc.getItems()){
             shipChildren.add(itemViewFactory.produce(shipOffset, item));

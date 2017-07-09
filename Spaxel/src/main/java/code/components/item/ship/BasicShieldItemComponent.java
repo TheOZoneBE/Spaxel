@@ -11,6 +11,7 @@ import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.math.VectorF;
 
 import java.util.Set;
 
@@ -25,7 +26,6 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
 
     public void activate(NEntity entity){
         CooldownComponent cc = (CooldownComponent)entity.getComponent(ComponentType.COOLDOWN);
-
         if(cc.getCd() == 0){
             ((RenderComponent)effect.getComponent(ComponentType.RENDER)).setVisible(true);
             NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
@@ -37,7 +37,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
                     HitComponent phc = (HitComponent)p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity){
                         capacity -= phc.getDamage();
-                        Engine.getEngine().getNEntityStream().removeEntity(entity);
+                        Engine.getEngine().getNEntityStream().removeEntity(p);
                     }
                     else {
                         phc.setDamage(phc.getDamage() -capacity);

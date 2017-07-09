@@ -1,5 +1,7 @@
 package code.ui;
 
+import code.components.ComponentType;
+import code.components.ship.ShipComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;

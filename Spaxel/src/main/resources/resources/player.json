@@ -38,9 +38,9 @@
       },
       {
         "type": "MOVE",
-        "maxSpeed": 25,
+        "maxSpeed": 20,
         "turnRate": 0.15,
-        "acc": 0.5
+        "acc": 0.25
       },
       {
         "type": "INPUT",
@@ -63,7 +63,9 @@
       },
       {
         "type": "SHIP",
-        "itemIndustries": []
+        "itemIndustries": [
+          "basic_shield_item_industry"
+        ]
       },
       {
         "type": "POSITION",

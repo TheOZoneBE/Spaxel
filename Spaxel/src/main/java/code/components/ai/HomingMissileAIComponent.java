@@ -39,7 +39,7 @@ public class HomingMissileAIComponent extends AIComponent {
             }
         }
         //TODO figure out bug with mindist not accurate: maybe calculation or maybe not correct position set in entities
-        if (closest != null) {
+        if (closest != null && minDist < 1000) {
             PositionComponent cpc = (PositionComponent) closest.getComponent(ComponentType.POSITION);
 
             VectorF diff = cpc.getCoord().sum(pc.getCoord().multiplicate(-1));

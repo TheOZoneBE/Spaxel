@@ -14,7 +14,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = VelocityRenderer.class, name = "VELOCITY"),
         @JsonSubTypes.Type(value = StationaryRenderer.class, name = "STATIONARY"),
         @JsonSubTypes.Type(value = FadeRenderer.class, name = "FADE"),
-        @JsonSubTypes.Type(value = LinkVelocityRenderer.class, name = "LINK_VELOCITY"),
+        @JsonSubTypes.Type(value = LinkLinkVelocityRenderer.class, name = "LINK_LINK_VELOCITY"),
+        @JsonSubTypes.Type(value = ShieldRenderer.class, name = "SHIELD"),
 })
 public class Renderer {
     private RendererType type;

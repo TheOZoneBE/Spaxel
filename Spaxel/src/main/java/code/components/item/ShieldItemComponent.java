@@ -30,6 +30,14 @@ public class ShieldItemComponent extends ItemComponent {
         this.capacity = capacity;
     }
 
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
     public NEntity getEffect() {
         return effect;
     }

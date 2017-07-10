@@ -13,11 +13,12 @@ import code.math.VectorF;
 /**
  * Created by theo on 8/07/17.
  */
-public class LinkVelocityRenderer extends Renderer {
-    public void render(RenderData data, NEntity entity){
+public class LinkLinkVelocityRenderer extends Renderer {
+    public void apply(RenderData data, NEntity entity){
         NEntity link = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
-        PositionComponent pc = (PositionComponent)link.getComponent(ComponentType.POSITION);
-        VelocityComponent vc = (VelocityComponent)link.getComponent(ComponentType.VELOCITY);
+        NEntity linkLink = ((LinkComponent)link.getComponent(ComponentType.LINK)).getLink();
+        PositionComponent pc = (PositionComponent)linkLink.getComponent(ComponentType.POSITION);
+        VelocityComponent vc = (VelocityComponent)linkLink.getComponent(ComponentType.VELOCITY);
         SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
         VectorF pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset()).sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
         float rot = pc.getRot() + vc.getDeltaRot()*Engine.getEngine().getUpdateTime();

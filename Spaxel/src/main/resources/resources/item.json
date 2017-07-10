@@ -239,7 +239,7 @@
             {
               "type": "SPRITE",
               "sprite": "basic_shield_effect",
-              "scale": 2
+              "scale": 4
             },
             {
               "type": "RENDER",
@@ -249,7 +249,10 @@
                   "type": "SPRITESHEET"
                 },
                 {
-                  "type": "LINK_VELOCITY"
+                  "type": "LINK_LINK_VELOCITY"
+                },
+                {
+                  "type": "SHIELD"
                 }
               ]
             }

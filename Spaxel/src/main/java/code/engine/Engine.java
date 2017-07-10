@@ -75,6 +75,7 @@ final public class Engine {
 
         spriteAtlas.put("hp_bar", new SpriteData(1,4, 0xff00ff00));
         spriteAtlas.put("xp_bar", new SpriteData(1,4, 0xff0000ff));
+		spriteAtlas.put("dot", new SpriteData(2,2, 0xffffffff));
 
         addSystem(new RenderSystem());
 

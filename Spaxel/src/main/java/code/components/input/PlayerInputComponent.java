@@ -32,9 +32,9 @@ public class PlayerInputComponent extends InputComponent {
         VelocityComponent vc = (VelocityComponent)entity.getComponent(ComponentType.VELOCITY);
         MoveComponent mc = (MoveComponent)entity.getComponent(ComponentType.MOVE);
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        VectorF velChange = vc.getVelocity().multiplicate(1/(mc.getMaxSpeed()*2));
 
         if (ac.canMove()){
+            VectorF velChange = vc.getVelocity().multiplicate(-1/(mc.getMaxSpeed()*2));
             if (keys.downState.getState()) {
                 velChange = new VectorF((float)-Math.sin(pc.getRot()), (float)-Math.cos(pc.getRot())).multiplicate(mc.getAcc());
             }
@@ -53,7 +53,7 @@ public class PlayerInputComponent extends InputComponent {
             } else {
                 vc.setVelocity(vc.getVelocity()
                         .sum(vc.getVelocity()
-                                .multiplicate(-1/(mc.getMaxSpeed()*2))));;
+                                .multiplicate(-1/(mc.getMaxSpeed()*2))));
             }
 
             VectorF mousePos = new VectorF(mouse.getX(), mouse.getY());

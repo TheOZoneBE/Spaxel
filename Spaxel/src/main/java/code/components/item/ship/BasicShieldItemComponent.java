@@ -33,7 +33,8 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
             Set<NEntity> projectiles = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HIT);
             for (NEntity p: projectiles){
                 PositionComponent ppc = (PositionComponent)p.getComponent(ComponentType.POSITION);
-                if (pc.getCoord().sum(ppc.getCoord().multiplicate(-1)).length() < 100){
+                NEntity pParent = ((LinkComponent)p.getComponent(ComponentType.LINK)).getLink();
+                if (pParent != parent && pc.getCoord().sum(ppc.getCoord().multiplicate(-1)).length() < 100){
                     HitComponent phc = (HitComponent)p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity){
                         capacity -= phc.getDamage();

@@ -12,6 +12,7 @@ import code.engine.*;
 import code.entity.Entity;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
+import code.graphics.SpriteData;
 import code.input.MouseWrapper;
 import code.logger.DebugRenderer;
 import code.math.VectorF;
@@ -50,12 +51,25 @@ public class RenderSystem extends GameSystem {
 			xOffset = playerXPos - (int) playerPos.getCoord().getValue(0);
 			yOffset = playerYPos - (int) playerPos.getCoord().getValue(1);
 			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
+
+			dots();
 		}
 		renderEntities();
+
 		if (Engine.getEngine().getGameProperties().isDebug()){
 			DebugRenderer.renderDebug(bufferBuffer);
 		}
 		master.render(bufferBuffer);
+	}
+
+	public void dots(){
+		SpriteData dot  = Engine.getEngine().getSpriteAtlas().get("dot");
+		VectorF origin = new VectorF(Engine.getEngine().getScreenOffset().getValue(0)% 64, Engine.getEngine().getScreenOffset().getValue(1) % 64);
+		for (int i =  0; i < Game.GAME_WIDTH; i += 64){
+			for (int j = 0; j < Game.GAME_HEIGHT; j+= 64){
+				dot.renderSprite(origin.sum(new VectorF(i, j)), 1,0,1, bufferBuffer);
+			}
+		}
 	}
 
 	public void renderEntities(){

@@ -3,6 +3,7 @@ package code.factories.components;
 import code.components.ai.AIType;
 import code.components.ai.BasicEnemyAIComponent;
 import code.components.Component;
+import code.components.ai.DroppedItemAIComponent;
 import code.components.ai.HomingMissileAIComponent;
 import code.components.hit.HomingMissileHitComponent;
 
@@ -18,6 +19,8 @@ public class AIComponentFactory extends ComponentFactory {
                 return new BasicEnemyAIComponent();
             case HOMING_MISSILE:
                 return new HomingMissileAIComponent();
+            case DROPPED_ITEM:
+                return new DroppedItemAIComponent();
             default:
                 return null;
         }

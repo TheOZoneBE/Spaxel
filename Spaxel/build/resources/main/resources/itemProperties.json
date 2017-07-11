@@ -52,5 +52,23 @@
     "industry": "basic_shield_item_industry",
     "spawnRate": 100,
     "rarety": "COMMON"
+  },
+  {
+    "name": "anti_shield",
+    "industry": "anti_shield_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "active_shield",
+    "industry": "active_shield_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
+  },
+  {
+    "name": "force_shield",
+    "industry": "force_shield_item_industry",
+    "spawnRate": 100,
+    "rarety": "COMMON"
   }
 ]

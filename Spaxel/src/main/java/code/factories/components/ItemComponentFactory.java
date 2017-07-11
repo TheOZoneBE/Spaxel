@@ -1,7 +1,6 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.item.ItemType;
 import code.components.item.primary.BasicLaserItemComponent;
 import code.components.item.primary.DisruptLaserItemComponent;
 import code.components.item.primary.PiercingLaserItemComponent;
@@ -10,7 +9,10 @@ import code.components.item.secondary.BasicMissileItemComponent;
 import code.components.item.secondary.ClusterMissileItemComponent;
 import code.components.item.secondary.HackingMissileItemComponent;
 import code.components.item.secondary.HomingMissileItemComponent;
+import code.components.item.ship.ActiveShieldItemComponent;
+import code.components.item.ship.AntiShieldItemComponent;
 import code.components.item.ship.BasicShieldItemComponent;
+import code.components.item.ship.ForceShieldItemComponent;
 import code.factories.entities.EntityIndustry;
 
 /**
@@ -42,6 +44,12 @@ public class ItemComponentFactory extends ComponentFactory {
                 return new ClusterMissileItemComponent();
             case "basic_shield":
                 return new BasicShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+            case "anti_shield":
+                return new AntiShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+            case "active_shield":
+                return new ActiveShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+            case "force_shield":
+                return new ForceShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
         }
         return null;
     }

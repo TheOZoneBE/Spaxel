@@ -48,7 +48,6 @@ public class ShieldItemComponent extends ItemComponent {
 
     public void addCascade(NEntity entity){
         effect.addComponent(new LinkComponent(entity));
-        ((RenderComponent)effect.getComponent(ComponentType.RENDER)).setVisible(true);
         Engine.getEngine().getNEntityStream().addEntity(effect);
     }
 

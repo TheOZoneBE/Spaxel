@@ -47,12 +47,12 @@ public class EquipSystem extends GameSystem {
                     entity.removeComponent(ComponentType.POSITION);
                     entity.removeComponent(ComponentType.AGE);
                     entity.removeComponent(ComponentType.VELOCITY);
+                    entity.removeComponent(ComponentType.AI);
                     //add to inventory
                     ItemComponent ic = (ItemComponent)entity.getComponent(ComponentType.ITEM);
                     switch(ic.getItemType()){
                         case SHIP:
                             ShipComponent sc = (ShipComponent)collider.getComponent(ComponentType.SHIP);
-                            //TODO add renderer + link to effect
                             sc.addItem(entity);
                             break;
                         case PRIMARY:

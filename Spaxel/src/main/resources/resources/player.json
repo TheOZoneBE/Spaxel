@@ -64,7 +64,7 @@
       {
         "type": "SHIP",
         "itemIndustries": [
-          "basic_shield_item_industry"
+          "force_shield_item_industry"
         ]
       },
       {

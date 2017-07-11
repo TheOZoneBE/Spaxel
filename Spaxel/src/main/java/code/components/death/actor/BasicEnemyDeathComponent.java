@@ -2,6 +2,7 @@ package code.components.death.actor;
 
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
+import code.components.ai.DroppedItemAIComponent;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.equip.EquipComponent;
@@ -50,6 +51,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(epc.clone());
             item.addComponent(entity.getComponent(ComponentType.VELOCITY));
             item.addComponent(entity.getComponent(ComponentType.RENDER));
+            item.addComponent(new DroppedItemAIComponent());
             Engine.getEngine().getNEntityStream().addEntity(item);
         }
     }

@@ -268,5 +268,167 @@
         "hitShape": "hitshape_dropped_item"
       }
     ]
+  },
+  "anti_shield_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "anti_shield_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 75
+      },
+      {
+        "type": "ITEM",
+        "name": "anti_shield",
+        "capacity": 35,
+        "maxCapacity": 35,
+        "effectIndustry": {
+          "type": "VISUAL_EFFECT",
+          "factories": [
+            {
+              "type": "SPRITE",
+              "sprite": "anti_shield_effect",
+              "scale": 4
+            },
+            {
+              "type": "RENDER",
+              "visible": false,
+              "renderers": [
+                {
+                  "type": "SPRITESHEET"
+                },
+                {
+                  "type": "LINK_LINK_VELOCITY"
+                },
+                {
+                  "type": "SHIELD"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "active_shield_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "active_shield_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 75
+      },
+      {
+        "type": "ITEM",
+        "name": "active_shield",
+        "capacity": 35,
+        "maxCapacity": 35,
+        "effectIndustry": {
+          "type": "VISUAL_EFFECT",
+          "factories": [
+            {
+              "type": "SPRITE",
+              "sprite": "active_shield_effect",
+              "scale": 4
+            },
+            {
+              "type": "RENDER",
+              "visible": false,
+              "renderers": [
+                {
+                  "type": "SPRITESHEET"
+                },
+                {
+                  "type": "LINK_LINK_VELOCITY"
+                },
+                {
+                  "type": "SHIELD"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
+  },
+  "force_shield_item_industry": {
+    "type": "ITEM",
+    "factories": [
+      {
+        "type": "SPRITE",
+        "sprite": "force_shield_item",
+        "scale": 1
+      },
+      {
+        "type": "COOLDOWN",
+        "cd": 0,
+        "cdAmount": 75
+      },
+      {
+        "type": "ITEM",
+        "name": "force_shield",
+        "capacity": 35,
+        "maxCapacity": 35,
+        "effectIndustry": {
+          "type": "VISUAL_EFFECT",
+          "factories": [
+            {
+              "type": "SPRITE",
+              "sprite": "force_shield_effect",
+              "scale": 4
+            },
+            {
+              "type": "RENDER",
+              "visible": false,
+              "renderers": [
+                {
+                  "type": "SPRITESHEET"
+                },
+                {
+                  "type": "LINK_LINK_VELOCITY"
+                },
+                {
+                  "type": "SHIELD"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "STACK",
+        "stacks": 1
+      },
+      {
+        "type": "COLLISION",
+        "hitShape": "hitshape_dropped_item"
+      }
+    ]
   }
 }

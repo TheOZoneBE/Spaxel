@@ -7,7 +7,6 @@ import java.util.Map;
 
 import code.Game;
 import code.collision.HitShape;
-import code.entity.SpaceCarrier;
 import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
 import code.logger.Logger;
@@ -17,19 +16,16 @@ import code.system.RenderSystem;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
-import code.inventory.*;
 import code.system.*;
 import code.loaders.*;
 import code.ui.Controller;
 import code.ui.UI;
-import code.ui.UIButton;
 
 
 final public class Engine {
 	private final static Engine engine = new Engine();
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
-	private EntityStream entities;
 	private NEntityStream nentities;
 	private List<Music> musicList;
 	private Map<String, EntityIndustry> industryMap;
@@ -43,7 +39,6 @@ final public class Engine {
 	private ItemCatalogue items;
 	private boolean loading = true;
 	private float updateTime;
-	public SpaceCarrier temp;
 	private Font font;
 	private long window;
 	private VectorF screenOffset;
@@ -60,7 +55,6 @@ final public class Engine {
 	
 	private Engine(){
 		gameProperties = new GameProperties();
-		entities = new EntityStream();
 		nentities = new NEntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
@@ -121,7 +115,6 @@ final public class Engine {
         });
 
 
-        entities.cleanup();
         nentities.cleanup();
 
         //Game.game.loadingScreen.getMessage().setText("Initializing systems");
@@ -163,7 +156,6 @@ final public class Engine {
     }
 
 	public void stopGame(){
-		entities.clear();
 		nentities.clear();
 		gameProperties = new GameProperties();
 		logger = null;
@@ -187,10 +179,6 @@ final public class Engine {
 
 	public void setMouseWrapper(MouseWrapper wrapper){
 		this.mouseWrapper = wrapper;
-	}
-	
-	public EntityStream getEntityStream(){
-		return entities;
 	}
 
 	public NEntityStream getNEntityStream() {

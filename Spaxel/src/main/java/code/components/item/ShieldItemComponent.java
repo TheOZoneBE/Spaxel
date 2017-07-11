@@ -1,11 +1,8 @@
 package code.components.item;
 
-import code.components.ComponentType;
 import code.components.link.LinkComponent;
-import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.inventory.ShieldItem;
 
 /**
  * Created by theo on 8/07/17.

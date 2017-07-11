@@ -1,7 +1,6 @@
 package code.system;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 import code.Game;
@@ -9,7 +8,6 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.*;
-import code.entity.Entity;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.graphics.SpriteData;

@@ -1,12 +1,7 @@
 package code.ui;
 
-import code.components.ComponentType;
-import code.components.ship.ShipComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.engine.SystemType;
-import code.entity.ActorType;
-import code.system.UISystem;
 
 /**
  * Created by theo on 21-6-2016.

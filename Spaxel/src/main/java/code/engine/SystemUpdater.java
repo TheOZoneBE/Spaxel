@@ -75,7 +75,6 @@ public class SystemUpdater {
 
                 //Engine.getEngine().temp.update();
             }
-            Engine.getEngine().getEntityStream().cleanup();
             Engine.getEngine().getNEntityStream().cleanup();
             if(Engine.getEngine().getGameProperties().isLogging()){
                 Engine.getEngine().getLogger().cleanup();

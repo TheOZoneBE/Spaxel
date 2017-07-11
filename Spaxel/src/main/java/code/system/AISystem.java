@@ -11,7 +11,6 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
-import code.entity.*;
 import code.factories.entities.EnemyIndustry;
 import code.math.VectorF;
 

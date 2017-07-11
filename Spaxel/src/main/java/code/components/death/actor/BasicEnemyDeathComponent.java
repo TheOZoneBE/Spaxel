@@ -13,7 +13,6 @@ import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
-import code.entity.DroppedItem;
 import code.factories.entities.SpawnerIndustry;
 
 import java.util.ArrayList;

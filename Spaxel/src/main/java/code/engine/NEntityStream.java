@@ -2,7 +2,6 @@ package code.engine;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.entity.Entity;
 
 import java.util.*;
 

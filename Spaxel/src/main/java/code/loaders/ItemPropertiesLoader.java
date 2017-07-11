@@ -1,18 +1,12 @@
 package code.loaders;
 
-import code.engine.EntityType;
-import code.factories.ProjectileFactory;
-import code.graphics.SpriteData;
-import code.inventory.*;
+import code.engine.ItemCatalogue;
+import code.engine.ItemProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.List;
-import java.util.Map;
 
 public class ItemPropertiesLoader extends Loader {
 

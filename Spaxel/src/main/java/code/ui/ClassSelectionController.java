@@ -22,28 +22,27 @@ public class ClassSelectionController extends Controller{
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_white_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
-        //ActorType.WHITE.initialize();
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectRed(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        //TODO red player
-        //ActorType.RED.initialize();
+        NEntity player = Engine.getEngine().getIndustryMap().get("player_red_industry").produce();
+        Engine.getEngine().getNEntityStream().addEntity(player);
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectGreen(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        //TODO green player
-        //ActorType.GREEN.initialize();
+        NEntity player = Engine.getEngine().getIndustryMap().get("player_green_industry").produce();
+        Engine.getEngine().getNEntityStream().addEntity(player);
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 
     public void selectBlue(){
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
-        //TODO blue player
-        //ActorType.BLUE.initialize();
+        NEntity player = Engine.getEngine().getIndustryMap().get("player_blue_industry").produce();
+        Engine.getEngine().getNEntityStream().addEntity(player);
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
 }

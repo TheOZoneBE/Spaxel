@@ -133,8 +133,6 @@ public class Game implements Runnable {
 		Thread load = new Thread(() -> Engine.getEngine().startLoading());
 		load.start();
 
-		Engine.getEngine().startLoading();
-
 		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
@@ -154,6 +152,7 @@ public class Game implements Runnable {
 			}
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
+
 			} else {
 				render();
 			}

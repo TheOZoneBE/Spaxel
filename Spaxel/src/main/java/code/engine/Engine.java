@@ -85,17 +85,17 @@ final public class Engine {
 		Game.game.loadingScreen.getProgress().setPercent(0.05f);
 		SoundLoader sounds = new SoundLoader();
 		musicList = sounds.loadSounds("/resources/sound.json");*/
-		//TODO fix loading screen
-        //Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
-        //Game.game.loadingScreen.getProgress().setPercent(0.4f);
+
+        Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
+        Game.game.loadingScreen.getProgress().setPercent(0.4f);
         hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
 
-        //Game.game.loadingScreen.getMessage().setText("Loading items");
-        //Game.game.loadingScreen.getProgress().setPercent(0.65f);
+        Game.game.loadingScreen.getMessage().setText("Loading items");
+        Game.game.loadingScreen.getProgress().setPercent(0.65f);
         items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
 
-        //Game.game.loadingScreen.getMessage().setText("Loading UI");
-        //Game.game.loadingScreen.getProgress().setPercent(0.8f);
+        Game.game.loadingScreen.getMessage().setText("Loading UI");
+        Game.game.loadingScreen.getProgress().setPercent(0.8f);
         UIAtlas = new UIElementLoader().loadUIElements(new String[]{
         		"/ui/main.xml",
 				"/ui/credits.xml",
@@ -117,8 +117,8 @@ final public class Engine {
 
         nentities.cleanup();
 
-        //Game.game.loadingScreen.getMessage().setText("Initializing systems");
-        //Game.game.loadingScreen.getProgress().setPercent(0.9f);
+        Game.game.loadingScreen.getMessage().setText("Initializing systems");
+        Game.game.loadingScreen.getProgress().setPercent(0.9f);
         //systems
         addSystem(new SoundSystem());
         addSystem(new UISystem());

@@ -1,6 +1,9 @@
 package code.engine;
 
+import code.components.position.PositionComponent;
+import code.components.sprite.SpriteComponent;
 import code.graphics.MasterBuffer;
+import code.math.VectorF;
 import code.ui.UILabel;
 import code.graphics.SpriteData;
 import code.ui.UIBar;
@@ -19,9 +22,18 @@ public class LoadingScreen {
 
     public LoadingScreen(){
         overlay = new SpriteData(1280, 720, 0xff000000);
-        //progress = new UIBar(320,640,640, (float)Math.PI/2, new SpriteData(1,8, 0xffffffff));
-        //message = new UILabel(640,680, "",2);
-        //title = new UILabel(640, 320, "SPAXEL", 18);
+        progress = new UIBar();
+        progress.setPosition(new PositionComponent(new VectorF(320, 80), 1));
+        progress.setWidth(640);
+        progress.setSprite(new SpriteComponent(new SpriteData(1,8, 0xffffffff), 1));
+        message = new UILabel();
+        message.setPosition(new PositionComponent(new VectorF(640,40), 0));
+        message.setScale(2);
+        message.setText("");
+        title = new UILabel();
+        title.setPosition(new PositionComponent(new VectorF(640, 400), 0));
+        title.setText("SPAXEL");
+        title.setScale(16);
     }
 
     public UIBar getProgress(){
@@ -37,6 +49,5 @@ public class LoadingScreen {
         progress.render(buffer);
         message.render(buffer);
         title.render(buffer);
-
     }
 }

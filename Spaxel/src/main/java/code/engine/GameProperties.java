@@ -8,6 +8,7 @@ import code.math.VectorF;
 public class GameProperties {
     private int score;
     private int gameTime;
+    private long timeOverflow;
     private boolean debug;
     private boolean logging;
 
@@ -45,5 +46,11 @@ public class GameProperties {
 
     public void setLogging(boolean logging) {
         this.logging = logging;
+    }
+
+    public void addTime(long updateTime){
+        timeOverflow += updateTime;
+        gameTime += timeOverflow / 1000000000;
+        timeOverflow %= 1000000000l;
     }
 }

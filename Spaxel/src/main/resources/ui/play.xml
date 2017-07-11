@@ -24,6 +24,17 @@
             <text>score</text>
         </UILabel>
         <UILabel class="UILabel">
+            <id>play_game_time</id>
+            <position>
+                <coord>
+                    <x>864</x>
+                    <y>704</y>
+                </coord>
+            </position>
+            <scale>2</scale>
+            <text>00\00</text>
+        </UILabel>
+        <UILabel class="UILabel">
             <id>play_hp_label</id>
             <position>
                 <coord>

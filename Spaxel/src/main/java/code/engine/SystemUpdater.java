@@ -72,7 +72,7 @@ public class SystemUpdater {
                 update(SystemType.EQUIP);
                 update(SystemType.EXPERIENCE);
                 update(SystemType.UI);
-
+                Engine.getEngine().getGameProperties().addTime(20000000);
                 //Engine.getEngine().temp.update();
             }
             Engine.getEngine().getNEntityStream().cleanup();

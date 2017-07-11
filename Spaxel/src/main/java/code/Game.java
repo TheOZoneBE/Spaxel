@@ -162,7 +162,6 @@ public class Game implements Runnable {
 			if (ups == 50){
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
 				fps = 0;
-				accTime = 0;
 				ups = 0;
 			}
 			Engine.getEngine().setUpdateTime((float)deltatime/ 20000000);

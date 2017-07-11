@@ -25,6 +25,7 @@ public class PlayController extends Controller{
     UILabel xpLabel;
     UILabel hpLabel;
     UILabel scoreCounter;
+    UILabel gameTime;
     UIElement primaryContainer;
     UIElement secondaryContainer;
     UIElement shipContainer;
@@ -36,6 +37,7 @@ public class PlayController extends Controller{
         xpLabel = (UILabel)root.findById("play_xp_label");
         hpLabel = (UILabel)root.findById("play_hp_label");
         scoreCounter = (UILabel)root.findById("play_score_counter");
+        gameTime = (UILabel)root.findById("play_game_time");
         primaryContainer = root.findById("play_primary_container");
         secondaryContainer = root.findById("play_secondary_container");
         shipContainer = root.findById("play_ship_container");
@@ -54,6 +56,10 @@ public class PlayController extends Controller{
         hpBar.setPercent((float)hc.getHealth()/(float)hc.getMaxHealth());
         hpLabel.setText(hc.getHealth() + " / " + hc.getMaxHealth());
         scoreCounter.setText(String.valueOf(Engine.getEngine().getGameProperties().getScore()));
+        int gt = Engine.getEngine().getGameProperties().getGameTime();
+        int min = gt / 60;
+        int sec = gt % 60;
+        gameTime.setText(min + "\\" + sec);
     }
 
     public void updateItems(NEntity player) {

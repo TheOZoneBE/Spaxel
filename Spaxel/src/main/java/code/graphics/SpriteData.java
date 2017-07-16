@@ -1,10 +1,7 @@
 package code.graphics;
 
 import code.engine.Engine;
-import code.math.VectorF;
 import com.fasterxml.jackson.annotation.JsonSetter;
-
-import java.util.Random;
 
 public class SpriteData {
 	private int width;
@@ -22,7 +19,6 @@ public class SpriteData {
 	private int spritesheetID;
 	private Spritesheet spritesheet;
 	private int color;
-	private Random r;
 
 	private SpriteData(){
 
@@ -47,7 +43,6 @@ public class SpriteData {
 		sheetYscale = (float)height / spritesheet.getHeight();
 		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
 		color = 0;
-		r = new Random();
 	}
 	
 	public SpriteData(int width, int height, int color){
@@ -56,41 +51,6 @@ public class SpriteData {
 		this.color = color;
 		this.spritesheetID = 0;
 		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
-		r = new Random();
-	}
-
-	//new render method, just send all the information to a buffer
-	//TODO depricate
-	public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
-		float[] trsc = new float[]{
-				x, y, width*scale, height*scale
-		};
-
-		float[] sinCos = new float[]{
-				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
-		};
-
-		render.addNewSprite(new RenderData(spritesheetID, trsc, sinCos, spriteProperties));
-	}
-
-	//again a new render method
-	//TODO temporary: render rework move this out of spritedata
-	public void renderSprite(VectorF pos, int scale, float rot, float transparency, MasterBuffer render){
-		float[] trsc = new float[]{
-				pos.getValue(0), pos.getValue(1), width*scale, height*scale
-		};
-
-		float[] sinCos = new float[]{
-				(float)Math.sin(rot), (float)Math.cos(rot), transparency, color
-		};
-
-		render.addNewSprite(new RenderData(spritesheetID, trsc, sinCos, spriteProperties));
-	}
-
-	public SpriteData getRandomPart(int width, int height){
-		int x = r.nextInt(this.width - width);
-		int y = r.nextInt(this.height - height);
-		return new SpriteData(width, height, xPos + x, yPos + y, spritesheet);
 	}
 
 	public int getWidth() {
@@ -152,5 +112,13 @@ public class SpriteData {
 
 	public int getSpritesheetID() {
 		return spritesheetID;
+	}
+
+	public Spritesheet getSpritesheet(){
+		return spritesheet;
+	}
+
+	public int getColor(){
+		return color;
 	}
 }

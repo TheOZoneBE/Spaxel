@@ -13,8 +13,7 @@ public class ShieldRenderer extends Renderer{
     public void apply(RenderData data, NEntity entity){
         NEntity link = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
         ShieldItemComponent shc = (ShieldItemComponent) link.getComponent(ComponentType.ITEM);
-        float[] sinCos = data.getSinCos();
-        sinCos[2] = ((float)shc.getCapacity()/shc.getMaxCapacity())/2 + (float)0.15;
-        data.setSinCos(sinCos);
+
+        data.setAlpha(((float)shc.getCapacity()/shc.getMaxCapacity())/2 + (float)0.15);
     }
 }

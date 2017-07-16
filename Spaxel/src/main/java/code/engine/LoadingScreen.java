@@ -7,12 +7,13 @@ import code.math.VectorF;
 import code.ui.UILabel;
 import code.graphics.SpriteData;
 import code.ui.UIBar;
+import code.ui.UIVisual;
 
 /**
  * Created by theo on 31-5-2016.
  */
 public class LoadingScreen {
-    private SpriteData overlay;
+    private UIVisual overlay;
 
     private UIBar progress;
 
@@ -21,7 +22,9 @@ public class LoadingScreen {
     private UILabel title;
 
     public LoadingScreen(){
-        overlay = new SpriteData(1280, 720, 0xff000000);
+        overlay = new UIVisual();
+        overlay.setPosition(new PositionComponent(new VectorF(640,360),0));
+        overlay.setSprite(new SpriteComponent(new SpriteData(1280, 720, 0xff000000), 1));
         progress = new UIBar();
         progress.setPosition(new PositionComponent(new VectorF(320, 80), 1));
         progress.setWidth(640);
@@ -45,7 +48,7 @@ public class LoadingScreen {
     }
 
     public void render(MasterBuffer buffer){
-        overlay.renderSprite(0,0,1, 0,1,false, buffer);
+        overlay.render(buffer);
         progress.render(buffer);
         message.render(buffer);
         title.render(buffer);

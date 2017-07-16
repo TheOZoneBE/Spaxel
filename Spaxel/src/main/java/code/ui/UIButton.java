@@ -7,6 +7,7 @@ import code.collision.HitShape;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
+import code.graphics.RenderData;
 import code.input.MouseWrapper;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
@@ -81,7 +82,16 @@ public class UIButton extends UIVisual {
 		else {
 			toRender = sprite;
 		}
-		toRender.getSprite().renderSprite(position.getCoord(), toRender.getScale(), position.getRot(), 1, buffer);
+
+		RenderData data = new RenderData();
+		data.setPos(position.getCoord());
+		data.setRot(position.getRot());
+		data.setXScale(toRender.getScale()*toRender.getSprite().getWidth());
+		data.setYScale(toRender.getScale()*toRender.getSprite().getHeight());
+		data.setSpriteSheetID(toRender.getSprite().getSpritesheetID());
+		data.setTexOffset(toRender.getSprite().getSpriteProperties());
+		buffer.addNewSprite(data);
+
 		for(UIElement child: children){
 			child.render(buffer);
 		}

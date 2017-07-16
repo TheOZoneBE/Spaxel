@@ -9,6 +9,7 @@ import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
+import code.util.SpriteDataUtil;
 
 /**
  * Created by theo on 18/06/17.
@@ -22,7 +23,7 @@ public class BasicLaserHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, victim,new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale()), "laser_hit_particle_spawner_industry");
+        addParticleSpawner(entity, victim,new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(),3,3), sc.getScale()), "laser_hit_particle_spawner_industry");
 
         Engine.getEngine().getNEntityStream().removeEntity(entity);
     }

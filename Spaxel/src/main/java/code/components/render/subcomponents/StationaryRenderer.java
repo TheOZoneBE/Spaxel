@@ -16,10 +16,8 @@ public class StationaryRenderer extends Renderer {
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
         VectorF pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset());
-        data.setTrSc(new float[]{pos.getValue(0), pos.getValue(1), sc.getSprite().getWidth()*sc.getScale(), sc.getSprite().getHeight()*sc.getScale()});
-        float[] sinCos = data.getSinCos();
-        sinCos[0] = (float)Math.sin(pc.getRot());
-        sinCos[1] = (float)Math.cos(pc.getRot());
-        data.setSinCos(sinCos);
+
+        data.setPos(pos);
+        data.setRot(pc.getRot());
     }
 }

@@ -13,7 +13,6 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 public class Spritesheet {
 	private int width;
 	private int height;
-	private int[] pixels;
 	private String path;
 	private int id;
 
@@ -29,7 +28,7 @@ public class Spritesheet {
 	}
 
 	public void load() {
-		pixels = new int[width * height];
+		int[] pixels = new int[width * height];
 		try {
 			BufferedImage image = ImageIO.read(getClass().getResource(path));
 			image.getRGB(0, 0, width, height, pixels, 0, width);
@@ -57,10 +56,6 @@ public class Spritesheet {
 
 	public int getId(){
 		return id;
-	}
-
-	public int[] getPixels() {
-		return pixels;
 	}
 
 	public int getWidth() {

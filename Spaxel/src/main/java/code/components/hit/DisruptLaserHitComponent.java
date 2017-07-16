@@ -13,6 +13,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.EffectIndustry;
 import code.factories.entities.SpawnerIndustry;
+import code.util.SpriteDataUtil;
 
 /**
  * Created by theod on 28-6-2017.
@@ -26,7 +27,7 @@ public class DisruptLaserHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, victim,new ParticleComponent(sc.getSprite().getRandomPart(3,3), sc.getScale()), "laser_hit_particle_spawner_industry");
+        addParticleSpawner(entity, victim,new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(),3,3), sc.getScale()), "laser_hit_particle_spawner_industry");
 
         addEffect(victim, "disable_move_effect_industry");
 

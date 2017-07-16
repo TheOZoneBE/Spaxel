@@ -22,10 +22,10 @@ public class LinkLinkVelocityRenderer extends Renderer {
         SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
         VectorF pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset()).sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
         float rot = pc.getRot() + vc.getDeltaRot()*Engine.getEngine().getUpdateTime();
-        data.setTrSc(new float[]{pos.getValue(0), pos.getValue(1), sc.getSprite().getWidth()*sc.getScale(), sc.getSprite().getHeight()*sc.getScale()});
-        float[] sinCos = data.getSinCos();
-        sinCos[0] = (float)Math.sin(rot);
-        sinCos[1] = (float)Math.cos(rot);
-        data.setSinCos(sinCos);
+
+        data.setPos(pos);
+        data.setXScale(sc.getSprite().getWidth()*sc.getScale());
+        data.setYScale(sc.getSprite().getWidth()*sc.getScale());
+        data.setRot(rot);
     }
 }

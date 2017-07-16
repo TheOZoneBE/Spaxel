@@ -5,6 +5,7 @@ import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.util.SpriteDataUtil;
 
 /**
  * Created by theo on 8/07/17.
@@ -18,7 +19,7 @@ public class HomingMissileHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent)victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, victim, new ParticleComponent(sc.getSprite().getRandomPart(4,4), sc.getScale()), "missile_hit_particle_spawner_industry");
+        addParticleSpawner(entity, victim, new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(),4,4), sc.getScale()), "missile_hit_particle_spawner_industry");
 
         Engine.getEngine().getNEntityStream().removeEntity(entity);
     }

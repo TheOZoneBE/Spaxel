@@ -2,6 +2,7 @@ package code.ui;
 
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
+import code.graphics.RenderData;
 import code.graphics.SpriteData;
 import code.math.VectorF;
 
@@ -24,7 +25,14 @@ public class UILabel extends UIElement{
 			if (!c.equals(" ")){
 				SpriteData cSprite = Engine.getEngine().getSpriteAtlas().get(c);
 				if (cSprite != null){
-					cSprite.renderSprite(position.getCoord().sum(offset), scale, position.getRot(), 1, buffer);
+					RenderData data = new RenderData();
+					data.setPos(position.getCoord().sum(offset));
+					data.setRot(position.getRot());
+					data.setXScale(scale*cSprite.getWidth());
+					data.setYScale(scale*cSprite.getHeight());
+					data.setSpriteSheetID(cSprite.getSpritesheetID());
+					data.setTexOffset(cSprite.getSpriteProperties());
+					buffer.addNewSprite(data);
 				}
 			}
 			if (c.equals("\\")){

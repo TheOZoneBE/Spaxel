@@ -14,6 +14,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
+import code.util.SpriteDataUtil;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +34,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("enemy_death_particle_spawner_industry");
         SpriteComponent esc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
         PositionComponent epc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        ParticleComponent pac = new ParticleComponent(esc.getSprite().getRandomPart(6,6), esc.getScale());
+        ParticleComponent pac = new ParticleComponent(SpriteDataUtil.getRandomPart(esc.getSprite(),6,6), esc.getScale());
         //add particle effect
         Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, pac));
 

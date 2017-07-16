@@ -1,6 +1,7 @@
 package code.ui;
 
 import code.graphics.MasterBuffer;
+import code.graphics.RenderData;
 import code.math.VectorF;
 
 public class UIBar extends UIVisual{
@@ -8,11 +9,16 @@ public class UIBar extends UIVisual{
 	private float percent;
 	
 	public void render(MasterBuffer buffer){
-		int renderWidth = (int)(width * percent);
-		VectorF dxy = new VectorF(Math.round(Math.sin(position.getRot()*Math.PI/2)), Math.round(Math.cos(position.getRot()*Math.PI/2)));
-		for (int i = 0; i < renderWidth; i++){
-			sprite.getSprite().renderSprite(position.getCoord().sum(dxy.multiplicate(i)), sprite.getScale(), (float)Math.PI/2*(position.getRot() -1), 1, buffer);
-		}
+		float renderWidth = width * percent;
+		VectorF offset = new VectorF(Math.round(Math.sin(position.getRot()*Math.PI/2)), Math.round(Math.cos(position.getRot()*Math.PI/2))).multiplicate(renderWidth/2);
+		RenderData data = new RenderData();
+		data.setPos(position.getCoord().sum(offset));
+		data.setRot((float)Math.PI/2*(position.getRot()-1));
+		data.setXScale(renderWidth*sprite.getSprite().getWidth());
+		data.setYScale(sprite.getSprite().getHeight()*sprite.getScale());
+		data.setColor(sprite.getSprite().getColor());
+		buffer.addNewSprite(data);
+
 		for(UIElement child: children){
 			child.render(buffer);
 		}

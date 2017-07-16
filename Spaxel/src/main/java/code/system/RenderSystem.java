@@ -10,6 +10,7 @@ import code.components.render.RenderComponent;
 import code.engine.*;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
+import code.graphics.RenderData;
 import code.graphics.SpriteData;
 import code.input.MouseWrapper;
 import code.logger.DebugRenderer;
@@ -65,7 +66,13 @@ public class RenderSystem extends GameSystem {
 		VectorF origin = new VectorF(Engine.getEngine().getScreenOffset().getValue(0)% 64, Engine.getEngine().getScreenOffset().getValue(1) % 64);
 		for (int i =  0; i < Game.GAME_WIDTH; i += 64){
 			for (int j = 0; j < Game.GAME_HEIGHT; j+= 64){
-				dot.renderSprite(origin.sum(new VectorF(i, j)), 1,0,1, bufferBuffer);
+				RenderData data = new RenderData();
+				data.setPos(origin.sum(new VectorF(i, j)));
+				data.setXScale(dot.getWidth());
+				data.setYScale(dot.getHeight());
+				data.setRot(0);
+				data.setColor(dot.getColor());
+				bufferBuffer.addNewSprite(data);
 			}
 		}
 	}

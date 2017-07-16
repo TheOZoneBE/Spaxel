@@ -2,12 +2,21 @@ package code.ui;
 
 import code.components.sprite.SpriteComponent;
 import code.graphics.MasterBuffer;
+import code.graphics.RenderData;
 
 public class UIVisual extends UIElement {
 	protected SpriteComponent sprite;
 
 	public void render(MasterBuffer buffer){
-		sprite.getSprite().renderSprite(position.getCoord(), sprite.getScale(), position.getRot(), 1, buffer);
+		RenderData data = new RenderData();
+		data.setPos(position.getCoord());
+		data.setRot(position.getRot());
+		data.setXScale(sprite.getScale()*sprite.getSprite().getWidth());
+		data.setYScale(sprite.getScale()*sprite.getSprite().getHeight());
+		data.setSpriteSheetID(sprite.getSprite().getSpritesheetID());
+		data.setTexOffset(sprite.getSprite().getSpriteProperties());
+		buffer.addNewSprite(data);
+
 		for(UIElement child: children){
 			child.render(buffer);
 		}

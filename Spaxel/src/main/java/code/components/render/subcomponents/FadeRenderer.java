@@ -11,8 +11,7 @@ import code.graphics.RenderData;
 public class FadeRenderer extends Renderer {
     public void apply(RenderData data, NEntity entity){
         AgeComponent ac = (AgeComponent)entity.getComponent(ComponentType.AGE);
-        float[] sinCos = data.getSinCos();
-        sinCos[2] = (float)ac.getLife()/ac.getMaxLife();
-        data.setSinCos(sinCos);
+
+        data.setAlpha((float)ac.getLife()/ac.getMaxLife());
     }
 }

@@ -1,14 +1,17 @@
 
 package code.graphics;
 
+import code.math.VectorF;
+
 /**
  * Created by theod on 22/10/2016.
  */
 
 public class RenderData {
+    private float[] texOffset;
     private float[] trSc;
     private float[] sinCos;
-    private float[] texOffset;
+
     private int spriteSheetID;
 
     public RenderData(){
@@ -55,5 +58,31 @@ public class RenderData {
 
     public void setSpriteSheetID(int spriteSheetID) {
         this.spriteSheetID = spriteSheetID;
+    }
+
+    public void setPos(VectorF pos){
+        trSc[0] = pos.getValue(0);
+        trSc[1] = pos.getValue(1);
+    }
+
+    public void setXScale(float xScale){
+        trSc[2] = xScale;
+    }
+
+    public void setYScale(float yScale){
+        trSc[3] = yScale;
+    }
+
+    public void setRot(float rot){
+        sinCos[0] = (float)Math.sin(rot);
+        sinCos[1] = (float)Math.cos(rot);
+    }
+
+    public void setAlpha(float alpha){
+        sinCos[2] = alpha;
+    }
+
+    public void setColor(int color){
+        sinCos[3] = color;
     }
 }

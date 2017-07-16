@@ -11,6 +11,7 @@ import code.graphics.RenderData;
 public class SpriteSheetRenderer extends Renderer {
     public void apply(RenderData data, NEntity entity){
         SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
+
         data.setTexOffset(sc.getSprite().getSpriteProperties());
         data.setSpriteSheetID(sc.getSprite().getSpritesheetID());
     }

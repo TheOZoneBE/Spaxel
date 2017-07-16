@@ -28,93 +28,29 @@ import org.lwjgl.opengl.GLCapabilities;
  *
  */
 public class MasterRenderer {
-
+    private Quad fboQuad;
+    private InstancedQuad allQuad;
+    private InstancedShaderProgram instancedShader;
 
     public MasterRenderer(){
         initialize();
     }
 
-    private void loadBuffer(int bufferID, FloatBuffer buffer){
-        glBindBuffer(GL_ARRAY_BUFFER, bufferID);
-        glBufferData(GL_ARRAY_BUFFER, buffer, GL_DYNAMIC_DRAW);
-    }
-
-    public float[] testVertices = new float[]{
-            -.5f,-.5f,0,
-            -.5f,.5f,0,
-            .5f,.5f,0,
-            .5f,-.5f,0
-    };
-
-    byte[] indices = new byte[] {
-            0, 1, 3,
-            3, 1, 2
-    };
-
-    float[] tcs = new float[] {
-            0, 1,
-            0, 0,
-            1, 0,
-            1, 1
-    };
-
-    int shaderprogram;
-
-    private int vbo, vao,ibo, tbo, texOffsetScale, trSc, sinCosAlpha;
-
     public void initialize(){
-        shaderprogram = ShaderUtils.load("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
+        instancedShader = new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
+        instancedShader.enable();
 
-        MatrixF projection_matrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
+        MatrixF projectionMatrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
 
+        instancedShader.setTexSampler(1);
+        instancedShader.setProjectionMatrix(projectionMatrix);
 
-        glUseProgram(shaderprogram);
-
-        int uniform_pr = glGetUniformLocation(shaderprogram, "projection_matrix");
-        int uniform_sa = glGetUniformLocation(shaderprogram, "tex_sampler");
-
-        glUniformMatrix4fv(uniform_pr, false, projection_matrix.toFloatBuffer());
-        glUniform1i(uniform_sa, 1);
-
-        vao = glGenVertexArrays();
-        glBindVertexArray(vao);
-
-        vbo = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(testVertices), GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
-        glEnableVertexAttribArray(0);
-
-        tbo = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, tbo);
-        glBufferData(GL_ARRAY_BUFFER, BufferUtils.createFloatBuffer(tcs), GL_STATIC_DRAW);
-        glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
-        glEnableVertexAttribArray(1);
-
-        ibo = glGenBuffers();
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.createByteBuffer(indices), GL_STATIC_DRAW);
-
-        trSc = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, trSc);
-        glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2,4,GL_FLOAT, false, 4*4,0);
-        glVertexAttribDivisor(2,1);
-
-        texOffsetScale = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, texOffsetScale);
-        glEnableVertexAttribArray(3);
-        glVertexAttribPointer(3,4,GL_FLOAT, false, 4*4,0);
-        glVertexAttribDivisor(3,1);
-
-        sinCosAlpha = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, sinCosAlpha);
-        glEnableVertexAttribArray(4);
-        glVertexAttribPointer(4,4,GL_FLOAT, false, 4*4,0);
-        glVertexAttribDivisor(4,1);
+        allQuad = new InstancedQuad();
+        fboQuad = new Quad();
     }
 
     public void render(MasterBuffer masterBuffer){
+        allQuad.bind();
         Map<Integer, List<RenderData>> buffers = masterBuffer.getData();
         for(Integer i: buffers.keySet()){
             render(new RenderBuffer(buffers.get(i)), i);
@@ -123,15 +59,20 @@ public class MasterRenderer {
 
     public void render(RenderBuffer buffer, int spritesheet) {
         if (buffer.size() >0){
-            loadBuffer(trSc, buffer.getTrscBuffer());
-            loadBuffer(sinCosAlpha, buffer.getSinCosBuffer());
-            loadBuffer(texOffsetScale, buffer.getTexOffsetBuffer());
+            loadBuffer(allQuad.getTransScale(), buffer.getTrscBuffer());
+            loadBuffer(allQuad.getSinCosAlphaColor(), buffer.getSinCosBuffer());
+            loadBuffer(allQuad.getTexOffsetScale(), buffer.getTexOffsetBuffer());
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindTexture(GL_TEXTURE_2D, spritesheet);
 
             glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE,0,buffer.size());
         }
+    }
+
+    private void loadBuffer(int bufferID, FloatBuffer buffer){
+        glBindBuffer(GL_ARRAY_BUFFER, bufferID);
+        glBufferData(GL_ARRAY_BUFFER, buffer, GL_DYNAMIC_DRAW);
     }
 
 }

@@ -2,11 +2,13 @@ package code.math;
 
 public class MatrixMaker {
 
-	public static MatrixF getTransformationMatrix(VectorF coord,  float rot, float scale) {
+	public static MatrixF getTransformationMatrix(VectorF coord,  float rot, float xScale, float yScale) {
 		float sin = (float)Math.sin(rot);
 		float cos = (float)Math.cos(rot);
-		MatrixF mat = new MatrixF(3, 3, new float[] { cos, sin, coord.getValue(0),-sin, cos, coord.getValue(1), 0, 0, 1 });
-		return mat.multiply(scale);
+		MatrixF mat = new MatrixF(3, 3, new float[] { cos, sin, 0,-sin, cos, 0, 0, 0, 1 }).multiplicate(new MatrixF(3,3, new float[]{xScale, 0,0,0,yScale, 0,0,0,1}));
+		mat.setValue(0,2, coord.getValue(0));
+		mat.setValue(1,2, coord.getValue(1));
+		return mat;
 	}
 
 	public static MatrixF orthographic(float left, float right, float bottom, float top, float near, float far){

@@ -29,13 +29,13 @@ public class HitSystem extends GameSystem {
             NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
             CollisionComponent cc = (CollisionComponent)entity.getComponent(ComponentType.COLLISION);
             PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-            MatrixF eTransform = MatrixMaker.getTransformationMatrix(pc.getCoord(), pc.getRot(), 1);
+            MatrixF eTransform = MatrixMaker.getTransformationMatrix(pc.getCoord(), pc.getRot(), 1,1);
             HitShape updated = cc.getHitShape().update(eTransform);
             for (NEntity collider: colliders){
                 if(collider != parent){
                     CollisionComponent ccc = (CollisionComponent)collider.getComponent(ComponentType.COLLISION);
                     PositionComponent cpc = (PositionComponent)collider.getComponent(ComponentType.POSITION);
-                    MatrixF cTransform = MatrixMaker.getTransformationMatrix(cpc.getCoord(), cpc.getRot(), 1);
+                    MatrixF cTransform = MatrixMaker.getTransformationMatrix(cpc.getCoord(), cpc.getRot(), 1,1);
                     if(ccc.getHitShape().update(cTransform).collision(updated)){
                         HitComponent hc = (HitComponent)entity.getComponent(ComponentType.HIT);
                         hc.hit(entity, collider);

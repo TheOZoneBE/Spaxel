@@ -33,7 +33,7 @@ public class UIButton extends UIVisual {
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
 			boolean buttonDown = mouseWrapper.mouse1;
-			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1);
+			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1,1);
 			HitShape updated = hitShape.update(transform);
 			boolean inside = updated.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
 			//TODO revisit

@@ -34,12 +34,12 @@ public class EquipSystem extends GameSystem {
         for (NEntity entity: entities){
             CollisionComponent cc = (CollisionComponent)entity.getComponent(ComponentType.COLLISION);
             PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-            MatrixF eTransform = MatrixMaker.getTransformationMatrix(pc.getCoord(), pc.getRot(), 1);
+            MatrixF eTransform = MatrixMaker.getTransformationMatrix(pc.getCoord(), pc.getRot(), 1,1);
             HitShape updated = cc.getHitShape().update(eTransform);
             for (NEntity collider: colliders){
                 CollisionComponent ccc = (CollisionComponent)collider.getComponent(ComponentType.COLLISION);
                 PositionComponent cpc = (PositionComponent)collider.getComponent(ComponentType.POSITION);
-                MatrixF cTransform = MatrixMaker.getTransformationMatrix(cpc.getCoord(), cpc.getRot(), 1);
+                MatrixF cTransform = MatrixMaker.getTransformationMatrix(cpc.getCoord(), cpc.getRot(), 1,1);
                 if(ccc.getHitShape().update(cTransform).collision(updated)){
                     //remove render, equip, position, age, velocity
                     entity.removeComponent(ComponentType.RENDER);

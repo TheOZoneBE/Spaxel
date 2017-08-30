@@ -1,4 +1,4 @@
-package code.graphics;
+package code.graphics.shaders;
 
 import code.math.MatrixF;
 

@@ -3,26 +3,21 @@ package code.graphics;
 import static code.Game.GAME_HEIGHT;
 import static code.Game.GAME_WIDTH;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL31.*;
-import static org.lwjgl.opengl.GL33.*;
 
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import code.Game;
-import code.engine.Engine;
+import code.graphics.postprocess.BlurPostProcessor;
+import code.graphics.postprocess.PostProcessor;
+import code.graphics.shaders.BlurShaderProgram;
+import code.graphics.shaders.InstancedShaderProgram;
+import code.graphics.shaders.LastPassShaderProgram;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
 import code.math.VectorF;
-import code.util.BufferUtils;
-import code.util.ShaderUtils;
-import org.lwjgl.opengl.GLCapabilities;
 
 /**
  * holds all the spritesheets and data of shaders, vertices, can switch between spritesheets, load the buffers and render
@@ -34,10 +29,16 @@ public class MasterRenderer {
 
     private InstancedQuad allQuad;
     private InstancedShaderProgram instancedShader;
+    private PostProcessor blurPostProcessor;
 
     private Quad fboQuad;
     private FBO firstPass;
-    private PostprocessingShaderProgram firstPassProgram;
+    private FBO ui;
+    private FBO blurred;
+    private FBO lensed;
+    private LastPassShaderProgram lastPassProgram;
+    private BlurShaderProgram blurPassProgram;
+    private LastPassShaderProgram lensPassProgram;
 
     public MasterRenderer(){
         initialize();
@@ -46,28 +47,34 @@ public class MasterRenderer {
     public void initialize(){
         MatrixF projectionMatrix = MatrixMaker.orthographic(-GAME_WIDTH/2, GAME_WIDTH/2, -GAME_HEIGHT/2, GAME_HEIGHT/2, -1.0f, 1.0f);
 
-        firstPassProgram = new PostprocessingShaderProgram("/shaders/fboTexture.vert", "/shaders/fboTexture.frag");
-        firstPassProgram.enable();
-        firstPassProgram.setTexSampler(1);
-        firstPassProgram.setProjectionMatrix(projectionMatrix);
-        firstPassProgram.setTranslationMatrix(MatrixMaker.getTransformationMatrix(new VectorF(0,0),0, GAME_WIDTH,GAME_HEIGHT));
+        blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
+        blurPassProgram.enable();
+        blurPassProgram.setTexSampler(1);
+        blurPassProgram.setRadius(1);
+        blurPassProgram.setResolution(2);
+        blurPassProgram.setSize(9);
+        blurPostProcessor = new BlurPostProcessor(blurPassProgram);
 
+        lastPassProgram = new LastPassShaderProgram("/shaders/last_pass.vert", "/shaders/last_pass.frag");
+        lastPassProgram.enable();
+        lastPassProgram.setTexSampler(1);
+        lastPassProgram.setProjectionMatrix(projectionMatrix);
+        lastPassProgram.setTranslationMatrix(MatrixMaker.getTransformationMatrix(new VectorF(0,0),0, GAME_WIDTH,GAME_HEIGHT));
 
         instancedShader = new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
         instancedShader.enable();
         instancedShader.setTexSampler(1);
         instancedShader.setProjectionMatrix(projectionMatrix);
 
-
         allQuad = new InstancedQuad();
         fboQuad = new Quad();
         firstPass = new FBO();
+        blurred = new FBO();
         firstPass.unbindBuffer();
         firstPass.unbindTexture();
     }
 
     public void render(MasterBuffer masterBuffer){
-
         allQuad.bind();
         instancedShader.enable();
         firstPass.bindBuffer();
@@ -76,13 +83,21 @@ public class MasterRenderer {
         for(Integer i: buffers.keySet()){
             render(new RenderBuffer(buffers.get(i)), i);
         }
-
         firstPass.unbindBuffer();
 
+        blurPostProcessor.postProcess(firstPass, blurred);
 
+        combine();
+    }
+
+    public void combine(){
         fboQuad.bind();
-        firstPassProgram.enable();
+        lastPassProgram.enable();
         glBindBuffer(GL_ARRAY_BUFFER, 0);
+        blurred.bindTexture();
+
+        glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);
+
         firstPass.bindTexture();
 
         glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);

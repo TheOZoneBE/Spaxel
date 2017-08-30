@@ -1,4 +1,4 @@
-package code.graphics;
+package code.graphics.shaders;
 
 import code.math.MatrixF;
 
@@ -9,12 +9,12 @@ import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
 /**
  * Created by theod on 16-7-2017.
  */
-public class PostprocessingShaderProgram extends ShaderProgram {
+public class LastPassShaderProgram extends ShaderProgram {
     private int texSamplerLocation;
     private int projectionMatrixLocation;
     private int translationMatrixLocation;
 
-    public PostprocessingShaderProgram(String vertexShader, String fragmentShader) {
+    public LastPassShaderProgram(String vertexShader, String fragmentShader) {
         super(vertexShader, fragmentShader);
         texSamplerLocation = glGetUniformLocation(program, "tex_sampler");
         projectionMatrixLocation = glGetUniformLocation(program, "projection_matrix");

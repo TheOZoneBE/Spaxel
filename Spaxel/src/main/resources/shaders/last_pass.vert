@@ -12,11 +12,7 @@ void main()
 {
 	pass_tex_coord = tex_coord;
     vec3 temp_pos = mat3(2, 0,0,0,2,0,0,0,1) * vec3(position.xyw);
-    //TODO make this dynamic with uniform
     temp_pos.y = - temp_pos.y;
 
-
 	gl_Position = vec4(temp_pos.xy, 0, 1.0);
-
-
 }

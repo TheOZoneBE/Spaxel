@@ -59,7 +59,9 @@ public class PlayController extends Controller{
         int gt = Engine.getEngine().getGameProperties().getGameTime();
         int min = gt / 60;
         int sec = gt % 60;
-        gameTime.setText(min + "\\" + sec);
+        String mintext = min < 10?"0" +min:"" + min;
+        String sectext = sec < 10?"0" +sec:"" + sec;
+        gameTime.setText(mintext + "\\" + sectext);
     }
 
     public void updateItems(NEntity player) {

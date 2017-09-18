@@ -531,6 +531,46 @@
         "height": "12",
         "xPosRel": "3",
         "yPosRel": "4"
-              }
+              },
+  "@":
+  {
+    "sheetName": "font",
+    "width": "12",
+    "height": "12",
+    "xPosRel": "4",
+    "yPosRel": "4"
+  },
+  "/":
+  {
+    "sheetName": "font",
+    "width": "12",
+    "height": "12",
+    "xPosRel": "5",
+    "yPosRel": "4"
+  },
+  "-":
+  {
+    "sheetName": "font",
+    "width": "12",
+    "height": "12",
+    "xPosRel": "6",
+    "yPosRel": "4"
+  },
+  "+":
+  {
+    "sheetName": "font",
+    "width": "12",
+    "height": "12",
+    "xPosRel": "7",
+    "yPosRel": "4"
+  },
+  "_":
+  {
+    "sheetName": "font",
+    "width": "12",
+    "height": "12",
+    "xPosRel": "0",
+    "yPosRel": "5"
+  }
     
   }

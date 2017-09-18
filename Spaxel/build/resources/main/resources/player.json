@@ -91,6 +91,16 @@
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "TRAILSEGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "white",
+        "scale": 2
       }
     ]
   },

@@ -80,22 +80,22 @@ final public class Engine {
         this.keys = new Keyboard(window);
 
         //asset loading
-		/*
+
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.05f);
+		Game.game.loadingScreen.getProgress().setPercent(0.00f);
 		SoundLoader sounds = new SoundLoader();
-		musicList = sounds.loadSounds("/resources/sound.json");*/
+		musicList = sounds.loadSounds("/resources/sound.json");
 
         Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
-        Game.game.loadingScreen.getProgress().setPercent(0.4f);
         hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
+		Game.game.loadingScreen.getProgress().setPercent(0.75f);
+
 
         Game.game.loadingScreen.getMessage().setText("Loading items");
-        Game.game.loadingScreen.getProgress().setPercent(0.65f);
         items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
+		Game.game.loadingScreen.getProgress().setPercent(0.8f);
 
         Game.game.loadingScreen.getMessage().setText("Loading UI");
-        Game.game.loadingScreen.getProgress().setPercent(0.8f);
         UIAtlas = new UIElementLoader().loadUIElements(new String[]{
         		"/ui/main.xml",
 				"/ui/credits.xml",
@@ -104,7 +104,9 @@ final public class Engine {
 				"/ui/pause.xml",
 				"/ui/game_over.xml"
 		});
+		Game.game.loadingScreen.getProgress().setPercent(0.85f);
 
+		Game.game.loadingScreen.getMessage().setText("Loading entities");
         industryMap = new IndustryLoader().loadEntityIndustries(new String[]{
         		"/resources/entity.json",
 				"/resources/actor.json",
@@ -113,12 +115,13 @@ final public class Engine {
 				"/resources/player.json",
 				"/resources/effect.json"
         });
+		Game.game.loadingScreen.getProgress().setPercent(0.9f);
 
 
         nentities.cleanup();
 
         Game.game.loadingScreen.getMessage().setText("Initializing systems");
-        Game.game.loadingScreen.getProgress().setPercent(0.9f);
+
         //systems
         addSystem(new SoundSystem());
         addSystem(new UISystem());
@@ -134,10 +137,11 @@ final public class Engine {
         addSystem(new EquipSystem());
         addSystem(new ExperienceSystem());
 		addSystem(new ShipSystem());
-        //((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
+        ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
         //starting threads
         Game.game.updater.setSystems(systems);
+		Game.game.loadingScreen.getProgress().setPercent(.95f);
 
 		/*
 		Spritesheet spaceCar = new Spritesheet(64,64, "/spritesheets/space_carrier.png");

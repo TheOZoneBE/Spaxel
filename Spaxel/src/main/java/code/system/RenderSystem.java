@@ -8,10 +8,7 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.*;
-import code.graphics.MasterBuffer;
-import code.graphics.MasterRenderer;
-import code.graphics.RenderData;
-import code.graphics.SpriteData;
+import code.graphics.*;
 import code.input.MouseWrapper;
 import code.logger.DebugRenderer;
 import code.math.VectorF;
@@ -72,7 +69,7 @@ public class RenderSystem extends GameSystem {
 				data.setYScale(dot.getHeight());
 				data.setRot(0);
 				data.setColor(dot.getColor());
-				bufferBuffer.addNewSprite(data);
+				bufferBuffer.addNewSprite(RenderLayer.GAME, data);
 			}
 		}
 	}

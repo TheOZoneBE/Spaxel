@@ -1,37 +1,43 @@
 package code.graphics;
 
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by theod on 15/10/2016.
  */
 public class MasterBuffer {
-    private Map<Integer, List<RenderData>> data;
+    private EnumMap<RenderLayer, Map<Integer, List<RenderData>>> layers;
 
     public MasterBuffer(Map<String, Spritesheet> spritesheets){
-        data = new HashMap<>();
-        for (Spritesheet sheet: spritesheets.values()){
-            data.put(sheet.getId(), new ArrayList<>());
+        //data = new HashMap<>();
+        layers = new EnumMap<>(RenderLayer.class);
+        for (RenderLayer l: RenderLayer.values()){
+            Map<Integer, List<RenderData>> data = new HashMap<>();
+            for (Spritesheet sheet: spritesheets.values()){
+                data.put(sheet.getId(), new ArrayList<>());
+            }
+            data.put(0, new ArrayList<>());
+
+            layers.put(l, data);
         }
-        data.put(0, new ArrayList<>());
     }
 
-    public void addNewSprite(RenderData rdata){
-        data.get(rdata.getSpriteSheetID()).add(rdata);
+    public void addNewSprite(RenderLayer layer, RenderData rdata){
+        layers.get(layer).get(rdata.getSpriteSheetID()).add(rdata);
     }
 
     public void clear(){
-        for(List<RenderData> datalist: data.values()){
-            datalist.clear();
+        for(Map<Integer, List<RenderData>> layer: layers.values()){
+            for(List<RenderData> datalist: layer.values()){
+                datalist.clear();
+            }
         }
+
     }
 
-    public Map<Integer, List<RenderData>> getData(){
-        return data;
+    public Map<Integer, List<RenderData>> getData(RenderLayer layer){
+        return layers.get(layer);
     }
 
 

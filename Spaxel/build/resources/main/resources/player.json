@@ -27,6 +27,7 @@
       {
         "type": "RENDER",
         "visible": true,
+        "layer": "GAME",
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -132,6 +133,7 @@
       {
         "type": "RENDER",
         "visible": true,
+        "layer": "GAME",
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -227,6 +229,7 @@
       {
         "type": "RENDER",
         "visible": true,
+        "layer": "GAME",
         "renderers": [
           {
             "type": "SPRITESHEET"
@@ -322,6 +325,7 @@
       {
         "type": "RENDER",
         "visible": true,
+        "layer": "GAME",
         "renderers": [
           {
             "type": "SPRITESHEET"

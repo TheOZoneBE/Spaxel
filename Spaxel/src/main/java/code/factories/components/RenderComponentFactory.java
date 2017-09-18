@@ -4,6 +4,7 @@ package code.factories.components;
 import code.components.Component;
 import code.components.render.RenderComponent;
 import code.components.render.subcomponents.Renderer;
+import code.graphics.RenderLayer;
 
 import java.util.List;
 
@@ -13,9 +14,10 @@ import java.util.List;
 public class RenderComponentFactory extends ComponentFactory {
     private List<Renderer> renderers;
     private boolean visible;
+    private RenderLayer layer;
 
     public Component make(){
-        return new RenderComponent(renderers, visible);
+        return new RenderComponent(renderers, visible, layer);
     }
 
     public List<Renderer> getRenderers() {
@@ -32,5 +34,13 @@ public class RenderComponentFactory extends ComponentFactory {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public RenderLayer getLayer() {
+        return layer;
+    }
+
+    public void setLayer(RenderLayer layer) {
+        this.layer = layer;
     }
 }

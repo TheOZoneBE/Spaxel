@@ -2,6 +2,7 @@ package code.ui;
 
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
+import code.graphics.RenderLayer;
 import code.math.VectorF;
 
 public class UIBar extends UIVisual{
@@ -17,7 +18,7 @@ public class UIBar extends UIVisual{
 		data.setXScale(renderWidth*sprite.getSprite().getWidth());
 		data.setYScale(sprite.getSprite().getHeight()*sprite.getScale());
 		data.setColor(sprite.getSprite().getColor());
-		buffer.addNewSprite(data);
+		buffer.addNewSprite(RenderLayer.UI, data);
 
 		for(UIElement child: children){
 			child.render(buffer);

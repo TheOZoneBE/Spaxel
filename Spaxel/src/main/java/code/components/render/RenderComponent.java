@@ -6,6 +6,7 @@ import code.components.render.subcomponents.Renderer;
 import code.engine.NEntity;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
+import code.graphics.RenderLayer;
 
 import java.util.List;
 
@@ -15,11 +16,13 @@ import java.util.List;
 public class RenderComponent extends Component {
     private List<Renderer> renderers;
     private boolean visible;
+    private RenderLayer layer;
 
-    public RenderComponent(List<Renderer> renderers, boolean visible) {
+    public RenderComponent(List<Renderer> renderers, boolean visible, RenderLayer layer) {
         super(ComponentType.RENDER);
         this.renderers = renderers;
         this.visible = visible;
+        this.layer = layer;
     }
 
     public void render(NEntity entity, MasterBuffer buffer){
@@ -28,7 +31,7 @@ public class RenderComponent extends Component {
             for (Renderer r: renderers){
                 r.apply(renderData, entity);
             }
-            buffer.addNewSprite(renderData);
+            buffer.addNewSprite(layer, renderData);
         }
     }
 

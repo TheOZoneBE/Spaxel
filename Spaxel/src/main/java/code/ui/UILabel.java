@@ -3,6 +3,7 @@ package code.ui;
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
+import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
 import code.math.VectorF;
 
@@ -32,7 +33,7 @@ public class UILabel extends UIElement{
 					data.setYScale(scale*cSprite.getHeight());
 					data.setSpriteSheetID(cSprite.getSpritesheetID());
 					data.setTexOffset(cSprite.getSpriteProperties());
-					buffer.addNewSprite(data);
+					buffer.addNewSprite(RenderLayer.UI, data);
 				}
 			}
 			if (c.equals("\\")){

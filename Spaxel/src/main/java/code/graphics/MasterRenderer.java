@@ -31,6 +31,8 @@ public class MasterRenderer {
     private InstancedShaderProgram instancedShader;
     private PostProcessor blurPostProcessor;
 
+    private LayerFBO layerFBO;
+
     private Quad fboQuad;
     private FBO firstPass;
     private FBO ui;
@@ -68,24 +70,25 @@ public class MasterRenderer {
 
         allQuad = new InstancedQuad();
         fboQuad = new Quad();
-        firstPass = new FBO();
         blurred = new FBO();
-        firstPass.unbindBuffer();
-        firstPass.unbindTexture();
+        layerFBO = new LayerFBO();
     }
 
     public void render(MasterBuffer masterBuffer){
         allQuad.bind();
         instancedShader.enable();
-        firstPass.bindBuffer();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        Map<Integer, List<RenderData>> buffers = masterBuffer.getData();
-        for(Integer i: buffers.keySet()){
-            render(new RenderBuffer(buffers.get(i)), i);
+        //render all layers
+        for (RenderLayer layer: RenderLayer.values()){
+            layerFBO.getFbo(layer).bindBuffer();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            Map<Integer, List<RenderData>> buffers = masterBuffer.getData(layer);
+            for(Integer i: buffers.keySet()){
+                render(new RenderBuffer(buffers.get(i)), i);
+            }
+            layerFBO.getFbo(layer).unbindBuffer();
         }
-        firstPass.unbindBuffer();
 
-        blurPostProcessor.postProcess(firstPass, blurred);
+        blurPostProcessor.postProcess(layerFBO.getFbo(RenderLayer.GAME), blurred);
 
         combine();
     }
@@ -98,7 +101,15 @@ public class MasterRenderer {
 
         glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);
 
-        firstPass.bindTexture();
+        layerFBO.getFbo(RenderLayer.GAME).bindTexture();
+
+        glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);
+
+        layerFBO.getFbo(RenderLayer.UI).bindTexture();
+
+        glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);
+
+        layerFBO.getFbo(RenderLayer.UI).bindTexture();
 
         glDrawElements(GL_TRIANGLES,6, GL_UNSIGNED_BYTE, 0);
     }

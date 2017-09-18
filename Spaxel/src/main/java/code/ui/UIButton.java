@@ -8,6 +8,7 @@ import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
+import code.graphics.RenderLayer;
 import code.input.MouseWrapper;
 import code.math.MatrixF;
 import code.math.MatrixMaker;
@@ -90,7 +91,7 @@ public class UIButton extends UIVisual {
 		data.setYScale(toRender.getScale()*toRender.getSprite().getHeight());
 		data.setSpriteSheetID(toRender.getSprite().getSpritesheetID());
 		data.setTexOffset(toRender.getSprite().getSpriteProperties());
-		buffer.addNewSprite(data);
+		buffer.addNewSprite(RenderLayer.UI, data);
 
 		for(UIElement child: children){
 			child.render(buffer);

@@ -40,4 +40,8 @@ public class ClassSelectionController extends Controller{
         Engine.getEngine().getNEntityStream().addEntity(player);
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
     }
+
+    public void back(){
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
+    }
 }

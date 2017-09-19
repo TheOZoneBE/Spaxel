@@ -65,3 +65,6 @@ Spaxel/.idea/sonarlint
 
 #Audio files
 *.wav
+
+#class files
+*.class

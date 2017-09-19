@@ -102,7 +102,8 @@ final public class Engine {
 				"/ui/class_selection.xml",
 				"/ui/play.xml",
 				"/ui/pause.xml",
-				"/ui/game_over.xml"
+				"/ui/game_over.xml",
+				"/ui/options.xml"
 		});
 		Game.game.loadingScreen.getProgress().setPercent(0.85f);
 

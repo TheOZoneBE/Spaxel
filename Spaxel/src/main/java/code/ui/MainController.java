@@ -28,7 +28,7 @@ public class MainController extends Controller{
 	 * opens up options
 	 */
 	public void options(){
-		
+		Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.OPTIONS));
 	}
 	
 	/*
@@ -38,4 +38,7 @@ public class MainController extends Controller{
 		Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.CREDITS));
 	}
 
+	public void quit(){
+		//TODO
+	}
 }

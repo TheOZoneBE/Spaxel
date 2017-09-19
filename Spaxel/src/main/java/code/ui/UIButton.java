@@ -22,8 +22,7 @@ public class UIButton extends UIVisual {
 	protected SpriteComponent hover;
 	protected SpriteComponent clicked;
 	protected SpriteComponent locked;
-
-	//protected UILabel label;
+	
 	protected boolean click;
 	protected boolean disabled;
 	protected boolean hovering;

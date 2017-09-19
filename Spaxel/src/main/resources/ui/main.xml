@@ -24,7 +24,7 @@
             <position>
                 <coord>
                     <x>640</x>
-                    <y>440</y>
+                    <y>480</y>
                 </coord>
             </position>
             <onClick>startGame</onClick>
@@ -51,7 +51,7 @@
                     <position>
                         <coord>
                             <x>640</x>
-                            <y>440</y>
+                            <y>480</y>
                         </coord>
                     </position>
                     <text>Play</text>
@@ -64,7 +64,7 @@
             <position>
                 <coord>
                     <x>640</x>
-                    <y>360</y>
+                    <y>400</y>
                 </coord>
             </position>
             <onClick>achievements</onClick>
@@ -92,7 +92,7 @@
                     <position>
                         <coord>
                             <x>640</x>
-                            <y>360</y>
+                            <y>400</y>
                         </coord>
                     </position>
                     <text>Achievements</text>
@@ -105,7 +105,7 @@
             <position>
                 <coord>
                     <x>640</x>
-                    <y>280</y>
+                    <y>320</y>
                 </coord>
             </position>
             <onClick>options</onClick>
@@ -125,7 +125,6 @@
                 <sprite>button_locked</sprite>
                 <scale>4</scale>
             </locked>
-            <disabled>true</disabled>
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel class="UILabel">
@@ -133,7 +132,7 @@
                     <position>
                         <coord>
                             <x>640</x>
-                            <y>280</y>
+                            <y>320</y>
                         </coord>
                     </position>
                     <text>Options</text>
@@ -146,7 +145,7 @@
             <position>
                 <coord>
                     <x>640</x>
-                    <y>200</y>
+                    <y>240</y>
                 </coord>
             </position>
             <onClick>credits</onClick>
@@ -173,10 +172,50 @@
                     <position>
                         <coord>
                             <x>640</x>
-                            <y>200</y>
+                            <y>240</y>
                         </coord>
                     </position>
                     <text>Credits</text>
+                    <scale>2</scale>
+                </UILabel>
+            </children>
+        </UIButton>
+        <UIButton class="UIButton">
+            <id>main_quit_button</id>
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>80</y>
+                </coord>
+            </position>
+            <onClick>quit</onClick>
+            <sprite>
+                <sprite>button_normal</sprite>
+                <scale>4</scale>
+            </sprite>
+            <hover>
+                <sprite>button_hover</sprite>
+                <scale>4</scale>
+            </hover>
+            <clicked>
+                <sprite>button_click</sprite>
+                <scale>4</scale>
+            </clicked>
+            <locked>
+                <sprite>button_locked</sprite>
+                <scale>4</scale>
+            </locked>
+            <hitShape>hitshape_button</hitShape>
+            <children>
+                <UILabel class="UILabel">
+                    <id>main_button_quit_label</id>
+                    <position>
+                        <coord>
+                            <x>640</x>
+                            <y>80</y>
+                        </coord>
+                    </position>
+                    <text>Quit</text>
                     <scale>2</scale>
                 </UILabel>
             </children>

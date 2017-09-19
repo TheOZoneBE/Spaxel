@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = MainController.class, name = "MAIN"),
         @JsonSubTypes.Type(value = PlayController.class, name = "PLAY"),
         @JsonSubTypes.Type(value = PauseController.class, name = "PAUSE"),
+        @JsonSubTypes.Type(value = OptionsController.class, name = "OPTIONS"),
 })
 public class Controller {
     UIElement root;

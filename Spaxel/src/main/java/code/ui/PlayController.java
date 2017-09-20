@@ -93,7 +93,6 @@ public class PlayController extends Controller{
     }
 
     public void update(){
-        //TODO update and labels and items
         super.update();
         NEntity player =new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
         updateElements(player);

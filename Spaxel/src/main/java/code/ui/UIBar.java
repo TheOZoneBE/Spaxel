@@ -14,12 +14,17 @@ public class UIBar extends UIVisual{
 		VectorF offset = new VectorF(Math.round(Math.sin(position.getRot()*Math.PI/2)), Math.round(Math.cos(position.getRot()*Math.PI/2))).multiplicate(renderWidth/2);
 		RenderData data = new RenderData();
 		data.setPos(position.getCoord().sum(offset));
-		data.setRot((float)Math.PI/2*(position.getRot()-1));
-		data.setXScale(renderWidth*sprite.getSprite().getWidth());
-		data.setYScale(sprite.getSprite().getHeight()*sprite.getScale());
-		data.setColor(sprite.getSprite().getColor());
-		buffer.addNewSprite(RenderLayer.UI, data);
 
+		data.setRot((float)Math.PI/2*(position.getRot()-1));
+		data.setXScale(renderWidth);
+
+		data.setYScale(sprite.getSprite().getHeight()*sprite.getScale());
+
+		data.setColor(sprite.getSprite().getColor() == 0 ? 0 : sprite.getSprite().getColor());
+
+		data.setTexOffset(sprite.getSprite().getSpriteProperties());
+		data.setSpriteSheetID(sprite.getSprite().getSpritesheetID());
+		buffer.addNewSprite(RenderLayer.UI, data);
 		for(UIElement child: children){
 			child.render(buffer);
 		}

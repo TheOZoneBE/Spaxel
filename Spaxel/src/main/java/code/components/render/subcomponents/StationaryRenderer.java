@@ -18,6 +18,8 @@ public class StationaryRenderer extends Renderer {
         VectorF pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset());
 
         data.setPos(pos);
+        data.setXScale(sc.getSprite().getWidth()*sc.getScale());
+        data.setYScale(sc.getSprite().getWidth()*sc.getScale());
         data.setRot(pc.getRot());
     }
 }

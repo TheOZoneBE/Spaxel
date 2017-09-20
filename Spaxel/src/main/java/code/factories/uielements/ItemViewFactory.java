@@ -30,9 +30,9 @@ public class ItemViewFactory {
         base.setSprite(new SpriteComponent(sc.getSprite(), 2));
         UIBar cooldown = new UIBar();
         cooldown.setSprite(new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("cooldown_bar"), 2));
-        cooldown.setWidth(48);
+        cooldown.setWidth(64);
         cooldown.setPercent((float)cc.getCd()/cc.getCdAmount());
-        cooldown.setPosition(new PositionComponent(pos.sum(new VectorF(-24, 0)), 1));
+        cooldown.setPosition(new PositionComponent(pos.sum(new VectorF(-32, 0)), 1));
         UILabel stacks = new UILabel();
         stacks.setPosition(new PositionComponent(pos.sum(new VectorF(20,20)), 0));
         stacks.setScale(1);

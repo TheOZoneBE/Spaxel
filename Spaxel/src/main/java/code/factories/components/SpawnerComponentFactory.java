@@ -2,6 +2,7 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.spawner.HitParticleSpawnerComponent;
+import code.components.spawner.ShipFragmentSpawnerComponent;
 import code.components.spawner.SpawnerType;
 import code.components.spawner.TrailSegmentSpawnerComponent;
 
@@ -21,6 +22,8 @@ public class SpawnerComponentFactory extends ComponentFactory {
                 return new HitParticleSpawnerComponent(rate, maxDeltaRot, maxSpeed, maxLife);
             case TRAILSEGMENT:
                 return new TrailSegmentSpawnerComponent(rate);
+            case SHIP_FRAGMENT:
+                return new ShipFragmentSpawnerComponent(rate);
         }
         return null;
     }

@@ -48,7 +48,7 @@ public class RenderSystem extends GameSystem {
 			yOffset = playerYPos - (int) playerPos.getCoord().getValue(1);
 			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
 
-			dots();
+			//dots();
 		}
 		renderEntities();
 

@@ -79,6 +79,16 @@
       },
       {
         "type": "EFFECT"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "white",
+        "scale": 4
       }
     ]
   },
@@ -162,6 +172,16 @@
       },
       {
         "type": "EFFECT"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "red",
+        "scale": 4
       }
     ]
   },
@@ -245,6 +265,16 @@
       },
       {
         "type": "EFFECT"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "green",
+        "scale": 4
       }
     ]
   },
@@ -328,6 +358,16 @@
       },
       {
         "type": "EFFECT"
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "blue",
+        "scale": 4
       }
     ]
   }

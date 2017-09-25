@@ -45,6 +45,36 @@
     ]
   },
 
+  "ship_fragment_industry": {
+    "type": "TRAILSEGMENT",
+    "factories":[
+      {
+        "type": "AGE",
+        "life": 20,
+        "maxLife": 40
+      },
+      {
+        "type": "RENDER",
+        "visible": true,
+        "layer": "GAME",
+        "renderers": [
+          {
+            "type": "SPRITESHEET"
+          },
+          {
+            "type": "STATIONARY"
+          },
+          {
+            "type": "FADE"
+          },
+          {
+            "type": "SHIP_FRAGMENT"
+          }
+        ]
+      }
+    ]
+  },
+
   "laser_hit_particle_spawner_industry": {
     "type": "SPAWNER",
     "factories": [

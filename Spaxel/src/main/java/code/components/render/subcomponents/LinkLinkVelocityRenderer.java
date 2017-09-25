@@ -25,7 +25,7 @@ public class LinkLinkVelocityRenderer extends Renderer {
 
         data.setPos(pos);
         data.setXScale(sc.getSprite().getWidth()*sc.getScale());
-        data.setYScale(sc.getSprite().getWidth()*sc.getScale());
+        data.setYScale(sc.getSprite().getHeight()*sc.getScale());
         data.setRot(rot);
     }
 }

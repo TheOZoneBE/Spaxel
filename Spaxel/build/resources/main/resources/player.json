@@ -95,13 +95,13 @@
       },
       {
         "type": "SPAWNER",
-        "spawnerType": "TRAILSEGMENT",
+        "spawnerType": "SHIP_FRAGMENT",
         "rate": 1
       },
       {
         "type": "PARTICLE",
         "particle": "white",
-        "scale": 2
+        "scale": 4
       }
     ]
   },
@@ -198,6 +198,16 @@
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "red",
+        "scale": 4
       }
     ]
   },
@@ -294,6 +304,16 @@
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "green",
+        "scale": 4
       }
     ]
   },
@@ -390,6 +410,16 @@
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "SPAWNER",
+        "spawnerType": "SHIP_FRAGMENT",
+        "rate": 1
+      },
+      {
+        "type": "PARTICLE",
+        "particle": "blue",
+        "scale": 4
       }
     ]
   }

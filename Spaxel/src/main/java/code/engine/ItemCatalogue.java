@@ -4,6 +4,7 @@ import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
 
+import javax.swing.text.html.ListView;
 import java.util.*;
 
 /**
@@ -37,13 +38,33 @@ public class ItemCatalogue {
         initialize();
     }
 
-    public NEntity produceRandom(){
-        List<ItemProperties> temp = new ArrayList<>(items.values());
-        ItemProperties chosen = temp.get(random.nextInt(items.size()));
+    public NEntity produceRandom(List<ItemProperties> options){
+        ItemProperties chosen = options.get(random.nextInt(options.size()));
         return Engine.getEngine().getIndustryMap().get(chosen.getIndustry()).produce();
+    }
+
+    public NEntity produceRandom(ItemFilter... filters){
+        List<ItemProperties> chosen = new ArrayList<>();
+        for (ItemProperties prop : items.values()){
+            boolean passed = true;
+            for (ItemFilter filter: filters){
+                if(!filter.pass(prop)){
+                    passed = false;
+                    break;
+                }
+            }
+            if (passed){
+                chosen.add(prop);
+            }
+        }
+        return produceRandom(chosen);
     }
 
     public ItemProperties getItemProp(String name){
         return items.get(name);
+    }
+
+    public interface ItemFilter {
+        boolean pass(ItemProperties prop);
     }
 }

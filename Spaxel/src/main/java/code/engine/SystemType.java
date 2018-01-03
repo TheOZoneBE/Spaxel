@@ -15,7 +15,8 @@ public enum SystemType {
 	INPUT("input"),
 	EQUIP("equip"),
 	EXPERIENCE("experience"),
-	SHIP("ship");
+	SHIP("ship"),
+	DIFFICULTY("difficulty");
 
 	private final String name;
 

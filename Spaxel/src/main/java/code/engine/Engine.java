@@ -138,6 +138,7 @@ final public class Engine {
         addSystem(new EquipSystem());
         addSystem(new ExperienceSystem());
 		addSystem(new ShipSystem());
+		addSystem(new DifficultySystem());
         ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
         //starting threads

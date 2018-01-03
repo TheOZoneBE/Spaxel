@@ -57,7 +57,7 @@ public class SystemUpdater {
                 systems.get(SystemType.UI).update();
             }
             else {
-                //TODO increment for each new system + temporary, clean this up with config or smth
+                //TODO clean this up with config or smth
                 update(SystemType.AI);
                 update(SystemType.SOUND);
                 update(SystemType.SPAWNER);
@@ -72,6 +72,7 @@ public class SystemUpdater {
                 update(SystemType.EQUIP);
                 update(SystemType.EXPERIENCE);
                 update(SystemType.UI);
+                update(SystemType.DIFFICULTY);
                 Engine.getEngine().getGameProperties().addTime(20000000);
                 //Engine.getEngine().temp.update();
             }

@@ -7,8 +7,12 @@ import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.equip.EquipComponent;
 import code.components.experience.ExperienceComponent;
+import code.components.item.ItemComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
+import code.components.primary.PrimaryComponent;
+import code.components.secondary.SecondaryComponent;
+import code.components.ship.ShipComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
@@ -17,6 +21,7 @@ import code.factories.entities.SpawnerIndustry;
 import code.util.SpriteDataUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -45,7 +50,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         exp.setXp(exp.getXp() + 25);
         //chance of dropping item
         if (random.nextInt(100) < 25){
-            NEntity item = Engine.getEngine().getItems().produceRandom();
+            NEntity item = Engine.getEngine().getItems().produceRandom(prop -> getAllItemNames(entity).contains(prop.getName()));
             item.addComponent(new EquipComponent());
             item.addComponent(new AgeComponent(500,500));
             item.addComponent(epc.clone());
@@ -54,5 +59,22 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(new DroppedItemAIComponent());
             Engine.getEngine().getNEntityStream().addEntity(item);
         }
+    }
+
+    private List<String> getAllItemNames(NEntity entity){
+        List<String> items = new ArrayList<>();
+        PrimaryComponent pc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
+        SecondaryComponent sc = (SecondaryComponent)entity.getComponent(ComponentType.SECONDARY);
+        ShipComponent shc = (ShipComponent)entity.getComponent(ComponentType.SHIP);
+        for(NEntity e: pc.getItems()){
+            items.add(((ItemComponent)e.getComponent(ComponentType.ITEM)).getName());
+        }
+        for(NEntity e: sc.getItems()){
+            items.add(((ItemComponent)e.getComponent(ComponentType.ITEM)).getName());
+        }
+        for(NEntity e: shc.getItems()){
+            items.add(((ItemComponent)e.getComponent(ComponentType.ITEM)).getName());
+        }
+        return items;
     }
 }

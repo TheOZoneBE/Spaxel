@@ -21,7 +21,7 @@ public class ExperienceSystem extends GameSystem {
         Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.EXPERIENCE);
         for (NEntity entity: entities){
             ExperienceComponent ec = (ExperienceComponent)entity.getComponent(ComponentType.EXPERIENCE);
-            if (ec.getXpToLevel() < ec.getXp()){
+            if (ec.getXpToLevel() <= ec.getXp()){
                 ec.setXp(ec.getXp() - ec.getXpToLevel());
                 ec.setLevel(ec.getLevel() + 1);
                 HealthComponent hc = (HealthComponent)entity.getComponent(ComponentType.HEALTH);

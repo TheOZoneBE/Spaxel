@@ -18,16 +18,15 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void update(){
-		/*
 		if(!currentMusic.isActive()){
 			nextSong();
-		}*/
+		}
 	}
 	
 	public void nextSong(){
 		List<Music> sounds = Engine.getEngine().getMusicList();
 		int i = r.nextInt(sounds.size());
-		currentMusic = (Music)sounds.get(i);
+		currentMusic = sounds.get(i);
 		play();
 	}
 	

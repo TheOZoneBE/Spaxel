@@ -61,9 +61,9 @@ public class DifficultySystem extends GameSystem {
 
 
             //update difficulty
-            nextSpawn = Engine.getEngine().getGameProperties().getGameTime() < 450 ? 500 - Engine.getEngine().getGameProperties().getGameTime() : 50;
+            nextSpawn = Engine.getEngine().getGameProperties().getGameTime() < 350 ? 350 - Engine.getEngine().getGameProperties().getGameTime() : 50;
             int temp = Engine.getEngine().getGameProperties().getGameTime();
-            spawnCap = 1 + (int)(2 * Math.sqrt(temp));
+            spawnCap = 1 + (int)Math.sqrt(temp);
             numItems = 1 + temp / 120;
             maxLevel = 1 + temp / 60;
         }

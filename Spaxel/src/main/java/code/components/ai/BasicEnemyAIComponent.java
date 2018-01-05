@@ -78,7 +78,6 @@ public class BasicEnemyAIComponent extends AIComponent {
             }
         }
         if (ac.canShoot()){
-            //TODO primary, secondary, ship items components
             PrimaryComponent prc = (PrimaryComponent)entity.getComponent(ComponentType.PRIMARY);
             for (NEntity e: prc.getItems()){
                 ItemComponent ic = (ItemComponent)e.getComponent(ComponentType.ITEM);

@@ -73,6 +73,7 @@ public class SystemUpdater {
                 update(SystemType.EXPERIENCE);
                 update(SystemType.UI);
                 update(SystemType.DIFFICULTY);
+                update(SystemType.MARKER);
                 Engine.getEngine().getGameProperties().addTime(20000000);
                 //Engine.getEngine().temp.update();
             }

@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ActorComponentFactory.class, name = "ACTOR"),
         @JsonSubTypes.Type(value = AffectComponentFactory.class, name = "AFFECT"),
         @JsonSubTypes.Type(value = EffectComponentFactory.class, name = "EFFECT"),
+        @JsonSubTypes.Type(value = MarkerComponentFactory.class, name = "MARKER"),
 
 })
 public class ComponentFactory {

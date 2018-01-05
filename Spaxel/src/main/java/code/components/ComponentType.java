@@ -30,7 +30,8 @@ public enum ComponentType {
     EXPERIENCE("experience"),
     AFFECT("affect"),
     EFFECT("effect"),
-    ACTOR("actor");
+    ACTOR("actor"),
+    MARKER("marker");
 
     private final String name;
     ComponentType(String name){

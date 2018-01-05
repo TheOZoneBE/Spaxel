@@ -68,7 +68,6 @@ public class PlayController extends Controller{
         PrimaryComponent pc = (PrimaryComponent) player.getComponent(ComponentType.PRIMARY);
         SecondaryComponent sc = (SecondaryComponent) player.getComponent(ComponentType.SECONDARY);
         ShipComponent shc = (ShipComponent) player.getComponent(ComponentType.SHIP);
-        //TODO figure out real offsets
         VectorF primOffset = new VectorF(40,680);
         ArrayList<UIElement> primChildren = new ArrayList();
         for (NEntity item : pc.getItems()){

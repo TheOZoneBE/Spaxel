@@ -114,7 +114,8 @@ final public class Engine {
 				"/resources/projectile.json",
 				"/resources/item.json",
 				"/resources/player.json",
-				"/resources/effect.json"
+				"/resources/effect.json",
+				"/resources/marker.json"
         });
 		Game.game.loadingScreen.getProgress().setPercent(0.9f);
 
@@ -139,6 +140,7 @@ final public class Engine {
         addSystem(new ExperienceSystem());
 		addSystem(new ShipSystem());
 		addSystem(new DifficultySystem());
+		addSystem(new MarkerSystem());
         ((SoundSystem)getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
         //starting threads

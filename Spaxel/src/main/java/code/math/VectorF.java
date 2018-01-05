@@ -38,6 +38,13 @@ public class VectorF {
 		}
 		return sol;
 	}
+
+	/*
+	only works on 2d vectors
+	 */
+	public float crossProduct(VectorF vec){
+		return vector[0]*vec.getValue(1)-vector[1]*vec.getValue(0);
+	}
 	
 	public VectorF multiplicate(float a){
 		VectorF sol = new VectorF(m);

@@ -88,7 +88,7 @@ public class VectorF {
 	
 	public void print(){
 		for(int i = 0; i< m; i++){
-			System.out.print((int)vector[i] + " ");
+			System.out.print(vector[i] + " ");
 		}
 	}
 

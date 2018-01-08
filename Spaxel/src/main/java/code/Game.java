@@ -20,6 +20,7 @@ public class Game implements Runnable {
 
 	public final static int GAME_HEIGHT = 720;
 	public final static int GAME_WIDTH = 1280;
+	public final static float MOUSE_FOLLOW_CUTOFF = .1f;
 	public static Game game;
 	public boolean running = false;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";

@@ -17,8 +17,8 @@ public class RenderSystem extends GameSystem {
 	private MasterBuffer bufferBuffer;
 
 	private MasterRenderer master;
-	private int xOffset;
-	private int yOffset;
+	private float xOffset;
+	private float yOffset;
 
 	public RenderSystem() {
 		super(SystemType.RENDER);
@@ -37,16 +37,25 @@ public class RenderSystem extends GameSystem {
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			//TODO revisit
+			VectorF mousePos = new VectorF(mouseWrapper.getX(), mouseWrapper.getY());
+			VectorF difference = mousePos.diff(Engine.getEngine().getCursorFollow());
+			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF){
+				difference = difference.multiplicate(0.15f);
+			}
+
+			Engine.getEngine().setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
+
 			Set<NEntity> playerSet = Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER);
 			NEntity player = new ArrayList<>(playerSet).get(0);
 			PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
-			int screenXOffset = mouseWrapper.getX() / 2 - Game.GAME_WIDTH / 4;
-			int screenYOffset = mouseWrapper.getY() / 2 - Game.GAME_HEIGHT / 4;
-			int playerXPos = Game.GAME_WIDTH / 2 - 8 * 4 - screenXOffset;
-			int playerYPos = Game.GAME_HEIGHT / 2 - 8 * 4 - screenYOffset;
-			xOffset = playerXPos - (int) playerPos.getCoord().getValue(0);
-			yOffset = playerYPos - (int) playerPos.getCoord().getValue(1);
-			Engine.getEngine().setScreenOffset(new VectorF(xOffset, yOffset));
+
+			VectorF dim = new VectorF(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+			VectorF offset = dim
+					.multiplicate(0.75f)
+					.diff(new VectorF(8*4,8*4))
+					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5f))
+					.diff(playerPos.getCoord());
+			Engine.getEngine().setScreenOffset(offset);
 
 			//dots();
 		}

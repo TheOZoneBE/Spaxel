@@ -42,6 +42,7 @@ final public class Engine {
 	private Font font;
 	private long window;
 	private VectorF screenOffset;
+	private VectorF cursorFollow;
 	private GameProperties gameProperties;
 	private Logger logger;
 
@@ -78,6 +79,7 @@ final public class Engine {
 
 	public void startLoading(){
         this.keys = new Keyboard(window);
+        this.cursorFollow = new VectorF(Game.GAME_WIDTH/2, Game.GAME_HEIGHT/2);
 
         //asset loading
 
@@ -167,6 +169,7 @@ final public class Engine {
 		nentities.clear();
 		gameProperties = new GameProperties();
 		logger = null;
+		this.cursorFollow = new VectorF(Game.GAME_WIDTH/2, Game.GAME_HEIGHT/2);
 	}
 
 	public void setWindow(long window){
@@ -283,5 +286,13 @@ final public class Engine {
 
 	public void setLogger(Logger logger) {
 		this.logger = logger;
+	}
+
+	public VectorF getCursorFollow() {
+		return cursorFollow;
+	}
+
+	public void setCursorFollow(VectorF cursorFollow) {
+		this.cursorFollow = cursorFollow;
 	}
 }

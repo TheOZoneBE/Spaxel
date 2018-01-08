@@ -55,7 +55,7 @@
                         </coord>
                     </position>
                     <text>Play</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -96,7 +96,7 @@
                         </coord>
                     </position>
                     <text>Achievements</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -136,7 +136,7 @@
                         </coord>
                     </position>
                     <text>Options</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -176,7 +176,7 @@
                         </coord>
                     </position>
                     <text>Credits</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -216,7 +216,7 @@
                         </coord>
                     </position>
                     <text>Quit</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>

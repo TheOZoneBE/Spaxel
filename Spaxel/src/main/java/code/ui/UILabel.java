@@ -9,7 +9,7 @@ import code.math.VectorF;
 
 public class UILabel extends UIElement{
 	private String text;
-	private int scale;
+	private float scale;
 	private boolean alignLeft;
 
 	public void render(MasterBuffer buffer){
@@ -56,7 +56,7 @@ public class UILabel extends UIElement{
 		}
 	}
 
-	private int calculateOffset(int i){
+	private float calculateOffset(int i){
 		int index = text.indexOf('\\', i);
 		if (index == -1) {
 			index = text.length();
@@ -72,11 +72,11 @@ public class UILabel extends UIElement{
 		return text;
 	}
 
-	public int getScale() {
+	public float getScale() {
 		return scale;
 	}
 
-	public void setScale(int scale) {
+	public void setScale(float scale) {
 		this.scale = scale;
 	}
 

@@ -48,7 +48,7 @@
                         </coord>
                     </position>
                     <text>Resume</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -88,7 +88,7 @@
                         </coord>
                     </position>
                     <text>Quit</text>
-                    <scale>2</scale>
+                    <scale>1.5</scale>
                 </UILabel>
             </children>
         </UIButton>

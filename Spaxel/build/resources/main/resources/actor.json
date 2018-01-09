@@ -17,7 +17,7 @@
       {
         "type": "HEALTH",
         "health": 20,
-        "maxHealth": 20
+        "baseHealth": 20
       },
       {
         "type": "SPRITE",
@@ -108,7 +108,7 @@
       {
         "type": "HEALTH",
         "health": 10,
-        "maxHealth": 10
+        "baseHealth": 10
       },
       {
         "type": "SPRITE",
@@ -199,7 +199,7 @@
       {
         "type": "HEALTH",
         "health": 20,
-        "maxHealth": 20
+        "baseHealth": 20
       },
       {
         "type": "SPRITE",
@@ -290,7 +290,7 @@
       {
         "type": "HEALTH",
         "health": 40,
-        "maxHealth": 40
+        "baseHealth": 40
       },
       {
         "type": "SPRITE",

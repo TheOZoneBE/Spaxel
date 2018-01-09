@@ -8,14 +8,14 @@ import code.components.health.HealthComponent;
  */
 public class HealthComponentFactory extends ComponentFactory{
     private int health;
-    private int maxHealth;
+    private int baseHealth;
 
     public HealthComponentFactory(){
 
     }
 
     public Component make(){
-        return new HealthComponent(health, maxHealth);
+        return new HealthComponent(health, baseHealth);
     }
 
     public int getHealth() {
@@ -26,11 +26,11 @@ public class HealthComponentFactory extends ComponentFactory{
         this.health = health;
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
+    public int getBaseHealth() {
+        return baseHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+    public void setBaseHealth(int baseHealth) {
+        this.baseHealth = baseHealth;
     }
 }

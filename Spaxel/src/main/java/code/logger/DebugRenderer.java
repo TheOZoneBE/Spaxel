@@ -46,7 +46,7 @@ public class DebugRenderer {
                     long sum = logger.getRollingSum().get(type);
                     long avg = (sum/logger.getCurrentAvg()) / 1000;
                     UILabel temp = new UILabel();
-                    temp.setText(type.getName() + ": " + dif + "(" + avg + ")");
+                    temp.setText(type.getName() + ": " + avg + "(" + dif + ")");
                     temp.setPosition(new PositionComponent(new VectorF(x, y), 0));
                     temp.setScale(1);
                     temp.setAlignLeft(true);

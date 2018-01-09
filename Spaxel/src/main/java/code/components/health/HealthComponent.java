@@ -8,16 +8,18 @@ import code.components.ComponentType;
  */
 public class HealthComponent extends Component {
     private int health;
+    private int baseHealth;
     private int maxHealth;
 
-    public HealthComponent(int health, int maxHealth) {
+    public HealthComponent(int health, int baseHealth) {
         super(ComponentType.HEALTH);
         this.health = health;
-        this.maxHealth = maxHealth;
+        this.maxHealth = baseHealth;
+        this.baseHealth = baseHealth;
     }
 
     public void levelUp(int level){
-        maxHealth = maxHealth *level;
+        maxHealth = baseHealth *level;
         health = maxHealth;
     }
 
@@ -35,5 +37,13 @@ public class HealthComponent extends Component {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    public void setBaseHealth(int baseHealth) {
+        this.baseHealth = baseHealth;
     }
 }

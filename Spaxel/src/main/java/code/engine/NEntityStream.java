@@ -44,6 +44,10 @@ public class NEntityStream {
         return componentTypeMap.get(type);
     }
 
+    public NEntity getPlayer(){
+        return entityTypeMap.get(EntityType.PLAYER).iterator().next();
+    }
+
     public void addEntity(NEntity entity){
         entity.addCascade();
         toAddEntityTypeMap.get(entity.getType()).add(entity);

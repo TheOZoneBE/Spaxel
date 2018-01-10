@@ -264,10 +264,7 @@ Environment Variables:
 PATH=C:\VulkanSDK\1.0.42.0\Bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Users\theod\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\nodejs\;C:\Program Files\PuTTY\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Ruby23-x64\bin;C:\Users\theod\AppData\Local\Microsoft\WindowsApps;C:\Users\theod\AppData\Roaming\npm;C:\Program Files\PostgreSQL\9.6\bin;C:\Python27;C:\Python27\Scripts;
 USERNAME=theod
 OS=Windows_NT
-PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 94 Stepping 3, GenuineIntel
-
-
-
+PROCESSOR_IDE
 ---------------  S Y S T E M  ---------------
 
 OS: Windows 10.0 , 64 bit Build 15063 (10.0.15063.296)

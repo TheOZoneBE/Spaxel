@@ -25,7 +25,7 @@ public class MarkerComponent extends Component {
     }
 
     public void update(NEntity entity){
-        NEntity player = new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
         PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
         PositionComponent entityPos = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         RenderComponent mrc = (RenderComponent)marker.getComponent(ComponentType.RENDER);

@@ -45,7 +45,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
 
         Engine.getEngine().getGameProperties().addScore(100);
         //add experience
-        NEntity player = new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
         ExperienceComponent exp = (ExperienceComponent)player.getComponent(ComponentType.EXPERIENCE);
         exp.setXp(exp.getXp() + 25);
         //chance of dropping item

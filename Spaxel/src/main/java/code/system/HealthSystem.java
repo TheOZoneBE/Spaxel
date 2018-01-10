@@ -20,11 +20,7 @@ public class HealthSystem extends GameSystem {
     }
 
     public void update(){
-        Random rand = new Random();
-        //Player player = (Player)Engine.getEngine().getEntityStream().getEntities(EntityType.PLAYER).get(0);
-        //UICounter score = (UICounter)Engine.getEngine().getUIAtlas().get("play").getElement("score_counter");
         Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HEALTH);
-        SpawnerIndustry hpsi = (SpawnerIndustry)Engine.getEngine().getIndustryMap().get("hit_particle_spawner_industry");
         for (NEntity e: entities){
             if(((HealthComponent)e.getComponent(ComponentType.HEALTH)).getHealth() < 0){
                 DeathComponent dc = (DeathComponent)e.getComponent(ComponentType.DEATH);

@@ -41,7 +41,7 @@ public class DifficultySystem extends GameSystem {
             nextSpawn--;
         }
         Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(EntityType.ENEMY);
-        NEntity player = new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
         PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
 
         if(nextSpawn == 0 && enemies.size() < spawnCap){

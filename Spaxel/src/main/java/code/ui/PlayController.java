@@ -93,7 +93,7 @@ public class PlayController extends Controller{
 
     public void update(){
         super.update();
-        NEntity player =new ArrayList<>(Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER)).get(0);
+        NEntity player =Engine.getEngine().getNEntityStream().getPlayer();
         updateElements(player);
         updateItems(player);
         Keyboard k = Engine.getEngine().getKeyboard();

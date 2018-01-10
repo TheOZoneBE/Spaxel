@@ -36,17 +36,14 @@ public class RenderSystem extends GameSystem {
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
-			//TODO revisit
 			VectorF mousePos = new VectorF(mouseWrapper.getX(), mouseWrapper.getY());
 			VectorF difference = mousePos.diff(Engine.getEngine().getCursorFollow());
 			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF){
 				difference = difference.multiplicate(0.15f);
 			}
-
 			Engine.getEngine().setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
 
-			Set<NEntity> playerSet = Engine.getEngine().getNEntityStream().getEntities(EntityType.PLAYER);
-			NEntity player = new ArrayList<>(playerSet).get(0);
+			NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
 			PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
 
 			VectorF dim = new VectorF(Game.GAME_WIDTH, Game.GAME_HEIGHT);

@@ -1,17 +1,13 @@
 package code.loaders;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import code.Game;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import code.sound.Music;
-import code.sound.Sound;
 
 public class SoundLoader extends Loader{
 	

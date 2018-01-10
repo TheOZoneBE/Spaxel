@@ -2,26 +2,15 @@ package code.loaders;
 
 import java.io.IOException;
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
 
 import code.ui.*;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import code.collision.HitShape;
-import code.engine.Engine;
-import code.ui.UILabel;
-import code.graphics.SpriteData;
 
 public class UIElementLoader extends Loader {
 	
 	public EnumMap<UI, Controller> loadUIElements(String[] uis){
 		try {
-			EnumMap uiMap = new EnumMap(UI.class);
+			EnumMap<UI, Controller> uiMap = new EnumMap<>(UI.class);
 			for (String ui: uis){
 				loadFile(ui);
 				XmlMapper mapper = new XmlMapper();

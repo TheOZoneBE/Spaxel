@@ -1,10 +1,8 @@
 package code.engine;
 
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
 
-import javax.swing.text.html.ListView;
 import java.util.*;
 
 /**

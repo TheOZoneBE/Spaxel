@@ -3,7 +3,6 @@ package code.system;
 import code.collision.HitShape;
 import code.components.ComponentType;
 import code.components.collision.CollisionComponent;
-import code.components.hit.HitComponent;
 import code.components.item.ItemComponent;
 import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;

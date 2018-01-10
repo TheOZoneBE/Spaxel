@@ -1,7 +1,5 @@
 package code.engine;
 
-import code.math.VectorF;
-
 /**
  * Created by theo on 24/06/17.
  */
@@ -51,6 +49,6 @@ public class GameProperties {
     public void addTime(long updateTime){
         timeOverflow += updateTime;
         gameTime += timeOverflow / 1000000000;
-        timeOverflow %= 1000000000l;
+        timeOverflow %= 1000000000L;
     }
 }

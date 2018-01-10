@@ -12,13 +12,12 @@ public class MatrixMaker {
 	}
 
 	public static MatrixF orthographic(float left, float right, float bottom, float top, float near, float far){
-		MatrixF mat = new MatrixF(4,4, new float[] {
+		return new MatrixF(4,4, new float[] {
 			2/(right-left),0,0,-(right+left)/(right-left),
 				0,2/(top-bottom), 0,-(top+bottom)/(top-bottom),
 				0,0,-2/(far-near), -(far+near)/(far-near),
 				0,0,0,1
 		});
-		return mat;
 	}
 
 }

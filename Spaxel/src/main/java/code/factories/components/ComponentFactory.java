@@ -2,7 +2,6 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

@@ -3,8 +3,7 @@ package code.input;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MouseWrapper extends GLFWCursorPosCallback {

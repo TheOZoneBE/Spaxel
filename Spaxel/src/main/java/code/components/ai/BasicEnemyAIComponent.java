@@ -9,11 +9,8 @@ import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
 import code.math.VectorF;
-
-import java.util.ArrayList;
 
 /**
  * Created by theo on 7/06/17.

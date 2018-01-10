@@ -1,6 +1,5 @@
 package code.components.ship;
 
-import code.components.Component;
 import code.components.ComponentType;
 import code.components.inventory.InventoryComponent;
 import code.engine.NEntity;

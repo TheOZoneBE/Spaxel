@@ -1,7 +1,6 @@
 package code.graphics;
 
 import code.Game;
-import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL30;
 
 import java.nio.ByteBuffer;

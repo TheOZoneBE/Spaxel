@@ -7,8 +7,6 @@ import code.graphics.shaders.ShaderProgram;
 import code.math.VectorF;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 
 /**
  * Created by theod on 25-7-2017.

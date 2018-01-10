@@ -1,8 +1,5 @@
 package code.input;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Keyboard {

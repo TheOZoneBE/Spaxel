@@ -4,7 +4,6 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
-import code.components.sprite.SpriteComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 

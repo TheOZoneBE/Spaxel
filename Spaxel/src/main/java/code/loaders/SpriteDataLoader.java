@@ -1,16 +1,12 @@
 package code.loaders;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import code.graphics.SpriteData;
-import code.graphics.Spritesheet;
 
 public class SpriteDataLoader extends Loader{
 	

@@ -12,7 +12,6 @@ import code.graphics.Spritesheet;
 import code.logger.Logger;
 import code.math.VectorF;
 import code.sound.Music;
-import code.system.RenderSystem;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.input.MouseWrapper;

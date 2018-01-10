@@ -2,9 +2,6 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.hit.*;
-import code.components.item.primary.PiercingLaserItemComponent;
-import code.components.item.primary.SlowingLaserItemComponent;
-import code.components.item.secondary.ClusterMissileItemComponent;
 
 /**
  * Created by theo on 18/06/17.

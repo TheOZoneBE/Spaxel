@@ -14,7 +14,6 @@ import code.math.MatrixF;
 import code.math.MatrixMaker;
 import code.math.VectorF;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 public class UIButton extends UIVisual {
 	protected String onClick;
@@ -42,8 +41,8 @@ public class UIButton extends UIVisual {
 			}
 			else if (inside && click){
 				try {
-					Method m = controller.getClass().getMethod(onClick, null);
-					m.invoke(controller, null);
+					Method m = controller.getClass().getMethod(onClick);
+					m.invoke(controller);
 					click = false;
 				}
 				catch(Exception e){

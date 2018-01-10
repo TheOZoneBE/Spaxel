@@ -1,16 +1,11 @@
 package code.system;
 
-import code.Game;
 import code.components.ComponentType;
 import code.components.marker.MarkerComponent;
-import code.components.position.PositionComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
-import code.math.VectorF;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 /**

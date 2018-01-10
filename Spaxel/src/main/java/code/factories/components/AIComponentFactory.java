@@ -5,7 +5,6 @@ import code.components.ai.BasicEnemyAIComponent;
 import code.components.Component;
 import code.components.ai.DroppedItemAIComponent;
 import code.components.ai.HomingMissileAIComponent;
-import code.components.hit.HomingMissileHitComponent;
 
 /**
  * Created by theo on 7/06/17.

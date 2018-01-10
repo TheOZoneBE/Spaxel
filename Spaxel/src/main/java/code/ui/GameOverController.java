@@ -1,8 +1,6 @@
 package code.ui;
 
 import code.engine.Engine;
-import code.engine.SystemType;
-import code.system.UISystem;
 
 /**
  * Created by theo on 26-6-2016.

@@ -1,6 +1,5 @@
 package code.system;
 
-import code.engine.Engine;
 import code.engine.SystemType;
 
 public class GameSystem{

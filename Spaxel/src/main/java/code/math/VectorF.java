@@ -2,7 +2,6 @@ package code.math;
 
 import code.graphics.RenderBuffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.deser.impl.ManagedReferenceProperty;
 
 public class VectorF {
 	private int m;

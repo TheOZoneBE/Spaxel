@@ -7,17 +7,13 @@ import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.ship.ShipComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
-import code.engine.SystemType;
 import code.factories.uielements.ItemViewFactory;
 import code.input.Keyboard;
 import code.logger.Logger;
 import code.math.VectorF;
-import code.system.UISystem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayController extends Controller{
     UIBar xpBar;
@@ -69,21 +65,21 @@ public class PlayController extends Controller{
         SecondaryComponent sc = (SecondaryComponent) player.getComponent(ComponentType.SECONDARY);
         ShipComponent shc = (ShipComponent) player.getComponent(ComponentType.SHIP);
         VectorF primOffset = new VectorF(40,680);
-        ArrayList<UIElement> primChildren = new ArrayList();
+        ArrayList<UIElement> primChildren = new ArrayList<>();
         for (NEntity item : pc.getItems()){
             primChildren.add(itemViewFactory.produce(primOffset, item));
             primOffset = primOffset.sum(new VectorF(0, -72));
         }
         primaryContainer.setChildren(primChildren);
         VectorF secOffset = new VectorF(1240,680);
-        ArrayList<UIElement> secChildren = new ArrayList();
+        ArrayList<UIElement> secChildren = new ArrayList<>();
         for (NEntity item : sc.getItems()){
             secChildren.add(itemViewFactory.produce(secOffset, item));
             secOffset = secOffset.sum(new VectorF(0, -72));
         }
         secondaryContainer.setChildren(secChildren);
         VectorF shipOffset = new VectorF(388,40);
-        ArrayList<UIElement> shipChildren = new ArrayList();
+        ArrayList<UIElement> shipChildren = new ArrayList<>();
         for (NEntity item : shc.getItems()){
             shipChildren.add(itemViewFactory.produce(shipOffset, item));
             shipOffset = shipOffset.sum(new VectorF(72,0));

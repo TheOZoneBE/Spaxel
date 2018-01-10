@@ -4,7 +4,6 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
-import code.components.velocity.VelocityComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 

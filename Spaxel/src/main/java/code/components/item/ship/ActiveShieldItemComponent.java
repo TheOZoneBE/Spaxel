@@ -10,7 +10,6 @@ import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.factories.components.CooldownComponentFactory;
 
 import java.util.Set;
 

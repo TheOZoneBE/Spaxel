@@ -1,7 +1,6 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.input.InputComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;

@@ -3,20 +3,16 @@ package code.system;
 import code.components.ComponentType;
 import code.components.health.HealthComponent;
 import code.components.inventory.InventoryComponent;
-import code.components.item.ItemComponent;
 import code.components.item.ItemType;
 import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
-import code.components.primary.PrimaryComponent;
 import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
 import code.factories.entities.EnemyIndustry;
-import code.factories.entities.EntityIndustry;
 import code.math.VectorF;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 

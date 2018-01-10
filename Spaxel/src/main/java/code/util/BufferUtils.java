@@ -1,7 +1,5 @@
 package code.util;
 
-import code.math.MatrixF;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;

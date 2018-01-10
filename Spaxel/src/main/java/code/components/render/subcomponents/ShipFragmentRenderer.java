@@ -1,6 +1,5 @@
 package code.components.render.subcomponents;
 
-import code.components.Component;
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
 import code.components.sprite.SpriteComponent;

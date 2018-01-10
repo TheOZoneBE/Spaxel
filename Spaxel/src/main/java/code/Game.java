@@ -138,8 +138,8 @@ public class Game implements Runnable {
 		int ups = 0;
 		int fps = 0;
 		long accTime = 0;
-		long start = 0;
-		long deltatime = 0;
+		long start;
+		long deltatime;
 		while (running) {
 			if (glfwWindowShouldClose(window)){
 				stop();

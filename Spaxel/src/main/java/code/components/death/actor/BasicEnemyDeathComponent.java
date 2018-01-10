@@ -15,7 +15,6 @@ import code.components.secondary.SecondaryComponent;
 import code.components.ship.ShipComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
 import code.util.SpriteDataUtil;

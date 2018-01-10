@@ -13,7 +13,6 @@ import code.engine.NEntity;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
 import code.math.VectorF;
-import javafx.geometry.Pos;
 
 import java.util.List;
 

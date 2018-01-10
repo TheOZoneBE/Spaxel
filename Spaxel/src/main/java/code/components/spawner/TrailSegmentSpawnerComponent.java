@@ -7,7 +7,6 @@ import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.TrailSegmentIndustry;
-import code.math.VectorF;
 
 import java.util.Collections;
 import java.util.List;

@@ -16,10 +16,8 @@ public class Axis {
 	}
 	
 	public VectorF project(VectorF vec){
-		VectorF sol = new VectorF(2);
 		float mul = dirVec.dotProduct(vec)/ dirVec.dotProduct(dirVec);
-		sol = dirVec.multiplicate(mul);
-		return sol;
+		return dirVec.multiplicate(mul);
 	}
 
 	public void print(){

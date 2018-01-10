@@ -6,7 +6,6 @@ import java.util.Random;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.sound.Music;
-import code.sound.Sound;
 
 public class SoundSystem extends GameSystem{
 	private Random r;

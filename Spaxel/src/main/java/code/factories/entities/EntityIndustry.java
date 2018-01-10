@@ -6,7 +6,6 @@ import code.components.Component;
 import code.engine.EntityType;
 import code.engine.NEntity;
 import code.factories.components.ComponentFactory;
-import code.factories.components.PositionComponentFactory;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

@@ -6,11 +6,8 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
 import code.engine.NEntity;
 import code.math.VectorF;
-
-import java.util.ArrayList;
 
 /**
  * Created by theo on 5/01/18.

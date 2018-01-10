@@ -3,9 +3,6 @@ package code.factories.components;
 import code.components.Component;
 import code.components.effect.EffectComponent;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by theod on 28-6-2017.
  */

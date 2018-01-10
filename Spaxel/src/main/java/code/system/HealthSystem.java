@@ -6,9 +6,7 @@ import code.components.health.HealthComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;
-import code.factories.entities.SpawnerIndustry;
 
-import java.util.Random;
 import java.util.Set;
 
 /**

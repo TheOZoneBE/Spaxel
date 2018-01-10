@@ -1,8 +1,6 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.ComponentType;
-import code.components.item.ItemComponent;
 import code.components.ship.ShipComponent;
 import code.engine.Engine;
 import code.engine.NEntity;

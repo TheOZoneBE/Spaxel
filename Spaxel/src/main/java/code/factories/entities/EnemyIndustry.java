@@ -2,13 +2,9 @@ package code.factories.entities;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
-import code.components.primary.PrimaryComponent;
-import code.engine.Engine;
 import code.engine.EntityType;
 import code.engine.NEntity;
-import code.math.VectorF;
 
 import java.util.EnumMap;
 

@@ -1,7 +1,5 @@
 package code.util;
 
-import code.Game;
-
 import java.io.*;
 
 public class FileToStringLoader {
@@ -14,7 +12,7 @@ public class FileToStringLoader {
 		try {
 			InputStreamReader isreader = new InputStreamReader(getClass().getResourceAsStream(file));
 			BufferedReader reader = new BufferedReader(isreader);
-			String buffer = "";
+			String buffer;
 			while ((buffer = reader.readLine()) != null) {
 				result.append(buffer + '\n');
 			}

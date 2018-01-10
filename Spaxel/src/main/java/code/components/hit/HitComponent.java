@@ -9,7 +9,6 @@ import code.components.effect.EffectComponent;
 import code.components.link.LinkComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
-import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.EffectIndustry;

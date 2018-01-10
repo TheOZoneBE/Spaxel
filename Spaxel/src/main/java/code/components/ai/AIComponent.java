@@ -2,7 +2,6 @@ package code.components.ai;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.position.PositionComponent;
 import code.engine.NEntity;
 
 /**

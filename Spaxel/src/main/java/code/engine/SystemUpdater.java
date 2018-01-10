@@ -12,12 +12,11 @@ import java.util.concurrent.Executors;
  * Created by theo on 5-6-2016.
  */
 public class SystemUpdater {
-    private EnumMap<SystemType, Thread> threads;
     private EnumMap<SystemType, GameSystem> systems;
     private ExecutorService e = Executors.newCachedThreadPool();
 
     public SystemUpdater(){
-        threads = new EnumMap<>(SystemType.class);
+
     }
 
     public void setSystems(EnumMap<SystemType, GameSystem> systems){

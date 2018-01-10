@@ -4,8 +4,6 @@ import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.engine.SystemType;
-import code.system.UISystem;
 import code.ui.UI;
 
 /**

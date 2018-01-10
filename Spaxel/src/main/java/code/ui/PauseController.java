@@ -1,9 +1,7 @@
 package code.ui;
 
 import code.engine.Engine;
-import code.engine.SystemType;
 import code.input.Keyboard;
-import code.system.UISystem;
 
 /**
  * Created by theo on 10-6-2016.

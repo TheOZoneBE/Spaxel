@@ -22,7 +22,7 @@ public class Logger {
         rollingSum = new EnumMap<>(SystemType.class);
         for (SystemType type: SystemType.values()){
             history.put(type, new LinkedList<>());
-            rollingSum.put(type,0l);
+            rollingSum.put(type, 0L);
         }
     }
 

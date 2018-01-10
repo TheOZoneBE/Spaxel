@@ -20,7 +20,7 @@ public class UIBar extends UIVisual{
 
 		data.setYScale(sprite.getSprite().getHeight()*sprite.getScale());
 
-		data.setColor(sprite.getSprite().getColor() == 0 ? 0 : sprite.getSprite().getColor());
+		data.setColor(sprite.getSprite().getColor());
 
 		data.setTexOffset(sprite.getSprite().getSpriteProperties());
 		data.setSpriteSheetID(sprite.getSprite().getSpritesheetID());

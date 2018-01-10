@@ -2,7 +2,6 @@ package code.components.effect;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.inventory.InventoryComponent;
 import code.components.link.LinkComponent;
 import code.engine.Engine;
 import code.engine.NEntity;

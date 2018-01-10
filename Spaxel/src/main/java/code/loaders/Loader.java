@@ -1,6 +1,5 @@
 package code.loaders;
 
-import java.io.File;
 import java.io.InputStream;
 
 /**

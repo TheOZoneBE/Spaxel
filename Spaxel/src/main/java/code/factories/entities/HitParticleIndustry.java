@@ -7,8 +7,6 @@ import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
-import code.graphics.SpriteData;
-import code.math.VectorF;
 
 import java.util.EnumMap;
 

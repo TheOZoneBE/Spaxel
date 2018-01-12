@@ -7,6 +7,8 @@ import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
 import code.math.VectorF;
 
+import java.util.Map;
+
 public class UILabel extends UIElement{
 	private String text;
 	private float scale;
@@ -22,9 +24,10 @@ public class UILabel extends UIElement{
 		}
 
 		for (int i = 0; i < text.length(); i++){
-			String c = text.substring(i, i+1).toLowerCase();
+			String c = text.substring(i, i+1);
+			SpriteData cSprite = null;
 			if (!c.equals(" ")){
-				SpriteData cSprite = Engine.getEngine().getSpriteAtlas().get(c);
+				cSprite = Engine.getEngine().getSpriteAtlas().get(c);
 				if (cSprite != null){
 					RenderData data = new RenderData();
 					data.setPos(position.getCoord().sum(offset));
@@ -47,7 +50,13 @@ public class UILabel extends UIElement{
 				offset.setValue(1, offset.getValue(1)- 16 *scale);
 			}
 			else{
-				offset.setValue(0,offset.getValue(0) + 12* scale);
+				if (cSprite !=  null){
+					offset.setValue(0,offset.getValue(0) + cSprite.getWidth()* scale);
+				}
+				else {
+					offset.setValue(0,offset.getValue(0) + 10* scale);
+				}
+
 			}
 
 		}
@@ -57,11 +66,25 @@ public class UILabel extends UIElement{
 	}
 
 	private float calculateOffset(int i){
+		Map<String, SpriteData> sprites = Engine.getEngine().getSpriteAtlas();
 		int index = text.indexOf('\\', i);
 		if (index == -1) {
 			index = text.length();
 		}
-		return (1-index + i) * 6 * scale;
+		int length = 0;
+		int start = 0;
+		for (int k = i; k < index; k++){
+			SpriteData sprite = sprites.get(text.substring(k,k+1));
+			int w = 10;
+			if (sprite != null){
+				w = sprite.getWidth();
+			}
+			if (k == i){
+				start = w/2;
+			}
+			length += w;
+		}
+		return (-length/2 + start) * scale;
 	}
 
 	public void setText(String text){

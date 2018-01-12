@@ -98,7 +98,7 @@
                         </coord>
                     </position>
                     <text>Back</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>

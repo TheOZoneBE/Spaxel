@@ -44,7 +44,7 @@
                         </coord>
                     </position>
                     <text>Game</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -84,7 +84,7 @@
                         </coord>
                     </position>
                     <text>Controls</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -124,7 +124,7 @@
                         </coord>
                     </position>
                     <text>Graphics</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -164,7 +164,7 @@
                         </coord>
                     </position>
                     <text>Sound</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -204,7 +204,7 @@
                         </coord>
                     </position>
                     <text>Back</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>

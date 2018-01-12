@@ -38,7 +38,7 @@
                         </coord>
                     </position>
                     <text>Play Again</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
@@ -78,7 +78,7 @@
                         </coord>
                     </position>
                     <text>Main menu</text>
-                    <scale>1.5</scale>
+                    <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>

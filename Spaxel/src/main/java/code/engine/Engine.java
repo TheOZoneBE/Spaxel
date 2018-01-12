@@ -64,7 +64,10 @@ final public class Engine {
 		SpritesheetLoader spritesheetLoader = new SpritesheetLoader();
 		spritesheets = spritesheetLoader.loadSpritesheets("/resources/spritesheet.json");
 		SpriteDataLoader spriteDataLoader = new SpriteDataLoader();
-        spriteAtlas = spriteDataLoader.loadSpriteDatas( "/resources/sprite.json");
+        spriteAtlas = spriteDataLoader.loadSpriteDatas(new String[] {
+        		"/resources/sprite.json",
+				"/resources/font.json"
+				});
 
 
         spriteAtlas.put("hp_bar", new SpriteData(1,4, 0xff00ff00));

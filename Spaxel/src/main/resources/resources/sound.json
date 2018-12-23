@@ -1,147 +1,147 @@
-[
-  {
+{
+  "Ace Of Bananas": {
     "path": "/music/Ace Of Bananas.wav",
     "name": "Ace Of Bananas",
     "intensity": 3
   },
-  {
+  "Beast Mode": {
     "path": "/music/Beast Mode.wav",
     "name": "Beast Mode",
     "intensity": 2
   },
-  {
+  "Bipolar Bear": {
     "path": "/music/Bipolar Bear.wav",
     "name": "Bipolar Bear",
     "intensity": 1
   },
-  {
+  "Bit Bossa": {
     "path": "/music/Bit Bossa.wav",
     "name": "Bit Bossa",
     "intensity": 1
   },
-  {
+  "Boss Ass Bits": {
     "path": "/music/Boss Ass Bits.wav",
     "name": "Boss Ass Bits",
     "intensity": 1
   },
-  {
+  "Catnip": {
     "path": "/music/Catnip.wav",
     "name": "Catnip",
     "intensity": 2
   },
-  {
+  "Daeva Suite": {
     "path": "/music/Daeva Suite.wav",
     "name": "Daeva Suite",
     "intensity": 3
   },
-  {
+  "Deambulate": {
     "path": "/music/Deambulate.wav",
     "name": "Deambulate",
     "intensity": 1
   },
-  {
+  "Duty Cycle GB": {
     "path": "/music/Duty Cycle GB.wav",
     "name": "Duty Cycle GB",
     "intensity": 2
   },
-  {
+  "Eat My Chips": {
     "path": "/music/Eat My Chips.wav",
     "name": "Eat My Chips",
     "intensity": 3
   },
-  {
+  "Expedition": {
     "path": "/music/Expedition.wav",
     "name": "Expedition",
     "intensity": 3
   },
-  {
+  "Final Sector": {
     "path": "/music/Final Sector.wav",
     "name": "Final Sector",
     "intensity": 3
   },
-  {
+  "Go Straight (To Heaven)": {
     "path": "/music/Go Straight (To Heaven).wav",
     "name": "Go Straight (To Heaven)",
     "intensity": 1
   },
-  {
+  "Graveyard Shift": {
     "path": "/music/Graveyard Shift.wav",
     "name": "Graveyard Shift",
     "intensity": 2
   },
-  {
+  "I Ate All The Snacks": {
     "path": "/music/I Ate All The Snacks.wav",
     "name": "I Ate All The Snacks",
     "intensity": 3
   },
-  {
+  "Intro": {
     "path": "/music/Intro.wav",
     "name": "Intro",
-    "intensity": "-1"
+    "intensity": 0
   },
-  {
+  "Journey (Azureflux Remix)": {
     "path": "/music/Journey (Azureflux Remix).wav",
     "name": "Journey (Azureflux Remix)",
     "intensity": 2
   },
-  {
+  "Popcorn Blast": {
     "path": "/music/Popcorn Blast.wav",
     "name": "Popcorn Blast",
     "intensity": 2
   },
-  {
+  "Project Hesperiidae": {
     "path": "/music/Project Hesperiidae (ESPGaluda Re.wav",
     "name": "Project Hesperiidae",
     "intensity": 2
   },
-  {
+  "Proto_Logism.": {
     "path": "/music/Proto_Logism.wav",
     "name": "Proto_Logism.",
     "intensity": 1
   },
-  {
+  "Rainbow Ride": {
     "path": "/music/Rainbow Ride.wav",
     "name": "Rainbow Ride",
     "intensity": 3
   },
-  {
+  "Reckless": {
     "path": "/music/Reckless.wav",
     "name": "Reckless",
     "intensity": 1
   },
-  {
+  "Sähköinen Super-Avaruus": {
     "path": "/music/Sähköinen.Super-Avaruus.wav",
     "name": "Sähköinen Super-Avaruus",
     "intensity": 1
   },
-  {
+  "Själv": {
     "path": "/music/Själv.wav",
     "name": "Själv",
     "intensity": 1
   },
-  {
+  "Starworx (AZFRX)": {
     "path": "/music/Starworx (AZFRX).wav",
     "name": "Starworx (AZFRX)",
     "intensity": 2
   },
-  {
+  "Strike Witches Get Bitches": {
     "path": "/music/Strike Witches Get Bitches.wav",
     "name": "Strike Witches Get Bitches",
     "intensity": 2
   },
-  {
+  "Summer Wars (Azureflux Remix)": {
     "path": "/music/Summer Wars (Azureflux Remix).wav",
     "name": "Summer Wars (Azureflux Remix)",
     "intensity": 3
   },
-  {
+  "Superbyte": {
     "path": "/music/Superbyte.wav",
     "name": "Superbyte",
     "intensity": 2
   },
-  {
+  "World 10 (Azureflux Remix)": {
     "path": "/music/World 10 (Azureflux Remix).wav",
     "name": "World 10 (Azureflux Remix)",
     "intensity": 1
   }
-]
+}

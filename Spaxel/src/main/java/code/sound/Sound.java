@@ -51,4 +51,9 @@ public class Sound{
 		return clip.isActive();
 	}
 
+	public void stop() {
+		clip.stop();
+		clip.setFramePosition(0);
+	}
+
 }

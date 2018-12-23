@@ -174,63 +174,63 @@
     "height": 12,
     "xPosRel": 0,
     "yPosRel": 3      },
-  0:
+  "0":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
     "yPosRel": 3      },
-  2:
+  "2":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
     "yPosRel": 3      },
-  3:
+  "3":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
     "yPosRel": 3      },
-  4:
+  "4":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
     "yPosRel": 3      },
-  5:
+  "5":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 5,
     "yPosRel": 3      },
-  6:
+  "6":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 6,
     "yPosRel": 3      },
-  7:
+  "7":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 7,
     "yPosRel": 3      },
-  8:
+  "8":
   {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
     "yPosRel": 4      },
-  9:
+  "9":
   {
     "sheetName": "font_12x12",
     "width": 12,
@@ -454,7 +454,7 @@
     "xPosRel": 6,
     "yPosRel": 2
   },
-  1: {
+  "1": {
     "sheetName": "font_10x20",
     "width": 10,
     "height": 20,
@@ -468,7 +468,7 @@
     "xPosRel": 8,
     "yPosRel": 2
   },
-  : {
+  "-": {
     "sheetName": "font_10x20",
     "width": 10,
     "height": 20,

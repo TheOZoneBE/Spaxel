@@ -26,7 +26,7 @@ final public class Engine {
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
 	private NEntityStream nentities;
-	private List<Music> musicList;
+	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	public Map<String, Spritesheet> spritesheets;
 	public Map<String, SpriteData> spriteAtlas;
@@ -88,7 +88,7 @@ final public class Engine {
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
 		Game.game.loadingScreen.getProgress().setPercent(0.00f);
 		SoundLoader sounds = new SoundLoader();
-		musicList = sounds.loadSounds("/resources/sound.json");
+		musicList = new MusicList(sounds.loadSounds("/resources/sound.json"));
 
         Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
         hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
@@ -171,6 +171,7 @@ final public class Engine {
 		nentities.clear();
 		gameProperties = new GameProperties();
 		logger = null;
+		musicList.reset();
 		this.cursorFollow = new VectorF(Game.GAME_WIDTH/2, Game.GAME_HEIGHT/2);
 	}
 
@@ -210,7 +211,7 @@ final public class Engine {
 		return UIAtlas;
 	}
 
-	public List<Music> getMusicList(){
+	public MusicList getMusicList(){
 		return musicList;
 	}
 

@@ -23,10 +23,18 @@ public class SoundSystem extends GameSystem{
 	}
 	
 	public void nextSong(){
-		List<Music> sounds = Engine.getEngine().getMusicList();
-		int i = r.nextInt(sounds.size());
-		currentMusic = sounds.get(i);
-		play();
+		if (currentMusic !=  null) {
+			currentMusic.stop();
+		}
+		if (Engine.getEngine().getGameState() != Engine.GameState.MENU){
+			currentMusic = Engine.getEngine().getMusicList().getRandomSong();
+			play();
+		}
+		else {
+			currentMusic = Engine.getEngine().getMusicList().getSong("Intro");
+			play();
+		}
+
 	}
 	
 	public void play(){

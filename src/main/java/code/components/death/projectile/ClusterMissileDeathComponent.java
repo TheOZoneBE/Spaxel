@@ -11,7 +11,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.ProjectileIndustry;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theod on 4-7-2017.
@@ -27,14 +27,14 @@ public class ClusterMissileDeathComponent extends DeathComponent {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         ProjectileIndustry pri = (ProjectileIndustry) Engine.getEngine().getIndustryMap()
                 .get("cluster_shrapnel_projectile_industry");
-        float rot = 0;
+        double rot = 0;
         for (int i = 0; i < MISSILE_SPLIT; i++) {
             NEntity projectile = pri.produce(new PositionComponent(pc.getCoord(), rot),
                     (LinkComponent) entity.getComponent(ComponentType.LINK));
             MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
-            float dx = (float) Math.sin(rot) * pmc.getMaxSpeed();
-            float dy = (float) Math.cos(rot) * pmc.getMaxSpeed();
-            projectile.addComponent(new VelocityComponent(new VectorF(dx, dy), 0));
+            double dx = Math.sin(rot) * pmc.getMaxSpeed();
+            double dy = Math.cos(rot) * pmc.getMaxSpeed();
+            projectile.addComponent(new VelocityComponent(new VectorD(dx, dy), 0));
             Engine.getEngine().getNEntityStream().addEntity(projectile);
             rot += Constants.FULL_CIRCLE / MISSILE_SPLIT;
         }

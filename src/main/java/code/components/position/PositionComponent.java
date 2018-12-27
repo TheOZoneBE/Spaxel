@@ -2,43 +2,43 @@ package code.components.position;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.Constants;
 
 /**
  * Created by theo on 3/06/17.
  */
 public class PositionComponent extends Component {
-    private VectorF coord;
-    private float rot;
+    private VectorD coord;
+    private double rot;
 
     private PositionComponent() {
         super(ComponentType.POSITION);
     }
 
-    public PositionComponent(VectorF coord, float rot) {
+    public PositionComponent(VectorD coord, double rot) {
         super(ComponentType.POSITION);
         this.coord = coord;
         this.rot = rot;
     }
 
-    public VectorF getCoord() {
+    public VectorD getCoord() {
         return coord;
     }
 
-    public void setCoord(VectorF coord) {
+    public void setCoord(VectorD coord) {
         this.coord = coord;
     }
 
-    public float getRot() {
+    public double getRot() {
         return rot;
     }
 
-    public void setRot(float rot) {
+    public void setRot(double rot) {
         if (rot < 0) {
-            this.rot = (float) (rot + Constants.FULL_CIRCLE);
+            this.rot = rot + Constants.FULL_CIRCLE;
         } else {
-            this.rot = (float) (rot % (Constants.FULL_CIRCLE));
+            this.rot = rot % (Constants.FULL_CIRCLE);
         }
 
     }

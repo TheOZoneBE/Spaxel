@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GLCapabilities;
 
 public class Game implements Runnable {
 
-	public static final float MOUSE_FOLLOW_CUTOFF = .1f;
+	public static final double MOUSE_FOLLOW_CUTOFF = .1f;
 	public static Game game;
 	public boolean running = false;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";
@@ -152,7 +152,7 @@ public class Game implements Runnable {
 				fps = 0;
 				ups = 0;
 			}
-			Engine.getEngine().setUpdateTime((float) deltatime / 20000000);
+			Engine.getEngine().setUpdateTime(deltatime / 20000000);
 		}
 	}
 

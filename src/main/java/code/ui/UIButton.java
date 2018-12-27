@@ -10,9 +10,9 @@ import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.input.MouseWrapper;
-import code.math.MatrixF;
+import code.math.MatrixD;
 import code.math.MatrixMaker;
-import code.math.VectorF;
+import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class UIButton extends UIVisual {
@@ -32,10 +32,10 @@ public class UIButton extends UIVisual {
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
 			boolean buttonDown = mouseWrapper.mouse1;
-			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1, 1);
+			MatrixD transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1, 1);
 			HitShape updated = hitShape.update(transform);
 			boolean inside = updated
-					.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY, 0 }))));
+					.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY, 0 }))));
 			// TODO revisit
 			if (inside && buttonDown) {
 				click = true;

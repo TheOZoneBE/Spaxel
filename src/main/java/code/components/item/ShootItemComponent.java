@@ -10,7 +10,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.ProjectileIndustry;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theod on 28-6-2017.
@@ -37,9 +37,9 @@ public class ShootItemComponent extends ItemComponent {
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
                 NEntity projectile = pri.produce((PositionComponent) pc.clone(), new LinkComponent(parent));
                 MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
-                float dx = (float) Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
-                float dy = (float) Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();
-                projectile.addComponent(new VelocityComponent(new VectorF(dx, dy), 0));
+                double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
+                double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();
+                projectile.addComponent(new VelocityComponent(new VectorD(dx, dy), 0));
                 Engine.getEngine().getNEntityStream().addEntity(projectile);
                 offset += RADIAL_OFFSET;
             }

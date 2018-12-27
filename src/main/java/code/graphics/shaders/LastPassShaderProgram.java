@@ -1,6 +1,6 @@
 package code.graphics.shaders;
 
-import code.math.MatrixF;
+import code.math.MatrixD;
 
 import static org.lwjgl.opengl.GL20.glGetUniformLocation;
 import static org.lwjgl.opengl.GL20.glUniform1i;
@@ -21,15 +21,15 @@ public class LastPassShaderProgram extends ShaderProgram {
         translationMatrixLocation = glGetUniformLocation(program, "translation_matrix");
     }
 
-    public void setTexSampler(int sampler){
+    public void setTexSampler(int sampler) {
         glUniform1i(texSamplerLocation, sampler);
     }
 
-    public void setProjectionMatrix(MatrixF projectionMatrix){
+    public void setProjectionMatrix(MatrixD projectionMatrix) {
         glUniformMatrix4fv(projectionMatrixLocation, false, projectionMatrix.toFloatBuffer());
     }
 
-    public void setTranslationMatrix(MatrixF translationMatrix){
+    public void setTranslationMatrix(MatrixD translationMatrix) {
         glUniformMatrix4fv(translationMatrixLocation, false, translationMatrix.toFloatBuffer());
     }
 }

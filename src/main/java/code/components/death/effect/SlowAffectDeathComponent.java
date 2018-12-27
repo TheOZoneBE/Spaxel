@@ -17,13 +17,13 @@ public class SlowAffectDeathComponent extends DeathComponent {
         super(DeathType.SLOW_AFFECT);
     }
 
-    public void die(NEntity entity){
-        AffectComponent ac = (AffectComponent)entity.getComponent(ComponentType.AFFECT);
-        NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
-        MoveComponent mc = (MoveComponent)parent.getComponent(ComponentType.MOVE);
-        mc.setAcc(mc.getAcc()/ac.getFactor());
-        mc.setMaxSpeed(mc.getMaxSpeed()/ac.getFactor());
-        EffectComponent ec = (EffectComponent)parent.getComponent(ComponentType.EFFECT);
+    public void die(NEntity entity) {
+        AffectComponent ac = (AffectComponent) entity.getComponent(ComponentType.AFFECT);
+        NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        MoveComponent mc = (MoveComponent) parent.getComponent(ComponentType.MOVE);
+        mc.setAcc(mc.getAcc() / ac.getFactor());
+        mc.setMaxSpeed(mc.getMaxSpeed() / ac.getFactor());
+        EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);
         ec.getEffects().remove(entity);
     }
 }

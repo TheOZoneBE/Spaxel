@@ -3,35 +3,35 @@ package code.math;
 import code.graphics.RenderBuffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class VectorF {
+public class VectorD {
 	private static final int DEFAULT_DIM = 3;
 	private int m = DEFAULT_DIM;
-	private float[] vector;
+	private double[] vector;
 
-	public VectorF(int m) {
+	public VectorD(int m) {
 		this.m = m;
-		vector = new float[m];
+		vector = new double[m];
 	}
 
-	public VectorF(float[] vector) {
+	public VectorD(double[] vector) {
 		m = vector.length;
 		this.vector = vector;
 	}
 
-	public VectorF(@JsonProperty("x") float x, @JsonProperty("y") float y) {
-		this.vector = new float[] { x, y, 1 };
+	public VectorD(@JsonProperty("x") double x, @JsonProperty("y") double y) {
+		this.vector = new double[] { x, y, 1 };
 	}
 
-	public float getValue(int i) {
+	public double getValue(int i) {
 		return vector[i];
 	}
 
-	public void setValue(int i, float value) {
+	public void setValue(int i, double value) {
 		vector[i] = value;
 	}
 
-	public float dotProduct(VectorF vec) {
-		float sol = 0;
+	public double dotProduct(VectorD vec) {
+		double sol = 0;
 		for (int i = 0; i < m; i++) {
 			sol += (vector[i] * vec.getValue(i));
 		}
@@ -41,28 +41,28 @@ public class VectorF {
 	/*
 	 * only works on 2d vectors
 	 */
-	public float crossProduct(VectorF vec) {
+	public double crossProduct(VectorD vec) {
 		return vector[0] * vec.getValue(1) - vector[1] * vec.getValue(0);
 	}
 
-	public VectorF multiplicate(float a) {
-		VectorF sol = new VectorF(m);
+	public VectorD multiplicate(double a) {
+		VectorD sol = new VectorD(m);
 		for (int i = 0; i < m; i++) {
 			sol.setValue(i, vector[i] * a);
 		}
 		return sol;
 	}
 
-	public VectorF sum(VectorF vec) {
-		VectorF sol = new VectorF(m);
+	public VectorD sum(VectorD vec) {
+		VectorD sol = new VectorD(m);
 		for (int i = 0; i < m; i++) {
 			sol.setValue(i, vector[i] + vec.getValue(i));
 		}
 		return sol;
 	}
 
-	public VectorF diff(VectorF vec) {
-		VectorF sol = new VectorF(m);
+	public VectorD diff(VectorD vec) {
+		VectorD sol = new VectorD(m);
 		for (int i = 0; i < m; i++) {
 			sol.setValue(i, vector[i] - vec.getValue(i));
 		}
@@ -72,8 +72,8 @@ public class VectorF {
 	/*
 	 * only works with 2d vectors!!
 	 */
-	public VectorF normal() {
-		VectorF sol = new VectorF(m);
+	public VectorD normal() {
+		VectorD sol = new VectorD(m);
 		sol.setValue(0, vector[1]);
 		sol.setValue(1, -vector[0]);
 		return sol;
@@ -90,12 +90,12 @@ public class VectorF {
 	}
 
 	// only works with 2d vectors
-	public float length() {
-		return (float) Math.sqrt((vector[0] * vector[0]) + (vector[1] * vector[1]));
+	public double length() {
+		return Math.sqrt((vector[0] * vector[0]) + (vector[1] * vector[1]));
 	}
 
-	public VectorF clone() {
-		return new VectorF(vector.clone());
+	public VectorD clone() {
+		return new VectorD(vector.clone());
 	}
 
 }

@@ -18,7 +18,7 @@ import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
 import code.input.MouseWrapper;
 import code.logger.DebugRenderer;
-import code.math.VectorF;
+import code.math.VectorD;
 
 public class RenderSystem extends GameSystem {
 	private MasterBuffer bufferBuffer;
@@ -41,8 +41,8 @@ public class RenderSystem extends GameSystem {
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
-			VectorF mousePos = new VectorF(mouseWrapper.getX(), mouseWrapper.getY());
-			VectorF difference = mousePos.diff(Engine.getEngine().getCursorFollow());
+			VectorD mousePos = new VectorD(mouseWrapper.getX(), mouseWrapper.getY());
+			VectorD difference = mousePos.diff(Engine.getEngine().getCursorFollow());
 			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF) {
 				difference = difference.multiplicate(0.15f);
 			}
@@ -51,8 +51,8 @@ public class RenderSystem extends GameSystem {
 			NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
 			PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
 
-			VectorF dim = new VectorF(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-			VectorF offset = dim.multiplicate(0.75f).diff(new VectorF(8 * 4, 8 * 4))
+			VectorD dim = new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+			VectorD offset = dim.multiplicate(0.75f).diff(new VectorD(8 * 4, 8 * 4))
 					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5f)).diff(playerPos.getCoord());
 			Engine.getEngine().setScreenOffset(offset);
 		}
@@ -66,12 +66,12 @@ public class RenderSystem extends GameSystem {
 
 	public void dots() {
 		SpriteData dot = Engine.getEngine().getSpriteAtlas().get("dot");
-		VectorF origin = new VectorF(Engine.getEngine().getScreenOffset().getValue(0) % 64,
+		VectorD origin = new VectorD(Engine.getEngine().getScreenOffset().getValue(0) % 64,
 				Engine.getEngine().getScreenOffset().getValue(1) % 64);
 		for (int i = 0; i < Constants.GAME_WIDTH; i += 64) {
 			for (int j = 0; j < Constants.GAME_HEIGHT; j += 64) {
 				RenderData data = new RenderData();
-				data.setPos(origin.sum(new VectorF(i, j)));
+				data.setPos(origin.sum(new VectorD(i, j)));
 				data.setXScale(dot.getWidth());
 				data.setYScale(dot.getHeight());
 				data.setRot(0);

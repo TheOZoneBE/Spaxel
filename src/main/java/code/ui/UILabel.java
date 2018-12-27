@@ -5,7 +5,7 @@ import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
-import code.math.VectorF;
+import code.math.VectorD;
 
 import java.util.Map;
 
@@ -13,7 +13,7 @@ public class UILabel extends UIElement {
 	private static final String SPACE = " ";
 	private static final String NEWLINE = "\\";
 	private String text;
-	private float scale;
+	private double scale;
 	private boolean alignLeft;
 
 	public UILabel() {
@@ -21,11 +21,11 @@ public class UILabel extends UIElement {
 	}
 
 	public void render(MasterBuffer buffer) {
-		VectorF offset;
+		VectorD offset;
 		if (alignLeft) {
-			offset = new VectorF(0, 0);
+			offset = new VectorD(0, 0);
 		} else {
-			offset = new VectorF(calculateOffset(0), 0);
+			offset = new VectorD(calculateOffset(0), 0);
 		}
 
 		for (int i = 0; i < text.length(); i++) {
@@ -67,7 +67,7 @@ public class UILabel extends UIElement {
 		}
 	}
 
-	private float calculateOffset(int i) {
+	private double calculateOffset(int i) {
 		Map<String, SpriteData> sprites = Engine.getEngine().getSpriteAtlas();
 		int index = text.indexOf('\\', i);
 		if (index == -1) {
@@ -97,11 +97,11 @@ public class UILabel extends UIElement {
 		return text;
 	}
 
-	public float getScale() {
+	public double getScale() {
 		return scale;
 	}
 
-	public void setScale(float scale) {
+	public void setScale(double scale) {
 		this.scale = scale;
 	}
 

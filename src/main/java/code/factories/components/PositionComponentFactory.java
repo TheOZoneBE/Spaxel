@@ -2,14 +2,14 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.position.PositionComponent;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theo on 3/06/17.
  */
 public class PositionComponentFactory extends ComponentFactory {
-    private VectorF coord;
-    private float rot;
+    private VectorD coord;
+    private double rot;
 
     public PositionComponentFactory() {
         super();
@@ -19,19 +19,19 @@ public class PositionComponentFactory extends ComponentFactory {
         return new PositionComponent(coord.clone(), rot);
     }
 
-    public VectorF getCoord() {
+    public VectorD getCoord() {
         return coord;
     }
 
-    public void setCoord(VectorF coord) {
+    public void setCoord(VectorD coord) {
         this.coord = coord;
     }
 
-    public float getRot() {
+    public double getRot() {
         return rot;
     }
 
-    public void setRot(float rot) {
+    public void setRot(double rot) {
         this.rot = rot;
     }
 }

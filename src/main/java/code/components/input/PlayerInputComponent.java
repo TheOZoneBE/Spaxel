@@ -12,7 +12,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
-import code.math.VectorF;
+import code.math.VectorD;
 
 import java.util.List;
 
@@ -33,23 +33,21 @@ public class PlayerInputComponent extends InputComponent {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
 
         if (ac.canMove()) {
-            VectorF velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2));
+            VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2));
             if (keys.downState.isDown()) {
-                velChange = new VectorF((float) -Math.sin(pc.getRot()), (float) -Math.cos(pc.getRot()))
-                        .multiplicate(mc.getAcc());
+                velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot())).multiplicate(mc.getAcc());
             }
             if (keys.upState.isDown()) {
-                velChange = new VectorF((float) Math.sin(pc.getRot()), (float) Math.cos(pc.getRot()))
-                        .multiplicate(mc.getAcc());
+                velChange = new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getAcc());
             }
             if (keys.leftState.isDown()) {
-                velChange = new VectorF((float) Math.sin(pc.getRot() - Math.PI / 2),
-                        (float) Math.cos(pc.getRot() - Math.PI / 2)).multiplicate(mc.getAcc());
+                velChange = new VectorD(Math.sin(pc.getRot() - Math.PI / 2), Math.cos(pc.getRot() - Math.PI / 2))
+                        .multiplicate(mc.getAcc());
             }
 
             if (keys.rightState.isDown()) {
-                velChange = new VectorF((float) Math.sin(pc.getRot() + Math.PI / 2),
-                        (float) Math.cos(pc.getRot() + Math.PI / 2)).multiplicate(mc.getAcc());
+                velChange = new VectorD(Math.sin(pc.getRot() + Math.PI / 2), Math.cos(pc.getRot() + Math.PI / 2))
+                        .multiplicate(mc.getAcc());
             }
             if (vc.getVelocity().sum(velChange).length() < mc.getMaxSpeed()) {
                 vc.setVelocity(vc.getVelocity().sum(velChange));
@@ -57,15 +55,15 @@ public class PlayerInputComponent extends InputComponent {
                 vc.setVelocity(vc.getVelocity().sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2))));
             }
 
-            VectorF mousePos = new VectorF(mouse.getX(), mouse.getY());
+            VectorD mousePos = new VectorD(mouse.getX(), mouse.getY());
 
-            VectorF diff = mousePos.sum(pc.getCoord().sum(Engine.getEngine().getScreenOffset()).multiplicate(-1));
-            float rotToGet = (float) (Math.atan2(diff.getValue(0), diff.getValue(1)));
+            VectorD diff = mousePos.sum(pc.getCoord().sum(Engine.getEngine().getScreenOffset()).multiplicate(-1));
+            double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
 
             if (rotToGet < 0) {
                 rotToGet += 2 * Math.PI;
             }
-            float rotChange = rotToGet - pc.getRot();
+            double rotChange = rotToGet - pc.getRot();
             // TODO see if can solve duplicate
             if (Math.abs(rotChange) < mc.getTurnRate()) {
                 vc.setDeltaRot(rotChange);

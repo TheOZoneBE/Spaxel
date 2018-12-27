@@ -8,13 +8,13 @@ import code.engine.NEntity;
  * Created by theod on 28-6-2017.
  */
 public class SlowAffectComponent extends AffectComponent {
-    public SlowAffectComponent(float factor) {
+    public SlowAffectComponent(double factor) {
         super(AffectType.SLOW, factor);
     }
 
-    public void affect(NEntity entity, NEntity victim){
-        MoveComponent mc = (MoveComponent)victim.getComponent(ComponentType.MOVE);
-        mc.setAcc(mc.getAcc()*factor);
-        mc.setMaxSpeed(mc.getMaxSpeed()*factor);
+    public void affect(NEntity entity, NEntity victim) {
+        MoveComponent mc = (MoveComponent) victim.getComponent(ComponentType.MOVE);
+        mc.setAcc(mc.getAcc() * factor);
+        mc.setMaxSpeed(mc.getMaxSpeed() * factor);
     }
 }

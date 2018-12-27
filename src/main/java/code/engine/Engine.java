@@ -10,7 +10,7 @@ import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
 import code.graphics.Spritesheet;
 import code.logger.Logger;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.graphics.SpriteData;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
@@ -33,11 +33,11 @@ final public class Engine {
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
-	private float updateTime;
+	private double updateTime;
 	private Font font;
 	private long window;
-	private VectorF screenOffset;
-	private VectorF cursorFollow;
+	private VectorD screenOffset;
+	private VectorD cursorFollow;
 	private GameProperties gameProperties;
 	private Logger logger;
 	public Map<String, Spritesheet> spritesheets;
@@ -76,7 +76,7 @@ final public class Engine {
 
 	public void startLoading() {
 		this.keys = new Keyboard(window);
-		this.cursorFollow = new VectorF(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
+		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
 		// asset loading
 
@@ -150,7 +150,7 @@ final public class Engine {
 		gameProperties = new GameProperties();
 		logger = null;
 		musicList.reset();
-		this.cursorFollow = new VectorF(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
+		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 	}
 
 	public void setWindow(long window) {
@@ -213,11 +213,11 @@ final public class Engine {
 		gameState = gs;
 	}
 
-	public float getUpdateTime() {
+	public double getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(float updateTime) {
+	public void setUpdateTime(double updateTime) {
 		this.updateTime = updateTime;
 	}
 
@@ -237,11 +237,11 @@ final public class Engine {
 		return industryMap;
 	}
 
-	public VectorF getScreenOffset() {
+	public VectorD getScreenOffset() {
 		return screenOffset;
 	}
 
-	public void setScreenOffset(VectorF screenOffset) {
+	public void setScreenOffset(VectorD screenOffset) {
 		this.screenOffset = screenOffset;
 	}
 
@@ -269,11 +269,11 @@ final public class Engine {
 		this.logger = logger;
 	}
 
-	public VectorF getCursorFollow() {
+	public VectorD getCursorFollow() {
 		return cursorFollow;
 	}
 
-	public void setCursorFollow(VectorF cursorFollow) {
+	public void setCursorFollow(VectorD cursorFollow) {
 		this.cursorFollow = cursorFollow;
 	}
 }

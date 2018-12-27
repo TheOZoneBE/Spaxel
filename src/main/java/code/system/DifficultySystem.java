@@ -11,7 +11,7 @@ import code.engine.EntityType;
 import code.engine.NEntity;
 import code.engine.SystemType;
 import code.factories.entities.EnemyIndustry;
-import code.math.VectorF;
+import code.math.VectorD;
 
 import java.util.Random;
 import java.util.Set;
@@ -44,7 +44,7 @@ public class DifficultySystem extends GameSystem {
             EnemyIndustry ei = (EnemyIndustry) Engine.getEngine().getIndustryMap().get(enemyIndustries[rand.nextInt(4)]);
             //entity settings
             NEntity entity = ei.produce(
-                    new PositionComponent(new VectorF(playerPos.getCoord().getValue(0) + rand.nextInt(256) - 128, playerPos.getCoord().getValue(1) + rand.nextInt(256) - 128), 0));
+                    new PositionComponent(new VectorD(playerPos.getCoord().getValue(0) + rand.nextInt(256) - 128, playerPos.getCoord().getValue(1) + rand.nextInt(256) - 128), 0));
             ((HealthComponent)entity.getComponent(ComponentType.HEALTH)).levelUp(1 + rand.nextInt(maxLevel));
 
             //items

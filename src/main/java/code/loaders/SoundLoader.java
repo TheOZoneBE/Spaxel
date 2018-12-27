@@ -18,12 +18,12 @@ public class SoundLoader extends Loader {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Music> music = mapper.readValue(file, new TypeReference<Map<String, Music>>() {
 			});
-			float count = music.size();
-			float i = 0;
+			int count = music.size();
+			double i = 0;
 			for (Music m : music.values()) {
 				m.initialize();
 				i++;
-				Game.game.loadingScreen.getProgress().setPercent((float) SOUND_LOAD_PERCENTAGE * i / count);
+				Game.game.loadingScreen.getProgress().setPercent(SOUND_LOAD_PERCENTAGE * i / count);
 			}
 			return music;
 		} catch (IOException e) {

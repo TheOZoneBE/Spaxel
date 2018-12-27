@@ -7,9 +7,9 @@ import code.components.move.MoveComponent;
  * Created by theo on 3/06/17.
  */
 public class MoveComponentFactory extends ComponentFactory {
-    private float maxSpeed;
-    private float acc;
-    private float turnRate;
+    private double maxSpeed;
+    private double acc;
+    private double turnRate;
 
     public MoveComponentFactory() {
         super();
@@ -19,27 +19,27 @@ public class MoveComponentFactory extends ComponentFactory {
         return new MoveComponent(maxSpeed, acc, turnRate);
     }
 
-    public float getMaxSpeed() {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(float maxSpeed) {
+    public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
-    public float getAcc() {
+    public double getAcc() {
         return acc;
     }
 
-    public void setAcc(float acc) {
+    public void setAcc(double acc) {
         this.acc = acc;
     }
 
-    public float getTurnRate() {
+    public double getTurnRate() {
         return turnRate;
     }
 
-    public void setTurnRate(float turnRate) {
+    public void setTurnRate(double turnRate) {
         this.turnRate = turnRate;
     }
 }

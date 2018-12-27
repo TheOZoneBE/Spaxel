@@ -10,7 +10,7 @@ import code.components.affect.SlowAffectComponent;
  * Created by theod on 28-6-2017.
  */
 public class AffectComponentFactory extends ComponentFactory {
-    private float factor;
+    private double factor;
     private AffectType affectType;
 
     public AffectComponentFactory() {
@@ -35,11 +35,11 @@ public class AffectComponentFactory extends ComponentFactory {
         return result;
     }
 
-    public float getFactor() {
+    public double getFactor() {
         return factor;
     }
 
-    public void setFactor(float factor) {
+    public void setFactor(double factor) {
         this.factor = factor;
     }
 

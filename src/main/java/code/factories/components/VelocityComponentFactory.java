@@ -2,14 +2,14 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.velocity.VelocityComponent;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theo on 3/06/17.
  */
 public class VelocityComponentFactory extends ComponentFactory {
-    private VectorF velocity;
-    private float deltaRot;
+    private VectorD velocity;
+    private double deltaRot;
 
     public VelocityComponentFactory() {
         super();
@@ -19,19 +19,19 @@ public class VelocityComponentFactory extends ComponentFactory {
         return new VelocityComponent(velocity.clone(), deltaRot);
     }
 
-    public VectorF getVelocity() {
+    public VectorD getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(VectorF velocity) {
+    public void setVelocity(VectorD velocity) {
         this.velocity = velocity;
     }
 
-    public float getDeltaRot() {
+    public double getDeltaRot() {
         return deltaRot;
     }
 
-    public void setDeltaRot(float deltaRot) {
+    public void setDeltaRot(double deltaRot) {
         this.deltaRot = deltaRot;
     }
 }

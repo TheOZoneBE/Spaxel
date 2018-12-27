@@ -16,7 +16,7 @@ public class ShipFragmentRenderer extends Renderer {
         AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
-        float factor = (float) ac.getLife() * FACTOR_MULT / ac.getMaxLife();
+        double factor = ac.getLife() * FACTOR_MULT / ac.getMaxLife();
 
         data.setXScale(sc.getSprite().getWidth() * sc.getScale() * factor);
         data.setYScale(sc.getSprite().getHeight() * sc.getScale() * factor);

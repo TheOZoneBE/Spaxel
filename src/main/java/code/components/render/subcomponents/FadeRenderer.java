@@ -9,9 +9,9 @@ import code.graphics.RenderData;
  * Created by theo on 5/06/17.
  */
 public class FadeRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity){
-        AgeComponent ac = (AgeComponent)entity.getComponent(ComponentType.AGE);
+    public void apply(RenderData data, NEntity entity) {
+        AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);
 
-        data.setAlpha((float)ac.getLife()/ac.getMaxLife());
+        data.setAlpha(ac.getLife() / ac.getMaxLife());
     }
 }

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class SpriteComponentFactory extends ComponentFactory {
     private SpriteData sprite;
-    private float scale;
+    private double scale;
 
     public SpriteComponentFactory() {
         super();
@@ -34,11 +34,11 @@ public class SpriteComponentFactory extends ComponentFactory {
         this.sprite = Engine.getEngine().getSpriteAtlas().get(spriteName);
     }
 
-    public float getScale() {
+    public double getScale() {
         return scale;
     }
 
-    public void setScale(float scale) {
+    public void setScale(double scale) {
         this.scale = scale;
     }
 }

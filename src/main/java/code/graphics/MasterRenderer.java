@@ -23,10 +23,11 @@ import code.graphics.postprocess.PostProcessor;
 import code.graphics.shaders.BlurShaderProgram;
 import code.graphics.shaders.InstancedShaderProgram;
 import code.graphics.shaders.LastPassShaderProgram;
-import code.math.MatrixF;
+import code.math.MatrixD;
 import code.math.MatrixMaker;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.Constants;
+
 /**
  * holds all the spritesheets and data of shaders, vertices, can switch between
  * spritesheets, load the buffers and render instanced.
@@ -55,7 +56,7 @@ public class MasterRenderer {
     }
 
     public void initialize() {
-        MatrixF projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2, Constants.GAME_WIDTH / 2,
+        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2, Constants.GAME_WIDTH / 2,
                 -Constants.GAME_HEIGHT / 2, Constants.GAME_HEIGHT / 2, -1.0f, 1.0f);
 
         blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
@@ -71,7 +72,7 @@ public class MasterRenderer {
         lastPassProgram.setTexSampler(1);
         lastPassProgram.setProjectionMatrix(projectionMatrix);
         lastPassProgram.setTranslationMatrix(
-                MatrixMaker.getTransformationMatrix(new VectorF(0, 0), 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT));
+                MatrixMaker.getTransformationMatrix(new VectorD(0, 0), 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT));
 
         instancedShader = new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
         instancedShader.enable();

@@ -8,7 +8,7 @@ import code.components.position.PositionComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.math.VectorF;
+import code.math.VectorD;
 
 import java.util.Set;
 
@@ -29,14 +29,14 @@ public class HomingMissileAIComponent extends AIComponent {
 
         Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(ComponentType.DAMAGE);
 
-        float minDist = -1;
+        double minDist = -1;
         NEntity closest = null;
         for (NEntity e : enemies) {
             if (e != ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink()) {
                 PositionComponent epc = (PositionComponent) e.getComponent(ComponentType.POSITION);
-                float dis = epc.getCoord().sum(pc.getCoord().multiplicate(-1)).length();
-                if (minDist < 0 || dis < minDist) {
-                    minDist = dis;
+                double dist = epc.getCoord().sum(pc.getCoord().multiplicate(-1)).length();
+                if (minDist < 0 || dist < minDist) {
+                    minDist = dist;
                     closest = e;
                 }
             }
@@ -44,12 +44,12 @@ public class HomingMissileAIComponent extends AIComponent {
         if (closest != null && minDist < DISTANCE_THRESHOLD) {
             PositionComponent cpc = (PositionComponent) closest.getComponent(ComponentType.POSITION);
 
-            VectorF diff = cpc.getCoord().sum(pc.getCoord().multiplicate(-1));
-            float rotToGet = (float) (Math.atan2(diff.getValue(0), diff.getValue(1)));
+            VectorD diff = cpc.getCoord().sum(pc.getCoord().multiplicate(-1));
+            double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
             if (rotToGet < 0) {
                 rotToGet += Constants.FULL_CIRCLE;
             }
-            float rotChange = rotToGet - pc.getRot();
+            double rotChange = rotToGet - pc.getRot();
             if (Math.abs(rotChange) < mc.getTurnRate()) {
                 vc.setDeltaRot(rotChange);
             } else if (rotChange < 0) {
@@ -66,8 +66,7 @@ public class HomingMissileAIComponent extends AIComponent {
                 }
             }
 
-            vc.setVelocity(new VectorF((float) Math.sin(pc.getRot()), (float) Math.cos(pc.getRot()))
-                    .multiplicate(mc.getMaxSpeed()));
+            vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getMaxSpeed()));
         }
     }
 }

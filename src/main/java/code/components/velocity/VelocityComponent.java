@@ -2,34 +2,34 @@ package code.components.velocity;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theo on 3/06/17.
  */
 public class VelocityComponent extends Component {
-    private VectorF velocity;
-    private float deltaRot;
+    private VectorD velocity;
+    private double deltaRot;
 
-    public VelocityComponent(VectorF velocity, float deltaRot) {
+    public VelocityComponent(VectorD velocity, double deltaRot) {
         super(ComponentType.VELOCITY);
         this.velocity = velocity;
         this.deltaRot = deltaRot;
     }
 
-    public VectorF getVelocity() {
+    public VectorD getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(VectorF velocity) {
+    public void setVelocity(VectorD velocity) {
         this.velocity = velocity;
     }
 
-    public float getDeltaRot() {
+    public double getDeltaRot() {
         return deltaRot;
     }
 
-    public void setDeltaRot(float deltaRot) {
+    public void setDeltaRot(double deltaRot) {
         this.deltaRot = deltaRot;
     }
 }

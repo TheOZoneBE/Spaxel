@@ -9,9 +9,9 @@ import code.graphics.SpriteData;
  */
 public class ParticleComponent extends Component {
     private SpriteData particle;
-    private float scale;
+    private double scale;
 
-    public ParticleComponent(SpriteData particle, float scale) {
+    public ParticleComponent(SpriteData particle, double scale) {
         super(ComponentType.PARTICLE);
         this.particle = particle;
         this.scale = scale;
@@ -25,11 +25,11 @@ public class ParticleComponent extends Component {
         this.particle = particle;
     }
 
-    public float getScale() {
+    public double getScale() {
         return scale;
     }
 
-    public void setScale(float scale) {
+    public void setScale(double scale) {
         this.scale = scale;
     }
 }

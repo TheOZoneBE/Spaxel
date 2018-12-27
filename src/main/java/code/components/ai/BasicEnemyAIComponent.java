@@ -10,7 +10,7 @@ import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.Constants;
 
 /**
@@ -32,13 +32,13 @@ public class BasicEnemyAIComponent extends AIComponent {
         PositionComponent entityPos = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MoveComponent entityMov = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         VelocityComponent entityVel = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
-        VectorF diff = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1));
+        VectorD diff = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1));
         if (ac.canMove()) {
-            float rotToGet = (float) (Math.atan2(diff.getValue(0), diff.getValue(1)));
+            double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
             if (rotToGet < 0) {
                 rotToGet += Constants.FULL_CIRCLE;
             }
-            float rotChange = rotToGet - entityPos.getRot();
+            double rotChange = rotToGet - entityPos.getRot();
             if (Math.abs(rotChange) < entityMov.getTurnRate()) {
                 entityVel.setDeltaRot(rotChange);
             } else if (rotChange < 0) {
@@ -55,10 +55,10 @@ public class BasicEnemyAIComponent extends AIComponent {
                 }
             }
 
-            VectorF velChange = new VectorF((float) Math.sin(entityPos.getRot()), (float) Math.cos(entityPos.getRot()))
+            VectorD velChange = new VectorD(Math.sin(entityPos.getRot()), Math.cos(entityPos.getRot()))
                     .multiplicate(entityMov.getAcc());
 
-            float dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
+            double dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
             if (dist > DISTANCE_THRESHOLD) {
                 if (entityVel.getVelocity().sum(velChange).length() < entityMov.getMaxSpeed()) {
                     entityVel.setVelocity(entityVel.getVelocity().sum(velChange));

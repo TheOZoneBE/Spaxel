@@ -7,7 +7,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.graphics.RenderData;
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theo on 5/06/17.
@@ -17,8 +17,8 @@ public class VelocityRenderer extends Renderer {
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         VelocityComponent vc = (VelocityComponent)entity.getComponent(ComponentType.VELOCITY);
         SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
-        VectorF pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset()).sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
-        float rot = pc.getRot() + vc.getDeltaRot()*Engine.getEngine().getUpdateTime();
+        VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset()).sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
+        double rot = pc.getRot() + vc.getDeltaRot()*Engine.getEngine().getUpdateTime();
 
         data.setPos(pos);
         data.setXScale(sc.getSprite().getWidth()*sc.getScale());

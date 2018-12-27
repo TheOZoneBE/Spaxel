@@ -3,22 +3,22 @@ package code.math;
 public class Axis {
 	private static final int AXIS_DIM = 2;
 
-	private VectorF dirVec;
+	private VectorD dirVec;
 
 	public Axis() {
-		dirVec = new VectorF(AXIS_DIM);
+		dirVec = new VectorD(AXIS_DIM);
 	}
 
-	public void initializeAxis(VectorF vec1, VectorF vec2) {
+	public void initializeAxis(VectorD vec1, VectorD vec2) {
 		dirVec = vec1.diff(vec2);
 	}
 
-	public void initializeNormal(VectorF vec1, VectorF vec2) {
+	public void initializeNormal(VectorD vec1, VectorD vec2) {
 		dirVec = vec1.diff(vec2).normal();
 	}
 
-	public VectorF project(VectorF vec) {
-		float mul = dirVec.dotProduct(vec) / dirVec.dotProduct(dirVec);
+	public VectorD project(VectorD vec) {
+		double mul = dirVec.dotProduct(vec) / dirVec.dotProduct(dirVec);
 		return dirVec.multiplicate(mul);
 	}
 

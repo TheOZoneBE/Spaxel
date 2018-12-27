@@ -4,7 +4,7 @@ import code.Constants;
 import code.graphics.FBO;
 import code.graphics.shaders.BlurShaderProgram;
 import code.graphics.shaders.ShaderProgram;
-import code.math.VectorF;
+import code.math.VectorD;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -29,14 +29,14 @@ public class BlurPostProcessor extends PostProcessor {
         middle.bindBuffer();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         in.bindTexture();
-        ((BlurShaderProgram) program).setDir(new VectorF(0, (float) BLUR_STRENGTH / Constants.GAME_HEIGHT));
+        ((BlurShaderProgram) program).setDir(new VectorD(0, BLUR_STRENGTH / Constants.GAME_HEIGHT));
         glDrawElements(GL_TRIANGLES, QUAD_VERTICES, GL_UNSIGNED_BYTE, 0);
         middle.unbindBuffer();
 
         out.bindBuffer();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         middle.bindTexture();
-        ((BlurShaderProgram) program).setDir(new VectorF((float) BLUR_STRENGTH / Constants.GAME_WIDTH, 0));
+        ((BlurShaderProgram) program).setDir(new VectorD(BLUR_STRENGTH / Constants.GAME_WIDTH, 0));
         glDrawElements(GL_TRIANGLES, QUAD_VERTICES, GL_UNSIGNED_BYTE, 0);
         out.unbindBuffer();
     }

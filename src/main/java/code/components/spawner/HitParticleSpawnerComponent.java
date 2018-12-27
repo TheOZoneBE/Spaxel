@@ -9,7 +9,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.HitParticleIndustry;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.Constants;
 
 import java.util.ArrayList;
@@ -20,51 +20,50 @@ import java.util.List;
  */
 public class HitParticleSpawnerComponent extends SpawnerComponent {
     private static final double HALF = 0.5;
-    private float maxDeltaRot;
-    private float maxSpeed;
+    private double maxDeltaRot;
+    private double maxSpeed;
     private int maxLife;
 
-    public HitParticleSpawnerComponent(int rate, float maxDeltaRot, float maxSpeed, int maxLife) {
+    public HitParticleSpawnerComponent(int rate, double maxDeltaRot, double maxSpeed, int maxLife) {
         super(SpawnerType.HITPARTICLE, rate);
         this.maxDeltaRot = maxDeltaRot;
         this.maxSpeed = maxSpeed;
         this.maxLife = maxLife;
     }
 
-    public List<NEntity> spawn(NEntity entity){
+    public List<NEntity> spawn(NEntity entity) {
         List<NEntity> temp = new ArrayList<>();
-        HitParticleIndustry hpi = (HitParticleIndustry) Engine.getEngine().getIndustryMap().get("hit_particle_industry");
-        PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
+        HitParticleIndustry hpi = (HitParticleIndustry) Engine.getEngine().getIndustryMap()
+                .get("hit_particle_industry");
+        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        ParticleComponent pac = (ParticleComponent) entity.getComponent(ComponentType.PARTICLE);
         for (int i = 0; i < rate; i++) {
             int life = rand.nextInt(maxLife);
-            float dir = rand.nextFloat() * (float) Constants.FULL_CIRCLE;
-            float speed = rand.nextFloat() * maxSpeed;
-            float deltaRot = (float) (rand.nextFloat() - HALF) * maxDeltaRot;
-            float dx = (float)Math.sin(dir) * speed;
-            float dy = (float)Math.cos(dir) * speed;
-            temp.add(hpi.produce(
-                    (PositionComponent)pc.clone(),
-                    new AgeComponent(life, life),
-                    new VelocityComponent(new VectorF(dx, dy), deltaRot),
+            double dir = rand.nextDouble() * Constants.FULL_CIRCLE;
+            double speed = rand.nextDouble() * maxSpeed;
+            double deltaRot = (rand.nextDouble() - HALF) * maxDeltaRot;
+            double dx = Math.sin(dir) * speed;
+            double dy = Math.cos(dir) * speed;
+            temp.add(hpi.produce((PositionComponent) pc.clone(), new AgeComponent(life, life),
+                    new VelocityComponent(new VectorD(dx, dy), deltaRot),
                     new SpriteComponent(pac.getParticle(), pac.getScale())));
         }
         return temp;
     }
 
-    public float getMaxDeltaRot() {
+    public double getMaxDeltaRot() {
         return maxDeltaRot;
     }
 
-    public void setMaxDeltaRot(float maxDeltaRot) {
+    public void setMaxDeltaRot(double maxDeltaRot) {
         this.maxDeltaRot = maxDeltaRot;
     }
 
-    public float getMaxSpeed() {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(float maxSpeed) {
+    public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 

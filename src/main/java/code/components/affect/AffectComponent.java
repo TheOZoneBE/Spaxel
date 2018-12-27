@@ -9,15 +9,15 @@ import code.engine.NEntity;
  */
 public class AffectComponent extends Component {
     private AffectType affectType;
-    protected float factor;
+    protected double factor;
 
-    public AffectComponent(AffectType affectType, float factor) {
+    public AffectComponent(AffectType affectType, double factor) {
         super(ComponentType.AFFECT);
         this.affectType = affectType;
         this.factor = factor;
     }
 
-    public void affect(NEntity entity, NEntity victim){
+    public void affect(NEntity entity, NEntity victim) {
 
     }
 
@@ -29,11 +29,11 @@ public class AffectComponent extends Component {
         this.affectType = affectType;
     }
 
-    public float getFactor() {
+    public double getFactor() {
         return factor;
     }
 
-    public void setFactor(float factor) {
+    public void setFactor(double factor) {
         this.factor = factor;
     }
 }

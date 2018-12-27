@@ -1,6 +1,6 @@
 package code.graphics.shaders;
 
-import code.math.VectorF;
+import code.math.VectorD;
 
 import static org.lwjgl.opengl.GL20.*;
 
@@ -23,23 +23,23 @@ public class BlurShaderProgram extends ShaderProgram {
         dirLocation = glGetUniformLocation(program, "dir");
     }
 
-    public void setTexSampler(int sampler){
+    public void setTexSampler(int sampler) {
         glUniform1i(texSamplerLocation, sampler);
     }
 
-    public void setRadius(float radius){
-        glUniform1f(radiusLocation, radius);
+    public void setRadius(double radius) {
+        glUniform1f(radiusLocation, (float) radius);
     }
 
-    public void setResolution(float resolution){
-        glUniform1f(resolutionLocation, resolution);
+    public void setResolution(double resolution) {
+        glUniform1f(resolutionLocation, (float) resolution);
     }
 
-    public void setSize(int size){
+    public void setSize(int size) {
         glUniform1i(sizeLocation, size);
     }
 
-    public void setDir(VectorF dir){
-        glUniform2f(dirLocation, dir.getValue(0), dir.getValue(1));
+    public void setDir(VectorD dir) {
+        glUniform2f(dirLocation, (float) dir.getValue(0), (float) dir.getValue(1));
     }
 }

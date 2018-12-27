@@ -4,25 +4,25 @@ import code.Constants;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
-import code.math.VectorF;
+import code.math.VectorD;
 
 public class UIBar extends UIVisual {
 	private static final int TWO = 2;
 	private int width;
-	private float percent;
+	private double percent;
 
 	public UIBar() {
 		super();
 	}
 
 	public void render(MasterBuffer buffer) {
-		float renderWidth = width * percent;
-		VectorF offset = new VectorF(Math.round(Math.sin(position.getRot() * Constants.HALF_CIRLCE)),
+		double renderWidth = width * percent;
+		VectorD offset = new VectorD(Math.round(Math.sin(position.getRot() * Constants.HALF_CIRLCE)),
 				Math.round(Math.cos(position.getRot() * Constants.HALF_CIRLCE))).multiplicate(renderWidth / TWO);
 		RenderData data = new RenderData();
 		data.setPos(position.getCoord().sum(offset));
 
-		data.setRot((float) Constants.HALF_CIRLCE * (position.getRot() - 1));
+		data.setRot(Constants.HALF_CIRLCE * (position.getRot() - 1));
 		data.setXScale(renderWidth);
 
 		data.setYScale(sprite.getSprite().getHeight() * sprite.getScale());
@@ -45,11 +45,11 @@ public class UIBar extends UIVisual {
 		this.width = width;
 	}
 
-	public float getPercent() {
+	public double getPercent() {
 		return percent;
 	}
 
-	public void setPercent(float percent) {
+	public void setPercent(double percent) {
 		this.percent = percent;
 	}
 }

@@ -11,7 +11,7 @@ public class AnimSprite {
     private int frameTime;
     private boolean pause;
 
-    public AnimSprite(int nrOfFrames,int frameDuration, SpriteData[] frames){
+    public AnimSprite(int nrOfFrames, int frameDuration, SpriteData[] frames) {
         this.nrOfFrames = nrOfFrames;
         this.frameDuration = frameDuration;
         this.frames = frames;
@@ -20,30 +20,30 @@ public class AnimSprite {
         pause = false;
     }
 
-    public AnimSprite(int duration, Spritesheet sheet, int width, int height, int nrRows, int nrColumns){
+    public AnimSprite(int duration, Spritesheet sheet, int width, int height, int nrRows, int nrColumns) {
 
     }
 
-    public void pause(){
+    public void pause() {
         pause = true;
     }
 
-    public void play(){
+    public void play() {
         pause = false;
     }
 
-    public boolean done(){
-        return currentFrame == nrOfFrames-1;
+    public boolean done() {
+        return currentFrame == nrOfFrames - 1;
     }
 
-    public void setCurrentFrame(int currentFrame){
+    public void setCurrentFrame(int currentFrame) {
         this.currentFrame = currentFrame;
     }
 
-    public void update(){
-        if(!pause){
-            if (currentFrame != nrOfFrames - 1){
-                if (frameTime == frameDuration){
+    public void update() {
+        if (!pause) {
+            if (currentFrame != nrOfFrames - 1) {
+                if (frameTime == frameDuration) {
                     frameTime = 0;
                     currentFrame++;
                 }
@@ -51,12 +51,5 @@ public class AnimSprite {
             }
         }
     }
-
-    /*
-    //TODO rework
-    public void renderSprite(int x, int y, int scale, float rot, float transparency, boolean blur, MasterBuffer render){
-        frames[currentFrame].renderSprite(x, y, scale, rot, transparency, blur, render);
-    }
-    */
 
 }

@@ -16,6 +16,6 @@ public class DroppedItemAIComponent extends AIComponent {
 
     public void execute(NEntity entity) {
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
-        vc.setVelocity(vc.getVelocity().multiplicate((float) HALF));
+        vc.setVelocity(vc.getVelocity().multiplicate(HALF));
     }
 }

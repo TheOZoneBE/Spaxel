@@ -1,7 +1,7 @@
 
 package code.graphics;
 
-import code.math.VectorF;
+import code.math.VectorD;
 
 /**
  * Created by theod on 22/10/2016.
@@ -14,29 +14,29 @@ public class RenderData {
 
     private int spriteSheetID;
 
-    public RenderData(){
+    public RenderData() {
         trSc = new float[4];
         sinCos = new float[4];
         texOffset = new float[4];
         sinCos[2] = 1;
     }
 
-    public RenderData(int spriteSheetID, float[] trSc, float[] sinCos, float[] texOffset){
+    public RenderData(int spriteSheetID, float[] trSc, float[] sinCos, float[] texOffset) {
         this.trSc = trSc;
         this.sinCos = sinCos;
         this.texOffset = texOffset;
         this.spriteSheetID = spriteSheetID;
     }
 
-    public float[] getTrSc(){
+    public float[] getTrSc() {
         return trSc;
     }
 
-    public float[] getSinCos(){
+    public float[] getSinCos() {
         return sinCos;
     }
 
-    public float[] getTexOffset(){
+    public float[] getTexOffset() {
         return texOffset;
     }
 
@@ -60,29 +60,29 @@ public class RenderData {
         this.spriteSheetID = spriteSheetID;
     }
 
-    public void setPos(VectorF pos){
-        trSc[0] = pos.getValue(0);
-        trSc[1] = pos.getValue(1);
+    public void setPos(VectorD pos) {
+        trSc[0] = (float) pos.getValue(0);
+        trSc[1] = (float) pos.getValue(1);
     }
 
-    public void setXScale(float xScale){
-        trSc[2] = xScale;
+    public void setXScale(double xScale) {
+        trSc[2] = (float) xScale;
     }
 
-    public void setYScale(float yScale){
-        trSc[3] = yScale;
+    public void setYScale(double yScale) {
+        trSc[3] = (float) yScale;
     }
 
-    public void setRot(float rot){
-        sinCos[0] = (float)Math.sin(rot);
-        sinCos[1] = (float)Math.cos(rot);
+    public void setRot(double rot) {
+        sinCos[0] = (float) Math.sin(rot);
+        sinCos[1] = (float) Math.cos(rot);
     }
 
-    public void setAlpha(float alpha){
-        sinCos[2] = alpha;
+    public void setAlpha(double alpha) {
+        sinCos[2] = (float) alpha;
     }
 
-    public void setColor(int color){
+    public void setColor(int color) {
         sinCos[3] = color;
     }
 }

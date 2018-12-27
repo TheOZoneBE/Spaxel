@@ -12,8 +12,8 @@ import code.components.spawner.TrailSegmentSpawnerComponent;
 public class SpawnerComponentFactory extends ComponentFactory {
     protected int rate;
     private SpawnerType spawnerType;
-    private float maxDeltaRot;
-    private float maxSpeed;
+    private double maxDeltaRot;
+    private double maxSpeed;
     private int maxLife;
 
     public SpawnerComponentFactory() {
@@ -54,19 +54,19 @@ public class SpawnerComponentFactory extends ComponentFactory {
         this.spawnerType = spawnerType;
     }
 
-    public float getMaxDeltaRot() {
+    public double getMaxDeltaRot() {
         return maxDeltaRot;
     }
 
-    public void setMaxDeltaRot(float maxDeltaRot) {
+    public void setMaxDeltaRot(double maxDeltaRot) {
         this.maxDeltaRot = maxDeltaRot;
     }
 
-    public float getMaxSpeed() {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(float maxSpeed) {
+    public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 

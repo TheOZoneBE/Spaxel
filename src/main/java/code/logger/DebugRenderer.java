@@ -5,7 +5,7 @@ import code.components.position.PositionComponent;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.graphics.MasterBuffer;
-import code.math.VectorF;
+import code.math.VectorD;
 import code.ui.UILabel;
 
 /**
@@ -27,7 +27,7 @@ public class DebugRenderer {
             int size = Engine.getEngine().getNEntityStream().getEntities(type).size();
             UILabel temp = new UILabel();
             temp.setText(type.getName() + ": " + size);
-            temp.setPosition(new PositionComponent(new VectorF(x, y), 0));
+            temp.setPosition(new PositionComponent(new VectorD(x, y), 0));
             temp.setScale(1);
             temp.setAlignLeft(true);
             temp.render(buffer);
@@ -47,7 +47,7 @@ public class DebugRenderer {
                     long avg = (sum/logger.getCurrentAvg()) / 1000;
                     UILabel temp = new UILabel();
                     temp.setText(type.getName() + ": " + avg + "(" + dif + ")");
-                    temp.setPosition(new PositionComponent(new VectorF(x, y), 0));
+                    temp.setPosition(new PositionComponent(new VectorD(x, y), 0));
                     temp.setScale(1);
                     temp.setAlignLeft(true);
                     temp.render(buffer);

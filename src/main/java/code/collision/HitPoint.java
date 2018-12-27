@@ -1,39 +1,39 @@
 package code.collision;
 
 import code.graphics.RenderBuffer;
-import code.math.MatrixF;
-import code.math.VectorF;
+import code.math.MatrixD;
+import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HitPoint {
 	private static final int HITPOINT_DIM = 3;
-	private VectorF vector;
+	private VectorD vector;
 
 	public HitPoint() {
-		vector = new VectorF(HITPOINT_DIM);
+		vector = new VectorD(HITPOINT_DIM);
 	}
 
-	public HitPoint(VectorF vector) {
+	public HitPoint(VectorD vector) {
 		this.vector = vector;
 	}
 
 	@JsonCreator
-	public HitPoint(@JsonProperty("xOffset") float xOffset, @JsonProperty("yOffset") float yOffset) {
-		this.vector = new VectorF(new float[] { xOffset, yOffset, 1 });
+	public HitPoint(@JsonProperty("xOffset") double xOffset, @JsonProperty("yOffset") double yOffset) {
+		this.vector = new VectorD(new double[] { xOffset, yOffset, 1 });
 	}
 
-	public void updateVector(VectorF vector) {
+	public void updateVector(VectorD vector) {
 		this.vector = vector;
 	}
 
-	public VectorF getVector() {
+	public VectorD getVector() {
 		return vector;
 	}
 
-	public HitPoint update(MatrixF updateMatrixF) {
+	public HitPoint update(MatrixD updateMatrixF) {
 		HitPoint updated = new HitPoint();
-		VectorF v = updateMatrixF.multiplicate(vector);
+		VectorD v = updateMatrixF.multiplicate(vector);
 		updated.updateVector(v);
 		return updated;
 	}

@@ -8,13 +8,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property="class")
-@JsonSubTypes({
-		@JsonSubTypes.Type(value = UIElement.class, name= "UIElement"),
-		@JsonSubTypes.Type(value = UILabel.class, name= "UILabel"),
-		@JsonSubTypes.Type(value = UIButton.class, name= "UIButton"),
-		@JsonSubTypes.Type(value = UIVisual.class, name= "UIVisual"),
-		@JsonSubTypes.Type(value = UIBar.class, name= "UIBar"),
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "class")
+@JsonSubTypes({ @JsonSubTypes.Type(value = UIElement.class, name = "UIElement"),
+		@JsonSubTypes.Type(value = UILabel.class, name = "UILabel"),
+		@JsonSubTypes.Type(value = UIButton.class, name = "UIButton"),
+		@JsonSubTypes.Type(value = UIVisual.class, name = "UIVisual"),
+		@JsonSubTypes.Type(value = UIBar.class, name = "UIBar"),
 
 })
 public class UIElement {
@@ -23,18 +22,18 @@ public class UIElement {
 	protected Controller controller;
 	protected List<UIElement> children;
 
-	public UIElement(){
+	public UIElement() {
 		children = new ArrayList<>();
 	}
 
-	public void update(){
-		for (UIElement child: children){
+	public void update() {
+		for (UIElement child : children) {
 			child.update();
 		}
 	}
 
-	public void render(MasterBuffer buffer){
-		for(UIElement child: children){
+	public void render(MasterBuffer buffer) {
+		for (UIElement child : children) {
 			child.render(buffer);
 		}
 	}
@@ -71,14 +70,13 @@ public class UIElement {
 		this.children = children;
 	}
 
-	public UIElement findById(String id){
-		if (id.equals(this.id)){
+	public UIElement findById(String id) {
+		if (id.equals(this.id)) {
 			return this;
-		}
-		else {
-			for (UIElement element: children){
+		} else {
+			for (UIElement element : children) {
 				UIElement found = element.findById(id);
-				if (found != null){
+				if (found != null) {
 					return found;
 				}
 			}

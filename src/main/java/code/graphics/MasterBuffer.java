@@ -9,7 +9,6 @@ public class MasterBuffer {
     private EnumMap<RenderLayer, Map<Integer, List<RenderData>>> layers;
 
     public MasterBuffer(Map<String, Spritesheet> spritesheets){
-        //data = new HashMap<>();
         layers = new EnumMap<>(RenderLayer.class);
         for (RenderLayer l: RenderLayer.values()){
             Map<Integer, List<RenderData>> data = new HashMap<>();

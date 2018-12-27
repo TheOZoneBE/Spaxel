@@ -10,23 +10,23 @@ public class OptionsController extends Controller {
         super(UI.OPTIONS);
     }
 
-    public void gameSettings(){
-
+    public void gameSettings() {
+        // TODO
     }
 
-    public void controlsSettings(){
-
+    public void controlsSettings() {
+        // TODO
     }
 
-    public void graphicsSettings(){
-
+    public void graphicsSettings() {
+        // TODO
     }
 
-    public void soundSettings(){
-
+    public void soundSettings() {
+        // TODO
     }
 
-    public void back(){
+    public void back() {
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
     }
 }

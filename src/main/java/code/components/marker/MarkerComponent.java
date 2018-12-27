@@ -1,6 +1,6 @@
 package code.components.marker;
 
-import code.Game;
+import code.Constants;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.position.PositionComponent;
@@ -29,13 +29,13 @@ public class MarkerComponent extends Component {
         VectorF renderPos = entityPos.getCoord().sum(Engine.getEngine().getScreenOffset());
         if (
                 renderPos.getValue(0) < -50 ||
-                renderPos.getValue(0) > Game.GAME_WIDTH + 50 ||
+                renderPos.getValue(0) > Constants.GAME_WIDTH + 50 ||
                 renderPos.getValue(1) < -50 ||
-                renderPos.getValue(1) > Game.GAME_HEIGHT + 50
+                renderPos.getValue(1) > Constants.GAME_HEIGHT + 50
                 ){
             VectorF intersect = getIntersection(
                     new VectorF(20,20),
-                    new VectorF(Game.GAME_WIDTH-20, Game.GAME_HEIGHT -20),
+                    new VectorF(Constants.GAME_WIDTH-20, Constants.GAME_HEIGHT -20),
                     playerPos.getCoord().sum(Engine.getEngine().getScreenOffset()),
                     renderPos
             );

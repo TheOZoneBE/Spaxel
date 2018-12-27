@@ -21,7 +21,7 @@ public class UIButton extends UIVisual {
 	protected SpriteComponent hover;
 	protected SpriteComponent clicked;
 	protected SpriteComponent locked;
-	
+
 	protected boolean click;
 	protected boolean disabled;
 	protected boolean hovering;
@@ -32,66 +32,60 @@ public class UIButton extends UIVisual {
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
 			boolean buttonDown = mouseWrapper.mouse1;
-			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1,1);
+			MatrixF transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1, 1);
 			HitShape updated = hitShape.update(transform);
-			boolean inside = updated.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY ,0}))));
-			//TODO revisit
-			if (inside && buttonDown){
+			boolean inside = updated
+					.collision(new HitShape(new HitPoint(new VectorF(new float[] { mouseX, mouseY, 0 }))));
+			// TODO revisit
+			if (inside && buttonDown) {
 				click = true;
-			}
-			else if (inside && click){
+			} else if (inside && click) {
 				try {
 					Method m = controller.getClass().getMethod(onClick);
 					m.invoke(controller);
 					click = false;
-				}
-				catch(Exception e){
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-			else if (inside){
+			} else if (inside) {
 				hovering = true;
 				click = false;
-			}
-			else {
+			} else {
 				hovering = false;
 				click = false;
 			}
 		}
-		for(UIElement child: children){
+		for (UIElement child : children) {
 			child.update();
 		}
 	}
 
-	public void setDisabled(boolean disabled){
+	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
 
-	public void render(MasterBuffer buffer){
+	public void render(MasterBuffer buffer) {
 		SpriteComponent toRender;
-		if (click){
+		if (click) {
 			toRender = clicked;
-		}
-		else if(hovering) {
+		} else if (hovering) {
 			toRender = hover;
-		}
-		else if(disabled){
+		} else if (disabled) {
 			toRender = locked;
-		}
-		else {
+		} else {
 			toRender = sprite;
 		}
 
 		RenderData data = new RenderData();
 		data.setPos(position.getCoord());
 		data.setRot(position.getRot());
-		data.setXScale(toRender.getScale()*toRender.getSprite().getWidth());
-		data.setYScale(toRender.getScale()*toRender.getSprite().getHeight());
+		data.setXScale(toRender.getScale() * toRender.getSprite().getWidth());
+		data.setYScale(toRender.getScale() * toRender.getSprite().getHeight());
 		data.setSpriteSheetID(toRender.getSprite().getSpritesheetID());
 		data.setTexOffset(toRender.getSprite().getSpriteProperties());
 		buffer.addNewSprite(RenderLayer.UI, data);
 
-		for(UIElement child: children){
+		for (UIElement child : children) {
 			child.render(buffer);
 		}
 	}

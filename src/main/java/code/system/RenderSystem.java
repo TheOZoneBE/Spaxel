@@ -2,12 +2,20 @@ package code.system;
 
 import java.util.Set;
 
+import code.Constants;
 import code.Game;
 import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
-import code.engine.*;
-import code.graphics.*;
+import code.engine.Engine;
+import code.engine.LoadingScreen;
+import code.engine.NEntity;
+import code.engine.SystemType;
+import code.graphics.MasterBuffer;
+import code.graphics.MasterRenderer;
+import code.graphics.RenderData;
+import code.graphics.RenderLayer;
+import code.graphics.SpriteData;
 import code.input.MouseWrapper;
 import code.logger.DebugRenderer;
 import code.math.VectorF;
@@ -16,8 +24,6 @@ public class RenderSystem extends GameSystem {
 	private MasterBuffer bufferBuffer;
 
 	private MasterRenderer master;
-	private float xOffset;
-	private float yOffset;
 
 	public RenderSystem() {
 		super(SystemType.RENDER);
@@ -25,49 +31,45 @@ public class RenderSystem extends GameSystem {
 		master = new MasterRenderer();
 	}
 
-	public void renderloading(LoadingScreen loading){
+	public void renderloading(LoadingScreen loading) {
 		bufferBuffer.clear();
 		loading.render(bufferBuffer);
 		master.render(bufferBuffer);
 	}
 
-	public void render(){
+	public void render() {
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
 			VectorF mousePos = new VectorF(mouseWrapper.getX(), mouseWrapper.getY());
 			VectorF difference = mousePos.diff(Engine.getEngine().getCursorFollow());
-			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF){
+			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF) {
 				difference = difference.multiplicate(0.15f);
 			}
 			Engine.getEngine().setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
 
 			NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
-			PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
+			PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
 
-			VectorF dim = new VectorF(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-			VectorF offset = dim
-					.multiplicate(0.75f)
-					.diff(new VectorF(8*4,8*4))
-					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5f))
-					.diff(playerPos.getCoord());
+			VectorF dim = new VectorF(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+			VectorF offset = dim.multiplicate(0.75f).diff(new VectorF(8 * 4, 8 * 4))
+					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5f)).diff(playerPos.getCoord());
 			Engine.getEngine().setScreenOffset(offset);
-
-			//dots();
 		}
 		renderEntities();
 
-		if (Engine.getEngine().getGameProperties().isDebug()){
+		if (Engine.getEngine().getGameProperties().isDebug()) {
 			DebugRenderer.renderDebug(bufferBuffer);
 		}
 		master.render(bufferBuffer);
 	}
 
-	public void dots(){
-		SpriteData dot  = Engine.getEngine().getSpriteAtlas().get("dot");
-		VectorF origin = new VectorF(Engine.getEngine().getScreenOffset().getValue(0)% 64, Engine.getEngine().getScreenOffset().getValue(1) % 64);
-		for (int i =  0; i < Game.GAME_WIDTH; i += 64){
-			for (int j = 0; j < Game.GAME_HEIGHT; j+= 64){
+	public void dots() {
+		SpriteData dot = Engine.getEngine().getSpriteAtlas().get("dot");
+		VectorF origin = new VectorF(Engine.getEngine().getScreenOffset().getValue(0) % 64,
+				Engine.getEngine().getScreenOffset().getValue(1) % 64);
+		for (int i = 0; i < Constants.GAME_WIDTH; i += 64) {
+			for (int j = 0; j < Constants.GAME_HEIGHT; j += 64) {
 				RenderData data = new RenderData();
 				data.setPos(origin.sum(new VectorF(i, j)));
 				data.setXScale(dot.getWidth());
@@ -79,10 +81,10 @@ public class RenderSystem extends GameSystem {
 		}
 	}
 
-	public void renderEntities(){
+	public void renderEntities() {
 		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
-		for (NEntity ne: NtoRender){
-			((RenderComponent)ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
+		for (NEntity ne : NtoRender) {
+			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
 		Engine.getEngine().getController().render(bufferBuffer);
 	}

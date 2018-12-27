@@ -5,9 +5,9 @@ import code.util.BufferUtils;
 import java.nio.FloatBuffer;
 
 public class MatrixF {
-	public int m;
-	public int n;
-	public float[] matrix;
+	private int m;
+	private int n;
+	private float[] matrix;
 
 	public MatrixF(int m, int n) {
 		this.m = m;
@@ -58,8 +58,8 @@ public class MatrixF {
 		}
 		return sol;
 	}
-	
-	public VectorF multiplicate(VectorF vec){
+
+	public VectorF multiplicate(VectorF vec) {
 		VectorF sol = new VectorF(n);
 		for (int i = 0; i < m; i++) {
 			float sum = 0;
@@ -70,33 +70,33 @@ public class MatrixF {
 		}
 		return sol;
 	}
-	
-	public void print(){
-		for (int i = 0; i< m; i++){
-			for (int j =0; j < n; j++){
+
+	public void print() {
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
 				System.out.print(matrix[i * n + j] + " ");
 			}
 			System.out.println();
 		}
 	}
 
-	public FloatBuffer toFloatBuffer(){
+	public FloatBuffer toFloatBuffer() {
 		return BufferUtils.createFloatBuffer(matrix);
 	}
 
-	public MatrixF multiply(float value){
-		float[] sol = new float[m*n];
-		for (int i = 0; i< m*n; i++){
-			sol[i] = matrix[i]*value;
+	public MatrixF multiply(float value) {
+		float[] sol = new float[m * n];
+		for (int i = 0; i < m * n; i++) {
+			sol[i] = matrix[i] * value;
 		}
-		return new MatrixF(m , n , sol);
+		return new MatrixF(m, n, sol);
 	}
 
-	public MatrixF transpose(){
-		float[] sol = new float[m*n];
+	public MatrixF transpose() {
+		float[] sol = new float[m * n];
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				sol[i*n+j] = matrix[i+j*m];
+				sol[i * n + j] = matrix[i + j * m];
 			}
 		}
 		return new MatrixF(n, m, sol);

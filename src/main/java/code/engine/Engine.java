@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+import code.Constants;
 import code.Game;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
@@ -75,7 +76,7 @@ final public class Engine {
 
 	public void startLoading() {
 		this.keys = new Keyboard(window);
-		this.cursorFollow = new VectorF(Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2);
+		this.cursorFollow = new VectorF(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
 		// asset loading
 
@@ -149,7 +150,7 @@ final public class Engine {
 		gameProperties = new GameProperties();
 		logger = null;
 		musicList.reset();
-		this.cursorFollow = new VectorF(Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2);
+		this.cursorFollow = new VectorF(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 	}
 
 	public void setWindow(long window) {

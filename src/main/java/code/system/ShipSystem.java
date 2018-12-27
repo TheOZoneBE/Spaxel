@@ -17,12 +17,12 @@ public class ShipSystem extends GameSystem {
         super(SystemType.SHIP);
     }
 
-    public void update(){
+    public void update() {
         Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.SHIP);
-        for (NEntity entity: entities){
-            ShipComponent sc = (ShipComponent)entity.getComponent(ComponentType.SHIP);
-            for (NEntity item: sc.getItems()){
-                ItemComponent ic = (ItemComponent)item.getComponent(ComponentType.ITEM);
+        for (NEntity entity : entities) {
+            ShipComponent sc = (ShipComponent) entity.getComponent(ComponentType.SHIP);
+            for (NEntity item : sc.getItems()) {
+                ItemComponent ic = (ItemComponent) item.getComponent(ComponentType.ITEM);
                 ic.activate(item);
             }
         }

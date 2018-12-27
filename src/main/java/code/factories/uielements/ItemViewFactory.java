@@ -20,10 +20,10 @@ import java.util.List;
  * Created by theod on 29-6-2017.
  */
 public class ItemViewFactory {
-    public UIElement produce(VectorF pos, NEntity item){
-        SpriteComponent sc = (SpriteComponent)item.getComponent(ComponentType.SPRITE);
-        CooldownComponent cc = (CooldownComponent)item.getComponent(ComponentType.COOLDOWN);
-        StackComponent stc = (StackComponent)item.getComponent(ComponentType.STACK);
+    public UIElement produce(VectorF pos, NEntity item) {
+        SpriteComponent sc = (SpriteComponent) item.getComponent(ComponentType.SPRITE);
+        CooldownComponent cc = (CooldownComponent) item.getComponent(ComponentType.COOLDOWN);
+        StackComponent stc = (StackComponent) item.getComponent(ComponentType.STACK);
 
         UIVisual base = new UIVisual();
         base.setPosition(new PositionComponent(pos, 0));
@@ -31,10 +31,10 @@ public class ItemViewFactory {
         UIBar cooldown = new UIBar();
         cooldown.setSprite(new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("cooldown_bar"), 2));
         cooldown.setWidth(64);
-        cooldown.setPercent((float)cc.getCd()/cc.getCdAmount());
+        cooldown.setPercent((float) cc.getCd() / cc.getCdAmount());
         cooldown.setPosition(new PositionComponent(pos.sum(new VectorF(-32, 0)), 1));
         UILabel stacks = new UILabel();
-        stacks.setPosition(new PositionComponent(pos.sum(new VectorF(20,20)), 0));
+        stacks.setPosition(new PositionComponent(pos.sum(new VectorF(20, 20)), 0));
         stacks.setScale(1);
         stacks.setText(String.valueOf(stc.getStacks()));
 

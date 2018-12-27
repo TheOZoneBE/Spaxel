@@ -17,9 +17,7 @@ import org.lwjgl.opengl.GLCapabilities;
 
 public class Game implements Runnable {
 
-	public final static int GAME_HEIGHT = 720;
-	public final static int GAME_WIDTH = 1280;
-	public final static float MOUSE_FOLLOW_CUTOFF = .1f;
+	public static final float MOUSE_FOLLOW_CUTOFF = .1f;
 	public static Game game;
 	public boolean running = false;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";
@@ -32,15 +30,15 @@ public class Game implements Runnable {
 	public SystemUpdater updater;
 	public GLCapabilities capabilities;
 
+	public Game() {
+		loadingScreen = new LoadingScreen();
+		updater = new SystemUpdater();
+	}
+
 	public static void main(String[] args) {
 		game = new Game();
 
 		game.start();
-	}
-
-	public Game() {
-		loadingScreen = new LoadingScreen();
-		updater = new SystemUpdater();
 	}
 
 	public synchronized void start() {
@@ -67,14 +65,15 @@ public class Game implements Runnable {
 	public void initialize() {
 		GLFWErrorCallback.createPrint(System.err).set();
 
-		if (!glfwInit())
+		if (!glfwInit()) {
 			throw new IllegalStateException("Unable to initialize GLFW");
+		}
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-		window = glfwCreateWindow(GAME_WIDTH, GAME_HEIGHT, gameName, NULL, NULL);
+		window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, gameName, NULL, NULL);
 		if (window == NULL) {
 			System.err.println("Could not create GLFW window!");
 			return;
@@ -82,8 +81,10 @@ public class Game implements Runnable {
 
 		// convert input
 		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-			if (key == GLFW_KEY_X && action == GLFW_RELEASE)
-				glfwSetWindowShouldClose(window, true); // We will detect this in our rendering loop
+			if (key == GLFW_KEY_X && action == GLFW_RELEASE) {
+				// We will detect this in our rendering loop
+				glfwSetWindowShouldClose(window, true);
+			}
 		});
 
 		mouseWrapper = new MouseWrapper(window);
@@ -95,14 +96,11 @@ public class Game implements Runnable {
 
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-		glfwSetWindowPos(window, (vidmode.width() - GAME_WIDTH) / 2, (vidmode.height() - GAME_HEIGHT) / 2);
+		glfwSetWindowPos(window, (vidmode.width() - Constants.GAME_WIDTH) / 2,
+				(vidmode.height() - Constants.GAME_HEIGHT) / 2);
 
 		glfwMakeContextCurrent(window);
 		glfwShowWindow(window);
-
-		// Set the clear color
-
-		//
 
 		GL.createCapabilities();
 		capabilities = GL.getCapabilities();
@@ -110,7 +108,6 @@ public class Game implements Runnable {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 		glActiveTexture(GL_TEXTURE1);
-		// glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
@@ -160,7 +157,8 @@ public class Game implements Runnable {
 	}
 
 	public void render() {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+		// clear the framebuffer
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		updater.render();
 
@@ -170,7 +168,8 @@ public class Game implements Runnable {
 	}
 
 	public void renderLoading() {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+		// clear the framebuffer
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		updater.renderloading(loadingScreen);
 

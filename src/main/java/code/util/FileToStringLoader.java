@@ -1,12 +1,15 @@
 package code.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class FileToStringLoader {
 
 	public FileToStringLoader() {
+		super();
 	}
-	
+
 	public String loadAsString(String file) {
 		StringBuilder result = new StringBuilder();
 		try {

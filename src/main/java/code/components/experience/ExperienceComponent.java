@@ -7,6 +7,10 @@ import code.components.ComponentType;
  * Created by theo on 26/06/17.
  */
 public class ExperienceComponent extends Component {
+    private static final int XP_FUNC_A = 25;
+    private static final int XP_FUNC_B = 25;
+    private static final int XP_FUNC_C = 50;
+
     private int xp;
     private int level;
 
@@ -16,8 +20,8 @@ public class ExperienceComponent extends Component {
         this.level = level;
     }
 
-    public int getXpToLevel(){
-        return level*level*25 + level*25 + 50;
+    public int getXpToLevel() {
+        return level * level * XP_FUNC_A + level * XP_FUNC_B + XP_FUNC_C;
     }
 
     public int getXp() {

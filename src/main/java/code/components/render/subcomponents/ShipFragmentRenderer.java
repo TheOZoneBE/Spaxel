@@ -9,17 +9,17 @@ import code.graphics.RenderData;
 /**
  * Created by theod on 25-9-2017.
  */
-public class ShipFragmentRenderer extends Renderer{
+public class ShipFragmentRenderer extends Renderer {
+    private static final int FACTOR_MULT = 2;
 
-    public void apply(RenderData data, NEntity entity){
-        AgeComponent ac = (AgeComponent)entity.getComponent(ComponentType.AGE);
-        SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
+    public void apply(RenderData data, NEntity entity) {
+        AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);
+        SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
-        float factor = (float)ac.getLife()*2/ac.getMaxLife();
+        float factor = (float) ac.getLife() * FACTOR_MULT / ac.getMaxLife();
 
-        data.setXScale(sc.getSprite().getWidth()*sc.getScale()*factor);
-        data.setYScale(sc.getSprite().getHeight()*sc.getScale()*factor);
+        data.setXScale(sc.getSprite().getWidth() * sc.getScale() * factor);
+        data.setYScale(sc.getSprite().getHeight() * sc.getScale() * factor);
     }
-
 
 }

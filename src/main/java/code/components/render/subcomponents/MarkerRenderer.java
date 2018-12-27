@@ -7,7 +7,9 @@ import code.graphics.RenderData;
  * Created by theo on 5/01/18.
  */
 public class MarkerRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity){
-        data.setAlpha(0.33f);
+    private static final double MARKER_ALPHA = 0.33D;
+
+    public void apply(RenderData data, NEntity entity) {
+        data.setAlpha((float) MARKER_ALPHA);
     }
 }

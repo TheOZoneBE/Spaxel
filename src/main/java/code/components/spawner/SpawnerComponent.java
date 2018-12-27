@@ -22,7 +22,7 @@ public class SpawnerComponent extends Component {
         this.rand = new Random();
     }
 
-    public List<NEntity> spawn(NEntity entity){
+    public List<NEntity> spawn(NEntity entity) {
         return null;
     }
 

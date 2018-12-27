@@ -3,6 +3,7 @@ package code.components.position;
 import code.components.Component;
 import code.components.ComponentType;
 import code.math.VectorF;
+import code.Constants;
 
 /**
  * Created by theo on 3/06/17.
@@ -11,7 +12,7 @@ public class PositionComponent extends Component {
     private VectorF coord;
     private float rot;
 
-    private PositionComponent(){
+    private PositionComponent() {
         super(ComponentType.POSITION);
     }
 
@@ -34,16 +35,15 @@ public class PositionComponent extends Component {
     }
 
     public void setRot(float rot) {
-        if (rot < 0){
-            this.rot = (float)(rot + 2*Math.PI);
-        }
-        else {
-            this.rot = (float)(rot % (2*Math.PI));
+        if (rot < 0) {
+            this.rot = (float) (rot + Constants.FULL_CIRCLE);
+        } else {
+            this.rot = (float) (rot % (Constants.FULL_CIRCLE));
         }
 
     }
 
-    public Component clone(){
+    public Component clone() {
         return new PositionComponent(coord.clone(), rot);
     }
 }

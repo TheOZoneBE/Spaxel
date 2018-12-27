@@ -10,6 +10,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.HitParticleIndustry;
 import code.math.VectorF;
+import code.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
  * Created by theo on 6/06/17.
  */
 public class HitParticleSpawnerComponent extends SpawnerComponent {
+    private static final double HALF = 0.5;
     private float maxDeltaRot;
     private float maxSpeed;
     private int maxLife;
@@ -36,9 +38,9 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
         ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
         for (int i = 0; i < rate; i++) {
             int life = rand.nextInt(maxLife);
-            float dir = rand.nextFloat() * 2 * (float)Math.PI;
+            float dir = rand.nextFloat() * (float) Constants.FULL_CIRCLE;
             float speed = rand.nextFloat() * maxSpeed;
-            float deltaRot = (rand.nextFloat() - .5f) * maxDeltaRot;
+            float deltaRot = (float) (rand.nextFloat() - HALF) * maxDeltaRot;
             float dx = (float)Math.sin(dir) * speed;
             float dy = (float)Math.cos(dir) * speed;
             temp.add(hpi.produce(

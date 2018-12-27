@@ -7,10 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HitPoint {
+	private static final int HITPOINT_DIM = 3;
 	private VectorF vector;
 
 	public HitPoint() {
-		vector = new VectorF(3);
+		vector = new VectorF(HITPOINT_DIM);
 	}
 
 	public HitPoint(VectorF vector) {
@@ -18,8 +19,8 @@ public class HitPoint {
 	}
 
 	@JsonCreator
-	public HitPoint(@JsonProperty("xOffset")float xOffset, @JsonProperty("yOffset")float yOffset){
-		this.vector = new VectorF(new float[]{xOffset, yOffset, 1});
+	public HitPoint(@JsonProperty("xOffset") float xOffset, @JsonProperty("yOffset") float yOffset) {
+		this.vector = new VectorF(new float[] { xOffset, yOffset, 1 });
 	}
 
 	public void updateVector(VectorF vector) {
@@ -40,8 +41,8 @@ public class HitPoint {
 	public void render(int xOffset, int yOffset, RenderBuffer render) {
 		vector.render(xOffset, yOffset, render);
 	}
-	
-	public void print(){
+
+	public void print() {
 		vector.print();
 	}
 }

@@ -12,24 +12,23 @@ public class PauseController extends Controller {
         super(UI.PAUSE);
     }
 
-    public void update(){
+    public void update() {
         super.update();
         Keyboard k = Engine.getEngine().getKeyboard();
-        if (k.escState.getState() && !k.escState.getPrevState()){
+        if (k.escState.isDown() && !k.escState.hasBeenDown()) {
             resume();
         }
     }
 
-    public void resume(){
+    public void resume() {
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
     }
 
-    public void quit(){
+    public void quit() {
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
         Engine.getEngine().stopGame();
     }
-
 
 }

@@ -20,8 +20,8 @@ public class SpriteData {
 	private Spritesheet spritesheet;
 	private int color;
 
-	private SpriteData(){
-
+	public SpriteData() {
+		super();
 	}
 
 	public SpriteData(int width, int height, int xPos, int yPos, Spritesheet spritesheet) {
@@ -30,27 +30,30 @@ public class SpriteData {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.spritesheet = spritesheet;
-		initialize();
 	}
 
-	public void initialize(){
-		this.spritesheetID = spritesheet.getId();
-		if (xPosRel!= 0) xPos = xPosRel*width;
-		if (yPosRel!= 0) yPos = yPosRel*height;
-		sheetXcoord = (float)this.xPos / spritesheet.getWidth();
-		sheetYcoord = (float)this.yPos / spritesheet.getHeight();
-		sheetXscale = (float)width / spritesheet.getWidth();
-		sheetYscale = (float)height / spritesheet.getHeight();
-		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
-		color = 0;
-	}
-	
-	public SpriteData(int width, int height, int color){
+	public SpriteData(int width, int height, int color) {
 		this.width = width;
 		this.height = height;
 		this.color = color;
 		this.spritesheetID = 0;
-		spriteProperties = new float[]{sheetXcoord, sheetYcoord, sheetXscale, sheetYscale};
+		spriteProperties = new float[] { sheetXcoord, sheetYcoord, sheetXscale, sheetYscale };
+	}
+
+	public void initialize() {
+		this.spritesheetID = spritesheet.getId();
+		if (xPosRel != 0) {
+			xPos = xPosRel * width;
+		}
+		if (yPosRel != 0) {
+			yPos = yPosRel * height;
+		}
+		sheetXcoord = (float) this.xPos / spritesheet.getWidth();
+		sheetYcoord = (float) this.yPos / spritesheet.getHeight();
+		sheetXscale = (float) width / spritesheet.getWidth();
+		sheetYscale = (float) height / spritesheet.getHeight();
+		spriteProperties = new float[] { sheetXcoord, sheetYcoord, sheetXscale, sheetYscale };
+		color = 0;
 	}
 
 	public int getWidth() {
@@ -102,7 +105,7 @@ public class SpriteData {
 	}
 
 	@JsonSetter("sheetName")
-	public void setSpritesheet(String sheetname){
+	public void setSpritesheet(String sheetname) {
 		this.spritesheet = Engine.getEngine().getSpritesheets().get(sheetname);
 	}
 
@@ -114,11 +117,11 @@ public class SpriteData {
 		return spritesheetID;
 	}
 
-	public Spritesheet getSpritesheet(){
+	public Spritesheet getSpritesheet() {
 		return spritesheet;
 	}
 
-	public int getColor(){
+	public int getColor() {
 		return color;
 	}
 }

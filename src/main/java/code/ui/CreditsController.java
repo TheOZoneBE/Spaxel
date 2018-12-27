@@ -12,15 +12,15 @@ public class CreditsController extends Controller {
         super(UI.CREDITS);
     }
 
-    public void update(){
+    public void update() {
         super.update();
         Keyboard k = Engine.getEngine().getKeyboard();
-        if (k.escState.getState() && !k.escState.getPrevState()){
+        if (k.escState.isDown() && !k.escState.hasBeenDown()) {
             back();
         }
     }
 
-    public void back(){
+    public void back() {
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
     }
 }

@@ -3,7 +3,7 @@ package code.graphics;
 import code.util.BufferUtils;
 
 import java.nio.FloatBuffer;
-import java.util.*;
+import java.util.List;
 
 public class RenderBuffer {
 

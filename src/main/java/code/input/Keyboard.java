@@ -3,9 +3,14 @@ package code.input;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Keyboard {
-	public KeyState upState, downState, rightState, leftState, escState, iState, lState;
+	public KeyState upState;
+	public KeyState downState;
+	public KeyState rightState;
+	public KeyState leftState;
+	public KeyState escState;
+	public KeyState iState;
+	public KeyState lState;
 	private long window;
-
 
 	public Keyboard(long window) {
 		this.window = window;

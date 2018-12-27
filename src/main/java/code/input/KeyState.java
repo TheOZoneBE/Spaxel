@@ -4,19 +4,23 @@ package code.input;
  * Created by theod on 6-11-2016.
  */
 public class KeyState {
-    private boolean state;
-    private boolean prevState;
+    private boolean down;
+    private boolean wasDown;
 
-    public void setState(boolean state){
-        prevState = this.state;
-        this.state = state;
+    public KeyState() {
+        super();
     }
 
-    public boolean getState(){
-        return state;
+    public void setState(boolean down) {
+        wasDown = this.down;
+        this.down = down;
     }
 
-    public boolean getPrevState(){
-        return prevState;
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean hasBeenDown() {
+        return wasDown;
     }
 }

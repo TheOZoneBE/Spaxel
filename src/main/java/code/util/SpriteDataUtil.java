@@ -14,6 +14,8 @@ public class SpriteDataUtil {
     public static SpriteData getRandomPart(SpriteData spriteData, int width, int height){
         int x = random.nextInt(spriteData.getWidth() - width);
         int y = random.nextInt(spriteData.getHeight() - height);
-        return new SpriteData(width, height, spriteData.getxPos() + x, spriteData.getyPos() + y, spriteData.getSpritesheet());
+        SpriteData part =  new SpriteData(width, height, spriteData.getxPos() + x, spriteData.getyPos() + y, spriteData.getSpritesheet());
+        part.initialize();
+        return part;
     }
 }

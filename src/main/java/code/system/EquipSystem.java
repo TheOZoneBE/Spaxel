@@ -62,6 +62,8 @@ public class EquipSystem extends GameSystem {
                         SecondaryComponent sdc = (SecondaryComponent) collider.getComponent(ComponentType.SECONDARY);
                         sdc.addItem(entity);
                         break;
+                    default:
+                        break;
                     }
                     entity.addComponent(new LinkComponent(collider));
                 }

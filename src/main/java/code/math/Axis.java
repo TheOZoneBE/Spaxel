@@ -22,8 +22,8 @@ public class Axis {
 		return dirVec.multiplicate(mul);
 	}
 
-	public void print() {
-		dirVec.print();
+	public String toString() {
+		dirVec.toString();
 	}
 
 }

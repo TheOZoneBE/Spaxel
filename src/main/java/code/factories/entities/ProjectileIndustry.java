@@ -7,7 +7,7 @@ import code.components.position.PositionComponent;
 import code.engine.EntityType;
 import code.engine.NEntity;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Created by theo on 18/06/17.
@@ -15,7 +15,7 @@ import java.util.EnumMap;
 public class ProjectileIndustry extends EntityIndustry {
     public NEntity produce(PositionComponent pc, LinkComponent lc){
         NEntity entity = new NEntity(EntityType.PROJECTILE);
-        EnumMap<ComponentType, Component> components = buildComponents();
+        Map<ComponentType, Component> components = buildComponents();
         components.put(pc.getType(), pc);
         components.put(lc.getType(), lc);
         entity.setComponents(components);

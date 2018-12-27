@@ -71,13 +71,15 @@ public class MatrixD {
 		return sol;
 	}
 
-	public void print() {
+	public String toString() {
+		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				System.out.print(matrix[i * n + j] + " ");
+				result.append(matrix[i * n + j] + " ");
 			}
-			System.out.println();
+			result.append("\n");
 		}
+		return result.toString();
 	}
 
 	public FloatBuffer toFloatBuffer() {

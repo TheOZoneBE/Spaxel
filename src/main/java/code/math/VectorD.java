@@ -3,6 +3,9 @@ package code.math;
 import code.graphics.RenderBuffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class VectorD {
 	private static final int DEFAULT_DIM = 3;
 	private int m = DEFAULT_DIM;
@@ -83,10 +86,12 @@ public class VectorD {
 		throw new UnsupportedOperationException();
 	}
 
-	public void print() {
+	public String toString() {
+		List<String> parts = new ArrayList<String>();
 		for (int i = 0; i < m; i++) {
-			System.out.print(vector[i] + " ");
+			parts.add(String.valueOf(vector[i]));
 		}
+		return String.join(" ", parts);
 	}
 
 	// only works with 2d vectors

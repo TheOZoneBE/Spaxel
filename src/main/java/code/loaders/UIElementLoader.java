@@ -2,6 +2,8 @@ package code.loaders;
 
 import java.io.IOException;
 import java.util.EnumMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import code.ui.UI;
 import code.ui.UIElement;
@@ -9,6 +11,7 @@ import code.ui.Controller;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class UIElementLoader extends Loader {
+	private static final Logger LOGGER = Logger.getLogger(UIElementLoader.class.getName());
 
 	public EnumMap<UI, Controller> loadUIElements(String[] uis) {
 		try {
@@ -23,7 +26,7 @@ public class UIElementLoader extends Loader {
 			}
 			return uiMap;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 		return null;
 	}

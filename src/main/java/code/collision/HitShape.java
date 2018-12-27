@@ -55,12 +55,12 @@ public class HitShape {
 		}
 	}
 
-	public void print() {
+	public String toString() {
+		List<String> print = new ArrayList<>();
 		for (HitPoint h : hitPoints) {
-			h.print();
-			System.out.print(" | ");
+			print.add(h.toString());
 		}
-		System.out.println();
+		return String.join(" | ", print);
 	}
 
 	/*

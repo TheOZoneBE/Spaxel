@@ -42,7 +42,7 @@ public class HitPoint {
 		vector.render(xOffset, yOffset, render);
 	}
 
-	public void print() {
-		vector.print();
+	public String toString() {
+		return vector.toString();
 	}
 }

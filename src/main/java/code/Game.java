@@ -15,11 +15,15 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLCapabilities;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Game implements Runnable {
+	public static final Logger LOGGER = Logger.getLogger(Game.class.getName());
 
 	public static final double MOUSE_FOLLOW_CUTOFF = .1;
 	public static Game game;
-	public boolean running = false;
+	public boolean running;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";
 
 	private Thread thread;
@@ -75,7 +79,7 @@ public class Game implements Runnable {
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 		window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, gameName, NULL, NULL);
 		if (window == NULL) {
-			System.err.println("Could not create GLFW window!");
+			LOGGER.log(Level.SEVERE, "Could not create GLFW window!");
 			return;
 		}
 
@@ -110,7 +114,7 @@ public class Game implements Runnable {
 		glActiveTexture(GL_TEXTURE1);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		System.out.println("OpenGL: " + glGetString(GL_VERSION));
+		LOGGER.log(Level.INFO, "OpenGL: {0}", glGetString(GL_VERSION));
 	}
 
 	public void run() {

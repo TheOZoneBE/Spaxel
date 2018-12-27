@@ -4,12 +4,16 @@ import code.util.BufferUtils;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class Spritesheet {
+	private static final Logger LOGGER = Logger.getLogger(Spritesheet.class.getName());
+
 	private int width;
 	private int height;
 	private String path;
@@ -25,7 +29,7 @@ public class Spritesheet {
 			BufferedImage image = ImageIO.read(getClass().getResource(path));
 			image.getRGB(0, 0, width, height, pixels, 0, width);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 
 		int[] data = new int[width * height];

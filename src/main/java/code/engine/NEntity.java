@@ -4,13 +4,14 @@ import code.components.Component;
 import code.components.ComponentType;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Created by theo on 31/05/17.
  */
 public class NEntity {
     private EntityType type;
-    private EnumMap<ComponentType, Component> components;
+    private Map<ComponentType, Component> components;
 
     public NEntity(EntityType type) {
         this.type = type;
@@ -21,11 +22,11 @@ public class NEntity {
         return type;
     }
 
-    public EnumMap<ComponentType, Component> getComponents() {
+    public Map<ComponentType, Component> getComponents() {
         return components;
     }
 
-    public void setComponents(EnumMap<ComponentType, Component> components) {
+    public void setComponents(Map<ComponentType, Component> components) {
         this.components = components;
     }
 
@@ -58,10 +59,8 @@ public class NEntity {
     }
 
     public NEntity copy() {
-        NEntity copied = new NEntity(type);
         // TODO figure out copy implementation
-
-        return copied;
+        return new NEntity(type);
     }
 
 }

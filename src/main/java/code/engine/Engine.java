@@ -1,6 +1,6 @@
 package code.engine;
 
-import java.awt.*;
+import java.awt.Font;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -8,14 +8,37 @@ import code.Constants;
 import code.Game;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
-import code.graphics.Spritesheet;
-import code.logger.Logger;
-import code.math.VectorD;
 import code.graphics.SpriteData;
+import code.graphics.Spritesheet;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
-import code.system.*;
-import code.loaders.*;
+import code.loaders.HitShapeLoader;
+import code.loaders.IndustryLoader;
+import code.loaders.ItemPropertiesLoader;
+import code.loaders.SoundLoader;
+import code.loaders.SpriteDataLoader;
+import code.loaders.SpritesheetLoader;
+import code.loaders.UIElementLoader;
+import code.logger.Logger;
+import code.math.VectorD;
+import code.system.AISystem;
+import code.system.AgeSystem;
+import code.system.CooldownSystem;
+import code.system.DamageSystem;
+import code.system.DifficultySystem;
+import code.system.EquipSystem;
+import code.system.ExperienceSystem;
+import code.system.GameSystem;
+import code.system.HealthSystem;
+import code.system.HitSystem;
+import code.system.InputSystem;
+import code.system.MarkerSystem;
+import code.system.RenderSystem;
+import code.system.ShipSystem;
+import code.system.SoundSystem;
+import code.system.SpawnerSystem;
+import code.system.UISystem;
+import code.system.VelocitySystem;
 import code.ui.Controller;
 import code.ui.UI;
 
@@ -173,7 +196,7 @@ final public class Engine {
 		return hitShapeAtlas;
 	}
 
-	public EnumMap<UI, Controller> getUIAtlas() {
+	public Map<UI, Controller> getUIAtlas() {
 		return UIAtlas;
 	}
 

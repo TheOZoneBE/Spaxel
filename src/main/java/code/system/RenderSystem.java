@@ -37,7 +37,7 @@ public class RenderSystem extends GameSystem {
 		master.render(bufferBuffer);
 	}
 
-	public void render() {
+	public void update() {
 		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 		bufferBuffer.clear();
 		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {

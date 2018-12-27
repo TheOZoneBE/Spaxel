@@ -1,6 +1,10 @@
 package code.graphics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by theod on 15/10/2016.
@@ -8,11 +12,11 @@ import java.util.*;
 public class MasterBuffer {
     private EnumMap<RenderLayer, Map<Integer, List<RenderData>>> layers;
 
-    public MasterBuffer(Map<String, Spritesheet> spritesheets){
+    public MasterBuffer(Map<String, Spritesheet> spritesheets) {
         layers = new EnumMap<>(RenderLayer.class);
-        for (RenderLayer l: RenderLayer.values()){
+        for (RenderLayer l : RenderLayer.values()) {
             Map<Integer, List<RenderData>> data = new HashMap<>();
-            for (Spritesheet sheet: spritesheets.values()){
+            for (Spritesheet sheet : spritesheets.values()) {
                 data.put(sheet.getId(), new ArrayList<>());
             }
             data.put(0, new ArrayList<>());
@@ -21,22 +25,21 @@ public class MasterBuffer {
         }
     }
 
-    public void addNewSprite(RenderLayer layer, RenderData rdata){
+    public void addNewSprite(RenderLayer layer, RenderData rdata) {
         layers.get(layer).get(rdata.getSpriteSheetID()).add(rdata);
     }
 
-    public void clear(){
-        for(Map<Integer, List<RenderData>> layer: layers.values()){
-            for(List<RenderData> datalist: layer.values()){
+    public void clear() {
+        for (Map<Integer, List<RenderData>> layer : layers.values()) {
+            for (List<RenderData> datalist : layer.values()) {
                 datalist.clear();
             }
         }
 
     }
 
-    public Map<Integer, List<RenderData>> getData(RenderLayer layer){
+    public Map<Integer, List<RenderData>> getData(RenderLayer layer) {
         return layers.get(layer);
     }
-
 
 }

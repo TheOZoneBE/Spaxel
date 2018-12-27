@@ -2,6 +2,8 @@ package code.sound;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -10,6 +12,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound {
+	private static final Logger LOGGER = Logger.getLogger(FileToStringLoader.class.getName());
 
 	private String path;
 	private Clip clip;
@@ -28,12 +31,8 @@ public class Sound {
 			clip = AudioSystem.getClip();
 			AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 			clip.open(audio);
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 

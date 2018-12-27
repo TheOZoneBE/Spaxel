@@ -1,9 +1,13 @@
 package code.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
 
 public final class ShaderUtils {
+	private static final Logger LOGGER = Logger.getLogger(ShaderUtils.class.getName());
 
 	private static FileToStringLoader loader = new FileToStringLoader();
 
@@ -24,15 +28,15 @@ public final class ShaderUtils {
 
 		glCompileShader(vertID);
 		if (glGetShaderi(vertID, GL_COMPILE_STATUS) == GL_FALSE) {
-			System.err.println("Failed to compile vertex shader!");
-			System.err.println(glGetShaderInfoLog(vertID));
+			LOGGER.log(Level.SEVERE, "Failed to compile vertex shader!");
+			LOGGER.log(Level.SEVERE, glGetShaderInfoLog(vertID));
 			return -1;
 		}
 
 		glCompileShader(fragID);
 		if (glGetShaderi(fragID, GL_COMPILE_STATUS) == GL_FALSE) {
-			System.err.println("Failed to compile fragment shader!");
-			System.err.println(glGetShaderInfoLog(fragID));
+			LOGGER.log(Level.SEVERE, "Failed to compile fragment shader!");
+			LOGGER.log(Level.SEVERE, glGetShaderInfoLog(vertID));
 			return -1;
 		}
 

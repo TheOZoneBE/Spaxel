@@ -55,7 +55,7 @@ public class MasterRenderer {
         initialize();
     }
 
-    public void initialize() {
+    private void initialize() {
         MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2.0, Constants.GAME_WIDTH / 2.0,
                 -Constants.GAME_HEIGHT / 2.0, Constants.GAME_HEIGHT / 2.0, -1.0, 1.0);
 

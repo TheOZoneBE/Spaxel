@@ -1,6 +1,8 @@
 package code.ui;
 
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
@@ -16,6 +18,8 @@ import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class UIButton extends UIVisual {
+	private static final Logger LOGGER = Logger.getLogger(FileToStringLoader.class.getName());
+
 	protected String onClick;
 	protected HitShape hitShape;
 	protected SpriteComponent hover;
@@ -45,7 +49,7 @@ public class UIButton extends UIVisual {
 					m.invoke(controller);
 					click = false;
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.toString(), e);
 				}
 			} else if (inside) {
 				hovering = true;

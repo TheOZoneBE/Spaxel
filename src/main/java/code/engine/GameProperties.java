@@ -10,11 +10,15 @@ public class GameProperties {
     private boolean debug;
     private boolean logging;
 
+    public GameProperties() {
+        super();
+    }
+
     public int getScore() {
         return score;
     }
 
-    public void addScore(int value){
+    public void addScore(int value) {
         score += value;
     }
 
@@ -46,7 +50,7 @@ public class GameProperties {
         this.logging = logging;
     }
 
-    public void addTime(long updateTime){
+    public void addTime(long updateTime) {
         timeOverflow += updateTime;
         gameTime += timeOverflow / 1000000000;
         timeOverflow %= 1000000000L;

@@ -67,7 +67,7 @@ public class Projection {
 		return yMin <= p.getYMax();
 	}
 
-	public void print() {
-		System.out.println((int) xMin + " " + (int) xMax + " | " + (int) yMin + " " + (int) yMax);
+	public String toString() {
+		return (int) xMin + " " + (int) xMax + " | " + (int) yMin + " " + (int) yMax;
 	}
 }

@@ -20,11 +20,12 @@ import java.util.Set;
  * Created by theo on 3/01/18.
  */
 public class DifficultySystem extends GameSystem {
-    private int nextSpawn = 0;
+    private int nextSpawn;
     private int spawnCap = 1;
     private int numItems = 1;
     private int maxLevel = 1;
-    private String[] enemyIndustries = {"enemy_green_industry", "enemy_white_industry", "enemy_red_industry", "enemy_blue_industry"};
+    private String[] enemyIndustries = { "enemy_green_industry", "enemy_white_industry", "enemy_red_industry",
+            "enemy_blue_industry" };
     private Random rand;
 
     public DifficultySystem() {
@@ -32,42 +33,45 @@ public class DifficultySystem extends GameSystem {
         rand = new Random();
     }
 
-    public void update(){
-        if (nextSpawn > 0){
+    public void update() {
+        if (nextSpawn > 0) {
             nextSpawn--;
         }
         Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(EntityType.ENEMY);
         NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
-        PositionComponent playerPos = (PositionComponent)player.getComponent(ComponentType.POSITION);
+        PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
 
-        if(nextSpawn == 0 && enemies.size() < spawnCap){
-            EnemyIndustry ei = (EnemyIndustry) Engine.getEngine().getIndustryMap().get(enemyIndustries[rand.nextInt(4)]);
-            //entity settings
+        if (nextSpawn == 0 && enemies.size() < spawnCap) {
+            EnemyIndustry ei = (EnemyIndustry) Engine.getEngine().getIndustryMap()
+                    .get(enemyIndustries[rand.nextInt(4)]);
+            // entity settings
             NEntity entity = ei.produce(
-                    new PositionComponent(new VectorD(playerPos.getCoord().getValue(0) + rand.nextInt(256) - 128, playerPos.getCoord().getValue(1) + rand.nextInt(256) - 128), 0));
-            ((HealthComponent)entity.getComponent(ComponentType.HEALTH)).levelUp(1 + rand.nextInt(maxLevel));
+                    new PositionComponent(new VectorD(playerPos.getCoord().getValue(0) + rand.nextInt(256) - 128,
+                            playerPos.getCoord().getValue(1) + rand.nextInt(256) - 128), 0));
+            ((HealthComponent) entity.getComponent(ComponentType.HEALTH)).levelUp(1 + rand.nextInt(maxLevel));
 
-            //items
-            addRandomItems(entity, (2 + numItems)/3, ItemType.PRIMARY, ComponentType.PRIMARY);
-            addRandomItems(entity, (1 + numItems)/3, ItemType.SECONDARY, ComponentType.SECONDARY);
-            addRandomItems(entity, numItems/3, ItemType.SHIP, ComponentType.SHIP);
+            // items
+            addRandomItems(entity, (2 + numItems) / 3, ItemType.PRIMARY, ComponentType.PRIMARY);
+            addRandomItems(entity, (1 + numItems) / 3, ItemType.SECONDARY, ComponentType.SECONDARY);
+            addRandomItems(entity, numItems / 3, ItemType.SHIP, ComponentType.SHIP);
 
-            //Add entity
+            // Add entity
             Engine.getEngine().getNEntityStream().addEntity(entity);
 
-
-            //update difficulty
-            nextSpawn = Engine.getEngine().getGameProperties().getGameTime() < 350 ? 350 - Engine.getEngine().getGameProperties().getGameTime() : 50;
+            // update difficulty
+            nextSpawn = Engine.getEngine().getGameProperties().getGameTime() < 350
+                    ? 350 - Engine.getEngine().getGameProperties().getGameTime()
+                    : 50;
             int temp = Engine.getEngine().getGameProperties().getGameTime();
-            spawnCap = 1 + (int)Math.sqrt(temp);
+            spawnCap = 1 + (int) Math.sqrt(temp);
             numItems = 1 + temp / 120;
             maxLevel = 1 + temp / 60;
         }
     }
 
-    private void addRandomItems(NEntity entity, int number, ItemType type, ComponentType ctype){
-        InventoryComponent ic = (InventoryComponent)entity.getComponent(ctype);
-        for (int i = 0; i < number; i++){
+    private void addRandomItems(NEntity entity, int number, ItemType type, ComponentType ctype) {
+        InventoryComponent ic = (InventoryComponent) entity.getComponent(ctype);
+        for (int i = 0; i < number; i++) {
             NEntity item = Engine.getEngine().getItems().produceRandom(prop -> prop.getType() == type);
             ic.addItem(item);
             item.addComponent(new LinkComponent(entity));

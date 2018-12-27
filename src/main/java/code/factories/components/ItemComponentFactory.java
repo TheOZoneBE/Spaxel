@@ -24,36 +24,38 @@ public class ItemComponentFactory extends ComponentFactory {
     private int maxCapacity;
     private EntityIndustry effectIndustry;
 
-    public ItemComponentFactory(){
+    public ItemComponentFactory() {
         super();
     }
 
-    public Component make(){
-        switch(name){
-            case "basic_laser":
-                return new BasicLaserItemComponent();
-            case "piercing_laser":
-                return new PiercingLaserItemComponent();
-            case "disrupt_laser":
-                return new DisruptLaserItemComponent();
-            case "slowing_laser":
-                return new SlowingLaserItemComponent();
-            case "basic_missile":
-                return new BasicMissileItemComponent();
-            case "hacking_missile":
-                return new HackingMissileItemComponent();
-            case "homing_missile":
-                return new HomingMissileItemComponent();
-            case "cluster_missile":
-                return new ClusterMissileItemComponent();
-            case "basic_shield":
-                return new BasicShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
-            case "anti_shield":
-                return new AntiShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
-            case "active_shield":
-                return new ActiveShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
-            case "force_shield":
-                return new ForceShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+    public Component make() {
+        switch (name) {
+        case "basic_laser":
+            return new BasicLaserItemComponent();
+        case "piercing_laser":
+            return new PiercingLaserItemComponent();
+        case "disrupt_laser":
+            return new DisruptLaserItemComponent();
+        case "slowing_laser":
+            return new SlowingLaserItemComponent();
+        case "basic_missile":
+            return new BasicMissileItemComponent();
+        case "hacking_missile":
+            return new HackingMissileItemComponent();
+        case "homing_missile":
+            return new HomingMissileItemComponent();
+        case "cluster_missile":
+            return new ClusterMissileItemComponent();
+        case "basic_shield":
+            return new BasicShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+        case "anti_shield":
+            return new AntiShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+        case "active_shield":
+            return new ActiveShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+        case "force_shield":
+            return new ForceShieldItemComponent(capacity, maxCapacity, effectIndustry.produce());
+        default:
+            break;
         }
         return null;
     }

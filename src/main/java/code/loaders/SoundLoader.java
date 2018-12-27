@@ -2,6 +2,8 @@ package code.loaders;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import code.Game;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,6 +13,7 @@ import code.sound.Music;
 
 public class SoundLoader extends Loader {
 	private static final double SOUND_LOAD_PERCENTAGE = 0.7;
+	private static final Logger LOGGER = Logger.getLogger(SoundLoader.class.getName());
 
 	public Map<String, Music> loadSounds(String path) {
 		try {
@@ -27,7 +30,7 @@ public class SoundLoader extends Loader {
 			}
 			return music;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 		return null;
 	}

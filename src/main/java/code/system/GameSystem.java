@@ -2,17 +2,16 @@ package code.system;
 
 import code.engine.SystemType;
 
-public class GameSystem{
+public abstract class GameSystem {
 	protected SystemType type;
 
-	public GameSystem(SystemType type){
+	public GameSystem(SystemType type) {
 		this.type = type;
 	}
 
-	public void update(){
-		
-	}
-	public SystemType getType(){
+	public abstract void update();
+
+	public SystemType getType() {
 		return type;
 	}
 }

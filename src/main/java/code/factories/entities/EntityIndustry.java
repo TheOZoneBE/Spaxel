@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by theo on 3/06/17.
@@ -38,7 +39,7 @@ public class EntityIndustry {
         return entity;
     }
 
-    public EnumMap<ComponentType, Component> buildComponents() {
+    public Map<ComponentType, Component> buildComponents() {
         EnumMap<ComponentType, Component> components = new EnumMap<>(ComponentType.class);
         for (ComponentFactory factory : factories) {
             Component c = factory.make();

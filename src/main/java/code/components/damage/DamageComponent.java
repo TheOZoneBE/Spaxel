@@ -12,20 +12,24 @@ import java.util.List;
 public class DamageComponent extends Component {
     private List<Damage> damages;
 
-    public DamageComponent(){
+    public DamageComponent() {
         super(ComponentType.DAMAGE);
         damages = new ArrayList<>();
     }
 
-    public synchronized void addDamage(Damage damage){
+    public synchronized void addDamage(Damage damage) {
         damages.add(damage);
     }
 
-    public List<Damage> getDamages(){
+    public List<Damage> getDamages() {
         return damages;
     }
 
-    public synchronized void removeDamage(Damage damage){
+    public synchronized void removeDamage(Damage damage) {
         damages.remove(damage);
+    }
+
+    public Component copy() {
+        return new DamageComponent();
     }
 }

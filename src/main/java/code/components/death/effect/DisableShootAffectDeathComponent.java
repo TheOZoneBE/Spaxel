@@ -1,6 +1,7 @@
 package code.components.death.effect;
 
 import code.components.actor.ActorComponent;
+import code.components.Component;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
@@ -16,11 +17,15 @@ public class DisableShootAffectDeathComponent extends DeathComponent {
         super(DeathType.DISABLE_SHOOT_AFFECT);
     }
 
-    public void die(NEntity entity){
-        NEntity parent = ((LinkComponent)entity.getComponent(ComponentType.LINK)).getLink();
-        ActorComponent mc = (ActorComponent)parent.getComponent(ComponentType.ACTOR);
+    public void die(NEntity entity) {
+        NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        ActorComponent mc = (ActorComponent) parent.getComponent(ComponentType.ACTOR);
         mc.setCanShoot(true);
-        EffectComponent ec = (EffectComponent)parent.getComponent(ComponentType.EFFECT);
+        EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);
         ec.getEffects().remove(entity);
+    }
+
+    public Component copy() {
+        return new DisableShootAffectDeathComponent();
     }
 }

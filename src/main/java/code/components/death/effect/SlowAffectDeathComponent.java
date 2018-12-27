@@ -1,5 +1,6 @@
 package code.components.death.effect;
 
+import code.components.Component;
 import code.components.ComponentType;
 import code.components.affect.AffectComponent;
 import code.components.death.DeathComponent;
@@ -25,5 +26,9 @@ public class SlowAffectDeathComponent extends DeathComponent {
         mc.setMaxSpeed(mc.getMaxSpeed() / ac.getFactor());
         EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);
         ec.getEffects().remove(entity);
+    }
+
+    public Component copy(){
+        return new SlowAffectDeathComponent();
     }
 }

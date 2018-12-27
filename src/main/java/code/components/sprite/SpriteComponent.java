@@ -43,4 +43,8 @@ public class SpriteComponent extends Component {
     public void setScale(double scale) {
         this.scale = scale;
     }
+
+    public Component copy(){
+        return new SpriteComponent(sprite, scale);
+    }
 }

@@ -12,49 +12,56 @@ public class NEntity {
     private EntityType type;
     private EnumMap<ComponentType, Component> components;
 
-    public NEntity(EntityType type){
+    public NEntity(EntityType type) {
         this.type = type;
         this.components = new EnumMap<>(ComponentType.class);
     }
 
-    public EntityType getType(){
+    public EntityType getType() {
         return type;
     }
 
-    public EnumMap<ComponentType, Component> getComponents(){
+    public EnumMap<ComponentType, Component> getComponents() {
         return components;
     }
 
-    public void setComponents(EnumMap<ComponentType, Component> components){
+    public void setComponents(EnumMap<ComponentType, Component> components) {
         this.components = components;
     }
 
-    public Component getComponent(ComponentType type){
+    public Component getComponent(ComponentType type) {
         return components.get(type);
     }
 
-    public void addComponent(Component component){
+    public void addComponent(Component component) {
         component.addCascade(this);
         components.put(component.getType(), component);
         Engine.getEngine().getNEntityStream().addComponent(component.getType(), this);
     }
 
-    public void removeComponent(ComponentType type){
+    public void removeComponent(ComponentType type) {
         components.get(type).removeCascade();
         components.remove(type);
         Engine.getEngine().getNEntityStream().removeComponent(type, this);
     }
 
-    public void addCascade(){
-        for (Component c: components.values()){
+    public void addCascade() {
+        for (Component c : components.values()) {
             c.addCascade(this);
         }
     }
 
-    public void removeCascade(){
-        for(Component c: components.values()){
+    public void removeCascade() {
+        for (Component c : components.values()) {
             c.removeCascade();
         }
+    }
+
+    public NEntity copy() {
+        NEntity copied = new NEntity(type);
+        // TODO figure out copy implementation
+
+        return copied;
     }
 
 }

@@ -40,4 +40,8 @@ public class EffectComponent extends Component {
             Engine.getEngine().getNEntityStream().removeEntity(e);
         }
     }
+
+    public Component copy(){
+        return new EffectComponent();
+    }
 }

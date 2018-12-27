@@ -1,6 +1,7 @@
 package code.components.spawner;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
@@ -19,13 +20,16 @@ public class TrailSegmentSpawnerComponent extends SpawnerComponent {
         super(SpawnerType.TRAILSEGMENT, rate);
     }
 
-    public List<NEntity> spawn(NEntity entity){
-        PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
-        TrailSegmentIndustry tsi = (TrailSegmentIndustry) Engine.getEngine().getIndustryMap().get("trail_segment_industry");
+    public List<NEntity> spawn(NEntity entity) {
+        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        ParticleComponent pac = (ParticleComponent) entity.getComponent(ComponentType.PARTICLE);
+        TrailSegmentIndustry tsi = (TrailSegmentIndustry) Engine.getEngine().getIndustryMap()
+                .get("trail_segment_industry");
         return Collections.singletonList(
-                tsi.produce(
-                        (PositionComponent)pc.clone(),
-                        new SpriteComponent(pac.getParticle(), pac.getScale())));
+                tsi.produce((PositionComponent) pc.copy(), new SpriteComponent(pac.getParticle(), pac.getScale())));
+    }
+
+    public Component copy() {
+        return new TrailSegmentSpawnerComponent(rate);
     }
 }

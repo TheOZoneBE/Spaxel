@@ -44,7 +44,7 @@ public class RenderSystem extends GameSystem {
 			VectorD mousePos = new VectorD(mouseWrapper.getX(), mouseWrapper.getY());
 			VectorD difference = mousePos.diff(Engine.getEngine().getCursorFollow());
 			if (difference.length() > Game.MOUSE_FOLLOW_CUTOFF) {
-				difference = difference.multiplicate(0.15f);
+				difference = difference.multiplicate(0.15);
 			}
 			Engine.getEngine().setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
 
@@ -52,8 +52,8 @@ public class RenderSystem extends GameSystem {
 			PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
 
 			VectorD dim = new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-			VectorD offset = dim.multiplicate(0.75f).diff(new VectorD(8 * 4, 8 * 4))
-					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5f)).diff(playerPos.getCoord());
+			VectorD offset = dim.multiplicate(0.75).diff(new VectorD(8 * 4, 8 * 4))
+					.diff(Engine.getEngine().getCursorFollow().multiplicate(0.5)).diff(playerPos.getCoord());
 			Engine.getEngine().setScreenOffset(offset);
 		}
 		renderEntities();

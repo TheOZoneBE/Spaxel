@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by theo on 5/06/17.
  */
-public class SpawnerComponent extends Component {
+public abstract class SpawnerComponent extends Component {
     protected int rate;
     private SpawnerType spawnerType;
     protected Random rand;
@@ -22,9 +22,7 @@ public class SpawnerComponent extends Component {
         this.rand = new Random();
     }
 
-    public List<NEntity> spawn(NEntity entity) {
-        return null;
-    }
+    public abstract List<NEntity> spawn(NEntity entity);
 
     public int getRate() {
         return rate;

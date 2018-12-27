@@ -7,7 +7,7 @@ import code.engine.NEntity;
 /**
  * Created by theo on 7/06/17.
  */
-public class AIComponent extends Component {
+public abstract class AIComponent extends Component {
     private AIType aiType;
 
     public AIComponent(AIType subType) {
@@ -15,9 +15,7 @@ public class AIComponent extends Component {
         this.aiType = subType;
     }
 
-    public void execute(NEntity entity){
-
-    }
+    public abstract void execute(NEntity entity);
 
     public AIType getAiType() {
         return aiType;

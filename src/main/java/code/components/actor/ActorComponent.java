@@ -9,7 +9,7 @@ import code.components.ComponentType;
 public class ActorComponent extends Component {
     private boolean canShoot;
     private boolean canMove;
-    //TODO implement slow and other status effects and modifiers via map
+    // TODO implement slow and other status effects and modifiers via map
 
     public ActorComponent(boolean canShoot, boolean canMove) {
         super(ComponentType.ACTOR);
@@ -31,5 +31,9 @@ public class ActorComponent extends Component {
 
     public void setCanMove(boolean canMove) {
         this.canMove = canMove;
+    }
+
+    public Component copy() {
+        return new ActorComponent(canShoot, canMove);
     }
 }

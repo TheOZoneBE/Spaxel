@@ -10,6 +10,7 @@ import code.components.render.RenderComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.components.Component;
 
 import java.util.Set;
 
@@ -47,5 +48,9 @@ public class ForceShieldItemComponent extends ShieldItemComponent {
                 }
             }
         }
+    }
+
+    public Component copy(){
+        return new ForceShieldItemComponent(capacity, maxCapacity, effect.copy());
     }
 }

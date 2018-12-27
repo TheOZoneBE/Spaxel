@@ -1,6 +1,7 @@
 package code.components.spawner;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
@@ -25,7 +26,11 @@ public class ShipFragmentSpawnerComponent extends SpawnerComponent {
         TrailSegmentIndustry tsi = (TrailSegmentIndustry) Engine.getEngine().getIndustryMap().get("ship_fragment_industry");
         return Collections.singletonList(
                 tsi.produce(
-                        (PositionComponent)pc.clone(),
+                        (PositionComponent)pc.copy(),
                         new SpriteComponent(pac.getParticle(), pac.getScale())));
+    }
+
+    public Component copy() {
+        return new ShipFragmentSpawnerComponent(rate);
     }
 }

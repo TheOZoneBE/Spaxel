@@ -94,7 +94,7 @@ public class VectorD {
 		return Math.sqrt((vector[0] * vector[0]) + (vector[1] * vector[1]));
 	}
 
-	public VectorD clone() {
+	public VectorD copy() {
 		return new VectorD(vector.clone());
 	}
 

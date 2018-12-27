@@ -1,5 +1,6 @@
 package code.components.death.actor;
 
+import code.components.Component;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.engine.Engine;
@@ -14,12 +15,16 @@ public class PlayerDeathComponent extends DeathComponent {
         super(DeathType.PLAYER);
     }
 
-    public void die(NEntity entity){
-        //add particle effect
-        //show game over
-        //TODO revisit maybe
+    public void die(NEntity entity) {
+        // add particle effect
+        // show game over
+        // TODO revisit maybe
         Engine.getEngine().stopGame();
         Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.GAME_OVER));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
+    }
+
+    public Component copy() {
+        return new PlayerDeathComponent();
     }
 }

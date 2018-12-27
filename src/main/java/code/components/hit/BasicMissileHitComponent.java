@@ -1,5 +1,6 @@
 package code.components.hit;
 
+import code.components.Component;
 import code.components.ComponentType;
 import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
@@ -27,5 +28,9 @@ public class BasicMissileHitComponent extends HitComponent {
                 "missile_hit_particle_spawner_industry");
 
         Engine.getEngine().getNEntityStream().removeEntity(entity);
+    }
+
+    public Component copy() {
+        return new BasicMissileHitComponent(damage);
     }
 }

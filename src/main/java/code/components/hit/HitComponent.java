@@ -17,39 +17,36 @@ import code.factories.entities.SpawnerIndustry;
 /**
  * Created by theo on 18/06/17.
  */
-public class HitComponent extends Component{
+public abstract class HitComponent extends Component {
     private HitType hitType;
     protected int damage;
 
-    public HitComponent(HitType hitType, int damage){
+    public HitComponent(HitType hitType, int damage) {
         super(ComponentType.HIT);
         this.hitType = hitType;
         this.damage = damage;
     }
 
-    public void hit(NEntity entity, NEntity victim){
+    public abstract void hit(NEntity entity, NEntity victim);
 
-    }
-
-    public void dealDamage(NEntity victim){
-        DamageComponent dc = (DamageComponent)victim.getComponent(ComponentType.DAMAGE);
+    public void dealDamage(NEntity victim) {
+        DamageComponent dc = (DamageComponent) victim.getComponent(ComponentType.DAMAGE);
         dc.addDamage(new Damage(damage));
     }
 
-    public void addParticleSpawner(NEntity entity, NEntity victim, ParticleComponent particleComponent, String spawnerIndustry){
+    public void addParticleSpawner(NEntity entity, NEntity victim, ParticleComponent particleComponent,
+            String spawnerIndustry) {
         SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get(spawnerIndustry);
-        Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(
-                (PositionComponent)entity.getComponent(ComponentType.POSITION).clone(),
-                particleComponent
-        ));
+        Engine.getEngine().getNEntityStream().addEntity(hpsi
+                .produce((PositionComponent) entity.getComponent(ComponentType.POSITION).copy(), particleComponent));
     }
 
-    public void addEffect(NEntity victim, String effectIndustry){
-        EffectComponent ec = (EffectComponent)victim.getComponent(ComponentType.EFFECT);
-        EffectIndustry efi = (EffectIndustry)Engine.getEngine().getIndustryMap().get(effectIndustry);
+    public void addEffect(NEntity victim, String effectIndustry) {
+        EffectComponent ec = (EffectComponent) victim.getComponent(ComponentType.EFFECT);
+        EffectIndustry efi = (EffectIndustry) Engine.getEngine().getIndustryMap().get(effectIndustry);
         NEntity effect = efi.produce();
         effect.addComponent(new LinkComponent(victim));
-        ((AffectComponent)effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
+        ((AffectComponent) effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
         ec.getEffects().add(effect);
         Engine.getEngine().getNEntityStream().addEntity(effect);
     }

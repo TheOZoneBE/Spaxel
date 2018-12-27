@@ -22,4 +22,8 @@ public class LinkComponent extends Component{
     public void setLink(NEntity link) {
         this.link = link;
     }
+
+    public Component copy(){
+        return new LinkComponent(link.copy());
+    }
 }

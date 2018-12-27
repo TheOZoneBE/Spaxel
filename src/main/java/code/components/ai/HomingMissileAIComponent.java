@@ -2,6 +2,7 @@ package code.components.ai;
 
 import code.Constants;
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
@@ -68,5 +69,9 @@ public class HomingMissileAIComponent extends AIComponent {
 
             vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getMaxSpeed()));
         }
+    }
+
+    public Component copy() {
+        return new HomingMissileAIComponent();
     }
 }

@@ -1,5 +1,6 @@
 package code.components.ai;
 
+import code.components.Component;
 import code.components.ComponentType;
 import code.components.velocity.VelocityComponent;
 import code.engine.NEntity;
@@ -17,5 +18,9 @@ public class DroppedItemAIComponent extends AIComponent {
     public void execute(NEntity entity) {
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
         vc.setVelocity(vc.getVelocity().multiplicate(HALF));
+    }
+
+    public Component copy(){
+        return new DroppedItemAIComponent();
     }
 }

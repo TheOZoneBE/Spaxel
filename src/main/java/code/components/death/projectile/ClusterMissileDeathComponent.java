@@ -1,6 +1,7 @@
 package code.components.death.projectile;
 
 import code.Constants;
+import code.components.Component;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
@@ -38,5 +39,9 @@ public class ClusterMissileDeathComponent extends DeathComponent {
             Engine.getEngine().getNEntityStream().addEntity(projectile);
             rot += Constants.FULL_CIRCLE / MISSILE_SPLIT;
         }
+    }
+
+    public Component copy() {
+        return new ClusterMissileDeathComponent();
     }
 }

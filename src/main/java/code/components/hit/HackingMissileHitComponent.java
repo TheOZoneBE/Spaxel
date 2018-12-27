@@ -1,6 +1,7 @@
 package code.components.hit;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
@@ -29,5 +30,9 @@ public class HackingMissileHitComponent extends HitComponent {
         addEffect(victim, "disable_shoot_effect_industry");
 
         Engine.getEngine().getNEntityStream().removeEntity(entity);
+    }
+
+    public Component copy(){
+        return new HackingMissileHitComponent(damage);
     }
 }

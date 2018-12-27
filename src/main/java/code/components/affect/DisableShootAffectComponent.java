@@ -1,6 +1,7 @@
 package code.components.affect;
 
 import code.components.actor.ActorComponent;
+import code.components.Component;
 import code.components.ComponentType;
 import code.engine.NEntity;
 
@@ -15,5 +16,9 @@ public class DisableShootAffectComponent extends AffectComponent {
     public void affect(NEntity entity, NEntity victim){
         ActorComponent ac = (ActorComponent)victim.getComponent(ComponentType.ACTOR);
         ac.setCanShoot(false);
+    }
+
+    public Component copy(){
+        return new DisableShootAffectComponent();
     }
 }

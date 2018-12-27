@@ -18,12 +18,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ShipFragmentRenderer.class, name = "SHIP_FRAGMENT"),
         @JsonSubTypes.Type(value = AbsoluteRenderer.class, name = "ABSOLUTE"),
         @JsonSubTypes.Type(value = MarkerRenderer.class, name = "MARKER") })
-public class Renderer {
+public abstract class Renderer {
     private RendererType type;
 
-    public void apply(RenderData data, NEntity entity) {
-
-    }
+    public abstract void apply(RenderData data, NEntity entity);
 
     public RendererType getType() {
         return type;

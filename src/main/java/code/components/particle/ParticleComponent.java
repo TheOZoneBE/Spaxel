@@ -32,4 +32,8 @@ public class ParticleComponent extends Component {
     public void setScale(double scale) {
         this.scale = scale;
     }
+
+    public Component copy(){
+        return new ParticleComponent(particle, scale);
+    }
 }

@@ -9,6 +9,7 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by theo on 4/06/17.
@@ -49,5 +50,13 @@ public class RenderComponent extends Component {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public Component copy(){
+        List<Renderer> copied = new ArrayList<>();
+        for (Renderer render: renderers){
+            copied.add(render);
+        }
+        return new RenderComponent(copied, visible, layer);
     }
 }

@@ -10,6 +10,7 @@ import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.components.Component;
 
 import java.util.Set;
 
@@ -51,5 +52,8 @@ public class AntiShieldItemComponent extends ShieldItemComponent {
                 }
             }
         }
+    }
+    public Component copy(){
+        return new AntiShieldItemComponent(capacity, maxCapacity, effect.copy());
     }
 }

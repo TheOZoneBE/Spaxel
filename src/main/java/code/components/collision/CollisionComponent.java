@@ -1,6 +1,5 @@
 package code.components.collision;
 
-
 import code.collision.HitShape;
 import code.components.Component;
 import code.components.ComponentType;
@@ -22,5 +21,9 @@ public class CollisionComponent extends Component {
 
     public void setHitShape(HitShape hitShape) {
         this.hitShape = hitShape;
+    }
+
+    public Component copy() {
+        return new CollisionComponent(hitShape);
     }
 }

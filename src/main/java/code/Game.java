@@ -105,7 +105,7 @@ public class Game implements Runnable {
 		GL.createCapabilities();
 		capabilities = GL.getCapabilities();
 
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
 
 		glActiveTexture(GL_TEXTURE1);
 		glEnable(GL_BLEND);

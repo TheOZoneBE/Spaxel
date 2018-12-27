@@ -43,7 +43,7 @@ public class PositionComponent extends Component {
 
     }
 
-    public Component clone() {
-        return new PositionComponent(coord.clone(), rot);
+    public Component copy() {
+        return new PositionComponent(coord.copy(), rot);
     }
 }

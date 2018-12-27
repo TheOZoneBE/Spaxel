@@ -16,7 +16,7 @@ public class PositionComponentFactory extends ComponentFactory {
     }
 
     public Component make() {
-        return new PositionComponent(coord.clone(), rot);
+        return new PositionComponent(coord.copy(), rot);
     }
 
     public VectorD getCoord() {

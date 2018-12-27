@@ -21,4 +21,8 @@ public class StackComponent extends Component {
     public void setStacks(int stacks) {
         this.stacks = stacks;
     }
+
+    public Component copy() {
+        return new StackComponent(stacks);
+    }
 }

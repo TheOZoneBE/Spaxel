@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by theo on 24/06/17.
  */
-public class InventoryComponent extends Component {
-    private List<NEntity> items;
+public abstract class InventoryComponent extends Component {
+    protected List<NEntity> items;
 
     public InventoryComponent(ComponentType type, List<NEntity> items) {
         super(type);
@@ -29,32 +29,32 @@ public class InventoryComponent extends Component {
         this.items = items;
     }
 
-    public void addItem(NEntity item){
-        String itemName = ((ItemComponent)item.getComponent(ComponentType.ITEM)).getName();
+    public void addItem(NEntity item) {
+        String itemName = ((ItemComponent) item.getComponent(ComponentType.ITEM)).getName();
         boolean contains = false;
-        for (NEntity entity: items){
-            String otherName = ((ItemComponent)entity.getComponent(ComponentType.ITEM)).getName();
-            if(itemName.equals(otherName)){
-                StackComponent sc = (StackComponent)entity.getComponent(ComponentType.STACK);
-                sc.setStacks(sc.getStacks()+ 1);
+        for (NEntity entity : items) {
+            String otherName = ((ItemComponent) entity.getComponent(ComponentType.ITEM)).getName();
+            if (itemName.equals(otherName)) {
+                StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
+                sc.setStacks(sc.getStacks() + 1);
                 contains = true;
                 break;
             }
         }
-        if(!contains){
+        if (!contains) {
             items.add(item);
         }
     }
 
-    public void addCascade(NEntity entity){
-        for (NEntity e: items){
+    public void addCascade(NEntity entity) {
+        for (NEntity e : items) {
             e.addComponent(new LinkComponent(entity));
             Engine.getEngine().getNEntityStream().addEntity(e);
         }
     }
 
-    public void removeCascade(){
-        for (NEntity e: items){
+    public void removeCascade() {
+        for (NEntity e : items) {
             Engine.getEngine().getNEntityStream().removeEntity(e);
         }
     }

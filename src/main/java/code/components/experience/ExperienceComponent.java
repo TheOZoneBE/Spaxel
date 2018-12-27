@@ -39,4 +39,8 @@ public class ExperienceComponent extends Component {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public Component copy() {
+        return new ExperienceComponent(xp, level);
+    }
 }

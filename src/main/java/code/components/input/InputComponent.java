@@ -7,7 +7,7 @@ import code.engine.NEntity;
 /**
  * Created by theo on 21/06/17.
  */
-public class InputComponent extends Component {
+public abstract class InputComponent extends Component {
     private InputType inputType;
 
     public InputComponent(InputType inputType) {
@@ -15,7 +15,5 @@ public class InputComponent extends Component {
         this.inputType = inputType;
     }
 
-    public void update(NEntity entity){
-
-    }
+    public abstract void update(NEntity entity);
 }

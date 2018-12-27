@@ -1,6 +1,7 @@
 package code.components.spawner;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.age.AgeComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
@@ -44,7 +45,7 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
             double deltaRot = (rand.nextDouble() - HALF) * maxDeltaRot;
             double dx = Math.sin(dir) * speed;
             double dy = Math.cos(dir) * speed;
-            temp.add(hpi.produce((PositionComponent) pc.clone(), new AgeComponent(life, life),
+            temp.add(hpi.produce((PositionComponent) pc.copy(), new AgeComponent(life, life),
                     new VelocityComponent(new VectorD(dx, dy), deltaRot),
                     new SpriteComponent(pac.getParticle(), pac.getScale())));
         }
@@ -73,5 +74,9 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
 
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
+    }
+
+    public Component copy() {
+        return new HitParticleSpawnerComponent(rate, maxDeltaRot, maxSpeed, maxLife);
     }
 }

@@ -32,4 +32,8 @@ public class VelocityComponent extends Component {
     public void setDeltaRot(double deltaRot) {
         this.deltaRot = deltaRot;
     }
+
+    public Component copy() {
+        return new VelocityComponent(velocity.copy(), deltaRot);
+    }
 }

@@ -1,6 +1,7 @@
 package code.components.hit;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.NEntity;
@@ -24,5 +25,9 @@ public class PiercingLaserHitComponent extends HitComponent {
                 new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
                         sc.getScale()),
                 "laser_hit_particle_spawner_industry");
+    }
+
+    public Component copy() {
+        return new PiercingLaserHitComponent(damage);
     }
 }

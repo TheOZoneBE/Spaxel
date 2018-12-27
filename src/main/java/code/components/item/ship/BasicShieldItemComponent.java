@@ -9,6 +9,7 @@ import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.components.Component;
 
 import java.util.Set;
 
@@ -46,5 +47,9 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
                 }
             }
         }
+    }
+
+    public Component copy(){
+        return new BasicShieldItemComponent(capacity, maxCapacity, effect.copy());
     }
 }

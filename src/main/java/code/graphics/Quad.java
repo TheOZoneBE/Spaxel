@@ -18,26 +18,13 @@ public class Quad {
     private int vbo;
     private int ibo;
     private int tbo;
-    public float[] vertices = new float[]{
-            -.5f,-.5f,0,
-            -.5f,.5f,0,
-            .5f,.5f,0,
-            .5f,-.5f,0
-    };
+    public float[] vertices = new float[] { -.5F, -.5F, 0, -.5F, .5F, 0, .5F, .5F, 0, .5F, -.5F, 0 };
 
-    byte[] indices = new byte[] {
-            0, 1, 3,
-            3, 1, 2
-    };
+    byte[] indices = new byte[] { 0, 1, 3, 3, 1, 2 };
 
-    float[] texCoords = new float[] {
-            0, 1,
-            0, 0,
-            1, 0,
-            1, 1
-    };
+    float[] texCoords = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
 
-    public Quad(){
+    public Quad() {
         vao = glGenVertexArrays();
         glBindVertexArray(vao);
 
@@ -58,7 +45,7 @@ public class Quad {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, BufferUtils.createByteBuffer(indices), GL_STATIC_DRAW);
     }
 
-    public void bind(){
+    public void bind() {
         glBindVertexArray(vao);
     }
 

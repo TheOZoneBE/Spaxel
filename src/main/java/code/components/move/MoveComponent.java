@@ -41,4 +41,8 @@ public class MoveComponent extends Component {
     public void setTurnRate(double turnRate) {
         this.turnRate = turnRate;
     }
+
+    public Component copy(){
+        return new MoveComponent(maxSpeed, acc, turnRate);
+    }
 }

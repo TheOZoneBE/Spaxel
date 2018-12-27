@@ -10,4 +10,8 @@ public class EquipComponent extends Component {
     public EquipComponent() {
         super(ComponentType.EQUIP);
     }
+
+    public Component copy() {
+        return new EquipComponent();
+    }
 }

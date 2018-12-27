@@ -1,7 +1,9 @@
 package code.components.ai;
 
-import code.components.actor.ActorComponent;
+import code.Constants;
 import code.components.ComponentType;
+import code.components.Component;
+import code.components.actor.ActorComponent;
 import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
@@ -11,7 +13,6 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.math.VectorD;
-import code.Constants;
 
 /**
  * Created by theo on 7/06/17.
@@ -84,5 +85,9 @@ public class BasicEnemyAIComponent extends AIComponent {
                 ic.activate(e);
             }
         }
+    }
+
+    public Component copy() {
+        return new BasicEnemyAIComponent();
     }
 }

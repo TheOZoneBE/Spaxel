@@ -31,4 +31,8 @@ public class AgeComponent extends Component {
     public void setMaxLife(int maxLife) {
         this.maxLife = maxLife;
     }
+
+    public Component copy() {
+        return new AgeComponent(life, maxLife);
+    }
 }

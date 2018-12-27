@@ -15,7 +15,7 @@ import code.math.VectorD;
 /**
  * Created by theod on 28-6-2017.
  */
-public class ShootItemComponent extends ItemComponent {
+public abstract class ShootItemComponent extends ItemComponent {
     private static final double RADIAL_STEP = 0.05D;
     private static final double RADIAL_OFFSET = 2 * RADIAL_STEP;
     String factory;
@@ -35,7 +35,7 @@ public class ShootItemComponent extends ItemComponent {
 
             double offset = (sc.getStacks() - 1) * -RADIAL_STEP;
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
-                NEntity projectile = pri.produce((PositionComponent) pc.clone(), new LinkComponent(parent));
+                NEntity projectile = pri.produce((PositionComponent) pc.copy(), new LinkComponent(parent));
                 MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
                 double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
                 double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();

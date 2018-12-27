@@ -1,6 +1,7 @@
 package code.system;
 
 import code.components.ComponentType;
+import code.components.input.InputComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;
@@ -15,10 +16,10 @@ public class InputSystem extends GameSystem {
         super(SystemType.INPUT);
     }
 
-    public void update(){
+    public void update() {
         Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.INPUT);
-        for (NEntity entity: entities){
-            entity.getComponent(ComponentType.INPUT).update(entity);
+        for (NEntity entity : entities) {
+            ((InputComponent) entity.getComponent(ComponentType.INPUT)).update(entity);
         }
     }
 }

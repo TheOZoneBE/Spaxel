@@ -46,4 +46,8 @@ public class HealthComponent extends Component {
     public void setBaseHealth(int baseHealth) {
         this.baseHealth = baseHealth;
     }
+
+    public Component copy(){
+        return new HealthComponent(health, baseHealth);
+    }
 }

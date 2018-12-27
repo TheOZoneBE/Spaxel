@@ -1,6 +1,7 @@
 package code.components.input;
 
 import code.components.ComponentType;
+import code.components.Component;
 import code.components.actor.ActorComponent;
 import code.components.item.ItemComponent;
 import code.components.move.MoveComponent;
@@ -100,5 +101,9 @@ public class PlayerInputComponent extends InputComponent {
                 }
             }
         }
+    }
+
+    public Component copy() {
+        return new PlayerInputComponent();
     }
 }

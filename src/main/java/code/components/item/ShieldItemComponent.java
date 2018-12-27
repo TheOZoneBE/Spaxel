@@ -7,12 +7,12 @@ import code.engine.NEntity;
 /**
  * Created by theo on 8/07/17.
  */
-public class ShieldItemComponent extends ItemComponent {
+public abstract class ShieldItemComponent extends ItemComponent {
     protected int capacity;
     protected int maxCapacity;
     protected NEntity effect;
 
-    public ShieldItemComponent(String name, int capacity, int maxCapacity, NEntity effect){
+    public ShieldItemComponent(String name, int capacity, int maxCapacity, NEntity effect) {
         super(ItemType.SHIP, name);
         this.capacity = capacity;
         this.maxCapacity = maxCapacity;
@@ -43,12 +43,12 @@ public class ShieldItemComponent extends ItemComponent {
         this.effect = effect;
     }
 
-    public void addCascade(NEntity entity){
+    public void addCascade(NEntity entity) {
         effect.addComponent(new LinkComponent(entity));
         Engine.getEngine().getNEntityStream().addEntity(effect);
     }
 
-    public void removeCascade(){
+    public void removeCascade() {
         Engine.getEngine().getNEntityStream().removeEntity(effect);
     }
 }

@@ -7,7 +7,7 @@ import code.engine.NEntity;
 /**
  * Created by theo on 16/06/17.
  */
-public class ItemComponent extends Component {
+public abstract class ItemComponent extends Component {
     private ItemType itemType;
     private String name;
 
@@ -17,9 +17,7 @@ public class ItemComponent extends Component {
         this.name = name;
     }
 
-    public void activate(NEntity entity){
-
-    }
+    public abstract void activate(NEntity entity);
 
     public String getName() {
         return name;

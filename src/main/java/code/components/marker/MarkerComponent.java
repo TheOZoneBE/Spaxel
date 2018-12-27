@@ -108,4 +108,8 @@ public class MarkerComponent extends Component {
             return null;
         }
     }
+
+    public Component copy() {
+        return new MarkerComponent(markerIndustry);
+    }
 }

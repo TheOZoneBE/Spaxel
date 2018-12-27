@@ -31,4 +31,8 @@ public class CooldownComponent extends Component {
     public void setCdAmount(int cdAmount) {
         this.cdAmount = cdAmount;
     }
+
+    public Component copy(){
+        return new CooldownComponent(cd, cdAmount);
+    }
 }

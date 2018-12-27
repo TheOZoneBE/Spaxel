@@ -16,7 +16,7 @@ public class VelocityComponentFactory extends ComponentFactory {
     }
 
     public Component make() {
-        return new VelocityComponent(velocity.clone(), deltaRot);
+        return new VelocityComponent(velocity.copy(), deltaRot);
     }
 
     public VectorD getVelocity() {

@@ -12,10 +12,10 @@ public class SpriteData {
 	private int yPosRel;
 
 	private float[] spriteProperties;
-	private float sheetXcoord;
-	private float sheetYcoord;
-	private float sheetXscale;
-	private float sheetYscale;
+	private double sheetXcoord;
+	private double sheetYcoord;
+	private double sheetXscale;
+	private double sheetYscale;
 	private int spritesheetID;
 	private Spritesheet spritesheet;
 	private int color;
@@ -37,7 +37,8 @@ public class SpriteData {
 		this.height = height;
 		this.color = color;
 		this.spritesheetID = 0;
-		spriteProperties = new float[] { sheetXcoord, sheetYcoord, sheetXscale, sheetYscale };
+		spriteProperties = new float[] { (float) sheetXcoord, (float) sheetYcoord, (float) sheetXscale,
+				(float) sheetYscale };
 	}
 
 	public void initialize() {
@@ -48,11 +49,12 @@ public class SpriteData {
 		if (yPosRel != 0) {
 			yPos = yPosRel * height;
 		}
-		sheetXcoord = (float) this.xPos / spritesheet.getWidth();
-		sheetYcoord = (float) this.yPos / spritesheet.getHeight();
-		sheetXscale = (float) width / spritesheet.getWidth();
-		sheetYscale = (float) height / spritesheet.getHeight();
-		spriteProperties = new float[] { sheetXcoord, sheetYcoord, sheetXscale, sheetYscale };
+		sheetXcoord = (double) this.xPos / spritesheet.getWidth();
+		sheetYcoord = (double) this.yPos / spritesheet.getHeight();
+		sheetXscale = (double) width / spritesheet.getWidth();
+		sheetYscale = (double) height / spritesheet.getHeight();
+		spriteProperties = new float[] { (float) sheetXcoord, (float) sheetYcoord, (float) sheetXscale,
+				(float) sheetYscale };
 		color = 0;
 	}
 

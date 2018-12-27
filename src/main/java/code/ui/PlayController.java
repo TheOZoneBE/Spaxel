@@ -46,10 +46,10 @@ public class PlayController extends Controller {
 
     private void updateElements(NEntity player) {
         ExperienceComponent ec = (ExperienceComponent) player.getComponent(ComponentType.EXPERIENCE);
-        xpBar.setPercent(ec.getXp() / ec.getXpToLevel());
+        xpBar.setPercent((double) ec.getXp() / ec.getXpToLevel());
         xpLabel.setText(ec.getXp() + " / " + ec.getXpToLevel());
         HealthComponent hc = (HealthComponent) player.getComponent(ComponentType.HEALTH);
-        hpBar.setPercent(hc.getHealth() / hc.getMaxHealth());
+        hpBar.setPercent((double) hc.getHealth() / hc.getMaxHealth());
         hpLabel.setText(hc.getHealth() + " / " + hc.getMaxHealth());
         scoreCounter.setText(String.valueOf(Engine.getEngine().getGameProperties().getScore()));
         int gt = Engine.getEngine().getGameProperties().getGameTime();

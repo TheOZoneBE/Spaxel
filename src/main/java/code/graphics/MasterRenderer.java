@@ -56,8 +56,8 @@ public class MasterRenderer {
     }
 
     public void initialize() {
-        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2, Constants.GAME_WIDTH / 2,
-                -Constants.GAME_HEIGHT / 2, Constants.GAME_HEIGHT / 2, -1.0f, 1.0f);
+        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2.0, Constants.GAME_WIDTH / 2.0,
+                -Constants.GAME_HEIGHT / 2.0, Constants.GAME_HEIGHT / 2.0, -1.0f, 1.0f);
 
         blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
         blurPassProgram.enable();

@@ -10,7 +10,7 @@ import code.graphics.RenderData;
  * Created by theod on 25-9-2017.
  */
 public class ShipFragmentRenderer extends Renderer {
-    private static final int FACTOR_MULT = 2;
+    private static final double FACTOR_MULT = 2.0;
 
     public void apply(RenderData data, NEntity entity) {
         AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);

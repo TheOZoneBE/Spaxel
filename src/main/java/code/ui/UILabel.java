@@ -73,7 +73,7 @@ public class UILabel extends UIElement {
 		if (index == -1) {
 			index = text.length();
 		}
-		int length = 0;
+		double length = 0;
 		int start = 0;
 		for (int k = i; k < index; k++) {
 			SpriteData sprite = sprites.get(text.substring(k, k + 1));

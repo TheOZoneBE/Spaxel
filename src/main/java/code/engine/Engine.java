@@ -81,28 +81,28 @@ final public class Engine {
 		// asset loading
 
 		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.00f);
+		Game.game.loadingScreen.getProgress().setPercent(0.0);
 		SoundLoader sounds = new SoundLoader();
 		musicList = new MusicList(sounds.loadSounds("/resources/sound.json"));
 
 		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
-		Game.game.loadingScreen.getProgress().setPercent(0.75f);
+		Game.game.loadingScreen.getProgress().setPercent(0.75);
 
 		Game.game.loadingScreen.getMessage().setText("Loading items");
 		items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
-		Game.game.loadingScreen.getProgress().setPercent(0.8f);
+		Game.game.loadingScreen.getProgress().setPercent(0.8);
 
 		Game.game.loadingScreen.getMessage().setText("Loading UI");
 		UIAtlas = new UIElementLoader().loadUIElements(new String[] { "/ui/main.xml", "/ui/credits.xml",
 				"/ui/class_selection.xml", "/ui/play.xml", "/ui/pause.xml", "/ui/game_over.xml", "/ui/options.xml" });
-		Game.game.loadingScreen.getProgress().setPercent(0.85f);
+		Game.game.loadingScreen.getProgress().setPercent(0.85);
 
 		Game.game.loadingScreen.getMessage().setText("Loading entities");
 		industryMap = new IndustryLoader().loadEntityIndustries(new String[] { "/resources/entity.json",
 				"/resources/actor.json", "/resources/projectile.json", "/resources/item.json", "/resources/player.json",
 				"/resources/effect.json", "/resources/marker.json" });
-		Game.game.loadingScreen.getProgress().setPercent(0.9f);
+		Game.game.loadingScreen.getProgress().setPercent(0.9);
 
 		nentities.cleanup();
 
@@ -129,19 +129,7 @@ final public class Engine {
 		controller = UIAtlas.get(UI.MAIN);
 		// starting threads
 		Game.game.updater.setSystems(systems);
-		Game.game.loadingScreen.getProgress().setPercent(.95f);
-
-		/*
-		 * Spritesheet spaceCar = new Spritesheet(64,64,
-		 * "/spritesheets/space_carrier.png"); Sprite hull = new Sprite(39,57,
-		 * 0,0,4,spaceCar); Sprite turret =new Sprite(4, 8, 11, 0, 4, spaceCar); Sprite
-		 * door1 = new Sprite(16,16, 3,0,4, spaceCar); Sprite door2 =new Sprite(16,16,
-		 * 3,1,4, spaceCar); Sprite door3 = new Sprite(16,16, 3,2,4, spaceCar); Sprite
-		 * door4 = new Sprite(16,16, 3,3,4, spaceCar); Sprite[] anim = {door1, door2,
-		 * door3, door4, door4, door3, door2, door1}; AnimSprite as = new AnimSprite(8,
-		 * 10, anim); temp = new SpaceCarrier(0,0,0,1000,hull, turret, as, 1, 0.5);
-		 */
-
+		Game.game.loadingScreen.getProgress().setPercent(.95);
 		loading = false;
 	}
 

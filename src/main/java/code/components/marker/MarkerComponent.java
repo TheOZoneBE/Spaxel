@@ -98,15 +98,12 @@ public class MarkerComponent extends Component {
         VectorD r = b.diff(a);
         VectorD s = d.diff(c);
         double cross = r.crossProduct(s);
-        if (cross != 0) {
-            VectorD den = c.diff(a);
-            double t = den.crossProduct(s) / cross;
-            double u = den.crossProduct(r) / cross;
-            if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
-                return a.sum(r.multiplicate(t));
-            } else {
-                return null;
-            }
+
+        VectorD den = c.diff(a);
+        double t = den.crossProduct(s) / cross;
+        double u = den.crossProduct(r) / cross;
+        if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+            return a.sum(r.multiplicate(t));
         } else {
             return null;
         }

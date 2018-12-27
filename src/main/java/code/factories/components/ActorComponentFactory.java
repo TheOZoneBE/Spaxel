@@ -10,7 +10,11 @@ public class ActorComponentFactory extends ComponentFactory {
     private boolean canShoot;
     private boolean canMove;
 
-    public Component make(){
+    public ActorComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new ActorComponent(canShoot, canMove);
     }
 

@@ -12,6 +12,10 @@ public class ItemProperties {
     private Rarety rarety;
     private ItemType type;
 
+    public ItemProperties() {
+        super();
+    }
+
     public String getIndustry() {
         return industry;
     }

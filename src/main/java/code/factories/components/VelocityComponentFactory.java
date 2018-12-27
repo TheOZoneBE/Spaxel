@@ -11,11 +11,11 @@ public class VelocityComponentFactory extends ComponentFactory {
     private VectorF velocity;
     private float deltaRot;
 
-    public VelocityComponentFactory(){
-
+    public VelocityComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return new VelocityComponent(velocity.clone(), deltaRot);
     }
 

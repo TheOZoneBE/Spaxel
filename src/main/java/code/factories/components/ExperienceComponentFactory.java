@@ -10,7 +10,11 @@ public class ExperienceComponentFactory extends ComponentFactory {
     private int xp;
     private int level;
 
-    public Component make(){
+    public ExperienceComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new ExperienceComponent(xp, level);
     }
 

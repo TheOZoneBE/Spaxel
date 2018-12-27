@@ -10,12 +10,16 @@ import code.components.input.PlayerInputComponent;
 public class InputComponentFactory extends ComponentFactory {
     private InputType inputType;
 
-    public Component make(){
-        switch (inputType){
-            case PLAYER:
-                return new PlayerInputComponent();
+    public InputComponentFactory() {
+        super();
+    }
+
+    public Component make() {
+        if (inputType == InputType.PLAYER) {
+            return new PlayerInputComponent();
+        } else {
+            return null;
         }
-        return null;
     }
 
     public InputType getInputType() {

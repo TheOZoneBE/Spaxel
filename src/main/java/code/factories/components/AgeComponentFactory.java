@@ -10,11 +10,11 @@ public class AgeComponentFactory extends ComponentFactory {
     private int life;
     private int maxLife;
 
-    public AgeComponentFactory(){
-
+    public AgeComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return new AgeComponent(life, maxLife);
     }
 

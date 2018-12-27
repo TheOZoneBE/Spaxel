@@ -9,7 +9,11 @@ import code.components.stack.StackComponent;
 public class StackComponentFactory extends ComponentFactory {
     private int stacks;
 
-    public Component make(){
+    public StackComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new StackComponent(stacks);
     }
 

@@ -14,9 +14,13 @@ import java.util.List;
 public class SecondaryComponentFactory extends ComponentFactory {
     private List<String> itemIndustries;
 
-    public Component make(){
+    public SecondaryComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         List<NEntity> items = new ArrayList<>();
-        for(String factory: itemIndustries){
+        for (String factory : itemIndustries) {
             items.add(Engine.getEngine().getIndustryMap().get(factory).produce());
         }
         return new SecondaryComponent(items);

@@ -15,22 +15,35 @@ import code.components.death.projectile.ClusterMissileDeathComponent;
 public class DeathComponentFactory extends ComponentFactory {
     private DeathType deathType;
 
-    public Component make(){
-        switch (deathType){
-            case PLAYER:
-                return new PlayerDeathComponent();
-            case BASIC_ENEMY:
-                return new BasicEnemyDeathComponent();
-            case SLOW_AFFECT:
-                return new SlowAffectDeathComponent();
-            case DISABLE_MOVE_AFFECT:
-                return new DisableMoveAffectDeathComponent();
-            case DISABLE_SHOOT_AFFECT:
-                return new DisableShootAffectDeathComponent();
-            case CLUSTER_MISSILE:
-                return new ClusterMissileDeathComponent();
+    public DeathComponentFactory() {
+        super();
+    }
+
+    public Component make() {
+        Component result = null;
+        switch (deathType) {
+        case PLAYER:
+            result = new PlayerDeathComponent();
+            break;
+        case BASIC_ENEMY:
+            result = new BasicEnemyDeathComponent();
+            break;
+        case SLOW_AFFECT:
+            result = new SlowAffectDeathComponent();
+            break;
+        case DISABLE_MOVE_AFFECT:
+            result = new DisableMoveAffectDeathComponent();
+            break;
+        case DISABLE_SHOOT_AFFECT:
+            result = new DisableShootAffectDeathComponent();
+            break;
+        case CLUSTER_MISSILE:
+            result = new ClusterMissileDeathComponent();
+            break;
+        default:
+            break;
         }
-        return null;
+        return result;
     }
 
     public DeathType getDeathType() {

@@ -16,16 +16,26 @@ public class SpawnerComponentFactory extends ComponentFactory {
     private float maxSpeed;
     private int maxLife;
 
-    public Component make(){
-        switch (spawnerType){
-            case HITPARTICLE:
-                return new HitParticleSpawnerComponent(rate, maxDeltaRot, maxSpeed, maxLife);
-            case TRAILSEGMENT:
-                return new TrailSegmentSpawnerComponent(rate);
-            case SHIP_FRAGMENT:
-                return new ShipFragmentSpawnerComponent(rate);
+    public SpawnerComponentFactory() {
+        super();
+    }
+
+    public Component make() {
+        Component result = null;
+        switch (spawnerType) {
+        case HITPARTICLE:
+            result = new HitParticleSpawnerComponent(rate, maxDeltaRot, maxSpeed, maxLife);
+            break;
+        case TRAILSEGMENT:
+            result = new TrailSegmentSpawnerComponent(rate);
+            break;
+        case SHIP_FRAGMENT:
+            result = new ShipFragmentSpawnerComponent(rate);
+            break;
+        default:
+            break;
         }
-        return null;
+        return result;
     }
 
     public int getRate() {

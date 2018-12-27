@@ -9,7 +9,11 @@ import code.components.marker.MarkerComponent;
 public class MarkerComponentFactory extends ComponentFactory {
     private String markerIndustry;
 
-    public Component make(){
+    public MarkerComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new MarkerComponent(markerIndustry);
     }
 

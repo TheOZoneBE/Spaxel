@@ -24,6 +24,10 @@ public class ItemComponentFactory extends ComponentFactory {
     private int maxCapacity;
     private EntityIndustry effectIndustry;
 
+    public ItemComponentFactory(){
+        super();
+    }
+
     public Component make(){
         switch(name){
             case "basic_laser":

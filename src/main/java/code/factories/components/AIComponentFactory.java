@@ -12,17 +12,26 @@ import code.components.ai.HomingMissileAIComponent;
 public class AIComponentFactory extends ComponentFactory {
     private AIType subType;
 
-    public Component make(){
-        switch(subType){
-            case BASIC_ENEMY:
-                return new BasicEnemyAIComponent();
-            case HOMING_MISSILE:
-                return new HomingMissileAIComponent();
-            case DROPPED_ITEM:
-                return new DroppedItemAIComponent();
-            default:
-                return null;
+    public AIComponentFactory() {
+        super();
+    }
+
+    public Component make() {
+        Component result = null;
+        switch (subType) {
+        case BASIC_ENEMY:
+            result = new BasicEnemyAIComponent();
+            break;
+        case HOMING_MISSILE:
+            result = new HomingMissileAIComponent();
+            break;
+        case DROPPED_ITEM:
+            result = new DroppedItemAIComponent();
+            break;
+        default:
+            break;
         }
+        return result;
     }
 
     public AIType getSubType() {

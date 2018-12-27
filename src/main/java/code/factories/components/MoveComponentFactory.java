@@ -11,11 +11,11 @@ public class MoveComponentFactory extends ComponentFactory {
     private float acc;
     private float turnRate;
 
-    public MoveComponentFactory(){
-
+    public MoveComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return new MoveComponent(maxSpeed, acc, turnRate);
     }
 

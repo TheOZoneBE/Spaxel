@@ -13,16 +13,26 @@ public class AffectComponentFactory extends ComponentFactory {
     private float factor;
     private AffectType affectType;
 
-    public Component make(){
-        switch (affectType){
-            case SLOW:
-                return new SlowAffectComponent(factor);
-            case DISABLE_MOVE:
-                return new DisableMoveAffectComponent();
-            case DISABLE_SHOOT:
-                return new DisableShootAffectComponent();
+    public AffectComponentFactory() {
+        super();
+    }
+
+    public Component make() {
+        Component result = null;
+        switch (affectType) {
+        case SLOW:
+            result = new SlowAffectComponent(factor);
+            break;
+        case DISABLE_MOVE:
+            result = new DisableMoveAffectComponent();
+            break;
+        case DISABLE_SHOOT:
+            result = new DisableShootAffectComponent();
+            break;
+        default:
+            break;
         }
-        return null;
+        return result;
     }
 
     public float getFactor() {

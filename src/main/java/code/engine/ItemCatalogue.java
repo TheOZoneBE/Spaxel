@@ -1,9 +1,10 @@
 package code.engine;
 
-import code.engine.Engine;
-import code.engine.NEntity;
-
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Created by theod on 12-7-2017.
@@ -13,52 +14,52 @@ public class ItemCatalogue {
     List<String> industryList;
     Random random;
 
-    public ItemCatalogue(List<ItemProperties> itemProps){
+    public ItemCatalogue(List<ItemProperties> itemProps) {
         items = new HashMap<>();
-        for (ItemProperties ip: itemProps){
+        for (ItemProperties ip : itemProps) {
             items.put(ip.getName(), ip);
         }
         random = new Random();
         initialize();
     }
 
-    public void initialize(){
+    private void initialize() {
         this.industryList = new ArrayList<>();
-        for (String name: items.keySet()){
-            for (int i = 0; i< items.get(name).getSpawnRate(); i++){
-                industryList.add(items.get(name).getIndustry());
+        for (ItemProperties prop : items.values()) {
+            for (int i = 0; i < prop.getSpawnRate(); i++) {
+                industryList.add(prop.getIndustry());
             }
         }
     }
 
-    public void addItemProp(ItemProperties ip){
+    public void addItemProp(ItemProperties ip) {
         items.put(ip.getName(), ip);
         initialize();
     }
 
-    public NEntity produceRandom(List<ItemProperties> options){
+    public NEntity produceRandom(List<ItemProperties> options) {
         ItemProperties chosen = options.get(random.nextInt(options.size()));
         return Engine.getEngine().getIndustryMap().get(chosen.getIndustry()).produce();
     }
 
-    public NEntity produceRandom(ItemFilter... filters){
+    public NEntity produceRandom(ItemFilter... filters) {
         List<ItemProperties> chosen = new ArrayList<>();
-        for (ItemProperties prop : items.values()){
+        for (ItemProperties prop : items.values()) {
             boolean passed = true;
-            for (ItemFilter filter: filters){
-                if(!filter.pass(prop)){
+            for (ItemFilter filter : filters) {
+                if (!filter.pass(prop)) {
                     passed = false;
                     break;
                 }
             }
-            if (passed){
+            if (passed) {
                 chosen.add(prop);
             }
         }
         return produceRandom(chosen);
     }
 
-    public ItemProperties getItemProp(String name){
+    public ItemProperties getItemProp(String name) {
         return items.get(name);
     }
 

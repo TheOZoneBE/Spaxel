@@ -3,7 +3,7 @@ package code.engine;
 import code.system.GameSystem;
 import code.system.RenderSystem;
 
-import java.util.EnumMap;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,25 +12,26 @@ import java.util.concurrent.Executors;
  * Created by theo on 5-6-2016.
  */
 public class SystemUpdater {
-    private EnumMap<SystemType, GameSystem> systems;
+    private Map<SystemType, GameSystem> systems;
     private ExecutorService e = Executors.newCachedThreadPool();
 
-    public SystemUpdater(){
-
+    public SystemUpdater() {
+        super();
     }
 
-    public void setSystems(EnumMap<SystemType, GameSystem> systems){
+    public void setSystems(Map<SystemType, GameSystem> systems) {
         this.systems = systems;
     }
 
-    public class SystemWrapper implements Runnable{
+    public class SystemWrapper implements Runnable {
         private GameSystem system;
         private CountDownLatch latch;
 
-        public SystemWrapper(GameSystem system, CountDownLatch latch){
+        public SystemWrapper(GameSystem system, CountDownLatch latch) {
             this.system = system;
             this.latch = latch;
         }
+
         @Override
         public void run() {
             system.update();
@@ -41,22 +42,19 @@ public class SystemUpdater {
     /**
      * general update 50 times a second
      *
-     * LifeSystem in entities.cleanup
-     * UISystem
-     * SoundSystem
+     * LifeSystem in entities.cleanup UISystem SoundSystem
      *
      */
-    public void generalUpdate(){
-        if (!e.isShutdown()){
+    public void generalUpdate() {
+        if (!e.isShutdown()) {
             Engine.getEngine().getMouseWrapper().update();
             Engine.getEngine().getKeyboard().update();
 
-            if (Engine.getEngine().getGameState() != Engine.GameState.PLAY){
+            if (Engine.getEngine().getGameState() != Engine.GameState.PLAY) {
                 systems.get(SystemType.SOUND).update();
                 systems.get(SystemType.UI).update();
-            }
-            else {
-                //TODO clean this up with config or smth
+            } else {
+                // TODO clean this up with config or smth
                 update(SystemType.AI);
                 update(SystemType.SOUND);
                 update(SystemType.SPAWNER);
@@ -74,27 +72,25 @@ public class SystemUpdater {
                 update(SystemType.DIFFICULTY);
                 update(SystemType.MARKER);
                 Engine.getEngine().getGameProperties().addTime(20000000);
-                //Engine.getEngine().temp.update();
             }
             Engine.getEngine().getNEntityStream().cleanup();
-            if(Engine.getEngine().getGameProperties().isLogging()){
+            if (Engine.getEngine().getGameProperties().isLogging()) {
                 Engine.getEngine().getLogger().cleanup();
             }
         }
     }
 
-    public void update(SystemType type){
-        if (Engine.getEngine().getGameProperties().isLogging()){
+    public void update(SystemType type) {
+        if (Engine.getEngine().getGameProperties().isLogging()) {
             Engine.getEngine().getLogger().registerStart(type);
             systems.get(type).update();
             Engine.getEngine().getLogger().registerEnd(type);
-        }
-        else {
+        } else {
             systems.get(type).update();
         }
     }
 
-    public void render(){
+    public void render() {
         ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).render();
     }
 
@@ -102,7 +98,7 @@ public class SystemUpdater {
         ((RenderSystem) Engine.getEngine().getSystem(SystemType.RENDER)).renderloading(loading);
     }
 
-    public void shutdown(){
+    public void shutdown() {
         e.shutdown();
     }
 }

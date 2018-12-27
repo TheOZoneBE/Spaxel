@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class CollisionComponentFactory extends ComponentFactory {
     private HitShape hitShape;
 
-    public CollisionComponentFactory(){
-
+    public CollisionComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return new CollisionComponent(hitShape);
     }
 
@@ -29,7 +29,7 @@ public class CollisionComponentFactory extends ComponentFactory {
     }
 
     @JsonSetter("hitShape")
-    public void setHitShape(String hitShapeName){
+    public void setHitShape(String hitShapeName) {
         this.hitShape = Engine.getEngine().getHitShapeAtlas().get(hitShapeName);
     }
 }

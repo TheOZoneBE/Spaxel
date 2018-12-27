@@ -11,11 +11,11 @@ public class PositionComponentFactory extends ComponentFactory {
     private VectorF coord;
     private float rot;
 
-    public PositionComponentFactory(){
-
+    public PositionComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return new PositionComponent(coord.clone(), rot);
     }
 

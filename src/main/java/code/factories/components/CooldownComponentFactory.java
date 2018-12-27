@@ -10,7 +10,11 @@ public class CooldownComponentFactory extends ComponentFactory {
     private int cd;
     private int cdAmount;
 
-    public Component make(){
+    public CooldownComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new CooldownComponent(cd, cdAmount);
     }
 

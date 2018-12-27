@@ -13,7 +13,11 @@ public class ParticleComponentFactory extends ComponentFactory {
     private SpriteData particle;
     private float scale;
 
-    public Component make(){
+    public ParticleComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new ParticleComponent(particle, scale);
     }
 
@@ -26,7 +30,7 @@ public class ParticleComponentFactory extends ComponentFactory {
     }
 
     @JsonSetter("particle")
-    public void setSprite(String spriteName){
+    public void setSprite(String spriteName) {
         this.particle = Engine.getEngine().getSpriteAtlas().get(spriteName);
     }
 

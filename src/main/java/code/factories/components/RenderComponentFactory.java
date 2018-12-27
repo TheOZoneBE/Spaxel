@@ -1,6 +1,5 @@
 package code.factories.components;
 
-
 import code.components.Component;
 import code.components.render.RenderComponent;
 import code.components.render.subcomponents.Renderer;
@@ -16,7 +15,11 @@ public class RenderComponentFactory extends ComponentFactory {
     private boolean visible;
     private RenderLayer layer;
 
-    public Component make(){
+    public RenderComponentFactory() {
+        super();
+    }
+
+    public Component make() {
         return new RenderComponent(renderers, visible, layer);
     }
 

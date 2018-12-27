@@ -8,9 +8,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /**
  * Created by theo on 3/06/17.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type",visible = true)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = PositionComponentFactory.class, name = "POSITION"),
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
+@JsonSubTypes({ @JsonSubTypes.Type(value = PositionComponentFactory.class, name = "POSITION"),
         @JsonSubTypes.Type(value = CollisionComponentFactory.class, name = "COLLISION"),
         @JsonSubTypes.Type(value = AgeComponentFactory.class, name = "AGE"),
         @JsonSubTypes.Type(value = HealthComponentFactory.class, name = "HEALTH"),
@@ -41,11 +40,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 public class ComponentFactory {
     private ComponentType type;
 
-    public ComponentFactory(){
-
+    public ComponentFactory() {
+        super();
     }
 
-    public Component make(){
+    public Component make() {
         return null;
     }
 

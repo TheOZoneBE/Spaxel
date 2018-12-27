@@ -15,7 +15,6 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLCapabilities;
 
-
 public class Game implements Runnable {
 
 	public final static int GAME_HEIGHT = 720;
@@ -50,7 +49,6 @@ public class Game implements Runnable {
 
 		thread.start();
 
-
 	}
 
 	public synchronized void stop() {
@@ -66,12 +64,15 @@ public class Game implements Runnable {
 
 	}
 
-	public void initialize(){
+	public void initialize() {
 		GLFWErrorCallback.createPrint(System.err).set();
 
-		if ( !glfwInit() )
+		if (!glfwInit())
 			throw new IllegalStateException("Unable to initialize GLFW");
 
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 		window = glfwCreateWindow(GAME_WIDTH, GAME_HEIGHT, gameName, NULL, NULL);
 		if (window == NULL) {
@@ -79,14 +80,13 @@ public class Game implements Runnable {
 			return;
 		}
 
-		//convert input
+		// convert input
 		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-			if ( key == GLFW_KEY_X && action == GLFW_RELEASE )
+			if (key == GLFW_KEY_X && action == GLFW_RELEASE)
 				glfwSetWindowShouldClose(window, true); // We will detect this in our rendering loop
 		});
 
 		mouseWrapper = new MouseWrapper(window);
-
 
 		glfwSetCursorPosCallback(window, mouseWrapper);
 
@@ -95,25 +95,14 @@ public class Game implements Runnable {
 
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-		glfwSetWindowPos(
-				window,
-				(vidmode.width() - GAME_WIDTH) / 2,
-				(vidmode.height() - GAME_HEIGHT) / 2
-		);
-
-
+		glfwSetWindowPos(window, (vidmode.width() - GAME_WIDTH) / 2, (vidmode.height() - GAME_HEIGHT) / 2);
 
 		glfwMakeContextCurrent(window);
 		glfwShowWindow(window);
 
-
-
 		// Set the clear color
 
-
 		//
-
-
 
 		GL.createCapabilities();
 		capabilities = GL.getCapabilities();
@@ -121,7 +110,7 @@ public class Game implements Runnable {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 		glActiveTexture(GL_TEXTURE1);
-		//glEnable(GL_DEPTH_TEST);
+		// glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
@@ -141,12 +130,12 @@ public class Game implements Runnable {
 		long start;
 		long deltatime;
 		while (running) {
-			if (glfwWindowShouldClose(window)){
+			if (glfwWindowShouldClose(window)) {
 				stop();
 			}
 			start = System.nanoTime();
 			if (!Engine.getEngine().isLoading()) {
-				if (accTime >= 20000000){
+				if (accTime >= 20000000) {
 					accTime -= 20000000;
 					updater.generalUpdate();
 					ups++;
@@ -160,13 +149,13 @@ public class Game implements Runnable {
 			}
 			fps++;
 			deltatime = System.nanoTime() - start;
-			accTime+= deltatime;
-			if (ups == 50){
+			accTime += deltatime;
+			if (ups == 50) {
 				glfwSetWindowTitle(window, gameName + " @ " + fps + " fps");
 				fps = 0;
 				ups = 0;
 			}
-			Engine.getEngine().setUpdateTime((float)deltatime/ 20000000);
+			Engine.getEngine().setUpdateTime((float) deltatime / 20000000);
 		}
 	}
 
@@ -180,7 +169,7 @@ public class Game implements Runnable {
 		glfwPollEvents();
 	}
 
-	public void renderLoading(){
+	public void renderLoading() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
 		updater.renderloading(loadingScreen);

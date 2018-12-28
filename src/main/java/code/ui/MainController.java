@@ -36,6 +36,6 @@ public class MainController extends Controller {
 	}
 
 	public void quit() {
-		// TODO
+		Engine.getEngine().exit();
 	}
 }

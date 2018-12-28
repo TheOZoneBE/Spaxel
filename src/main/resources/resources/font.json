@@ -1,270 +1,263 @@
 {
-  "A":
-  {
+  "A": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
-    "yPosRel": 0      },
-  "B":
-  {
+    "yPosRel": 0
+  },
+  "B": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
-    "yPosRel": 0      },
-  "C":
-  {
+    "yPosRel": 0
+  },
+  "C": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
-    "yPosRel": 0      },
-  "D":
-  {
+    "yPosRel": 0
+  },
+  "D": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
-    "yPosRel": 0      },
-  "E":
-  {
+    "yPosRel": 0
+  },
+  "E": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
-    "yPosRel": 0      },
-  "F":
-  {
+    "yPosRel": 0
+  },
+  "F": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 5,
-    "yPosRel": 0      },
-  "G":
-  {
+    "yPosRel": 0
+  },
+  "G": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 6,
-    "yPosRel": 0      },
-  "H":
-  {
+    "yPosRel": 0
+  },
+  "H": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 7,
-    "yPosRel": 0      },
-  "J":
-  {
+    "yPosRel": 0
+  },
+  "J": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
-    "yPosRel": 1      },
-  "K":
-  {
+    "yPosRel": 1
+  },
+  "K": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
-    "yPosRel": 1      },
-  "L":
-  {
+    "yPosRel": 1
+  },
+  "L": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
-    "yPosRel": 1      },
-  "M":
-  {
+    "yPosRel": 1
+  },
+  "M": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
-    "yPosRel": 1      },
-  "N":
-  {
+    "yPosRel": 1
+  },
+  "N": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
-    "yPosRel": 1      },
-  "O":
-  {
+    "yPosRel": 1
+  },
+  "O": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 5,
-    "yPosRel": 1      },
-  "P":
-  {
+    "yPosRel": 1
+  },
+  "P": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 6,
-    "yPosRel": 1      },
-  "Q":
-  {
+    "yPosRel": 1
+  },
+  "Q": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 7,
-    "yPosRel": 1      },
-  "R":
-  {
+    "yPosRel": 1
+  },
+  "R": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
-    "yPosRel": 2      },
-  "S":
-  {
+    "yPosRel": 2
+  },
+  "S": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
-    "yPosRel": 2      },
-  "T":
-  {
+    "yPosRel": 2
+  },
+  "T": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
-    "yPosRel": 2      },
-  "U":
-  {
+    "yPosRel": 2
+  },
+  "U": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
-    "yPosRel": 2      },
-  "V":
-  {
+    "yPosRel": 2
+  },
+  "V": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
-    "yPosRel": 2      },
-  "W":
-  {
+    "yPosRel": 2
+  },
+  "W": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 5,
-    "yPosRel": 2      },
-  "X":
-  {
+    "yPosRel": 2
+  },
+  "X": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 6,
-    "yPosRel": 2      },
-  "Y":
-  {
+    "yPosRel": 2
+  },
+  "Y": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 7,
-    "yPosRel": 2      },
-  "Z":
-  {
+    "yPosRel": 2
+  },
+  "Z": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
-    "yPosRel": 3      },
-  "0":
-  {
+    "yPosRel": 3
+  },
+  "0": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
-    "yPosRel": 3      },
-  "2":
-  {
+    "yPosRel": 3
+  },
+  "2": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
-    "yPosRel": 3      },
-  "3":
-  {
+    "yPosRel": 3
+  },
+  "3": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
-    "yPosRel": 3      },
-  "4":
-  {
+    "yPosRel": 3
+  },
+  "4": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
-    "yPosRel": 3      },
-  "5":
-  {
+    "yPosRel": 3
+  },
+  "5": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 5,
-    "yPosRel": 3      },
-  "6":
-  {
+    "yPosRel": 3
+  },
+  "6": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 6,
-    "yPosRel": 3      },
-  "7":
-  {
+    "yPosRel": 3
+  },
+  "7": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 7,
-    "yPosRel": 3      },
-  "8":
-  {
+    "yPosRel": 3
+  },
+  "8": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 0,
-    "yPosRel": 4      },
-  "9":
-  {
+    "yPosRel": 4
+  },
+  "9": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 1,
-    "yPosRel": 4      },
-  "@":
-  {
+    "yPosRel": 4
+  },
+  "@": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 2,
-    "yPosRel": 4      },
-  "/":
-  {
+    "yPosRel": 4
+  },
+  "/": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 3,
     "yPosRel": 4
   },
-  "_":
-  {
+  "_": {
     "sheetName": "font_12x12",
     "width": 12,
     "height": 12,
     "xPosRel": 4,
     "yPosRel": 4
   },
-
-
-
-
-
   "a": {
     "sheetName": "font_10x20",
     "width": 10,
@@ -475,5 +468,4 @@
     "xPosRel": 9,
     "yPosRel": 2
   }
-
 }

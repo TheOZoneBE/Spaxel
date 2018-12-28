@@ -1,11 +1,12 @@
 package code.engine;
 
+import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
+
 import java.awt.Font;
 import java.util.EnumMap;
 import java.util.Map;
 
 import code.Constants;
-import code.Game;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
 import code.graphics.SpriteData;
@@ -42,17 +43,18 @@ import code.system.VelocitySystem;
 import code.ui.Controller;
 import code.ui.UI;
 
-final public class Engine {
-	private final static Engine engine = new Engine();
+public final class Engine {
+	private static final Engine engine = new Engine();
+
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
 	private NEntityStream nentities;
 	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
-	private EnumMap<UI, Controller> UIAtlas;
+	private Map<UI, Controller> UIAtlas;
 	private Controller controller;
-	private EnumMap<SystemType, GameSystem> systems;
+	private Map<SystemType, GameSystem> systems;
 	private GameState gameState;
 	private ItemCatalogue items;
 	private boolean loading = true;
@@ -68,14 +70,6 @@ final public class Engine {
 	private LoadingScreen loadingScreen;
 	private SystemUpdater updater;
 
-	public static Engine getEngine() {
-		return engine;
-	}
-
-	public enum GameState {
-		MENU, PLAY, PAUSE
-	}
-
 	private Engine() {
 		gameProperties = new GameProperties();
 		nentities = new NEntityStream();
@@ -83,6 +77,14 @@ final public class Engine {
 		gameState = GameState.MENU;
 		loadingScreen = new LoadingScreen();
 		updater = new SystemUpdater();
+	}
+
+	public static Engine getEngine() {
+		return engine;
+	}
+
+	public enum GameState {
+		MENU, PLAY, PAUSE
 	}
 
 	public void initialize() {
@@ -166,6 +168,10 @@ final public class Engine {
 		logger = null;
 		musicList.reset();
 		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
+	}
+
+	public void exit() {
+		glfwSetWindowShouldClose(window, true);
 	}
 
 	public void setWindow(long window) {

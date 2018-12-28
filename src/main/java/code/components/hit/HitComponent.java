@@ -34,8 +34,7 @@ public abstract class HitComponent extends Component {
         dc.addDamage(new Damage(damage));
     }
 
-    public void addParticleSpawner(NEntity entity, NEntity victim, ParticleComponent particleComponent,
-            String spawnerIndustry) {
+    public void addParticleSpawner(NEntity entity, ParticleComponent particleComponent, String spawnerIndustry) {
         SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get(spawnerIndustry);
         Engine.getEngine().getNEntityStream().addEntity(hpsi
                 .produce((PositionComponent) entity.getComponent(ComponentType.POSITION).copy(), particleComponent));

@@ -8,6 +8,10 @@ import code.math.VectorD;
  */
 
 public class RenderData {
+    private static final int ATTRIB_DIM = 4;
+    private static final int SCALE_OFFSET = 2;
+    private static final int ALPHA_INDEX = 2;
+    private static final int COLOR_INDEX = 3;
     private float[] texOffset;
     private float[] trSc;
     private float[] sinCos;
@@ -15,17 +19,10 @@ public class RenderData {
     private int spriteSheetID;
 
     public RenderData() {
-        trSc = new float[4];
-        sinCos = new float[4];
-        texOffset = new float[4];
-        sinCos[2] = 1;
-    }
-
-    public RenderData(int spriteSheetID, float[] trSc, float[] sinCos, float[] texOffset) {
-        this.trSc = trSc;
-        this.sinCos = sinCos;
-        this.texOffset = texOffset;
-        this.spriteSheetID = spriteSheetID;
+        trSc = new float[ATTRIB_DIM];
+        sinCos = new float[ATTRIB_DIM];
+        texOffset = new float[ATTRIB_DIM];
+        sinCos[ALPHA_INDEX] = 1;
     }
 
     public float[] getTrSc() {
@@ -66,11 +63,11 @@ public class RenderData {
     }
 
     public void setXScale(double xScale) {
-        trSc[2] = (float) xScale;
+        trSc[SCALE_OFFSET] = (float) xScale;
     }
 
     public void setYScale(double yScale) {
-        trSc[3] = (float) yScale;
+        trSc[SCALE_OFFSET + 1] = (float) yScale;
     }
 
     public void setRot(double rot) {
@@ -79,10 +76,10 @@ public class RenderData {
     }
 
     public void setAlpha(double alpha) {
-        sinCos[2] = (float) alpha;
+        sinCos[ALPHA_INDEX] = (float) alpha;
     }
 
     public void setColor(int color) {
-        sinCos[3] = color;
+        sinCos[COLOR_INDEX] = color;
     }
 }

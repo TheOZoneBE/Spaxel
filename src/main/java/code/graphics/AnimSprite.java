@@ -41,14 +41,12 @@ public class AnimSprite {
     }
 
     public void update() {
-        if (!pause) {
-            if (currentFrame != nrOfFrames - 1) {
-                if (frameTime == frameDuration) {
-                    frameTime = 0;
-                    currentFrame++;
-                }
-                frameTime++;
+        if (!pause && currentFrame != nrOfFrames - 1) {
+            if (frameTime == frameDuration) {
+                frameTime = 0;
+                currentFrame++;
             }
+            frameTime++;
         }
     }
 

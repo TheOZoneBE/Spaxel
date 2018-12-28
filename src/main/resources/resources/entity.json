@@ -1,5 +1,5 @@
 {
-  "hit_particle_industry":{
+  "hit_particle_industry": {
     "type": "HITPARTICLE",
     "factories": [
       {
@@ -17,7 +17,6 @@
       }
     ]
   },
-
   "trail_segment_industry": {
     "type": "TRAILSEGMENT",
     "factories": [
@@ -44,10 +43,9 @@
       }
     ]
   },
-
   "ship_fragment_industry": {
     "type": "TRAILSEGMENT",
-    "factories":[
+    "factories": [
       {
         "type": "AGE",
         "life": 20,
@@ -74,7 +72,6 @@
       }
     ]
   },
-
   "laser_hit_particle_spawner_industry": {
     "type": "SPAWNER",
     "factories": [
@@ -93,7 +90,6 @@
       }
     ]
   },
-
   "missile_hit_particle_spawner_industry": {
     "type": "SPAWNER",
     "factories": [
@@ -111,8 +107,7 @@
         "maxLife": 125
       }
     ]
-  }
-  ,
+  },
   "enemy_death_particle_spawner_industry": {
     "type": "SPAWNER",
     "factories": [
@@ -131,5 +126,4 @@
       }
     ]
   }
-
 }

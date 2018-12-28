@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Game implements Runnable {
+public final class Game implements Runnable {
 	public static final Logger LOGGER = Logger.getLogger(Game.class.getName());
 	public static final double MOUSE_FOLLOW_CUTOFF = .1;
 
@@ -44,7 +44,6 @@ public class Game implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
-		Engine.getEngine().getUpdater().shutdown();
 		try {
 			glfwFreeCallbacks(window);
 			glfwDestroyWindow(window);

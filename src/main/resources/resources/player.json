@@ -1,5 +1,5 @@
 {
-  "player_white_industry":{
+  "player_white_industry": {
     "type": "PLAYER",
     "factories": [
       {
@@ -105,7 +105,7 @@
       }
     ]
   },
-  "player_red_industry":{
+  "player_red_industry": {
     "type": "PLAYER",
     "factories": [
       {
@@ -211,7 +211,7 @@
       }
     ]
   },
-  "player_green_industry":{
+  "player_green_industry": {
     "type": "PLAYER",
     "factories": [
       {
@@ -317,7 +317,7 @@
       }
     ]
   },
-  "player_blue_industry":{
+  "player_blue_industry": {
     "type": "PLAYER",
     "factories": [
       {

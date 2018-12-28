@@ -82,8 +82,8 @@ public class RenderSystem extends GameSystem {
 	}
 
 	public void renderEntities() {
-		Set<NEntity> NtoRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
-		for (NEntity ne : NtoRender) {
+		Set<NEntity> toRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);
+		for (NEntity ne : toRender) {
 			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
 		Engine.getEngine().getController().render(bufferBuffer);

@@ -1,5 +1,6 @@
 package code.ui;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -48,7 +49,7 @@ public class UIButton extends UIVisual {
 					Method m = controller.getClass().getMethod(onClick);
 					m.invoke(controller);
 					click = false;
-				} catch (Exception e) {
+				} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
 					LOGGER.log(Level.SEVERE, e.toString(), e);
 				}
 			} else if (inside) {

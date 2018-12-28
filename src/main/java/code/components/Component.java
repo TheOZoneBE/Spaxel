@@ -12,6 +12,11 @@ public abstract class Component {
         this.type = type;
     }
 
+    /**
+     * Return a copy of this component.
+     * 
+     * @return The copied component
+     */
     public abstract Component copy();
 
     public void addCascade(NEntity entity) {

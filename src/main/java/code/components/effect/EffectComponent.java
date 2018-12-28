@@ -28,20 +28,20 @@ public class EffectComponent extends Component {
         this.effects = effects;
     }
 
-    public void addCascade(NEntity entity){
-        for (NEntity e: effects){
+    public void addCascade(NEntity entity) {
+        for (NEntity e : effects) {
             e.addComponent(new LinkComponent(entity));
             Engine.getEngine().getNEntityStream().addEntity(e);
         }
     }
 
-    public void removeCascade(){
-        for (NEntity e: effects){
+    public void removeCascade() {
+        for (NEntity e : effects) {
             Engine.getEngine().getNEntityStream().removeEntity(e);
         }
     }
 
-    public Component copy(){
+    public Component copy() {
         return new EffectComponent();
     }
 }

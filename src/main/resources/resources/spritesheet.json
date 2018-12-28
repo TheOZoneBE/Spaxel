@@ -1,69 +1,62 @@
 {
-  "projectiles":
-      {
-        "path": "/spritesheets/projectiles.png",
-        "width": 64,
-        "height": 64
-      },
-  "ships":
-      {
-        "path": "/spritesheets/ships.png",
-        "width": 32,
-        "height": 32
-      },
-  "button":
-      {
-        "path": "/spritesheets/button.png",
-        "width": 64,
-        "height": 64
-      },
-  "ui_play":
-      {
-        "path": "/spritesheets/ui_play.png",
-        "width": 640,
-        "height": 360
-      },
-  "items":
-      {
-        "path": "/spritesheets/items.png",
-        "width": 256,
-        "height": 256
-      },
-  "cooldown":
-      {
-        "path": "/spritesheets/cooldown.png",
-        "width": 8,
-        "height": 32
-      },
-  "effects":
-      {
-        "path": "/spritesheets/effects.png",
-        "width": 16,
-        "height": 16
-      },
-  "shield_effects":
-      {
-        "path": "/spritesheets/shield_effects.png",
-        "width": 64,
-        "height": 64
-      },
-  "class_select":
-      {
-        "path": "/spritesheets/class_select.png",
-        "width": 48,
-        "height": 24
-      },
-  "font_12x12":
-      {
-        "path": "/spritesheets/font_12x12.png",
-        "width": 96,
-        "height": 192
-      },
-  "font_10x20":
-  {
+  "projectiles": {
+    "path": "/spritesheets/projectiles.png",
+    "width": 64,
+    "height": 64
+  },
+  "ships": {
+    "path": "/spritesheets/ships.png",
+    "width": 32,
+    "height": 32
+  },
+  "button": {
+    "path": "/spritesheets/button.png",
+    "width": 64,
+    "height": 64
+  },
+  "ui_play": {
+    "path": "/spritesheets/ui_play.png",
+    "width": 640,
+    "height": 360
+  },
+  "items": {
+    "path": "/spritesheets/items.png",
+    "width": 256,
+    "height": 256
+  },
+  "cooldown": {
+    "path": "/spritesheets/cooldown.png",
+    "width": 8,
+    "height": 32
+  },
+  "effects": {
+    "path": "/spritesheets/effects.png",
+    "width": 16,
+    "height": 16
+  },
+  "shield_effects": {
+    "path": "/spritesheets/shield_effects.png",
+    "width": 64,
+    "height": 64
+  },
+  "class_select": {
+    "path": "/spritesheets/class_select.png",
+    "width": 48,
+    "height": 24
+  },
+  "font_12x12": {
+    "path": "/spritesheets/font_12x12.png",
+    "width": 96,
+    "height": 192
+  },
+  "font_10x20": {
     "path": "/spritesheets/font_10x20.png",
     "width": 100,
     "height": 100
+  },
+  "large_button": {
+    "path": "/spritesheets/large_button.png",
+    "width": 80,
+    "height": 64
   }
-    
 }

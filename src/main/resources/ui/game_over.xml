@@ -12,19 +12,19 @@
             </position>
             <onClick>play</onClick>
             <sprite>
-                <sprite>button_normal</sprite>
+                <sprite>large_button_normal</sprite>
                 <scale>4</scale>
             </sprite>
             <hover>
-                <sprite>button_hover</sprite>
+                <sprite>large_button_hover</sprite>
                 <scale>4</scale>
             </hover>
             <clicked>
-                <sprite>button_click</sprite>
+                <sprite>large_button_click</sprite>
                 <scale>4</scale>
             </clicked>
             <locked>
-                <sprite>button_locked</sprite>
+                <sprite>large_button_locked</sprite>
                 <scale>4</scale>
             </locked>
             <hitShape>hitshape_button</hitShape>
@@ -52,19 +52,19 @@
             </position>
             <onClick>main</onClick>
             <sprite>
-                <sprite>button_normal</sprite>
+                <sprite>large_button_normal</sprite>
                 <scale>4</scale>
             </sprite>
             <hover>
-                <sprite>button_hover</sprite>
+                <sprite>large_button_hover</sprite>
                 <scale>4</scale>
             </hover>
             <clicked>
-                <sprite>button_click</sprite>
+                <sprite>large_button_click</sprite>
                 <scale>4</scale>
             </clicked>
             <locked>
-                <sprite>button_locked</sprite>
+                <sprite>large_button_locked</sprite>
                 <scale>4</scale>
             </locked>
             <hitShape>hitshape_button</hitShape>

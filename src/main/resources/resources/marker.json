@@ -1,5 +1,5 @@
 {
-  "marker_white_industry" : {
+  "marker_white_industry": {
     "type": "VISUAL_EFFECT",
     "factories": [
       {
@@ -33,7 +33,7 @@
       }
     ]
   },
-  "marker_red_industry" : {
+  "marker_red_industry": {
     "type": "VISUAL_EFFECT",
     "factories": [
       {
@@ -67,7 +67,7 @@
       }
     ]
   },
-  "marker_green_industry" : {
+  "marker_green_industry": {
     "type": "VISUAL_EFFECT",
     "factories": [
       {
@@ -101,7 +101,7 @@
       }
     ]
   },
-  "marker_blue_industry" : {
+  "marker_blue_industry": {
     "type": "VISUAL_EFFECT",
     "factories": [
       {

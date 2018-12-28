@@ -87,7 +87,7 @@ public class VectorD {
 	}
 
 	public String toString() {
-		List<String> parts = new ArrayList<String>();
+		List<String> parts = new ArrayList<>();
 		for (int i = 0; i < m; i++) {
 			parts.add(String.valueOf(vector[i]));
 		}

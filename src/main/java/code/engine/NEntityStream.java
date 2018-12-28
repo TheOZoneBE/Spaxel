@@ -101,8 +101,9 @@ public class NEntityStream {
     }
 
     private void addEntities() {
-        for (EntityType type : entityTypeMap.keySet()) {
-            entityTypeMap.get(type).addAll(toAddEntityTypeMap.get(type));
+        for (Map.Entry<EntityType, Set<NEntity>> entry : entityTypeMap.entrySet()) {
+            EntityType type = entry.getKey();
+            entry.getValue().addAll(toAddEntityTypeMap.get(type));
             for (NEntity e : toAddEntityTypeMap.get(type)) {
                 for (Component c : e.getComponents().values()) {
                     toAddComponentTypeMap.get(c.getType()).add(e);
@@ -113,8 +114,9 @@ public class NEntityStream {
     }
 
     private void removeEntities() {
-        for (EntityType type : entityTypeMap.keySet()) {
-            entityTypeMap.get(type).removeAll(toRemoveEntityTypeMap.get(type));
+        for (Map.Entry<EntityType, Set<NEntity>> entry : entityTypeMap.entrySet()) {
+            EntityType type = entry.getKey();
+            entry.getValue().removeAll(toRemoveEntityTypeMap.get(type));
             for (NEntity e : toRemoveEntityTypeMap.get(type)) {
                 for (Component c : e.getComponents().values()) {
                     toRemoveComponentTypeMap.get(c.getType()).add(e);

@@ -22,7 +22,7 @@ public class BasicLaserHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, victim,
+        addParticleSpawner(entity,
                 new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
                         sc.getScale()),
                 "laser_hit_particle_spawner_industry");
@@ -30,7 +30,7 @@ public class BasicLaserHitComponent extends HitComponent {
         Engine.getEngine().getNEntityStream().removeEntity(entity);
     }
 
-    public Component copy(){
+    public Component copy() {
         return new BasicLaserHitComponent(damage);
     }
 }

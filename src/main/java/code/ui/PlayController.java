@@ -27,6 +27,10 @@ public class PlayController extends Controller {
     UIElement shipContainer;
     ItemViewFactory itemViewFactory;
 
+    public PlayController() {
+        super(UI.PLAY);
+    }
+
     public void initialize() {
         xpBar = (UIBar) root.findById("play_xp_bar");
         hpBar = (UIBar) root.findById("play_hp_bar");
@@ -38,10 +42,6 @@ public class PlayController extends Controller {
         secondaryContainer = root.findById("play_secondary_container");
         shipContainer = root.findById("play_ship_container");
         itemViewFactory = new ItemViewFactory();
-    }
-
-    public PlayController() {
-        super(UI.PLAY);
     }
 
     private void updateElements(NEntity player) {

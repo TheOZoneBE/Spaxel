@@ -22,7 +22,7 @@ public class BasicMissileHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, victim,
+        addParticleSpawner(entity,
                 new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
                         sc.getScale()),
                 "missile_hit_particle_spawner_industry");

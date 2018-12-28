@@ -12,7 +12,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sound {
-	private static final Logger LOGGER = Logger.getLogger(FileToStringLoader.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Sound.class.getName());
 
 	private String path;
 	private Clip clip;

@@ -18,7 +18,7 @@ import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class UIButton extends UIVisual {
-	private static final Logger LOGGER = Logger.getLogger(FileToStringLoader.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(UIButton.class.getName());
 
 	protected String onClick;
 	protected HitShape hitShape;
@@ -35,7 +35,7 @@ public class UIButton extends UIVisual {
 			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
-			boolean buttonDown = mouseWrapper.mouse1;
+			boolean buttonDown = mouseWrapper.isMouse1();
 			MatrixD transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1, 1);
 			HitShape updated = hitShape.update(transform);
 			boolean inside = updated

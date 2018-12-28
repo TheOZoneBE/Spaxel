@@ -18,7 +18,7 @@ public class Quad {
     private int vbo;
     private int ibo;
     private int tbo;
-    public float[] vertices = new float[] { -.5F, -.5F, 0, -.5F, .5F, 0, .5F, .5F, 0, .5F, -.5F, 0 };
+    private float[] vertices = new float[] { -.5F, -.5F, 0, -.5F, .5F, 0, .5F, .5F, 0, .5F, -.5F, 0 };
 
     byte[] indices = new byte[] { 0, 1, 3, 3, 1, 2 };
 

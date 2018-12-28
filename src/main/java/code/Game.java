@@ -13,41 +13,33 @@ import code.input.MouseWrapper;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GLCapabilities;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Game implements Runnable {
 	public static final Logger LOGGER = Logger.getLogger(Game.class.getName());
-
 	public static final double MOUSE_FOLLOW_CUTOFF = .1;
-	public static Game game;
-	public boolean running;
+
+	// private Game gameInstance;
+	private boolean running;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";
 
-	private Thread thread;
 	private long window;
-	private MouseWrapper mouseWrapper;
 
-	public LoadingScreen loadingScreen;
-	public SystemUpdater updater;
-	public GLCapabilities capabilities;
+	private Game() {
 
-	public Game() {
-		loadingScreen = new LoadingScreen();
-		updater = new SystemUpdater();
 	}
 
 	public static void main(String[] args) {
-		game = new Game();
+		Game gameInstance = new Game();
 
-		game.start();
+		gameInstance.start();
 	}
 
 	public synchronized void start() {
 		running = true;
-		thread = new Thread(this, "Display");
+		Thread thread = new Thread(this, "Display");
 
 		thread.start();
 
@@ -55,7 +47,7 @@ public class Game implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
-		updater.shutdown();
+		Engine.getEngine().getUpdater().shutdown();
 		try {
 			glfwFreeCallbacks(window);
 			glfwDestroyWindow(window);
@@ -67,7 +59,7 @@ public class Game implements Runnable {
 	}
 
 	public void initialize() {
-		GLFWErrorCallback.createPrint(System.err).set();
+		GLFWErrorCallback.createPrint().set();
 
 		if (!glfwInit()) {
 			throw new IllegalStateException("Unable to initialize GLFW");
@@ -84,14 +76,14 @@ public class Game implements Runnable {
 		}
 
 		// convert input
-		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
+		glfwSetKeyCallback(window, (long windowID, int key, int scancode, int action, int mods) -> {
 			if (key == GLFW_KEY_X && action == GLFW_RELEASE) {
 				// We will detect this in our rendering loop
 				glfwSetWindowShouldClose(window, true);
 			}
 		});
 
-		mouseWrapper = new MouseWrapper(window);
+		MouseWrapper mouseWrapper = new MouseWrapper(window);
 
 		glfwSetCursorPosCallback(window, mouseWrapper);
 
@@ -107,7 +99,6 @@ public class Game implements Runnable {
 		glfwShowWindow(window);
 
 		GL.createCapabilities();
-		capabilities = GL.getCapabilities();
 
 		glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
 
@@ -135,12 +126,10 @@ public class Game implements Runnable {
 				stop();
 			}
 			start = System.nanoTime();
-			if (!Engine.getEngine().isLoading()) {
-				if (accTime >= 20000000) {
-					accTime -= 20000000;
-					updater.generalUpdate();
-					ups++;
-				}
+			if (!Engine.getEngine().isLoading() && accTime >= 20000000) {
+				accTime -= 20000000;
+				Engine.getEngine().getUpdater().generalUpdate();
+				ups++;
 			}
 			if (Engine.getEngine().isLoading()) {
 				renderLoading();
@@ -164,7 +153,7 @@ public class Game implements Runnable {
 		// clear the framebuffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		updater.render();
+		Engine.getEngine().getUpdater().render();
 
 		glfwSwapBuffers(window);
 
@@ -175,7 +164,7 @@ public class Game implements Runnable {
 		// clear the framebuffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		updater.renderloading(loadingScreen);
+		Engine.getEngine().getUpdater().renderloading(Engine.getEngine().getLoadingScreen());
 
 		glfwSwapBuffers(window);
 

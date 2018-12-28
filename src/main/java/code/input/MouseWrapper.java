@@ -12,9 +12,9 @@ public class MouseWrapper extends GLFWCursorPosCallback {
 
 	private int x;
 	private int y;
-	public boolean mouse1;
-	public boolean mouse2;
-	public boolean mouse3;
+	private boolean mouse1;
+	private boolean mouse2;
+	private boolean mouse3;
 	private long window;
 
 	public MouseWrapper(long window) {
@@ -22,32 +22,32 @@ public class MouseWrapper extends GLFWCursorPosCallback {
 	}
 
 	public void update() {
-		mouse1 = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS;
-		mouse2 = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS;
-		mouse3 = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_3) == GLFW_PRESS;
+		setMouse1(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS);
+		setMouse2(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS);
+		setMouse3(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_3) == GLFW_PRESS);
 	}
 
 	public void mousePressed(MouseEvent m) {
 		if (MouseEvent.BUTTON1 == m.getButton()) {
-			mouse1 = true;
+			setMouse1(true);
 		}
 		if (MouseEvent.BUTTON2 == m.getButton()) {
-			mouse2 = true;
+			setMouse2(true);
 		}
 		if (MouseEvent.BUTTON3 == m.getButton()) {
-			mouse3 = true;
+			setMouse3(true);
 		}
 	}
 
 	public void mouseReleased(MouseEvent m) {
 		if (MouseEvent.BUTTON1 == m.getButton()) {
-			mouse1 = false;
+			setMouse1(false);
 		}
 		if (MouseEvent.BUTTON2 == m.getButton()) {
-			mouse2 = false;
+			setMouse2(false);
 		}
 		if (MouseEvent.BUTTON3 == m.getButton()) {
-			mouse3 = false;
+			setMouse3(false);
 		}
 	}
 
@@ -89,4 +89,47 @@ public class MouseWrapper extends GLFWCursorPosCallback {
 		x = (int) xPos;
 		y = Constants.GAME_HEIGHT - (int) yPos;
 	}
+
+	/**
+	 * @return the mouse3
+	 */
+	public boolean isMouse3() {
+		return mouse3;
+	}
+
+	/**
+	 * @param mouse3 the mouse3 to set
+	 */
+	public void setMouse3(boolean mouse3) {
+		this.mouse3 = mouse3;
+	}
+
+	/**
+	 * @return the mouse2
+	 */
+	public boolean isMouse2() {
+		return mouse2;
+	}
+
+	/**
+	 * @param mouse2 the mouse2 to set
+	 */
+	public void setMouse2(boolean mouse2) {
+		this.mouse2 = mouse2;
+	}
+
+	/**
+	 * @return the mouse1
+	 */
+	public boolean isMouse1() {
+		return mouse1;
+	}
+
+	/**
+	 * @param mouse1 the mouse1 to set
+	 */
+	public void setMouse1(boolean mouse1) {
+		this.mouse1 = mouse1;
+	}
+
 }

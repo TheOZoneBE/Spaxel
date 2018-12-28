@@ -63,8 +63,10 @@ final public class Engine {
 	private VectorD cursorFollow;
 	private GameProperties gameProperties;
 	private Logger logger;
-	public Map<String, Spritesheet> spritesheets;
-	public Map<String, SpriteData> spriteAtlas;
+	private Map<String, Spritesheet> spritesheets;
+	private Map<String, SpriteData> spriteAtlas;
+	private LoadingScreen loadingScreen;
+	private SystemUpdater updater;
 
 	public static Engine getEngine() {
 		return engine;
@@ -79,6 +81,8 @@ final public class Engine {
 		nentities = new NEntityStream();
 		systems = new EnumMap<>(SystemType.class);
 		gameState = GameState.MENU;
+		loadingScreen = new LoadingScreen();
+		updater = new SystemUpdater();
 	}
 
 	public void initialize() {
@@ -94,7 +98,7 @@ final public class Engine {
 
 		addSystem(new RenderSystem());
 
-		Game.game.updater.setSystems(systems);
+		updater.setSystems(systems);
 	}
 
 	public void startLoading() {
@@ -103,33 +107,33 @@ final public class Engine {
 
 		// asset loading
 
-		Game.game.loadingScreen.getMessage().setText("Loading sounds");
-		Game.game.loadingScreen.getProgress().setPercent(0.0);
+		loadingScreen.getMessage().setText("Loading sounds");
+		loadingScreen.getProgress().setPercent(0.0);
 		SoundLoader sounds = new SoundLoader();
 		musicList = new MusicList(sounds.loadSounds("/resources/sound.json"));
 
-		Game.game.loadingScreen.getMessage().setText("Loading hitshapes");
+		loadingScreen.getMessage().setText("Loading hitshapes");
 		hitShapeAtlas = new HitShapeLoader().loadHitShapes("/resources/hitshape.json");
-		Game.game.loadingScreen.getProgress().setPercent(0.75);
+		loadingScreen.getProgress().setPercent(0.75);
 
-		Game.game.loadingScreen.getMessage().setText("Loading items");
+		loadingScreen.getMessage().setText("Loading items");
 		items = new ItemPropertiesLoader().loadItems("/resources/itemProperties.json");
-		Game.game.loadingScreen.getProgress().setPercent(0.8);
+		loadingScreen.getProgress().setPercent(0.8);
 
-		Game.game.loadingScreen.getMessage().setText("Loading UI");
+		loadingScreen.getMessage().setText("Loading UI");
 		UIAtlas = new UIElementLoader().loadUIElements(new String[] { "/ui/main.xml", "/ui/credits.xml",
 				"/ui/class_selection.xml", "/ui/play.xml", "/ui/pause.xml", "/ui/game_over.xml", "/ui/options.xml" });
-		Game.game.loadingScreen.getProgress().setPercent(0.85);
+		loadingScreen.getProgress().setPercent(0.85);
 
-		Game.game.loadingScreen.getMessage().setText("Loading entities");
+		loadingScreen.getMessage().setText("Loading entities");
 		industryMap = new IndustryLoader().loadEntityIndustries(new String[] { "/resources/entity.json",
 				"/resources/actor.json", "/resources/projectile.json", "/resources/item.json", "/resources/player.json",
 				"/resources/effect.json", "/resources/marker.json" });
-		Game.game.loadingScreen.getProgress().setPercent(0.9);
+		loadingScreen.getProgress().setPercent(0.9);
 
 		nentities.cleanup();
 
-		Game.game.loadingScreen.getMessage().setText("Initializing systems");
+		loadingScreen.getMessage().setText("Initializing systems");
 
 		// systems
 		addSystem(new SoundSystem());
@@ -151,8 +155,8 @@ final public class Engine {
 		((SoundSystem) getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
 		// starting threads
-		Game.game.updater.setSystems(systems);
-		Game.game.loadingScreen.getProgress().setPercent(.95);
+		updater.setSystems(systems);
+		loadingScreen.getProgress().setPercent(.95);
 		loading = false;
 	}
 
@@ -286,5 +290,13 @@ final public class Engine {
 
 	public void setCursorFollow(VectorD cursorFollow) {
 		this.cursorFollow = cursorFollow;
+	}
+
+	public SystemUpdater getUpdater() {
+		return updater;
+	}
+
+	public LoadingScreen getLoadingScreen() {
+		return loadingScreen;
 	}
 }

@@ -93,14 +93,14 @@ public class PlayController extends Controller {
         updateElements(player);
         updateItems(player);
         Keyboard k = Engine.getEngine().getKeyboard();
-        if (k.escState.isDown() && !k.escState.hasBeenDown()) {
+        if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
             Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PAUSE));
             Engine.getEngine().setGameState(Engine.GameState.PAUSE);
         }
-        if (k.iState.isDown() && !k.iState.hasBeenDown()) {
+        if (k.getiState().isDown() && !k.getiState().hasBeenDown()) {
             Engine.getEngine().getGameProperties().setDebug(!Engine.getEngine().getGameProperties().isDebug());
         }
-        if (k.lState.isDown() && !k.lState.hasBeenDown()) {
+        if (k.getlState().isDown() && !k.getlState().hasBeenDown()) {
             Engine.getEngine().getGameProperties().setLogging(!Engine.getEngine().getGameProperties().isLogging());
             if (Engine.getEngine().getGameProperties().isLogging()) {
                 Engine.getEngine().setLogger(new Logger(1000, 100));

@@ -23,7 +23,7 @@ public class Axis {
 	}
 
 	public String toString() {
-		dirVec.toString();
+		return dirVec.toString();
 	}
 
 }

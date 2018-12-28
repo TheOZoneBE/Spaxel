@@ -35,18 +35,18 @@ public class PlayerInputComponent extends InputComponent {
 
         if (ac.canMove()) {
             VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2));
-            if (keys.downState.isDown()) {
+            if (keys.getDownState().isDown()) {
                 velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot())).multiplicate(mc.getAcc());
             }
-            if (keys.upState.isDown()) {
+            if (keys.getUpState().isDown()) {
                 velChange = new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getAcc());
             }
-            if (keys.leftState.isDown()) {
+            if (keys.getLeftState().isDown()) {
                 velChange = new VectorD(Math.sin(pc.getRot() - Math.PI / 2), Math.cos(pc.getRot() - Math.PI / 2))
                         .multiplicate(mc.getAcc());
             }
 
-            if (keys.rightState.isDown()) {
+            if (keys.getRightState().isDown()) {
                 velChange = new VectorD(Math.sin(pc.getRot() + Math.PI / 2), Math.cos(pc.getRot() + Math.PI / 2))
                         .multiplicate(mc.getAcc());
             }
@@ -84,7 +84,7 @@ public class PlayerInputComponent extends InputComponent {
         }
 
         if (ac.canShoot()) {
-            if (mouse.mouse1) {
+            if (mouse.isMouse1()) {
                 PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);
                 List<NEntity> items = prc.getItems();
                 for (NEntity item : items) {
@@ -92,7 +92,7 @@ public class PlayerInputComponent extends InputComponent {
                     ic.activate(item);
                 }
             }
-            if (mouse.mouse2) {
+            if (mouse.isMouse2()) {
                 SecondaryComponent src = (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
                 List<NEntity> items = src.getItems();
                 for (NEntity item : items) {

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import code.Game;
+import code.engine.Engine;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +26,7 @@ public class SoundLoader extends Loader {
 			for (Music m : music.values()) {
 				m.initialize();
 				i++;
-				Game.game.loadingScreen.getProgress().setPercent(SOUND_LOAD_PERCENTAGE * i / count);
+				Engine.getEngine().getLoadingScreen().getProgress().setPercent(SOUND_LOAD_PERCENTAGE * i / count);
 			}
 			return music;
 		} catch (IOException e) {

@@ -7,12 +7,16 @@ import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.math.LineSegment;
 import code.math.VectorD;
 
 /**
  * Created by theo on 5/01/18.
  */
 public class MarkerComponent extends Component {
+    private static final int MARKER_THRESHOLD = 50;
+    private static final int MARKER_OFFSET = 20;
+
     private NEntity marker;
     private String markerIndustry;
 
@@ -27,10 +31,11 @@ public class MarkerComponent extends Component {
         PositionComponent entityPos = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         RenderComponent mrc = (RenderComponent) marker.getComponent(ComponentType.RENDER);
         VectorD renderPos = entityPos.getCoord().sum(Engine.getEngine().getScreenOffset());
-        if (renderPos.getValue(0) < -50 || renderPos.getValue(0) > Constants.GAME_WIDTH + 50
-                || renderPos.getValue(1) < -50 || renderPos.getValue(1) > Constants.GAME_HEIGHT + 50) {
-            VectorD intersect = getIntersection(new VectorD(20, 20),
-                    new VectorD(Constants.GAME_WIDTH - 20, Constants.GAME_HEIGHT - 20),
+        if (renderPos.getValue(0) < -MARKER_THRESHOLD || renderPos.getValue(0) > Constants.GAME_WIDTH + MARKER_THRESHOLD
+                || renderPos.getValue(1) < -MARKER_THRESHOLD
+                || renderPos.getValue(1) > Constants.GAME_HEIGHT + MARKER_THRESHOLD) {
+            VectorD intersect = getIntersection(new VectorD(MARKER_OFFSET, MARKER_OFFSET),
+                    new VectorD(Constants.GAME_WIDTH - MARKER_OFFSET, Constants.GAME_HEIGHT - MARKER_OFFSET),
                     playerPos.getCoord().sum(Engine.getEngine().getScreenOffset()), renderPos);
 
             if (intersect != null) {
@@ -71,42 +76,20 @@ public class MarkerComponent extends Component {
     }
 
     private VectorD getIntersection(VectorD leftTop, VectorD rightBot, VectorD playerPos, VectorD enemyPos) {
-        VectorD intersect = getLineSegmentIntersection(leftTop, new VectorD(leftTop.getValue(0), rightBot.getValue(1)),
-                playerPos, enemyPos);
-        if (intersect != null) {
-            return intersect;
-        }
-        intersect = getLineSegmentIntersection(new VectorD(leftTop.getValue(0), rightBot.getValue(1)), rightBot,
-                playerPos, enemyPos);
-        if (intersect != null) {
-            return intersect;
-        }
-        intersect = getLineSegmentIntersection(rightBot, new VectorD(rightBot.getValue(0), leftTop.getValue(1)),
-                playerPos, enemyPos);
-        if (intersect != null) {
-            return intersect;
-        }
-        intersect = getLineSegmentIntersection(new VectorD(rightBot.getValue(0), leftTop.getValue(1)), leftTop,
-                playerPos, enemyPos);
-        if (intersect != null) {
-            return intersect;
+        LineSegment toEnemy = new LineSegment(playerPos, enemyPos);
+        LineSegment a = new LineSegment(leftTop, new VectorD(leftTop.getValue(0), rightBot.getValue(1)));
+        LineSegment b = new LineSegment(new VectorD(leftTop.getValue(0), rightBot.getValue(1)), rightBot);
+        LineSegment c = new LineSegment(rightBot, new VectorD(rightBot.getValue(0), leftTop.getValue(1)));
+        LineSegment d = new LineSegment(new VectorD(rightBot.getValue(0), leftTop.getValue(1)), leftTop);
+        LineSegment[] borders = { a, b, c, d };
+        for (LineSegment border : borders) {
+            VectorD intersect = toEnemy.intersection(border);
+            if (intersect != null) {
+                return intersect;
+            }
+
         }
         return null;
-    }
-
-    private VectorD getLineSegmentIntersection(VectorD a, VectorD b, VectorD c, VectorD d) {
-        VectorD r = b.diff(a);
-        VectorD s = d.diff(c);
-        double cross = r.crossProduct(s);
-
-        VectorD den = c.diff(a);
-        double t = den.crossProduct(s) / cross;
-        double u = den.crossProduct(r) / cross;
-        if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
-            return a.sum(r.multiplicate(t));
-        } else {
-            return null;
-        }
     }
 
     public Component copy() {

@@ -7,8 +7,6 @@ import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import code.engine.Engine;
-import code.engine.LoadingScreen;
-import code.engine.SystemUpdater;
 import code.input.MouseWrapper;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -21,7 +19,6 @@ public class Game implements Runnable {
 	public static final Logger LOGGER = Logger.getLogger(Game.class.getName());
 	public static final double MOUSE_FOLLOW_CUTOFF = .1;
 
-	// private Game gameInstance;
 	private boolean running;
 	private String gameName = "Spaxel - Devbuild 0.3.2_exp";
 

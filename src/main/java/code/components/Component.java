@@ -12,8 +12,6 @@ public abstract class Component {
         this.type = type;
     }
 
-    // abstract void update(NEntity entity);
-
     public abstract Component copy();
 
     public void addCascade(NEntity entity) {

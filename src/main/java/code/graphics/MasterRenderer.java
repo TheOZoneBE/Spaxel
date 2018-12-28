@@ -1,17 +1,7 @@
 package code.graphics;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.GL_DYNAMIC_DRAW;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
-import static org.lwjgl.opengl.GL15.glBufferData;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL31.glDrawElementsInstanced;
 
 import java.nio.FloatBuffer;
@@ -35,7 +25,9 @@ import code.Constants;
  *
  */
 public class MasterRenderer {
-
+    private static final double TWO = 2.0;
+    private static final int BLUR_RESOLUTION = 2;
+    private static final int BLUR_SIZE = 9;
     private InstancedQuad allQuad;
     private InstancedShaderProgram instancedShader;
     private PostProcessor blurPostProcessor;
@@ -43,28 +35,23 @@ public class MasterRenderer {
     private LayerFBO layerFBO;
 
     private Quad fboQuad;
-    private FBO firstPass;
-    private FBO ui;
     private FBO blurred;
-    private FBO lensed;
     private LastPassShaderProgram lastPassProgram;
-    private BlurShaderProgram blurPassProgram;
-    private LastPassShaderProgram lensPassProgram;
 
     public MasterRenderer() {
         initialize();
     }
 
     private void initialize() {
-        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / 2.0, Constants.GAME_WIDTH / 2.0,
-                -Constants.GAME_HEIGHT / 2.0, Constants.GAME_HEIGHT / 2.0, -1.0, 1.0);
+        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / TWO, Constants.GAME_WIDTH / TWO,
+                -Constants.GAME_HEIGHT / TWO, Constants.GAME_HEIGHT / TWO, -1.0, 1.0);
 
-        blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
+        BlurShaderProgram blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
         blurPassProgram.enable();
         blurPassProgram.setTexSampler(1);
         blurPassProgram.setRadius(1);
-        blurPassProgram.setResolution(2);
-        blurPassProgram.setSize(9);
+        blurPassProgram.setResolution(BLUR_RESOLUTION);
+        blurPassProgram.setSize(BLUR_SIZE);
         blurPostProcessor = new BlurPostProcessor(blurPassProgram);
 
         lastPassProgram = new LastPassShaderProgram("/shaders/last_pass.vert", "/shaders/last_pass.frag");
@@ -93,8 +80,8 @@ public class MasterRenderer {
             layerFBO.getFbo(layer).bindBuffer();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             Map<Integer, List<RenderData>> buffers = masterBuffer.getData(layer);
-            for (Integer i : buffers.keySet()) {
-                render(new RenderBuffer(buffers.get(i)), i);
+            for (Map.Entry<Integer, List<RenderData>> entry : buffers.entrySet()) {
+                render(new RenderBuffer(entry.getValue()), entry.getKey());
             }
             layerFBO.getFbo(layer).unbindBuffer();
         }
@@ -110,19 +97,19 @@ public class MasterRenderer {
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         blurred.bindTexture();
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
 
         layerFBO.getFbo(RenderLayer.GAME).bindTexture();
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
 
         layerFBO.getFbo(RenderLayer.UI).bindTexture();
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
 
-        layerFBO.getFbo(RenderLayer.UI).bindTexture();
+        layerFBO.getFbo(RenderLayer.DEBUG).bindTexture();
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
     }
 
     public void render(RenderBuffer buffer, int spritesheet) {
@@ -134,7 +121,7 @@ public class MasterRenderer {
 
             glBindTexture(GL_TEXTURE_2D, spritesheet);
 
-            glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0, buffer.size());
+            glDrawElementsInstanced(GL_TRIANGLES, allQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0, buffer.size());
         }
     }
 

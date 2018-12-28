@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
  * Created by theo on 5-6-2016.
  */
 public class SystemUpdater {
+    private static final int TWENTY_MS = 20_000_000;
     private Map<SystemType, GameSystem> systems;
     private ExecutorService e = Executors.newCachedThreadPool();
 
@@ -71,7 +72,7 @@ public class SystemUpdater {
                 update(SystemType.UI);
                 update(SystemType.DIFFICULTY);
                 update(SystemType.MARKER);
-                Engine.getEngine().getGameProperties().addTime(20000000);
+                Engine.getEngine().getGameProperties().addTime(TWENTY_MS);
             }
             Engine.getEngine().getNEntityStream().cleanup();
             if (Engine.getEngine().getGameProperties().isLogging()) {

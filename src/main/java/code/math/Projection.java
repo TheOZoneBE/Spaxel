@@ -1,6 +1,7 @@
 package code.math;
 
 public class Projection {
+	// TODO vectors
 	private double xMin;
 	private double xMax;
 	private double yMin;

@@ -34,7 +34,7 @@ public final class BufferUtils {
 	}
 
 	public static FloatBuffer allocateFloatBuffer(int size) {
-		return ByteBuffer.allocateDirect((size * 4) << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+		return ByteBuffer.allocateDirect(size << 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
 	}
 
 	public static IntBuffer createIntBuffer(int[] array) {
@@ -51,7 +51,7 @@ public final class BufferUtils {
 	}
 
 	public static FloatBuffer combineFloatBuffers(List<FloatBuffer> bufferList) {
-		FloatBuffer result = ByteBuffer.allocateDirect((bufferList.size() * 4) << 2).order(ByteOrder.nativeOrder())
+		FloatBuffer result = ByteBuffer.allocateDirect(bufferList.size() << 4).order(ByteOrder.nativeOrder())
 				.asFloatBuffer();
 		for (FloatBuffer buffer : bufferList) {
 			result.put(buffer);

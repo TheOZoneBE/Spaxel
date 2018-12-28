@@ -4,10 +4,8 @@ import code.util.BufferUtils;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
 
 /**
  * Created by theod on 16-7-2017.
@@ -20,9 +18,9 @@ public class Quad {
     private int tbo;
     private float[] vertices = new float[] { -.5F, -.5F, 0, -.5F, .5F, 0, .5F, .5F, 0, .5F, -.5F, 0 };
 
-    byte[] indices = new byte[] { 0, 1, 3, 3, 1, 2 };
+    private byte[] indices = new byte[] { 0, 1, 3, 3, 1, 2 };
 
-    float[] texCoords = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
+    private float[] texCoords = new float[] { 0, 1, 0, 0, 1, 0, 1, 1 };
 
     public Quad() {
         vao = glGenVertexArrays();
@@ -63,5 +61,9 @@ public class Quad {
 
     public int getTbo() {
         return tbo;
+    }
+
+    public int getVertexCount() {
+        return indices.length;
     }
 }

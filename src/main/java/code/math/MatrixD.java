@@ -104,4 +104,14 @@ public class MatrixD {
 		return new MatrixD(n, m, sol);
 	}
 
+	public MatrixD sum(MatrixD other) {
+		double[] sol = new double[m * n];
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				sol[i * n + j] = matrix[i * n + j] + other.getValue(i, j);
+			}
+		}
+		return new MatrixD(m, n, sol);
+	}
+
 }

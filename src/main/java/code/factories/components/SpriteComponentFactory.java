@@ -17,6 +17,7 @@ public class SpriteComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new SpriteComponent(sprite, scale);
     }

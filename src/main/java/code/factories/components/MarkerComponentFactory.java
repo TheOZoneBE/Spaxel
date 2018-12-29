@@ -13,6 +13,7 @@ public class MarkerComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new MarkerComponent(markerIndustry);
     }

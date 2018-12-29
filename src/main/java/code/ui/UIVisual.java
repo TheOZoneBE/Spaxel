@@ -8,12 +8,12 @@ import code.graphics.RenderLayer;
 public class UIVisual extends UIElement {
 	protected SpriteComponent sprite;
 
+	@Override
 	public void render(MasterBuffer buffer) {
 		RenderData data = new RenderData();
 		data.setPos(position.getCoord());
 		data.setRot(position.getRot());
-		data.setXScale(sprite.getScale() * sprite.getSprite().getWidth());
-		data.setYScale(sprite.getScale() * sprite.getSprite().getHeight());
+		data.setScale(sprite.getSprite().getDim().multiplicate(sprite.getScale()));
 		data.setSpriteSheetID(sprite.getSprite().getSpritesheetID());
 		data.setTexOffset(sprite.getSprite().getSpriteProperties());
 		buffer.addNewSprite(RenderLayer.UI, data);

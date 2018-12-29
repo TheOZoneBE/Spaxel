@@ -67,10 +67,12 @@ public class MarkerComponent extends Component {
         this.markerIndustry = markerIndustry;
     }
 
+    @Override
     public void addCascade(NEntity entity) {
         Engine.getEngine().getNEntityStream().addEntity(marker);
     }
 
+    @Override
     public void removeCascade() {
         Engine.getEngine().getNEntityStream().removeEntity(marker);
     }

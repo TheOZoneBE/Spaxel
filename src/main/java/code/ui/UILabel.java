@@ -23,6 +23,7 @@ public class UILabel extends UIElement {
 		super();
 	}
 
+	@Override
 	public void render(MasterBuffer buffer) {
 		VectorD offset;
 		if (alignLeft) {
@@ -38,8 +39,7 @@ public class UILabel extends UIElement {
 				RenderData data = new RenderData();
 				data.setPos(position.getCoord().sum(offset));
 				data.setRot(position.getRot());
-				data.setXScale(scale * cSprite.getWidth());
-				data.setYScale(scale * cSprite.getHeight());
+				data.setScale(cSprite.getDim().multiplicate(scale));
 				data.setSpriteSheetID(cSprite.getSpritesheetID());
 				data.setTexOffset(cSprite.getSpriteProperties());
 				buffer.addNewSprite(RenderLayer.UI, data);
@@ -54,7 +54,7 @@ public class UILabel extends UIElement {
 				offset.setValue(1, offset.getValue(1) - NEWLINE_OFFSET * scale);
 			} else {
 				if (cSprite != null) {
-					offset.setValue(0, offset.getValue(0) + cSprite.getWidth() * scale);
+					offset.setValue(0, offset.getValue(0) + cSprite.getDim().getValue(0) * scale);
 				} else {
 					offset.setValue(0, offset.getValue(0) + SPACING * scale);
 				}
@@ -79,7 +79,7 @@ public class UILabel extends UIElement {
 			SpriteData sprite = sprites.get(text.substring(k, k + 1));
 			int w;
 			if (sprite != null) {
-				w = sprite.getWidth();
+				w = (int) sprite.getDim().getValue(0);
 			} else {
 				w = SPACING;
 			}

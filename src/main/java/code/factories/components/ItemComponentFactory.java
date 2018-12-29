@@ -28,6 +28,7 @@ public class ItemComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         switch (name) {
         case "basic_laser":

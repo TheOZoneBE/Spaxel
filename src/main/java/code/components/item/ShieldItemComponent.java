@@ -43,11 +43,13 @@ public abstract class ShieldItemComponent extends ItemComponent {
         this.effect = effect;
     }
 
+    @Override
     public void addCascade(NEntity entity) {
         effect.addComponent(new LinkComponent(entity));
         Engine.getEngine().getNEntityStream().addEntity(effect);
     }
 
+    @Override
     public void removeCascade() {
         Engine.getEngine().getNEntityStream().removeEntity(effect);
     }

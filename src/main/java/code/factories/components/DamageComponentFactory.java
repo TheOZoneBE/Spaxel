@@ -11,6 +11,7 @@ public class DamageComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new DamageComponent();
     }

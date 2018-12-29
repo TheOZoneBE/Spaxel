@@ -16,4 +16,18 @@ public abstract class InputComponent extends Component {
     }
 
     public abstract void update(NEntity entity);
+
+    /**
+     * @return the inputType
+     */
+    public InputType getInputType() {
+        return inputType;
+    }
+
+    /**
+     * @param inputType the inputType to set
+     */
+    public void setInputType(InputType inputType) {
+        this.inputType = inputType;
+    }
 }

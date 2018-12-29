@@ -10,6 +10,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.math.VectorD;
+import code.util.EntityUtil;
 
 import java.util.Set;
 
@@ -51,21 +52,7 @@ public class HomingMissileAIComponent extends AIComponent {
                 rotToGet += Constants.FULL_CIRCLE;
             }
             double rotChange = rotToGet - pc.getRot();
-            if (Math.abs(rotChange) < mc.getTurnRate()) {
-                vc.setDeltaRot(rotChange);
-            } else if (rotChange < 0) {
-                if (rotChange < -Math.PI) {
-                    vc.setDeltaRot(mc.getTurnRate());
-                } else {
-                    vc.setDeltaRot(-mc.getTurnRate());
-                }
-            } else {
-                if (rotChange > Math.PI) {
-                    vc.setDeltaRot(-mc.getTurnRate());
-                } else {
-                    vc.setDeltaRot(mc.getTurnRate());
-                }
-            }
+            vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
 
             vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getMaxSpeed()));
         }

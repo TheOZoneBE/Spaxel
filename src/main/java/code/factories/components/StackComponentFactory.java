@@ -13,6 +13,7 @@ public class StackComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new StackComponent(stacks);
     }

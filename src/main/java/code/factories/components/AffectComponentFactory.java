@@ -17,6 +17,7 @@ public class AffectComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         Component result = null;
         switch (affectType) {

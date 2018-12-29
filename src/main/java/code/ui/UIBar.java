@@ -15,6 +15,7 @@ public class UIBar extends UIVisual {
 		super();
 	}
 
+	@Override
 	public void render(MasterBuffer buffer) {
 		double renderWidth = width * percent;
 		VectorD offset = new VectorD(Math.round(Math.sin(position.getRot() * Constants.HALF_CIRLCE)),
@@ -23,9 +24,10 @@ public class UIBar extends UIVisual {
 		data.setPos(position.getCoord().sum(offset));
 
 		data.setRot(Constants.HALF_CIRLCE * (position.getRot() - 1));
-		data.setXScale(renderWidth);
 
-		data.setYScale(sprite.getSprite().getHeight() * sprite.getScale());
+		VectorD scale = sprite.getSprite().getDim().multiplicate(sprite.getScale());
+		scale.setValue(0, renderWidth);
+		data.setScale(scale);
 
 		data.setColor(sprite.getSprite().getColor());
 

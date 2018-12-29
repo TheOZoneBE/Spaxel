@@ -16,6 +16,7 @@ public class CollisionComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new CollisionComponent(hitShape);
     }

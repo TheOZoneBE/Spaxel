@@ -13,16 +13,17 @@ import code.math.VectorD;
  * Created by theo on 5/06/17.
  */
 public class VelocityRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity){
-        PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        VelocityComponent vc = (VelocityComponent)entity.getComponent(ComponentType.VELOCITY);
-        SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
-        VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset()).sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
-        double rot = pc.getRot() + vc.getDeltaRot()*Engine.getEngine().getUpdateTime();
+    public void apply(RenderData data, NEntity entity) {
+        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
+        SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
+        VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset())
+                .sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
+        double rot = pc.getRot() + vc.getDeltaRot() * Engine.getEngine().getUpdateTime();
 
         data.setPos(pos);
-        data.setXScale(sc.getSprite().getWidth()*sc.getScale());
-        data.setYScale(sc.getSprite().getHeight()*sc.getScale());
+        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+
         data.setRot(rot);
     }
 }

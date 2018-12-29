@@ -17,6 +17,7 @@ public class ParticleComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new ParticleComponent(particle, scale);
     }

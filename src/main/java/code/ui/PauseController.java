@@ -12,6 +12,7 @@ public class PauseController extends Controller {
         super(UI.PAUSE);
     }
 
+    @Override
     public void update() {
         super.update();
         Keyboard k = Engine.getEngine().getKeyboard();

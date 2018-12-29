@@ -1,8 +1,9 @@
 package code.engine;
 
+import code.util.SpaxelRandom;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -12,14 +13,14 @@ import java.util.ArrayList;
 public class ItemCatalogue {
     Map<String, ItemProperties> items;
     List<String> industryList;
-    Random random;
+    SpaxelRandom random;
 
     public ItemCatalogue(List<ItemProperties> itemProps) {
         items = new HashMap<>();
         for (ItemProperties ip : itemProps) {
             items.put(ip.getName(), ip);
         }
-        random = new Random();
+        random = new SpaxelRandom();
         initialize();
     }
 
@@ -38,7 +39,7 @@ public class ItemCatalogue {
     }
 
     public NEntity produceRandom(List<ItemProperties> options) {
-        ItemProperties chosen = options.get(random.nextInt(options.size()));
+        ItemProperties chosen = random.choose(options);
         return Engine.getEngine().getIndustryMap().get(chosen.getIndustry()).produce();
     }
 

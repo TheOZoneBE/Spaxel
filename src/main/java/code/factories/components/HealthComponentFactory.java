@@ -14,6 +14,7 @@ public class HealthComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new HealthComponent(health, baseHealth);
     }

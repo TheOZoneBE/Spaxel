@@ -62,12 +62,9 @@ public class RenderData {
         trSc[1] = (float) pos.getValue(1);
     }
 
-    public void setXScale(double xScale) {
-        trSc[SCALE_OFFSET] = (float) xScale;
-    }
-
-    public void setYScale(double yScale) {
-        trSc[SCALE_OFFSET + 1] = (float) yScale;
+    public void setScale(VectorD scale) {
+        trSc[SCALE_OFFSET] = (float) scale.getValue(0);
+        trSc[SCALE_OFFSET + 1] = (float) scale.getValue(1);
     }
 
     public void setRot(double rot) {

@@ -28,6 +28,7 @@ public class EffectComponent extends Component {
         this.effects = effects;
     }
 
+    @Override
     public void addCascade(NEntity entity) {
         for (NEntity e : effects) {
             e.addComponent(new LinkComponent(entity));
@@ -35,6 +36,7 @@ public class EffectComponent extends Component {
         }
     }
 
+    @Override
     public void removeCascade() {
         for (NEntity e : effects) {
             Engine.getEngine().getNEntityStream().removeEntity(e);

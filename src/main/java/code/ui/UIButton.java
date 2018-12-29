@@ -14,7 +14,7 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.input.MouseWrapper;
 import code.math.MatrixD;
-import code.math.MatrixMaker;
+import code.util.MatrixUtil;
 import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -31,13 +31,14 @@ public class UIButton extends UIVisual {
 	protected boolean disabled;
 	protected boolean hovering;
 
+	@Override
 	public void update() {
 		if (!disabled) {
 			MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
 			int mouseX = mouseWrapper.getX();
 			int mouseY = mouseWrapper.getY();
 			boolean buttonDown = mouseWrapper.isMouse1();
-			MatrixD transform = MatrixMaker.getTransformationMatrix(position.getCoord(), position.getRot(), 1, 1);
+			MatrixD transform = MatrixUtil.getTransRotationMatrix(position.getCoord(), position.getRot());
 			HitShape updated = hitShape.update(transform);
 			boolean inside = updated
 					.collision(new HitShape(new HitPoint(new VectorD(new double[] { mouseX, mouseY, 0 }))));
@@ -69,6 +70,7 @@ public class UIButton extends UIVisual {
 		this.disabled = disabled;
 	}
 
+	@Override
 	public void render(MasterBuffer buffer) {
 		SpriteComponent toRender;
 		if (click) {
@@ -84,8 +86,7 @@ public class UIButton extends UIVisual {
 		RenderData data = new RenderData();
 		data.setPos(position.getCoord());
 		data.setRot(position.getRot());
-		data.setXScale(toRender.getScale() * toRender.getSprite().getWidth());
-		data.setYScale(toRender.getScale() * toRender.getSprite().getHeight());
+		data.setScale(toRender.getSprite().getDim().multiplicate(toRender.getScale()));
 		data.setSpriteSheetID(toRender.getSprite().getSpritesheetID());
 		data.setTexOffset(toRender.getSprite().getSpriteProperties());
 		buffer.addNewSprite(RenderLayer.UI, data);

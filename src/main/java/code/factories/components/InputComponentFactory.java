@@ -14,6 +14,7 @@ public class InputComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         if (inputType == InputType.PLAYER) {
             return new PlayerInputComponent();

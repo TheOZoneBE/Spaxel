@@ -18,6 +18,7 @@ public class ShipComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         List<NEntity> items = new ArrayList<>();
         for (String factory : itemIndustries) {

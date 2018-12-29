@@ -14,7 +14,7 @@ import code.graphics.shaders.BlurShaderProgram;
 import code.graphics.shaders.InstancedShaderProgram;
 import code.graphics.shaders.LastPassShaderProgram;
 import code.math.MatrixD;
-import code.math.MatrixMaker;
+import code.util.MatrixUtil;
 import code.math.VectorD;
 import code.Constants;
 
@@ -43,7 +43,7 @@ public class MasterRenderer {
     }
 
     private void initialize() {
-        MatrixD projectionMatrix = MatrixMaker.orthographic(-Constants.GAME_WIDTH / TWO, Constants.GAME_WIDTH / TWO,
+        MatrixD projectionMatrix = MatrixUtil.orthographic(-Constants.GAME_WIDTH / TWO, Constants.GAME_WIDTH / TWO,
                 -Constants.GAME_HEIGHT / TWO, Constants.GAME_HEIGHT / TWO, -1.0, 1.0);
 
         BlurShaderProgram blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
@@ -58,8 +58,8 @@ public class MasterRenderer {
         lastPassProgram.enable();
         lastPassProgram.setTexSampler(1);
         lastPassProgram.setProjectionMatrix(projectionMatrix);
-        lastPassProgram.setTranslationMatrix(
-                MatrixMaker.getTransformationMatrix(new VectorD(0, 0), 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT));
+        lastPassProgram.setTranslationMatrix(MatrixUtil.getTransformationMatrix(new VectorD(0, 0), 0,
+                new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT)));
 
         instancedShader = new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
         instancedShader.enable();

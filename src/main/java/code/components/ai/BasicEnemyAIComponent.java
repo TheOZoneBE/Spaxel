@@ -13,6 +13,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.math.VectorD;
+import code.util.EntityUtil;
 
 /**
  * Created by theo on 7/06/17.
@@ -40,21 +41,7 @@ public class BasicEnemyAIComponent extends AIComponent {
                 rotToGet += Constants.FULL_CIRCLE;
             }
             double rotChange = rotToGet - entityPos.getRot();
-            if (Math.abs(rotChange) < entityMov.getTurnRate()) {
-                entityVel.setDeltaRot(rotChange);
-            } else if (rotChange < 0) {
-                if (rotChange < -Math.PI) {
-                    entityVel.setDeltaRot(entityMov.getTurnRate());
-                } else {
-                    entityVel.setDeltaRot(-entityMov.getTurnRate());
-                }
-            } else {
-                if (rotChange > Math.PI) {
-                    entityVel.setDeltaRot(-entityMov.getTurnRate());
-                } else {
-                    entityVel.setDeltaRot(entityMov.getTurnRate());
-                }
-            }
+            entityVel.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, entityMov.getTurnRate()));
 
             VectorD velChange = new VectorD(Math.sin(entityPos.getRot()), Math.cos(entityPos.getRot()))
                     .multiplicate(entityMov.getAcc());

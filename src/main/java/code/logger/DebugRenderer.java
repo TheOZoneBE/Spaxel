@@ -5,8 +5,12 @@ import code.components.position.PositionComponent;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.graphics.MasterBuffer;
+import code.graphics.RenderData;
+import code.graphics.RenderLayer;
+import code.graphics.SpriteData;
 import code.math.VectorD;
 import code.ui.UILabel;
+import code.Constants;
 
 /**
  * Created by theo on 26/06/17.
@@ -59,4 +63,20 @@ public final class DebugRenderer {
             }
         }
     }
+
+    public void renderDots(MasterBuffer buffer) {
+		SpriteData dot = Engine.getEngine().getSpriteAtlas().get("dot");
+		VectorD origin = new VectorD(Engine.getEngine().getScreenOffset().getValue(0) % 64,
+				Engine.getEngine().getScreenOffset().getValue(1) % 64);
+		for (int i = 0; i < Constants.GAME_WIDTH; i += 64) {
+			for (int j = 0; j < Constants.GAME_HEIGHT; j += 64) {
+				RenderData data = new RenderData();
+				data.setPos(origin.sum(new VectorD(i, j)));
+				data.setScale(dot.getDim());
+				data.setRot(0);
+				data.setColor(dot.getColor());
+				buffer.addNewSprite(RenderLayer.GAME, data);
+			}
+		}
+	}
 }

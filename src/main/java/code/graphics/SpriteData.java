@@ -1,22 +1,15 @@
 package code.graphics;
 
 import code.engine.Engine;
+import code.math.VectorD;
+
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class SpriteData {
-	private int width;
-	private int height;
-	private int xPos;
-	private int yPos;
-	private int xPosRel;
-	private int yPosRel;
+	private VectorD dim;
+	private VectorD pos;
 
 	private float[] spriteProperties;
-	private double sheetXcoord;
-	private double sheetYcoord;
-	private double sheetXscale;
-	private double sheetYscale;
-	private int spritesheetID;
 	private Spritesheet spritesheet;
 	private int color;
 
@@ -25,85 +18,48 @@ public class SpriteData {
 	}
 
 	public SpriteData(int width, int height, int xPos, int yPos, Spritesheet spritesheet) {
-		this.width = width;
-		this.height = height;
-		this.xPos = xPos;
-		this.yPos = yPos;
+		this.dim = new VectorD(width, height);
+		this.pos = new VectorD(xPos, yPos);
 		this.spritesheet = spritesheet;
 	}
 
 	public SpriteData(int width, int height, int color) {
-		this.width = width;
-		this.height = height;
+		this.dim = new VectorD(width, height);
 		this.color = color;
-		this.spritesheetID = 0;
-		spriteProperties = new float[] { (float) sheetXcoord, (float) sheetYcoord, (float) sheetXscale,
-				(float) sheetYscale };
+		this.spritesheet = new Spritesheet();
+		spriteProperties = new float[] { 0F, 0F, 0F, 0F };
 	}
 
 	public void initialize() {
-		this.spritesheetID = spritesheet.getId();
-		if (xPosRel != 0) {
-			xPos = xPosRel * width;
-		}
-		if (yPosRel != 0) {
-			yPos = yPosRel * height;
-		}
-		sheetXcoord = (double) this.xPos / spritesheet.getWidth();
-		sheetYcoord = (double) this.yPos / spritesheet.getHeight();
-		sheetXscale = (double) width / spritesheet.getWidth();
-		sheetYscale = (double) height / spritesheet.getHeight();
+		double sheetXcoord = (double) pos.getValue(0) / spritesheet.getWidth();
+		double sheetYcoord = (double) pos.getValue(1) / spritesheet.getHeight();
+		double sheetXscale = (double) dim.getValue(0) / spritesheet.getWidth();
+		double sheetYscale = (double) dim.getValue(1) / spritesheet.getHeight();
 		spriteProperties = new float[] { (float) sheetXcoord, (float) sheetYcoord, (float) sheetXscale,
 				(float) sheetYscale };
 		color = 0;
 	}
 
-	public int getWidth() {
-		return width;
+	/**
+	 * @param dim the dim to set
+	 */
+	public void setDim(VectorD dim) {
+		this.dim = dim;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
+	public VectorD getDim() {
+		return dim;
 	}
 
-	public int getHeight() {
-		return height;
+	/**
+	 * @param pos the pos to set
+	 */
+	public void setPos(VectorD pos) {
+		this.pos = pos;
 	}
 
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public int getxPos() {
-		return xPos;
-	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-
-	public int getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
-	}
-
-	public int getxPosRel() {
-		return xPosRel;
-	}
-
-	public void setxPosRel(int xPosRel) {
-		this.xPosRel = xPosRel;
-	}
-
-	public int getyPosRel() {
-		return yPosRel;
-	}
-
-	public void setyPosRel(int yPosRel) {
-		this.yPosRel = yPosRel;
+	public VectorD getPos() {
+		return pos;
 	}
 
 	@JsonSetter("sheetName")
@@ -116,7 +72,7 @@ public class SpriteData {
 	}
 
 	public int getSpritesheetID() {
-		return spritesheetID;
+		return spritesheet.getId();
 	}
 
 	public Spritesheet getSpritesheet() {

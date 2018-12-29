@@ -15,6 +15,7 @@ public class PositionComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new PositionComponent(coord.copy(), rot);
     }

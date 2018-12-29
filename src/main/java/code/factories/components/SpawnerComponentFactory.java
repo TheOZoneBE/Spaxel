@@ -20,6 +20,7 @@ public class SpawnerComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         Component result = null;
         switch (spawnerType) {

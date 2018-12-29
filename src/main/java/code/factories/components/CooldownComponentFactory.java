@@ -14,6 +14,7 @@ public class CooldownComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new CooldownComponent(cd, cdAmount);
     }

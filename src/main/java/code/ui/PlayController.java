@@ -31,6 +31,7 @@ public class PlayController extends Controller {
         super(UI.PLAY);
     }
 
+    @Override
     public void initialize() {
         xpBar = (UIBar) root.findById("play_xp_bar");
         hpBar = (UIBar) root.findById("play_hp_bar");
@@ -87,6 +88,7 @@ public class PlayController extends Controller {
         shipContainer.setChildren(shipChildren);
     }
 
+    @Override
     public void update() {
         super.update();
         NEntity player = Engine.getEngine().getNEntityStream().getPlayer();

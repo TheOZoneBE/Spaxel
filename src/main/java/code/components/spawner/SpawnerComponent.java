@@ -3,9 +3,9 @@ package code.components.spawner;
 import code.components.Component;
 import code.components.ComponentType;
 import code.engine.NEntity;
+import code.util.SpaxelRandom;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by theo on 5/06/17.
@@ -13,13 +13,13 @@ import java.util.Random;
 public abstract class SpawnerComponent extends Component {
     protected int rate;
     private SpawnerType spawnerType;
-    protected Random rand;
+    protected SpaxelRandom rand;
 
     public SpawnerComponent(SpawnerType spawnerType, int rate) {
         super(ComponentType.SPAWNER);
         this.spawnerType = spawnerType;
         this.rate = rate;
-        this.rand = new Random();
+        this.rand = new SpaxelRandom();
     }
 
     public abstract List<NEntity> spawn(NEntity entity);

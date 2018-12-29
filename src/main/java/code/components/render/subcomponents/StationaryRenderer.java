@@ -12,14 +12,15 @@ import code.math.VectorD;
  * Created by theo on 5/06/17.
  */
 public class StationaryRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity){
-        PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
+    public void apply(RenderData data, NEntity entity) {
+        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
         VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset());
 
         data.setPos(pos);
-        data.setXScale(sc.getSprite().getWidth()*sc.getScale());
-        data.setYScale(sc.getSprite().getHeight()*sc.getScale());
+        // data.setXScale(sc.getSprite().getWidth() * sc.getScale());
+        // data.setYScale(sc.getSprite().getHeight() * sc.getScale());
+        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
         data.setRot(pc.getRot());
     }
 }

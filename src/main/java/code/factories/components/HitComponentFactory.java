@@ -22,6 +22,7 @@ public class HitComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         Component result = null;
         switch (hitType) {

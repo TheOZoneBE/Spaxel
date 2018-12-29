@@ -14,6 +14,7 @@ public class ExperienceComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new ExperienceComponent(xp, level);
     }

@@ -6,6 +6,7 @@ import java.nio.FloatBuffer;
 import java.util.List;
 
 public class RenderBuffer {
+    private static final int RENDERDATA_ELEMENTS = 4;
 
     private FloatBuffer trscBuffer;
     private FloatBuffer sinCosBuffer;
@@ -13,13 +14,12 @@ public class RenderBuffer {
 
     private int size;
 
-
     public RenderBuffer(List<RenderData> rdata) {
         size = rdata.size();
-        trscBuffer = BufferUtils.allocateFloatBuffer(size);
-        sinCosBuffer = BufferUtils.allocateFloatBuffer(size);
-        texOffsetBuffer = BufferUtils.allocateFloatBuffer(size);
-        for(RenderData r: rdata){
+        trscBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
+        sinCosBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
+        texOffsetBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
+        for (RenderData r : rdata) {
             trscBuffer.put(r.getTrSc());
             sinCosBuffer.put(r.getSinCos());
             texOffsetBuffer.put(r.getTexOffset());
@@ -30,22 +30,20 @@ public class RenderBuffer {
 
     }
 
-    public FloatBuffer getTrscBuffer(){
+    public FloatBuffer getTrscBuffer() {
         return trscBuffer;
     }
 
-    public FloatBuffer getSinCosBuffer(){
+    public FloatBuffer getSinCosBuffer() {
         return sinCosBuffer;
     }
 
-    public FloatBuffer getTexOffsetBuffer(){
+    public FloatBuffer getTexOffsetBuffer() {
         return texOffsetBuffer;
     }
 
-
-    public int size(){
+    public int size() {
         return size;
     }
-
 
 }

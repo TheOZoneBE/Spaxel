@@ -64,22 +64,7 @@ public class RenderSystem extends GameSystem {
 		master.render(bufferBuffer);
 	}
 
-	public void dots() {
-		SpriteData dot = Engine.getEngine().getSpriteAtlas().get("dot");
-		VectorD origin = new VectorD(Engine.getEngine().getScreenOffset().getValue(0) % 64,
-				Engine.getEngine().getScreenOffset().getValue(1) % 64);
-		for (int i = 0; i < Constants.GAME_WIDTH; i += 64) {
-			for (int j = 0; j < Constants.GAME_HEIGHT; j += 64) {
-				RenderData data = new RenderData();
-				data.setPos(origin.sum(new VectorD(i, j)));
-				data.setXScale(dot.getWidth());
-				data.setYScale(dot.getHeight());
-				data.setRot(0);
-				data.setColor(dot.getColor());
-				bufferBuffer.addNewSprite(RenderLayer.GAME, data);
-			}
-		}
-	}
+
 
 	public void renderEntities() {
 		Set<NEntity> toRender = Engine.getEngine().getNEntityStream().getEntities(ComponentType.RENDER);

@@ -15,6 +15,7 @@ public class MoveComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new MoveComponent(maxSpeed, acc, turnRate);
     }

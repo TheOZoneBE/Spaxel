@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import code.sound.Music;
+import code.util.SpaxelRandom;
 
 /**
  * Created by theo on 12/01/18.
@@ -14,13 +14,13 @@ import code.sound.Music;
 public class MusicList {
     private List<Music> alreadyPlayed;
     private Map<String, Music> music;
-    private Random random;
+    private SpaxelRandom random;
     private int[] probabilities = { 0, 0, 0, 10, 5, 1, 3, 10, 3, 1, 5, 10 };
 
     public MusicList(Map<String, Music> music) {
         this.music = music;
         this.alreadyPlayed = new ArrayList<>();
-        this.random = new Random();
+        this.random = new SpaxelRandom();
     }
 
     public Music getRandomSong() {

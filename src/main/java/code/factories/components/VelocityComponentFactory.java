@@ -15,6 +15,7 @@ public class VelocityComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new VelocityComponent(velocity.copy(), deltaRot);
     }

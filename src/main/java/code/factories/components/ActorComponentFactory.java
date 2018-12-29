@@ -14,6 +14,7 @@ public class ActorComponentFactory extends ComponentFactory {
         super();
     }
 
+    @Override
     public Component make() {
         return new ActorComponent(canShoot, canMove);
     }

@@ -46,6 +46,7 @@ public abstract class InventoryComponent extends Component {
         }
     }
 
+    @Override
     public void addCascade(NEntity entity) {
         for (NEntity e : items) {
             e.addComponent(new LinkComponent(entity));
@@ -53,6 +54,7 @@ public abstract class InventoryComponent extends Component {
         }
     }
 
+    @Override
     public void removeCascade() {
         for (NEntity e : items) {
             Engine.getEngine().getNEntityStream().removeEntity(e);

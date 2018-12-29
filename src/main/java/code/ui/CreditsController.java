@@ -12,6 +12,7 @@ public class CreditsController extends Controller {
         super(UI.CREDITS);
     }
 
+    @Override
     public void update() {
         super.update();
         Keyboard k = Engine.getEngine().getKeyboard();

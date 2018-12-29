@@ -10,13 +10,14 @@ import code.graphics.RenderData;
  * Created by theo on 5/01/18.
  */
 public class AbsoluteRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity){
-        PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
-        SpriteComponent sc = (SpriteComponent)entity.getComponent(ComponentType.SPRITE);
+    public void apply(RenderData data, NEntity entity) {
+        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
         data.setPos(pc.getCoord());
-        data.setXScale(sc.getSprite().getWidth()*sc.getScale());
-        data.setYScale(sc.getSprite().getHeight()*sc.getScale());
+        // data.setXScale(sc.getSprite().getWidth()*sc.getScale());
+        // data.setYScale(sc.getSprite().getHeight()*sc.getScale());
+        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
         data.setRot(pc.getRot());
     }
 }

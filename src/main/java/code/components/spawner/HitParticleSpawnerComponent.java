@@ -20,7 +20,6 @@ import java.util.List;
  * Created by theo on 6/06/17.
  */
 public class HitParticleSpawnerComponent extends SpawnerComponent {
-    private static final double HALF = 0.5;
     private double maxDeltaRot;
     private double maxSpeed;
     private int maxLife;
@@ -40,9 +39,9 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
         ParticleComponent pac = (ParticleComponent) entity.getComponent(ComponentType.PARTICLE);
         for (int i = 0; i < rate; i++) {
             int life = rand.nextInt(maxLife);
-            double dir = rand.nextDouble() * Constants.FULL_CIRCLE;
-            double speed = rand.nextDouble() * maxSpeed;
-            double deltaRot = (rand.nextDouble() - HALF) * maxDeltaRot;
+            double dir = rand.nextDouble(Constants.FULL_CIRCLE);
+            double speed = rand.nextDouble(maxSpeed);
+            double deltaRot = rand.between(-maxDeltaRot, maxDeltaRot);
             double dx = Math.sin(dir) * speed;
             double dy = Math.cos(dir) * speed;
             temp.add(hpi.produce((PositionComponent) pc.copy(), new AgeComponent(life, life),

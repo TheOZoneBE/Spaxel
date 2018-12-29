@@ -18,8 +18,9 @@ public class ShipFragmentRenderer extends Renderer {
 
         double factor = ac.getLife() * FACTOR_MULT / ac.getMaxLife();
 
-        data.setXScale(sc.getSprite().getWidth() * sc.getScale() * factor);
-        data.setYScale(sc.getSprite().getHeight() * sc.getScale() * factor);
+        // data.setXScale(sc.getSprite().getWidth() * sc.getScale() * factor);
+        // data.setYScale(sc.getSprite().getHeight() * sc.getScale() * factor);
+        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
     }
 
 }

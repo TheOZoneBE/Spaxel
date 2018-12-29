@@ -13,6 +13,9 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Spritesheet {
 	private static final Logger LOGGER = Logger.getLogger(Spritesheet.class.getName());
+	private static final int ONE_BYTE = 8;
+	private static final int TWO_BYTES = ONE_BYTE * 2;
+	private static final int THREE_BYTES = ONE_BYTE * 3;
 
 	private int width;
 	private int height;
@@ -34,12 +37,12 @@ public class Spritesheet {
 
 		int[] data = new int[width * height];
 		for (int i = 0; i < width * height; i++) {
-			int a = (pixels[i] & 0xff000000) >> 24;
-			int r = (pixels[i] & 0xff0000) >> 16;
-			int g = (pixels[i] & 0xff00) >> 8;
+			int a = (pixels[i] & 0xff000000) >> THREE_BYTES;
+			int r = (pixels[i] & 0xff0000) >> TWO_BYTES;
+			int g = (pixels[i] & 0xff00) >> ONE_BYTE;
 			int b = (pixels[i] & 0xff);
 
-			data[i] = a << 24 | b << 16 | g << 8 | r;
+			data[i] = a << THREE_BYTES | b << TWO_BYTES | g << ONE_BYTE | r;
 		}
 
 		id = glGenTextures();

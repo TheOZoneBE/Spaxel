@@ -16,8 +16,7 @@ import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
 import code.util.SpriteDataUtil;
 import code.util.EntityUtil;
-
-import java.util.Random;
+import code.util.SpaxelRandom;
 
 /**
  * Created by theo on 24/06/17.
@@ -29,11 +28,11 @@ public class BasicEnemyDeathComponent extends DeathComponent {
     private static final int DEATH_PARTICLE_SIZE = 6;
     private static final int BASIC_ENEMY_XP_GAIN = 25;
 
-    private Random random;
+    private SpaxelRandom random;
 
     public BasicEnemyDeathComponent() {
         super(DeathType.BASIC_ENEMY);
-        random = new Random();
+        random = new SpaxelRandom();
     }
 
     public void die(NEntity entity) {
@@ -53,7 +52,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         ExperienceComponent exp = (ExperienceComponent) player.getComponent(ComponentType.EXPERIENCE);
         exp.setXp(exp.getXp() + BASIC_ENEMY_XP_GAIN);
         // chance of dropping item
-        if (random.nextDouble() < BASIC_ENEMY_DROPRATE) {
+        if (random.pass(BASIC_ENEMY_DROPRATE)) {
             NEntity item = Engine.getEngine().getItems()
                     .produceRandom(prop -> EntityUtil.getAllItemNames(entity).contains(prop.getName()));
             item.addComponent(new EquipComponent());

@@ -31,10 +31,10 @@ public class SpriteData {
 	}
 
 	public void initialize() {
-		double sheetXcoord = (double) pos.getValue(0) / spritesheet.getWidth();
-		double sheetYcoord = (double) pos.getValue(1) / spritesheet.getHeight();
-		double sheetXscale = (double) dim.getValue(0) / spritesheet.getWidth();
-		double sheetYscale = (double) dim.getValue(1) / spritesheet.getHeight();
+		double sheetXcoord = pos.getValue(0) / spritesheet.getWidth();
+		double sheetYcoord = pos.getValue(1) / spritesheet.getHeight();
+		double sheetXscale = dim.getValue(0) / spritesheet.getWidth();
+		double sheetYscale = dim.getValue(1) / spritesheet.getHeight();
 		spriteProperties = new float[] { (float) sheetXcoord, (float) sheetYcoord, (float) sheetXscale,
 				(float) sheetYscale };
 		color = 0;

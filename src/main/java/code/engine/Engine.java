@@ -1,12 +1,9 @@
 package code.engine;
 
-import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
-
-import java.awt.Font;
-import java.util.EnumMap;
 import java.util.Map;
 
 import code.Constants;
+import code.Game;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
 import code.graphics.SpriteData;
@@ -22,24 +19,6 @@ import code.loaders.SpritesheetLoader;
 import code.loaders.UIElementLoader;
 import code.logger.Logger;
 import code.math.VectorD;
-import code.system.AISystem;
-import code.system.AgeSystem;
-import code.system.CooldownSystem;
-import code.system.DamageSystem;
-import code.system.DifficultySystem;
-import code.system.EquipSystem;
-import code.system.ExperienceSystem;
-import code.system.GameSystem;
-import code.system.HealthSystem;
-import code.system.HitSystem;
-import code.system.InputSystem;
-import code.system.MarkerSystem;
-import code.system.RenderSystem;
-import code.system.ShipSystem;
-import code.system.SoundSystem;
-import code.system.SpawnerSystem;
-import code.system.UISystem;
-import code.system.VelocitySystem;
 import code.ui.Controller;
 import code.ui.UI;
 
@@ -48,35 +27,35 @@ public final class Engine {
 
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
+
 	private NEntityStream nentities;
+
 	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<UI, Controller> UIAtlas;
-	private Controller controller;
-	private Map<SystemType, GameSystem> systems;
-	private GameState gameState;
+	private Map<String, Spritesheet> spritesheets;
+	private Map<String, SpriteData> spriteAtlas;
 	private ItemCatalogue items;
+
+	private Controller controller;
+	private GameState gameState;
+
 	private boolean loading = true;
 	private double updateTime;
-	private Font font;
 	private long window;
 	private VectorD screenOffset;
 	private VectorD cursorFollow;
 	private GameProperties gameProperties;
 	private Logger logger;
-	private Map<String, Spritesheet> spritesheets;
-	private Map<String, SpriteData> spriteAtlas;
+
 	private LoadingScreen loadingScreen;
-	private SystemUpdater updater;
 
 	private Engine() {
 		gameProperties = new GameProperties();
 		nentities = new NEntityStream();
-		systems = new EnumMap<>(SystemType.class);
-		gameState = GameState.MENU;
+		gameState = GameState.LOAD;
 		loadingScreen = new LoadingScreen();
-		updater = new SystemUpdater();
 	}
 
 	public static Engine getEngine() {
@@ -84,7 +63,7 @@ public final class Engine {
 	}
 
 	public enum GameState {
-		MENU, PLAY, PAUSE
+		MENU, PLAY, PAUSE, LOAD
 	}
 
 	public void initialize() {
@@ -97,10 +76,6 @@ public final class Engine {
 		spriteAtlas.put("hp_bar", new SpriteData(1, 4, 0xff00ff00));
 		spriteAtlas.put("xp_bar", new SpriteData(1, 4, 0xff0000ff));
 		spriteAtlas.put("dot", new SpriteData(2, 2, 0xffffffff));
-
-		addSystem(new RenderSystem());
-
-		updater.setSystems(systems);
 	}
 
 	public void startLoading() {
@@ -108,7 +83,6 @@ public final class Engine {
 		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
 		// asset loading
-
 		loadingScreen.getMessage().setText("Loading sounds");
 		loadingScreen.getProgress().setPercent(0.0);
 		SoundLoader sounds = new SoundLoader();
@@ -131,35 +105,16 @@ public final class Engine {
 		industryMap = new IndustryLoader().loadEntityIndustries(new String[] { "/resources/entity.json",
 				"/resources/actor.json", "/resources/projectile.json", "/resources/item.json", "/resources/player.json",
 				"/resources/effect.json", "/resources/marker.json" });
-		loadingScreen.getProgress().setPercent(0.9);
+		loadingScreen.getProgress().setPercent(0.95);
 
 		nentities.cleanup();
 
-		loadingScreen.getMessage().setText("Initializing systems");
-
-		// systems
-		addSystem(new SoundSystem());
-		addSystem(new UISystem());
-		addSystem(new AISystem());
-		addSystem(new SpawnerSystem());
-		addSystem(new AgeSystem());
-		addSystem(new VelocitySystem());
-		addSystem(new DamageSystem());
-		addSystem(new HealthSystem());
-		addSystem(new CooldownSystem());
-		addSystem(new HitSystem());
-		addSystem(new InputSystem());
-		addSystem(new EquipSystem());
-		addSystem(new ExperienceSystem());
-		addSystem(new ShipSystem());
-		addSystem(new DifficultySystem());
-		addSystem(new MarkerSystem());
-		((SoundSystem) getSystem(SystemType.SOUND)).nextSong();
 		controller = UIAtlas.get(UI.MAIN);
-		// starting threads
-		updater.setSystems(systems);
-		loadingScreen.getProgress().setPercent(.95);
+
 		loading = false;
+		gameState = GameState.MENU;
+
+		Game.startUpdating();
 	}
 
 	public void stopGame() {
@@ -168,10 +123,6 @@ public final class Engine {
 		logger = null;
 		musicList.reset();
 		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
-	}
-
-	public void exit() {
-		glfwSetWindowShouldClose(window, true);
 	}
 
 	public void setWindow(long window) {
@@ -218,14 +169,6 @@ public final class Engine {
 		return items;
 	}
 
-	public void addSystem(GameSystem system) {
-		systems.put(system.getType(), system);
-	}
-
-	public GameSystem getSystem(SystemType type) {
-		return systems.get(type);
-	}
-
 	public GameState getGameState() {
 		return gameState;
 	}
@@ -240,14 +183,6 @@ public final class Engine {
 
 	public void setUpdateTime(double updateTime) {
 		this.updateTime = updateTime;
-	}
-
-	public void setFont(Font font) {
-		this.font = font;
-	}
-
-	public Font getFont() {
-		return font;
 	}
 
 	public Map<String, Spritesheet> getSpritesheets() {
@@ -296,10 +231,6 @@ public final class Engine {
 
 	public void setCursorFollow(VectorD cursorFollow) {
 		this.cursorFollow = cursorFollow;
-	}
-
-	public SystemUpdater getUpdater() {
-		return updater;
 	}
 
 	public LoadingScreen getLoadingScreen() {

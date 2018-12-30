@@ -16,7 +16,7 @@
                     <y>600</y>
                 </coord>
             </position>
-            <text>SPAXEL</text>
+            <text>SP{white}XEL</text>
             <scale>8</scale>
         </UILabel>
         <UIButton class="UIButton">

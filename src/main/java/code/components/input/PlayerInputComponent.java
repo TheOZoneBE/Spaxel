@@ -23,6 +23,8 @@ import java.util.List;
  * Created by theo on 21/06/17.
  */
 public class PlayerInputComponent extends InputComponent {
+    private static final int SPEED_MULT = 2;
+
     public PlayerInputComponent() {
         super(InputType.PLAYER);
     }
@@ -39,14 +41,14 @@ public class PlayerInputComponent extends InputComponent {
         }
     }
 
-    private void handleMoving(NEntity entity) {
+    private static void handleMoving(NEntity entity) {
         Keyboard keys = Engine.getEngine().getKeyboard();
         MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
 
-        VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2));
+        VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT));
         if (keys.getDownState().isDown()) {
             velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot())).multiplicate(mc.getAcc());
         }
@@ -65,7 +67,7 @@ public class PlayerInputComponent extends InputComponent {
         if (vc.getVelocity().sum(velChange).length() < mc.getMaxSpeed()) {
             vc.setVelocity(vc.getVelocity().sum(velChange));
         } else {
-            vc.setVelocity(vc.getVelocity().sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * 2))));
+            vc.setVelocity(vc.getVelocity().sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT))));
         }
 
         VectorD mousePos = mouse.getPos();
@@ -81,7 +83,7 @@ public class PlayerInputComponent extends InputComponent {
         vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
     }
 
-    private void handleShooting(NEntity entity) {
+    private static void handleShooting(NEntity entity) {
         MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
         if (mouse.isMouse1()) {
             PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);

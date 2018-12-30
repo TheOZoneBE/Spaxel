@@ -77,7 +77,7 @@ public class MarkerComponent extends Component {
         Engine.getEngine().getNEntityStream().removeEntity(marker);
     }
 
-    private VectorD getIntersection(VectorD leftTop, VectorD rightBot, VectorD playerPos, VectorD enemyPos) {
+    private static VectorD getIntersection(VectorD leftTop, VectorD rightBot, VectorD playerPos, VectorD enemyPos) {
         LineSegment toEnemy = new LineSegment(playerPos, enemyPos);
         LineSegment a = new LineSegment(leftTop, new VectorD(leftTop.getValue(0), rightBot.getValue(1)));
         LineSegment b = new LineSegment(new VectorD(leftTop.getValue(0), rightBot.getValue(1)), rightBot);

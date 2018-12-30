@@ -1,10 +1,11 @@
 package code.engine;
 
+import code.Constants;
+
 /**
  * Created by theo on 24/06/17.
  */
 public class GameProperties {
-    private static final long NANO_IN_SECOND = 1_000_000_000;
     private int score;
     private int gameTime;
     private long timeOverflow;
@@ -53,7 +54,7 @@ public class GameProperties {
 
     public void addTime(long updateTime) {
         timeOverflow += updateTime;
-        gameTime += timeOverflow / NANO_IN_SECOND;
-        timeOverflow %= NANO_IN_SECOND;
+        gameTime += timeOverflow / Constants.NS_PER_SECOND;
+        timeOverflow %= Constants.NS_PER_SECOND;
     }
 }

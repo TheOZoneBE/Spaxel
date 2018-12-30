@@ -58,5 +58,10 @@
     "path": "/spritesheets/large_button.png",
     "width": 80,
     "height": 64
+  },
+  "alpha_test": {
+    "path": "/spritesheets/alpha_test.png",
+    "width": 16,
+    "height": 16
   }
 }

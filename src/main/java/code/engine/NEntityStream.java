@@ -44,6 +44,12 @@ public class NEntityStream {
         return entityTypeMap.get(type);
     }
 
+    public Set<NEntity> getEntitiesCopy(ComponentType type) {
+        synchronized (componentTypeMap) {
+            return new HashSet<>(componentTypeMap.get(type));
+        }
+    }
+
     public Set<NEntity> getEntities(ComponentType type) {
         return componentTypeMap.get(type);
     }
@@ -78,25 +84,27 @@ public class NEntityStream {
     }
 
     public void cleanup() {
-        if (!clear) {
-            // add entities
-            addEntities();
+        synchronized (componentTypeMap) {
+            if (!clear) {
+                // add entities
+                addEntities();
 
-            // remove entities
-            removeEntities();
+                // remove entities
+                removeEntities();
 
-            // add and remove components
-            for (Map.Entry<ComponentType, Set<NEntity>> entry : componentTypeMap.entrySet()) {
-                ComponentType type = entry.getKey();
-                Set<NEntity> entities = entry.getValue();
-                entities.addAll(toAddComponentTypeMap.get(type));
-                toAddComponentTypeMap.get(type).clear();
-                entities.removeAll(toRemoveComponentTypeMap.get(type));
-                toRemoveComponentTypeMap.get(type).clear();
+                // add and remove components
+                for (Map.Entry<ComponentType, Set<NEntity>> entry : componentTypeMap.entrySet()) {
+                    ComponentType type = entry.getKey();
+                    Set<NEntity> entities = entry.getValue();
+                    entities.addAll(toAddComponentTypeMap.get(type));
+                    toAddComponentTypeMap.get(type).clear();
+                    entities.removeAll(toRemoveComponentTypeMap.get(type));
+                    toRemoveComponentTypeMap.get(type).clear();
+                }
+            } else {
+                clearEntities();
+                clear = false;
             }
-        } else {
-            clearEntities();
-            clear = false;
         }
     }
 

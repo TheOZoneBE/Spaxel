@@ -30,7 +30,7 @@ public class HitSystem extends GameSystem {
         }
     }
 
-    public void checkColliders(NEntity entity, Set<NEntity> colliders) {
+    public void checkColliders(NEntity entity, Iterable<NEntity> colliders) {
         NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
         CollisionComponent cc = (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);

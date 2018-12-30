@@ -12,7 +12,7 @@ public class SoundSystem extends GameSystem {
 	}
 
 	public void update() {
-		if (!currentMusic.isActive()) {
+		if (currentMusic == null || !currentMusic.isActive()) {
 			nextSong();
 		}
 	}

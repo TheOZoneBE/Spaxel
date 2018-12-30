@@ -1,6 +1,7 @@
 package code.ui;
 
 import code.engine.Engine;
+import code.Game;
 
 public class MainController extends Controller {
 	public MainController() {
@@ -36,6 +37,6 @@ public class MainController extends Controller {
 	}
 
 	public void quit() {
-		Engine.getEngine().exit();
+		Game.exit();
 	}
 }

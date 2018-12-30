@@ -18,8 +18,7 @@ public class StationaryRenderer extends Renderer {
         VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset());
 
         data.setPos(pos);
-        // data.setXScale(sc.getSprite().getWidth() * sc.getScale());
-        // data.setYScale(sc.getSprite().getHeight() * sc.getScale());
+
         data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
         data.setRot(pc.getRot());
     }

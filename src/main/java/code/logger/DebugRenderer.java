@@ -9,7 +9,7 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
 import code.math.VectorD;
-import code.ui.UILabel;
+import code.ui.elements.UILabel;
 import code.Constants;
 
 /**

@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.system.AISystem;
@@ -94,7 +93,6 @@ public class UpdateRunner implements Runnable {
             systems.get(SystemType.SOUND).update();
             systems.get(SystemType.UI).update();
         } else {
-            // TODO clean this up with config or smth
             update(SystemType.AI);
             update(SystemType.SOUND);
             update(SystemType.SPAWNER);

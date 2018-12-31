@@ -1,8 +1,8 @@
-<UIElement class="UIElement">
+<UIElement>
     <id>class_selection_root</id>
     <controller ui="CLASS_SELECTION"/>
     <children>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>class_select_white_select</id>
             <position>
                 <coord>
@@ -25,7 +25,7 @@
             </clicked>
             <hitShape>hitshape_class_select</hitShape>
             <children>
-                <UIVisual class="UIVisual">
+                <UIVisual>
                     <id>class_select_white_sprite</id>
                     <position>
                         <coord>
@@ -38,7 +38,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>class_select_white_text</id>
                     <position>
                         <coord>
@@ -51,7 +51,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>class_select_red_select</id>
             <position>
                 <coord>
@@ -74,7 +74,7 @@
             </clicked>
             <hitShape>hitshape_class_select</hitShape>
             <children>
-                <UIVisual class="UIVisual">
+                <UIVisual>
                     <id>class_select_red_sprite</id>
                     <position>
                         <coord>
@@ -87,7 +87,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>class_select_red_text</id>
                     <position>
                         <coord>
@@ -100,7 +100,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>class_select_green_select</id>
             <position>
                 <coord>
@@ -123,7 +123,7 @@
             </clicked>
             <hitShape>hitshape_class_select</hitShape>
             <children>
-                <UIVisual class="UIVisual">
+                <UIVisual>
                     <id>class_select_green_sprite</id>
                     <position>
                         <coord>
@@ -136,7 +136,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>class_select_green_text</id>
                     <position>
                         <coord>
@@ -149,7 +149,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>class_select_blue_select</id>
             <position>
                 <coord>
@@ -172,7 +172,7 @@
             </clicked>
             <hitShape>hitshape_class_select</hitShape>
             <children>
-                <UIVisual class="UIVisual">
+                <UIVisual>
                     <id>class_select_blue_sprite</id>
                     <position>
                         <coord>
@@ -185,7 +185,7 @@
                         <scale>4</scale>
                     </sprite>
                 </UIVisual>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>class_select_blue_text</id>
                     <position>
                         <coord>
@@ -198,7 +198,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>class_selection_back_button</id>
             <position>
                 <coord>
@@ -225,7 +225,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>back_button_label</id>
                     <position>
                         <coord>

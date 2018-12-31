@@ -4,12 +4,13 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
-
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-
 import code.Constants;
 
+/**
+ * Provides utility methods for GL operations
+ */
 public final class GLUtil {
     private static final int TWO = 2;
 
@@ -17,22 +18,37 @@ public final class GLUtil {
 
     }
 
+    /**
+     * Exception when creating a GL window
+     */
     public static class WindowCreateException extends Exception {
         private static final long serialVersionUID = 1;
 
+        /**
+         * Create a new WindowCreateException with the specified message
+         * 
+         * @param message The exception message
+         */
         public WindowCreateException(String message) {
             super(message);
         }
 
     }
 
+    /**
+     * Initialize a new OpenGL window
+     * 
+     * @return the identifier for the created window
+     * @throws WindowCreateException when the window cannot be created
+     */
     public static long initGLWindow() throws WindowCreateException {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, Constants.GL_MAJOR_V);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, Constants.GL_MINOR_V);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-        long window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, Constants.DISPLAY_NAME, NULL, NULL);
+        long window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+                Constants.DISPLAY_NAME, NULL, NULL);
         if (window == NULL) {
             throw new WindowCreateException("Could not create window");
         }
@@ -47,6 +63,9 @@ public final class GLUtil {
         return window;
     }
 
+    /**
+     * Initialize a new OpenGL context
+     */
     public static void initGLContext() {
         GL.createCapabilities();
 

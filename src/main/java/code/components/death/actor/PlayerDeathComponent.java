@@ -5,7 +5,7 @@ import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.ui.UI;
+import code.ui.elements.UI;
 
 /**
  * Created by theo on 24/06/17.

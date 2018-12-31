@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import code.ui.UI;
-import code.ui.UIElement;
-import code.ui.Controller;
+import code.ui.elements.UI;
+import code.ui.elements.UIElement;
+import code.ui.controllers.Controller;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class UIElementLoader extends Loader {

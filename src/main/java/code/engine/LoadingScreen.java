@@ -4,10 +4,9 @@ import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.graphics.MasterBuffer;
 import code.math.VectorD;
-import code.ui.UILabel;
-import code.graphics.SpriteData;
-import code.ui.UIBar;
-import code.ui.UIVisual;
+import code.ui.elements.UILabel;
+import code.ui.elements.UIBar;
+import code.ui.elements.UIVisual;
 
 /**
  * Created by theo on 31-5-2016.
@@ -24,11 +23,13 @@ public class LoadingScreen {
     public LoadingScreen() {
         overlay = new UIVisual();
         overlay.setPosition(new PositionComponent(new VectorD(640, 360), 0));
-        overlay.setSprite(new SpriteComponent(new SpriteData(1280, 720, 0xff000000), 1));
+        overlay.setSprite(
+                new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("load_overlay"), 1));
         progress = new UIBar();
         progress.setPosition(new PositionComponent(new VectorD(320, 80), 1));
         progress.setWidth(640);
-        progress.setSprite(new SpriteComponent(new SpriteData(1, 8, 0xffffffff), 1));
+        progress.setSprite(
+                new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("progress_bar"), 1));
         message = new UILabel();
         message.setPosition(new PositionComponent(new VectorD(640, 40), 0));
         message.setScale(2);

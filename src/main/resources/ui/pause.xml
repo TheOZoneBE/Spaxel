@@ -1,4 +1,4 @@
-<UIVisual class="UIVisual">
+<UIVisual>
     <id>pause_root</id>
     <controller ui="PAUSE"/>
     <position>
@@ -12,7 +12,7 @@
         <scale>2</scale>
     </sprite>
     <children>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>pause_resume_button</id>
             <position>
                 <coord>
@@ -39,7 +39,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>pause_resume_button_label</id>
                     <position>
                         <coord>
@@ -52,7 +52,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>pause_quit_button</id>
             <position>
                 <coord>
@@ -79,7 +79,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>pause_quit_button_label</id>
                     <position>
                         <coord>

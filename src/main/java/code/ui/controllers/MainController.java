@@ -1,7 +1,8 @@
-package code.ui;
+package code.ui.controllers;
 
-import code.engine.Engine;
 import code.Game;
+import code.engine.Engine;
+import code.ui.elements.UI;
 
 public class MainController extends Controller {
 	public MainController() {

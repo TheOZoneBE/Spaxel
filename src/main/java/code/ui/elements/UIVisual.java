@@ -1,10 +1,13 @@
-package code.ui;
+package code.ui.elements;
 
 import code.components.sprite.SpriteComponent;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "uivisual")
 public class UIVisual extends UIElement {
 	protected SpriteComponent sprite;
 

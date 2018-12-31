@@ -1,6 +1,7 @@
-package code.ui;
+package code.ui.controllers;
 
 import code.engine.Engine;
+import code.ui.elements.UI;
 
 /**
  * Created by theod on 19-9-2017.

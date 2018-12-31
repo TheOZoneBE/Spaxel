@@ -1,0 +1,41 @@
+{
+    "#root": {
+        "x": 640,
+        "y": 360,
+        "sprite": "ui_play_overlay",
+        "scale": 2
+    },
+    "#score_counter": {
+        "y": 656,
+        "text-scale": 4
+    },
+    "#game_time": {
+        "x": 864,
+        "y": 704,
+        "text-scale": 2
+    },
+    "#hp_label": {
+        "y": 96,
+        "text-scale": 1
+    },
+    "#xp_label": {
+        "y": 84,
+        "text-scale": 1
+    },
+    ".play_bar": {
+        "width": 580,
+        "scale": 2
+    },
+    "#hp_bar": {
+        "sprite": "hp_bar",
+        "x": 348,
+        "y": 96,
+        "align": "left"
+    },
+    "#xp_bar": {
+        "sprite": "xp_bar",
+        "x": 932,
+        "y": 85,
+        "align": "right"
+    }
+}

@@ -1,9 +1,11 @@
-package code.ui;
+package code.ui.elements;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import code.collision.HitPoint;
 import code.collision.HitShape;
@@ -14,10 +16,12 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.input.MouseWrapper;
 import code.math.MatrixD;
-import code.util.MatrixUtil;
 import code.math.VectorD;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import code.util.MatrixUtil;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "uibutton")
 public class UIButton extends UIVisual {
 	private static final Logger LOGGER = Logger.getLogger(UIButton.class.getName());
 

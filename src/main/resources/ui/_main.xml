@@ -1,6 +1,6 @@
 <UIElement>
-    <id>options_root</id>
-    <controller ui="OPTIONS"/>
+    <id>main_root</id>
+    <controller ui="MAIN"/>
     <position>
         <coord>
             <x>0</x>
@@ -8,15 +8,26 @@
         </coord>
     </position>
     <children>
+        <UILabel>
+            <id>main_title_label</id>
+            <position>
+                <coord>
+                    <x>640</x>
+                    <y>600</y>
+                </coord>
+            </position>
+            <text>SP{white}XEL</text>
+            <scale>8</scale>
+        </UILabel>
         <UIButton>
-            <id>options_game_button</id>
+            <id>main_play_button</id>
             <position>
                 <coord>
                     <x>640</x>
                     <y>480</y>
                 </coord>
             </position>
-            <onClick>gameSettings</onClick>
+            <onClick>startGame</onClick>
             <sprite>
                 <sprite>large_button_normal</sprite>
                 <scale>4</scale>
@@ -36,27 +47,27 @@
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel>
-                    <id>options_game_button_label</id>
+                    <id>main_button_play_label</id>
                     <position>
                         <coord>
                             <x>640</x>
                             <y>480</y>
                         </coord>
                     </position>
-                    <text>Game</text>
+                    <text>Play</text>
                     <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
         <UIButton>
-            <id>options_controls_button</id>
+            <id>main_achievements_button</id>
             <position>
                 <coord>
                     <x>640</x>
                     <y>400</y>
                 </coord>
             </position>
-            <onClick>controlsSettings</onClick>
+            <onClick>achievements</onClick>
             <sprite>
                 <sprite>large_button_normal</sprite>
                 <scale>4</scale>
@@ -73,30 +84,31 @@
                 <sprite>large_button_locked</sprite>
                 <scale>4</scale>
             </locked>
+            <disabled>true</disabled>
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel>
-                    <id>options_controls_button_label</id>
+                    <id>main_button_achievements_label</id>
                     <position>
                         <coord>
                             <x>640</x>
                             <y>400</y>
                         </coord>
                     </position>
-                    <text>Controls</text>
+                    <text>Achievements</text>
                     <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
         <UIButton>
-            <id>options_graphics_button</id>
+            <id>main_options_button</id>
             <position>
                 <coord>
                     <x>640</x>
                     <y>320</y>
                 </coord>
             </position>
-            <onClick>graphicsSettings</onClick>
+            <onClick>options</onClick>
             <sprite>
                 <sprite>large_button_normal</sprite>
                 <scale>4</scale>
@@ -116,27 +128,27 @@
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel>
-                    <id>options_graphics_button_label</id>
+                    <id>main_button_options_label</id>
                     <position>
                         <coord>
                             <x>640</x>
                             <y>320</y>
                         </coord>
                     </position>
-                    <text>Graphics</text>
+                    <text>Options</text>
                     <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
         <UIButton>
-            <id>options_sound_button</id>
+            <id>main_credits_button</id>
             <position>
                 <coord>
                     <x>640</x>
                     <y>240</y>
                 </coord>
             </position>
-            <onClick>soundSettings</onClick>
+            <onClick>credits</onClick>
             <sprite>
                 <sprite>large_button_normal</sprite>
                 <scale>4</scale>
@@ -156,27 +168,27 @@
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel>
-                    <id>options_sound_button_label</id>
+                    <id>main_button_credits_label</id>
                     <position>
                         <coord>
                             <x>640</x>
                             <y>240</y>
                         </coord>
                     </position>
-                    <text>Sound</text>
+                    <text>Credits</text>
                     <scale>2</scale>
                 </UILabel>
             </children>
         </UIButton>
         <UIButton>
-            <id>options_back_button</id>
+            <id>main_quit_button</id>
             <position>
                 <coord>
                     <x>640</x>
                     <y>80</y>
                 </coord>
             </position>
-            <onClick>back</onClick>
+            <onClick>quit</onClick>
             <sprite>
                 <sprite>large_button_normal</sprite>
                 <scale>4</scale>
@@ -196,14 +208,14 @@
             <hitShape>hitshape_button</hitShape>
             <children>
                 <UILabel>
-                    <id>options_back_button_label</id>
+                    <id>main_button_quit_label</id>
                     <position>
                         <coord>
                             <x>640</x>
                             <y>80</y>
                         </coord>
                     </position>
-                    <text>Back</text>
+                    <text>Quit</text>
                     <scale>2</scale>
                 </UILabel>
             </children>

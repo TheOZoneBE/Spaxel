@@ -1,21 +1,28 @@
-package code.ui;
-
-import code.components.position.PositionComponent;
-import code.graphics.MasterBuffer;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+package code.ui.elements;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "class")
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import code.components.position.PositionComponent;
+import code.graphics.MasterBuffer;
+import code.ui.controllers.Controller;
+/*
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.WRAPPER_OBJECT)
+// @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,
+// property = "class")
 @JsonSubTypes({ @JsonSubTypes.Type(value = UIElement.class, name = "UIElement"),
 		@JsonSubTypes.Type(value = UILabel.class, name = "UILabel"),
 		@JsonSubTypes.Type(value = UIButton.class, name = "UIButton"),
 		@JsonSubTypes.Type(value = UIVisual.class, name = "UIVisual"),
 		@JsonSubTypes.Type(value = UIBar.class, name = "UIBar"),
 
-})
+})*/
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "uielement")
 public class UIElement {
 	protected String id;
 	protected PositionComponent position;

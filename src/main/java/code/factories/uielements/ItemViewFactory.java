@@ -8,10 +8,10 @@ import code.components.stack.StackComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.math.VectorD;
-import code.ui.UIBar;
-import code.ui.UIElement;
-import code.ui.UILabel;
-import code.ui.UIVisual;
+import code.ui.elements.UIBar;
+import code.ui.elements.UIElement;
+import code.ui.elements.UILabel;
+import code.ui.elements.UIVisual;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,8 @@ public class ItemViewFactory {
         base.setPosition(new PositionComponent(pos, 0));
         base.setSprite(new SpriteComponent(sc.getSprite(), ITEM_SPRITE_SCALE));
         UIBar cooldown = new UIBar();
-        cooldown.setSprite(new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("cooldown_bar"), ITEM_SPRITE_SCALE));
+        cooldown.setSprite(
+                new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("cooldown_bar"), ITEM_SPRITE_SCALE));
         cooldown.setWidth(COOLDOWN_WIDTH);
         cooldown.setPercent((double) cc.getCd() / cc.getCdAmount());
         cooldown.setPosition(new PositionComponent(pos.sum(new VectorD(-HALF_COOLDOWN_WIDTH, 0)), 1));

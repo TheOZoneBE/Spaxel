@@ -1,8 +1,8 @@
-<UIElement class="UIElement">
+<UIElement>
     <id>credits_root</id>
     <controller ui="CREDITS"/>
     <children>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -12,7 +12,7 @@
             <scale>3</scale>
             <text>Programming / Graphics</text>
         </UILabel>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -22,7 +22,7 @@
             <scale>2</scale>
             <text>Theo Dedeken</text>
         </UILabel>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -32,7 +32,7 @@
             <scale>2</scale>
             <text>@TheOZoneBE</text>
         </UILabel>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -42,7 +42,7 @@
             <scale>3</scale>
             <text>Music</text>
         </UILabel>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -52,7 +52,7 @@
             <scale>2</scale>
             <text>Goncalo Gomes</text>
         </UILabel>
-        <UILabel class="UILabel">
+        <UILabel>
             <position>
                 <coord>
                     <x>640</x>
@@ -62,7 +62,7 @@
             <scale>2</scale>
             <text>@azureflux_</text>
         </UILabel>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>credits_back_button</id>
             <position>
                 <coord>
@@ -89,7 +89,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>credit_back_button_label</id>
                     <position>
                         <coord>

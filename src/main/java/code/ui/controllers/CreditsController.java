@@ -1,7 +1,8 @@
-package code.ui;
+package code.ui.controllers;
 
 import code.engine.Engine;
 import code.input.Keyboard;
+import code.ui.elements.UI;
 
 /**
  * Created by theo on 8-6-2016.

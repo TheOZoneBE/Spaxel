@@ -1,8 +1,8 @@
-<UIElement class="UIElement">
+<UIElement>
     <id>game_over_root</id>
     <controller ui="GAME_OVER"/>
     <children>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>game_over_play_button</id>
             <position>
                 <coord>
@@ -29,7 +29,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>game_over_play_button_label</id>
                     <position>
                         <coord>
@@ -42,7 +42,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UIButton class="UIButton">
+        <UIButton>
             <id>game_over_main_button</id>
             <position>
                 <coord>
@@ -69,7 +69,7 @@
             </locked>
             <hitShape>hitshape_button</hitShape>
             <children>
-                <UILabel class="UILabel">
+                <UILabel>
                     <id>game_over_main_button_label</id>
                     <position>
                         <coord>
@@ -82,7 +82,7 @@
                 </UILabel>
             </children>
         </UIButton>
-        <UILabel class="UILabel">
+        <UILabel>
             <id>game_over_text</id>
             <position>
                 <coord>

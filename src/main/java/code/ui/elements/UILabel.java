@@ -1,4 +1,4 @@
-package code.ui;
+package code.ui.elements;
 
 import code.engine.Engine;
 import code.graphics.MasterBuffer;
@@ -10,6 +10,9 @@ import code.math.VectorD;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "uilabel")
 public class UILabel extends UIElement {
 	private static final String SPACE = " ";
 	private static final String NEWLINE = "\\\\";

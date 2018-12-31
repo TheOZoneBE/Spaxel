@@ -1,4 +1,6 @@
-package code.ui;
+package code.ui.controllers;
+
+import java.util.ArrayList;
 
 import code.components.ComponentType;
 import code.components.experience.ExperienceComponent;
@@ -12,8 +14,10 @@ import code.factories.uielements.ItemViewFactory;
 import code.input.Keyboard;
 import code.logger.Logger;
 import code.math.VectorD;
-
-import java.util.ArrayList;
+import code.ui.elements.UI;
+import code.ui.elements.UIBar;
+import code.ui.elements.UIElement;
+import code.ui.elements.UILabel;
 
 public class PlayController extends Controller {
     UIBar xpBar;

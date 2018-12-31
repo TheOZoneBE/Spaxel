@@ -19,8 +19,8 @@ import code.loaders.SpritesheetLoader;
 import code.loaders.UIElementLoader;
 import code.logger.Logger;
 import code.math.VectorD;
-import code.ui.Controller;
-import code.ui.UI;
+import code.ui.controllers.Controller;
+import code.ui.elements.UI;
 
 public final class Engine {
 	private static final Engine engine = new Engine();
@@ -55,7 +55,6 @@ public final class Engine {
 		gameProperties = new GameProperties();
 		nentities = new NEntityStream();
 		gameState = GameState.LOAD;
-		loadingScreen = new LoadingScreen();
 	}
 
 	public static Engine getEngine() {
@@ -72,10 +71,7 @@ public final class Engine {
 		SpriteDataLoader spriteDataLoader = new SpriteDataLoader();
 		spriteAtlas = spriteDataLoader
 				.loadSpriteDatas(new String[] { "/resources/sprite.json", "/resources/font.json" });
-
-		spriteAtlas.put("hp_bar", new SpriteData(1, 4, 0xff00ff00));
-		spriteAtlas.put("xp_bar", new SpriteData(1, 4, 0xff0000ff));
-		spriteAtlas.put("dot", new SpriteData(2, 2, 0xffffffff));
+		loadingScreen = new LoadingScreen();
 	}
 
 	public void startLoading() {

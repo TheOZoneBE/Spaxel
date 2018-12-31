@@ -1,11 +1,13 @@
-package code.ui;
+package code.ui.elements;
 
 import code.Constants;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.math.VectorD;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+@JacksonXmlRootElement(localName = "uibar")
 public class UIBar extends UIVisual {
 	private static final int TWO = 2;
 	private int width;

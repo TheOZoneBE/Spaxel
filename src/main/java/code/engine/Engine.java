@@ -1,7 +1,6 @@
 package code.engine;
 
 import java.util.Map;
-
 import code.Constants;
 import code.Game;
 import code.collision.HitShape;
@@ -16,11 +15,14 @@ import code.loaders.ItemPropertiesLoader;
 import code.loaders.SoundLoader;
 import code.loaders.SpriteDataLoader;
 import code.loaders.SpritesheetLoader;
-import code.loaders.UIElementLoader;
+import code.loaders.UILoader;
+import code.loaders.StylesheetLoader;
 import code.logger.Logger;
 import code.math.VectorD;
 import code.ui.controllers.Controller;
+import code.ui.elements.UIType;
 import code.ui.elements.UI;
+import code.ui.styles.Style;
 
 public final class Engine {
 	private static final Engine engine = new Engine();
@@ -33,11 +35,14 @@ public final class Engine {
 	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
-	private Map<UI, Controller> UIAtlas;
+	private Map<UIType, Controller> UIAtlas;
+	private Map<UIType, UI> uis;
+	private Map<String, Map<String, Style>> stylesheets;
 	private Map<String, Spritesheet> spritesheets;
 	private Map<String, SpriteData> spriteAtlas;
 	private ItemCatalogue items;
 
+	private UI currentUI;
 	private Controller controller;
 	private GameState gameState;
 
@@ -70,7 +75,7 @@ public final class Engine {
 		spritesheets = spritesheetLoader.loadSpritesheets("/resources/spritesheet.json");
 		SpriteDataLoader spriteDataLoader = new SpriteDataLoader();
 		spriteAtlas = spriteDataLoader
-				.loadSpriteDatas(new String[] { "/resources/sprite.json", "/resources/font.json" });
+				.loadSpriteDatas(new String[] {"/resources/sprite.json", "/resources/font.json"});
 		loadingScreen = new LoadingScreen();
 	}
 
@@ -93,20 +98,28 @@ public final class Engine {
 		loadingScreen.getProgress().setPercent(0.8);
 
 		loadingScreen.getMessage().setText("Loading UI");
-		UIAtlas = new UIElementLoader().loadUIElements(new String[] { "/ui/main.xml", "/ui/credits.xml",
-				"/ui/class_selection.xml", "/ui/play.xml", "/ui/pause.xml", "/ui/game_over.xml", "/ui/options.xml" });
+		/*
+		 * UIAtlas = new UIElementLoader().loadUIElements( new String[] {"/ui/main.xml",
+		 * "/ui/credits.xml", "/ui/class_selection.xml", "/ui/play.xml", "/ui/pause.xml",
+		 * "/ui/game_over.xml", "/ui/options.xml"});
+		 */
+		stylesheets = new StylesheetLoader().loadStylesheets(new String[] {"/ui/styles/common.json",
+				"/ui/styles/main.json", "/ui/styles/play.json"});
+		uis = new UILoader().loadUI(new String[] {"/ui/main.xml", "/ui/play.xml"});
+
 		loadingScreen.getProgress().setPercent(0.85);
 
 		loadingScreen.getMessage().setText("Loading entities");
-		industryMap = new IndustryLoader().loadEntityIndustries(new String[] { "/resources/entity.json",
-				"/resources/actor.json", "/resources/projectile.json", "/resources/item.json", "/resources/player.json",
-				"/resources/effect.json", "/resources/marker.json" });
+		industryMap = new IndustryLoader().loadEntityIndustries(new String[] {
+				"/resources/entity.json", "/resources/actor.json", "/resources/projectile.json",
+				"/resources/item.json", "/resources/player.json", "/resources/effect.json",
+				"/resources/marker.json"});
 		loadingScreen.getProgress().setPercent(0.95);
 
 		nentities.cleanup();
 
-		controller = UIAtlas.get(UI.MAIN);
-
+		// controller = UIAtlas.get(UIType.MAIN);
+		currentUI = uis.get(UIType.MAIN);
 		loading = false;
 		gameState = GameState.MENU;
 
@@ -153,7 +166,7 @@ public final class Engine {
 		return hitShapeAtlas;
 	}
 
-	public Map<UI, Controller> getUIAtlas() {
+	public Map<UIType, Controller> getUIAtlas() {
 		return UIAtlas;
 	}
 
@@ -231,5 +244,17 @@ public final class Engine {
 
 	public LoadingScreen getLoadingScreen() {
 		return loadingScreen;
+	}
+
+	public UI getCurrentUI() {
+		return currentUI;
+	}
+
+	public void setCurrentUI(UI currentUI) {
+		this.currentUI = currentUI;
+	}
+
+	public Map<String, Map<String, Style>> getStylesheets() {
+		return stylesheets;
 	}
 }

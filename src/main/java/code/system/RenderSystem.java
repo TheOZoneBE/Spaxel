@@ -1,7 +1,6 @@
 package code.system;
 
 import java.util.Set;
-
 import code.Constants;
 import code.components.ComponentType;
 import code.components.position.PositionComponent;
@@ -45,10 +44,12 @@ public class RenderSystem extends GameSystem {
 			if (difference.length() > Constants.MOUSE_FOLLOW_CUTOFF) {
 				difference = difference.multiplicate(Constants.MOUSE_FOLLOW_MULTIPLIER);
 			}
-			Engine.getEngine().setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
+			Engine.getEngine()
+					.setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
 
 			NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
-			PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
+			PositionComponent playerPos =
+					(PositionComponent) player.getComponent(ComponentType.POSITION);
 
 			Engine.getEngine().setScreenOffset(calculateScreenOffset(playerPos));
 		}
@@ -68,10 +69,11 @@ public class RenderSystem extends GameSystem {
 	}
 
 	public void renderEntities() {
-		Set<NEntity> toRender = Engine.getEngine().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
+		Set<NEntity> toRender =
+				Engine.getEngine().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
 		for (NEntity ne : toRender) {
 			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
-		Engine.getEngine().getController().render(bufferBuffer);
+		Engine.getEngine().getCurrentUI().render(bufferBuffer);
 	}
 }

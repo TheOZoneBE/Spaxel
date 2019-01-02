@@ -1,7 +1,7 @@
 package code.ui.controllers;
 
 import code.engine.Engine;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 
 /**
  * Created by theo on 26-6-2016.
@@ -9,14 +9,14 @@ import code.ui.elements.UI;
 public class GameOverController extends Controller {
 
     public GameOverController() {
-        super(UI.GAME_OVER);
+        super(UIType.GAME_OVER);
     }
 
     public void play() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.CLASS_SELECTION));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.CLASS_SELECTION));
     }
 
     public void main() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
     }
 }

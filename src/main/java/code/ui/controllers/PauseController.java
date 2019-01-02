@@ -2,7 +2,7 @@ package code.ui.controllers;
 
 import code.engine.Engine;
 import code.input.Keyboard;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 
 /**
  * Created by theo on 10-6-2016.
@@ -10,7 +10,7 @@ import code.ui.elements.UI;
 public class PauseController extends Controller {
 
     public PauseController() {
-        super(UI.PAUSE);
+        super(UIType.PAUSE);
     }
 
     @Override
@@ -23,12 +23,12 @@ public class PauseController extends Controller {
     }
 
     public void resume() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PLAY));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PLAY));
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
     }
 
     public void quit() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
         Engine.getEngine().stopGame();
     }

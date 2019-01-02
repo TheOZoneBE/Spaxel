@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import code.graphics.MasterBuffer;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 import code.ui.elements.UIElement;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "ui", visible = true)
@@ -17,9 +17,9 @@ import code.ui.elements.UIElement;
         @JsonSubTypes.Type(value = OptionsController.class, name = "OPTIONS"), })
 public class Controller {
     UIElement root;
-    private UI ui;
+    private UIType ui;
 
-    public Controller(UI ui) {
+    public Controller(UIType ui) {
         this.ui = ui;
     }
 
@@ -50,11 +50,11 @@ public class Controller {
         this.root = root;
     }
 
-    public UI getUi() {
+    public UIType getUi() {
         return ui;
     }
 
-    public void setUi(UI ui) {
+    public void setUi(UIType ui) {
         this.ui = ui;
     }
 }

@@ -2,7 +2,7 @@ package code.ui.controllers;
 
 import code.engine.Engine;
 import code.input.Keyboard;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 
 /**
  * Created by theo on 8-6-2016.
@@ -10,7 +10,7 @@ import code.ui.elements.UI;
 public class CreditsController extends Controller {
 
     public CreditsController() {
-        super(UI.CREDITS);
+        super(UIType.CREDITS);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class CreditsController extends Controller {
     }
 
     public void back() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
     }
 }

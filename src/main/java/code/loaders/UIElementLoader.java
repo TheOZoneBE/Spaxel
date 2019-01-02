@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 import code.ui.elements.UIElement;
 import code.ui.controllers.Controller;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -14,9 +14,9 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 public class UIElementLoader extends Loader {
 	private static final Logger LOGGER = Logger.getLogger(UIElementLoader.class.getName());
 
-	public Map<UI, Controller> loadUIElements(String[] uis) {
+	public Map<UIType, Controller> loadUIElements(String[] uis) {
 		try {
-			EnumMap<UI, Controller> uiMap = new EnumMap<>(UI.class);
+			EnumMap<UIType, Controller> uiMap = new EnumMap<>(UIType.class);
 			for (String ui : uis) {
 				loadFile(ui);
 				XmlMapper mapper = new XmlMapper();

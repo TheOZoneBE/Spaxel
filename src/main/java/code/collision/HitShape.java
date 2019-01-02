@@ -2,7 +2,6 @@ package code.collision;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import code.graphics.RenderBuffer;
 import code.math.Axis;
 import code.math.MatrixD;
@@ -47,12 +46,6 @@ public class HitShape {
 			pro.addVector(ax.project(h.getVector()));
 		}
 		return pro;
-	}
-
-	public void render(int xOffset, int yOffset, RenderBuffer render) {
-		for (HitPoint h : hitPoints) {
-			h.render(xOffset, yOffset, render);
-		}
 	}
 
 	public String toString() {

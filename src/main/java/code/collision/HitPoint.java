@@ -19,8 +19,9 @@ public class HitPoint {
 	}
 
 	@JsonCreator
-	public HitPoint(@JsonProperty("xOffset") double xOffset, @JsonProperty("yOffset") double yOffset) {
-		this.vector = new VectorD(new double[] { xOffset, yOffset, 1 });
+	public HitPoint(@JsonProperty("xOffset") double xOffset,
+			@JsonProperty("yOffset") double yOffset) {
+		this.vector = new VectorD(new double[] {xOffset, yOffset, 1});
 	}
 
 	public void updateVector(VectorD vector) {
@@ -36,10 +37,6 @@ public class HitPoint {
 		VectorD v = updateMatrixF.multiplicate(vector);
 		updated.updateVector(v);
 		return updated;
-	}
-
-	public void render(int xOffset, int yOffset, RenderBuffer render) {
-		vector.render(xOffset, yOffset, render);
 	}
 
 	public String toString() {

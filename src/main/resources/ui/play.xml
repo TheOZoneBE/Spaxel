@@ -1,7 +1,7 @@
-<ui controller="PLAY">
-    <style>common</style>
-    <style>play</style>
-    <element id="root">
+<ui type="PLAY" controller="code.ui.controllers.PlayController">
+    <style>/ui/styles/common.json</style>
+    <style>/ui/styles/play.json</style>
+    <body id="root">
         <element id="score_counter">score</element>
         <element id="game_time">00\00</element>
         <element id="hp_label">hp_label</element>
@@ -11,5 +11,5 @@
         <element id="primary_container"></element>
         <element id="secondary_container"></element>
         <element id="ship_container"></element>
-    </element>
+    </body>
 </ui>

@@ -14,7 +14,7 @@ import code.factories.uielements.ItemViewFactory;
 import code.input.Keyboard;
 import code.logger.Logger;
 import code.math.VectorD;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 import code.ui.elements.UIBar;
 import code.ui.elements.UIElement;
 import code.ui.elements.UILabel;
@@ -32,7 +32,7 @@ public class PlayController extends Controller {
     ItemViewFactory itemViewFactory;
 
     public PlayController() {
-        super(UI.PLAY);
+        super(UIType.PLAY);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class PlayController extends Controller {
         updateItems(player);
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
-            Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.PAUSE));
+            Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PAUSE));
             Engine.getEngine().setGameState(Engine.GameState.PAUSE);
         }
         if (k.getiState().isDown() && !k.getiState().hasBeenDown()) {

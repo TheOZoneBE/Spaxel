@@ -7,21 +7,27 @@
     },
     "#title_label": {
         "y": 600,
-        "text-scale": 8
+        "text-scale": 8,
+        "text": "SP{white}XEL"
     },
     "#play_button": {
-        "y": 480
+        "y": 480,
+        "text": "Play"
     },
     "#achievements_button": {
-        "y": 400
+        "y": 400,
+        "text": "Achievements"
     },
     "#options_button": {
-        "y": 320
+        "y": 320,
+        "text": "Options"
     },
     "#credits_button": {
-        "y": 240
+        "y": 240,
+        "text": "Credits"
     },
     "#quit_button": {
-        "y": 80
+        "y": 80,
+        "text": "Quit"
     }
 }

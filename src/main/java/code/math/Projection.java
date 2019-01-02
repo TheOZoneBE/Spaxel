@@ -1,13 +1,20 @@
 package code.math;
 
+/**
+ * Represents a projection of vectors onto an axis, only keeps the minimum and maximum points
+ */
 public class Projection {
-	// TODO vectors
 	private double xMin;
 	private double xMax;
 	private double yMin;
 	private double yMax;
 	private boolean empty;
 
+	/**
+	 * Create a new projection using a vector
+	 * 
+	 * @param vec the vector to initialize the bounds with
+	 */
 	public Projection(VectorD vec) {
 		xMin = vec.getValue(0);
 		xMax = vec.getValue(0);
@@ -16,10 +23,18 @@ public class Projection {
 		empty = false;
 	}
 
+	/**
+	 * Create an empty projection
+	 */
 	public Projection() {
 		empty = true;
 	}
 
+	/**
+	 * Adds a vector to this projection and updates the bounds where necessary
+	 * 
+	 * @param vec the vector to add
+	 */
 	public void addVector(VectorD vec) {
 		if (empty) {
 			xMin = vec.getValue(0);
@@ -61,6 +76,13 @@ public class Projection {
 		return yMax;
 	}
 
+	/**
+	 * Checks if this projection overlaps with the given projection
+	 * 
+	 * @param p the projection to check
+	 * 
+	 * @return true if there is overlap
+	 */
 	public boolean overlap(Projection p) {
 		if (xMax < p.getXMin() || xMin > p.getXMax() || yMax < p.getYMin()) {
 			return false;

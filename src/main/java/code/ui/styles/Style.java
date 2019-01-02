@@ -23,8 +23,11 @@ public class Style {
     public Style merge(Style style) {
         Map<String, String> mergedProperties = new HashMap<>(properties);
         Set<String> mergedEnabled = new HashSet<>(enabled);
-        mergedProperties.putAll(style.getProperties());
-        mergedEnabled.addAll(style.getEnabled());
+        if (style != null) {
+            mergedProperties.putAll(style.getProperties());
+            mergedEnabled.addAll(style.getEnabled());
+        }
+
         return new Style(mergedProperties, mergedEnabled);
     }
 
@@ -50,6 +53,10 @@ public class Style {
 
     public String getProperty(String key) {
         return properties.get(key);
+    }
+
+    public boolean contains(String key) {
+        return properties.containsKey(key);
     }
 
     /**

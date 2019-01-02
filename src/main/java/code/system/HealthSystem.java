@@ -6,23 +6,28 @@ import code.components.health.HealthComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.SystemType;
-
 import java.util.Set;
 
 /**
+ * The HealthSystem is responsible for updating all entities with a HealthComponent
+ * 
  * Created by theo on 8/06/17.
  */
 public class HealthSystem extends GameSystem {
+    /**
+     * Create a new HealthSystem
+     */
     public HealthSystem() {
         super(SystemType.HEALTH);
     }
 
-    public void update(){
-        Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HEALTH);
-        for (NEntity e: entities){
-            if(((HealthComponent)e.getComponent(ComponentType.HEALTH)).getHealth() < 0){
-                DeathComponent dc = (DeathComponent)e.getComponent(ComponentType.DEATH);
-                if(dc != null){
+    public void update() {
+        Set<NEntity> entities =
+                Engine.getEngine().getNEntityStream().getEntities(ComponentType.HEALTH);
+        for (NEntity e : entities) {
+            if (((HealthComponent) e.getComponent(ComponentType.HEALTH)).getHealth() < 0) {
+                DeathComponent dc = (DeathComponent) e.getComponent(ComponentType.DEATH);
+                if (dc != null) {
                     dc.die(e);
                 }
                 Engine.getEngine().getNEntityStream().removeEntity(e);

@@ -24,11 +24,17 @@ import code.system.SpawnerSystem;
 import code.system.UISystem;
 import code.system.VelocitySystem;
 
+/**
+ * Runnable that runs all the game updates
+ */
 public class UpdateRunner implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(UpdateRunner.class.getName());
     private volatile boolean running = true;
     private Map<SystemType, GameSystem> systems;
 
+    /**
+     * Create new UpdateRunner and initialize all the update systems
+     */
     public UpdateRunner() {
         super();
         systems = new EnumMap<>(SystemType.class);
@@ -75,15 +81,15 @@ public class UpdateRunner implements Runnable {
         }
     }
 
+    /**
+     * Stop the execution of this runnable
+     */
     public void exit() {
         running = false;
     }
 
     /**
-     * general update 50 times a second
-     *
-     * LifeSystem in entities.cleanup UISystem SoundSystem
-     *
+     * Update the necessary systems depending on the gamestate of the engine
      */
     public void updateSystems() {
         Engine.getEngine().getMouseWrapper().update();
@@ -117,6 +123,11 @@ public class UpdateRunner implements Runnable {
         }
     }
 
+    /**
+     * Update a single system and register to the logger if necessary
+     * 
+     * @param type the type of the system to update
+     */
     public void update(SystemType type) {
         if (Engine.getEngine().getGameProperties().isLogging()) {
             Engine.getEngine().getLogger().registerStart(type);

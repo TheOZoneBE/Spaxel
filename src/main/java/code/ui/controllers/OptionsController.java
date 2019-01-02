@@ -1,14 +1,14 @@
 package code.ui.controllers;
 
 import code.engine.Engine;
-import code.ui.elements.UI;
+import code.ui.elements.UIType;
 
 /**
  * Created by theod on 19-9-2017.
  */
 public class OptionsController extends Controller {
     public OptionsController() {
-        super(UI.OPTIONS);
+        super(UIType.OPTIONS);
     }
 
     public void gameSettings() {
@@ -28,6 +28,6 @@ public class OptionsController extends Controller {
     }
 
     public void back() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UI.MAIN));
+        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
     }
 }

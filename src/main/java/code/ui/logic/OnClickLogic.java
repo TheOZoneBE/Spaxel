@@ -9,7 +9,7 @@ import code.ui.elements.Element;
 /**
  * Implement an onClick behavior on an ui Element.
  * 
- * @see code#ui#elements#Element.
+ * @see code.ui.elements.Element
  */
 public class OnClickLogic implements Logic {
     private static final Logger LOGGER = Logger.getLogger(OnClickLogic.class.getName());

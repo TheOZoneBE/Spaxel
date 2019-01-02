@@ -12,29 +12,36 @@ import code.engine.NEntity;
 import code.engine.SystemType;
 import code.math.MatrixD;
 import code.util.MatrixUtil;
-
 import java.util.Set;
 
 /**
+ * The EquipSystem is responsible for updating all entities with an EquipComponent
+ * 
  * Created by theo on 24/06/17.
  */
 public class EquipSystem extends GameSystem {
+    /**
+     * Create a new EquipSystem
+     */
     public EquipSystem() {
         super(SystemType.EQUIP);
     }
 
     public void update() {
-        Set<NEntity> entities = Engine.getEngine().getNEntityStream().getEntities(ComponentType.EQUIP);
+        Set<NEntity> entities =
+                Engine.getEngine().getNEntityStream().getEntities(ComponentType.EQUIP);
 
         NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
 
         for (NEntity entity : entities) {
-            CollisionComponent cc = (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
+            CollisionComponent cc =
+                    (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
             PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
             MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
             HitShape updated = cc.getHitShape().update(eTransform);
 
-            CollisionComponent ccc = (CollisionComponent) player.getComponent(ComponentType.COLLISION);
+            CollisionComponent ccc =
+                    (CollisionComponent) player.getComponent(ComponentType.COLLISION);
             PositionComponent cpc = (PositionComponent) player.getComponent(ComponentType.POSITION);
             MatrixD cTransform = MatrixUtil.getTransRotationMatrix(cpc.getCoord(), cpc.getRot());
             if (ccc.getHitShape().update(cTransform).collision(updated)) {
@@ -48,20 +55,23 @@ public class EquipSystem extends GameSystem {
                 // add to inventory
                 ItemComponent ic = (ItemComponent) entity.getComponent(ComponentType.ITEM);
                 switch (ic.getItemType()) {
-                case SHIP:
-                    InventoryComponent sc = (InventoryComponent) player.getComponent(ComponentType.SHIP);
-                    sc.addItem(entity);
-                    break;
-                case PRIMARY:
-                    InventoryComponent prc = (InventoryComponent) player.getComponent(ComponentType.PRIMARY);
-                    prc.addItem(entity);
-                    break;
-                case SECONDARY:
-                    InventoryComponent sdc = (InventoryComponent) player.getComponent(ComponentType.SECONDARY);
-                    sdc.addItem(entity);
-                    break;
-                default:
-                    break;
+                    case SHIP:
+                        InventoryComponent sc =
+                                (InventoryComponent) player.getComponent(ComponentType.SHIP);
+                        sc.addItem(entity);
+                        break;
+                    case PRIMARY:
+                        InventoryComponent prc =
+                                (InventoryComponent) player.getComponent(ComponentType.PRIMARY);
+                        prc.addItem(entity);
+                        break;
+                    case SECONDARY:
+                        InventoryComponent sdc =
+                                (InventoryComponent) player.getComponent(ComponentType.SECONDARY);
+                        sdc.addItem(entity);
+                        break;
+                    default:
+                        break;
                 }
                 entity.addComponent(new LinkComponent(player));
             }

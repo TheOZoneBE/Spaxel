@@ -1,7 +1,7 @@
-<ui controller="MAIN">
-    <style>common</style>
-    <style>main</style>
-    <element id="root">
+<ui type="MAIN" controller="code.ui.controllers.MainController">
+    <style>/ui/styles/common.json</style>
+    <style>/ui/styles/main.json</style>
+    <body id="root">
         <element id="title_label">
             SP{white}XEL
         </element>
@@ -20,5 +20,5 @@
         <element id="quit_button" class="large_button" onClick="quit">
             Quit
         </element>
-    </element>
+    </body>
 </ui>

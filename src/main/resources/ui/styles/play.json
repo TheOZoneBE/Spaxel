@@ -7,20 +7,24 @@
     },
     "#score_counter": {
         "y": 656,
-        "text-scale": 4
+        "text-scale": 4,
+        "text": ""
     },
     "#game_time": {
         "x": 864,
         "y": 704,
-        "text-scale": 2
+        "text-scale": 2,
+        "text": ""
     },
     "#hp_label": {
         "y": 96,
-        "text-scale": 1
+        "text-scale": 1,
+        "text": ""
     },
     "#xp_label": {
         "y": 84,
-        "text-scale": 1
+        "text-scale": 1,
+        "text": ""
     },
     ".play_bar": {
         "width": 580,

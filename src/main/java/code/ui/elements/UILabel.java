@@ -6,13 +6,9 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 import code.graphics.SpriteData;
 import code.math.VectorD;
-
 import java.util.List;
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-@JacksonXmlRootElement(localName = "uilabel")
 public class UILabel extends UIElement {
 	private static final String SPACE = " ";
 	private static final String NEWLINE = "\\\\";
@@ -61,7 +57,8 @@ public class UILabel extends UIElement {
 					i++;
 					c = line.substring(i, i + 1);
 				}
-				characters.add(new Character(Engine.getEngine().getSpriteAtlas().get(line.substring(start, i))));
+				characters.add(new Character(
+						Engine.getEngine().getSpriteAtlas().get(line.substring(start, i))));
 
 			} else if (c.equals(SPACE)) {
 				characters.add(new Character(SPACING));
@@ -80,7 +77,8 @@ public class UILabel extends UIElement {
 	}
 
 	private static double calculateLineWidth(List<Character> line) {
-		return line.stream().map(Character::getWidth).reduce(0., (Double accWidth, Double width) -> accWidth += width);
+		return line.stream().map(Character::getWidth).reduce(0.,
+				(Double accWidth, Double width) -> accWidth += width);
 	}
 
 	private static class Character {

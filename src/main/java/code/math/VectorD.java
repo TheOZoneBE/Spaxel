@@ -1,11 +1,12 @@
 package code.math;
 
-import code.graphics.RenderBuffer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents a vector of arbitrary size of type double.
+ */
 public class VectorD {
 	private static final int DEFAULT_DIM = 3;
 	private int m = DEFAULT_DIM;
@@ -22,7 +23,7 @@ public class VectorD {
 	}
 
 	public VectorD(@JsonProperty("x") double x, @JsonProperty("y") double y) {
-		this.vector = new double[] { x, y, 1 };
+		this.vector = new double[] {x, y, 1};
 	}
 
 	public double getValue(int i) {
@@ -80,10 +81,6 @@ public class VectorD {
 		sol.setValue(0, vector[1]);
 		sol.setValue(1, -vector[0]);
 		return sol;
-	}
-
-	public void render(int xOffset, int yOffset, RenderBuffer render) {
-		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {

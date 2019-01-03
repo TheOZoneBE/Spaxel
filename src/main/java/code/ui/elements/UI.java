@@ -21,17 +21,25 @@ public class UI {
 
     public void initialize() {
         body.setUI(this);
-        body.refreshStyle(new Style());
+        body.initStyle(new Style());
     }
 
     public void update() {
-        // TODO implement
         body.update();
-        body.refreshStyle(new Style());
+        // body.refreshStyle(new Style());
     }
 
     public void render(MasterBuffer buffer) {
         body.render(buffer);
+    }
+
+    public void reset() {
+        body.reset();
+        // body.refreshStyle(new Style());
+    }
+
+    public Element findById(String id) {
+        return body.findById(id);
     }
 
     /**
@@ -107,6 +115,5 @@ public class UI {
         }
         return null;
     }
-
 
 }

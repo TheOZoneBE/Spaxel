@@ -12,5 +12,5 @@ public interface Logic {
      * 
      * @param element The element that gets updated
      */
-    void update(Element element);
+    void execute(Element element);
 }

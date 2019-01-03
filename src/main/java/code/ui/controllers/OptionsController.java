@@ -1,33 +1,38 @@
 package code.ui.controllers;
 
 import code.engine.Engine;
+import code.input.Keyboard;
 import code.ui.elements.UIType;
 
 /**
  * Created by theod on 19-9-2017.
  */
-public class OptionsController extends Controller {
-    public OptionsController() {
-        super(UIType.OPTIONS);
-    }
+public final class OptionsController {
 
-    public void gameSettings() {
+    public static void gameSettings() {
         // TODO
     }
 
-    public void controlsSettings() {
+    public static void controlsSettings() {
         // TODO
     }
 
-    public void graphicsSettings() {
+    public static void graphicsSettings() {
         // TODO
     }
 
-    public void soundSettings() {
+    public static void soundSettings() {
         // TODO
     }
 
-    public void back() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
+    public static void escCheck() {
+        Keyboard k = Engine.getEngine().getKeyboard();
+        if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
+            back();
+        }
+    }
+
+    public static void back() {
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.MAIN));
     }
 }

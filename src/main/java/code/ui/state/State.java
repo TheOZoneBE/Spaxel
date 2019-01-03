@@ -6,9 +6,16 @@ package code.ui.state;
 public class State {
     private boolean hover;
     private boolean click;
+    private boolean release;
 
     public State() {
         super();
+    }
+
+    public void reset() {
+        hover = false;
+        click = false;
+        release = false;
     }
 
     /**
@@ -38,6 +45,21 @@ public class State {
     public void setClick(boolean click) {
         this.click = click;
     }
+
+    /**
+     * @return the release
+     */
+    public boolean isRelease() {
+        return release;
+    }
+
+    /**
+     * @param release the release to set
+     */
+    public void setRelease(boolean release) {
+        this.release = release;
+    }
+
 
 
 }

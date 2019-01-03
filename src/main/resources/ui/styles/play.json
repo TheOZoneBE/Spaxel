@@ -3,28 +3,34 @@
         "x": 640,
         "y": 360,
         "sprite": "ui_play_overlay",
-        "scale": 2
+        "scale": 2,
+        "rot": 0,
+        "onUpdate": "escCheck"
     },
     "#score_counter": {
         "y": 656,
         "text-scale": 4,
-        "text": ""
+        "text": "",
+        "onUpdate": "updateScore"
     },
     "#game_time": {
         "x": 864,
         "y": 704,
         "text-scale": 2,
-        "text": ""
+        "text": "",
+        "onUpdate": "updateTime"
     },
     "#hp_label": {
         "y": 96,
         "text-scale": 1,
-        "text": ""
+        "text": "",
+        "onUpdate": "updateHpLabel"
     },
     "#xp_label": {
         "y": 84,
         "text-scale": 1,
-        "text": ""
+        "text": "",
+        "onUpdate": "updateXpLabel"
     },
     ".play_bar": {
         "width": 580,
@@ -34,12 +40,27 @@
         "sprite": "hp_bar",
         "x": 348,
         "y": 96,
-        "align": "left"
+        "onUpdate": "updateHpBar"
     },
     "#xp_bar": {
         "sprite": "xp_bar",
         "x": 932,
         "y": 85,
-        "align": "right"
+        "rot": "3.1415",
+        "onUpdate": "updateXpBar"
+    },
+    "#pause_controls": {
+        "visible": false,
+        "x": 640
+    },
+    "#resume": {
+        "onClick": "resume",
+        "text": "Resume",
+        "y": 400
+    },
+    "#quit": {
+        "onClick": "quit",
+        "text": "Quit",
+        "y": 320
     }
 }

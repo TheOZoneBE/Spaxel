@@ -20,7 +20,7 @@ public class PlayerDeathComponent extends DeathComponent {
         // show game over
         // TODO revisit maybe
         Engine.getEngine().stopGame();
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.GAME_OVER));
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.GAME_OVER));
         Engine.getEngine().setGameState(Engine.GameState.MENU);
     }
 

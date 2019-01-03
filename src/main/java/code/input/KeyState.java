@@ -23,4 +23,12 @@ public class KeyState {
     public boolean hasBeenDown() {
         return wasDown;
     }
+
+    public boolean isRelease() {
+        return wasDown && !down;
+    }
+
+    public boolean isPress() {
+        return !wasDown && down;
+    }
 }

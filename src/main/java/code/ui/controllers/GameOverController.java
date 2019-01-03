@@ -6,17 +6,13 @@ import code.ui.elements.UIType;
 /**
  * Created by theo on 26-6-2016.
  */
-public class GameOverController extends Controller {
+public final class GameOverController {
 
-    public GameOverController() {
-        super(UIType.GAME_OVER);
+    public static void play() {
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.CLASS_SELECTION));
     }
 
-    public void play() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.CLASS_SELECTION));
-    }
-
-    public void main() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
+    public static void main() {
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.MAIN));
     }
 }

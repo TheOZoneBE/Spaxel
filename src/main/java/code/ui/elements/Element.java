@@ -4,24 +4,33 @@ import code.ui.styles.Style;
 import java.util.List;
 import java.util.ArrayList;
 import code.ui.logic.Logic;
+import code.ui.logic.OnClickLogic;
+import code.ui.logic.OnUpdateLogic;
+import code.ui.logic.ReleaseLogic;
 import code.ui.render.StyleRenderer;
 import code.ui.state.State;
 import code.graphics.MasterBuffer;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import code.ui.logic.HoverLogic;
+import code.ui.logic.ClickLogic;
 
 
 
 public class Element {
+    // NOTE style should be saved and not refreshed
+    private String id;
     private UI ui;
     private List<String> classes;
 
-    private String id;
     private List<Element> children;
-    private String text;
 
     private List<Logic> logic;
-    private Style style;
+
+    private Style elementStyle;
+    private Style hoverStyle;
+    private Style clickStyle;
+
     private State state;
 
     public Element() {
@@ -29,38 +38,100 @@ public class Element {
         this.children = new ArrayList<>();
         this.classes = new ArrayList<>();
         this.logic = new ArrayList<>();
+        this.state = new State();
+        logic.add(new HoverLogic());
+        logic.add(new ClickLogic());
+        logic.add(new ReleaseLogic());
+        logic.add(new OnClickLogic());
+        logic.add(new OnUpdateLogic());
     }
 
     public void render(MasterBuffer buffer) {
-        StyleRenderer.renderStyle(style, buffer);
-        for (Element child : children) {
-            child.render(buffer);
+        Style style = elementStyle;
+        if (state.isHover()) {
+            style = elementStyle.merge(hoverStyle);
+        }
+        if (state.isClick()) {
+            style = elementStyle.merge(clickStyle);
+        }
+        if (!style.contains("visible") || style.getProperty("visible").equals("true")) {
+            StyleRenderer.renderStyle(style, buffer);
+            for (Element child : children) {
+                child.render(buffer);
+            }
         }
     }
 
     public void update() {
-        for (Logic l : logic) {
-            l.update(this);
+        /*
+         * if (id.equals("pause_controls")) { System.out.println(elementStyle.getProperties()); }
+         */
+        if (!elementStyle.contains("visible")
+                || elementStyle.getProperty("visible").equals("true")) {
+            for (Logic l : logic) {
+                l.execute(this);
+            }
+            for (Element element : children) {
+                element.update();
+            }
         }
-        for (Element element : children) {
-            element.update();
+    }
+
+    public void initStyle(Style style) {
+        elementStyle = style;
+        hoverStyle = new Style();
+        clickStyle = new Style();
+        for (String stl : classes) {
+            elementStyle = elementStyle.merge(ui.getStyle("." + stl));
+            hoverStyle = hoverStyle.merge(ui.getStyle("." + stl + ":hover"));
+            clickStyle = clickStyle.merge(ui.getStyle("." + stl + ":click"));
+        }
+        elementStyle = elementStyle.merge(ui.getStyle("#" + id));
+        hoverStyle = hoverStyle.merge(ui.getStyle("#" + id + ":hover"));
+        clickStyle = clickStyle.merge(ui.getStyle("#" + id + ":click"));
+
+        for (Element child : children) {
+            child.initStyle(elementStyle.getMergeStyle());
         }
     }
 
     public void refreshStyle(Style style) {
-        // TODO state modifiers
-        for (String stl : classes) {
-            style = style.merge(ui.getStyle("." + stl));
-        }
-        style = style.merge(ui.getStyle("#" + id));
-        this.style = style;
+        elementStyle = style.merge(elementStyle);
         for (Element element : children) {
-            element.refreshStyle(style);
+            element.refreshStyle(elementStyle.getMergeStyle());
         }
     }
 
-    public Style getStyle() {
-        return style;
+    public void reset() {
+        state.reset();
+        for (Element child : children) {
+            child.reset();
+        }
+    }
+
+    public Element findById(String id) {
+        if (id.equals(this.id)) {
+            return this;
+        } else {
+            for (Element child : children) {
+                Element result = child.findById(id);
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Style getElementStyle() {
+        return elementStyle;
+    }
+
+    public void setStyleProperty(String key, String value) {
+        elementStyle.setProperty(key, value);
+        for (Element element : children) {
+            element.refreshStyle(elementStyle.getMergeStyle());
+        }
     }
 
     public State getState() {
@@ -72,6 +143,10 @@ public class Element {
         for (Element child : children) {
             child.setUI(ui);
         }
+    }
+
+    public UI getUI() {
+        return ui;
     }
 
     public void setId(String id) {
@@ -91,7 +166,7 @@ public class Element {
     }
 
     @JsonAnySetter()
-    public void setText(String key, String value) {
-        this.text = value;
+    public void dump(String key, String value) {
+
     }
 }

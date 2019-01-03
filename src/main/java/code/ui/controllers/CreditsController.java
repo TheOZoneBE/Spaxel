@@ -7,22 +7,15 @@ import code.ui.elements.UIType;
 /**
  * Created by theo on 8-6-2016.
  */
-public class CreditsController extends Controller {
-
-    public CreditsController() {
-        super(UIType.CREDITS);
-    }
-
-    @Override
-    public void update() {
-        super.update();
+public class CreditsController {
+    public static void escCheck() {
         Keyboard k = Engine.getEngine().getKeyboard();
         if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
             back();
         }
     }
 
-    public void back() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
+    public static void back() {
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.MAIN));
     }
 }

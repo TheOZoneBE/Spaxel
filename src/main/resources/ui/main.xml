@@ -2,23 +2,11 @@
     <style>/ui/styles/common.json</style>
     <style>/ui/styles/main.json</style>
     <body id="root">
-        <element id="title_label">
-            SP{white}XEL
-        </element>
-        <element id="play_button" class="large_button" onClick="startGame">
-            Play
-        </element>
-        <element id="achievements_button" class="large_button" onClick="achievements">
-            Achievements
-        </element>
-        <element id="options_button" class="large_button" onClick="options">
-            Options
-        </element>
-        <element id="credits_button" class="large_button" onClick="credits">
-            Credits
-        </element>
-        <element id="quit_button" class="large_button" onClick="quit">
-            Quit
-        </element>
+        <element id="title_label"></element>
+        <element id="play_button" class="large_button"></element>
+        <element id="achievements_button" class="large_button locked"></element>
+        <element id="options_button" class="large_button"></element>
+        <element id="credits_button" class="large_button"></element>
+        <element id="quit_button" class="large_button"></element>
     </body>
 </ui>

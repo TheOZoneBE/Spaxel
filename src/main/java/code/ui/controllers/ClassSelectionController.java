@@ -2,46 +2,52 @@ package code.ui.controllers;
 
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.input.Keyboard;
 import code.ui.elements.UIType;
 
 /**
  * Created by theo on 21-6-2016.
  */
-public class ClassSelectionController extends Controller {
+public final class ClassSelectionController {
 
-    public ClassSelectionController() {
-        super(UIType.CLASS_SELECTION);
-    }
-
-    public void selectWhite() {
+    public static void selectWhite() {
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_white_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PLAY));
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.PLAY));
     }
 
-    public void selectRed() {
+    public static void selectRed() {
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_red_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PLAY));
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.PLAY));
     }
 
-    public void selectGreen() {
+    public static void selectGreen() {
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_green_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PLAY));
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.PLAY));
     }
 
-    public void selectBlue() {
+    public static void selectBlue() {
         Engine.getEngine().setGameState(Engine.GameState.PLAY);
         NEntity player = Engine.getEngine().getIndustryMap().get("player_blue_industry").produce();
         Engine.getEngine().getNEntityStream().addEntity(player);
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.PLAY));
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.PLAY));
     }
 
-    public void back() {
-        Engine.getEngine().setController(Engine.getEngine().getUIAtlas().get(UIType.MAIN));
+    public static void back() {
+        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.MAIN));
     }
+
+    public static void escCheck() {
+        Keyboard k = Engine.getEngine().getKeyboard();
+        if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
+            back();
+        }
+    }
+
+
 }

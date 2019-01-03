@@ -16,7 +16,6 @@ import code.input.MouseWrapper;
 import code.math.VectorD;
 import code.Constants;
 import code.util.EntityUtil;
-
 import java.util.List;
 
 /**
@@ -50,10 +49,12 @@ public class PlayerInputComponent extends InputComponent {
 
         VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT));
         if (keys.getDownState().isDown()) {
-            velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot())).multiplicate(mc.getAcc());
+            velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot()))
+                    .multiplicate(mc.getAcc());
         }
         if (keys.getUpState().isDown()) {
-            velChange = new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getAcc());
+            velChange = new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
+                    .multiplicate(mc.getAcc());
         }
         if (keys.getLeftState().isDown()) {
             velChange = new VectorD(Math.sin(pc.getRot() - Constants.HALF_CIRLCE),
@@ -67,12 +68,14 @@ public class PlayerInputComponent extends InputComponent {
         if (vc.getVelocity().sum(velChange).length() < mc.getMaxSpeed()) {
             vc.setVelocity(vc.getVelocity().sum(velChange));
         } else {
-            vc.setVelocity(vc.getVelocity().sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT))));
+            vc.setVelocity(vc.getVelocity()
+                    .sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT))));
         }
 
         VectorD mousePos = mouse.getPos();
 
-        VectorD diff = mousePos.sum(pc.getCoord().sum(Engine.getEngine().getScreenOffset()).multiplicate(-1));
+        VectorD diff = mousePos
+                .sum(pc.getCoord().sum(Engine.getEngine().getScreenOffset()).multiplicate(-1));
         double rotToGet = diff.angle();
 
         if (rotToGet < 0) {
@@ -85,7 +88,7 @@ public class PlayerInputComponent extends InputComponent {
 
     private static void handleShooting(NEntity entity) {
         MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
-        if (mouse.isMouse1()) {
+        if (mouse.getMouse1().isDown()) {
             PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);
             List<NEntity> items = prc.getItems();
             for (NEntity item : items) {
@@ -93,8 +96,9 @@ public class PlayerInputComponent extends InputComponent {
                 ic.activate(item);
             }
         }
-        if (mouse.isMouse2()) {
-            SecondaryComponent src = (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
+        if (mouse.getMouse2().isDown()) {
+            SecondaryComponent src =
+                    (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
             List<NEntity> items = src.getItems();
             for (NEntity item : items) {
                 ItemComponent ic = (ItemComponent) item.getComponent(ComponentType.ITEM);

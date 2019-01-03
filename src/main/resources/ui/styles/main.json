@@ -12,22 +12,27 @@
     },
     "#play_button": {
         "y": 480,
-        "text": "Play"
+        "text": "Play",
+        "onClick": "startGame"
     },
     "#achievements_button": {
         "y": 400,
-        "text": "Achievements"
+        "text": "Achievements",
+        "onClick": "achievements"
     },
     "#options_button": {
         "y": 320,
-        "text": "Options"
+        "text": "Options",
+        "onClick": "options"
     },
     "#credits_button": {
         "y": 240,
-        "text": "Credits"
+        "text": "Credits",
+        "onClick": "credits"
     },
     "#quit_button": {
         "y": 80,
-        "text": "Quit"
+        "text": "Quit",
+        "onClick": "quit"
     }
 }

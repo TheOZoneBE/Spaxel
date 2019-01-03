@@ -5,8 +5,12 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Arrays;
 
 public class Style {
+    private static final List<String> nonMergeable =
+            Arrays.asList("onClick", "onUpdate", "sprite", "text", "hitshape", "visible");
     private Map<String, String> properties;
     private Set<String> enabled;
 
@@ -29,6 +33,16 @@ public class Style {
         }
 
         return new Style(mergedProperties, mergedEnabled);
+    }
+
+    public Style getMergeStyle() {
+        Map<String, String> mergeableProperties = new HashMap<>(properties);
+        Set<String> mergeableEnabled = new HashSet<>(enabled);
+        for (String key : nonMergeable) {
+            mergeableProperties.remove(key);
+        }
+        mergeableEnabled.removeAll(nonMergeable);
+        return new Style(mergeableProperties, mergeableEnabled);
     }
 
     public Style copy() {

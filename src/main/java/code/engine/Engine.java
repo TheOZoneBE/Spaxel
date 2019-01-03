@@ -19,7 +19,6 @@ import code.loaders.UILoader;
 import code.loaders.StylesheetLoader;
 import code.logger.Logger;
 import code.math.VectorD;
-import code.ui.controllers.Controller;
 import code.ui.elements.UIType;
 import code.ui.elements.UI;
 import code.ui.styles.Style;
@@ -35,7 +34,6 @@ public final class Engine {
 	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
-	private Map<UIType, Controller> UIAtlas;
 	private Map<UIType, UI> uis;
 	private Map<String, Map<String, Style>> stylesheets;
 	private Map<String, Spritesheet> spritesheets;
@@ -43,7 +41,6 @@ public final class Engine {
 	private ItemCatalogue items;
 
 	private UI currentUI;
-	private Controller controller;
 	private GameState gameState;
 
 	private boolean loading = true;
@@ -98,14 +95,13 @@ public final class Engine {
 		loadingScreen.getProgress().setPercent(0.8);
 
 		loadingScreen.getMessage().setText("Loading UI");
-		/*
-		 * UIAtlas = new UIElementLoader().loadUIElements( new String[] {"/ui/main.xml",
-		 * "/ui/credits.xml", "/ui/class_selection.xml", "/ui/play.xml", "/ui/pause.xml",
-		 * "/ui/game_over.xml", "/ui/options.xml"});
-		 */
+
 		stylesheets = new StylesheetLoader().loadStylesheets(new String[] {"/ui/styles/common.json",
-				"/ui/styles/main.json", "/ui/styles/play.json"});
-		uis = new UILoader().loadUI(new String[] {"/ui/main.xml", "/ui/play.xml"});
+				"/ui/styles/main.json", "/ui/styles/play.json", "/ui/styles/credits.json",
+				"/ui/styles/options.json", "/ui/styles/class_select.json",
+				"/ui/styles/game_over.json"});
+		uis = new UILoader().loadUI(new String[] {"/ui/main.xml", "/ui/play.xml", "/ui/credits.xml",
+				"/ui/options.xml", "/ui/class_selection.xml", "/ui/game_over.xml"});
 
 		loadingScreen.getProgress().setPercent(0.85);
 
@@ -118,7 +114,6 @@ public final class Engine {
 
 		nentities.cleanup();
 
-		// controller = UIAtlas.get(UIType.MAIN);
 		currentUI = uis.get(UIType.MAIN);
 		loading = false;
 		gameState = GameState.MENU;
@@ -166,8 +161,8 @@ public final class Engine {
 		return hitShapeAtlas;
 	}
 
-	public Map<UIType, Controller> getUIAtlas() {
-		return UIAtlas;
+	public Map<UIType, UI> getUIS() {
+		return uis;
 	}
 
 	public MusicList getMusicList() {
@@ -218,14 +213,6 @@ public final class Engine {
 		this.gameProperties = gameProperties;
 	}
 
-	public Controller getController() {
-		return controller;
-	}
-
-	public void setController(Controller controller) {
-		this.controller = controller;
-	}
-
 	public Logger getLogger() {
 		return logger;
 	}
@@ -251,6 +238,7 @@ public final class Engine {
 	}
 
 	public void setCurrentUI(UI currentUI) {
+		currentUI.reset();
 		this.currentUI = currentUI;
 	}
 

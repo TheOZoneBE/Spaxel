@@ -3,6 +3,9 @@ package code.ui.logic;
 import code.ui.elements.Element;
 import code.util.UIUtil;
 
+/**
+ * Logic to execute a method every update of an ui element
+ */
 public class OnUpdateLogic implements Logic {
     public void execute(Element element) {
         String method = element.getElementStyle().getProperty("onUpdate");

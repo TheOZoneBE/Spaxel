@@ -23,14 +23,15 @@ public final class StyleRenderer {
 
     private static void renderAnimation(Style style, MasterBuffer buffer) {
         double completion = Double.valueOf(style.getProperty("completion"));
-        SpriteData frame = Engine.getEngine().getAnimationAtlas()
-                .get(style.getProperty("animation")).getFrame(completion);
+        RenderData frame = Engine.getEngine().getAnimationAtlas()
+                .get(style.getProperty("animation")).getDataAt(completion);
         double x = Double.valueOf(style.getProperty("x"));
         double y = Double.valueOf(style.getProperty("y"));
         double rot = Double.valueOf(style.getProperty("rot"));
         double scale = Double.valueOf(style.getProperty("scale"));
 
-        addRenderData(x, y, rot, scale, frame, buffer);
+        // TODO merging of renderdata
+        // addRenderData(x, y, rot, scale, frame, buffer);
     }
 
     private static void renderSprite(Style style, MasterBuffer buffer) {

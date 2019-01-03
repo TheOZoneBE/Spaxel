@@ -1,12 +1,13 @@
 package code.logger;
 
 import code.engine.SystemType;
-
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.LinkedList;
 
 /**
+ * Logger for the time measurements
+ * 
  * Created by theo on 24/06/17.
  */
 public class Logger {
@@ -16,6 +17,13 @@ public class Logger {
     private int avgAmount;
     private int currentAvg;
 
+    /**
+     * Create a new Logger that keeps a certain amount of measurements and calculates rolling
+     * averages.
+     * 
+     * @param cutoff    the amount of measurements to keep
+     * @param avgAmount the amount of measurements to calculate the rolling average with
+     */
     public Logger(int cutoff, int avgAmount) {
         this.cutoff = cutoff;
         this.avgAmount = avgAmount;
@@ -27,6 +35,9 @@ public class Logger {
         }
     }
 
+    /**
+     * Clean the logger up by removing measurements that exceed the cutoff amount
+     */
     public void cleanup() {
         if (cutoff > 0) {
             for (SystemType type : SystemType.values()) {
@@ -40,16 +51,26 @@ public class Logger {
         }
     }
 
+    /**
+     * Register a start of a measurement
+     * 
+     * @param type the type of system the measurement is from
+     */
     public void registerStart(SystemType type) {
         history.get(type).add(new LogResult(System.nanoTime()));
     }
 
+    /**
+     * Register an end of a measurement
+     * 
+     * @param type the type of system the measurement is from
+     */
     public void registerEnd(SystemType type) {
         history.get(type).getLast().setEnd(System.nanoTime());
         rollingSum.put(type, rollingSum.get(type) + history.get(type).getLast().getDifference());
         if (currentAvg == avgAmount) {
-            rollingSum.put(type, rollingSum.get(type)
-                    - history.get(type).get(history.get(type).size() - avgAmount - 1).getDifference());
+            rollingSum.put(type, rollingSum.get(type) - history.get(type)
+                    .get(history.get(type).size() - avgAmount - 1).getDifference());
         }
     }
 

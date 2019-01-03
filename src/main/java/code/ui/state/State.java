@@ -8,10 +8,16 @@ public class State {
     private boolean click;
     private boolean release;
 
+    /**
+     * Create an new State object.
+     */
     public State() {
         super();
     }
 
+    /**
+     * Reset the state
+     */
     public void reset() {
         hover = false;
         click = false;

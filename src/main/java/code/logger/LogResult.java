@@ -1,13 +1,20 @@
 package code.logger;
 
 /**
+ * Represent a log entry of a time measurement
+ * 
  * Created by theo on 24/06/17.
  */
 public class LogResult {
     private long start;
     private long end;
 
-    public LogResult(long start){
+    /**
+     * Create a new LogResult starting at the given time
+     * 
+     * @param start the time to start the logresult
+     */
+    public LogResult(long start) {
         this.start = start;
     }
 
@@ -27,7 +34,7 @@ public class LogResult {
         this.end = end;
     }
 
-    public long getDifference(){
+    public long getDifference() {
         return end - start;
     }
 }

@@ -9,9 +9,19 @@ import code.ui.elements.UIType;
 import code.ui.elements.UI;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+/**
+ * The UILoader is responsible for loading the structure of the different uis in the game
+ */
 public class UILoader extends Loader {
     private static final Logger LOGGER = Logger.getLogger(UILoader.class.getName());
 
+    /**
+     * Load the uis in the given files
+     * 
+     * @param uis a list with paths to the uis
+     * 
+     * @return a map that connect ui type to the correct ui object
+     */
     public Map<UIType, UI> loadUI(String[] uis) {
         try {
             EnumMap<UIType, UI> uiMap = new EnumMap<>(UIType.class);

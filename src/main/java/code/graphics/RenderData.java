@@ -67,6 +67,14 @@ public class RenderData {
         trSc[SCALE_OFFSET + 1] = (float) scale.getValue(1);
     }
 
+    public void applyXScale(double xScale) {
+        trSc[SCALE_OFFSET] *= (float) xScale;
+    }
+
+    public void applyYScale(double yScale) {
+        trSc[SCALE_OFFSET + 1] *= (float) yScale;
+    }
+
     public void setRot(double rot) {
         sinCos[0] = (float) Math.sin(rot);
         sinCos[1] = (float) Math.cos(rot);
@@ -78,5 +86,10 @@ public class RenderData {
 
     public void setColor(int color) {
         sinCos[COLOR_INDEX] = color;
+    }
+
+    public void setSprite(SpriteData sprite) {
+        setTexOffset(sprite.getSpriteProperties());
+        setSpriteSheetID(sprite.getSpritesheetID());
     }
 }

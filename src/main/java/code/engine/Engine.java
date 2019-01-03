@@ -17,11 +17,13 @@ import code.loaders.SpriteDataLoader;
 import code.loaders.SpritesheetLoader;
 import code.loaders.UILoader;
 import code.loaders.StylesheetLoader;
+import code.loaders.AnimationLoader;
 import code.logger.Logger;
 import code.math.VectorD;
 import code.ui.elements.UIType;
 import code.ui.elements.UI;
 import code.ui.styles.Style;
+import code.graphics.animation.Animation;
 
 public final class Engine {
 	private static final Engine engine = new Engine();
@@ -38,6 +40,7 @@ public final class Engine {
 	private Map<String, Map<String, Style>> stylesheets;
 	private Map<String, Spritesheet> spritesheets;
 	private Map<String, SpriteData> spriteAtlas;
+	private Map<String, Animation> animationAtlas;
 	private ItemCatalogue items;
 
 	private UI currentUI;
@@ -73,6 +76,7 @@ public final class Engine {
 		SpriteDataLoader spriteDataLoader = new SpriteDataLoader();
 		spriteAtlas = spriteDataLoader
 				.loadSpriteDatas(new String[] {"/resources/sprite.json", "/resources/font.json"});
+		animationAtlas = AnimationLoader.loadAnimations("/resources/animation.json");
 		loadingScreen = new LoadingScreen();
 	}
 
@@ -244,5 +248,9 @@ public final class Engine {
 
 	public Map<String, Map<String, Style>> getStylesheets() {
 		return stylesheets;
+	}
+
+	public Map<String, Animation> getAnimationAtlas(){
+		return animationAtlas;
 	}
 }

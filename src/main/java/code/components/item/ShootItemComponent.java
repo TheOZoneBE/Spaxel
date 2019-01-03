@@ -11,6 +11,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.ProjectileIndustry;
 import code.math.VectorD;
+import code.engine.Resources;
 
 /**
  * Created by theod on 28-6-2017.
@@ -31,7 +32,7 @@ public abstract class ShootItemComponent extends ItemComponent {
             NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
-            ProjectileIndustry pri = (ProjectileIndustry) Engine.getEngine().getIndustryMap().get(factory);
+            ProjectileIndustry pri = (ProjectileIndustry) Resources.get().getIndustryMap().get(factory);
 
             double offset = (sc.getStacks() - 1) * -RADIAL_STEP;
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
@@ -40,7 +41,7 @@ public abstract class ShootItemComponent extends ItemComponent {
                 double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
                 double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();
                 projectile.addComponent(new VelocityComponent(new VectorD(dx, dy), 0));
-                Engine.getEngine().getNEntityStream().addEntity(projectile);
+                Engine.get().getNEntityStream().addEntity(projectile);
                 offset += RADIAL_OFFSET;
             }
             cc.setCd(cc.getCdAmount());

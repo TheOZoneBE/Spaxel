@@ -2,7 +2,7 @@ package code.components.sprite;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.graphics.SpriteData;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -33,7 +33,7 @@ public class SpriteComponent extends Component {
 
     @JsonSetter("sprite")
     public void setSprite(String spriteName) {
-        this.sprite = Engine.getEngine().getSpriteAtlas().get(spriteName);
+        this.sprite = Resources.get().getSpriteAtlas().get(spriteName);
     }
 
     public double getScale() {

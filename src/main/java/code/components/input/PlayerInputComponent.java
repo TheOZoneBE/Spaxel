@@ -41,8 +41,8 @@ public class PlayerInputComponent extends InputComponent {
     }
 
     private static void handleMoving(NEntity entity) {
-        Keyboard keys = Engine.getEngine().getKeyboard();
-        MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
+        Keyboard keys = Engine.get().getKeyboard();
+        MouseWrapper mouse = Engine.get().getMouseWrapper();
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
@@ -75,7 +75,7 @@ public class PlayerInputComponent extends InputComponent {
         VectorD mousePos = mouse.getPos();
 
         VectorD diff = mousePos
-                .sum(pc.getCoord().sum(Engine.getEngine().getScreenOffset()).multiplicate(-1));
+                .sum(pc.getCoord().sum(Engine.get().getScreenOffset()).multiplicate(-1));
         double rotToGet = diff.angle();
 
         if (rotToGet < 0) {
@@ -87,7 +87,7 @@ public class PlayerInputComponent extends InputComponent {
     }
 
     private static void handleShooting(NEntity entity) {
-        MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
+        MouseWrapper mouse = Engine.get().getMouseWrapper();
         if (mouse.getMouse1().isDown()) {
             PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);
             List<NEntity> items = prc.getItems();

@@ -4,6 +4,7 @@ import code.components.Component;
 import code.components.secondary.SecondaryComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
+import code.engine.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class SecondaryComponentFactory extends ComponentFactory {
     public Component make() {
         List<NEntity> items = new ArrayList<>();
         for (String factory : itemIndustries) {
-            items.add(Engine.getEngine().getIndustryMap().get(factory).produce());
+            items.add(Resources.get().getIndustryMap().get(factory).produce());
         }
         return new SecondaryComponent(items);
     }

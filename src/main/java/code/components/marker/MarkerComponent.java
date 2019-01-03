@@ -9,6 +9,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.math.LineSegment;
 import code.math.VectorD;
+import code.engine.Resources;
 
 /**
  * Created by theo on 5/01/18.
@@ -22,21 +23,21 @@ public class MarkerComponent extends Component {
 
     public MarkerComponent(String markerIndustry) {
         super(ComponentType.MARKER);
-        this.marker = Engine.getEngine().getIndustryMap().get(markerIndustry).produce();
+        this.marker = Resources.get().getIndustryMap().get(markerIndustry).produce();
     }
 
     public void update(NEntity entity) {
-        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
+        NEntity player = Engine.get().getNEntityStream().getPlayer();
         PositionComponent playerPos = (PositionComponent) player.getComponent(ComponentType.POSITION);
         PositionComponent entityPos = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         RenderComponent mrc = (RenderComponent) marker.getComponent(ComponentType.RENDER);
-        VectorD renderPos = entityPos.getCoord().sum(Engine.getEngine().getScreenOffset());
+        VectorD renderPos = entityPos.getCoord().sum(Engine.get().getScreenOffset());
         if (renderPos.getValue(0) < -MARKER_THRESHOLD || renderPos.getValue(0) > Constants.GAME_WIDTH + MARKER_THRESHOLD
                 || renderPos.getValue(1) < -MARKER_THRESHOLD
                 || renderPos.getValue(1) > Constants.GAME_HEIGHT + MARKER_THRESHOLD) {
             VectorD intersect = getIntersection(new VectorD(MARKER_OFFSET, MARKER_OFFSET),
                     new VectorD(Constants.GAME_WIDTH - MARKER_OFFSET, Constants.GAME_HEIGHT - MARKER_OFFSET),
-                    playerPos.getCoord().sum(Engine.getEngine().getScreenOffset()), renderPos);
+                    playerPos.getCoord().sum(Engine.get().getScreenOffset()), renderPos);
 
             if (intersect != null) {
                 mrc.setVisible(true);
@@ -69,12 +70,12 @@ public class MarkerComponent extends Component {
 
     @Override
     public void addCascade(NEntity entity) {
-        Engine.getEngine().getNEntityStream().addEntity(marker);
+        Engine.get().getNEntityStream().addEntity(marker);
     }
 
     @Override
     public void removeCascade() {
-        Engine.getEngine().getNEntityStream().removeEntity(marker);
+        Engine.get().getNEntityStream().removeEntity(marker);
     }
 
     private static VectorD getIntersection(VectorD leftTop, VectorD rightBot, VectorD playerPos, VectorD enemyPos) {

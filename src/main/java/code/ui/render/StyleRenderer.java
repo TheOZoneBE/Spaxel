@@ -4,7 +4,7 @@ import code.ui.styles.Style;
 import code.graphics.MasterBuffer;
 import code.graphics.SpriteData;
 import code.math.VectorD;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 
@@ -23,8 +23,8 @@ public final class StyleRenderer {
 
     private static void renderAnimation(Style style, MasterBuffer buffer) {
         double completion = Double.valueOf(style.getProperty("completion"));
-        RenderData frame = Engine.getEngine().getAnimationAtlas()
-                .get(style.getProperty("animation")).getDataAt(completion);
+        RenderData frame = Resources.get().getAnimationAtlas().get(style.getProperty("animation"))
+                .getDataAt(completion);
         double x = Double.valueOf(style.getProperty("x"));
         double y = Double.valueOf(style.getProperty("y"));
         double rot = Double.valueOf(style.getProperty("rot"));
@@ -35,7 +35,7 @@ public final class StyleRenderer {
     }
 
     private static void renderSprite(Style style, MasterBuffer buffer) {
-        SpriteData sprite = Engine.getEngine().getSpriteAtlas().get(style.getProperty("sprite"));
+        SpriteData sprite = Resources.get().getSpriteAtlas().get(style.getProperty("sprite"));
         double x = Double.valueOf(style.getProperty("x"));
         double y = Double.valueOf(style.getProperty("y"));
         double rot = Double.valueOf(style.getProperty("rot"));

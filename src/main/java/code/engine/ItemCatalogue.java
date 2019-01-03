@@ -40,7 +40,7 @@ public class ItemCatalogue {
 
     public NEntity produceRandom(List<ItemProperties> options) {
         ItemProperties chosen = random.choose(options);
-        return Engine.getEngine().getIndustryMap().get(chosen.getIndustry()).produce();
+        return Resources.get().getIndustryMap().get(chosen.getIndustry()).produce();
     }
 
     public NEntity produceRandom(ItemFilter... filters) {

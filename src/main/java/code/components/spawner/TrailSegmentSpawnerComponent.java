@@ -5,7 +5,7 @@ import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.engine.NEntity;
 import code.factories.entities.TrailSegmentIndustry;
 
@@ -23,7 +23,7 @@ public class TrailSegmentSpawnerComponent extends SpawnerComponent {
     public List<NEntity> spawn(NEntity entity) {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         ParticleComponent pac = (ParticleComponent) entity.getComponent(ComponentType.PARTICLE);
-        TrailSegmentIndustry tsi = (TrailSegmentIndustry) Engine.getEngine().getIndustryMap()
+        TrailSegmentIndustry tsi = (TrailSegmentIndustry) Resources.get().getIndustryMap()
                 .get("trail_segment_industry");
         return Collections.singletonList(
                 tsi.produce((PositionComponent) pc.copy(), new SpriteComponent(pac.getParticle(), pac.getScale())));

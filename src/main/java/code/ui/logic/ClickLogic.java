@@ -10,6 +10,6 @@ public class ClickLogic implements Logic {
 
     public void execute(Element element) {
         element.getState().setClick(element.getState().isHover()
-                && Engine.getEngine().getMouseWrapper().getMouse1().isDown());
+                && Engine.get().getMouseWrapper().getMouse1().isDown());
     }
 }

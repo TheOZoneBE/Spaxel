@@ -6,6 +6,7 @@ import code.components.death.DeathType;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.ui.elements.UIType;
+import code.engine.Resources;
 
 /**
  * Created by theo on 24/06/17.
@@ -19,9 +20,9 @@ public class PlayerDeathComponent extends DeathComponent {
         // add particle effect
         // show game over
         // TODO revisit maybe
-        Engine.getEngine().stopGame();
-        Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.GAME_OVER));
-        Engine.getEngine().setGameState(Engine.GameState.MENU);
+        Engine.get().stopGame();
+        Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.GAME_OVER));
+        Engine.get().setGameState(Engine.GameState.MENU);
     }
 
     public Component copy() {

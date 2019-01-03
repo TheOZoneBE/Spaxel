@@ -35,7 +35,7 @@ public class ItemViewFactory {
         base.setSprite(new SpriteComponent(sc.getSprite(), ITEM_SPRITE_SCALE));
         UIBar cooldown = new UIBar();
         cooldown.setSprite(
-                new SpriteComponent(Engine.getEngine().getSpriteAtlas().get("cooldown_bar"), ITEM_SPRITE_SCALE));
+                new SpriteComponent(Resources.get().getSpriteAtlas().get("cooldown_bar"), ITEM_SPRITE_SCALE));
         cooldown.setWidth(COOLDOWN_WIDTH);
         cooldown.setPercent((double) cc.getCd() / cc.getCdAmount());
         cooldown.setPosition(new PositionComponent(pos.sum(new VectorD(-HALF_COOLDOWN_WIDTH, 0)), 1));

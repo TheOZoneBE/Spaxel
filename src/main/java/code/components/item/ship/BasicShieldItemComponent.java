@@ -29,7 +29,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
-            Set<NEntity> projectiles = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HIT);
+            Set<NEntity> projectiles = Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
             for (NEntity p : projectiles) {
                 PositionComponent ppc = (PositionComponent) p.getComponent(ComponentType.POSITION);
                 NEntity pParent = ((LinkComponent) p.getComponent(ComponentType.LINK)).getLink();
@@ -37,7 +37,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
                     HitComponent phc = (HitComponent) p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity) {
                         capacity -= phc.getDamage();
-                        Engine.getEngine().getNEntityStream().removeEntity(p);
+                        Engine.get().getNEntityStream().removeEntity(p);
                     } else {
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;

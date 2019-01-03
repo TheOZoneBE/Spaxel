@@ -22,7 +22,7 @@ public class MarkerSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> markers =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.MARKER);
+                Engine.get().getNEntityStream().getEntities(ComponentType.MARKER);
         for (NEntity marker : markers) {
             MarkerComponent mc = (MarkerComponent) marker.getComponent(ComponentType.MARKER);
             mc.update(marker);

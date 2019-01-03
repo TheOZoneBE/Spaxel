@@ -92,10 +92,10 @@ public class UpdateRunner implements Runnable {
      * Update the necessary systems depending on the gamestate of the engine
      */
     public void updateSystems() {
-        Engine.getEngine().getMouseWrapper().update();
-        Engine.getEngine().getKeyboard().update();
+        Engine.get().getMouseWrapper().update();
+        Engine.get().getKeyboard().update();
 
-        if (Engine.getEngine().getGameState() != Engine.GameState.PLAY) {
+        if (Engine.get().getGameState() != Engine.GameState.PLAY) {
             systems.get(SystemType.SOUND).update();
             systems.get(SystemType.UI).update();
         } else {
@@ -115,11 +115,11 @@ public class UpdateRunner implements Runnable {
             update(SystemType.UI);
             update(SystemType.DIFFICULTY);
             update(SystemType.MARKER);
-            Engine.getEngine().getGameProperties().addTime(Constants.NS_PER_TICK);
+            Engine.get().getGameProperties().addTime(Constants.NS_PER_TICK);
         }
-        Engine.getEngine().getNEntityStream().cleanup();
-        if (Engine.getEngine().getGameProperties().isLogging()) {
-            Engine.getEngine().getLogger().cleanup();
+        Engine.get().getNEntityStream().cleanup();
+        if (Engine.get().getGameProperties().isLogging()) {
+            Engine.get().getLogger().cleanup();
         }
     }
 
@@ -129,10 +129,10 @@ public class UpdateRunner implements Runnable {
      * @param type the type of the system to update
      */
     public void update(SystemType type) {
-        if (Engine.getEngine().getGameProperties().isLogging()) {
-            Engine.getEngine().getLogger().registerStart(type);
+        if (Engine.get().getGameProperties().isLogging()) {
+            Engine.get().getLogger().registerStart(type);
             systems.get(type).update();
-            Engine.getEngine().getLogger().registerEnd(type);
+            Engine.get().getLogger().registerEnd(type);
         } else {
             systems.get(type).update();
         }

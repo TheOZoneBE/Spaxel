@@ -19,7 +19,7 @@ public class AISystem extends GameSystem {
 	}
 
 	public void update() {
-		Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(ComponentType.AI);
+		Set<NEntity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.AI);
 
 		for (NEntity e : enemies) {
 			AIComponent aic = (AIComponent) e.getComponent(ComponentType.AI);

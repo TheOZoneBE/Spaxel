@@ -28,9 +28,9 @@ public class HitSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.HIT);
+                Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
         Set<NEntity> colliders =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.DAMAGE);
+                Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
         for (NEntity entity : entities) {
             checkColliders(entity, colliders);
         }

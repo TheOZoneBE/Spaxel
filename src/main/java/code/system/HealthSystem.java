@@ -23,14 +23,14 @@ public class HealthSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.HEALTH);
+                Engine.get().getNEntityStream().getEntities(ComponentType.HEALTH);
         for (NEntity e : entities) {
             if (((HealthComponent) e.getComponent(ComponentType.HEALTH)).getHealth() < 0) {
                 DeathComponent dc = (DeathComponent) e.getComponent(ComponentType.DEATH);
                 if (dc != null) {
                     dc.die(e);
                 }
-                Engine.getEngine().getNEntityStream().removeEntity(e);
+                Engine.get().getNEntityStream().removeEntity(e);
             }
         }
     }

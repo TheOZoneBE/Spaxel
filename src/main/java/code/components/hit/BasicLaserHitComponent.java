@@ -27,7 +27,7 @@ public class BasicLaserHitComponent extends HitComponent {
                         sc.getScale()),
                 "laser_hit_particle_spawner_industry");
 
-        Engine.getEngine().getNEntityStream().removeEntity(entity);
+        Engine.get().getNEntityStream().removeEntity(entity);
     }
 
     public Component copy() {

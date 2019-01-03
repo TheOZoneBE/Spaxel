@@ -23,7 +23,7 @@ public class ExperienceSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.EXPERIENCE);
+                Engine.get().getNEntityStream().getEntities(ComponentType.EXPERIENCE);
         for (NEntity entity : entities) {
             ExperienceComponent ec =
                     (ExperienceComponent) entity.getComponent(ComponentType.EXPERIENCE);

@@ -17,4 +17,18 @@ public class Animation {
         }
         return data;
     }
+
+    /**
+     * @return the animators
+     */
+    public List<Animator> getAnimators() {
+        return animators;
+    }
+
+    /**
+     * @param animators the animators to set
+     */
+    public void setAnimators(List<Animator> animators) {
+        this.animators = animators;
+    }
 }

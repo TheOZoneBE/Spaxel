@@ -63,10 +63,22 @@ public final class GLUtil {
         return window;
     }
 
-    /**
-     * Initialize a new OpenGL context
-     */
     public static void initGLContext() {
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, Constants.GL_MAJOR_V);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, Constants.GL_MINOR_V);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        long window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+                Constants.DISPLAY_NAME, NULL, NULL);
+
+        glfwMakeContextCurrent(window);
+    }
+
+    /**
+     * Initialize the rendering properties of this OpenGL context
+     */
+    public static void initGLRendering() {
         GL.createCapabilities();
 
         glClearColor(0.0F, 0.0F, 0.0F, 1.0F);

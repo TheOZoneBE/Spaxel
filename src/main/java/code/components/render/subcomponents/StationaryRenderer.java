@@ -15,7 +15,7 @@ public class StationaryRenderer extends Renderer {
     public void apply(RenderData data, NEntity entity) {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
-        VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset());
+        VectorD pos = pc.getCoord().sum(Engine.get().getScreenOffset());
 
         data.setPos(pos);
 

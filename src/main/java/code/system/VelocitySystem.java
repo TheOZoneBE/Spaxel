@@ -24,7 +24,7 @@ public class VelocitySystem extends GameSystem {
 
     public void update() {
         Set<NEntity> nEntities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.VELOCITY);
+                Engine.get().getNEntityStream().getEntities(ComponentType.VELOCITY);
         for (NEntity ne : nEntities) {
             PositionComponent pc = (PositionComponent) ne.getComponent(ComponentType.POSITION);
             VelocityComponent vc = (VelocityComponent) ne.getComponent(ComponentType.VELOCITY);

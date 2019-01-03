@@ -27,7 +27,7 @@ public class BasicEnemyAIComponent extends AIComponent {
     }
 
     public void execute(NEntity entity) {
-        PositionComponent playerPos = (PositionComponent) Engine.getEngine().getNEntityStream().getPlayer()
+        PositionComponent playerPos = (PositionComponent) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.POSITION);
 
         ActorComponent ac = (ActorComponent) entity.getComponent(ComponentType.ACTOR);

@@ -9,13 +9,14 @@ import code.math.MatrixD;
 import code.ui.elements.Element;
 import code.ui.styles.Style;
 import code.util.MatrixUtil;
+import code.engine.Resources;
 
 public class HoverLogic implements Logic {
     public void execute(Element element) {
         Style style = element.getElementStyle();
         if (style.contains("hit-shape")) {
             HitShape hitbox =
-                    Engine.getEngine().getHitShapeAtlas().get(style.getProperty("hit-shape"));
+                    Resources.get().getHitShapeAtlas().get(style.getProperty("hit-shape"));
             if (style.getProperty("x") == null) {
                 int i = 0;
                 System.out.println(style.getProperties());
@@ -29,7 +30,7 @@ public class HoverLogic implements Logic {
             MatrixD transform = MatrixUtil.getTransformationMatrix(new VectorD(x, y), rot,
                     new VectorD(width, height));
 
-            MouseWrapper mouse = Engine.getEngine().getMouseWrapper();
+            MouseWrapper mouse = Engine.get().getMouseWrapper();
             int mouseX = mouse.getX();
             int mouseY = mouse.getY();
 

@@ -26,7 +26,7 @@ public class MusicList {
     public Music getRandomSong() {
         Map<Integer, Music> probabilityMap = new HashMap<>();
         int acc = 0;
-        int time = Engine.getEngine().getGameProperties().getGameTime();
+        int time = Engine.get().getGameProperties().getGameTime();
         for (Music m : music.values()) {
             if (!alreadyPlayed.contains(m)) {
                 if (time < 600) {

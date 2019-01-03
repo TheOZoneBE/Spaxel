@@ -13,6 +13,7 @@ import code.math.VectorD;
 import code.util.EntityUtil;
 import code.util.SpaxelRandom;
 import java.util.Set;
+import code.engine.Resources;
 
 /**
  * The DifficultySystem is responsible for spawning new enemies based on the current difficulty
@@ -47,13 +48,13 @@ public class DifficultySystem extends GameSystem {
         if (nextSpawn > 0) {
             nextSpawn--;
         }
-        Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(EntityType.ENEMY);
-        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
+        Set<NEntity> enemies = Engine.get().getNEntityStream().getEntities(EntityType.ENEMY);
+        NEntity player = Engine.get().getNEntityStream().getPlayer();
         PositionComponent playerPos =
                 (PositionComponent) player.getComponent(ComponentType.POSITION);
 
         if (nextSpawn == 0 && enemies.size() < spawnCap) {
-            EnemyIndustry ei = (EnemyIndustry) Engine.getEngine().getIndustryMap()
+            EnemyIndustry ei = (EnemyIndustry) Resources.get().getIndustryMap()
                     .get(rand.choose(enemyIndustries));
             // entity settings
             int xOffset = rand.choose(1, -1) * rand.between(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE);
@@ -74,7 +75,7 @@ public class DifficultySystem extends GameSystem {
                     ComponentType.SHIP);
 
             // Add entity
-            Engine.getEngine().getNEntityStream().addEntity(entity);
+            Engine.get().getNEntityStream().addEntity(entity);
             // update difficulty
             updateDifficulty();
         }
@@ -84,7 +85,7 @@ public class DifficultySystem extends GameSystem {
      * Update the difficulty based on the time
      */
     public void updateDifficulty() {
-        int time = Engine.getEngine().getGameProperties().getGameTime();
+        int time = Engine.get().getGameProperties().getGameTime();
         nextSpawn =
                 time < MAX_SPAWN_TIME * TICKS_INA_SECOND ? MAX_SPAWN_TIME * TICKS_INA_SECOND - time
                         : TICKS_INA_SECOND;

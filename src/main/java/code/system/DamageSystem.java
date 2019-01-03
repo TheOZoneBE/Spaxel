@@ -24,7 +24,7 @@ public class DamageSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.DAMAGE);
+                Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
         for (NEntity e : entities) {
             DamageComponent dc = (DamageComponent) e.getComponent(ComponentType.DAMAGE);
             HealthComponent hc = (HealthComponent) e.getComponent(ComponentType.HEALTH);

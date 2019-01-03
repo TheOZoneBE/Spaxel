@@ -22,7 +22,7 @@ public class CooldownSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.COOLDOWN);
+                Engine.get().getNEntityStream().getEntities(ComponentType.COOLDOWN);
         for (NEntity entity : entities) {
             CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
             cc.setCd(cc.getCd() == 0 ? 0 : cc.getCd() - 1);

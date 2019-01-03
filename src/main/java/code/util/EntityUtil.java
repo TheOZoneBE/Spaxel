@@ -8,7 +8,7 @@ import code.components.inventory.InventoryComponent;
 import code.components.item.ItemComponent;
 import code.components.item.ItemType;
 import code.components.link.LinkComponent;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.engine.NEntity;
 
 /**
@@ -52,8 +52,7 @@ public final class EntityUtil {
             ComponentType ctype) {
         InventoryComponent ic = (InventoryComponent) entity.getComponent(ctype);
         for (int i = 0; i < number; i++) {
-            NEntity item =
-                    Engine.getEngine().getItems().produceRandom(prop -> prop.getType() == type);
+            NEntity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
             ic.addItem(item);
             item.addComponent(new LinkComponent(entity));
         }

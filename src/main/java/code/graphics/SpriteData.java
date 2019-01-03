@@ -1,6 +1,6 @@
 package code.graphics;
 
-import code.engine.Engine;
+import code.engine.Resources;
 import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -68,7 +68,7 @@ public class SpriteData {
 
 	@JsonSetter("sheetName")
 	public void setSpritesheet(String sheetname) {
-		this.spritesheet = Engine.getEngine().getSpritesheets().get(sheetname);
+		this.spritesheet = Resources.get().getSpritesheets().get(sheetname);
 	}
 
 	@JsonSetter("color")

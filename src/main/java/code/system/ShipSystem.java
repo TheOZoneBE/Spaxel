@@ -23,7 +23,7 @@ public class ShipSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.SHIP);
+                Engine.get().getNEntityStream().getEntities(ComponentType.SHIP);
         for (NEntity entity : entities) {
             ShipComponent sc = (ShipComponent) entity.getComponent(ComponentType.SHIP);
             for (NEntity item : sc.getItems()) {

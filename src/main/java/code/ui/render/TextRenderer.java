@@ -2,7 +2,7 @@ package code.ui.render;
 
 import java.util.List;
 import java.util.ArrayList;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.graphics.MasterBuffer;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
@@ -58,13 +58,13 @@ public final class TextRenderer {
                     c = line.substring(i, i + 1);
                 }
                 characters.add(new Character(
-                        Engine.getEngine().getSpriteAtlas().get(line.substring(start, i))));
+                        Resources.get().getSpriteAtlas().get(line.substring(start, i))));
 
             } else if (c.equals(SPACE)) {
                 characters.add(new Character(SPACING));
 
             } else {
-                characters.add(new Character(Engine.getEngine().getSpriteAtlas().get(c)));
+                characters.add(new Character(Resources.get().getSpriteAtlas().get(c)));
             }
             i++;
 

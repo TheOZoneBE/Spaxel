@@ -29,7 +29,7 @@ public class SlowingLaserHitComponent extends HitComponent {
 
         addEffect(victim, "slow_effect_industry");
 
-        Engine.getEngine().getNEntityStream().removeEntity(entity);
+        Engine.get().getNEntityStream().removeEntity(entity);
     }
 
     public Component copy() {

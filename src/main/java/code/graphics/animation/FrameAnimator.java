@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.engine.Engine;
+import code.engine.Resources;
 import code.graphics.RenderData;
 import code.graphics.SpriteData;
 
@@ -16,9 +16,9 @@ public class FrameAnimator extends Animator {
         SpriteData frame;
         if (numFrames != 1) {
             int frameNumber = (int) Math.round(percentage * (numFrames - 1));
-            frame = Engine.getEngine().getSpriteAtlas().get(spriteBase + "_" + frameNumber);
+            frame = Resources.get().getSpriteAtlas().get(spriteBase + "_" + frameNumber);
         } else {
-            frame = Engine.getEngine().getSpriteAtlas().get(spriteBase);
+            frame = Resources.get().getSpriteAtlas().get(spriteBase);
         }
 
         data.setSprite(frame);

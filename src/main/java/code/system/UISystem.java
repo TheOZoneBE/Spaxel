@@ -16,6 +16,6 @@ public class UISystem extends GameSystem {
 	}
 
 	public void update() {
-		Engine.getEngine().getCurrentUI().update();
+		Engine.get().getCurrentUI().update();
 	}
 }

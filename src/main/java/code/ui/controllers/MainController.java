@@ -3,6 +3,7 @@ package code.ui.controllers;
 import code.Game;
 import code.engine.Engine;
 import code.ui.elements.UIType;
+import code.engine.Resources;
 
 public final class MainController {
 
@@ -11,7 +12,7 @@ public final class MainController {
 	 * starts a new game
 	 */
 	public static void startGame() {
-		Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.CLASS_SELECTION));
+		Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.CLASS_SELECTION));
 	}
 
 	/*
@@ -25,14 +26,14 @@ public final class MainController {
 	 * opens up options
 	 */
 	public static void options() {
-		Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.OPTIONS));
+		Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.OPTIONS));
 	}
 
 	/*
 	 * opens up credits
 	 */
 	public static void credits() {
-		Engine.getEngine().setCurrentUI(Engine.getEngine().getUIS().get(UIType.CREDITS));
+		Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.CREDITS));
 	}
 
 	public static void quit() {

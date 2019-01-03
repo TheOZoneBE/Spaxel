@@ -29,9 +29,9 @@ public class EquipSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.EQUIP);
+                Engine.get().getNEntityStream().getEntities(ComponentType.EQUIP);
 
-        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
+        NEntity player = Engine.get().getNEntityStream().getPlayer();
 
         for (NEntity entity : entities) {
             CollisionComponent cc =

@@ -2,7 +2,7 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.ship.ShipComponent;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.engine.NEntity;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ShipComponentFactory extends ComponentFactory {
     public Component make() {
         List<NEntity> items = new ArrayList<>();
         for (String factory : itemIndustries) {
-            items.add(Engine.getEngine().getIndustryMap().get(factory).produce());
+            items.add(Resources.get().getIndustryMap().get(factory).produce());
         }
         return new ShipComponent(items);
     }

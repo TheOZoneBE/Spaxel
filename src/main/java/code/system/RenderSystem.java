@@ -6,7 +6,7 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
-import code.engine.LoadingScreen;
+import code.engine.Resources;
 import code.engine.NEntity;
 import code.engine.SystemType;
 import code.graphics.MasterBuffer;
@@ -25,37 +25,36 @@ public class RenderSystem extends GameSystem {
 
 	public RenderSystem() {
 		super(SystemType.RENDER);
-		bufferBuffer = new MasterBuffer(Engine.getEngine().getSpritesheets());
+		bufferBuffer = new MasterBuffer(Resources.get().getSpritesheets());
 		master = new MasterRenderer();
 	}
 
-	public void renderloading(LoadingScreen loading) {
-		bufferBuffer.clear();
-		loading.render(bufferBuffer);
-		master.render(bufferBuffer);
-	}
+	/*
+	 * public void renderloading(LoadingScreen loading) { bufferBuffer.clear();
+	 * loading.render(bufferBuffer); master.render(bufferBuffer); }
+	 */
 
 	public void update() {
-		MouseWrapper mouseWrapper = Engine.getEngine().getMouseWrapper();
+		MouseWrapper mouseWrapper = Engine.get().getMouseWrapper();
 		bufferBuffer.clear();
-		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
+		if (Engine.get().getGameState() == Engine.GameState.PLAY
+				|| Engine.get().getGameState() == Engine.GameState.PAUSE) {
 			VectorD mousePos = new VectorD(mouseWrapper.getX(), mouseWrapper.getY());
-			VectorD difference = mousePos.diff(Engine.getEngine().getCursorFollow());
+			VectorD difference = mousePos.diff(Engine.get().getCursorFollow());
 			if (difference.length() > Constants.MOUSE_FOLLOW_CUTOFF) {
 				difference = difference.multiplicate(Constants.MOUSE_FOLLOW_MULTIPLIER);
 			}
-			Engine.getEngine()
-					.setCursorFollow(Engine.getEngine().getCursorFollow().sum(difference));
+			Engine.get().setCursorFollow(Engine.get().getCursorFollow().sum(difference));
 
-			NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
+			NEntity player = Engine.get().getNEntityStream().getPlayer();
 			PositionComponent playerPos =
 					(PositionComponent) player.getComponent(ComponentType.POSITION);
 
-			Engine.getEngine().setScreenOffset(calculateScreenOffset(playerPos));
+			Engine.get().setScreenOffset(calculateScreenOffset(playerPos));
 		}
 		renderEntities();
 
-		if (Engine.getEngine().getGameProperties().isDebug()) {
+		if (Engine.get().getGameProperties().isDebug()) {
 			DebugRenderer.renderDebug(bufferBuffer);
 		}
 		master.render(bufferBuffer);
@@ -64,16 +63,16 @@ public class RenderSystem extends GameSystem {
 	private VectorD calculateScreenOffset(PositionComponent playerPos) {
 		VectorD dim = new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 		return dim.multiplicate(DIM_REDUCTION)
-				.diff(Engine.getEngine().getCursorFollow().multiplicate(MOUSE_POS_REDUCTION))
+				.diff(Engine.get().getCursorFollow().multiplicate(MOUSE_POS_REDUCTION))
 				.diff(playerPos.getCoord());
 	}
 
 	public void renderEntities() {
 		Set<NEntity> toRender =
-				Engine.getEngine().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
+				Engine.get().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
 		for (NEntity ne : toRender) {
 			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
-		Engine.getEngine().getCurrentUI().render(bufferBuffer);
+		Engine.get().getCurrentUI().render(bufferBuffer);
 	}
 }

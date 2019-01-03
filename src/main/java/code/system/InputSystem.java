@@ -22,7 +22,7 @@ public class InputSystem extends GameSystem {
 
     public void update() {
         Set<NEntity> entities =
-                Engine.getEngine().getNEntityStream().getEntities(ComponentType.INPUT);
+                Engine.get().getNEntityStream().getEntities(ComponentType.INPUT);
         for (NEntity entity : entities) {
             ((InputComponent) entity.getComponent(ComponentType.INPUT)).update(entity);
         }

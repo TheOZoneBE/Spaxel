@@ -22,7 +22,7 @@ public final class DebugRenderer {
 
     public static void renderDebug(MasterBuffer buffer) {
         renderEntityStream(buffer);
-        if (Engine.getEngine().getGameProperties().isLogging()) {
+        if (Engine.get().getGameProperties().isLogging()) {
             renderLogger(buffer);
         }
     }
@@ -31,7 +31,7 @@ public final class DebugRenderer {
         int x = 100;
         int y = 700;
         for (ComponentType type : ComponentType.values()) {
-            int size = Engine.getEngine().getNEntityStream().getEntities(type).size();
+            int size = Engine.get().getNEntityStream().getEntities(type).size();
             UILabel temp = new UILabel();
             temp.setText(type.getName() + ": " + size);
             temp.setPosition(new PositionComponent(new VectorD(x, y), 0));
@@ -45,7 +45,7 @@ public final class DebugRenderer {
     private static void renderLogger(MasterBuffer buffer) {
         int x = 400;
         int y = 500;
-        Logger logger = Engine.getEngine().getLogger();
+        Logger logger = Engine.get().getLogger();
         if (logger.getCurrentAvg() > 0) {
             for (SystemType type : SystemType.values()) {
                 if (type != SystemType.RENDER) {
@@ -65,9 +65,9 @@ public final class DebugRenderer {
     }
 
     public void renderDots(MasterBuffer buffer) {
-		SpriteData dot = Engine.getEngine().getSpriteAtlas().get("dot");
-		VectorD origin = new VectorD(Engine.getEngine().getScreenOffset().getValue(0) % 64,
-				Engine.getEngine().getScreenOffset().getValue(1) % 64);
+		SpriteData dot = Resources.get().getSpriteAtlas().get("dot");
+		VectorD origin = new VectorD(Engine.get().getScreenOffset().getValue(0) % 64,
+				Engine.get().getScreenOffset().getValue(1) % 64);
 		for (int i = 0; i < Constants.GAME_WIDTH; i += 64) {
 			for (int j = 0; j < Constants.GAME_HEIGHT; j += 64) {
 				RenderData data = new RenderData();

@@ -3,7 +3,7 @@ package code.factories.components;
 import code.collision.HitShape;
 import code.components.collision.CollisionComponent;
 import code.components.Component;
-import code.engine.Engine;
+import code.engine.Resources;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
@@ -31,6 +31,6 @@ public class CollisionComponentFactory extends ComponentFactory {
 
     @JsonSetter("hitShape")
     public void setHitShape(String hitShapeName) {
-        this.hitShape = Engine.getEngine().getHitShapeAtlas().get(hitShapeName);
+        this.hitShape = Resources.get().getHitShapeAtlas().get(hitShapeName);
     }
 }

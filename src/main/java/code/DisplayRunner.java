@@ -4,15 +4,14 @@ import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
-
 import code.engine.Engine;
 import code.input.MouseWrapper;
 import code.system.RenderSystem;
 import org.lwjgl.glfw.GLFWErrorCallback;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import code.util.GLUtil;
+import code.engine.Resources;
 
 public class DisplayRunner implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(DisplayRunner.class.getName());
@@ -42,7 +41,7 @@ public class DisplayRunner implements Runnable {
         }
 
         // init gl context
-        GLUtil.initGLContext();
+        GLUtil.initGLRendering();
 
         LOGGER.log(Level.INFO, "OpenGL: {0}", glGetString(GL_VERSION));
 
@@ -50,18 +49,19 @@ public class DisplayRunner implements Runnable {
         MouseWrapper mouseWrapper = new MouseWrapper(window);
         glfwSetCursorPosCallback(window, mouseWrapper);
 
-        Engine.getEngine().setMouseWrapper(mouseWrapper);
-        Engine.getEngine().setWindow(window);
+        Engine.get().setMouseWrapper(mouseWrapper);
+        Engine.get().setWindow(window);
     }
 
     public void run() {
         initialize();
 
-        Engine.getEngine().initialize();
+        Resources.get().initLoadingResources();
 
         renderSystem = new RenderSystem();
 
-        Thread load = new Thread(() -> Engine.getEngine().startLoading());
+
+        Thread load = new Thread(() -> Resources.get().startLoading());
         load.start();
 
         long start;
@@ -73,7 +73,7 @@ public class DisplayRunner implements Runnable {
             start = System.nanoTime();
             render();
             deltatime = System.nanoTime() - start;
-            Engine.getEngine().setUpdateTime((double) deltatime / Constants.NS_PER_TICK);
+            Engine.get().setUpdateTime((double) deltatime / Constants.NS_PER_TICK);
         }
     }
 
@@ -81,8 +81,9 @@ public class DisplayRunner implements Runnable {
         // clear the framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        if (Engine.getEngine().getGameState() == Engine.GameState.LOAD) {
-            renderSystem.renderloading(Engine.getEngine().getLoadingScreen());
+        if (Engine.get().getGameState() == Engine.GameState.LOAD) {
+            // renderSystem.renderloading(Engine.get().getLoadingScreen());
+            renderSystem.update();
         } else {
             renderSystem.update();
         }

@@ -26,7 +26,7 @@ public class SpawnerSystem extends GameSystem {
 
     public void update() {
         // update all spawners and acquire particles
-        NEntityStream nentities = Engine.getEngine().getNEntityStream();
+        NEntityStream nentities = Engine.get().getNEntityStream();
         Set<NEntity> spawners = nentities.getEntities(ComponentType.SPAWNER);
         List<NEntity> newParticles = new ArrayList<>();
         for (NEntity ne : spawners) {

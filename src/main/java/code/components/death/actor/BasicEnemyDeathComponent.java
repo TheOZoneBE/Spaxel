@@ -12,6 +12,7 @@ import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
+import code.engine.Resources;
 import code.engine.NEntity;
 import code.factories.entities.SpawnerIndustry;
 import code.util.SpriteDataUtil;
@@ -36,7 +37,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
     }
 
     public void die(NEntity entity) {
-        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap()
+        SpawnerIndustry hpsi = (SpawnerIndustry) Resources.get().getIndustryMap()
                 .get("enemy_death_particle_spawner_industry");
         SpriteComponent esc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
         PositionComponent epc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
@@ -44,16 +45,16 @@ public class BasicEnemyDeathComponent extends DeathComponent {
                 SpriteDataUtil.getRandomPart(esc.getSprite(), DEATH_PARTICLE_SIZE, DEATH_PARTICLE_SIZE),
                 esc.getScale());
         // add particle effect
-        Engine.getEngine().getNEntityStream().addEntity(hpsi.produce(epc, pac));
+        Engine.get().getNEntityStream().addEntity(hpsi.produce(epc, pac));
 
-        Engine.getEngine().getGameProperties().addScore(BASIC_ENEMY_SCORE);
+        Engine.get().getGameProperties().addScore(BASIC_ENEMY_SCORE);
         // add experience
-        NEntity player = Engine.getEngine().getNEntityStream().getPlayer();
+        NEntity player = Engine.get().getNEntityStream().getPlayer();
         ExperienceComponent exp = (ExperienceComponent) player.getComponent(ComponentType.EXPERIENCE);
         exp.setXp(exp.getXp() + BASIC_ENEMY_XP_GAIN);
         // chance of dropping item
         if (random.pass(BASIC_ENEMY_DROPRATE)) {
-            NEntity item = Engine.getEngine().getItems()
+            NEntity item = Resources.get().getItems()
                     .produceRandom(prop -> EntityUtil.getAllItemNames(entity).contains(prop.getName()));
             item.addComponent(new EquipComponent());
             item.addComponent(new AgeComponent(ITEM_LIFETIME, ITEM_LIFETIME));
@@ -61,7 +62,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(entity.getComponent(ComponentType.VELOCITY));
             item.addComponent(entity.getComponent(ComponentType.RENDER));
             item.addComponent(new DroppedItemAIComponent());
-            Engine.getEngine().getNEntityStream().addEntity(item);
+            Engine.get().getNEntityStream().addEntity(item);
         }
     }
 

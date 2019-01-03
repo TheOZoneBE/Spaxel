@@ -29,7 +29,7 @@ public class DisruptLaserHitComponent extends HitComponent {
 
         addEffect(victim, "disable_move_effect_industry");
 
-        Engine.getEngine().getNEntityStream().removeEntity(entity);
+        Engine.get().getNEntityStream().removeEntity(entity);
     }
 
     public Component copy() {

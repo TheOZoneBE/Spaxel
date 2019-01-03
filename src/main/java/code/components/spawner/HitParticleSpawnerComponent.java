@@ -7,12 +7,11 @@ import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.engine.NEntity;
 import code.factories.entities.HitParticleIndustry;
 import code.math.VectorD;
 import code.Constants;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +32,8 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
 
     public List<NEntity> spawn(NEntity entity) {
         List<NEntity> temp = new ArrayList<>();
-        HitParticleIndustry hpi = (HitParticleIndustry) Engine.getEngine().getIndustryMap()
-                .get("hit_particle_industry");
+        HitParticleIndustry hpi =
+                (HitParticleIndustry) Resources.get().getIndustryMap().get("hit_particle_industry");
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         ParticleComponent pac = (ParticleComponent) entity.getComponent(ComponentType.PARTICLE);
         for (int i = 0; i < rate; i++) {

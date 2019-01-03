@@ -13,6 +13,7 @@ import code.engine.Engine;
 import code.engine.NEntity;
 import code.factories.entities.EffectIndustry;
 import code.factories.entities.SpawnerIndustry;
+import code.engine.Resources;
 
 /**
  * Created by theo on 18/06/17.
@@ -35,19 +36,19 @@ public abstract class HitComponent extends Component {
     }
 
     public void addParticleSpawner(NEntity entity, ParticleComponent particleComponent, String spawnerIndustry) {
-        SpawnerIndustry hpsi = (SpawnerIndustry) Engine.getEngine().getIndustryMap().get(spawnerIndustry);
-        Engine.getEngine().getNEntityStream().addEntity(hpsi
+        SpawnerIndustry hpsi = (SpawnerIndustry) Resources.get().getIndustryMap().get(spawnerIndustry);
+        Engine.get().getNEntityStream().addEntity(hpsi
                 .produce((PositionComponent) entity.getComponent(ComponentType.POSITION).copy(), particleComponent));
     }
 
     public void addEffect(NEntity victim, String effectIndustry) {
         EffectComponent ec = (EffectComponent) victim.getComponent(ComponentType.EFFECT);
-        EffectIndustry efi = (EffectIndustry) Engine.getEngine().getIndustryMap().get(effectIndustry);
+        EffectIndustry efi = (EffectIndustry) Resources.get().getIndustryMap().get(effectIndustry);
         NEntity effect = efi.produce();
         effect.addComponent(new LinkComponent(victim));
         ((AffectComponent) effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
         ec.getEffects().add(effect);
-        Engine.getEngine().getNEntityStream().addEntity(effect);
+        Engine.get().getNEntityStream().addEntity(effect);
     }
 
     public HitType getHitType() {

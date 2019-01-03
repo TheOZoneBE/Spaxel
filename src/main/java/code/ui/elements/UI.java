@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import code.engine.Engine;
+import code.engine.Resources;
 import code.graphics.MasterBuffer;
 import code.ui.styles.Style;
 
@@ -105,10 +105,10 @@ public class UI {
 
     public Style getStyle(String name) {
         for (int i = styles.size() - 1; i >= 0; i--) {
-            Map<String, Map<String, Style>> stylesheets = Engine.getEngine().getStylesheets();
+            Map<String, Map<String, Style>> stylesheets = Resources.get().getStylesheets();
             styles.get(i);
             Map<String, Style> styley = stylesheets.get(styles.get(i));
-            Style style = Engine.getEngine().getStylesheets().get(styles.get(i)).get(name);
+            Style style = Resources.get().getStylesheets().get(styles.get(i)).get(name);
             if (style != null) {
                 return style;
             }

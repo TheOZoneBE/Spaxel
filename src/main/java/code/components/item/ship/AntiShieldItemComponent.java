@@ -31,7 +31,7 @@ public class AntiShieldItemComponent extends ShieldItemComponent {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
-            Set<NEntity> projectiles = Engine.getEngine().getNEntityStream().getEntities(ComponentType.HIT);
+            Set<NEntity> projectiles = Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
             for (NEntity p : projectiles) {
                 PositionComponent ppc = (PositionComponent) p.getComponent(ComponentType.POSITION);
                 NEntity pParent = ((LinkComponent) p.getComponent(ComponentType.LINK)).getLink();
@@ -43,7 +43,7 @@ public class AntiShieldItemComponent extends ShieldItemComponent {
                         int healthGain = phc.getDamage() / HEAL_DIVISION;
                         hc.setHealth(hc.getHealth() + healthGain > hc.getMaxHealth() ? hc.getMaxHealth()
                                 : hc.getHealth() + healthGain);
-                        Engine.getEngine().getNEntityStream().removeEntity(p);
+                        Engine.get().getNEntityStream().removeEntity(p);
                     } else {
                         int healthGain = (phc.getDamage() - capacity) / HEAL_DIVISION;
                         hc.setHealth(hc.getHealth() + healthGain > hc.getMaxHealth() ? hc.getMaxHealth()

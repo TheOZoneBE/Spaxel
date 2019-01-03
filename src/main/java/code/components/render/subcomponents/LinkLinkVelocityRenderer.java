@@ -20,9 +20,9 @@ public class LinkLinkVelocityRenderer extends Renderer {
         PositionComponent pc = (PositionComponent) linkLink.getComponent(ComponentType.POSITION);
         VelocityComponent vc = (VelocityComponent) linkLink.getComponent(ComponentType.VELOCITY);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
-        VectorD pos = pc.getCoord().sum(Engine.getEngine().getScreenOffset())
-                .sum(vc.getVelocity().multiplicate(Engine.getEngine().getUpdateTime()));
-        double rot = pc.getRot() + vc.getDeltaRot() * Engine.getEngine().getUpdateTime();
+        VectorD pos = pc.getCoord().sum(Engine.get().getScreenOffset())
+                .sum(vc.getVelocity().multiplicate(Engine.get().getUpdateTime()));
+        double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getUpdateTime();
 
         data.setPos(pos);
 

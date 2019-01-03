@@ -3,6 +3,7 @@ package code.system;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.sound.Music;
+import code.engine.Resources;
 
 public class SoundSystem extends GameSystem {
 	private Music currentMusic;
@@ -21,11 +22,11 @@ public class SoundSystem extends GameSystem {
 		if (currentMusic != null) {
 			currentMusic.stop();
 		}
-		if (Engine.getEngine().getGameState() != Engine.GameState.MENU) {
-			currentMusic = Engine.getEngine().getMusicList().getRandomSong();
+		if (Engine.get().getGameState() != Engine.GameState.MENU) {
+			currentMusic = Resources.get().getMusicList().getRandomSong();
 			play();
 		} else {
-			currentMusic = Engine.getEngine().getMusicList().getSong("Intro");
+			currentMusic = Resources.get().getMusicList().getSong("Intro");
 			play();
 		}
 

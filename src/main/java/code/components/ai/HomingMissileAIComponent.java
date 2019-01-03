@@ -29,7 +29,7 @@ public class HomingMissileAIComponent extends AIComponent {
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
 
-        Set<NEntity> enemies = Engine.getEngine().getNEntityStream().getEntities(ComponentType.DAMAGE);
+        Set<NEntity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
 
         double minDist = -1;
         NEntity closest = null;

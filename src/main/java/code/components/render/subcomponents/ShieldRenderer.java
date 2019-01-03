@@ -17,6 +17,6 @@ public class ShieldRenderer extends Renderer {
         NEntity link = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
         ShieldItemComponent shc = (ShieldItemComponent) link.getComponent(ComponentType.ITEM);
 
-        data.setAlpha(((double) shc.getCapacity() / shc.getMaxCapacity()) / ALPHA_REDUCER + ALPHA_OFFSET);
+        data.applyAlpha(((double) shc.getCapacity() / shc.getMaxCapacity()) / ALPHA_REDUCER + ALPHA_OFFSET);
     }
 }

@@ -5,6 +5,8 @@ import code.math.VectorD;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class SpriteData {
+	private static final int HEX_SIZE = 16;
+
 	private VectorD dim;
 	private VectorD pos;
 
@@ -73,7 +75,7 @@ public class SpriteData {
 
 	@JsonSetter("color")
 	public void setColorValue(String colorValue) {
-		color = Integer.parseUnsignedInt(colorValue, 16);
+		color = Integer.parseUnsignedInt(colorValue, HEX_SIZE);
 	}
 
 	public float[] getSpriteProperties() {

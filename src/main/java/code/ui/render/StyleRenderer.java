@@ -22,37 +22,51 @@ public final class StyleRenderer {
     }
 
     private static void renderAnimation(Style style, MasterBuffer buffer) {
-        double completion = Double.valueOf(style.getProperty("completion"));
-        RenderData frame = Resources.get().getAnimationAtlas().get(style.getProperty("animation"))
+        double completion = Double.parseDouble(style.getProperty("completion"));
+        RenderData data = Resources.get().getAnimationAtlas().get(style.getProperty("animation"))
                 .getDataAt(completion);
-        double x = Double.valueOf(style.getProperty("x"));
-        double y = Double.valueOf(style.getProperty("y"));
-        double rot = Double.valueOf(style.getProperty("rot"));
-        double scale = Double.valueOf(style.getProperty("scale"));
 
-        // TODO merging of renderdata
-        // addRenderData(x, y, rot, scale, frame, buffer);
-    }
+        applyTranslation(style, data);
+        applyScale(style, data);
+        applyRotation(style, data);
 
-    private static void renderSprite(Style style, MasterBuffer buffer) {
-        SpriteData sprite = Resources.get().getSpriteAtlas().get(style.getProperty("sprite"));
-        double x = Double.valueOf(style.getProperty("x"));
-        double y = Double.valueOf(style.getProperty("y"));
-        double rot = Double.valueOf(style.getProperty("rot"));
-        double scale = Double.valueOf(style.getProperty("scale"));
-
-        addRenderData(x, y, rot, scale, sprite, buffer);
-    }
-
-    private static void addRenderData(double x, double y, double rot, double scale,
-            SpriteData sprite, MasterBuffer buffer) {
-        RenderData data = new RenderData();
-        data.setPos(new VectorD(x, y));
-        data.setRot(rot);
-        data.setScale(sprite.getDim().multiplicate(scale));
-        data.setSpriteSheetID(sprite.getSpritesheetID());
-        data.setTexOffset(sprite.getSpriteProperties());
         buffer.addNewSprite(RenderLayer.UI, data);
     }
 
+    private static void renderSprite(Style style, MasterBuffer buffer) {
+        RenderData data = new RenderData();
+
+        applySprite(style, data);
+        applyTranslation(style, data);
+        applyScale(style, data);
+        applyRotation(style, data);
+
+        buffer.addNewSprite(RenderLayer.UI, data);
+    }
+
+    private static void applyTranslation(Style style, RenderData data) {
+        double x = Double.parseDouble(style.getProperty("x"));
+        double y = Double.parseDouble(style.getProperty("y"));
+
+        data.applyTranslation(new VectorD(x, y));
+    }
+
+    private static void applyRotation(Style style, RenderData data) {
+        double rot = Double.parseDouble(style.getProperty("rot"));
+
+        data.applyRot(rot);
+    }
+
+    private static void applyScale(Style style, RenderData data) {
+        double scale = Double.parseDouble(style.getProperty("scale"));
+
+        data.applyScale(new VectorD(scale, scale));
+    }
+
+    private static void applySprite(Style style, RenderData data) {
+        SpriteData sprite = Resources.get().getSpriteAtlas().get(style.getProperty("sprite"));
+
+        data.setSprite(sprite);
+        data.applyScale(sprite.getDim());
+    }
 }

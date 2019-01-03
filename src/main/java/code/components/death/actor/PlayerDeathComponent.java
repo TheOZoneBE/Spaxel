@@ -22,7 +22,7 @@ public class PlayerDeathComponent extends DeathComponent {
         // TODO revisit maybe
         Engine.get().stopGame();
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.GAME_OVER));
-        Engine.get().setGameState(Engine.GameState.MENU);
+        Engine.get().setGameState(Engine.EngineState.MENU);
     }
 
     public Component copy() {

@@ -11,7 +11,6 @@ import code.ui.elements.UI;
 import code.ui.elements.UIType;
 import code.ui.styles.Style;
 import code.Constants;
-import code.util.GLUtil;
 
 public final class Resources {
 	private static final Resources resources = new Resources();

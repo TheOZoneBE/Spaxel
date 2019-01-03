@@ -17,9 +17,9 @@ public class StationaryRenderer extends Renderer {
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
         VectorD pos = pc.getCoord().sum(Engine.get().getScreenOffset());
 
-        data.setPos(pos);
+        data.applyTranslation(pos);
 
-        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
-        data.setRot(pc.getRot());
+        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        data.applyRot(pc.getRot());
     }
 }

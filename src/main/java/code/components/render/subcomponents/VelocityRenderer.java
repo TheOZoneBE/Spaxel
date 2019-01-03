@@ -21,9 +21,9 @@ public class VelocityRenderer extends Renderer {
                 .sum(vc.getVelocity().multiplicate(Engine.get().getUpdateTime()));
         double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getUpdateTime();
 
-        data.setPos(pos);
-        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        data.applyTranslation(pos);
+        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
 
-        data.setRot(rot);
+        data.applyRot(rot);
     }
 }

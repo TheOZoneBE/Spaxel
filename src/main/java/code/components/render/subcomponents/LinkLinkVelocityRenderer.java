@@ -24,9 +24,9 @@ public class LinkLinkVelocityRenderer extends Renderer {
                 .sum(vc.getVelocity().multiplicate(Engine.get().getUpdateTime()));
         double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getUpdateTime();
 
-        data.setPos(pos);
+        data.applyTranslation(pos);
 
-        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
-        data.setRot(rot);
+        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        data.applyRot(rot);
     }
 }

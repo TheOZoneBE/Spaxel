@@ -2,7 +2,6 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.particle.ParticleComponent;
-import code.engine.Engine;
 import code.engine.Resources;
 import code.graphics.SpriteData;
 import com.fasterxml.jackson.annotation.JsonSetter;

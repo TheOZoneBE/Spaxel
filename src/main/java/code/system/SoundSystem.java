@@ -22,7 +22,7 @@ public class SoundSystem extends GameSystem {
 		if (currentMusic != null) {
 			currentMusic.stop();
 		}
-		if (Engine.get().getGameState() != Engine.GameState.MENU) {
+		if (Engine.get().getGameState() != Engine.EngineState.MENU) {
 			currentMusic = Resources.get().getMusicList().getRandomSong();
 			play();
 		} else {

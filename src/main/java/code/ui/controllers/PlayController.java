@@ -99,7 +99,7 @@ public final class PlayController {
         Keyboard k = Engine.get().getKeyboard();
         if (k.getEscState().isDown() && !k.getEscState().hasBeenDown()) {
             Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.PAUSE));
-            Engine.get().setGameState(Engine.GameState.PAUSE);
+            Engine.get().setGameState(Engine.EngineState.PAUSE);
         }
         if (k.getiState().isDown() && !k.getiState().hasBeenDown()) {
             Engine.get().getGameProperties().setDebug(!Engine.get().getGameProperties().isDebug());
@@ -116,23 +116,23 @@ public final class PlayController {
     }
 
     public static void resume() {
-        Engine.get().setGameState(Engine.GameState.PLAY);
+        Engine.get().setGameState(Engine.EngineState.PLAY);
         Engine.get().getCurrentUI().findById("pause_controls").setStyleProperty("visible", "false");
     }
 
     public static void quit() {
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.MAIN));
-        Engine.get().setGameState(Engine.GameState.MENU);
+        Engine.get().setGameState(Engine.EngineState.MENU);
         Engine.get().stopGame();
     }
 
     public static void escCheck() {
         Keyboard k = Engine.get().getKeyboard();
         if (k.getEscState().isRelease()) {
-            if (Engine.get().getGameState() == Engine.GameState.PAUSE) {
+            if (Engine.get().getGameState() == Engine.EngineState.PAUSE) {
                 resume();
             } else {
-                Engine.get().setGameState(Engine.GameState.PAUSE);
+                Engine.get().setGameState(Engine.EngineState.PAUSE);
                 Engine.get().getCurrentUI().findById("pause_controls").setStyleProperty("visible",
                         "true");
             }

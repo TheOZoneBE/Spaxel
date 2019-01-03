@@ -95,7 +95,7 @@ public class UpdateRunner implements Runnable {
         Engine.get().getMouseWrapper().update();
         Engine.get().getKeyboard().update();
 
-        if (Engine.get().getGameState() != Engine.GameState.PLAY) {
+        if (Engine.get().getGameState() != Engine.EngineState.PLAY) {
             systems.get(SystemType.SOUND).update();
             systems.get(SystemType.UI).update();
         } else {

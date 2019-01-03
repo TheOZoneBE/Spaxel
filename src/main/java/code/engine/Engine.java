@@ -1,6 +1,5 @@
 package code.engine;
 
-import code.Constants;
 import code.Game;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
@@ -18,39 +17,38 @@ public final class Engine {
 	private NEntityStream nentities;
 
 	private UI currentUI;
-	private GameState gameState;
+	private EngineState engineState;
 
-	private boolean loading = true;
-	private double updateTime;
 	private long window;
+
+	private double updateTime;
 	private VectorD screenOffset;
-	private VectorD cursorFollow;
+
 	private GameProperties gameProperties;
+
 	private Logger logger;
 
 	private Engine() {
 		gameProperties = new GameProperties();
 		nentities = new NEntityStream();
-		gameState = GameState.LOAD;
+		engineState = EngineState.LOAD;
 	}
 
 	public static Engine get() {
 		return engine;
 	}
 
-	public enum GameState {
+	public enum EngineState {
 		MENU, PLAY, PAUSE, LOAD
 	}
 
 	public void finishLoading() {
 		this.keys = new Keyboard(window);
-		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 
 		nentities.cleanup();
 
 		currentUI = Resources.get().getUIS().get(UIType.MAIN);
-		loading = false;
-		gameState = GameState.MENU;
+		engineState = EngineState.MENU;
 
 		Game.startUpdating();
 	}
@@ -61,15 +59,10 @@ public final class Engine {
 		logger = null;
 		// TODO rework musiclist so the data and the resetting is seperated
 		Resources.get().getMusicList().reset();
-		this.cursorFollow = new VectorD(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2);
 	}
 
 	public void setWindow(long window) {
 		this.window = window;
-	}
-
-	public boolean isLoading() {
-		return loading;
 	}
 
 	public Keyboard getKeyboard() {
@@ -88,12 +81,12 @@ public final class Engine {
 		return nentities;
 	}
 
-	public GameState getGameState() {
-		return gameState;
+	public EngineState getGameState() {
+		return engineState;
 	}
 
-	public void setGameState(GameState gs) {
-		gameState = gs;
+	public void setGameState(EngineState gs) {
+		engineState = gs;
 	}
 
 	public double getUpdateTime() {
@@ -117,24 +110,12 @@ public final class Engine {
 		return gameProperties;
 	}
 
-	public void setGameProperties(GameProperties gameProperties) {
-		this.gameProperties = gameProperties;
-	}
-
 	public Logger getLogger() {
 		return logger;
 	}
 
 	public void setLogger(Logger logger) {
 		this.logger = logger;
-	}
-
-	public VectorD getCursorFollow() {
-		return cursorFollow;
-	}
-
-	public void setCursorFollow(VectorD cursorFollow) {
-		this.cursorFollow = cursorFollow;
 	}
 
 	public UI getCurrentUI() {

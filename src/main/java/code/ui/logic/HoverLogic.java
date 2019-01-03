@@ -17,15 +17,11 @@ public class HoverLogic implements Logic {
         if (style.contains("hit-shape")) {
             HitShape hitbox =
                     Resources.get().getHitShapeAtlas().get(style.getProperty("hit-shape"));
-            if (style.getProperty("x") == null) {
-                int i = 0;
-                System.out.println(style.getProperties());
-            }
-            double x = Double.valueOf(style.getProperty("x"));
-            double y = Double.valueOf(style.getProperty("y"));
-            double rot = Double.valueOf(style.getProperty("rot"));
-            double width = Double.valueOf(style.getProperty("width"));
-            double height = Double.valueOf(style.getProperty("height"));
+            double x = Double.parseDouble(style.getProperty("x"));
+            double y = Double.parseDouble(style.getProperty("y"));
+            double rot = Double.parseDouble(style.getProperty("rot"));
+            double width = Double.parseDouble(style.getProperty("width"));
+            double height = Double.parseDouble(style.getProperty("height"));
 
             MatrixD transform = MatrixUtil.getTransformationMatrix(new VectorD(x, y), rot,
                     new VectorD(width, height));

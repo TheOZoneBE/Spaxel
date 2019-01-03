@@ -2,9 +2,9 @@ package code.components.render.subcomponents;
 
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
-import code.components.sprite.SpriteComponent;
 import code.engine.NEntity;
 import code.graphics.RenderData;
+import code.math.VectorD;
 
 /**
  * Created by theod on 25-9-2017.
@@ -14,11 +14,10 @@ public class ShipFragmentRenderer extends Renderer {
 
     public void apply(RenderData data, NEntity entity) {
         AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);
-        SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
         double factor = ac.getLife() * FACTOR_MULT / ac.getMaxLife();
 
-        data.setScale(sc.getSprite().getDim().multiplicate(sc.getScale() * factor));
+        data.applyScale(new VectorD(factor, factor));
     }
 
 }

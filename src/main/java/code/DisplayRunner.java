@@ -81,12 +81,7 @@ public class DisplayRunner implements Runnable {
         // clear the framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        if (Engine.get().getGameState() == Engine.GameState.LOAD) {
-            // renderSystem.renderloading(Engine.get().getLoadingScreen());
-            renderSystem.update();
-        } else {
-            renderSystem.update();
-        }
+        renderSystem.update();
 
         glfwSwapBuffers(window);
 

@@ -2,24 +2,39 @@ package code.collision;
 
 import java.util.ArrayList;
 import java.util.List;
-import code.graphics.RenderBuffer;
 import code.math.Axis;
 import code.math.MatrixD;
 import code.math.Projection;
 import code.math.VectorD;
 
+/**
+ * Represents a collection of hitpoints forming a hitshape
+ */
 public class HitShape {
 	private List<HitPoint> hitPoints;
 
+	/**
+	 * Create a new empty hitshape
+	 */
 	public HitShape() {
 		hitPoints = new ArrayList<>();
 	}
 
+	/**
+	 * Create a new hitshape with one hitpoint
+	 * 
+	 * @param hitPoint the hitpoint of the hitshape
+	 */
 	public HitShape(HitPoint hitPoint) {
 		hitPoints = new ArrayList<>();
 		hitPoints.add(hitPoint);
 	}
 
+	/**
+	 * Add a hitpoint to this hitshape
+	 * 
+	 * @param hitPoint the hitpoint to add
+	 */
 	public void addHitPoint(HitPoint hitPoint) {
 		hitPoints.add(hitPoint);
 	}
@@ -32,14 +47,28 @@ public class HitShape {
 		this.hitPoints = hitPoints;
 	}
 
-	public HitShape update(MatrixD updateMatrixF) {
+	/**
+	 * Transform the hitshape with the given matrix and return a new hitshape with the result
+	 * 
+	 * @param updateMatrix the transformation matrix
+	 * 
+	 * @return the transformed hitshape
+	 */
+	public HitShape update(MatrixD updateMatrix) {
 		HitShape updated = new HitShape();
 		for (HitPoint h : hitPoints) {
-			updated.addHitPoint(h.update(updateMatrixF));
+			updated.addHitPoint(h.update(updateMatrix));
 		}
 		return updated;
 	}
 
+	/**
+	 * Project this hitshape onto an axis.
+	 * 
+	 * @param ax the axis to project onto
+	 * 
+	 * @return the resulting projection
+	 */
 	public Projection project(Axis ax) {
 		Projection pro = new Projection();
 		for (HitPoint h : hitPoints) {
@@ -56,8 +85,12 @@ public class HitShape {
 		return String.join(" | ", print);
 	}
 
-	/*
-	 * collision detection by the principle of SAT
+	/**
+	 * Checks whether this hitshape collides with the given hitshape. This uses the SAT algorithm.
+	 * 
+	 * @param hitshape the hitshape to check collision
+	 * 
+	 * @return true if the hitshapes collide
 	 */
 	public boolean collision(HitShape hitshape) {
 		List<Axis> normals = new ArrayList<>();

@@ -63,9 +63,6 @@ public class Element {
     }
 
     public void update() {
-        /*
-         * if (id.equals("pause_controls")) { System.out.println(elementStyle.getProperties()); }
-         */
         if (!elementStyle.contains("visible")
                 || elementStyle.getProperty("visible").equals("true")) {
             for (Logic l : logic) {

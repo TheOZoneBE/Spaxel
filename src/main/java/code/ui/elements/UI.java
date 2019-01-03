@@ -26,7 +26,6 @@ public class UI {
 
     public void update() {
         body.update();
-        // body.refreshStyle(new Style());
     }
 
     public void render(MasterBuffer buffer) {
@@ -35,7 +34,6 @@ public class UI {
 
     public void reset() {
         body.reset();
-        // body.refreshStyle(new Style());
     }
 
     public Element findById(String id) {

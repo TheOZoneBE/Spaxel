@@ -22,10 +22,10 @@ public final class TextRenderer {
 
     public static void renderText(Style style, MasterBuffer buffer) {
         String text = style.getProperty("text");
-        double scale = Double.valueOf(style.getProperty("text-scale"));
+        double scale = Double.parseDouble(style.getProperty("text-scale"));
         boolean alignLeft = style.getProperty("align") == "left";
-        double x = Double.valueOf(style.getProperty("x"));
-        double y = Double.valueOf(style.getProperty("y"));
+        double x = Double.parseDouble(style.getProperty("x"));
+        double y = Double.parseDouble(style.getProperty("y"));
         VectorD pos = new VectorD(x, y);
 
         String[] lines = text.split(NEWLINE);
@@ -101,11 +101,10 @@ public final class TextRenderer {
         public void render(VectorD position, double scale, MasterBuffer buffer) {
             if (sprite != null) {
                 RenderData data = new RenderData();
-                data.setPos(position);
-                data.setRot(0);
-                data.setScale(sprite.getDim().multiplicate(scale));
-                data.setSpriteSheetID(sprite.getSpritesheetID());
-                data.setTexOffset(sprite.getSpriteProperties());
+                data.applyTranslation(position);
+                data.applyRot(0);
+                data.applyScale(sprite.getDim().multiplicate(scale));
+                data.setSprite(sprite);
                 buffer.addNewSprite(RenderLayer.UI, data);
             }
         }

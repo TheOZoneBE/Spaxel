@@ -5,6 +5,8 @@ public final class Constants {
         public static final double HALF_CIRLCE = Math.PI / 2;
         public static final int GAME_HEIGHT = 720;
         public static final int GAME_WIDTH = 1280;
+        public static final int HALF_GAME_HEIGHT = GAME_HEIGHT / 2;
+        public static final int HALF_GAME_WIDTH = GAME_WIDTH / 2;
         public static final long NS_PER_SECOND = 1_000_000_000;
         public static final int TICKS_PER_SECOND = 50;
         public static final long NS_PER_TICK = NS_PER_SECOND / TICKS_PER_SECOND;
@@ -27,19 +29,18 @@ public final class Constants {
         // resources constants
         public static final String SPRITESHEET_PATH = "/resources/spritesheet.json";
         public static final String[] SPRITE_PATHS =
-                        new String[] {"/resources/sprite.json", "/resources/font.json"};
+                        {"/resources/sprite.json", "/resources/font.json"};
         public static final String ANIMATION_PATH = "/resources/animation.json";
         public static final String MUSIC_PATH = "/resources/sound.json";
         public static final String HITSHAPE_PATH = "/resources/hitshape.json";
         public static final String ITEM_PATH = "/resources/itemProperties.json";
-        public static final String[] STYLESHEET_PATHS = new String[] {"/ui/styles/common.json",
+        public static final String[] STYLESHEET_PATHS = {"/ui/styles/common.json",
                         "/ui/styles/main.json", "/ui/styles/play.json", "/ui/styles/credits.json",
                         "/ui/styles/options.json", "/ui/styles/class_select.json",
                         "/ui/styles/game_over.json"};
-        public static final String[] UI_PATHS = new String[] {"/ui/main.xml", "/ui/play.xml",
-                        "/ui/credits.xml", "/ui/options.xml", "/ui/class_selection.xml",
-                        "/ui/game_over.xml"};
-        public static final String[] INDUSTRY_PATHS = new String[] {"/resources/entity.json",
+        public static final String[] UI_PATHS = {"/ui/main.xml", "/ui/play.xml", "/ui/credits.xml",
+                        "/ui/options.xml", "/ui/class_selection.xml", "/ui/game_over.xml"};
+        public static final String[] INDUSTRY_PATHS = {"/resources/entity.json",
                         "/resources/actor.json", "/resources/projectile.json",
                         "/resources/item.json", "/resources/player.json", "/resources/effect.json",
                         "/resources/marker.json"};
@@ -47,11 +48,11 @@ public final class Constants {
         // load resources constants
         public static final String LOAD_SPRITESHEET_PATH = "/loading/spritesheet.json";
         public static final String[] LOAD_SPRITE_PATHS =
-                        new String[] {"/loading/sprite.json", "/resources/font.json"};
+                        {"/loading/sprite.json", "/resources/font.json"};
         public static final String LOAD_ANIMATION_PATH = "/loading/animation.json";
         public static final String[] LOAD_STYLESHEET_PATHS =
-                        new String[] {"/ui/styles/common.json", "/ui/styles/load.json"};
-        public static final String[] LOAD_UI_PATHS = new String[] {"/ui/load.xml"};
+                        {"/ui/styles/common.json", "/ui/styles/load.json"};
+        public static final String[] LOAD_UI_PATHS = {"/ui/load.xml"};
 
 
         private Constants() {

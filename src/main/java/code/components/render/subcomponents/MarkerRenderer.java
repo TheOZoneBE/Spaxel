@@ -10,6 +10,6 @@ public class MarkerRenderer extends Renderer {
     private static final double MARKER_ALPHA = 0.33D;
 
     public void apply(RenderData data, NEntity entity) {
-        data.setAlpha(MARKER_ALPHA);
+        data.applyAlpha(MARKER_ALPHA);
     }
 }

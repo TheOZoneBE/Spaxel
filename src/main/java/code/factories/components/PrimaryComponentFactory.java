@@ -2,10 +2,8 @@ package code.factories.components;
 
 import code.components.Component;
 import code.components.primary.PrimaryComponent;
-import code.engine.Engine;
 import code.engine.Resources;
 import code.engine.NEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 

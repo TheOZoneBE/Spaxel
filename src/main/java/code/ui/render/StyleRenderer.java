@@ -9,6 +9,10 @@ import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 
 public final class StyleRenderer {
+    private StyleRenderer() {
+
+    }
+
     public static void renderStyle(Style style, MasterBuffer buffer) {
         if (style.contains("sprite")) {
             renderSprite(style, buffer);
@@ -67,6 +71,5 @@ public final class StyleRenderer {
         SpriteData sprite = Resources.get().getSpriteAtlas().get(style.getProperty("sprite"));
 
         data.setSprite(sprite);
-        data.applyScale(sprite.getDim());
     }
 }

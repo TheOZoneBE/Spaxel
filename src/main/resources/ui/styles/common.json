@@ -22,5 +22,17 @@
     },
     ".locked:click": {
         "sprite": "large_button_locked"
+    },
+    ".inventory_item": {
+        "scale": 2,
+        "text-scale": 1,
+        "rot": 0
+    },
+    ".item_cooldown": {
+        "animation": "cooldown"
+    },
+    ".item_stacks": {
+        "x": 20,
+        "y": 20
     }
 }

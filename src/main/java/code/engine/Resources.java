@@ -2,6 +2,7 @@ package code.engine;
 
 import static code.loaders.Loader.*;
 import java.util.Map;
+import java.util.List;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
 import code.graphics.SpriteData;
@@ -30,11 +31,12 @@ public final class Resources {
 	}
 
 	public void initLoadingResources() {
-		spritesheets = loadSpritesheets(Constants.SPRITESHEET_PATH);
-		spriteAtlas = loadSpriteDatas(Constants.SPRITE_PATHS);
-		animationAtlas = loadAnimations(Constants.ANIMATION_PATH);
-		stylesheets = loadStylesheets(Constants.LOAD_STYLESHEET_PATHS);
-		uis = loadUI(Constants.LOAD_UI_PATHS);
+		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.LOAD_RESOURCE_PATH);
+		spritesheets = loadSpritesheets(resourcePaths.get("spritesheet"));
+		spriteAtlas = loadSpriteDatas(resourcePaths.get("sprite"));
+		animationAtlas = loadAnimations(resourcePaths.get("animation"));
+		stylesheets = loadStylesheets(resourcePaths.get("stylesheet"));
+		uis = loadUI(resourcePaths.get("ui"));
 		Engine.get().setCurrentUI(uis.get(UIType.LOAD));
 	}
 
@@ -43,17 +45,19 @@ public final class Resources {
 	}
 
 	public void startLoading() {
-		musicList = new MusicList(loadSounds(Constants.MUSIC_PATH));
+		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.RESOURCE_PATH);
 
-		hitShapeAtlas = loadHitShapes(Constants.HITSHAPE_PATH);
+		musicList = new MusicList(loadSounds(resourcePaths.get("music")));
 
-		items = loadItems(Constants.ITEM_PATH);
+		hitShapeAtlas = loadHitShapes(resourcePaths.get("hitshape"));
 
-		stylesheets = loadStylesheets(Constants.STYLESHEET_PATHS);
+		items = loadItems(resourcePaths.get("item"));
 
-		uis = loadUI(Constants.UI_PATHS);
+		stylesheets = loadStylesheets(resourcePaths.get("stylesheet"));
 
-		industryMap = loadEntityIndustries(Constants.INDUSTRY_PATHS);
+		uis = loadUI(resourcePaths.get("ui"));
+
+		industryMap = loadEntityIndustries(resourcePaths.get("industry"));
 
 		Engine.get().finishLoading();
 	}

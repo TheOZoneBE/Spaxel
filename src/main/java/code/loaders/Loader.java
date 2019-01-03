@@ -22,6 +22,8 @@ import code.sound.Music;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
 import code.ui.styles.Style;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
 
 
 /**
@@ -51,12 +53,18 @@ public final class Loader {
      * 
      * @return map from animation name to Animation object
      */
-    public static Map<String, Animation> loadAnimations(String path) {
+    public static Map<String, Animation> loadAnimations(Iterable<String> files) {
         try {
-            InputStream file = loadFile(path);
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(file, new TypeReference<Map<String, Animation>>() {
-            });
+            Map<String, Animation> animations = new HashMap<>();
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                animations
+                        .putAll(mapper.readValue(file, new TypeReference<Map<String, Animation>>() {
+                        }));
+            }
+
+            return animations;
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
@@ -70,12 +78,17 @@ public final class Loader {
      * 
      * @return map from hitshape name to HitShape object
      */
-    public static Map<String, HitShape> loadHitShapes(String path) {
+    public static Map<String, HitShape> loadHitShapes(Iterable<String> files) {
         try {
-            InputStream file = loadFile(path);
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(file, new TypeReference<Map<String, HitShape>>() {
-            });
+            Map<String, HitShape> hitshapes = new HashMap<>();
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                hitshapes.putAll(mapper.readValue(file, new TypeReference<Map<String, HitShape>>() {
+                }));
+            }
+
+            return hitshapes;
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
@@ -89,7 +102,7 @@ public final class Loader {
      * 
      * @return a map from the industryname to EntityIndustry object
      */
-    public static Map<String, EntityIndustry> loadEntityIndustries(String[] industries) {
+    public static Map<String, EntityIndustry> loadEntityIndustries(Iterable<String> industries) {
         try {
             Map<String, EntityIndustry> industryMap = new HashMap<>();
             for (String s : industries) {
@@ -113,9 +126,9 @@ public final class Loader {
      * 
      * @return an itemcatalogue with the itemproperties
      */
-    public static ItemCatalogue loadItems(String path) {
+    public static ItemCatalogue loadItems(List<String> files) {
         try {
-            InputStream file = loadFile(path);
+            InputStream file = loadFile(files.get(0));
             ObjectMapper mapper = new ObjectMapper();
             List<ItemProperties> itemProperties =
                     mapper.readValue(file, new TypeReference<List<ItemProperties>>() {
@@ -127,21 +140,17 @@ public final class Loader {
         return null;
     }
 
-    public static Map<String, Music> loadSounds(String path) {
+    public static Map<String, Music> loadSounds(Iterable<String> files) {
         try {
-            InputStream file = loadFile(path);
-            ObjectMapper mapper = new ObjectMapper();
-            Map<String, Music> music =
-                    mapper.readValue(file, new TypeReference<Map<String, Music>>() {
-                    });
-            // int count = music.size();
-            // double i = 0;
+            Map<String, Music> music = new HashMap<>();
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                music.putAll(mapper.readValue(file, new TypeReference<Map<String, Music>>() {
+                }));
+            }
             for (Music m : music.values()) {
                 m.initialize();
-                // i++;
-
-                // Engine.get().getLoadingScreen().getProgress()
-                // .setPercent(SOUND_LOAD_PERCENTAGE * i / count);
             }
             return music;
         } catch (IOException e) {
@@ -158,7 +167,7 @@ public final class Loader {
      * 
      * @return a map from sprite name to SpriteData object
      */
-    public static Map<String, SpriteData> loadSpriteDatas(String[] sprites) {
+    public static Map<String, SpriteData> loadSpriteDatas(Iterable<String> sprites) {
         try {
             Map<String, SpriteData> spriteMap = new HashMap<>();
             for (String s : sprites) {
@@ -186,13 +195,16 @@ public final class Loader {
      * 
      * @return a map from spritesheetname to spritesheet object
      */
-    public static Map<String, Spritesheet> loadSpritesheets(String path) {
+    public static Map<String, Spritesheet> loadSpritesheets(Iterable<String> files) {
         try {
-            InputStream file = loadFile(path);
-            ObjectMapper mapper = new ObjectMapper();
-            Map<String, Spritesheet> spritesheetMap =
-                    mapper.readValue(file, new TypeReference<Map<String, Spritesheet>>() {
-                    });
+            Map<String, Spritesheet> spritesheetMap = new HashMap<>();
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                spritesheetMap.putAll(
+                        mapper.readValue(file, new TypeReference<Map<String, Spritesheet>>() {
+                        }));
+            }
             for (Spritesheet s : spritesheetMap.values()) {
                 s.load();
             }
@@ -210,7 +222,7 @@ public final class Loader {
      * 
      * @return a map of the stylesheet name to a map of the style identifier to the style object
      */
-    public static Map<String, Map<String, Style>> loadStylesheets(String[] sheets) {
+    public static Map<String, Map<String, Style>> loadStylesheets(Iterable<String> sheets) {
         try {
             Map<String, Map<String, Style>> stylesheets = new HashMap<>();
             for (String s : sheets) {
@@ -236,7 +248,7 @@ public final class Loader {
      * 
      * @return a map that connect ui type to the correct ui object
      */
-    public static Map<UIType, UI> loadUI(String[] uis) {
+    public static Map<UIType, UI> loadUI(Iterable<String> uis) {
         try {
             EnumMap<UIType, UI> uiMap = new EnumMap<>(UIType.class);
             for (String ui : uis) {
@@ -247,6 +259,18 @@ public final class Loader {
                 uiMap.put(root.getType(), root);
             }
             return uiMap;
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    public static Map<String, List<String>> loadResourcePaths(String path) {
+        try {
+            InputStream file = loadFile(path);
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            return mapper.readValue(file, new TypeReference<Map<String, List<String>>>() {
+            });
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }

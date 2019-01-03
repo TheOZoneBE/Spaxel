@@ -1,0 +1,12 @@
+spritesheet:
+  - /resources/spritesheet.json
+sprite:
+  - /resources/sprite.json
+  - /resources/font.json
+animation:
+  - /resources/animation.json
+stylesheet:
+  - /ui/styles/common.json
+  - /ui/styles/load.json
+ui:
+  - /ui/load.xml

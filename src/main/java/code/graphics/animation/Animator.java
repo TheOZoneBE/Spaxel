@@ -8,7 +8,9 @@ import code.graphics.RenderData;
         visible = true)
 @JsonSubTypes({@JsonSubTypes.Type(value = FrameAnimator.class, name = "FRAME"),
         @JsonSubTypes.Type(value = XScaleAnimator.class, name = "X_SCALE"),
-        @JsonSubTypes.Type(value = YScaleAnimator.class, name = "Y_SCALE")})
+        @JsonSubTypes.Type(value = YScaleAnimator.class, name = "Y_SCALE"),
+        @JsonSubTypes.Type(value = XPosAnimator.class, name = "X_POS"),
+        @JsonSubTypes.Type(value = YPosAnimator.class, name = "Y_POS")})
 public abstract class Animator {
     private AnimatorType type;
 

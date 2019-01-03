@@ -27,33 +27,8 @@ public final class Constants {
         public static final int GL_MINOR_V = 5;
 
         // resources constants
-        public static final String SPRITESHEET_PATH = "/resources/spritesheet.json";
-        public static final String[] SPRITE_PATHS =
-                        {"/resources/sprite.json", "/resources/font.json"};
-        public static final String ANIMATION_PATH = "/resources/animation.json";
-        public static final String MUSIC_PATH = "/resources/sound.json";
-        public static final String HITSHAPE_PATH = "/resources/hitshape.json";
-        public static final String ITEM_PATH = "/resources/itemProperties.json";
-        public static final String[] STYLESHEET_PATHS = {"/ui/styles/common.json",
-                        "/ui/styles/main.json", "/ui/styles/play.json", "/ui/styles/credits.json",
-                        "/ui/styles/options.json", "/ui/styles/class_select.json",
-                        "/ui/styles/game_over.json"};
-        public static final String[] UI_PATHS = {"/ui/main.xml", "/ui/play.xml", "/ui/credits.xml",
-                        "/ui/options.xml", "/ui/class_selection.xml", "/ui/game_over.xml"};
-        public static final String[] INDUSTRY_PATHS = {"/resources/entity.json",
-                        "/resources/actor.json", "/resources/projectile.json",
-                        "/resources/item.json", "/resources/player.json", "/resources/effect.json",
-                        "/resources/marker.json"};
-
-        // load resources constants
-        public static final String LOAD_SPRITESHEET_PATH = "/loading/spritesheet.json";
-        public static final String[] LOAD_SPRITE_PATHS =
-                        {"/loading/sprite.json", "/resources/font.json"};
-        public static final String LOAD_ANIMATION_PATH = "/loading/animation.json";
-        public static final String[] LOAD_STYLESHEET_PATHS =
-                        {"/ui/styles/common.json", "/ui/styles/load.json"};
-        public static final String[] LOAD_UI_PATHS = {"/ui/load.xml"};
-
+        public static final String RESOURCE_PATH = "/resource_paths.yml";
+        public static final String LOAD_RESOURCE_PATH = "/load_resource_paths.yml";
 
         private Constants() {
 

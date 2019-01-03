@@ -9,6 +9,9 @@ import code.engine.Resources;
  * Created by theod on 19-9-2017.
  */
 public final class OptionsController {
+    private OptionsController() {
+
+    }
 
     public static void gameSettings() {
         // TODO

@@ -9,6 +9,9 @@ import code.ui.elements.Element;
 public final class UIUtil {
     private static final Logger LOGGER = Logger.getLogger(UIUtil.class.getName());
 
+    private UIUtil() {
+    }
+
     public static void invokeMethod(String controller, String method, Element element) {
         if (method.contains("update")) {
             invokeUpdateMethod(controller, method, element);

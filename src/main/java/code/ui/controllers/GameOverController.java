@@ -8,6 +8,8 @@ import code.engine.Resources;
  * Created by theo on 26-6-2016.
  */
 public final class GameOverController {
+    private GameOverController() {
+    }
 
     public static void play() {
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.CLASS_SELECTION));

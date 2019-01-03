@@ -7,7 +7,7 @@
                 "spriteBase": "progress_bar"
             },
             {
-                "type": "Y_SCALE",
+                "type": "X_SCALE",
                 "maxScale": 640
             }
         ]
@@ -20,8 +20,12 @@
                 "spriteBase": "hp_bar"
             },
             {
-                "type": "Y_SCALE",
+                "type": "X_SCALE",
                 "maxScale": 290
+            },
+            {
+                "type": "X_POS",
+                "maxPos": 290
             }
         ]
     },
@@ -33,8 +37,12 @@
                 "spriteBase": "xp_bar"
             },
             {
-                "type": "Y_SCALE",
+                "type": "X_SCALE",
                 "maxScale": 290
+            },
+            {
+                "type": "X_POS",
+                "minPos": -290
             }
         ]
     }

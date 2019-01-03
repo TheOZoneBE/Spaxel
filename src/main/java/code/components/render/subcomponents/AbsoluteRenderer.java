@@ -14,8 +14,9 @@ public class AbsoluteRenderer extends Renderer {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
+        // TODO scaling should not be in here
         data.applyTranslation(pc.getCoord());
-        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        data.applyScale(sc.getScale());
         data.applyRot(pc.getRot());
     }
 }

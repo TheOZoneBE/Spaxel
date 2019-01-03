@@ -4,15 +4,16 @@ import code.graphics.RenderData;
 
 public class XScaleAnimator extends Animator {
     private double maxScale;
+    private double minScale;
 
     public XScaleAnimator() {
         super(AnimatorType.X_SCALE);
     }
 
     public void animate(double percentage, RenderData data) {
-        double scale = percentage * maxScale;
+        double scale = percentage * (maxScale - minScale);
 
-        data.applyXScale(scale);
+        data.applyXScale(minScale + scale);
     }
 
     /**
@@ -27,6 +28,20 @@ public class XScaleAnimator extends Animator {
      */
     public void setMaxScale(double maxScale) {
         this.maxScale = maxScale;
+    }
+
+    /**
+     * @return the minScale
+     */
+    public double getMinScale() {
+        return minScale;
+    }
+
+    /**
+     * @param minScale the minScale to set
+     */
+    public void setMinScale(double minScale) {
+        this.minScale = minScale;
     }
 
 

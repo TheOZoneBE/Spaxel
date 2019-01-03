@@ -6,7 +6,9 @@ import code.ui.elements.UIType;
 import code.engine.Resources;
 
 public final class MainController {
+	private MainController() {
 
+	}
 
 	/*
 	 * starts a new game

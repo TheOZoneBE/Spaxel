@@ -22,7 +22,8 @@ public class VelocityRenderer extends Renderer {
         double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getUpdateTime();
 
         data.applyTranslation(pos);
-        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        // TODO scaling should not be in here
+        data.applyScale(sc.getScale());
 
         data.applyRot(rot);
     }

@@ -18,7 +18,7 @@ import code.ui.logic.ClickLogic;
 
 
 public class Element {
-    // NOTE style should be saved and not refreshed
+    private static final String VISIBLE = "visible";
     private String id;
     private UI ui;
     private List<String> classes;
@@ -54,7 +54,7 @@ public class Element {
         if (state.isClick()) {
             style = elementStyle.merge(clickStyle);
         }
-        if (!style.contains("visible") || style.getProperty("visible").equals("true")) {
+        if (!style.contains(VISIBLE) || "true".equals(style.getProperty(VISIBLE))) {
             StyleRenderer.renderStyle(style, buffer);
             for (Element child : children) {
                 child.render(buffer);
@@ -63,8 +63,7 @@ public class Element {
     }
 
     public void update() {
-        if (!elementStyle.contains("visible")
-                || elementStyle.getProperty("visible").equals("true")) {
+        if (!elementStyle.contains(VISIBLE) || "true".equals(elementStyle.getProperty(VISIBLE))) {
             for (Logic l : logic) {
                 l.execute(this);
             }
@@ -164,6 +163,10 @@ public class Element {
 
     @JsonAnySetter()
     public void dump(String key, String value) {
+        // NOTE dump all unknown xml properties in this hole
+    }
 
+    public void clearChildren() {
+        children.clear();
     }
 }

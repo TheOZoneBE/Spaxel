@@ -51,8 +51,16 @@ public class RenderData {
     }
 
     public void applyTranslation(VectorD translation) {
-        trSc[0] += (float) translation.getValue(0);
-        trSc[1] += (float) translation.getValue(1);
+        applyXTranslation(translation.getValue(0));
+        applyYTranslation(translation.getValue(1));
+    }
+
+    public void applyXTranslation(double xTrans) {
+        trSc[0] += (float) xTrans;
+    }
+
+    public void applyYTranslation(double yTrans) {
+        trSc[1] += (float) yTrans;
     }
 
     public void applyXScale(double xScale) {
@@ -66,6 +74,11 @@ public class RenderData {
     public void applyScale(VectorD scale) {
         applyXScale(scale.getValue(0));
         applyYScale(scale.getValue(1));
+    }
+
+    public void applyScale(double scale) {
+        applyXScale(scale);
+        applyYScale(scale);
     }
 
     public void applyRot(double rotChange) {
@@ -85,5 +98,7 @@ public class RenderData {
     public void setSprite(SpriteData sprite) {
         setTexOffset(sprite.getSpriteProperties());
         setSpriteSheetID(sprite.getSpritesheetID());
+        setColor(sprite.getColor());
+        applyScale(sprite.getDim());
     }
 }

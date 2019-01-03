@@ -1,7 +1,7 @@
 import os
 
 
-def renameFiles(root, base_name):
+def rename_files(root, base_name):
     for root, dirs, files in os.walk(root):
 
         files.sort()
@@ -12,4 +12,4 @@ def renameFiles(root, base_name):
             print(filename)
 
 
-renameFiles("../src/main/resources/spritesheets/animations", "cd_anim")
+rename_files("../src/main/resources/spritesheets/animations", "cd_anim")

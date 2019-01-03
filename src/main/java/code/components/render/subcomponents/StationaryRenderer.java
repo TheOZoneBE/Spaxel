@@ -18,8 +18,8 @@ public class StationaryRenderer extends Renderer {
         VectorD pos = pc.getCoord().sum(Engine.get().getScreenOffset());
 
         data.applyTranslation(pos);
-
-        data.applyScale(sc.getSprite().getDim().multiplicate(sc.getScale()));
+        // TODO scaling should not be in here
+        data.applyScale(sc.getScale());
         data.applyRot(pc.getRot());
     }
 }

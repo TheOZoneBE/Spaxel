@@ -37,17 +37,19 @@
         "scale": 2
     },
     "#hp_bar": {
-        "sprite": "hp_bar",
         "x": 348,
         "y": 96,
-        "onUpdate": "updateHpBar"
+        "onUpdate": "updateHpBar",
+        "animation": "hp_bar",
+        "completion": 1
     },
     "#xp_bar": {
-        "sprite": "xp_bar",
         "x": 932,
         "y": 85,
         "rot": "3.1415",
-        "onUpdate": "updateXpBar"
+        "onUpdate": "updateXpBar",
+        "animation": "xp_bar",
+        "completion": 0
     },
     "#pause_controls": {
         "visible": false,

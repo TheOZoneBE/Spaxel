@@ -20,10 +20,14 @@ public final class TextRenderer {
     private static final int TWO = 2;
     private static final int NEWLINE_OFFSET = 16;
 
+    private TextRenderer() {
+
+    }
+
     public static void renderText(Style style, MasterBuffer buffer) {
         String text = style.getProperty("text");
         double scale = Double.parseDouble(style.getProperty("text-scale"));
-        boolean alignLeft = style.getProperty("align") == "left";
+        boolean alignLeft = "left".equals(style.getProperty("align"));
         double x = Double.parseDouble(style.getProperty("x"));
         double y = Double.parseDouble(style.getProperty("y"));
         VectorD pos = new VectorD(x, y);
@@ -103,7 +107,7 @@ public final class TextRenderer {
                 RenderData data = new RenderData();
                 data.applyTranslation(position);
                 data.applyRot(0);
-                data.applyScale(sprite.getDim().multiplicate(scale));
+                data.applyScale(scale);
                 data.setSprite(sprite);
                 buffer.addNewSprite(RenderLayer.UI, data);
             }

@@ -1,0 +1,36 @@
+spritesheet:
+  - /resources/spritesheet.json
+sprite:
+  - /resources/sprite.json
+  - /resources/font.json
+animation:
+  - /resources/animation.json
+music:
+  - /resources/sound.json
+hitshape:
+  - /resources/hitshape.json
+item:
+  - /resources/itemProperties.json
+stylesheet:
+  - /ui/styles/common.json
+  - /ui/styles/main.json
+  - /ui/styles/play.json
+  - /ui/styles/credits.json
+  - /ui/styles/options.json
+  - /ui/styles/class_select.json
+  - /ui/styles/game_over.json
+ui:
+  - /ui/main.xml
+  - /ui/play.xml
+  - /ui/credits.xml
+  - /ui/options.xml
+  - /ui/class_selection.xml
+  - /ui/game_over.xml
+industry:
+  - /resources/entity.json
+  - /resources/actor.json
+  - /resources/projectile.json
+  - /resources/item.json
+  - /resources/player.json
+  - /resources/effect.json
+  - /resources/marker.json

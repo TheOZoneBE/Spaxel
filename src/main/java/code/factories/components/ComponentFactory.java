@@ -6,10 +6,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
+ * Abstract superclass for a factory that creates a new component
+ * 
  * Created by theo on 3/06/17.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
-@JsonSubTypes({ @JsonSubTypes.Type(value = PositionComponentFactory.class, name = "POSITION"),
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type",
+        visible = true)
+@JsonSubTypes({@JsonSubTypes.Type(value = PositionComponentFactory.class, name = "POSITION"),
         @JsonSubTypes.Type(value = CollisionComponentFactory.class, name = "COLLISION"),
         @JsonSubTypes.Type(value = AgeComponentFactory.class, name = "AGE"),
         @JsonSubTypes.Type(value = HealthComponentFactory.class, name = "HEALTH"),
@@ -37,16 +40,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = MarkerComponentFactory.class, name = "MARKER"),
 
 })
-public class ComponentFactory {
+public abstract class ComponentFactory {
     private ComponentType type;
 
+    /**
+     * Create a new ComponentFactory
+     */
     public ComponentFactory() {
         super();
     }
 
-    public Component make() {
-        return null;
-    }
+    /**
+     * Create a new Component
+     * 
+     * @return the created component
+     */
+    public abstract Component make();
 
     public ComponentType getType() {
         return type;

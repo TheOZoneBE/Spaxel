@@ -85,7 +85,7 @@ public class DifficultySystem extends GameSystem {
      * Update the difficulty based on the time
      */
     public void updateDifficulty() {
-        int time = Engine.get().getGameProperties().getGameTime();
+        int time = Engine.get().getGameState().getGameTime();
         nextSpawn =
                 time < MAX_SPAWN_TIME * TICKS_INA_SECOND ? MAX_SPAWN_TIME * TICKS_INA_SECOND - time
                         : TICKS_INA_SECOND;

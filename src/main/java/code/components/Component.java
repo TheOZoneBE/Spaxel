@@ -8,6 +8,11 @@ import code.engine.NEntity;
 public abstract class Component {
     private ComponentType type;
 
+    /**
+     * Create a new component of the specified type
+     * 
+     * @param type the type of the component
+     */
     public Component(ComponentType type) {
         this.type = type;
     }
@@ -19,10 +24,18 @@ public abstract class Component {
      */
     public abstract Component copy();
 
+    /**
+     * Add an Entity in a cascading way
+     * 
+     * @param entity the cascading entity
+     */
     public void addCascade(NEntity entity) {
 
     }
 
+    /**
+     * Remove the cascading entity
+     */
     public void removeCascade() {
 
     }

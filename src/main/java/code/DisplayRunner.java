@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 import code.util.GLUtil;
 import code.engine.Resources;
 
+/**
+ * Runnable for the thread that renders all the display frames
+ */
 public class DisplayRunner implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(DisplayRunner.class.getName());
 
@@ -21,10 +24,16 @@ public class DisplayRunner implements Runnable {
     private long window = NULL;
     private RenderSystem renderSystem;
 
+    /**
+     * Create a new DisplayRunner
+     */
     public DisplayRunner() {
         super();
     }
 
+    /**
+     * Initialize the OpenGL window and context. Setup the input callback.
+     */
     public void initialize() {
         GLFWErrorCallback.createPrint().set();
 
@@ -77,6 +86,9 @@ public class DisplayRunner implements Runnable {
         }
     }
 
+    /**
+     * Render a new frame and swap the buffer to show it in the window.
+     */
     public void render() {
         // clear the framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -88,6 +100,9 @@ public class DisplayRunner implements Runnable {
         glfwPollEvents();
     }
 
+    /**
+     * Exit this thread and destroy the window
+     */
     public void exit() {
         running = false;
         try {

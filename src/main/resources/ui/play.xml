@@ -8,10 +8,12 @@
             <element id="resume" class="large_button"></element>
             <element id="quit" class="large_button"></element>
         </element>
-        <element id="hp_label"></element>
-        <element id="xp_label"></element>
-        <element class="bar play_bar" id="hp_bar"></element>
-        <element class="bar play_bar" id="xp_bar"></element>
+        <element class="bar play_bar" id="hp_bar">
+            <element id="hp_label"></element>
+        </element>
+        <element class="bar play_bar" id="xp_bar">
+            <element id="xp_label"></element>
+        </element>
         <element id="primary_container"></element>
         <element id="secondary_container"></element>
         <element id="ship_container"></element>

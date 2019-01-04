@@ -21,16 +21,16 @@
         "onUpdate": "updateTime"
     },
     "#hp_label": {
+        "x": 640,
         "y": 96,
         "text-scale": 1,
-        "text": "",
-        "onUpdate": "updateHpLabel"
+        "text": ""
     },
     "#xp_label": {
+        "x": 640,
         "y": 84,
         "text-scale": 1,
-        "text": "",
-        "onUpdate": "updateXpLabel"
+        "text": ""
     },
     ".play_bar": {
         "width": 580,

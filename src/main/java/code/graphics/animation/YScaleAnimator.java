@@ -2,10 +2,16 @@ package code.graphics.animation;
 
 import code.graphics.RenderData;
 
+/**
+ * The YScaleAnimator animates the y scale of the animation
+ */
 public class YScaleAnimator extends Animator {
     private double maxScale;
     private double minScale;
 
+    /**
+     * Create a new YScaleAnimator
+     */
     public YScaleAnimator() {
         super(AnimatorType.Y_SCALE);
     }

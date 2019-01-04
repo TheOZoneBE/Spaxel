@@ -22,7 +22,7 @@ public final class DebugRenderer {
 
     public static void renderDebug(MasterBuffer buffer) {
         renderEntityStream(buffer);
-        if (Engine.get().getGameProperties().isLogging()) {
+        if (Engine.get().getGameState().isLogging()) {
             renderLogger(buffer);
         }
     }

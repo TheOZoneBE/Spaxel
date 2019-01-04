@@ -4,10 +4,16 @@ import code.engine.Resources;
 import code.graphics.RenderData;
 import code.graphics.SpriteData;
 
+/**
+ * The FrameAnimator animates the current sprite of the animation
+ */
 public class FrameAnimator extends Animator {
     private String spriteBase;
     private int numFrames;
 
+    /**
+     * Create a new FrameAnimator
+     */
     public FrameAnimator() {
         super(AnimatorType.FRAME);
     }

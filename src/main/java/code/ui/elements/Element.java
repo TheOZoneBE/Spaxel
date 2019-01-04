@@ -16,7 +16,9 @@ import code.ui.logic.HoverLogic;
 import code.ui.logic.ClickLogic;
 
 
-
+/**
+ * Represent an element of a UI
+ */
 public class Element {
     private static final String VISIBLE = "visible";
     private String id;
@@ -30,7 +32,6 @@ public class Element {
     private Style elementStyle;
     private Style hoverStyle;
     private Style clickStyle;
-
     private State state;
 
     public Element() {

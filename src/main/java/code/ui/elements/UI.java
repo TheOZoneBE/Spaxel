@@ -7,34 +7,62 @@ import code.engine.Resources;
 import code.graphics.MasterBuffer;
 import code.ui.styles.Style;
 
+/**
+ * Root class of an ui structure
+ */
 public class UI {
     private UIType type;
     private String controller;
     private List<String> styles;
     private Element body;
 
+    /**
+     * Create a new UI
+     */
     public UI() {
         super();
         this.styles = new ArrayList<>();
     }
 
+    /**
+     * Initialize the ui by setting giving its reference to its children and initializing their
+     * styles
+     */
     public void initialize() {
         body.setUI(this);
         body.initStyle(new Style());
     }
 
+    /**
+     * Update this UI.
+     */
     public void update() {
         body.update();
     }
 
+    /**
+     * Render this UI.
+     * 
+     * @param buffer the masterbuffer of the rendersystem
+     */
     public void render(MasterBuffer buffer) {
         body.render(buffer);
     }
 
+    /**
+     * Reset this UI.
+     */
     public void reset() {
         body.reset();
     }
 
+    /**
+     * Find an element in this UI by its id
+     * 
+     * @param id the id of the element
+     * 
+     * @return the element if found
+     */
     public Element findById(String id) {
         return body.findById(id);
     }
@@ -75,13 +103,6 @@ public class UI {
     }
 
     /**
-     * @param styles the styles to set
-     */
-    public void setStyles(List<String> styles) {
-        this.styles = styles;
-    }
-
-    /**
      * @return the body
      */
     public Element getBody() {
@@ -95,11 +116,23 @@ public class UI {
         this.body = body;
     }
 
+    /**
+     * Add a new stylesheet path to this UI
+     * 
+     * @param style the path of the stylesheet
+     */
     @JsonSetter("style")
-    public void addStyle(String style) {
+    public void addStylesheetPath(String style) {
         this.styles.add(style);
     }
 
+    /**
+     * Get the style configuration corresponding to the given name
+     * 
+     * @param name the name of the style
+     * 
+     * @return the style configuration
+     */
     public Style getStyle(String name) {
         for (int i = styles.size() - 1; i >= 0; i--) {
             Style style = Resources.get().getStylesheets().get(styles.get(i)).get(name);

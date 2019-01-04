@@ -25,7 +25,7 @@ import code.system.UISystem;
 import code.system.VelocitySystem;
 
 /**
- * Runnable that runs all the game updates
+ * Runnable for the thread that executes all the game updates
  */
 public class UpdateRunner implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(UpdateRunner.class.getName());
@@ -95,7 +95,7 @@ public class UpdateRunner implements Runnable {
         Engine.get().getMouseWrapper().update();
         Engine.get().getKeyboard().update();
 
-        if (Engine.get().getGameState() != Engine.EngineState.PLAY) {
+        if (Engine.get().getEngineState() != Engine.EngineState.PLAY) {
             systems.get(SystemType.SOUND).update();
             systems.get(SystemType.UI).update();
         } else {
@@ -115,10 +115,10 @@ public class UpdateRunner implements Runnable {
             update(SystemType.UI);
             update(SystemType.DIFFICULTY);
             update(SystemType.MARKER);
-            Engine.get().getGameProperties().addTime(Constants.NS_PER_TICK);
+            Engine.get().getGameState().addTime(Constants.NS_PER_TICK);
         }
         Engine.get().getNEntityStream().cleanup();
-        if (Engine.get().getGameProperties().isLogging()) {
+        if (Engine.get().getGameState().isLogging()) {
             Engine.get().getLogger().cleanup();
         }
     }
@@ -129,7 +129,7 @@ public class UpdateRunner implements Runnable {
      * @param type the type of the system to update
      */
     public void update(SystemType type) {
-        if (Engine.get().getGameProperties().isLogging()) {
+        if (Engine.get().getGameState().isLogging()) {
             Engine.get().getLogger().registerStart(type);
             systems.get(type).update();
             Engine.get().getLogger().registerEnd(type);

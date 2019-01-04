@@ -11,6 +11,9 @@ import code.ui.styles.Style;
 import code.util.MatrixUtil;
 import code.engine.Resources;
 
+/**
+ * Logic to set the hover property of an element
+ */
 public class HoverLogic implements Logic {
     public void execute(Element element) {
         Style style = element.getElementStyle();

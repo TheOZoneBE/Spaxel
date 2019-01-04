@@ -47,7 +47,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
         // add particle effect
         Engine.get().getNEntityStream().addEntity(hpsi.produce(epc, pac));
 
-        Engine.get().getGameProperties().addScore(BASIC_ENEMY_SCORE);
+        Engine.get().getGameState().addScore(BASIC_ENEMY_SCORE);
         // add experience
         NEntity player = Engine.get().getNEntityStream().getPlayer();
         ExperienceComponent exp = (ExperienceComponent) player.getComponent(ComponentType.EXPERIENCE);

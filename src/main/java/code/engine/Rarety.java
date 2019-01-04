@@ -1,6 +1,8 @@
 package code.engine;
 
 /**
+ * The rarety of an item
+ * 
  * Created by theod on 12-7-2017.
  */
 public enum Rarety {

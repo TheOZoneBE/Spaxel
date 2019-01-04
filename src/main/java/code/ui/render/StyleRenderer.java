@@ -8,11 +8,20 @@ import code.engine.Resources;
 import code.graphics.RenderData;
 import code.graphics.RenderLayer;
 
+/**
+ * Provides methods for rendering style configurations of UI Elements
+ */
 public final class StyleRenderer {
     private StyleRenderer() {
 
     }
 
+    /**
+     * Render a style configuration
+     * 
+     * @param style  the style of the element
+     * @param buffer the masterbuffer of the rendersystem
+     */
     public static void renderStyle(Style style, MasterBuffer buffer) {
         if (style.contains("sprite")) {
             renderSprite(style, buffer);

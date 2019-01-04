@@ -63,18 +63,6 @@ public final class GLUtil {
         return window;
     }
 
-    public static void initGLContext() {
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, Constants.GL_MAJOR_V);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, Constants.GL_MINOR_V);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-        long window = glfwCreateWindow(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
-                Constants.DISPLAY_NAME, NULL, NULL);
-
-        glfwMakeContextCurrent(window);
-    }
-
     /**
      * Initialize the rendering properties of this OpenGL context
      */

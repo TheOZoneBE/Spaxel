@@ -4,9 +4,11 @@ import code.Constants;
 import code.math.VectorD;
 
 /**
+ * Represents the state of the current game
+ * 
  * Created by theo on 24/06/17.
  */
-public class GameProperties {
+public class GameState {
     private int score;
     private int gameTime;
     private long timeOverflow;
@@ -14,7 +16,7 @@ public class GameProperties {
     private boolean logging;
     private VectorD cursorFollow;
 
-    public GameProperties() {
+    public GameState() {
         super();
         this.cursorFollow = new VectorD(Constants.HALF_GAME_WIDTH, Constants.HALF_GAME_HEIGHT);
     }

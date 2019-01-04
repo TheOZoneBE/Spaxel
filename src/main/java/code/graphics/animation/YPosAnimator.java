@@ -2,10 +2,16 @@ package code.graphics.animation;
 
 import code.graphics.RenderData;
 
+/**
+ * The YPosAnimator animates the y position of the animation
+ */
 public class YPosAnimator extends Animator {
     private double maxPos;
     private double minPos;
 
+    /**
+     * Create a new YPosAnimator
+     */
     public YPosAnimator() {
         super(AnimatorType.Y_POS);
     }

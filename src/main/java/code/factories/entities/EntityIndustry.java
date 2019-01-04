@@ -7,16 +7,18 @@ import code.engine.NEntity;
 import code.factories.components.ComponentFactory;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Groups ComponentFactories together in an industry to build entities
+ * 
  * Created by theo on 3/06/17.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
-@JsonSubTypes({ @JsonSubTypes.Type(value = HitParticleIndustry.class, name = "HITPARTICLE"),
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type",
+        visible = true)
+@JsonSubTypes({@JsonSubTypes.Type(value = HitParticleIndustry.class, name = "HITPARTICLE"),
         @JsonSubTypes.Type(value = TrailSegmentIndustry.class, name = "TRAILSEGMENT"),
         @JsonSubTypes.Type(value = SpawnerIndustry.class, name = "SPAWNER"),
         @JsonSubTypes.Type(value = EnemyIndustry.class, name = "ENEMY"),
@@ -24,21 +26,34 @@ import java.util.Map;
         @JsonSubTypes.Type(value = ItemIndustry.class, name = "ITEM"),
         @JsonSubTypes.Type(value = PlayerIndustry.class, name = "PLAYER"),
         @JsonSubTypes.Type(value = EffectIndustry.class, name = "EFFECT"),
-        @JsonSubTypes.Type(value = EffectIndustry.class, name = "VISUAL_EFFECT"), })
+        @JsonSubTypes.Type(value = EffectIndustry.class, name = "VISUAL_EFFECT"),})
 public class EntityIndustry {
     private EntityType type;
     private List<ComponentFactory> factories;
 
+    /**
+     * Creates a new EntityIndustry
+     */
     public EntityIndustry() {
         super();
     }
 
+    /**
+     * Create a new entity with the components produced by the componentfactories
+     * 
+     * @return the created entity
+     */
     public NEntity produce() {
         NEntity entity = new NEntity(type);
         entity.setComponents(buildComponents());
         return entity;
     }
 
+    /**
+     * Builds the componentmap using the factories of this industry
+     * 
+     * @return the created componentmap
+     */
     public Map<ComponentType, Component> buildComponents() {
         EnumMap<ComponentType, Component> components = new EnumMap<>(ComponentType.class);
         for (ComponentFactory factory : factories) {

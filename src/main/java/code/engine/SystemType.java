@@ -1,31 +1,50 @@
 package code.engine;
 
+/**
+ * The different types of systems
+ */
 public enum SystemType {
 	UI("ui"),
+
 	AI("ai"),
+
 	RENDER("render"),
+
 	SOUND("sound"),
+
 	SPAWNER("spawner"),
+
 	AGE("age"),
+
 	VELOCITY("velocity"),
+
 	DAMAGE("damage"),
+
 	HEALTH("health"),
+
 	COOLDOWN("cooldown"),
+
 	HIT("hit"),
+
 	INPUT("input"),
+
 	EQUIP("equip"),
+
 	EXPERIENCE("experience"),
+
 	SHIP("ship"),
+
 	DIFFICULTY("difficulty"),
+
 	MARKER("marker");
 
 	private final String name;
 
-	SystemType(String name){
+	SystemType(String name) {
 		this.name = name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 }

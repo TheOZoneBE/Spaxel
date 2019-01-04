@@ -1,4 +1,4 @@
-package code.factories.uielements;
+package code.factories.elements;
 
 import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
@@ -9,6 +9,8 @@ import code.ui.elements.Element;
 
 
 /**
+ * Creates new UI elements
+ * 
  * Created by theod on 29-6-2017.
  */
 public final class ElementCreator {
@@ -16,6 +18,13 @@ public final class ElementCreator {
 
     }
 
+    /**
+     * Create an Item View Element
+     * 
+     * @param item the item to create a view for
+     * 
+     * @return the created Element
+     */
     public static Element createItemView(NEntity item) {
         SpriteComponent sc = (SpriteComponent) item.getComponent(ComponentType.SPRITE);
         CooldownComponent cc = (CooldownComponent) item.getComponent(ComponentType.COOLDOWN);

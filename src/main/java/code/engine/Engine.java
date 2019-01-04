@@ -24,12 +24,12 @@ public final class Engine {
 	private double updateTime;
 	private VectorD screenOffset;
 
-	private GameProperties gameProperties;
+	private GameState gameState;
 
 	private Logger logger;
 
 	private Engine() {
-		gameProperties = new GameProperties();
+		gameState = new GameState();
 		nentities = new NEntityStream();
 		engineState = EngineState.LOAD;
 	}
@@ -55,7 +55,7 @@ public final class Engine {
 
 	public void stopGame() {
 		nentities.scheduleClear();
-		gameProperties = new GameProperties();
+		gameState = new GameState();
 		logger = null;
 		// TODO rework musiclist so the data and the resetting is seperated
 		Resources.get().getMusicList().reset();
@@ -81,11 +81,11 @@ public final class Engine {
 		return nentities;
 	}
 
-	public EngineState getGameState() {
+	public EngineState getEngineState() {
 		return engineState;
 	}
 
-	public void setGameState(EngineState gs) {
+	public void setEngineState(EngineState gs) {
 		engineState = gs;
 	}
 
@@ -106,8 +106,8 @@ public final class Engine {
 		this.screenOffset = screenOffset;
 	}
 
-	public GameProperties getGameProperties() {
-		return gameProperties;
+	public GameState getGameState() {
+		return gameState;
 	}
 
 	public Logger getLogger() {

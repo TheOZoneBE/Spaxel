@@ -2,10 +2,16 @@ package code.graphics.animation;
 
 import code.graphics.RenderData;
 
+/**
+ * The XPosAnimator animates the x position of the animation
+ */
 public class XPosAnimator extends Animator {
     private double maxPos;
     private double minPos;
 
+    /**
+     * Create a new XPosAnimator
+     */
     public XPosAnimator() {
         super(AnimatorType.X_POS);
     }

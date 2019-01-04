@@ -3,6 +3,8 @@ package code.engine;
 import code.components.item.ItemType;
 
 /**
+ * Represents the properties of an item
+ * 
  * Created by theod on 12-7-2017.
  */
 public class ItemProperties {
@@ -12,6 +14,9 @@ public class ItemProperties {
     private Rarety rarety;
     private ItemType type;
 
+    /**
+     * Create a new ItemProperties
+     */
     public ItemProperties() {
         super();
     }

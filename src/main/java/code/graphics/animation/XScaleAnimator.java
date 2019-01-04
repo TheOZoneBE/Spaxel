@@ -2,10 +2,16 @@ package code.graphics.animation;
 
 import code.graphics.RenderData;
 
+/**
+ * The XScaleAnimator animates the x scale of the animation
+ */
 public class XScaleAnimator extends Animator {
     private double maxScale;
     private double minScale;
 
+    /**
+     * Create a new XScaleAnimator
+     */
     public XScaleAnimator() {
         super(AnimatorType.X_SCALE);
     }

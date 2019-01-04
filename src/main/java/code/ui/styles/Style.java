@@ -12,8 +12,8 @@ import java.util.Arrays;
  * Represents the styling applied to an ui Element
  */
 public class Style {
-    private static final List<String> nonMergeable =
-            Arrays.asList("onClick", "onUpdate", "sprite", "text", "hitshape", "visible");
+    private static final List<String> nonMergeable = Arrays.asList("onClick", "onUpdate", "sprite",
+            "text", "hitshape", "visible", "animation");
     private Map<String, String> properties;
     private Set<String> enabled;
 

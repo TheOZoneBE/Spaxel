@@ -96,13 +96,6 @@ public class UI {
     }
 
     /**
-     * @return the styles
-     */
-    public List<String> getStyles() {
-        return styles;
-    }
-
-    /**
      * @return the body
      */
     public Element getBody() {

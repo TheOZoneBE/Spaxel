@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import code.collision.HitShape;
 import code.engine.ItemCatalogue;
 import code.engine.ItemProperties;
@@ -22,7 +23,8 @@ import code.sound.Music;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
 import code.ui.styles.Style;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import code.input.Key;
+import code.input.KeyState;
 
 
 
@@ -49,7 +51,7 @@ public final class Loader {
     /**
      * Load the animations specified at the given file
      * 
-     * @param path the path to the file that contains the properties of the animations
+     * @param files the paths to the files that contain the properties of the animations
      * 
      * @return map from animation name to Animation object
      */
@@ -74,7 +76,7 @@ public final class Loader {
     /**
      * Load the hitshapes specified at the given file
      * 
-     * @param path the path to the file that contains the properties of the hitshapes
+     * @param files the paths to the files that contain the properties of the hitshapes
      * 
      * @return map from hitshape name to HitShape object
      */
@@ -122,7 +124,7 @@ public final class Loader {
     /**
      * Load the itemproperties specified in the given file
      * 
-     * @param path the path to the file that contains the itemproperties
+     * @param files the paths to the files that contain the itemproperties
      * 
      * @return an itemcatalogue with the itemproperties
      */
@@ -140,6 +142,13 @@ public final class Loader {
         return null;
     }
 
+    /**
+     * Load the sounds specified in the given files
+     * 
+     * @param files the paths to the files that contain the sounds
+     * 
+     * @return a map from sound name to Sound
+     */
     public static Map<String, Music> loadSounds(Iterable<String> files) {
         try {
             Map<String, Music> music = new HashMap<>();
@@ -191,7 +200,7 @@ public final class Loader {
     /**
      * Load the spritesheets specified in the given file
      * 
-     * @param path path to the file that contains the properties for all spritesheets
+     * @param files paths to the files that contain the properties for all spritesheets
      * 
      * @return a map from spritesheetname to spritesheet object
      */
@@ -265,11 +274,38 @@ public final class Loader {
         return null;
     }
 
+    /**
+     * Load the configuration file for all the paths to the resources
+     * 
+     * @param path the path to the file
+     * 
+     * @return a map of resource identifier to path list
+     */
     public static Map<String, List<String>> loadResourcePaths(String path) {
         try {
             InputStream file = loadFile(path);
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             return mapper.readValue(file, new TypeReference<Map<String, List<String>>>() {
+            });
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * Loads the key configuration file specified in the argument
+     * 
+     * @param path the path to the key configuration file
+     * 
+     * @return the key configuration
+     */
+    public static Map<Key, KeyState> loadKeyConfiguration(List<String> path) {
+        try {
+            InputStream file = loadFile(path.get(0));
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+            return mapper.readValue(file, new TypeReference<Map<Key, KeyState>>() {
             });
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);

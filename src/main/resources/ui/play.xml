@@ -17,5 +17,7 @@
         <element id="primary_container"></element>
         <element id="secondary_container"></element>
         <element id="ship_container"></element>
+        <element id="debug_overlay"></element>
+        <element id="logging_overlay"></element>
     </body>
 </ui>

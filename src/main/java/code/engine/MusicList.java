@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import code.sound.Music;
 import code.util.SpaxelRandom;
 
@@ -15,7 +14,11 @@ public class MusicList {
     private List<Music> alreadyPlayed;
     private Map<String, Music> music;
     private SpaxelRandom random;
-    private int[] probabilities = { 0, 0, 0, 10, 5, 1, 3, 10, 3, 1, 5, 10 };
+    private static final int[] PROBABILITIES = {0, 0, 0, 10, 5, 1, 3, 10, 3, 1, 5, 10};
+    private static final int TIME_THRESHOLD_1 = 600;
+    private static final int TIME_THRESHOLD_2 = 1200;
+    private static final int OFFSET_1 = 3;
+    private static final int OFFSET_2 = 6;
 
     public MusicList(Map<String, Music> music) {
         this.music = music;
@@ -29,12 +32,12 @@ public class MusicList {
         int time = Engine.get().getGameState().getGameTime();
         for (Music m : music.values()) {
             if (!alreadyPlayed.contains(m)) {
-                if (time < 600) {
-                    acc += probabilities[m.getIntensity()];
-                } else if (time < 1200) {
-                    acc += probabilities[3 + m.getIntensity()];
+                if (time < TIME_THRESHOLD_1) {
+                    acc += PROBABILITIES[m.getIntensity()];
+                } else if (time < TIME_THRESHOLD_2) {
+                    acc += PROBABILITIES[OFFSET_1 + m.getIntensity()];
                 } else {
-                    acc += probabilities[6 + m.getIntensity()];
+                    acc += PROBABILITIES[OFFSET_2 + m.getIntensity()];
                 }
             } else {
                 acc += 1;

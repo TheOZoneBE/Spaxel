@@ -1,18 +1,35 @@
 package code.input;
 
+import static org.lwjgl.glfw.GLFW.*;
+
 /**
+ * Represents the state of a single key
+ * 
  * Created by theod on 6-11-2016.
  */
 public class KeyState {
     private boolean down;
-    private boolean wasDown;
+    private boolean beenDown;
+    private int code;
 
+    /**
+     * Create a new KeyState
+     */
     public KeyState() {
         super();
     }
 
+    /**
+     * Updates the state of the key
+     * 
+     * @param window the window in which the key lives
+     */
+    public void update(long window) {
+        setState(glfwGetKey(window, code) == GLFW_PRESS);
+    }
+
     public void setState(boolean down) {
-        wasDown = this.down;
+        beenDown = this.down;
         this.down = down;
     }
 
@@ -20,15 +37,24 @@ public class KeyState {
         return down;
     }
 
+    /**
+     * Get the value of beenDown
+     * 
+     * @return the value of beenDown
+     */
     public boolean hasBeenDown() {
-        return wasDown;
+        return beenDown;
     }
 
     public boolean isRelease() {
-        return wasDown && !down;
+        return beenDown && !down;
     }
 
     public boolean isPress() {
-        return !wasDown && down;
+        return !beenDown && down;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

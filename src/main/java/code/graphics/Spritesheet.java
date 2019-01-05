@@ -1,14 +1,11 @@
 package code.graphics;
 
 import code.util.BufferUtils;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class Spritesheet {
@@ -51,6 +48,7 @@ public class Spritesheet {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
 				BufferUtils.createIntBuffer(data));
+
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 

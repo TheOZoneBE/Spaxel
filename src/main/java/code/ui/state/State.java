@@ -7,6 +7,7 @@ public class State {
     private boolean hover;
     private boolean click;
     private boolean release;
+    private boolean init;
 
     /**
      * Create an new State object.
@@ -64,6 +65,20 @@ public class State {
      */
     public void setRelease(boolean release) {
         this.release = release;
+    }
+
+    /**
+     * @return the init
+     */
+    public boolean isInit() {
+        return init;
+    }
+
+    /**
+     * @param init the init to set
+     */
+    public void setInit(boolean init) {
+        this.init = init;
     }
 
 

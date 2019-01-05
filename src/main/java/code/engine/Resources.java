@@ -12,7 +12,12 @@ import code.ui.elements.UI;
 import code.ui.elements.UIType;
 import code.ui.styles.Style;
 import code.Constants;
+import code.input.Key;
+import code.input.KeyState;
 
+/**
+ * Singleton class to hold all the game resources
+ */
 public final class Resources {
 	private static final Resources resources = new Resources();
 
@@ -25,11 +30,15 @@ public final class Resources {
 	private Map<String, SpriteData> spriteAtlas;
 	private Map<String, Animation> animationAtlas;
 	private ItemCatalogue items;
+	private Map<Key, KeyState> keyConfiguration;
 
 	private Resources() {
 
 	}
 
+	/**
+	 * Initializes the resources needed to show the loadingscreen
+	 */
 	public void initLoadingResources() {
 		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.LOAD_RESOURCE_PATH);
 		spritesheets = loadSpritesheets(resourcePaths.get("spritesheet"));
@@ -40,10 +49,18 @@ public final class Resources {
 		Engine.get().setCurrentUI(uis.get(UIType.LOAD));
 	}
 
+	/**
+	 * Get the singleton instance of this class
+	 * 
+	 * @return the singleton
+	 */
 	public static Resources get() {
 		return resources;
 	}
 
+	/**
+	 * Starts the loading of all the game resources
+	 */
 	public void startLoading() {
 		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.RESOURCE_PATH);
 
@@ -58,6 +75,8 @@ public final class Resources {
 		uis = loadUI(resourcePaths.get("ui"));
 
 		industryMap = loadEntityIndustries(resourcePaths.get("industry"));
+
+		keyConfiguration = loadKeyConfiguration(resourcePaths.get("keys"));
 
 		Engine.get().finishLoading();
 	}
@@ -97,5 +116,9 @@ public final class Resources {
 
 	public Map<String, SpriteData> getSpriteAtlas() {
 		return spriteAtlas;
+	}
+
+	public Map<Key, KeyState> getKeyConfiguration() {
+		return keyConfiguration;
 	}
 }

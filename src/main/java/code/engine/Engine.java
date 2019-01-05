@@ -4,7 +4,6 @@ import code.Game;
 import code.input.Keyboard;
 import code.input.MouseWrapper;
 import code.logger.Logger;
-import code.math.VectorD;
 import code.ui.elements.UIType;
 import code.ui.elements.UI;
 
@@ -20,9 +19,6 @@ public final class Engine {
 	private EngineState engineState;
 
 	private long window;
-
-	private double updateTime;
-	private VectorD screenOffset;
 
 	private GameState gameState;
 
@@ -43,7 +39,7 @@ public final class Engine {
 	}
 
 	public void finishLoading() {
-		this.keys = new Keyboard(window);
+		this.keys = new Keyboard(window, Resources.get().getKeyConfiguration());
 
 		nentities.cleanup();
 
@@ -87,23 +83,6 @@ public final class Engine {
 
 	public void setEngineState(EngineState gs) {
 		engineState = gs;
-	}
-
-	public double getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(double updateTime) {
-		this.updateTime = updateTime;
-	}
-
-
-	public VectorD getScreenOffset() {
-		return screenOffset;
-	}
-
-	public void setScreenOffset(VectorD screenOffset) {
-		this.screenOffset = screenOffset;
 	}
 
 	public GameState getGameState() {

@@ -82,7 +82,7 @@ public class DisplayRunner implements Runnable {
             start = System.nanoTime();
             render();
             deltatime = System.nanoTime() - start;
-            Engine.get().setUpdateTime((double) deltatime / Constants.NS_PER_TICK);
+            Engine.get().getGameState().setUpdateTime((double) deltatime / Constants.NS_PER_TICK);
         }
     }
 

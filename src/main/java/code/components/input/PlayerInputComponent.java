@@ -12,6 +12,7 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.input.Keyboard;
+import code.input.Key;
 import code.input.MouseWrapper;
 import code.math.VectorD;
 import code.Constants;
@@ -48,20 +49,20 @@ public class PlayerInputComponent extends InputComponent {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
 
         VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT));
-        if (keys.getDownState().isDown()) {
+        if (keys.get(Key.DOWN).isDown()) {
             velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot()))
                     .multiplicate(mc.getAcc());
         }
-        if (keys.getUpState().isDown()) {
+        if (keys.get(Key.UP).isDown()) {
             velChange = new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
                     .multiplicate(mc.getAcc());
         }
-        if (keys.getLeftState().isDown()) {
+        if (keys.get(Key.LEFT).isDown()) {
             velChange = new VectorD(Math.sin(pc.getRot() - Constants.HALF_CIRLCE),
                     Math.cos(pc.getRot() - Constants.HALF_CIRLCE)).multiplicate(mc.getAcc());
         }
 
-        if (keys.getRightState().isDown()) {
+        if (keys.get(Key.RIGHT).isDown()) {
             velChange = new VectorD(Math.sin(pc.getRot() + Constants.HALF_CIRLCE),
                     Math.cos(pc.getRot() + Constants.HALF_CIRLCE)).multiplicate(mc.getAcc());
         }
@@ -74,8 +75,8 @@ public class PlayerInputComponent extends InputComponent {
 
         VectorD mousePos = mouse.getPos();
 
-        VectorD diff = mousePos
-                .sum(pc.getCoord().sum(Engine.get().getScreenOffset()).multiplicate(-1));
+        VectorD diff = mousePos.sum(
+                pc.getCoord().sum(Engine.get().getGameState().getScreenOffset()).multiplicate(-1));
         double rotToGet = diff.angle();
 
         if (rotToGet < 0) {

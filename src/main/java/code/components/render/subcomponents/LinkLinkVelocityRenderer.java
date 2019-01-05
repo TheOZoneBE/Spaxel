@@ -20,9 +20,9 @@ public class LinkLinkVelocityRenderer extends Renderer {
         PositionComponent pc = (PositionComponent) linkLink.getComponent(ComponentType.POSITION);
         VelocityComponent vc = (VelocityComponent) linkLink.getComponent(ComponentType.VELOCITY);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
-        VectorD pos = pc.getCoord().sum(Engine.get().getScreenOffset())
-                .sum(vc.getVelocity().multiplicate(Engine.get().getUpdateTime()));
-        double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getUpdateTime();
+        VectorD pos = pc.getCoord().sum(Engine.get().getGameState().getScreenOffset())
+                .sum(vc.getVelocity().multiplicate(Engine.get().getGameState().getUpdateTime()));
+        double rot = pc.getRot() + vc.getDeltaRot() * Engine.get().getGameState().getUpdateTime();
 
         data.applyTranslation(pos);
         // TODO scaling should not be in here

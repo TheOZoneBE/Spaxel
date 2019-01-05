@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import code.ui.logic.Logic;
 import code.ui.logic.OnClickLogic;
 import code.ui.logic.OnUpdateLogic;
+import code.ui.logic.OnInitLogic;
 import code.ui.logic.ReleaseLogic;
 import code.ui.render.StyleRenderer;
 import code.ui.state.State;
@@ -45,6 +46,7 @@ public class Element {
         logic.add(new ReleaseLogic());
         logic.add(new OnClickLogic());
         logic.add(new OnUpdateLogic());
+        logic.add(new OnInitLogic());
     }
 
     public void render(MasterBuffer buffer) {
@@ -148,6 +150,10 @@ public class Element {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @JsonSetter("element")

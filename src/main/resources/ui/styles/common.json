@@ -34,5 +34,19 @@
     ".item_stacks": {
         "x": 20,
         "y": 20
+    },
+    ".debug_label": {
+        "width": 100,
+        "height": 25,
+        "align": "left",
+        "text-scale": 1,
+        "onUpdate": "updateDebugLabel"
+    },
+    ".logging_label": {
+        "width": 100,
+        "height": 25,
+        "align": "left",
+        "text-scale": 1,
+        "onUpdate": "updateLoggingLabel"
     }
 }

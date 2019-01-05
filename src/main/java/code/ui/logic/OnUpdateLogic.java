@@ -11,7 +11,7 @@ public class OnUpdateLogic implements Logic {
         String method = element.getElementStyle().getProperty("onUpdate");
         String controller = element.getUI().getController();
         if (method != null && controller != null) {
-            UIUtil.invokeMethod(controller, method, element);
+            UIUtil.invokeUpdateMethod(controller, method, element);
         }
     }
 }

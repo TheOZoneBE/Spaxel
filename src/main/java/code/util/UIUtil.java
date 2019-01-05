@@ -6,21 +6,22 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 import code.ui.elements.Element;
 
+/**
+ * Provides functions for invoking methods in the ui Elements
+ */
 public final class UIUtil {
     private static final Logger LOGGER = Logger.getLogger(UIUtil.class.getName());
 
     private UIUtil() {
     }
 
-    public static void invokeMethod(String controller, String method, Element element) {
-        if (method.contains("update")) {
-            invokeUpdateMethod(controller, method, element);
-        } else {
-            invokeActionMethod(controller, method);
-        }
-    }
-
-    private static void invokeActionMethod(String controller, String method) {
+    /**
+     * Invoke an onClick method
+     * 
+     * @param controller the name of the class where the method is specified
+     * @param method     the name of the method
+     */
+    public static void invokeClickMethod(String controller, String method) {
         try {
             Method m = Class.forName(controller).getMethod(method);
             m.invoke(null);
@@ -30,14 +31,39 @@ public final class UIUtil {
         }
     }
 
-    private static void invokeUpdateMethod(String controller, String method, Element element) {
+    /**
+     * Invoke an onUpdate method
+     * 
+     * @param controller the name of the class where the method is specified
+     * @param method     the name of the method
+     * @param element    the element that called the method
+     */
+    public static void invokeUpdateMethod(String controller, String method, Element element) {
         try {
             Method m = Class.forName(controller).getMethod(method, Element.class);
             m.invoke(null, element);
-
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException
                 | ClassNotFoundException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
+
+    /**
+     * Invoke an onInit method
+     * 
+     * @param controller the name of the class where the method is specified
+     * @param method     the name of the method
+     * 
+     * @return the created element
+     */
+    public static Element invokeInitMethod(String controller, String method) {
+        try {
+            Method m = Class.forName(controller).getMethod(method);
+            return (Element) m.invoke(null);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException
+                | ClassNotFoundException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+            return null;
         }
     }
 }

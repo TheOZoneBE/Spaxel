@@ -5,7 +5,6 @@ import code.graphics.FBO;
 import code.graphics.shaders.BlurShaderProgram;
 import code.graphics.shaders.ShaderProgram;
 import code.math.VectorD;
-
 import static org.lwjgl.opengl.GL11.*;
 
 /**
@@ -13,9 +12,13 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class BlurPostProcessor extends PostProcessor {
     private static final double BLUR_STRENGTH = 2.0;
-    private static final int QUAD_VERTICES = 6;
     private FBO middle;
 
+    /**
+     * Creates a new PostProcessor that executes a blurring postprocess step
+     * 
+     * @param program the blurring program
+     */
     public BlurPostProcessor(ShaderProgram program) {
         super(program);
         middle = new FBO();
@@ -30,14 +33,14 @@ public class BlurPostProcessor extends PostProcessor {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         in.bindTexture();
         ((BlurShaderProgram) program).setDir(new VectorD(0, BLUR_STRENGTH / Constants.GAME_HEIGHT));
-        glDrawElements(GL_TRIANGLES, QUAD_VERTICES, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
         middle.unbindBuffer();
 
         out.bindBuffer();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         middle.bindTexture();
         ((BlurShaderProgram) program).setDir(new VectorD(BLUR_STRENGTH / Constants.GAME_WIDTH, 0));
-        glDrawElements(GL_TRIANGLES, QUAD_VERTICES, GL_UNSIGNED_BYTE, 0);
+        glDrawElements(GL_TRIANGLES, fboQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0);
         out.unbindBuffer();
     }
 }

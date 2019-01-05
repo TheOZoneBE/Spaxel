@@ -15,10 +15,13 @@ public class GameState {
     private boolean debug;
     private boolean logging;
     private VectorD cursorFollow;
+    private VectorD screenOffset;
+    private double updateTime;
 
     public GameState() {
         super();
         this.cursorFollow = new VectorD(Constants.HALF_GAME_WIDTH, Constants.HALF_GAME_HEIGHT);
+        this.screenOffset = new VectorD(0, 0);
     }
 
     public int getScore() {
@@ -29,32 +32,24 @@ public class GameState {
         score += value;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public int getGameTime() {
         return gameTime;
-    }
-
-    public void setGameTime(int gameTime) {
-        this.gameTime = gameTime;
     }
 
     public boolean isDebug() {
         return debug;
     }
 
-    public void setDebug(boolean debug) {
-        this.debug = debug;
+    public void toggleDebug() {
+        debug = !debug;
     }
 
     public boolean isLogging() {
         return logging;
     }
 
-    public void setLogging(boolean logging) {
-        this.logging = logging;
+    public void toggleLogging() {
+        logging = !logging;
     }
 
     public void addTime(long updateTime) {
@@ -69,5 +64,33 @@ public class GameState {
 
     public void setCursorFollow(VectorD cursorFollow) {
         this.cursorFollow = cursorFollow;
+    }
+
+    /**
+     * @return the screenOffset
+     */
+    public VectorD getScreenOffset() {
+        return screenOffset;
+    }
+
+    /**
+     * @param screenOffset the screenOffset to set
+     */
+    public void setScreenOffset(VectorD screenOffset) {
+        this.screenOffset = screenOffset;
+    }
+
+    /**
+     * @return the updateTime
+     */
+    public double getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * @param updateTime the updateTime to set
+     */
+    public void setUpdateTime(double updateTime) {
+        this.updateTime = updateTime;
     }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Buffers all render jobs
+ * 
  * Created by theod on 15/10/2016.
  */
 public class MasterBuffer {

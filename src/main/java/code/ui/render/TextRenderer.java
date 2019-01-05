@@ -10,6 +10,9 @@ import code.graphics.SpriteData;
 import code.math.VectorD;
 import code.ui.styles.Style;
 
+/**
+ * Provides methods for rendering text
+ */
 public final class TextRenderer {
     private static final String SPACE = " ";
     private static final String NEWLINE = "\\\\";
@@ -24,6 +27,12 @@ public final class TextRenderer {
 
     }
 
+    /**
+     * Render the text according to the given style
+     * 
+     * @param style  the style of the text
+     * @param buffer the master buffer of the game
+     */
     public static void renderText(Style style, MasterBuffer buffer) {
         String text = style.getProperty("text");
         double scale = Double.parseDouble(style.getProperty("text-scale"));
@@ -102,6 +111,13 @@ public final class TextRenderer {
             return width;
         }
 
+        /**
+         * Renders this character at the specified position with the specified scale
+         * 
+         * @param position the position of the character
+         * @param scale    the scale of the character
+         * @param buffer   the master buffer of the game
+         */
         public void render(VectorD position, double scale, MasterBuffer buffer) {
             if (sprite != null) {
                 RenderData data = new RenderData();

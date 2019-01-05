@@ -1,5 +1,8 @@
 package code;
 
+/**
+ * Groups all the Game constants
+ */
 public final class Constants {
         public static final double FULL_CIRCLE = 2 * Math.PI;
         public static final double HALF_CIRLCE = Math.PI / 2;
@@ -11,6 +14,7 @@ public final class Constants {
         public static final int TICKS_PER_SECOND = 50;
         public static final long NS_PER_TICK = NS_PER_SECOND / TICKS_PER_SECOND;
         public static final long NS_PER_MS = 1_000_000;
+        public static final long NS_PER_US = 1_000;
         public static final double MOUSE_FOLLOW_CUTOFF = .1;
         public static final double MOUSE_FOLLOW_MULTIPLIER = .15;
 

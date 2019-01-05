@@ -7,10 +7,15 @@ import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
 import code.engine.Resources;
+import code.engine.SystemType;
 import code.factories.elements.ElementCreator;
 import code.input.Keyboard;
+import code.logger.DebugRenderer;
 import code.ui.elements.Element;
 import code.ui.elements.UIType;
+import code.Constants;
+import code.logger.Logger;
+import code.input.Key;
 
 /**
  * Callbacks for the elements in the play UI.
@@ -118,13 +123,15 @@ public final class PlayController {
 
     /**
      * Checks whether the log key is pressed and makes the logger visible if that is the case.
+     * 
+     * @param element the logging ui element
      */
-    public static void logCheck() {
+    public static void logCheck(Element element) {
         Keyboard k = Engine.get().getKeyboard();
 
-        if (k.getlState().isRelease()) {
-            Engine.get().getGameState().setLogging(Engine.get().getGameState().isLogging());
-            Engine.get().getCurrentUI().findById("logging_overlay").setStyleProperty(VISIBLE,
+        if (k.get(Key.LOG).isRelease()) {
+            Engine.get().getGameState().toggleLogging();
+            element.setStyleProperty(VISIBLE,
                     String.valueOf(Engine.get().getGameState().isLogging()));
         }
     }
@@ -132,13 +139,15 @@ public final class PlayController {
     /**
      * Checks whether the debug key is pressed and makes the debug screen visible if that is the
      * case
+     * 
+     * @param element the debug ui element
      */
-    public static void debugCheck() {
+    public static void debugCheck(Element element) {
         Keyboard k = Engine.get().getKeyboard();
 
-        if (k.getiState().isRelease()) {
-            Engine.get().getGameState().setDebug(!Engine.get().getGameState().isDebug());
-            Engine.get().getCurrentUI().findById("debug_overlay").setStyleProperty(VISIBLE,
+        if (k.get(Key.DEBUG).isRelease()) {
+            Engine.get().getGameState().toggleDebug();
+            element.setStyleProperty(VISIBLE,
                     String.valueOf(Engine.get().getGameState().isDebug()));
         }
     }
@@ -162,18 +171,64 @@ public final class PlayController {
 
     /**
      * Checks if the esc key is pressed and toggles the pause menu if that is the case
+     * 
+     * @param element the pause controls element
      */
-    public static void escCheck() {
+    public static void escCheck(Element element) {
         Keyboard k = Engine.get().getKeyboard();
-        if (k.getEscState().isRelease()) {
+        if (k.get(Key.ESC).isRelease()) {
             if (Engine.get().getEngineState() == Engine.EngineState.PAUSE) {
                 resume();
             } else {
                 Engine.get().setEngineState(Engine.EngineState.PAUSE);
-                Engine.get().getCurrentUI().findById("pause_controls").setStyleProperty(VISIBLE,
-                        "true");
+                element.setStyleProperty(VISIBLE, "true");
             }
         }
+    }
+
+    /**
+     * Inits the debug element
+     * 
+     * @return the debug element
+     */
+    public static Element initDebug() {
+        return DebugRenderer.createDebugElement();
+    }
+
+    /**
+     * Inits the debug element
+     * 
+     * @return the debug element
+     */
+    public static Element initLogging() {
+        return DebugRenderer.createLoggerElement();
+    }
+
+    /**
+     * Updates the debug label
+     * 
+     * @param element the debug label
+     */
+    public static void updateDebugLabel(Element element) {
+        ComponentType type = ComponentType.valueOf(element.getId().toUpperCase());
+        int size = Engine.get().getNEntityStream().getEntities(type).size();
+        element.setStyleProperty("text", type.getName() + ": " + size);
+    }
+
+    /**
+     * Updates the logging label
+     * 
+     * @param element the logging label
+     */
+    public static void updateLoggingLabel(Element element) {
+        Logger logger = Engine.get().getLogger();
+        SystemType type = SystemType.valueOf(element.getId().toUpperCase());
+
+        long dif = logger.getHistory().get(type).getLast().getDifference() / Constants.NS_PER_US;
+        long sum = logger.getRollingSum().get(type);
+        long avg = (sum / logger.getCurrentAvg()) / Constants.NS_PER_US;
+
+        element.setStyleProperty("text", type.getName() + ": " + avg + "(" + dif + ")");
     }
 
 }

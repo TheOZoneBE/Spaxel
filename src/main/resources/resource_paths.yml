@@ -34,3 +34,5 @@ industry:
   - /resources/player.json
   - /resources/effect.json
   - /resources/marker.json
+keys:
+  - /keys/default.yml

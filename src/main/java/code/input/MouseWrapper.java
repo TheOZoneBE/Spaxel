@@ -5,6 +5,9 @@ import code.Constants;
 import code.math.VectorD;
 import static org.lwjgl.glfw.GLFW.*;
 
+/**
+ * Represents the state of the mouse in the game
+ */
 public class MouseWrapper extends GLFWCursorPosCallback {
 
 	private int x;
@@ -14,6 +17,11 @@ public class MouseWrapper extends GLFWCursorPosCallback {
 	private KeyState mouse3;
 	private long window;
 
+	/**
+	 * Create a new MouseWrapper
+	 * 
+	 * @param window the window in which the mouse lives
+	 */
 	public MouseWrapper(long window) {
 		this.window = window;
 		mouse1 = new KeyState();
@@ -21,6 +29,9 @@ public class MouseWrapper extends GLFWCursorPosCallback {
 		mouse3 = new KeyState();
 	}
 
+	/**
+	 * Updates the keystates of the mouse keys
+	 */
 	public void update() {
 		mouse1.setState(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS);
 		mouse2.setState(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS);

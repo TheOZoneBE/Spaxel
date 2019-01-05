@@ -6,6 +6,11 @@ package code.components.damage;
 public class Damage {
     private int damageValue;
 
+    /**
+     * Create a new Damage instance with the specified damage amount
+     * 
+     * @param damageValue the damage
+     */
     public Damage(int damageValue) {
         this.damageValue = damageValue;
     }

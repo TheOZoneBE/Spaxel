@@ -12,7 +12,6 @@ import code.engine.SystemType;
 import code.graphics.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.input.MouseWrapper;
-import code.logger.DebugRenderer;
 import code.math.VectorD;
 
 /**
@@ -55,15 +54,12 @@ public class RenderSystem extends GameSystem {
 			PositionComponent playerPos =
 					(PositionComponent) player.getComponent(ComponentType.POSITION);
 
-			Engine.get().setScreenOffset(calculateScreenOffset(playerPos));
+			Engine.get().getGameState().setScreenOffset(calculateScreenOffset(playerPos));
 		}
 		renderEntities();
 
 		Engine.get().getCurrentUI().render(bufferBuffer);
 
-		if (Engine.get().getGameState().isDebug()) {
-			DebugRenderer.renderDebug(bufferBuffer);
-		}
 		master.render(bufferBuffer);
 	}
 

@@ -16,6 +16,7 @@ public class InstancedQuad extends Quad {
     private static final int TRSC_ATTRIB_INDEX = 2;
     private static final int TEX_ATTRIB_INDEX = 3;
     private static final int SINCOS_ATTRIB_INDEX = 4;
+
     private static final int ATTRIB_SIZE = 4;
     private static final int BYTES_INA_FLOAT = 4;
 
@@ -25,19 +26,22 @@ public class InstancedQuad extends Quad {
         transScale = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, transScale);
         glEnableVertexAttribArray(TRSC_ATTRIB_INDEX);
-        glVertexAttribPointer(TRSC_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false, ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
+        glVertexAttribPointer(TRSC_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false,
+                ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
         glVertexAttribDivisor(TRSC_ATTRIB_INDEX, 1);
 
         texOffsetScale = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, texOffsetScale);
         glEnableVertexAttribArray(TEX_ATTRIB_INDEX);
-        glVertexAttribPointer(TEX_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false, ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
+        glVertexAttribPointer(TEX_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false,
+                ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
         glVertexAttribDivisor(TEX_ATTRIB_INDEX, 1);
 
         sinCosAlphaColor = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, sinCosAlphaColor);
         glEnableVertexAttribArray(SINCOS_ATTRIB_INDEX);
-        glVertexAttribPointer(SINCOS_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false, ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
+        glVertexAttribPointer(SINCOS_ATTRIB_INDEX, ATTRIB_SIZE, GL_FLOAT, false,
+                ATTRIB_SIZE * BYTES_INA_FLOAT, 0);
         glVertexAttribDivisor(SINCOS_ATTRIB_INDEX, 1);
     }
 
@@ -52,4 +56,5 @@ public class InstancedQuad extends Quad {
     public int getSinCosAlphaColor() {
         return sinCosAlphaColor;
     }
+
 }

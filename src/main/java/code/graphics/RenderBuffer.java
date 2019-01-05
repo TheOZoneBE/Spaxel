@@ -1,10 +1,12 @@
 package code.graphics;
 
 import code.util.BufferUtils;
-
 import java.nio.FloatBuffer;
 import java.util.List;
 
+/**
+ * Respresents the Buffer data to be sent to the gpu as part of the rendering of instanced elements
+ */
 public class RenderBuffer {
     private static final int RENDERDATA_ELEMENTS = 4;
 
@@ -14,6 +16,11 @@ public class RenderBuffer {
 
     private int size;
 
+    /**
+     * Create a new RenderBuffer with the given RenderData
+     * 
+     * @param rdata list with the data for all the instances to render
+     */
     public RenderBuffer(List<RenderData> rdata) {
         size = rdata.size();
         trscBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
@@ -42,6 +49,11 @@ public class RenderBuffer {
         return texOffsetBuffer;
     }
 
+    /**
+     * return the size of the buffer
+     * 
+     * @return the size
+     */
     public int size() {
         return size;
     }

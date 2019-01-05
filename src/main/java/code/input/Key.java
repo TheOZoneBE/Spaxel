@@ -1,5 +1,8 @@
 package code.input;
 
+/**
+ * The different keys in the game
+ */
 public enum Key {
-    UP, DOWN, LEFT, RIGHT, ESC, I, L, MOUSE1, MOUSE2, MOUSE3
+    UP, DOWN, LEFT, RIGHT, ESC, DEBUG, LOG
 }

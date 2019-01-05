@@ -1,12 +1,13 @@
 package code.graphics.shaders;
 
 import code.math.MatrixD;
-
 import static org.lwjgl.opengl.GL20.glGetUniformLocation;
 import static org.lwjgl.opengl.GL20.glUniform1i;
 import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
 
 /**
+ * Shader program used in the last pass of the master renderer
+ * 
  * Created by theod on 16-7-2017.
  */
 public class LastPassShaderProgram extends ShaderProgram {
@@ -14,6 +15,12 @@ public class LastPassShaderProgram extends ShaderProgram {
     private int projectionMatrixLocation;
     private int translationMatrixLocation;
 
+    /**
+     * Create a new Shaderprogram using the code of the given shaders
+     * 
+     * @param vertexShader   the path to the vertexShader
+     * @param fragmentShader the path to the fragmentShader
+     */
     public LastPassShaderProgram(String vertexShader, String fragmentShader) {
         super(vertexShader, fragmentShader);
         texSamplerLocation = glGetUniformLocation(program, "tex_sampler");

@@ -21,11 +21,11 @@
             },
             {
                 "type": "X_SCALE",
-                "maxScale": 290
+                "maxScale": 292
             },
             {
                 "type": "X_POS",
-                "maxPos": 290
+                "minPos": -291
             }
         ]
     },
@@ -38,11 +38,11 @@
             },
             {
                 "type": "X_SCALE",
-                "maxScale": 290
+                "maxScale": 292
             },
             {
                 "type": "X_POS",
-                "minPos": -290
+                "minPos": 292
             }
         ]
     }

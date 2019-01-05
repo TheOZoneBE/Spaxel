@@ -37,14 +37,14 @@
         "scale": 2
     },
     "#hp_bar": {
-        "x": 348,
+        "x": 640,
         "y": 96,
         "onUpdate": "updateHpBar",
         "animation": "hp_bar",
         "completion": 1
     },
     "#xp_bar": {
-        "x": 932,
+        "x": 640,
         "y": 85,
         "rot": "3.1415",
         "onUpdate": "updateXpBar",
@@ -64,5 +64,19 @@
         "onClick": "quit",
         "text": "Quit",
         "y": 320
+    },
+    "#debug_overlay": {
+        "visible": false,
+        "onUpdate": "debugCheck",
+        "onInit": "initDebug",
+        "x": 100,
+        "y": 700
+    },
+    "#logging_overlay": {
+        "visible": false,
+        "onInit": "initLogging",
+        "onUpdate": "logCheck",
+        "x": 400,
+        "y": 500
     }
 }

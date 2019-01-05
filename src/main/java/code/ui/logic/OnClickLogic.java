@@ -19,7 +19,7 @@ public class OnClickLogic implements Logic {
             String method = element.getElementStyle().getProperty("onClick");
             String controller = element.getUI().getController();
             if (method != null && controller != null) {
-                UIUtil.invokeMethod(controller, method, element);
+                UIUtil.invokeClickMethod(controller, method);
             }
         }
     }

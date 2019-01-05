@@ -62,4 +62,10 @@ public class MusicList {
         return music.get(name);
     }
 
+    public void exit() {
+        for (Music m : music.values()) {
+            m.close();
+        }
+    }
+
 }

@@ -38,7 +38,7 @@ public final class DebugRenderer {
             label.setId(type.getName());
             label.setClasses("debug_label");
             int size = Engine.get().getNEntityStream().getEntities(type).size();
-            label.setStyleProperty("text", type.getName() + ": " + size);
+            label.getStyle().setProperty("text", type.getName() + ": " + size);
             debug.addElement(label);
         }
         return debug;
@@ -64,7 +64,7 @@ public final class DebugRenderer {
                 Element label = new Element();
                 label.setId(type.getName());
                 label.setClasses("logging_label");
-                label.setStyleProperty("text", type.getName() + ": " + avg + "(" + dif + ")");
+                label.getStyle().setProperty("text", type.getName() + ": " + avg + "(" + dif + ")");
                 log.addElement(label);
             }
         }

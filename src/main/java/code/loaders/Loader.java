@@ -231,14 +231,15 @@ public final class Loader {
      * 
      * @return a map of the stylesheet name to a map of the style identifier to the style object
      */
-    public static Map<String, Map<String, Style>> loadStylesheets(Iterable<String> sheets) {
+    public static Map<String, Map<String, Map<String, String>>> loadStylesheets(
+            Iterable<String> sheets) {
         try {
-            Map<String, Map<String, Style>> stylesheets = new HashMap<>();
+            Map<String, Map<String, Map<String, String>>> stylesheets = new HashMap<>();
             for (String s : sheets) {
                 InputStream file = loadFile(s);
                 ObjectMapper mapper = new ObjectMapper();
-                Map<String, Style> sheet =
-                        mapper.readValue(file, new TypeReference<Map<String, Style>>() {
+                Map<String, Map<String, String>> sheet = mapper.readValue(file,
+                        new TypeReference<Map<String, Map<String, String>>>() {
                         });
                 stylesheets.put(s, sheet);
             }

@@ -8,7 +8,7 @@ import code.util.UIUtil;
  */
 public class OnUpdateLogic implements Logic {
     public void execute(Element element) {
-        String method = element.getElementStyle().getProperty("onUpdate");
+        String method = element.getStyle().getProperty("onUpdate");
         String controller = element.getUI().getController();
         if (method != null && controller != null) {
             UIUtil.invokeUpdateMethod(controller, method, element);

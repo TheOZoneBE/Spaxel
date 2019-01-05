@@ -30,9 +30,8 @@ public class Element {
 
     private List<Logic> logic;
 
-    private Style elementStyle;
-    private Style hoverStyle;
-    private Style clickStyle;
+    private Style style;
+
     private State state;
 
     public Element() {
@@ -41,6 +40,7 @@ public class Element {
         this.classes = new ArrayList<>();
         this.logic = new ArrayList<>();
         this.state = new State();
+        this.style = new Style();
         logic.add(new HoverLogic());
         logic.add(new ClickLogic());
         logic.add(new ReleaseLogic());
@@ -50,54 +50,34 @@ public class Element {
     }
 
     public void render(MasterBuffer buffer) {
-        Style style = elementStyle;
-        if (state.isHover()) {
-            style = elementStyle.merge(hoverStyle);
-        }
-        if (state.isClick()) {
-            style = elementStyle.merge(clickStyle);
-        }
-        if (!style.contains(VISIBLE) || "true".equals(style.getProperty(VISIBLE))) {
-            StyleRenderer.renderStyle(style, buffer);
-            for (Element child : children) {
-                child.render(buffer);
-            }
+        StyleRenderer.renderStyle(style, buffer);
+        for (Element child : children) {
+            child.render(buffer);
         }
     }
 
     public void update() {
-        if (!elementStyle.contains(VISIBLE) || "true".equals(elementStyle.getProperty(VISIBLE))) {
-            for (Logic l : logic) {
-                l.execute(this);
-            }
-            for (Element element : children) {
-                element.update();
-            }
+        for (Logic l : logic) {
+            l.execute(this);
+        }
+        for (Element element : children) {
+            element.update();
         }
     }
 
-    public void initStyle(Style style) {
-        elementStyle = style;
-        hoverStyle = new Style();
-        clickStyle = new Style();
+    public void initStyle() {
+        style.setElement(this);
         for (String stl : classes) {
-            elementStyle = elementStyle.merge(ui.getStyle("." + stl));
-            hoverStyle = hoverStyle.merge(ui.getStyle("." + stl + ":hover"));
-            clickStyle = clickStyle.merge(ui.getStyle("." + stl + ":click"));
+            style.merge(ui.getStyle("." + stl));
+            style.merge(ui.getStyle("." + stl + ":hover"), "hover");
+            style.merge(ui.getStyle("." + stl + ":click"), "click");
         }
-        elementStyle = elementStyle.merge(ui.getStyle("#" + id));
-        hoverStyle = hoverStyle.merge(ui.getStyle("#" + id + ":hover"));
-        clickStyle = clickStyle.merge(ui.getStyle("#" + id + ":click"));
+        style.merge(ui.getStyle("#" + id));
+        style.merge(ui.getStyle("#" + id + ":hover"), "hover");
+        style.merge(ui.getStyle("#" + id + ":click"), "click");
 
         for (Element child : children) {
-            child.initStyle(elementStyle.getMergeStyle());
-        }
-    }
-
-    public void refreshStyle(Style style) {
-        elementStyle = style.merge(elementStyle);
-        for (Element element : children) {
-            element.refreshStyle(elementStyle.getMergeStyle());
+            child.initStyle();
         }
     }
 
@@ -122,15 +102,8 @@ public class Element {
         return null;
     }
 
-    public Style getElementStyle() {
-        return elementStyle;
-    }
-
-    public void setStyleProperty(String key, String value) {
-        elementStyle.setProperty(key, value);
-        for (Element element : children) {
-            element.refreshStyle(elementStyle.getMergeStyle());
-        }
+    public Style getStyle() {
+        return style;
     }
 
     public State getState() {
@@ -159,6 +132,7 @@ public class Element {
     @JsonSetter("element")
     public void addElement(Element element) {
         this.children.add(element);
+        element.getStyle().setParent(style);
     }
 
     @JsonSetter("class")

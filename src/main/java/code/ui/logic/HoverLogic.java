@@ -16,7 +16,7 @@ import code.engine.Resources;
  */
 public class HoverLogic implements Logic {
     public void execute(Element element) {
-        Style style = element.getElementStyle();
+        Style style = element.getStyle();
         if (style.contains("hit-shape")) {
             HitShape hitbox =
                     Resources.get().getHitShapeAtlas().get(style.getProperty("hit-shape"));

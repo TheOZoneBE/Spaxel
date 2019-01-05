@@ -1,5 +1,8 @@
 package code.ui.state;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Represents the internal state of an ui Element.
  */
@@ -7,6 +10,7 @@ public class State {
     private boolean hover;
     private boolean click;
     private boolean release;
+
     private boolean init;
 
     /**
@@ -81,6 +85,16 @@ public class State {
         this.init = init;
     }
 
+    public List<String> getModifiers() {
+        List<String> modifiers = new ArrayList<>();
+        if (click) {
+            modifiers.add("click");
+        }
+        if (hover) {
+            modifiers.add("hover");
+        }
 
+        return modifiers;
+    }
 
 }

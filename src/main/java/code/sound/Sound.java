@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -31,9 +30,11 @@ public class Sound {
 			clip = AudioSystem.getClip();
 			AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 			clip.open(audio);
+			audio.close();
 		} catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
 			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
+
 	}
 
 	public String getPath() {

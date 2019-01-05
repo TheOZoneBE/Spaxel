@@ -2,8 +2,8 @@ package code;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.system.AISystem;
@@ -23,6 +23,7 @@ import code.system.SoundSystem;
 import code.system.SpawnerSystem;
 import code.system.UISystem;
 import code.system.VelocitySystem;
+import code.engine.Resources;
 
 /**
  * Runnable for the thread that executes all the game updates
@@ -79,6 +80,11 @@ public class UpdateRunner implements Runnable {
             }
             accTime += System.nanoTime() - lastUpdateEnd;
         }
+        for (GameSystem system : systems.values()) {
+            system.close();
+        }
+        Resources.get().exit();
+        Engine.get().exit();
     }
 
     /**

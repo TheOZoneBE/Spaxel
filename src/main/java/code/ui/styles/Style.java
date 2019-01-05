@@ -1,113 +1,56 @@
 package code.ui.styles;
 
 import java.util.Map;
-import java.util.Set;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Arrays;
+import code.ui.elements.Element;
+
 
 /**
  * Represents the styling applied to an ui Element
  */
 public class Style {
-    private static final List<String> nonMergeable = Arrays.asList("onClick", "onUpdate", "sprite",
-            "text", "hitshape", "visible", "animation");
+    private static final List<String> STYLE_SPECIFIC = Arrays.asList("onClick", "onUpdate",
+            "onInit", "sprite", "text", "hitshape", "animation");
+
+    private Style parent;
+    private Element element;
     private Map<String, String> properties;
-    private Set<String> enabled;
 
     /**
      * Create a new empty Style object
      */
     public Style() {
         this.properties = new HashMap<>();
-        this.enabled = new HashSet<>();
     }
 
-    /**
-     * Create a new style object with the given properties
-     * 
-     * @param properties the style properties
-     * @param enabled    which of the properties are enabled
-     */
-    public Style(Map<String, String> properties, Set<String> enabled) {
-        this.properties = properties;
-        this.enabled = enabled;
+    public void setParent(Style parent) {
+        this.parent = parent;
     }
 
-    /**
-     * Merge this style with the given style and return a new style with the merged properties
-     * 
-     * @param style the style to merge with
-     * 
-     * @return a new style object with the merged properties
-     */
-    public Style merge(Style style) {
-        Map<String, String> mergedProperties = new HashMap<>(properties);
-        Set<String> mergedEnabled = new HashSet<>(enabled);
-        if (style != null) {
-            mergedProperties.putAll(style.getProperties());
-            mergedEnabled.addAll(style.getEnabled());
-        }
-
-        return new Style(mergedProperties, mergedEnabled);
+    public Style getParent() {
+        return parent;
     }
 
-    /**
-     * Return a new style object with only the properties that can be propagated to child elements
-     * 
-     * @return a new style object with these properties
-     */
-    public Style getMergeStyle() {
-        Map<String, String> mergeableProperties = new HashMap<>(properties);
-        Set<String> mergeableEnabled = new HashSet<>(enabled);
-        for (String key : nonMergeable) {
-            mergeableProperties.remove(key);
-        }
-        mergeableEnabled.removeAll(nonMergeable);
-        return new Style(mergeableProperties, mergeableEnabled);
+    public void setElement(Element element) {
+        this.element = element;
     }
 
-    /**
-     * Disable a property of this style
-     * 
-     * @param key the name of the property
-     */
-    public void disableProperty(String key) {
-        enabled.remove(key);
-    }
-
-    /**
-     * Enable a property of this style
-     * 
-     * @param key the name of the property
-     */
-    public void enableProperty(String key) {
-        enabled.add(key);
-    }
-
-    /**
-     * Set a property of this style
-     * 
-     * @param key   the name of the property
-     * @param value the value to set
-     */
-    @JsonAnySetter
-    public void setProperty(String key, String value) {
-        properties.put(key, value);
-        enabled.add(key);
-    }
-
-    /**
-     * Get a property of this style
-     * 
-     * @param key the name of the property
-     * 
-     * @return the value of the property
-     */
     public String getProperty(String key) {
-        return properties.get(key);
+        for (String mod : element.getState().getModifiers()) {
+            if (properties.containsKey(key + ":" + mod)) {
+                return properties.get(key + ":" + mod);
+            }
+        }
+        if (properties.containsKey(key)) {
+            return properties.get(key);
+        }
+        String result = null;
+        if (parent != null && !STYLE_SPECIFIC.contains(key)) {
+            result = parent.getProperty(key);
+        }
+        return result;
     }
 
     /**
@@ -118,20 +61,44 @@ public class Style {
      * @return true if the style contains the property
      */
     public boolean contains(String key) {
-        return properties.containsKey(key);
+        for (String mod : element.getState().getModifiers()) {
+            if (properties.containsKey(key + ":" + mod)) {
+                return true;
+            }
+        }
+        if (properties.containsKey(key)) {
+            return true;
+        }
+        boolean result = false;
+        if (parent != null && !STYLE_SPECIFIC.contains(key)) {
+            result = parent.contains(key);
+        }
+        return result;
     }
 
-    /**
-     * @return the properties
-     */
-    public Map<String, String> getProperties() {
-        return properties;
+
+
+    public void merge(Map<String, String> props, String mod) {
+        if (props != null) {
+            for (Map.Entry<String, String> entry : props.entrySet()) {
+                properties.put(entry.getKey() + ":" + mod, entry.getValue());
+            }
+        }
     }
 
-    /**
-     * @return the enabled
-     */
-    public Set<String> getEnabled() {
-        return enabled;
+    public void merge(Map<String, String> props) {
+        if (props != null) {
+            properties.putAll(props);
+        }
+    }
+
+    public void setProperty(String key, String value) {
+        properties.put(key, value);
+    }
+
+    public void setProperty(String key, String value, String mod) {
+        properties.put(key + ":" + mod, value);
     }
 }
+
+

@@ -25,4 +25,8 @@ public abstract class GameSystem {
 	public SystemType getType() {
 		return type;
 	}
+
+	public void close() {
+		// TODO should be abstract
+	}
 }

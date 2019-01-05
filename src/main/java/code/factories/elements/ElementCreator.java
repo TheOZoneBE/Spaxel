@@ -32,16 +32,16 @@ public final class ElementCreator {
 
         Element base = new Element();
         base.setClasses("inventory_item");
-        base.setStyleProperty("sprite", sc.getType().getName());
+        base.getStyle().setProperty("sprite", sc.getType().getName());
 
         Element cooldown = new Element();
         cooldown.setClasses("item_cooldown");
-        cooldown.setStyleProperty("completion",
+        cooldown.getStyle().setProperty("completion",
                 String.valueOf((double) cc.getCd() / cc.getCdAmount()));
 
         Element stacks = new Element();
         stacks.setClasses("item_stacks");
-        stacks.setStyleProperty("text", String.valueOf(stc.getStacks()));
+        stacks.getStyle().setProperty("text", String.valueOf(stc.getStacks()));
 
         base.addElement(cooldown);
         base.addElement(stacks);

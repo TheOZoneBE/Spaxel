@@ -10,7 +10,6 @@ import code.graphics.Spritesheet;
 import code.graphics.animation.Animation;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
-import code.ui.styles.Style;
 import code.Constants;
 import code.input.Key;
 import code.input.KeyState;
@@ -25,7 +24,7 @@ public final class Resources {
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<UIType, UI> uis;
-	private Map<String, Map<String, Style>> stylesheets;
+	private Map<String, Map<String, Map<String, String>>> stylesheets;
 	private Map<String, Spritesheet> spritesheets;
 	private Map<String, SpriteData> spriteAtlas;
 	private Map<String, Animation> animationAtlas;
@@ -81,7 +80,11 @@ public final class Resources {
 		Engine.get().finishLoading();
 	}
 
-	public Map<String, Map<String, Style>> getStylesheets() {
+	public void exit() {
+		musicList.exit();
+	}
+
+	public Map<String, Map<String, Map<String, String>>> getStylesheets() {
 		return stylesheets;
 	}
 

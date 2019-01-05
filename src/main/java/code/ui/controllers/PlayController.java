@@ -39,7 +39,7 @@ public final class PlayController {
         int sec = gt % SECONDS_INA_MIN;
         String mintext = min < TWO_FIGURE ? "0" + min : "" + min;
         String sectext = sec < TWO_FIGURE ? "0" + sec : "" + sec;
-        element.setStyleProperty("text", mintext + "\\" + sectext);
+        element.getStyle().setProperty("text", mintext + "\\" + sectext);
     }
 
     /**
@@ -48,7 +48,8 @@ public final class PlayController {
      * @param element the score label
      */
     public static void updateScore(Element element) {
-        element.setStyleProperty("text", String.valueOf(Engine.get().getGameState().getScore()));
+        element.getStyle().setProperty("text",
+                String.valueOf(Engine.get().getGameState().getScore()));
     }
 
     /**
@@ -60,9 +61,9 @@ public final class PlayController {
         HealthComponent hc = (HealthComponent) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.HEALTH);
 
-        element.setStyleProperty("completion",
+        element.getStyle().setProperty("completion",
                 String.valueOf((double) hc.getHealth() / hc.getMaxHealth()));
-        element.findById("hp_label").setStyleProperty("text",
+        element.findById("hp_label").getStyle().setProperty("text",
                 hc.getHealth() + " / " + hc.getMaxHealth());
     }
 
@@ -74,10 +75,10 @@ public final class PlayController {
     public static void updateXpBar(Element element) {
         ExperienceComponent ec = (ExperienceComponent) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.EXPERIENCE);
-        element.setStyleProperty("completion",
+        element.getStyle().setProperty("completion",
                 String.valueOf((double) ec.getXp() / ec.getXpToLevel()));
 
-        element.findById("xp_label").setStyleProperty("text",
+        element.findById("xp_label").getStyle().setProperty("text",
                 ec.getXp() + " / " + ec.getXpToLevel());
     }
 
@@ -87,7 +88,7 @@ public final class PlayController {
 
             element.addElement(ElementCreator.createItemView(item));
         }
-        element.initStyle(element.getElementStyle());
+        element.initStyle();
     }
 
     /**
@@ -131,7 +132,7 @@ public final class PlayController {
 
         if (k.get(Key.LOG).isRelease()) {
             Engine.get().getGameState().toggleLogging();
-            element.setStyleProperty(VISIBLE,
+            element.getStyle().setProperty(VISIBLE,
                     String.valueOf(Engine.get().getGameState().isLogging()));
         }
     }
@@ -147,7 +148,7 @@ public final class PlayController {
 
         if (k.get(Key.DEBUG).isRelease()) {
             Engine.get().getGameState().toggleDebug();
-            element.setStyleProperty(VISIBLE,
+            element.getStyle().setProperty(VISIBLE,
                     String.valueOf(Engine.get().getGameState().isDebug()));
         }
     }
@@ -157,7 +158,8 @@ public final class PlayController {
      */
     public static void resume() {
         Engine.get().setEngineState(Engine.EngineState.PLAY);
-        Engine.get().getCurrentUI().findById("pause_controls").setStyleProperty(VISIBLE, "false");
+        Engine.get().getCurrentUI().findById("pause_controls").getStyle().setProperty(VISIBLE,
+                "false");
     }
 
     /**
@@ -181,7 +183,7 @@ public final class PlayController {
                 resume();
             } else {
                 Engine.get().setEngineState(Engine.EngineState.PAUSE);
-                element.setStyleProperty(VISIBLE, "true");
+                element.getStyle().setProperty(VISIBLE, "true");
             }
         }
     }
@@ -212,7 +214,7 @@ public final class PlayController {
     public static void updateDebugLabel(Element element) {
         ComponentType type = ComponentType.valueOf(element.getId().toUpperCase());
         int size = Engine.get().getNEntityStream().getEntities(type).size();
-        element.setStyleProperty("text", type.getName() + ": " + size);
+        element.getStyle().setProperty("text", type.getName() + ": " + size);
     }
 
     /**
@@ -228,7 +230,7 @@ public final class PlayController {
         long sum = logger.getRollingSum().get(type);
         long avg = (sum / logger.getCurrentAvg()) / Constants.NS_PER_US;
 
-        element.setStyleProperty("text", type.getName() + ": " + avg + "(" + dif + ")");
+        element.getStyle().setProperty("text", type.getName() + ": " + avg + "(" + dif + ")");
     }
 
 }

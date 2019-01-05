@@ -36,7 +36,8 @@ public class SoundSystem extends GameSystem {
 		currentMusic.play();
 	}
 
-	public void stop() {
+	public void close() {
+		currentMusic.stop();
 		currentMusic.close();
 	}
 

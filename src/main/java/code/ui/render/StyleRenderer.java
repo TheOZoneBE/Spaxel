@@ -23,14 +23,16 @@ public final class StyleRenderer {
      * @param buffer the masterbuffer of the rendersystem
      */
     public static void renderStyle(Style style, MasterBuffer buffer) {
-        if (style.contains("sprite")) {
-            renderSprite(style, buffer);
-        }
-        if (style.contains("text")) {
-            TextRenderer.renderText(style, buffer);
-        }
-        if (style.contains("animation")) {
-            renderAnimation(style, buffer);
+        if (!style.contains("visible") || "true".equals(style.getProperty("visible"))) {
+            if (style.contains("sprite")) {
+                renderSprite(style, buffer);
+            }
+            if (style.contains("text")) {
+                TextRenderer.renderText(style, buffer);
+            }
+            if (style.contains("animation")) {
+                renderAnimation(style, buffer);
+            }
         }
     }
 

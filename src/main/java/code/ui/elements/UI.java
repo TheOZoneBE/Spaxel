@@ -2,6 +2,7 @@ package code.ui.elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import code.engine.Resources;
 import code.graphics.MasterBuffer;
@@ -30,7 +31,7 @@ public class UI {
      */
     public void initialize() {
         body.setUI(this);
-        body.initStyle(new Style());
+        body.initStyle();
     }
 
     /**
@@ -126,9 +127,10 @@ public class UI {
      * 
      * @return the style configuration
      */
-    public Style getStyle(String name) {
+    public Map<String, String> getStyle(String name) {
         for (int i = styles.size() - 1; i >= 0; i--) {
-            Style style = Resources.get().getStylesheets().get(styles.get(i)).get(name);
+            Map<String, String> style =
+                    Resources.get().getStylesheets().get(styles.get(i)).get(name);
             if (style != null) {
                 return style;
             }

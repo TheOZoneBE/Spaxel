@@ -35,13 +35,14 @@ public final class Engine {
 	}
 
 	public enum EngineState {
-		MENU, PLAY, PAUSE, LOAD
+		MENU, PLAY, PAUSE, LOAD, EXIT
 	}
 
 	public void finishLoading() {
 		this.keys = new Keyboard(window, Resources.get().getKeyConfiguration());
 
 		nentities.cleanup();
+		logger = new Logger(0, 100);
 
 		currentUI = Resources.get().getUIS().get(UIType.MAIN);
 		engineState = EngineState.MENU;
@@ -104,6 +105,14 @@ public final class Engine {
 	public void setCurrentUI(UI currentUI) {
 		currentUI.reset();
 		this.currentUI = currentUI;
+	}
+
+	public void exit() {
+		nentities.scheduleClear();
+		currentUI = null;
+		engineState = EngineState.EXIT;
+		gameState = null;
+		logger.exit();
 	}
 
 

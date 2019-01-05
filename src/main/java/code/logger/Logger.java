@@ -85,4 +85,8 @@ public class Logger {
     public Map<SystemType, Long> getRollingSum() {
         return rollingSum;
     }
+
+    public void exit() {
+        // TODO
+    }
 }

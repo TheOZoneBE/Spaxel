@@ -19,11 +19,13 @@ import code.factories.entities.EntityIndustry;
 import code.graphics.SpriteData;
 import code.graphics.Spritesheet;
 import code.graphics.animation.Animation;
+import code.input.Key;
+import code.input.KeyState;
 import code.sound.Music;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
-import code.input.Key;
-import code.input.KeyState;
+import code.graphics.texture.Texture;
+import code.graphics.texture.TexturePart;
 
 
 
@@ -308,6 +310,60 @@ public final class Loader {
 
             return mapper.readValue(file, new TypeReference<Map<Key, KeyState>>() {
             });
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * Load the textures specified in the given file
+     * 
+     * @param files paths to the files that contain the properties for all texture
+     * 
+     * @return a map from spritesheetname to texture object
+     */
+    public static Map<String, Texture> loadTextures(String path) {
+        try {
+            Map<String, Texture> textureMap = new HashMap<>();
+
+            InputStream file = loadFile(path);
+            ObjectMapper mapper = new ObjectMapper();
+            textureMap.putAll(mapper.readValue(file, new TypeReference<Map<String, Texture>>() {
+            }));
+
+            for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
+                entry.getValue().setName(entry.getKey());
+            }
+            return textureMap;
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * Load the TextureParts specified in the given files
+     * 
+     * @param sprites list of paths to files with the properties of each texture part
+     * 
+     * @return a map from sprite name to TexturePart object
+     */
+    public static Map<String, TexturePart> loadTextureParts(Iterable<String> sprites) {
+        try {
+            Map<String, TexturePart> spriteMap = new HashMap<>();
+            for (String s : sprites) {
+                InputStream file = loadFile(s);
+                ObjectMapper mapper = new ObjectMapper();
+                spriteMap.putAll(
+                        mapper.readValue(file, new TypeReference<Map<String, TexturePart>>() {
+                        }));
+            }
+
+            for (Map.Entry<String, TexturePart> entry : spriteMap.entrySet()) {
+                entry.getValue().setName(entry.getKey());
+            }
+            return spriteMap;
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }

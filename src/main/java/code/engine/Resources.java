@@ -10,9 +10,14 @@ import code.graphics.Spritesheet;
 import code.graphics.animation.Animation;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
+import code.util.TextureUtil;
 import code.Constants;
 import code.input.Key;
 import code.input.KeyState;
+import code.graphics.texture.Texture;
+import code.graphics.texture.TexturePart;
+import code.graphics.texture.PackedTexture;
+import java.util.Arrays;
 
 /**
  * Singleton class to hold all the game resources
@@ -30,6 +35,9 @@ public final class Resources {
 	private Map<String, Animation> animationAtlas;
 	private ItemCatalogue items;
 	private Map<Key, KeyState> keyConfiguration;
+	private Map<String, Texture> textures;
+	private PackedTexture packedTexture;
+	private Map<String, TexturePart> textureParts;
 
 	private Resources() {
 
@@ -45,6 +53,18 @@ public final class Resources {
 		animationAtlas = loadAnimations(resourcePaths.get("animation"));
 		stylesheets = loadStylesheets(resourcePaths.get("stylesheet"));
 		uis = loadUI(resourcePaths.get("ui"));
+		// TEMP texturepacking testing
+		textures = loadTextures("/resources/textures.json");
+		packedTexture = TextureUtil.packTextures(textures.values());
+		packedTexture.initialize();
+		packedTexture.initializeCoordinates();
+
+		textureParts = loadTextureParts(Arrays.asList("/resources/textureParts.json"));
+		for (TexturePart tPart : textureParts.values()) {
+			tPart.setPackedTexture(packedTexture);
+			tPart.initializeCoordinates(textures);
+		}
+
 		Engine.get().setCurrentUI(uis.get(UIType.LOAD));
 	}
 
@@ -76,6 +96,8 @@ public final class Resources {
 		industryMap = loadEntityIndustries(resourcePaths.get("industry"));
 
 		keyConfiguration = loadKeyConfiguration(resourcePaths.get("keys"));
+
+
 
 		Engine.get().finishLoading();
 	}
@@ -124,4 +146,20 @@ public final class Resources {
 	public Map<Key, KeyState> getKeyConfiguration() {
 		return keyConfiguration;
 	}
+
+	public PackedTexture getPackedTexture() {
+		return packedTexture;
+	}
+
+	public Map<String, Texture> getTextures() {
+		// TEMP replace with one renderable map
+		return textures;
+	}
+
+	public Map<String, TexturePart> getTextureParts() {
+		// TEMP replace with one renderable map
+		return textureParts;
+	}
+
+
 }

@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import code.engine.Resources;
 
 /**
  * Buffers all render jobs
@@ -22,6 +23,8 @@ public class MasterBuffer {
                 data.put(sheet.getId(), new ArrayList<>());
             }
             data.put(0, new ArrayList<>());
+            // TEMP packed texture
+            data.put(Resources.get().getPackedTexture().getID(), new ArrayList<>());
 
             layers.put(l, data);
         }

@@ -1,0 +1,93 @@
+{
+    "projectiles": {
+        "path": "/spritesheets/projectiles.png",
+        "dim": {
+            "x": 64,
+            "y": 64
+        }
+    },
+    "ships": {
+        "path": "/spritesheets/ships.png",
+        "dim": {
+            "x": 32,
+            "y": 32
+        }
+    },
+    "button": {
+        "path": "/spritesheets/button.png",
+        "dim": {
+            "x": 64,
+            "y": 64
+        }
+    },
+    "ui_play": {
+        "path": "/spritesheets/ui_play.png",
+        "dim": {
+            "x": 640,
+            "y": 360
+        }
+    },
+    "items": {
+        "path": "/spritesheets/items.png",
+        "dim": {
+            "x": 256,
+            "y": 256
+        }
+    },
+    "cooldown": {
+        "path": "/spritesheets/cooldown.png",
+        "dim": {
+            "x": 8,
+            "y": 32
+        }
+    },
+    "effects": {
+        "path": "/spritesheets/effects.png",
+        "dim": {
+            "x": 16,
+            "y": 16
+        }
+    },
+    "shield_effects": {
+        "path": "/spritesheets/shield_effects.png",
+        "dim": {
+            "x": 64,
+            "y": 64
+        }
+    },
+    "class_select": {
+        "path": "/spritesheets/class_select.png",
+        "dim": {
+            "x": 48,
+            "y": 24
+        }
+    },
+    "font_12x12": {
+        "path": "/spritesheets/font_12x12.png",
+        "dim": {
+            "x": 96,
+            "y": 192
+        }
+    },
+    "font_10x20": {
+        "path": "/spritesheets/font_10x20.png",
+        "dim": {
+            "x": 100,
+            "y": 100
+        }
+    },
+    "large_button": {
+        "path": "/spritesheets/large_button.png",
+        "dim": {
+            "x": 80,
+            "y": 64
+        }
+    },
+    "alpha_test": {
+        "path": "/spritesheets/alpha_test.png",
+        "dim": {
+            "x": 16,
+            "y": 16
+        }
+    }
+}

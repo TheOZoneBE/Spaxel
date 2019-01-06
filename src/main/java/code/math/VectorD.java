@@ -182,4 +182,20 @@ public class VectorD {
 		return new VectorD(vector.clone());
 	}
 
+	public VectorD elementDiv(VectorD vec) {
+		VectorD sol = new VectorD(m);
+		for (int i = 0; i < m; i++) {
+			sol.setValue(i, vector[i] / vec.getValue(i));
+		}
+		return sol;
+	}
+
+	public VectorD elementMult(VectorD vec) {
+		VectorD sol = new VectorD(m);
+		for (int i = 0; i < m; i++) {
+			sol.setValue(i, vector[i] * vec.getValue(i));
+		}
+		return sol;
+	}
+
 }

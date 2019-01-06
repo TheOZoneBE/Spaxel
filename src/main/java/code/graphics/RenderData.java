@@ -2,6 +2,7 @@
 package code.graphics;
 
 import code.math.VectorD;
+import code.graphics.texture.Renderable;
 
 /**
  * Represents all data attributes for one render job
@@ -149,5 +150,9 @@ public class RenderData {
         setSpriteSheetID(sprite.getSpritesheetID());
         setColor(sprite.getColor());
         applyScale(sprite.getDim());
+    }
+
+    public void setRenderable(Renderable renderable) {
+        renderable.apply(this);
     }
 }

@@ -18,11 +18,20 @@ public class Style {
     private Element element;
     private Map<String, String> properties;
 
+    private Map<String, String> defaults;
+
     /**
      * Create a new empty Style object
      */
     public Style() {
         this.properties = new HashMap<>();
+        this.defaults = new HashMap<>();
+        defaults.put("position", "absolute");
+        defaults.put("rotation", "absolute");
+        defaults.put("scale", "1");
+        defaults.put("rot", "0");
+        defaults.put("x", "640");
+        defaults.put("y", "360");
     }
 
     public void setParent(Style parent) {
@@ -37,6 +46,10 @@ public class Style {
         this.element = element;
     }
 
+    public Element getElement() {
+        return element;
+    }
+
     public String getProperty(String key) {
         for (String mod : element.getState().getModifiers()) {
             if (properties.containsKey(key + ":" + mod)) {
@@ -46,7 +59,7 @@ public class Style {
         if (properties.containsKey(key)) {
             return properties.get(key);
         }
-        String result = null;
+        String result = defaults.get(key);
         if (parent != null && !STYLE_SPECIFIC.contains(key)) {
             result = parent.getProperty(key);
         }
@@ -61,6 +74,9 @@ public class Style {
      * @return true if the style contains the property
      */
     public boolean contains(String key) {
+        if (element == null) {
+            return false;
+        }
         for (String mod : element.getState().getModifiers()) {
             if (properties.containsKey(key + ":" + mod)) {
                 return true;
@@ -75,7 +91,6 @@ public class Style {
         }
         return result;
     }
-
 
 
     public void merge(Map<String, String> props, String mod) {
@@ -99,6 +114,11 @@ public class Style {
     public void setProperty(String key, String value, String mod) {
         properties.put(key + ":" + mod, value);
     }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
 }
 
 

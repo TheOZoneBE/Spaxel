@@ -14,9 +14,9 @@
         <element class="bar play_bar" id="xp_bar">
             <element id="xp_label"></element>
         </element>
-        <element id="primary_container"></element>
-        <element id="secondary_container"></element>
-        <element id="ship_container"></element>
+        <element class="inventory_container" id="primary_container"></element>
+        <element class="inventory_container" id="secondary_container"></element>
+        <element class="inventory_container" id="ship_container"></element>
         <element id="debug_overlay"></element>
         <element id="logging_overlay"></element>
     </body>

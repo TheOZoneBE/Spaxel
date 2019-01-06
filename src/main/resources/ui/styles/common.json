@@ -26,12 +26,14 @@
     ".inventory_item": {
         "scale": 2,
         "text-scale": 1,
-        "rot": 0
+        "rot": 0,
+        "position": "flow"
     },
     ".item_cooldown": {
-        "animation": "cooldown"
+        "sprite": "cooldown_bar"
     },
     ".item_stacks": {
+        "position": "relative",
         "x": 20,
         "y": 20
     },

@@ -32,7 +32,7 @@ public final class ElementCreator {
 
         Element base = new Element();
         base.setClasses("inventory_item");
-        base.getStyle().setProperty("sprite", sc.getType().getName());
+        base.getStyle().setProperty("sprite", sc.getSprite().getName());
 
         Element cooldown = new Element();
         cooldown.setClasses("item_cooldown");

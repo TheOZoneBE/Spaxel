@@ -187,8 +187,9 @@ public final class Loader {
                         }));
             }
 
-            for (SpriteData s : spriteMap.values()) {
-                s.initialize();
+            for (Map.Entry<String, SpriteData> entry : spriteMap.entrySet()) {
+                entry.getValue().initialize();
+                entry.getValue().setName(entry.getKey());
             }
             return spriteMap;
         } catch (IOException e) {

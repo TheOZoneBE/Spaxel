@@ -33,13 +33,10 @@ public final class TextRenderer {
      * @param style  the style of the text
      * @param buffer the master buffer of the game
      */
-    public static void renderText(Style style, MasterBuffer buffer) {
+    public static void renderText(VectorD position, Style style, MasterBuffer buffer) {
         String text = style.getProperty("text");
         double scale = Double.parseDouble(style.getProperty("text-scale"));
         boolean alignLeft = "left".equals(style.getProperty("align"));
-        double x = Double.parseDouble(style.getProperty("x"));
-        double y = Double.parseDouble(style.getProperty("y"));
-        VectorD pos = new VectorD(x, y);
 
         String[] lines = text.split(NEWLINE);
         VectorD offset = new VectorD(0, 0);
@@ -51,7 +48,7 @@ public final class TextRenderer {
 
             for (Character character : characters) {
                 VectorD charOffset = offset.sum(new VectorD(character.getWidth() * scale / TWO, 0));
-                character.render(pos.sum(charOffset), scale, buffer);
+                character.render(position.sum(charOffset), scale, buffer);
                 offset.setValue(0, offset.getValue(0) + character.getWidth() * scale);
             }
             offset.setValue(1, offset.getValue(1) - NEWLINE_OFFSET * scale);

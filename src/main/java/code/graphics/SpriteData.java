@@ -13,6 +13,7 @@ public class SpriteData {
 	private float[] spriteProperties;
 	private Spritesheet spritesheet;
 	private int color;
+	private String name;
 
 	public SpriteData() {
 		super();
@@ -92,5 +93,13 @@ public class SpriteData {
 
 	public int getColor() {
 		return color;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

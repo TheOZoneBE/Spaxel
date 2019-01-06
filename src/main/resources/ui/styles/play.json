@@ -78,5 +78,27 @@
         "onUpdate": "logCheck",
         "x": 400,
         "y": 500
+    },
+    ".inventory_container": {
+        "row-offset": 72,
+        "col-offset": 72
+    },
+    "#primary_container": {
+        "x": 40,
+        "y": 680,
+        "cols": "1",
+        "onUpdate": "updatePrimaryContainer"
+    },
+    "#secondary_container": {
+        "x": 1240,
+        "y": 680,
+        "cols": "1",
+        "onUpdate": "updateSecondaryContainer"
+    },
+    "#ship_container": {
+        "x": 388,
+        "y": 40,
+        "cols": "4",
+        "onUpdate": "updateShipContainer"
     }
 }

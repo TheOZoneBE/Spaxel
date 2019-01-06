@@ -22,6 +22,7 @@ import code.ui.logic.ClickLogic;
  */
 public class Element {
     private static final String VISIBLE = "visible";
+    private int index;
     private String id;
     private UI ui;
     private List<String> classes;
@@ -51,8 +52,10 @@ public class Element {
 
     public void render(MasterBuffer buffer) {
         StyleRenderer.renderStyle(style, buffer);
-        for (Element child : children) {
-            child.render(buffer);
+        synchronized (children) {
+            for (Element child : children) {
+                child.render(buffer);
+            }
         }
     }
 
@@ -131,8 +134,13 @@ public class Element {
 
     @JsonSetter("element")
     public void addElement(Element element) {
-        this.children.add(element);
-        element.getStyle().setParent(style);
+        synchronized (children) {
+            this.children.add(element);
+            element.getStyle().setParent(style);
+            element.setIndex(children.size() - 1);
+            element.setUI(ui);
+            element.getStyle().setElement(element);
+        }
     }
 
     @JsonSetter("class")
@@ -148,6 +156,16 @@ public class Element {
     }
 
     public void clearChildren() {
-        children.clear();
+        synchronized (children) {
+            children.clear();
+        }
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

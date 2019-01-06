@@ -106,7 +106,7 @@ public class UI {
     /**
      * @param body the body to set
      */
-    public void setRoot(Element body) {
+    public void setBody(Element body) {
         this.body = body;
     }
 

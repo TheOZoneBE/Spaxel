@@ -4,7 +4,7 @@ import code.components.ComponentType;
 import code.components.item.ShieldItemComponent;
 import code.components.link.LinkComponent;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Created by theod on 10-7-2017.

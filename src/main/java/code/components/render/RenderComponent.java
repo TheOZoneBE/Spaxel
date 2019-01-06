@@ -4,9 +4,9 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.render.subcomponents.Renderer;
 import code.engine.NEntity;
-import code.graphics.MasterBuffer;
-import code.graphics.RenderData;
-import code.graphics.RenderLayer;
+import code.graphics.buffer.MasterBuffer;
+import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderLayer;
 
 import java.util.List;
 import java.util.ArrayList;

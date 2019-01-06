@@ -1,7 +1,7 @@
 package code.components.render.subcomponents;
 
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Created by theo on 5/01/18.

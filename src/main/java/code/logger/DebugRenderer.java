@@ -3,10 +3,10 @@ package code.logger;
 import code.components.ComponentType;
 import code.engine.Engine;
 import code.engine.SystemType;
-import code.graphics.MasterBuffer;
-import code.graphics.RenderData;
-import code.graphics.RenderLayer;
-import code.graphics.SpriteData;
+import code.graphics.buffer.MasterBuffer;
+import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderLayer;
+import code.graphics.texture.Renderable;
 import code.math.VectorD;
 import code.ui.elements.Element;
 import code.Constants;
@@ -77,7 +77,7 @@ public final class DebugRenderer {
      * @param buffer the master buffer of the game
      */
     public void renderDots(MasterBuffer buffer) {
-        SpriteData dot = Resources.get().getSpriteAtlas().get("dot");
+        Renderable dot = Resources.get().getRenderables().get("dot");
         VectorD origin = new VectorD(
                 Engine.get().getGameState().getScreenOffset().getValue(0) % DOT_SEPARATION,
                 Engine.get().getGameState().getScreenOffset().getValue(1) % DOT_SEPARATION);
@@ -85,9 +85,8 @@ public final class DebugRenderer {
             for (int j = 0; j < Constants.GAME_HEIGHT; j += DOT_SEPARATION) {
                 RenderData data = new RenderData();
                 data.applyTranslation(origin.sum(new VectorD(i, j)));
-                data.applyScale(dot.getDim());
                 data.applyRot(0);
-                data.setColor(dot.getColor());
+                data.setRenderable(dot);
                 buffer.addNewSprite(RenderLayer.GAME, data);
             }
         }

@@ -1,8 +1,3 @@
-spritesheet:
-  - /resources/spritesheet.json
-sprite:
-  - /resources/sprite.json
-  - /resources/font.json
 animation:
   - /resources/animation.json
 stylesheet:
@@ -10,3 +5,11 @@ stylesheet:
   - /ui/styles/load.json
 ui:
   - /ui/load.xml
+texture:
+  - /properties/textures/textures.json
+  - /properties/textures/animations/cooldown.json
+texture_part:
+  - /properties/textures/textureParts.json
+  - /properties/textures/font.json
+color_box:
+  - /properties/textures/color_box.json

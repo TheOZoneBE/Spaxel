@@ -3,6 +3,7 @@ package code.graphics.texture;
 import code.math.VectorD;
 
 public class TextureNode {
+    private static final int DIM_BASE = 2;
     private Texture texture;
     private int dim;
     private NodePlacement placement;
@@ -24,28 +25,10 @@ public class TextureNode {
         this.placement = NodePlacement.TOP_LEFT;
     }
 
-    public TextureNode(TextureNode topLeft, TextureNode topRight, TextureNode botLeft,
-            TextureNode botRight) {
-        this.placement = NodePlacement.TOP_LEFT;
-        this.topLeft = topLeft;
-        this.topRight = topRight;
-        this.botLeft = botLeft;
-        this.botRight = botRight;
-        this.dim = topLeft.getDim() * 2;
-        topLeft.setPlacement(NodePlacement.TOP_LEFT);
-        topRight.setPlacement(NodePlacement.TOP_RIGHT);
-        botLeft.setPlacement(NodePlacement.BOT_LEFT);
-        botRight.setPlacement(NodePlacement.BOT_RIGHT);
-        topLeft.setParent(this);
-        botLeft.setParent(this);
-        topRight.setParent(this);
-        botRight.setParent(this);
-    }
-
     private void calcDim(int maxDim) {
-        this.dim = 2;
+        this.dim = DIM_BASE;
         while (dim < maxDim) {
-            dim *= 2;
+            dim *= DIM_BASE;
         }
     }
 

@@ -1,7 +1,6 @@
 package code.graphics.postprocess;
 
-import code.graphics.FBO;
-import code.graphics.Quad;
+import code.graphics.geometry.Quad;
 import code.graphics.shaders.ShaderProgram;
 
 /**

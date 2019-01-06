@@ -2,7 +2,6 @@ package code.util;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -21,11 +20,16 @@ public final class TextureUtil {
     private static final int TWO_BYTES = ONE_BYTE * 2;
     private static final int THREE_BYTES = ONE_BYTE * 3;
 
+    private static final int DIM_BASE = 2;
+    private static final int SIZE_4 = 4;
+    private static final int SIZE_3 = 3;
+    private static final int SIZE_2 = 2;
+
     private TextureUtil() {
 
     }
 
-    public static PackedTexture packTextures(Collection<Texture> textures) {
+    public static PackedTexture packTextures(Iterable<Texture> textures) {
         Map<Integer, List<TextureNode>> nodes = new HashMap<>();
 
         for (Texture texture : textures) {
@@ -34,79 +38,67 @@ public final class TextureUtil {
 
             nodes.get(node.getDim()).add(node);
         }
-        int currentDim = 2;
+        int currentDim = DIM_BASE;
         while (fullSize(nodes) > 1) {
             if (nodes.containsKey(currentDim)) {
                 List<TextureNode> dimNodes = nodes.get(currentDim);
-                int size = dimNodes.size() > 3 ? 4 : dimNodes.size();
-                TextureNode newNode = new TextureNode(currentDim * 2);
+                int size = dimNodes.size() > SIZE_3 ? SIZE_4 : dimNodes.size();
+                TextureNode newNode = new TextureNode(currentDim * DIM_BASE);
                 switch (size) {
-                    case 4:
+                    case SIZE_4:
                         newNode.setTopLeft(dimNodes.remove(dimNodes.size() - 1));
-                    case 3:
+                    case SIZE_3:
                         newNode.setTopRight(dimNodes.remove(dimNodes.size() - 1));
-                    case 2:
+                    case SIZE_2:
                         newNode.setBotLeft(dimNodes.remove(dimNodes.size() - 1));
                     case 1:
                         newNode.setBotRight(dimNodes.remove(dimNodes.size() - 1));
+
                     default:
                         break;
                 }
-                nodes.putIfAbsent(currentDim * 2, new ArrayList<>());
-                nodes.get(currentDim * 2).add(newNode);
+                nodes.putIfAbsent(currentDim * DIM_BASE, new ArrayList<>());
+                nodes.get(currentDim * DIM_BASE).add(newNode);
                 if (dimNodes.isEmpty()) {
                     nodes.remove(currentDim);
                 }
             } else {
-                currentDim *= 2;
+                currentDim *= DIM_BASE;
             }
         }
-        return new PackedTexture(nodes.get(currentDim * 2).get(0));
+        return new PackedTexture(nodes.get(currentDim * DIM_BASE).get(0));
     }
 
     private static int fullSize(Map<Integer, List<TextureNode>> nodes) {
-        return nodes.values().stream().map(el -> el.size()).reduce(0,
+        return nodes.values().stream().map(List::size).reduce(0,
                 (Integer accSize, Integer size) -> accSize += size);
     }
 
     public static int[] loadTextureTree(TextureNode root) {
         int[] dest = new int[root.getDim() * root.getDim()];
         if (root.getTexture() == null) {
-            System.out.println("descending");
             if (root.getTopLeft() != null) {
-                blitData(0, 0, root.getDim(), root.getDim() / 2, root.getDim() / 2,
+                blitData(0, 0, root.getDim(), root.getDim() / DIM_BASE, root.getDim() / DIM_BASE,
                         loadTextureTree(root.getTopLeft()), dest);
             }
             if (root.getTopRight() != null) {
-                blitData(root.getDim() / 2, 0, root.getDim(), root.getDim() / 2, root.getDim() / 2,
-                        loadTextureTree(root.getTopRight()), dest);
+                blitData(root.getDim() / DIM_BASE, 0, root.getDim(), root.getDim() / DIM_BASE,
+                        root.getDim() / DIM_BASE, loadTextureTree(root.getTopRight()), dest);
             }
             if (root.getBotLeft() != null) {
-                blitData(0, root.getDim() / 2, root.getDim(), root.getDim() / 2, root.getDim() / 2,
-                        loadTextureTree(root.getBotLeft()), dest);
+                blitData(0, root.getDim() / DIM_BASE, root.getDim(), root.getDim() / DIM_BASE,
+                        root.getDim() / DIM_BASE, loadTextureTree(root.getBotLeft()), dest);
             }
             if (root.getBotRight() != null) {
-                blitData(root.getDim() / 2, root.getDim() / 2, root.getDim(), root.getDim() / 2,
-                        root.getDim() / 2, loadTextureTree(root.getBotRight()), dest);
-            }
-            for (int i : dest) {
-                if (i != 0) {
-                    System.out.println("combined");
-                    break;
-                }
+                blitData(root.getDim() / DIM_BASE, root.getDim() / DIM_BASE, root.getDim(),
+                        root.getDim() / DIM_BASE, root.getDim() / DIM_BASE,
+                        loadTextureTree(root.getBotRight()), dest);
             }
             return dest;
         } else {
             Texture texture = root.getTexture();
-            System.out.println(texture.getName());
             blitData(0, 0, root.getDim(), (int) texture.getDim().getValue(0),
                     (int) texture.getDim().getValue(1), loadImage(texture), dest);
-            for (int i : dest) {
-                if (i != 0) {
-                    System.out.println("written");
-                    break;
-                }
-            }
             return dest;
         }
 

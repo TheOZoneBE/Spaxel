@@ -1,7 +1,7 @@
 package code.graphics.animation;
 
 import java.util.List;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Represents an animation

@@ -7,7 +7,7 @@ import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 import code.math.VectorD;
 
 /**

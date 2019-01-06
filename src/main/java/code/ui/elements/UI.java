@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import code.engine.Resources;
-import code.graphics.MasterBuffer;
+import code.graphics.buffer.MasterBuffer;
 
 /**
  * Root class of an ui structure

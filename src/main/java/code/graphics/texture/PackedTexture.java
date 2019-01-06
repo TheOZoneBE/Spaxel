@@ -3,7 +3,7 @@ package code.graphics.texture;
 import java.util.Map;
 import code.math.VectorD;
 import code.util.TextureUtil;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 public class PackedTexture extends Renderable {
     private TextureNode root;

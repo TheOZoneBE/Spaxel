@@ -33,6 +33,7 @@ public class Style {
         defaults.put("x", "640");
         defaults.put("y", "360");
         defaults.put("visible", "true");
+        defaults.put("text-scale", "1");
     }
 
     public void setParent(Style parent) {

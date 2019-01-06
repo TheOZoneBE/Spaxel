@@ -3,7 +3,7 @@ package code.components.render.subcomponents;
 import code.components.ComponentType;
 import code.components.sprite.SpriteComponent;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Created by theo on 5/06/17.
@@ -12,6 +12,6 @@ public class SpriteSheetRenderer extends Renderer {
     public void apply(RenderData data, NEntity entity) {
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
 
-        data.setSprite(sc.getSprite());
+        data.setRenderable(sc.getSprite());
     }
 }

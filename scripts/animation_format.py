@@ -1,4 +1,5 @@
 import os
+import json
 
 
 def rename_files(root, base_name):
@@ -12,4 +13,21 @@ def rename_files(root, base_name):
             print(filename)
 
 
-rename_files("../src/main/resources/spritesheets/animations", "cd_anim")
+def generate_json(root, resource_root, w, h):
+    for root, dirs, files in os.walk(root):
+        sprites = {}
+        for file in files:
+            parts = file.split('.')
+            sprites[parts[0]] = {
+                'path': resource_root + file,
+                'dim': {
+                    'x': w,
+                    'y': h
+                }
+            }
+    with open('json', 'w') as output:
+        output.write(json.dumps(sprites))
+
+
+generate_json("../src/main/resources/textures/animations",
+              "/textures/animations/cooldown/", 32, 32)

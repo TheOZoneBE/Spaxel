@@ -1,7 +1,6 @@
 package code.graphics.postprocess;
 
 import code.Constants;
-import code.graphics.FBO;
 import code.graphics.shaders.BlurShaderProgram;
 import code.graphics.shaders.ShaderProgram;
 import code.math.VectorD;

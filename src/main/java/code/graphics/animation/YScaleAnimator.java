@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * The YScaleAnimator animates the y scale of the animation

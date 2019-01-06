@@ -1,5 +1,5 @@
 
-package code.graphics;
+package code.graphics.buffer;
 
 import code.math.VectorD;
 import code.graphics.texture.Renderable;
@@ -143,13 +143,6 @@ public class RenderData {
 
     public void setColor(int color) {
         sinCos[COLOR_INDEX] = color;
-    }
-
-    public void setSprite(SpriteData sprite) {
-        setTexOffset(sprite.getSpriteProperties());
-        setSpriteSheetID(sprite.getSpritesheetID());
-        setColor(sprite.getColor());
-        applyScale(sprite.getDim());
     }
 
     public void setRenderable(Renderable renderable) {

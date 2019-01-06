@@ -16,14 +16,13 @@ import code.collision.HitShape;
 import code.engine.ItemCatalogue;
 import code.engine.ItemProperties;
 import code.factories.entities.EntityIndustry;
-import code.graphics.SpriteData;
-import code.graphics.Spritesheet;
 import code.graphics.animation.Animation;
 import code.input.Key;
 import code.input.KeyState;
 import code.sound.Music;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
+import code.graphics.texture.ColorBox;
 import code.graphics.texture.Texture;
 import code.graphics.texture.TexturePart;
 
@@ -169,63 +168,6 @@ public final class Loader {
         return null;
     }
 
-
-    /**
-     * Load the SpriteData specified in the given files
-     * 
-     * @param sprites list of paths to files with the properties of each sprite
-     * 
-     * @return a map from sprite name to SpriteData object
-     */
-    public static Map<String, SpriteData> loadSpriteDatas(Iterable<String> sprites) {
-        try {
-            Map<String, SpriteData> spriteMap = new HashMap<>();
-            for (String s : sprites) {
-                InputStream file = loadFile(s);
-                ObjectMapper mapper = new ObjectMapper();
-                spriteMap.putAll(
-                        mapper.readValue(file, new TypeReference<Map<String, SpriteData>>() {
-                        }));
-            }
-
-            for (Map.Entry<String, SpriteData> entry : spriteMap.entrySet()) {
-                entry.getValue().initialize();
-                entry.getValue().setName(entry.getKey());
-            }
-            return spriteMap;
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return null;
-    }
-
-    /**
-     * Load the spritesheets specified in the given file
-     * 
-     * @param files paths to the files that contain the properties for all spritesheets
-     * 
-     * @return a map from spritesheetname to spritesheet object
-     */
-    public static Map<String, Spritesheet> loadSpritesheets(Iterable<String> files) {
-        try {
-            Map<String, Spritesheet> spritesheetMap = new HashMap<>();
-            for (String path : files) {
-                InputStream file = loadFile(path);
-                ObjectMapper mapper = new ObjectMapper();
-                spritesheetMap.putAll(
-                        mapper.readValue(file, new TypeReference<Map<String, Spritesheet>>() {
-                        }));
-            }
-            for (Spritesheet s : spritesheetMap.values()) {
-                s.load();
-            }
-            return spritesheetMap;
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return null;
-    }
-
     /**
      * Load the stylesheets in the given files
      * 
@@ -317,21 +259,21 @@ public final class Loader {
     }
 
     /**
-     * Load the textures specified in the given file
+     * Load the textures specified in the given files
      * 
-     * @param files paths to the files that contain the properties for all texture
+     * @param files paths to the files that contain the properties for all textures
      * 
      * @return a map from spritesheetname to texture object
      */
-    public static Map<String, Texture> loadTextures(String path) {
+    public static Map<String, Texture> loadTextures(Iterable<String> files) {
         try {
             Map<String, Texture> textureMap = new HashMap<>();
-
-            InputStream file = loadFile(path);
-            ObjectMapper mapper = new ObjectMapper();
-            textureMap.putAll(mapper.readValue(file, new TypeReference<Map<String, Texture>>() {
-            }));
-
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                textureMap.putAll(mapper.readValue(file, new TypeReference<Map<String, Texture>>() {
+                }));
+            }
             for (Map.Entry<String, Texture> entry : textureMap.entrySet()) {
                 entry.getValue().setName(entry.getKey());
             }
@@ -364,6 +306,33 @@ public final class Loader {
                 entry.getValue().setName(entry.getKey());
             }
             return spriteMap;
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * Load the ColorBoxes specified in the given files
+     * 
+     * @param sprites list of paths to files with the properties of each texture part
+     * 
+     * @return a map from sprite name to TexturePart object
+     */
+    public static Map<String, ColorBox> loadColorBoxes(Iterable<String> sprites) {
+        try {
+            Map<String, ColorBox> boxMap = new HashMap<>();
+            for (String s : sprites) {
+                InputStream file = loadFile(s);
+                ObjectMapper mapper = new ObjectMapper();
+                boxMap.putAll(mapper.readValue(file, new TypeReference<Map<String, ColorBox>>() {
+                }));
+            }
+
+            for (Map.Entry<String, ColorBox> entry : boxMap.entrySet()) {
+                entry.getValue().setName(entry.getKey());
+            }
+            return boxMap;
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }

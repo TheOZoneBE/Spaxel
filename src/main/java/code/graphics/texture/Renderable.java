@@ -1,6 +1,6 @@
 package code.graphics.texture;
 
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 import code.math.VectorD;
 
 public abstract class Renderable {

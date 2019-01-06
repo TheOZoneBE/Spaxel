@@ -3,14 +3,14 @@ package code.factories.components;
 import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.engine.Resources;
-import code.graphics.SpriteData;
+import code.graphics.texture.Texture;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * Created by theo on 18/06/17.
  */
 public class ParticleComponentFactory extends ComponentFactory {
-    private SpriteData particle;
+    private Texture particle;
     private double scale;
 
     public ParticleComponentFactory() {
@@ -22,17 +22,17 @@ public class ParticleComponentFactory extends ComponentFactory {
         return new ParticleComponent(particle, scale);
     }
 
-    public SpriteData getParticle() {
+    public Texture getParticle() {
         return particle;
     }
 
-    public void setParticle(SpriteData particle) {
+    public void setParticle(Texture particle) {
         this.particle = particle;
     }
 
     @JsonSetter("particle")
     public void setSprite(String spriteName) {
-        this.particle = Resources.get().getSpriteAtlas().get(spriteName);
+        this.particle = (Texture) Resources.get().getRenderables().get(spriteName);
     }
 
     public double getScale() {

@@ -1,4 +1,6 @@
-package code.graphics;
+package code.graphics.buffer;
+
+import code.graphics.postprocess.FBO;
 
 import java.util.EnumMap;
 
@@ -8,14 +10,14 @@ import java.util.EnumMap;
 public class LayerFBO {
     private EnumMap<RenderLayer, FBO> fbos;
 
-    public LayerFBO(){
+    public LayerFBO() {
         fbos = new EnumMap<>(RenderLayer.class);
-        for (RenderLayer layer: RenderLayer.values()){
+        for (RenderLayer layer : RenderLayer.values()) {
             fbos.put(layer, new FBO());
         }
     }
 
-    public FBO getFbo(RenderLayer layer){
+    public FBO getFbo(RenderLayer layer) {
         return fbos.get(layer);
     }
 }

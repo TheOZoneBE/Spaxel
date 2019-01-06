@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * The YPosAnimator animates the y position of the animation

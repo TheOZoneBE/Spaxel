@@ -1,4 +1,4 @@
-package code.graphics;
+package code.graphics.geometry;
 
 import code.util.BufferUtils;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;

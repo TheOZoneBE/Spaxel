@@ -1,8 +1,8 @@
 package code.graphics.animation;
 
 import code.engine.Resources;
-import code.graphics.RenderData;
-import code.graphics.SpriteData;
+import code.graphics.buffer.RenderData;
+import code.graphics.texture.Renderable;
 
 /**
  * The FrameAnimator animates the current sprite of the animation
@@ -19,15 +19,15 @@ public class FrameAnimator extends Animator {
     }
 
     public void animate(double percentage, RenderData data) {
-        SpriteData frame;
+        Renderable frame;
         if (numFrames != 1) {
             int frameNumber = (int) Math.round(percentage * (numFrames - 1));
-            frame = Resources.get().getSpriteAtlas().get(spriteBase + "_" + frameNumber);
+            frame = Resources.get().getRenderables().get(spriteBase + "_" + frameNumber);
         } else {
-            frame = Resources.get().getSpriteAtlas().get(spriteBase);
+            frame = Resources.get().getRenderables().get(spriteBase);
         }
 
-        data.setSprite(frame);
+        data.setRenderable(frame);
     }
 
     /**

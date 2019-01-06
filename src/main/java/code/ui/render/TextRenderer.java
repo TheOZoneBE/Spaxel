@@ -3,10 +3,10 @@ package code.ui.render;
 import java.util.List;
 import java.util.ArrayList;
 import code.engine.Resources;
-import code.graphics.MasterBuffer;
-import code.graphics.RenderData;
-import code.graphics.RenderLayer;
-import code.graphics.SpriteData;
+import code.graphics.buffer.MasterBuffer;
+import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderLayer;
+import code.graphics.texture.Renderable;
 import code.math.VectorD;
 import code.ui.styles.Style;
 
@@ -69,13 +69,13 @@ public final class TextRenderer {
                     c = line.substring(i, i + 1);
                 }
                 characters.add(new Character(
-                        Resources.get().getSpriteAtlas().get(line.substring(start, i))));
+                        Resources.get().getRenderables().get(line.substring(start, i))));
 
             } else if (c.equals(SPACE)) {
                 characters.add(new Character(SPACING));
 
             } else {
-                characters.add(new Character(Resources.get().getSpriteAtlas().get(c)));
+                characters.add(new Character(Resources.get().getRenderables().get(c)));
             }
             i++;
 
@@ -94,9 +94,9 @@ public final class TextRenderer {
 
     private static class Character {
         private double width;
-        private SpriteData sprite;
+        private Renderable sprite;
 
-        public Character(SpriteData sprite) {
+        public Character(Renderable sprite) {
             this.sprite = sprite;
             this.width = sprite.getDim().getValue(0);
         }
@@ -122,7 +122,7 @@ public final class TextRenderer {
                 data.applyTranslation(position);
                 data.applyRot(0);
                 data.applyScale(scale);
-                data.setSprite(sprite);
+                data.setRenderable(sprite);
                 buffer.addNewSprite(RenderLayer.UI, data);
             }
         }

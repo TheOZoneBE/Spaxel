@@ -4,7 +4,7 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Created by theo on 5/01/18.

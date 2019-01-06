@@ -3,7 +3,7 @@ package code.components.render.subcomponents;
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 import code.math.VectorD;
 
 /**

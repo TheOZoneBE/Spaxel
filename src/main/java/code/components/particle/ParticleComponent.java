@@ -2,26 +2,26 @@ package code.components.particle;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.graphics.SpriteData;
+import code.graphics.texture.Texture;
 
 /**
  * Created by theo on 18/06/17.
  */
 public class ParticleComponent extends Component {
-    private SpriteData particle;
+    private Texture particle;
     private double scale;
 
-    public ParticleComponent(SpriteData particle, double scale) {
+    public ParticleComponent(Texture particle, double scale) {
         super(ComponentType.PARTICLE);
         this.particle = particle;
         this.scale = scale;
     }
 
-    public SpriteData getParticle() {
+    public Texture getParticle() {
         return particle;
     }
 
-    public void setParticle(SpriteData particle) {
+    public void setParticle(Texture particle) {
         this.particle = particle;
     }
 
@@ -33,7 +33,7 @@ public class ParticleComponent extends Component {
         this.scale = scale;
     }
 
-    public Component copy(){
+    public Component copy() {
         return new ParticleComponent(particle, scale);
     }
 }

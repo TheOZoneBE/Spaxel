@@ -1,12 +1,12 @@
 package code.ui.render;
 
 import code.ui.styles.Style;
-import code.graphics.MasterBuffer;
-import code.graphics.SpriteData;
+import code.graphics.buffer.MasterBuffer;
+import code.graphics.texture.Renderable;
 import code.math.VectorD;
 import code.engine.Resources;
-import code.graphics.RenderData;
-import code.graphics.RenderLayer;
+import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderLayer;
 
 /**
  * Provides methods for rendering style configurations of UI Elements
@@ -96,9 +96,9 @@ public final class StyleRenderer {
     private static void renderSprite(VectorD position, double rot, double scale, Style style,
             MasterBuffer buffer) {
         RenderData data = new RenderData();
-        SpriteData sprite = Resources.get().getSpriteAtlas().get(style.getProperty("sprite"));
+        Renderable sprite = Resources.get().getRenderables().get(style.getProperty("sprite"));
 
-        data.setSprite(sprite);
+        data.setRenderable(sprite);
         data.applyTranslation(position);
         data.applyScale(scale);
         data.applyRot(rot);

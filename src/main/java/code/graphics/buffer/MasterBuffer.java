@@ -1,4 +1,4 @@
-package code.graphics;
+package code.graphics.buffer;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import code.engine.Resources;
+import code.graphics.texture.PackedTexture;
 
 /**
  * Buffers all render jobs
@@ -15,16 +16,13 @@ import code.engine.Resources;
 public class MasterBuffer {
     private EnumMap<RenderLayer, Map<Integer, List<RenderData>>> layers;
 
-    public MasterBuffer(Map<String, Spritesheet> spritesheets) {
+    public MasterBuffer() {
         layers = new EnumMap<>(RenderLayer.class);
         for (RenderLayer l : RenderLayer.values()) {
             Map<Integer, List<RenderData>> data = new HashMap<>();
-            for (Spritesheet sheet : spritesheets.values()) {
-                data.put(sheet.getId(), new ArrayList<>());
-            }
             data.put(0, new ArrayList<>());
-            // TEMP packed texture
-            data.put(Resources.get().getPackedTexture().getID(), new ArrayList<>());
+            data.put(((PackedTexture) Resources.get().getRenderables().get("packed")).getID(),
+                    new ArrayList<>());
 
             layers.put(l, data);
         }

@@ -6,15 +6,12 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
-import code.engine.Resources;
 import code.engine.NEntity;
 import code.engine.SystemType;
-import code.graphics.MasterBuffer;
+import code.graphics.buffer.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.input.MouseWrapper;
 import code.math.VectorD;
-import code.graphics.RenderData;
-import code.graphics.RenderLayer;
 
 /**
  * The RenderSystem is responsible for rendering each frame
@@ -32,7 +29,7 @@ public class RenderSystem extends GameSystem {
 	 */
 	public RenderSystem() {
 		super(SystemType.RENDER);
-		bufferBuffer = new MasterBuffer(Resources.get().getSpritesheets());
+		bufferBuffer = new MasterBuffer();
 		master = new MasterRenderer();
 	}
 
@@ -61,16 +58,6 @@ public class RenderSystem extends GameSystem {
 		renderEntities();
 
 		Engine.get().getCurrentUI().render(bufferBuffer);
-
-		// TEMP packed texture
-		RenderData data = new RenderData();
-		data.applyTranslation(new VectorD(640, 360));
-		// data.setRenderable(Resources.get().getPackedTexture());
-		data.setRenderable(Resources.get().getTextureParts().get("white"));
-		// data.setRenderable(Resources.get().getTextures().get("ships"));
-		data.applyScale(2);
-		data.applyRot(0);
-		bufferBuffer.addNewSprite(RenderLayer.UI, data);
 
 		master.render(bufferBuffer);
 	}

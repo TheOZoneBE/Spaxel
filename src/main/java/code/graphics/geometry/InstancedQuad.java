@@ -1,4 +1,4 @@
-package code.graphics;
+package code.graphics.geometry;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL15.*;

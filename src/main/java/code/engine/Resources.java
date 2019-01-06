@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.List;
 import code.collision.HitShape;
 import code.factories.entities.EntityIndustry;
-import code.graphics.SpriteData;
-import code.graphics.Spritesheet;
 import code.graphics.animation.Animation;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
@@ -16,8 +14,10 @@ import code.input.Key;
 import code.input.KeyState;
 import code.graphics.texture.Texture;
 import code.graphics.texture.TexturePart;
+import code.graphics.texture.ColorBox;
 import code.graphics.texture.PackedTexture;
-import java.util.Arrays;
+import code.graphics.texture.Renderable;
+import java.util.HashMap;
 
 /**
  * Singleton class to hold all the game resources
@@ -30,14 +30,10 @@ public final class Resources {
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<UIType, UI> uis;
 	private Map<String, Map<String, Map<String, String>>> stylesheets;
-	private Map<String, Spritesheet> spritesheets;
-	private Map<String, SpriteData> spriteAtlas;
 	private Map<String, Animation> animationAtlas;
 	private ItemCatalogue items;
 	private Map<Key, KeyState> keyConfiguration;
-	private Map<String, Texture> textures;
-	private PackedTexture packedTexture;
-	private Map<String, TexturePart> textureParts;
+	private Map<String, Renderable> renderables;
 
 	private Resources() {
 
@@ -48,22 +44,26 @@ public final class Resources {
 	 */
 	public void initLoadingResources() {
 		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.LOAD_RESOURCE_PATH);
-		spritesheets = loadSpritesheets(resourcePaths.get("spritesheet"));
-		spriteAtlas = loadSpriteDatas(resourcePaths.get("sprite"));
 		animationAtlas = loadAnimations(resourcePaths.get("animation"));
 		stylesheets = loadStylesheets(resourcePaths.get("stylesheet"));
 		uis = loadUI(resourcePaths.get("ui"));
-		// TEMP texturepacking testing
-		textures = loadTextures("/resources/textures.json");
-		packedTexture = TextureUtil.packTextures(textures.values());
+		// Renderables loading
+		renderables = new HashMap<>();
+		Map<String, Texture> textures = loadTextures(resourcePaths.get("texture"));
+		PackedTexture packedTexture = TextureUtil.packTextures(textures.values());
 		packedTexture.initialize();
 		packedTexture.initializeCoordinates();
-
-		textureParts = loadTextureParts(Arrays.asList("/resources/textureParts.json"));
+		Map<String, TexturePart> textureParts = loadTextureParts(resourcePaths.get("texture_part"));
 		for (TexturePart tPart : textureParts.values()) {
 			tPart.setPackedTexture(packedTexture);
-			tPart.initializeCoordinates(textures);
+			tPart.initializeCoordinates(textures.get(tPart.getSheetName()));
 		}
+		Map<String, ColorBox> colorBoxes = loadColorBoxes(resourcePaths.get("color_box"));
+		renderables.putAll(textures);
+		renderables.putAll(textureParts);
+		renderables.putAll(colorBoxes);
+		renderables.put("packed", packedTexture);
+
 
 		Engine.get().setCurrentUI(uis.get(UIType.LOAD));
 	}
@@ -97,8 +97,6 @@ public final class Resources {
 
 		keyConfiguration = loadKeyConfiguration(resourcePaths.get("keys"));
 
-
-
 		Engine.get().finishLoading();
 	}
 
@@ -112,11 +110,6 @@ public final class Resources {
 
 	public Map<String, Animation> getAnimationAtlas() {
 		return animationAtlas;
-	}
-
-
-	public Map<String, Spritesheet> getSpritesheets() {
-		return spritesheets;
 	}
 
 	public Map<String, EntityIndustry> getIndustryMap() {
@@ -139,27 +132,12 @@ public final class Resources {
 		return items;
 	}
 
-	public Map<String, SpriteData> getSpriteAtlas() {
-		return spriteAtlas;
-	}
-
 	public Map<Key, KeyState> getKeyConfiguration() {
 		return keyConfiguration;
 	}
 
-	public PackedTexture getPackedTexture() {
-		return packedTexture;
+	public Map<String, Renderable> getRenderables() {
+		return renderables;
 	}
-
-	public Map<String, Texture> getTextures() {
-		// TEMP replace with one renderable map
-		return textures;
-	}
-
-	public Map<String, TexturePart> getTextureParts() {
-		// TEMP replace with one renderable map
-		return textureParts;
-	}
-
 
 }

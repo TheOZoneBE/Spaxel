@@ -10,7 +10,7 @@ import code.ui.logic.OnInitLogic;
 import code.ui.logic.ReleaseLogic;
 import code.ui.render.StyleRenderer;
 import code.ui.state.State;
-import code.graphics.MasterBuffer;
+import code.graphics.buffer.MasterBuffer;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import code.ui.logic.HoverLogic;

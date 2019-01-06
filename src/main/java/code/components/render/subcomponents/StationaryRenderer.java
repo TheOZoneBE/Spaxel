@@ -5,7 +5,7 @@ import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 import code.math.VectorD;
 
 /**

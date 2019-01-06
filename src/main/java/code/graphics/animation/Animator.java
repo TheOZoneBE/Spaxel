@@ -2,7 +2,7 @@ package code.graphics.animation;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import code.graphics.RenderData;
+import code.graphics.buffer.RenderData;
 
 /**
  * Abstract superclass for all Animators. An animator is an object that animates a certain property

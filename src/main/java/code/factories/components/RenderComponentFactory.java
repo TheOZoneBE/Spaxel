@@ -3,7 +3,7 @@ package code.factories.components;
 import code.components.Component;
 import code.components.render.RenderComponent;
 import code.components.render.subcomponents.Renderer;
-import code.graphics.RenderLayer;
+import code.graphics.buffer.RenderLayer;
 
 import java.util.List;
 

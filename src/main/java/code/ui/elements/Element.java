@@ -21,7 +21,6 @@ import code.ui.logic.ClickLogic;
  * Represent an element of a UI
  */
 public class Element {
-    private static final String VISIBLE = "visible";
     private int index;
     private String id;
     private UI ui;
@@ -35,6 +34,9 @@ public class Element {
 
     private State state;
 
+    /**
+     * Create a new Element
+     */
     public Element() {
         super();
         this.children = new ArrayList<>();
@@ -50,6 +52,11 @@ public class Element {
         logic.add(new OnInitLogic());
     }
 
+    /**
+     * Render this element with the given buffer
+     * 
+     * @param buffer the master buffer of the game
+     */
     public void render(MasterBuffer buffer) {
         StyleRenderer.renderStyle(style, buffer);
         synchronized (children) {
@@ -59,6 +66,9 @@ public class Element {
         }
     }
 
+    /**
+     * Update this element
+     */
     public void update() {
         for (Logic l : logic) {
             l.execute(this);
@@ -68,6 +78,9 @@ public class Element {
         }
     }
 
+    /**
+     * Initialize the style of this element
+     */
     public void initStyle() {
         style.setElement(this);
         for (String stl : classes) {
@@ -84,6 +97,9 @@ public class Element {
         }
     }
 
+    /**
+     * Reset the state of this element
+     */
     public void reset() {
         state.reset();
         for (Element child : children) {
@@ -91,6 +107,13 @@ public class Element {
         }
     }
 
+    /**
+     * Find an element by id in the subtree where this element is the root
+     * 
+     * @param id the id to find
+     * 
+     * @return the found Element
+     */
     public Element findById(String id) {
         if (id.equals(this.id)) {
             return this;
@@ -132,6 +155,11 @@ public class Element {
         return id;
     }
 
+    /**
+     * Add a new element to the children of this element
+     * 
+     * @param element the element to add
+     */
     @JsonSetter("element")
     public void addElement(Element element) {
         synchronized (children) {
@@ -150,11 +178,20 @@ public class Element {
         }
     }
 
+    /**
+     * Dump all unknown properties in here when this Element gets deserialized
+     * 
+     * @param key   the key
+     * @param value the value
+     */
     @JsonAnySetter()
     public void dump(String key, String value) {
         // NOTE dump all unknown xml properties in this hole
     }
 
+    /**
+     * Clear the children of this element
+     */
     public void clearChildren() {
         synchronized (children) {
             children.clear();

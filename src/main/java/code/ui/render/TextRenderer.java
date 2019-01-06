@@ -30,8 +30,9 @@ public final class TextRenderer {
     /**
      * Render the text according to the given style
      * 
-     * @param style  the style of the text
-     * @param buffer the master buffer of the game
+     * @param position the position of the text
+     * @param style    the style of the text
+     * @param buffer   the master buffer of the game
      */
     public static void renderText(VectorD position, Style style, MasterBuffer buffer) {
         String text = style.getProperty("text");

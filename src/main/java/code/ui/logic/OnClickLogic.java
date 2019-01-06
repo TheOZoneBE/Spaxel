@@ -15,8 +15,7 @@ public class OnClickLogic implements Logic {
      * @param element The element with the onClick property.
      */
     public void execute(Element element) {
-        if ((!element.getStyle().contains("visible")
-                || "true".equals(element.getStyle().getProperty("visible")))
+        if ("true".equals(element.getStyle().getProperty("visible"))
                 && element.getState().isRelease()) {
             String method = element.getStyle().getProperty("onClick");
             String controller = element.getUI().getController();

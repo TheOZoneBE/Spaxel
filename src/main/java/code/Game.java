@@ -1,7 +1,5 @@
 package code;
 
-import code.engine.Resources;
-import code.engine.Engine;
 
 /**
  * Main class of the game, manages the different threads

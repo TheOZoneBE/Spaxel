@@ -36,6 +36,7 @@ public class SoundSystem extends GameSystem {
 		currentMusic.play();
 	}
 
+	@Override
 	public void close() {
 		currentMusic.stop();
 		currentMusic.close();

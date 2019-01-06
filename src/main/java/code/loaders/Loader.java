@@ -22,7 +22,6 @@ import code.graphics.animation.Animation;
 import code.sound.Music;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
-import code.ui.styles.Style;
 import code.input.Key;
 import code.input.KeyState;
 

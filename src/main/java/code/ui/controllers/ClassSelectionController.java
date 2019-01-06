@@ -6,7 +6,7 @@ import code.engine.Resources;
 import code.input.Key;
 import code.input.Keyboard;
 import code.ui.elements.UIType;
-import code.ui.elements.Element;;
+import code.ui.elements.Element;
 
 /**
  * Callbacks for element of the class selection UI

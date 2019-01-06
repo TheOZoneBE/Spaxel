@@ -32,6 +32,7 @@ public class Style {
         defaults.put("rot", "0");
         defaults.put("x", "640");
         defaults.put("y", "360");
+        defaults.put("visible", "true");
     }
 
     public void setParent(Style parent) {
@@ -50,6 +51,14 @@ public class Style {
         return element;
     }
 
+    /**
+     * Get the property value for this key. If no value is found in this style, continue searching
+     * in the parent style
+     * 
+     * @param key the key of the property
+     * 
+     * @return the value of the property
+     */
     public String getProperty(String key) {
         for (String mod : element.getState().getModifiers()) {
             if (properties.containsKey(key + ":" + mod)) {
@@ -74,9 +83,6 @@ public class Style {
      * @return true if the style contains the property
      */
     public boolean contains(String key) {
-        if (element == null) {
-            return false;
-        }
         for (String mod : element.getState().getModifiers()) {
             if (properties.containsKey(key + ":" + mod)) {
                 return true;
@@ -92,7 +98,12 @@ public class Style {
         return result;
     }
 
-
+    /**
+     * Merge this map of properties with the properties of this style using the given modifier
+     * 
+     * @param props the properties to merge
+     * @param mod   the modifier to merge on
+     */
     public void merge(Map<String, String> props, String mod) {
         if (props != null) {
             for (Map.Entry<String, String> entry : props.entrySet()) {
@@ -101,16 +112,34 @@ public class Style {
         }
     }
 
+    /**
+     * Merge this map of properties with the properties of this style
+     * 
+     * @param props the properties to merge
+     */
     public void merge(Map<String, String> props) {
         if (props != null) {
             properties.putAll(props);
         }
     }
 
+    /**
+     * Set a property of this style
+     * 
+     * @param key   the key of the property
+     * @param value the value to set
+     */
     public void setProperty(String key, String value) {
         properties.put(key, value);
     }
 
+    /**
+     * Set a property of this style given the modifier
+     * 
+     * @param key   the key of the property
+     * @param value the value of the property
+     * @param mod   the modifier of the property
+     */
     public void setProperty(String key, String value, String mod) {
         properties.put(key + ":" + mod, value);
     }

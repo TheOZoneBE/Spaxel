@@ -23,7 +23,7 @@ public final class StyleRenderer {
      * @param buffer the masterbuffer of the rendersystem
      */
     public static void renderStyle(Style style, MasterBuffer buffer) {
-        if (!style.contains("visible") || "true".equals(style.getProperty("visible"))) {
+        if ("true".equals(style.getProperty("visible"))) {
             VectorD position = derivePosition(style);
             double rot = deriveRotation(style);
             double scale = deriveScale(style);

@@ -6,7 +6,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import code.engine.Resources;
 import code.graphics.MasterBuffer;
-import code.ui.styles.Style;
 
 /**
  * Root class of an ui structure

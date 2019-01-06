@@ -15,8 +15,7 @@ public class OnInitLogic implements Logic {
      * @param element The element with the onInit property.
      */
     public void execute(Element element) {
-        if ((!element.getStyle().contains("visible")
-                || "true".equals(element.getStyle().getProperty("visible")))
+        if ("true".equals(element.getStyle().getProperty("visible"))
                 && !element.getState().isInit()) {
             String method = element.getStyle().getProperty("onInit");
             String controller = element.getUI().getController();

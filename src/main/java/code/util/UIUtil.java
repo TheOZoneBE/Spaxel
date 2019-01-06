@@ -10,6 +10,7 @@ import code.ui.elements.Element;
  * Provides functions for invoking methods in the ui Elements
  */
 public final class UIUtil {
+    // The logger to log errors in the dynamic execution of methods
     private static final Logger LOGGER = Logger.getLogger(UIUtil.class.getName());
 
     private UIUtil() {

@@ -28,10 +28,12 @@ public final class EntityUtil {
      */
     public static List<String> getAllItemNames(NEntity entity) {
         List<String> items = new ArrayList<>();
+        // all inventory component types
         ComponentType[] types =
                 {ComponentType.PRIMARY, ComponentType.SECONDARY, ComponentType.SHIP};
         for (ComponentType type : types) {
             InventoryComponent inventory = (InventoryComponent) entity.getComponent(type);
+            // collect all item names of this inventory
             items.addAll(inventory.getItems().stream()
                     .map((NEntity item) -> ((ItemComponent) item.getComponent(ComponentType.ITEM))
                             .getName())
@@ -52,6 +54,7 @@ public final class EntityUtil {
             ComponentType ctype) {
         InventoryComponent ic = (InventoryComponent) entity.getComponent(ctype);
         for (int i = 0; i < number; i++) {
+            // produce a random item of the given type
             NEntity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
             ic.addItem(item);
             item.addComponent(new LinkComponent(entity));
@@ -70,8 +73,10 @@ public final class EntityUtil {
     public static double calculateDeltaRot(double rotChange, double turnrate) {
         double deltaRot = 0;
         if (Math.abs(rotChange) < turnrate) {
+            // if the rotation change is less than the turnrate we can just do it
             deltaRot = rotChange;
         } else if (rotChange < 0) {
+            // else decide which direction to turn
             if (rotChange < -Math.PI) {
                 deltaRot = turnrate;
             } else {

@@ -2,21 +2,30 @@ package code.components.damage;
 
 import code.components.Component;
 import code.components.ComponentType;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Represents the ability to get damaged
+ * 
  * Created by theo on 8/06/17.
  */
 public class DamageComponent extends Component {
     private List<Damage> damages;
 
+    /**
+     * Create a new DamageComponent
+     */
     public DamageComponent() {
         super(ComponentType.DAMAGE);
         damages = new ArrayList<>();
     }
 
+    /**
+     * Add damage to this component
+     * 
+     * @param damage the damage to add
+     */
     public synchronized void addDamage(Damage damage) {
         damages.add(damage);
     }
@@ -25,6 +34,11 @@ public class DamageComponent extends Component {
         return damages;
     }
 
+    /**
+     * remove Damage from this component
+     * 
+     * @param damage the damage to remove
+     */
     public synchronized void removeDamage(Damage damage) {
         damages.remove(damage);
     }

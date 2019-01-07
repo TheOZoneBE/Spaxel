@@ -2,7 +2,7 @@ package code.components.affect;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theod on 28-6-2017.
@@ -17,7 +17,7 @@ public abstract class AffectComponent extends Component {
         this.factor = factor;
     }
 
-    public abstract void affect(NEntity entity, NEntity victim);
+    public abstract void affect(Entity entity, Entity victim);
 
     public AffectType getAffectType() {
         return affectType;

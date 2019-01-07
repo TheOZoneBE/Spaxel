@@ -1,6 +1,6 @@
 package code.system;
 
-import code.engine.SystemType;
+import code.system.SystemType;
 
 /**
  * Abstract base class of each system of the game

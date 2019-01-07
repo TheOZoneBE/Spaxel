@@ -329,28 +329,6 @@
             "y": 32
         }
     },
-    "active_shield_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 0,
-            "y": 64
-        }
-    },
-    "basic_shield_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 32,
-            "y": 64
-        }
-    },
     "force_shield_item": {
         "sheetName": "items",
         "dim": {

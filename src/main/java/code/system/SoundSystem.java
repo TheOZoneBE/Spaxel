@@ -1,7 +1,7 @@
 package code.system;
 
 import code.engine.Engine;
-import code.engine.SystemType;
+import code.system.SystemType;
 import code.sound.Music;
 import code.engine.Resources;
 
@@ -23,10 +23,10 @@ public class SoundSystem extends GameSystem {
 			currentMusic.stop();
 		}
 		if (Engine.get().getEngineState() != Engine.EngineState.MENU) {
-			currentMusic = Resources.get().getMusicList().getRandomSong();
+			currentMusic = Engine.get().getMusicList().getRandomSong();
 			play();
 		} else {
-			currentMusic = Resources.get().getMusicList().getSong("Intro");
+			currentMusic = Engine.get().getMusicList().getSong("Intro");
 			play();
 		}
 

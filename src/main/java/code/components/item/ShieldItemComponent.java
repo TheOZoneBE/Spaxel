@@ -2,7 +2,7 @@ package code.components.item;
 
 import code.components.link.LinkComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 8/07/17.
@@ -10,9 +10,9 @@ import code.engine.NEntity;
 public abstract class ShieldItemComponent extends ItemComponent {
     protected int capacity;
     protected int maxCapacity;
-    protected NEntity effect;
+    protected Entity effect;
 
-    public ShieldItemComponent(String name, int capacity, int maxCapacity, NEntity effect) {
+    public ShieldItemComponent(String name, int capacity, int maxCapacity, Entity effect) {
         super(ItemType.SHIP, name);
         this.capacity = capacity;
         this.maxCapacity = maxCapacity;
@@ -35,16 +35,16 @@ public abstract class ShieldItemComponent extends ItemComponent {
         this.maxCapacity = maxCapacity;
     }
 
-    public NEntity getEffect() {
+    public Entity getEffect() {
         return effect;
     }
 
-    public void setEffect(NEntity effect) {
+    public void setEffect(Entity effect) {
         this.effect = effect;
     }
 
     @Override
-    public void addCascade(NEntity entity) {
+    public void addCascade(Entity entity) {
         effect.addComponent(new LinkComponent(entity));
         Engine.get().getNEntityStream().addEntity(effect);
     }

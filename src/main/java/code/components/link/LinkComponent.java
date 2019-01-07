@@ -2,24 +2,24 @@ package code.components.link;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 16/06/17.
  */
 public class LinkComponent extends Component{
-    private NEntity link;
+    private Entity link;
 
-    public LinkComponent(NEntity link) {
+    public LinkComponent(Entity link) {
         super(ComponentType.LINK);
         this.link = link;
     }
 
-    public NEntity getLink() {
+    public Entity getLink() {
         return link;
     }
 
-    public void setLink(NEntity link) {
+    public void setLink(Entity link) {
         this.link = link;
     }
 

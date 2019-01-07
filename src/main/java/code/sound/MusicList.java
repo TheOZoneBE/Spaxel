@@ -1,11 +1,11 @@
-package code.engine;
+package code.sound;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import code.sound.Music;
 import code.util.SpaxelRandom;
+import code.engine.Engine;
 
 /**
  * Created by theo on 12/01/18.
@@ -62,10 +62,12 @@ public class MusicList {
         return music.get(name);
     }
 
+    /**
+     * Exit the music list and remove all references to songs
+     */
     public void exit() {
-        for (Music m : music.values()) {
-            m.close();
-        }
+        alreadyPlayed.clear();
+        music.clear();
     }
 
 }

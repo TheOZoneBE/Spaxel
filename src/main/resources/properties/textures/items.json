@@ -1,0 +1,16 @@
+{
+    "active_shield": {
+        "path": "/textures/items/active_shield.png",
+        "dim": {
+            "x": 32,
+            "y": 32
+        }
+    },
+    "basic_shield": {
+        "path": "/textures/items/basic_shield.png",
+        "dim": {
+            "x": 32,
+            "y": 32
+        }
+    }
+}

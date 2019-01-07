@@ -1,6 +1,6 @@
 package code.logger;
 
-import code.engine.SystemType;
+import code.system.SystemType;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.LinkedList;

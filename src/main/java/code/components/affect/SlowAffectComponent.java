@@ -2,7 +2,7 @@ package code.components.affect;
 
 import code.components.ComponentType;
 import code.components.move.MoveComponent;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.components.Component;
 
 /**
@@ -13,7 +13,7 @@ public class SlowAffectComponent extends AffectComponent {
         super(AffectType.SLOW, factor);
     }
 
-    public void affect(NEntity entity, NEntity victim) {
+    public void affect(Entity entity, Entity victim) {
         MoveComponent mc = (MoveComponent) victim.getComponent(ComponentType.MOVE);
         mc.setAcc(mc.getAcc() * factor);
         mc.setMaxSpeed(mc.getMaxSpeed() * factor);

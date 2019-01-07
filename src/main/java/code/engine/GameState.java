@@ -18,6 +18,7 @@ public class GameState {
     private VectorD screenOffset;
     private double updateTime;
 
+
     /**
      * Create a new GameState
      */

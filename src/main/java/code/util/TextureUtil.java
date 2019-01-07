@@ -14,6 +14,9 @@ import static org.lwjgl.opengl.GL11.*;
 import code.graphics.texture.Texture;
 import code.graphics.texture.TextureNode;
 
+/**
+ * Provides utility functions for the creation and packing of textures
+ */
 public final class TextureUtil {
     private static final Logger LOGGER = Logger.getLogger(TextureUtil.class.getName());
     private static final int ONE_BYTE = 8;
@@ -29,6 +32,13 @@ public final class TextureUtil {
 
     }
 
+    /**
+     * Pack this list of textures into one PackedTexture
+     * 
+     * @param textures the textures to pack
+     * 
+     * @return the packed texture
+     */
     public static PackedTexture packTextures(Iterable<Texture> textures) {
         Map<Integer, List<TextureNode>> nodes = new HashMap<>();
 
@@ -74,6 +84,13 @@ public final class TextureUtil {
                 (Integer accSize, Integer size) -> accSize += size);
     }
 
+    /**
+     * Load a texture tree into memory
+     * 
+     * @param root the root node of the tree
+     * 
+     * @return the texture data of the tree
+     */
     public static int[] loadTextureTree(TextureNode root) {
         int[] dest = new int[root.getDim() * root.getDim()];
         if (root.getTexture() == null) {
@@ -114,6 +131,13 @@ public final class TextureUtil {
         }
     }
 
+    /**
+     * Load a texture into memory
+     * 
+     * @param texture the texture to load
+     * 
+     * @return the texture data
+     */
     public static int[] loadImage(Texture texture) {
         int width = (int) texture.getDim().getValue(0);
         int height = (int) texture.getDim().getValue(1);
@@ -138,6 +162,15 @@ public final class TextureUtil {
         return data;
     }
 
+    /**
+     * Create a new GL texture and load the data into it
+     * 
+     * @param width  the width of the texture
+     * @param height the height of the texture
+     * @param data   the data of the texture
+     * 
+     * @return the id of the texture
+     */
     public static int createGPUTexture(int width, int height, int[] data) {
         int id = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, id);

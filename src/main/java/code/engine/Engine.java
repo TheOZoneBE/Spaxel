@@ -6,6 +6,7 @@ import code.input.MouseWrapper;
 import code.logger.Logger;
 import code.ui.elements.UIType;
 import code.ui.elements.UI;
+import code.sound.MusicList;
 
 public final class Engine {
 	private static final Engine engine = new Engine();
@@ -13,7 +14,7 @@ public final class Engine {
 	private Keyboard keys;
 	private MouseWrapper mouseWrapper;
 
-	private NEntityStream nentities;
+	private EntityStream nentities;
 
 	private UI currentUI;
 	private EngineState engineState;
@@ -23,10 +24,11 @@ public final class Engine {
 	private GameState gameState;
 
 	private Logger logger;
+	private MusicList musicList;
 
 	private Engine() {
 		gameState = new GameState();
-		nentities = new NEntityStream();
+		nentities = new EntityStream();
 		engineState = EngineState.LOAD;
 	}
 
@@ -39,10 +41,11 @@ public final class Engine {
 	}
 
 	public void finishLoading() {
+		musicList = new MusicList(Resources.get().getMusic());
 		this.keys = new Keyboard(window, Resources.get().getKeyConfiguration());
 
 		nentities.cleanup();
-		logger = new Logger(0, 100);
+		logger = new Logger(1000, 100);
 
 		currentUI = Resources.get().getUIS().get(UIType.MAIN);
 		engineState = EngineState.MENU;
@@ -53,9 +56,8 @@ public final class Engine {
 	public void stopGame() {
 		nentities.scheduleClear();
 		gameState = new GameState();
-		logger = null;
-		// TODO rework musiclist so the data and the resetting is seperated
-		Resources.get().getMusicList().reset();
+		// logger.reset();
+		musicList.reset();
 	}
 
 	public void setWindow(long window) {
@@ -74,7 +76,7 @@ public final class Engine {
 		this.mouseWrapper = wrapper;
 	}
 
-	public NEntityStream getNEntityStream() {
+	public EntityStream getNEntityStream() {
 		return nentities;
 	}
 
@@ -113,7 +115,15 @@ public final class Engine {
 		engineState = EngineState.EXIT;
 		gameState = null;
 		logger.exit();
+		musicList.exit();
 	}
 
+	public MusicList getMusicList() {
+		return musicList;
+	}
+
+	public long getWindow() {
+		return window;
+	}
 
 }

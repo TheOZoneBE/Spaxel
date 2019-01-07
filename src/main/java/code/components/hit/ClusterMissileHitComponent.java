@@ -5,7 +5,7 @@ import code.components.Component;
 import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.util.SpriteDataUtil;
 
 /**
@@ -18,7 +18,7 @@ public class ClusterMissileHitComponent extends HitComponent {
         super(HitType.CLUSTER_MISSILE, damage);
     }
 
-    public void hit(NEntity entity, NEntity victim) {
+    public void hit(Entity entity, Entity victim) {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);

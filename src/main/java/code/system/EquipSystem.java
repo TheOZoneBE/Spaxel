@@ -8,8 +8,8 @@ import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
 import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import code.math.MatrixD;
 import code.util.MatrixUtil;
 import java.util.Set;
@@ -28,12 +28,12 @@ public class EquipSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.EQUIP);
 
-        NEntity player = Engine.get().getNEntityStream().getPlayer();
+        Entity player = Engine.get().getNEntityStream().getPlayer();
 
-        for (NEntity entity : entities) {
+        for (Entity entity : entities) {
             CollisionComponent cc =
                     (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
             PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);

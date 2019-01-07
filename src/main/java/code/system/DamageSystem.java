@@ -5,8 +5,8 @@ import code.components.damage.Damage;
 import code.components.damage.DamageComponent;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -23,9 +23,9 @@ public class DamageSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
-        for (NEntity e : entities) {
+        for (Entity e : entities) {
             DamageComponent dc = (DamageComponent) e.getComponent(ComponentType.DAMAGE);
             HealthComponent hc = (HealthComponent) e.getComponent(ComponentType.HEALTH);
             for (Damage d : dc.getDamages()) {

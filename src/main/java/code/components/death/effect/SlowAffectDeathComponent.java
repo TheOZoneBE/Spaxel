@@ -8,7 +8,7 @@ import code.components.death.DeathType;
 import code.components.effect.EffectComponent;
 import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theod on 28-6-2017.
@@ -18,9 +18,9 @@ public class SlowAffectDeathComponent extends DeathComponent {
         super(DeathType.SLOW_AFFECT);
     }
 
-    public void die(NEntity entity) {
+    public void die(Entity entity) {
         AffectComponent ac = (AffectComponent) entity.getComponent(ComponentType.AFFECT);
-        NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
         MoveComponent mc = (MoveComponent) parent.getComponent(ComponentType.MOVE);
         mc.setAcc(mc.getAcc() / ac.getFactor());
         mc.setMaxSpeed(mc.getMaxSpeed() / ac.getFactor());

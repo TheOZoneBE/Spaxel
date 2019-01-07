@@ -4,7 +4,7 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.link.LinkComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +13,24 @@ import java.util.List;
  * Created by theod on 28-6-2017.
  */
 public class EffectComponent extends Component {
-    private List<NEntity> effects;
+    private List<Entity> effects;
 
     public EffectComponent() {
         super(ComponentType.EFFECT);
         effects = new ArrayList<>();
     }
 
-    public List<NEntity> getEffects() {
+    public List<Entity> getEffects() {
         return effects;
     }
 
-    public void setEffects(List<NEntity> effects) {
+    public void setEffects(List<Entity> effects) {
         this.effects = effects;
     }
 
     @Override
-    public void addCascade(NEntity entity) {
-        for (NEntity e : effects) {
+    public void addCascade(Entity entity) {
+        for (Entity e : effects) {
             e.addComponent(new LinkComponent(entity));
             Engine.get().getNEntityStream().addEntity(e);
         }
@@ -38,7 +38,7 @@ public class EffectComponent extends Component {
 
     @Override
     public void removeCascade() {
-        for (NEntity e : effects) {
+        for (Entity e : effects) {
             Engine.get().getNEntityStream().removeEntity(e);
         }
     }

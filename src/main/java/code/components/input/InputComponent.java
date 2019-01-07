@@ -2,7 +2,7 @@ package code.components.input;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 21/06/17.
@@ -15,7 +15,7 @@ public abstract class InputComponent extends Component {
         this.inputType = inputType;
     }
 
-    public abstract void update(NEntity entity);
+    public abstract void update(Entity entity);
 
     /**
      * @return the inputType

@@ -4,7 +4,7 @@ import code.components.Component;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.ui.elements.UIType;
 import code.engine.Resources;
 
@@ -16,7 +16,7 @@ public class PlayerDeathComponent extends DeathComponent {
         super(DeathType.PLAYER);
     }
 
-    public void die(NEntity entity) {
+    public void die(Entity entity) {
         // add particle effect
         // show game over
         // TODO revisit maybe

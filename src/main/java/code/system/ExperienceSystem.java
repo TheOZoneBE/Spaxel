@@ -4,8 +4,8 @@ import code.components.ComponentType;
 import code.components.experience.ExperienceComponent;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -22,9 +22,9 @@ public class ExperienceSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.EXPERIENCE);
-        for (NEntity entity : entities) {
+        for (Entity entity : entities) {
             ExperienceComponent ec =
                     (ExperienceComponent) entity.getComponent(ComponentType.EXPERIENCE);
             if (ec.getXpToLevel() <= ec.getXp()) {

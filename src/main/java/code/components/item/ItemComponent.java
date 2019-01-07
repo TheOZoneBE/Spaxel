@@ -2,7 +2,7 @@ package code.components.item;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 16/06/17.
@@ -17,7 +17,7 @@ public abstract class ItemComponent extends Component {
         this.name = name;
     }
 
-    public abstract void activate(NEntity entity);
+    public abstract void activate(Entity entity);
 
     public String getName() {
         return name;

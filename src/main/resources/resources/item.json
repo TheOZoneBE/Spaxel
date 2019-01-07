@@ -220,7 +220,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "basic_shield_item",
+        "sprite": "basic_shield",
         "scale": 1
       },
       {
@@ -330,7 +330,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "active_shield_item",
+        "sprite": "active_shield",
         "scale": 1
       },
       {

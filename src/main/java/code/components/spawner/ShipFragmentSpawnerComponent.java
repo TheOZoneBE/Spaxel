@@ -6,7 +6,7 @@ import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.engine.Resources;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.factories.entities.TrailSegmentIndustry;
 
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class ShipFragmentSpawnerComponent extends SpawnerComponent {
         super(SpawnerType.SHIP_FRAGMENT, rate);
     }
 
-    public List<NEntity> spawn(NEntity entity){
+    public List<Entity> spawn(Entity entity){
         PositionComponent pc = (PositionComponent)entity.getComponent(ComponentType.POSITION);
         ParticleComponent pac = (ParticleComponent)entity.getComponent(ComponentType.PARTICLE);
         TrailSegmentIndustry tsi = (TrailSegmentIndustry) Resources.get().getIndustryMap().get("ship_fragment_industry");

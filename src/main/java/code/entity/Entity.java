@@ -1,16 +1,17 @@
-package code.engine;
+package code.entity;
 
 import code.components.Component;
 import code.components.ComponentType;
 import java.util.EnumMap;
 import java.util.Map;
+import code.engine.Engine;
 
 /**
  * Represent an entity in the game
  * 
  * Created by theo on 31/05/17.
  */
-public class NEntity {
+public class Entity {
     private EntityType type;
     private Map<ComponentType, Component> components;
 
@@ -19,7 +20,7 @@ public class NEntity {
      * 
      * @param type the type of the entity
      */
-    public NEntity(EntityType type) {
+    public Entity(EntityType type) {
         this.type = type;
         this.components = new EnumMap<>(ComponentType.class);
     }
@@ -94,9 +95,9 @@ public class NEntity {
      * 
      * @return a copy of this entity
      */
-    public NEntity copy() {
+    public Entity copy() {
         // TODO figure out copy implementation
-        return new NEntity(type);
+        return new Entity(type);
     }
 
 }

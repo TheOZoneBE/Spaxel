@@ -3,7 +3,7 @@ package code.factories.components;
 import code.components.Component;
 import code.components.primary.PrimaryComponent;
 import code.engine.Resources;
-import code.engine.NEntity;
+import code.entity.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class PrimaryComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        List<NEntity> items = new ArrayList<>();
+        List<Entity> items = new ArrayList<>();
         for (String factory : itemIndustries) {
             items.add(Resources.get().getIndustryMap().get(factory).produce());
         }

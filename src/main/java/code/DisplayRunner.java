@@ -18,8 +18,8 @@ import code.engine.Resources;
  */
 public class DisplayRunner implements Runnable {
     private static final Logger LOGGER = Logger.getLogger(DisplayRunner.class.getName());
-
-    private boolean running = true;
+    // Status of the runnable
+    private volatile boolean running = true;
 
     private long window = NULL;
     private RenderSystem renderSystem;
@@ -41,7 +41,7 @@ public class DisplayRunner implements Runnable {
             throw new IllegalStateException("Unable to initialize GLFW");
         }
 
-        // init window
+        // Initialize window
         try {
             window = GLUtil.initGLWindow();
         } catch (GLUtil.WindowCreateException e) {
@@ -49,40 +49,41 @@ public class DisplayRunner implements Runnable {
             Game.exit();
         }
 
-        // init gl context
+        // Initialize GL context
         GLUtil.initGLRendering();
-
+        // Log the GL version
         LOGGER.log(Level.INFO, "OpenGL: {0}", glGetString(GL_VERSION));
 
-        // setup mouse
+        // Setup mouse callback
         MouseWrapper mouseWrapper = new MouseWrapper(window);
         glfwSetCursorPosCallback(window, mouseWrapper);
-
+        // Set mouse and window in engine
         Engine.get().setMouseWrapper(mouseWrapper);
         Engine.get().setWindow(window);
     }
 
     public void run() {
+        // initialize GL and stuff
         initialize();
-
+        // load the resources needed to show the loading screen
         Resources.get().initLoadingResources();
-
+        // create a new rendersystem
         renderSystem = new RenderSystem();
-
-
+        // create a new thread to load the rest of the resources
         Thread load = new Thread(() -> Resources.get().startLoading());
         load.start();
 
         long start;
         long deltatime;
         while (running) {
-            if (glfwWindowShouldClose(window)) {
-                Game.exit();
+            if (glfwWindowShouldClose(window) || Game.shouldClose()) {
+                exit();
             }
             start = System.nanoTime();
             render();
             deltatime = System.nanoTime() - start;
             Engine.get().getGameState().setUpdateTime((double) deltatime / Constants.NS_PER_TICK);
+
         }
     }
 
@@ -92,11 +93,11 @@ public class DisplayRunner implements Runnable {
     public void render() {
         // clear the framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        // render everything
         renderSystem.update();
-
+        // swap the window buffers
         glfwSwapBuffers(window);
-
+        // mouse callback
         glfwPollEvents();
     }
 

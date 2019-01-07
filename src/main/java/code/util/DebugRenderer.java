@@ -1,8 +1,8 @@
-package code.logger;
+package code.util;
 
 import code.components.ComponentType;
 import code.engine.Engine;
-import code.engine.SystemType;
+import code.system.SystemType;
 import code.graphics.buffer.MasterBuffer;
 import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
@@ -11,6 +11,7 @@ import code.math.VectorD;
 import code.ui.elements.Element;
 import code.Constants;
 import code.engine.Resources;
+import code.logger.Logger;
 
 /**
  * Provides methods for the creation of debug ui elements

@@ -9,7 +9,7 @@ import code.components.item.ItemComponent;
 import code.components.item.ItemType;
 import code.components.link.LinkComponent;
 import code.engine.Resources;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Provides utility functions for entities
@@ -26,7 +26,7 @@ public final class EntityUtil {
      * 
      * @return a list with item names
      */
-    public static List<String> getAllItemNames(NEntity entity) {
+    public static List<String> getAllItemNames(Entity entity) {
         List<String> items = new ArrayList<>();
         // all inventory component types
         ComponentType[] types =
@@ -35,7 +35,7 @@ public final class EntityUtil {
             InventoryComponent inventory = (InventoryComponent) entity.getComponent(type);
             // collect all item names of this inventory
             items.addAll(inventory.getItems().stream()
-                    .map((NEntity item) -> ((ItemComponent) item.getComponent(ComponentType.ITEM))
+                    .map((Entity item) -> ((ItemComponent) item.getComponent(ComponentType.ITEM))
                             .getName())
                     .collect(Collectors.toList()));
         }
@@ -50,12 +50,12 @@ public final class EntityUtil {
      * @param type   the type of items to add
      * @param ctype  the type of the component to add the items to
      */
-    public static void addRandomItems(NEntity entity, int number, ItemType type,
+    public static void addRandomItems(Entity entity, int number, ItemType type,
             ComponentType ctype) {
         InventoryComponent ic = (InventoryComponent) entity.getComponent(ctype);
         for (int i = 0; i < number; i++) {
             // produce a random item of the given type
-            NEntity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
+            Entity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
             ic.addItem(item);
             item.addComponent(new LinkComponent(entity));
         }

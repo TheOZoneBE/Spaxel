@@ -4,8 +4,8 @@ import code.components.age.AgeComponent;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -22,9 +22,9 @@ public class AgeSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> nEntities =
+        Set<Entity> nEntities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.AGE);
-        for (NEntity ne : nEntities) {
+        for (Entity ne : nEntities) {
             AgeComponent ac = (AgeComponent) ne.getComponent(ComponentType.AGE);
             if (ac.getLife() != 0) {
                 ac.setLife(ac.getLife() - 1);

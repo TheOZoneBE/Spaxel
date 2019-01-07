@@ -3,7 +3,7 @@ package code.components.ai;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.velocity.VelocityComponent;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theod on 11-7-2017.
@@ -15,7 +15,7 @@ public class DroppedItemAIComponent extends AIComponent {
         super(AIType.DROPPED_ITEM);
     }
 
-    public void execute(NEntity entity) {
+    public void execute(Entity entity) {
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
         vc.setVelocity(vc.getVelocity().multiplicate(HALF));
     }

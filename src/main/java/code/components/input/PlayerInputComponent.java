@@ -10,7 +10,7 @@ import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.input.Keyboard;
 import code.input.Key;
 import code.input.MouseWrapper;
@@ -29,7 +29,7 @@ public class PlayerInputComponent extends InputComponent {
         super(InputType.PLAYER);
     }
 
-    public void update(NEntity entity) {
+    public void update(Entity entity) {
         ActorComponent ac = (ActorComponent) entity.getComponent(ComponentType.ACTOR);
 
         if (ac.canMove()) {
@@ -41,7 +41,7 @@ public class PlayerInputComponent extends InputComponent {
         }
     }
 
-    private static void handleMoving(NEntity entity) {
+    private static void handleMoving(Entity entity) {
         Keyboard keys = Engine.get().getKeyboard();
         MouseWrapper mouse = Engine.get().getMouseWrapper();
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
@@ -87,12 +87,12 @@ public class PlayerInputComponent extends InputComponent {
         vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
     }
 
-    private static void handleShooting(NEntity entity) {
+    private static void handleShooting(Entity entity) {
         MouseWrapper mouse = Engine.get().getMouseWrapper();
         if (mouse.getMouse1().isDown()) {
             PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);
-            List<NEntity> items = prc.getItems();
-            for (NEntity item : items) {
+            List<Entity> items = prc.getItems();
+            for (Entity item : items) {
                 ItemComponent ic = (ItemComponent) item.getComponent(ComponentType.ITEM);
                 ic.activate(item);
             }
@@ -100,8 +100,8 @@ public class PlayerInputComponent extends InputComponent {
         if (mouse.getMouse2().isDown()) {
             SecondaryComponent src =
                     (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
-            List<NEntity> items = src.getItems();
-            for (NEntity item : items) {
+            List<Entity> items = src.getItems();
+            for (Entity item : items) {
                 ItemComponent ic = (ItemComponent) item.getComponent(ComponentType.ITEM);
                 ic.activate(item);
             }

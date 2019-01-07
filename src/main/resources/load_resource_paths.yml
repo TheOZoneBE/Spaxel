@@ -1,5 +1,5 @@
 animation:
-  - /resources/animation.json
+  - /properties/animation.json
 stylesheet:
   - /ui/styles/common.json
   - /ui/styles/load.json
@@ -8,6 +8,7 @@ ui:
 texture:
   - /properties/textures/textures.json
   - /properties/textures/animations/cooldown.json
+  - /properties/textures/items.json
 texture_part:
   - /properties/textures/textureParts.json
   - /properties/textures/font.json

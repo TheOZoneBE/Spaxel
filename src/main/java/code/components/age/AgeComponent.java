@@ -4,12 +4,20 @@ import code.components.Component;
 import code.components.ComponentType;
 
 /**
+ * Represent the age of a component, components with age 0 will die
+ * 
  * Created by theo on 3/06/17.
  */
 public class AgeComponent extends Component {
     private int life;
     private int maxLife;
 
+    /**
+     * Create a new AgeComponent with the specified life
+     * 
+     * @param life    the current life of the component
+     * @param maxLife the maximum life of the component
+     */
     public AgeComponent(int life, int maxLife) {
         super(ComponentType.AGE);
         this.life = life;

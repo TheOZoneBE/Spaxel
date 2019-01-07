@@ -4,8 +4,8 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -23,9 +23,9 @@ public class VelocitySystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> nEntities =
+        Set<Entity> nEntities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.VELOCITY);
-        for (NEntity ne : nEntities) {
+        for (Entity ne : nEntities) {
             PositionComponent pc = (PositionComponent) ne.getComponent(ComponentType.POSITION);
             VelocityComponent vc = (VelocityComponent) ne.getComponent(ComponentType.VELOCITY);
             pc.setCoord(pc.getCoord().sum(vc.getVelocity()));

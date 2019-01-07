@@ -4,7 +4,7 @@ import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
 import code.components.sprite.SpriteComponent;
 import code.components.stack.StackComponent;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.ui.elements.Element;
 
 
@@ -25,7 +25,7 @@ public final class ElementCreator {
      * 
      * @return the created Element
      */
-    public static Element createItemView(NEntity item) {
+    public static Element createItemView(Entity item) {
         SpriteComponent sc = (SpriteComponent) item.getComponent(ComponentType.SPRITE);
         CooldownComponent cc = (CooldownComponent) item.getComponent(ComponentType.COOLDOWN);
         StackComponent stc = (StackComponent) item.getComponent(ComponentType.STACK);

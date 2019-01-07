@@ -8,7 +8,7 @@ import code.components.position.PositionComponent;
 import code.components.stack.StackComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.factories.entities.ProjectileIndustry;
 import code.math.VectorD;
 import code.engine.Resources;
@@ -26,17 +26,17 @@ public abstract class ShootItemComponent extends ItemComponent {
         this.factory = factory;
     }
 
-    public void activate(NEntity entity) {
+    public void activate(Entity entity) {
         CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
         if (cc.getCd() == 0) {
-            NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+            Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
             ProjectileIndustry pri = (ProjectileIndustry) Resources.get().getIndustryMap().get(factory);
 
             double offset = (sc.getStacks() - 1) * -RADIAL_STEP;
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
-                NEntity projectile = pri.produce((PositionComponent) pc.copy(), new LinkComponent(parent));
+                Entity projectile = pri.produce((PositionComponent) pc.copy(), new LinkComponent(parent));
                 MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
                 double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
                 double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();

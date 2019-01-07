@@ -8,7 +8,7 @@ import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Resources;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.factories.entities.HitParticleIndustry;
 import code.math.VectorD;
 import code.Constants;
@@ -30,8 +30,8 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
         this.maxLife = maxLife;
     }
 
-    public List<NEntity> spawn(NEntity entity) {
-        List<NEntity> temp = new ArrayList<>();
+    public List<Entity> spawn(Entity entity) {
+        List<Entity> temp = new ArrayList<>();
         HitParticleIndustry hpi =
                 (HitParticleIndustry) Resources.get().getIndustryMap().get("hit_particle_industry");
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);

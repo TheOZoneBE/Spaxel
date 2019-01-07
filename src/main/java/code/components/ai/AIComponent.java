@@ -2,7 +2,7 @@ package code.components.ai;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 7/06/17.
@@ -15,7 +15,7 @@ public abstract class AIComponent extends Component {
         this.aiType = subType;
     }
 
-    public abstract void execute(NEntity entity);
+    public abstract void execute(Entity entity);
 
     public AIType getAiType() {
         return aiType;

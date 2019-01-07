@@ -8,7 +8,7 @@ import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.math.VectorD;
 import code.util.EntityUtil;
 
@@ -24,16 +24,16 @@ public class HomingMissileAIComponent extends AIComponent {
         super(AIType.HOMING_MISSILE);
     }
 
-    public void execute(NEntity entity) {
+    public void execute(Entity entity) {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
 
-        Set<NEntity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
+        Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
 
         double minDist = -1;
-        NEntity closest = null;
-        for (NEntity e : enemies) {
+        Entity closest = null;
+        for (Entity e : enemies) {
             if (e != ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink()) {
                 PositionComponent epc = (PositionComponent) e.getComponent(ComponentType.POSITION);
                 double dist = epc.getCoord().sum(pc.getCoord().multiplicate(-1)).length();

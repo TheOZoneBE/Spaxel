@@ -45,5 +45,14 @@
                 "minPos": 292
             }
         ]
+    },
+    "cooldown": {
+        "animators": [
+            {
+                "type": "FRAME",
+                "numFrames": 89,
+                "spriteBase": "cd_anim"
+            }
+        ]
     }
 }

@@ -3,7 +3,7 @@ package code.components.render;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.render.subcomponents.Renderer;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.graphics.buffer.MasterBuffer;
 import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
@@ -25,7 +25,7 @@ public class RenderComponent extends Component {
         this.layer = layer;
     }
 
-    public void render(NEntity entity, MasterBuffer buffer) {
+    public void render(Entity entity, MasterBuffer buffer) {
         if (visible) {
             RenderJob renderData = new RenderJob();
             for (Renderer r : renderers) {

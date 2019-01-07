@@ -1,7 +1,7 @@
 package code.ui.controllers;
 
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.engine.Resources;
 import code.input.Key;
 import code.input.Keyboard;
@@ -21,7 +21,7 @@ public final class ClassSelectionController {
      * Select the white ship.
      */
     public static void selectWhite() {
-        NEntity player = Resources.get().getIndustryMap().get("player_white_industry").produce();
+        Entity player = Resources.get().getIndustryMap().get("player_white_industry").produce();
         Engine.get().getNEntityStream().addEntity(player);
         Engine.get().getNEntityStream().cleanup();
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.PLAY));
@@ -32,7 +32,7 @@ public final class ClassSelectionController {
      * Select the red ship.
      */
     public static void selectRed() {
-        NEntity player = Resources.get().getIndustryMap().get("player_red_industry").produce();
+        Entity player = Resources.get().getIndustryMap().get("player_red_industry").produce();
         Engine.get().getNEntityStream().addEntity(player);
         Engine.get().getNEntityStream().cleanup();
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.PLAY));
@@ -43,7 +43,7 @@ public final class ClassSelectionController {
      * Select the green ship.
      */
     public static void selectGreen() {
-        NEntity player = Resources.get().getIndustryMap().get("player_green_industry").produce();
+        Entity player = Resources.get().getIndustryMap().get("player_green_industry").produce();
         Engine.get().getNEntityStream().addEntity(player);
         Engine.get().getNEntityStream().cleanup();
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.PLAY));
@@ -54,7 +54,7 @@ public final class ClassSelectionController {
      * Select the blue ship.
      */
     public static void selectBlue() {
-        NEntity player = Resources.get().getIndustryMap().get("player_blue_industry").produce();
+        Entity player = Resources.get().getIndustryMap().get("player_blue_industry").produce();
         Engine.get().getNEntityStream().addEntity(player);
         Engine.get().getNEntityStream().cleanup();
         Engine.get().setCurrentUI(Resources.get().getUIS().get(UIType.PLAY));

@@ -6,10 +6,10 @@ import java.util.Set;
 import code.components.ComponentType;
 import code.components.spawner.SpawnerComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
-import code.engine.NEntity;
-import code.engine.NEntityStream;
-import code.engine.SystemType;
+import code.entity.EntityType;
+import code.entity.Entity;
+import code.engine.EntityStream;
+import code.system.SystemType;
 
 /**
  * The SpawnerSystem is responsible for updating the entities with SpawnerComponents
@@ -26,10 +26,10 @@ public class SpawnerSystem extends GameSystem {
 
     public void update() {
         // update all spawners and acquire particles
-        NEntityStream nentities = Engine.get().getNEntityStream();
-        Set<NEntity> spawners = nentities.getEntities(ComponentType.SPAWNER);
-        List<NEntity> newParticles = new ArrayList<>();
-        for (NEntity ne : spawners) {
+        EntityStream nentities = Engine.get().getNEntityStream();
+        Set<Entity> spawners = nentities.getEntities(ComponentType.SPAWNER);
+        List<Entity> newParticles = new ArrayList<>();
+        for (Entity ne : spawners) {
             newParticles
                     .addAll(((SpawnerComponent) ne.getComponent(ComponentType.SPAWNER)).spawn(ne));
         }

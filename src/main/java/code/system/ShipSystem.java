@@ -4,8 +4,8 @@ import code.components.ComponentType;
 import code.components.item.ItemComponent;
 import code.components.ship.ShipComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -22,11 +22,11 @@ public class ShipSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.SHIP);
-        for (NEntity entity : entities) {
+        for (Entity entity : entities) {
             ShipComponent sc = (ShipComponent) entity.getComponent(ComponentType.SHIP);
-            for (NEntity item : sc.getItems()) {
+            for (Entity item : sc.getItems()) {
                 ItemComponent ic = (ItemComponent) item.getComponent(ComponentType.ITEM);
                 ic.activate(item);
             }

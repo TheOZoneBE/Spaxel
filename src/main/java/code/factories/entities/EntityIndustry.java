@@ -2,8 +2,8 @@ package code.factories.entities;
 
 import code.components.ComponentType;
 import code.components.Component;
-import code.engine.EntityType;
-import code.engine.NEntity;
+import code.entity.EntityType;
+import code.entity.Entity;
 import code.factories.components.ComponentFactory;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -43,8 +43,8 @@ public class EntityIndustry {
      * 
      * @return the created entity
      */
-    public NEntity produce() {
-        NEntity entity = new NEntity(type);
+    public Entity produce() {
+        Entity entity = new Entity(type);
         entity.setComponents(buildComponents());
         return entity;
     }

@@ -3,7 +3,7 @@ package code.components.ship;
 import code.components.ComponentType;
 import code.components.Component;
 import code.components.inventory.InventoryComponent;
-import code.engine.NEntity;
+import code.entity.Entity;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import java.util.ArrayList;
  */
 public class ShipComponent extends InventoryComponent {
 
-    public ShipComponent(List<NEntity> items) {
+    public ShipComponent(List<Entity> items) {
         super(ComponentType.SHIP, items);
     }
 
     public Component copy() {
-        List<NEntity> copied = new ArrayList<>();
-        for (NEntity item : items) {
+        List<Entity> copied = new ArrayList<>();
+        for (Entity item : items) {
             copied.add(item.copy());
         }
 

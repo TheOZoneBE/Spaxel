@@ -5,8 +5,11 @@ package code;
  * Main class of the game, manages the different threads
  */
 public final class Game {
+	// the display runnable
 	public static final DisplayRunner displayRunner = new DisplayRunner();
+	// the update runnable
 	public static final UpdateRunner updateRunner = new UpdateRunner();
+	private static boolean shouldClose = false;
 
 	private Game() {
 	}
@@ -32,10 +35,13 @@ public final class Game {
 	}
 
 	/**
-	 * Exits the game by exiting all running threads.
+	 * Exits the game.
 	 */
 	public static void exit() {
-		displayRunner.exit();
-		updateRunner.exit();
+		shouldClose = true;
+	}
+
+	public static boolean shouldClose() {
+		return shouldClose;
 	}
 }

@@ -11,7 +11,7 @@ import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.math.VectorD;
 import code.util.EntityUtil;
 
@@ -26,7 +26,7 @@ public class BasicEnemyAIComponent extends AIComponent {
         super(AIType.BASIC_ENEMY);
     }
 
-    public void execute(NEntity entity) {
+    public void execute(Entity entity) {
         PositionComponent playerPos = (PositionComponent) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.POSITION);
 
@@ -62,12 +62,12 @@ public class BasicEnemyAIComponent extends AIComponent {
         }
         if (ac.canShoot()) {
             PrimaryComponent prc = (PrimaryComponent) entity.getComponent(ComponentType.PRIMARY);
-            for (NEntity e : prc.getItems()) {
+            for (Entity e : prc.getItems()) {
                 ItemComponent ic = (ItemComponent) e.getComponent(ComponentType.ITEM);
                 ic.activate(e);
             }
             SecondaryComponent src = (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
-            for (NEntity e : src.getItems()) {
+            for (Entity e : src.getItems()) {
                 ItemComponent ic = (ItemComponent) e.getComponent(ComponentType.ITEM);
                 ic.activate(e);
             }

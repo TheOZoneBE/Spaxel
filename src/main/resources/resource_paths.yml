@@ -1,5 +1,3 @@
-animation:
-  - /resources/animation.json
 music:
   - /resources/sound.json
 hitshape:

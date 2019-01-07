@@ -3,8 +3,8 @@ package code.system;
 import code.components.ComponentType;
 import code.components.marker.MarkerComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -21,9 +21,9 @@ public class MarkerSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> markers =
+        Set<Entity> markers =
                 Engine.get().getNEntityStream().getEntities(ComponentType.MARKER);
-        for (NEntity marker : markers) {
+        for (Entity marker : markers) {
             MarkerComponent mc = (MarkerComponent) marker.getComponent(ComponentType.MARKER);
             mc.update(marker);
         }

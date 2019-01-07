@@ -1,6 +1,6 @@
 package code.components;
 
-import code.engine.NEntity;
+import code.entity.Entity;
 
 /**
  * Created by theo on 31/05/17.
@@ -29,7 +29,7 @@ public abstract class Component {
      * 
      * @param entity the cascading entity
      */
-    public void addCascade(NEntity entity) {
+    public void addCascade(Entity entity) {
 
     }
 

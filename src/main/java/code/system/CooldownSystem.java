@@ -3,8 +3,8 @@ package code.system;
 import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -21,9 +21,9 @@ public class CooldownSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.COOLDOWN);
-        for (NEntity entity : entities) {
+        for (Entity entity : entities) {
             CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
             cc.setCd(cc.getCd() == 0 ? 0 : cc.getCd() - 1);
         }

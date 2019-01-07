@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import code.entity.Entity;
 
 /**
  * Catalogue for all the items
@@ -56,7 +57,7 @@ public class ItemCatalogue {
      * 
      * @return the produced item
      */
-    private NEntity produceRandom(List<ItemProperties> options) {
+    private Entity produceRandom(List<ItemProperties> options) {
         ItemProperties chosen = random.choose(options);
         return Resources.get().getIndustryMap().get(chosen.getIndustry()).produce();
     }
@@ -68,7 +69,7 @@ public class ItemCatalogue {
      * 
      * @return the produced item
      */
-    public NEntity produceRandom(ItemFilter... filters) {
+    public Entity produceRandom(ItemFilter... filters) {
         List<ItemProperties> chosen = new ArrayList<>();
         for (ItemProperties prop : items.values()) {
             boolean passed = true;

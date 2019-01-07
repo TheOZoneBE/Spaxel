@@ -6,7 +6,7 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.math.LineSegment;
 import code.math.VectorD;
 import code.engine.Resources;
@@ -18,7 +18,7 @@ public class MarkerComponent extends Component {
     private static final int MARKER_THRESHOLD = 50;
     private static final int MARKER_OFFSET = 20;
 
-    private NEntity marker;
+    private Entity marker;
     private String markerIndustry;
 
     public MarkerComponent(String markerIndustry) {
@@ -26,8 +26,8 @@ public class MarkerComponent extends Component {
         this.marker = Resources.get().getIndustryMap().get(markerIndustry).produce();
     }
 
-    public void update(NEntity entity) {
-        NEntity player = Engine.get().getNEntityStream().getPlayer();
+    public void update(Entity entity) {
+        Entity player = Engine.get().getNEntityStream().getPlayer();
         PositionComponent playerPos =
                 (PositionComponent) player.getComponent(ComponentType.POSITION);
         PositionComponent entityPos =
@@ -58,11 +58,11 @@ public class MarkerComponent extends Component {
         }
     }
 
-    public NEntity getMarker() {
+    public Entity getMarker() {
         return marker;
     }
 
-    public void setMarker(NEntity markerEntity) {
+    public void setMarker(Entity markerEntity) {
         this.marker = markerEntity;
     }
 
@@ -75,7 +75,7 @@ public class MarkerComponent extends Component {
     }
 
     @Override
-    public void addCascade(NEntity entity) {
+    public void addCascade(Entity entity) {
         Engine.get().getNEntityStream().addEntity(marker);
     }
 

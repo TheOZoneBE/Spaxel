@@ -5,9 +5,9 @@ import code.components.health.HealthComponent;
 import code.components.item.ItemType;
 import code.components.position.PositionComponent;
 import code.engine.Engine;
-import code.engine.EntityType;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.EntityType;
+import code.entity.Entity;
+import code.system.SystemType;
 import code.factories.entities.EnemyIndustry;
 import code.math.VectorD;
 import code.util.EntityUtil;
@@ -48,8 +48,8 @@ public class DifficultySystem extends GameSystem {
         if (nextSpawn > 0) {
             nextSpawn--;
         }
-        Set<NEntity> enemies = Engine.get().getNEntityStream().getEntities(EntityType.ENEMY);
-        NEntity player = Engine.get().getNEntityStream().getPlayer();
+        Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(EntityType.ENEMY);
+        Entity player = Engine.get().getNEntityStream().getPlayer();
         PositionComponent playerPos =
                 (PositionComponent) player.getComponent(ComponentType.POSITION);
 
@@ -62,7 +62,7 @@ public class DifficultySystem extends GameSystem {
 
             VectorD offset = new VectorD(xOffset, yOffset);
 
-            NEntity entity = ei.produce(new PositionComponent(playerPos.getCoord().sum(offset), 0));
+            Entity entity = ei.produce(new PositionComponent(playerPos.getCoord().sum(offset), 0));
             ((HealthComponent) entity.getComponent(ComponentType.HEALTH))
                     .levelUp(rand.between(1, maxLevel + 1));
 

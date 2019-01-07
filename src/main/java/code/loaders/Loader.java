@@ -20,6 +20,7 @@ import code.graphics.animation.Animation;
 import code.input.Key;
 import code.input.KeyState;
 import code.sound.Music;
+import code.sound.Sound;
 import code.ui.elements.UI;
 import code.ui.elements.UIType;
 import code.graphics.texture.ColorBox;
@@ -143,13 +144,13 @@ public final class Loader {
     }
 
     /**
-     * Load the sounds specified in the given files
+     * Load the music specified in the given files
      * 
-     * @param files the paths to the files that contain the sounds
+     * @param files the paths to the files that contain the music
      * 
-     * @return a map from sound name to Sound
+     * @return a map from music name to Music
      */
-    public static Map<String, Music> loadSounds(Iterable<String> files) {
+    public static Map<String, Music> loadMusic(Iterable<String> files) {
         try {
             Map<String, Music> music = new HashMap<>();
             for (String path : files) {
@@ -159,6 +160,32 @@ public final class Loader {
                 }));
             }
             for (Music m : music.values()) {
+                m.initialize();
+            }
+            return music;
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * Load the sounds specified in the given files
+     * 
+     * @param files the paths to the files that contain the sounds
+     * 
+     * @return a map from sound name to Sound
+     */
+    public static Map<String, Sound> loadSounds(Iterable<String> files) {
+        try {
+            Map<String, Sound> music = new HashMap<>();
+            for (String path : files) {
+                InputStream file = loadFile(path);
+                ObjectMapper mapper = new ObjectMapper();
+                music.putAll(mapper.readValue(file, new TypeReference<Map<String, Sound>>() {
+                }));
+            }
+            for (Sound m : music.values()) {
                 m.initialize();
             }
             return music;

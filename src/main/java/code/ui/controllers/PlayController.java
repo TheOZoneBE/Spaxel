@@ -5,12 +5,12 @@ import code.components.experience.ExperienceComponent;
 import code.components.health.HealthComponent;
 import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.engine.Resources;
-import code.engine.SystemType;
+import code.system.SystemType;
 import code.factories.elements.ElementCreator;
 import code.input.Keyboard;
-import code.logger.DebugRenderer;
+import code.util.DebugRenderer;
 import code.ui.elements.Element;
 import code.ui.elements.UIType;
 import code.Constants;
@@ -84,7 +84,7 @@ public final class PlayController {
 
     private static void updateContainer(Element element, InventoryComponent inventory) {
         element.clearChildren();
-        for (NEntity item : inventory.getItems()) {
+        for (Entity item : inventory.getItems()) {
 
             element.addElement(ElementCreator.createItemView(item));
         }

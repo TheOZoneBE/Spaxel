@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import code.engine.Engine;
-import code.engine.SystemType;
+import code.engine.Resources;
+import code.system.SystemType;
 import code.system.AISystem;
 import code.system.AgeSystem;
 import code.system.CooldownSystem;
@@ -23,7 +24,7 @@ import code.system.SoundSystem;
 import code.system.SpawnerSystem;
 import code.system.UISystem;
 import code.system.VelocitySystem;
-import code.engine.Resources;
+import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 /**
  * Runnable for the thread that executes all the game updates
@@ -63,6 +64,9 @@ public class UpdateRunner implements Runnable {
         long lastUpdateEnd;
         long accTime = Constants.NS_PER_TICK;
         while (running) {
+            if (glfwWindowShouldClose(Engine.get().getWindow()) || Game.shouldClose()) {
+                exit();
+            }
             lastUpdateStart = System.nanoTime();
             updateSystems();
             accTime -= Constants.NS_PER_TICK;

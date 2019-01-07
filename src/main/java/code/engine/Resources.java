@@ -12,6 +12,8 @@ import code.util.TextureUtil;
 import code.Constants;
 import code.input.Key;
 import code.input.KeyState;
+import code.sound.Music;
+import code.sound.Sound;
 import code.graphics.texture.Texture;
 import code.graphics.texture.TexturePart;
 import code.graphics.texture.ColorBox;
@@ -25,7 +27,6 @@ import java.util.HashMap;
 public final class Resources {
 	private static final Resources resources = new Resources();
 
-	private MusicList musicList;
 	private Map<String, EntityIndustry> industryMap;
 	private Map<String, HitShape> hitShapeAtlas;
 	private Map<UIType, UI> uis;
@@ -34,6 +35,8 @@ public final class Resources {
 	private ItemCatalogue items;
 	private Map<Key, KeyState> keyConfiguration;
 	private Map<String, Renderable> renderables;
+	private Map<String, Sound> sounds;
+	private Map<String, Music> music;
 
 	private Resources() {
 
@@ -83,7 +86,9 @@ public final class Resources {
 	public void startLoading() {
 		Map<String, List<String>> resourcePaths = loadResourcePaths(Constants.RESOURCE_PATH);
 
-		musicList = new MusicList(loadSounds(resourcePaths.get("music")));
+		music = loadMusic(resourcePaths.get("music"));
+
+		// sounds = loadSounds(resourcePaths.get("sounds"));
 
 		hitShapeAtlas = loadHitShapes(resourcePaths.get("hitshape"));
 
@@ -101,7 +106,11 @@ public final class Resources {
 	}
 
 	public void exit() {
-		musicList.exit();
+		for (Music m: music.values()){
+			m.close();
+		}
+		music.clear();
+		// TODO sounds
 	}
 
 	public Map<String, Map<String, Map<String, String>>> getStylesheets() {
@@ -124,8 +133,8 @@ public final class Resources {
 		return uis;
 	}
 
-	public MusicList getMusicList() {
-		return musicList;
+	public Map<String, Music> getMusic() {
+		return music;
 	}
 
 	public ItemCatalogue getItems() {

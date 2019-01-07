@@ -1,6 +1,6 @@
 package code.components.render.subcomponents;
 
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.graphics.buffer.RenderJob;
 
 /**
@@ -9,7 +9,7 @@ import code.graphics.buffer.RenderJob;
 public class MarkerRenderer extends Renderer {
     private static final double MARKER_ALPHA = 0.33D;
 
-    public void apply(RenderJob data, NEntity entity) {
+    public void apply(RenderJob data, Entity entity) {
         data.applyAlpha(MARKER_ALPHA);
     }
 }

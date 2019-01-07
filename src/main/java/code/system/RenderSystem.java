@@ -6,8 +6,8 @@ import code.components.ComponentType;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import code.graphics.buffer.MasterBuffer;
 import code.graphics.MasterRenderer;
 import code.input.MouseWrapper;
@@ -49,7 +49,7 @@ public class RenderSystem extends GameSystem {
 			Engine.get().getGameState()
 					.setCursorFollow(Engine.get().getGameState().getCursorFollow().sum(difference));
 
-			NEntity player = Engine.get().getNEntityStream().getPlayer();
+			Entity player = Engine.get().getNEntityStream().getPlayer();
 			PositionComponent playerPos =
 					(PositionComponent) player.getComponent(ComponentType.POSITION);
 
@@ -76,9 +76,9 @@ public class RenderSystem extends GameSystem {
 	 * Render all entities with a Rendercomponent
 	 */
 	public void renderEntities() {
-		Set<NEntity> toRender =
+		Set<Entity> toRender =
 				Engine.get().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
-		for (NEntity ne : toRender) {
+		for (Entity ne : toRender) {
 			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
 	}

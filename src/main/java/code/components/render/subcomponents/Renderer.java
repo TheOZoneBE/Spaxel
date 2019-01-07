@@ -1,6 +1,6 @@
 package code.components.render.subcomponents;
 
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.graphics.buffer.RenderJob;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 public abstract class Renderer {
     private RendererType type;
 
-    public abstract void apply(RenderJob data, NEntity entity);
+    public abstract void apply(RenderJob data, Entity entity);
 
     public RendererType getType() {
         return type;

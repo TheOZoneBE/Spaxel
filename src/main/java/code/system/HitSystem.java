@@ -7,8 +7,8 @@ import code.components.hit.HitComponent;
 import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import code.math.MatrixD;
 import code.util.MatrixUtil;
 import java.util.Set;
@@ -27,11 +27,11 @@ public class HitSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
-        Set<NEntity> colliders =
+        Set<Entity> colliders =
                 Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
-        for (NEntity entity : entities) {
+        for (Entity entity : entities) {
             checkColliders(entity, colliders);
         }
     }
@@ -42,13 +42,13 @@ public class HitSystem extends GameSystem {
      * @param entity    the entity to check to
      * @param colliders the list of all entities the entity can collide with
      */
-    public void checkColliders(NEntity entity, Iterable<NEntity> colliders) {
-        NEntity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+    public void checkColliders(Entity entity, Iterable<Entity> colliders) {
+        Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
         CollisionComponent cc = (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
         HitShape updated = cc.getHitShape().update(eTransform);
-        for (NEntity collider : colliders) {
+        for (Entity collider : colliders) {
             if (collider != parent) {
                 CollisionComponent ccc =
                         (CollisionComponent) collider.getComponent(ComponentType.COLLISION);

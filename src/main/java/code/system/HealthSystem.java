@@ -4,8 +4,8 @@ import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
-import code.engine.NEntity;
-import code.engine.SystemType;
+import code.entity.Entity;
+import code.system.SystemType;
 import java.util.Set;
 
 /**
@@ -22,9 +22,9 @@ public class HealthSystem extends GameSystem {
     }
 
     public void update() {
-        Set<NEntity> entities =
+        Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.HEALTH);
-        for (NEntity e : entities) {
+        for (Entity e : entities) {
             if (((HealthComponent) e.getComponent(ComponentType.HEALTH)).getHealth() < 0) {
                 DeathComponent dc = (DeathComponent) e.getComponent(ComponentType.DEATH);
                 if (dc != null) {

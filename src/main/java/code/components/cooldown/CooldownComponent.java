@@ -4,12 +4,20 @@ import code.components.Component;
 import code.components.ComponentType;
 
 /**
+ * Represents a cooldown for an entity
+ * 
  * Created by theo on 16/06/17.
  */
 public class CooldownComponent extends Component {
     private int cd;
     private int cdAmount;
 
+    /**
+     * Create a new CooldownComponent with the specified cooldown
+     * 
+     * @param cd       the current cooldown
+     * @param cdAmount the maximum cooldown
+     */
     public CooldownComponent(int cd, int cdAmount) {
         super(ComponentType.COOLDOWN);
         this.cd = cd;
@@ -32,7 +40,7 @@ public class CooldownComponent extends Component {
         this.cdAmount = cdAmount;
     }
 
-    public Component copy(){
+    public Component copy() {
         return new CooldownComponent(cd, cdAmount);
     }
 }

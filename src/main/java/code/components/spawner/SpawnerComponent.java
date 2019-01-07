@@ -2,7 +2,7 @@ package code.components.spawner;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.engine.NEntity;
+import code.entity.Entity;
 import code.util.SpaxelRandom;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public abstract class SpawnerComponent extends Component {
         this.rand = new SpaxelRandom();
     }
 
-    public abstract List<NEntity> spawn(NEntity entity);
+    public abstract List<Entity> spawn(Entity entity);
 
     public int getRate() {
         return rate;

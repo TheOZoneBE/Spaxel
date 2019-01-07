@@ -1,4 +1,4 @@
-package code.engine;
+package code.entity;
 
 /**
  * All possible types of Entity

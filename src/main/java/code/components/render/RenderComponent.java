@@ -5,9 +5,8 @@ import code.components.ComponentType;
 import code.components.render.subcomponents.Renderer;
 import code.engine.NEntity;
 import code.graphics.buffer.MasterBuffer;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -26,13 +25,13 @@ public class RenderComponent extends Component {
         this.layer = layer;
     }
 
-    public void render(NEntity entity, MasterBuffer buffer){
-        if(visible){
-            RenderData renderData = new RenderData();
-            for (Renderer r: renderers){
+    public void render(NEntity entity, MasterBuffer buffer) {
+        if (visible) {
+            RenderJob renderData = new RenderJob();
+            for (Renderer r : renderers) {
                 r.apply(renderData, entity);
             }
-            buffer.addNewSprite(layer, renderData);
+            buffer.addNewRenderJob(layer, renderData);
         }
     }
 
@@ -52,9 +51,9 @@ public class RenderComponent extends Component {
         this.visible = visible;
     }
 
-    public Component copy(){
+    public Component copy() {
         List<Renderer> copied = new ArrayList<>();
-        for (Renderer render: renderers){
+        for (Renderer render : renderers) {
             copied.add(render);
         }
         return new RenderComponent(copied, visible, layer);

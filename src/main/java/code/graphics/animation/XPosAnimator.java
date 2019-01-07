@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
 /**
  * The XPosAnimator animates the x position of the animation
@@ -16,7 +16,7 @@ public class XPosAnimator extends Animator {
         super(AnimatorType.X_POS);
     }
 
-    public void animate(double percentage, RenderData data) {
+    public void animate(double percentage, RenderJob data) {
         double pos = percentage * (maxPos - minPos);
 
         data.applyXTranslation(minPos + pos);

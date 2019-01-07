@@ -2,7 +2,6 @@ package code.engine;
 
 import code.components.Component;
 import code.components.ComponentType;
-
 import java.util.EnumMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -10,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Collection of all entities while playing the game
+ * 
  * Created by theo on 31/05/17.
  */
 public class NEntityStream {
@@ -21,6 +22,9 @@ public class NEntityStream {
     private EnumMap<ComponentType, Set<NEntity>> toRemoveComponentTypeMap;
     private boolean clear;
 
+    /**
+     * Create a new EntityStream
+     */
     public NEntityStream() {
         entityTypeMap = new EnumMap<>(EntityType.class);
         toAddEntityTypeMap = new EnumMap<>(EntityType.class);
@@ -40,16 +44,38 @@ public class NEntityStream {
         }
     }
 
+
+    /**
+     * Get a set of entities of the given type
+     * 
+     * @param type the entity type
+     * 
+     * @return the set of entities
+     */
     public Set<NEntity> getEntities(EntityType type) {
         return entityTypeMap.get(type);
     }
 
+    /**
+     * Get a copied set of entities that contain the given type
+     * 
+     * @param type the component type
+     * 
+     * @return the set of entities
+     */
     public Set<NEntity> getEntitiesCopy(ComponentType type) {
         synchronized (componentTypeMap) {
             return new HashSet<>(componentTypeMap.get(type));
         }
     }
 
+    /**
+     * Get a set of entities that contain the given type
+     * 
+     * @param type the component type
+     * 
+     * @return the set of entities
+     */
     public Set<NEntity> getEntities(ComponentType type) {
         return componentTypeMap.get(type);
     }
@@ -58,11 +84,22 @@ public class NEntityStream {
         return entityTypeMap.get(EntityType.PLAYER).iterator().next();
     }
 
+    /**
+     * Add an entity to the stream
+     * 
+     * @param entity the entity to add
+     */
     public void addEntity(NEntity entity) {
         entity.addCascade();
         toAddEntityTypeMap.get(entity.getType()).add(entity);
     }
 
+    /**
+     * Add a list of entities to the stream, it is expected they are from the same type
+     * 
+     * @param type     the type of the entities
+     * @param entities the entities to add
+     */
     public void addEntities(EntityType type, List<NEntity> entities) {
         for (NEntity e : entities) {
             e.addCascade();
@@ -70,19 +107,39 @@ public class NEntityStream {
         toAddEntityTypeMap.get(type).addAll(entities);
     }
 
+    /**
+     * Remove an Entity from the stream
+     * 
+     * @param entity the entity to remove
+     */
     public void removeEntity(NEntity entity) {
         entity.removeCascade();
         toRemoveEntityTypeMap.get(entity.getType()).add(entity);
     }
 
+    /**
+     * Add a component to an entity
+     * 
+     * @param type   the type of the component
+     * @param entity the entity
+     */
     public void addComponent(ComponentType type, NEntity entity) {
         toAddComponentTypeMap.get(type).add(entity);
     }
 
+    /**
+     * Remove a component from an entity
+     * 
+     * @param type   the type of the component
+     * @param entity the entity
+     */
     public void removeComponent(ComponentType type, NEntity entity) {
         toRemoveComponentTypeMap.get(type).add(entity);
     }
 
+    /**
+     * Cleanup the pending additions and removal of entities and components
+     */
     public void cleanup() {
         synchronized (componentTypeMap) {
             if (!clear) {
@@ -134,6 +191,9 @@ public class NEntityStream {
         }
     }
 
+    /**
+     * Schedule a clearing of all entities
+     */
     public void scheduleClear() {
         clear = true;
     }

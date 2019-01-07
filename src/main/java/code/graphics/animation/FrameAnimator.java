@@ -1,7 +1,7 @@
 package code.graphics.animation;
 
 import code.engine.Resources;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.texture.Renderable;
 
 /**
@@ -18,7 +18,7 @@ public class FrameAnimator extends Animator {
         super(AnimatorType.FRAME);
     }
 
-    public void animate(double percentage, RenderData data) {
+    public void animate(double percentage, RenderJob data) {
         Renderable frame;
         if (numFrames != 1) {
             int frameNumber = (int) Math.round(percentage * (numFrames - 1));

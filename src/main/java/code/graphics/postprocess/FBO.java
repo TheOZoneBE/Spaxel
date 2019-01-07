@@ -8,6 +8,8 @@ import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL32.glFramebufferTexture;
 
 /**
+ * Frame Buffer object for rendering data offscreen
+ * 
  * Created by theod on 16-7-2017.
  */
 public class FBO {
@@ -15,6 +17,9 @@ public class FBO {
     private int texture;
     private int depthBuffer;
 
+    /**
+     * Create a new FBO
+     */
     public FBO() {
         fboID = glGenFramebuffers();
         glBindFramebuffer(GL_FRAMEBUFFER, fboID);
@@ -38,29 +43,47 @@ public class FBO {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
+    /**
+     * Bind this buffer
+     */
     public void bindBuffer() {
         glBindTexture(GL_TEXTURE_2D, 0);
         GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, fboID);
         glViewport(0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
     }
 
+    /**
+     * Unbind this buffer
+     */
     public void unbindBuffer() {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glViewport(0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
     }
 
+    /**
+     * Bind the buffer texture
+     */
     public void bindTexture() {
         glBindTexture(GL_TEXTURE_2D, texture);
     }
 
+    /**
+     * Unbind the buffer texture
+     */
     public void unbindTexture() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
+    /**
+     * Bind the depthbuffer
+     */
     public void bindDepth() {
         glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
     }
 
+    /**
+     * Unbind the depthbuffer
+     */
     public void unbindDepth() {
         glBindRenderbuffer(GL_RENDERBUFFER, 0);
     }

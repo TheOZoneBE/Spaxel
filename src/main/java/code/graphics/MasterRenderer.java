@@ -3,11 +3,9 @@ package code.graphics;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL31.glDrawElementsInstanced;
-
 import java.nio.FloatBuffer;
 import java.util.List;
 import java.util.Map;
-
 import code.graphics.postprocess.BlurPostProcessor;
 import code.graphics.postprocess.PostProcessor;
 import code.graphics.postprocess.FBO;
@@ -17,7 +15,7 @@ import code.graphics.shaders.LastPassShaderProgram;
 import code.graphics.buffer.LayerFBO;
 import code.graphics.buffer.RenderLayer;
 import code.graphics.buffer.MasterBuffer;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderBuffer;
 import code.graphics.geometry.Quad;
 import code.graphics.geometry.InstancedQuad;
@@ -27,8 +25,8 @@ import code.math.VectorD;
 import code.Constants;
 
 /**
- * holds all the spritesheets and data of shaders, vertices, can switch between
- * spritesheets, load the buffers and render instanced.
+ * holds all the spritesheets and data of shaders, vertices, can switch between spritesheets, load
+ * the buffers and render instanced.
  *
  *
  */
@@ -51,10 +49,12 @@ public class MasterRenderer {
     }
 
     private void initialize() {
-        MatrixD projectionMatrix = MatrixUtil.orthographic(-Constants.GAME_WIDTH / TWO, Constants.GAME_WIDTH / TWO,
-                -Constants.GAME_HEIGHT / TWO, Constants.GAME_HEIGHT / TWO, -1.0, 1.0);
+        MatrixD projectionMatrix =
+                MatrixUtil.orthographic(-Constants.GAME_WIDTH / TWO, Constants.GAME_WIDTH / TWO,
+                        -Constants.GAME_HEIGHT / TWO, Constants.GAME_HEIGHT / TWO, -1.0, 1.0);
 
-        BlurShaderProgram blurPassProgram = new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
+        BlurShaderProgram blurPassProgram =
+                new BlurShaderProgram("/shaders/blur_pass.vert", "/shaders/blur_pass.frag");
         blurPassProgram.enable();
         blurPassProgram.setTexSampler(1);
         blurPassProgram.setRadius(1);
@@ -62,14 +62,16 @@ public class MasterRenderer {
         blurPassProgram.setSize(BLUR_SIZE);
         blurPostProcessor = new BlurPostProcessor(blurPassProgram);
 
-        lastPassProgram = new LastPassShaderProgram("/shaders/last_pass.vert", "/shaders/last_pass.frag");
+        lastPassProgram =
+                new LastPassShaderProgram("/shaders/last_pass.vert", "/shaders/last_pass.frag");
         lastPassProgram.enable();
         lastPassProgram.setTexSampler(1);
         lastPassProgram.setProjectionMatrix(projectionMatrix);
-        lastPassProgram.setTranslationMatrix(MatrixUtil.getTransformationMatrix(new VectorD(0, 0), 0,
-                new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT)));
+        lastPassProgram.setTranslationMatrix(MatrixUtil.getTransformationMatrix(new VectorD(0, 0),
+                0, new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT)));
 
-        instancedShader = new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
+        instancedShader =
+                new InstancedShaderProgram("/shaders/2Dsprite.vert", "/shaders/2Dsprite.frag");
         instancedShader.enable();
         instancedShader.setTexSampler(1);
         instancedShader.setProjectionMatrix(projectionMatrix);
@@ -87,8 +89,8 @@ public class MasterRenderer {
         for (RenderLayer layer : RenderLayer.values()) {
             layerFBO.getFbo(layer).bindBuffer();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            Map<Integer, List<RenderData>> buffers = masterBuffer.getData(layer);
-            for (Map.Entry<Integer, List<RenderData>> entry : buffers.entrySet()) {
+            Map<Integer, List<RenderJob>> buffers = masterBuffer.getJobs(layer);
+            for (Map.Entry<Integer, List<RenderJob>> entry : buffers.entrySet()) {
                 render(new RenderBuffer(entry.getValue()), entry.getKey());
             }
             layerFBO.getFbo(layer).unbindBuffer();
@@ -129,7 +131,8 @@ public class MasterRenderer {
 
             glBindTexture(GL_TEXTURE_2D, spritesheet);
 
-            glDrawElementsInstanced(GL_TRIANGLES, allQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0, buffer.size());
+            glDrawElementsInstanced(GL_TRIANGLES, allQuad.getVertexCount(), GL_UNSIGNED_BYTE, 0,
+                    buffer.size());
         }
     }
 

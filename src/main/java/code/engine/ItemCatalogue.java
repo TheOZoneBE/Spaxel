@@ -1,13 +1,14 @@
 package code.engine;
 
 import code.util.SpaxelRandom;
-
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
+ * Catalogue for all the items
+ * 
  * Created by theod on 12-7-2017.
  */
 public class ItemCatalogue {
@@ -15,6 +16,11 @@ public class ItemCatalogue {
     List<String> industryList;
     SpaxelRandom random;
 
+    /**
+     * Create a new ItemCatalogue from the given item properties
+     * 
+     * @param itemProps the properties of the items
+     */
     public ItemCatalogue(List<ItemProperties> itemProps) {
         items = new HashMap<>();
         for (ItemProperties ip : itemProps) {
@@ -33,16 +39,35 @@ public class ItemCatalogue {
         }
     }
 
+    /**
+     * Add a new item
+     * 
+     * @param ip the properties of the new item
+     */
     public void addItemProp(ItemProperties ip) {
         items.put(ip.getName(), ip);
         initialize();
     }
 
-    public NEntity produceRandom(List<ItemProperties> options) {
+    /**
+     * Produce a random item out of the list of itemproperties
+     * 
+     * @param options the items to choose from
+     * 
+     * @return the produced item
+     */
+    private NEntity produceRandom(List<ItemProperties> options) {
         ItemProperties chosen = random.choose(options);
         return Resources.get().getIndustryMap().get(chosen.getIndustry()).produce();
     }
 
+    /**
+     * Produce a random item choosing from a list of items that pass the given filters
+     * 
+     * @param filters the filters to pass
+     * 
+     * @return the produced item
+     */
     public NEntity produceRandom(ItemFilter... filters) {
         List<ItemProperties> chosen = new ArrayList<>();
         for (ItemProperties prop : items.values()) {
@@ -60,11 +85,28 @@ public class ItemCatalogue {
         return produceRandom(chosen);
     }
 
+    /**
+     * Get the properties of an item with the given name
+     * 
+     * @param name the name of the item
+     * 
+     * @return the properties
+     */
     public ItemProperties getItemProp(String name) {
         return items.get(name);
     }
 
+    /**
+     * Interface for filtering Items
+     */
     public interface ItemFilter {
+        /**
+         * Return true if a given rule is forfilled
+         * 
+         * @param prop the item properties to test the rule on
+         * 
+         * @return true if passed
+         */
         boolean pass(ItemProperties prop);
     }
 }

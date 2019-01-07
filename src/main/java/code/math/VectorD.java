@@ -182,6 +182,14 @@ public class VectorD {
 		return new VectorD(vector.clone());
 	}
 
+	/**
+	 * Perform element wise division on this vector with another vector and return a new vector with
+	 * the result
+	 * 
+	 * @param vec the other vector
+	 * 
+	 * @return the result
+	 */
 	public VectorD elementDiv(VectorD vec) {
 		VectorD sol = new VectorD(m);
 		for (int i = 0; i < m; i++) {
@@ -190,6 +198,14 @@ public class VectorD {
 		return sol;
 	}
 
+	/**
+	 * Perform element wise multiplication on this vector with another vector and return a new
+	 * vector with the result
+	 * 
+	 * @param vec the other vector
+	 * 
+	 * @return the result
+	 */
 	public VectorD elementMult(VectorD vec) {
 		VectorD sol = new VectorD(m);
 		for (int i = 0; i < m; i++) {

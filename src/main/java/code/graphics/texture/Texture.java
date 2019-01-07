@@ -1,9 +1,11 @@
 package code.graphics.texture;
 
 import code.math.VectorD;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
-
+/**
+ * Represents an image texture
+ */
 public class Texture extends Renderable {
     protected PackedTexture packedTexture;
     protected float[] coordinates;
@@ -13,11 +15,18 @@ public class Texture extends Renderable {
 
     private String path;
 
+    /**
+     * Create a new Texture
+     */
     public Texture() {
         super();
     }
 
-
+    /**
+     * Initialize the coordinates of this Texture using the data of the parent node
+     * 
+     * @param parent the parent node of this texture in the texture tree
+     */
     public void initializeCoordinates(TextureNode parent) {
         Texture spritesheet = parent.getTexture();
 
@@ -79,7 +88,7 @@ public class Texture extends Renderable {
         return packedTexture;
     }
 
-    public void apply(RenderData data) {
+    public void apply(RenderJob data) {
         data.setTexOffset(coordinates);
         data.setSpriteSheetID(packedTexture.getID());
         data.applyScale(dim);

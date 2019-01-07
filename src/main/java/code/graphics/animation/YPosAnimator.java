@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
 /**
  * The YPosAnimator animates the y position of the animation
@@ -16,7 +16,7 @@ public class YPosAnimator extends Animator {
         super(AnimatorType.Y_POS);
     }
 
-    public void animate(double percentage, RenderData data) {
+    public void animate(double percentage, RenderJob data) {
         double pos = percentage * (maxPos - minPos);
 
         data.applyYTranslation(minPos + pos);

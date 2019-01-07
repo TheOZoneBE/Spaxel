@@ -1,7 +1,7 @@
 package code.graphics.animation;
 
 import java.util.List;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
 /**
  * Represents an animation
@@ -23,8 +23,8 @@ public class Animation {
      * 
      * @return a RenderData object with the state of the animation
      */
-    public RenderData getDataAt(double percentage) {
-        RenderData data = new RenderData();
+    public RenderJob getDataAt(double percentage) {
+        RenderJob data = new RenderJob();
         for (Animator anim : animators) {
             anim.animate(percentage, data);
         }

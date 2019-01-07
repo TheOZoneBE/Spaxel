@@ -1,6 +1,6 @@
 package code.graphics.animation;
 
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
 /**
  * The YScaleAnimator animates the y scale of the animation
@@ -16,7 +16,7 @@ public class YScaleAnimator extends Animator {
         super(AnimatorType.Y_SCALE);
     }
 
-    public void animate(double percentage, RenderData data) {
+    public void animate(double percentage, RenderJob data) {
         double scale = percentage * (maxScale - minScale);
 
         data.applyYScale(minScale + scale);

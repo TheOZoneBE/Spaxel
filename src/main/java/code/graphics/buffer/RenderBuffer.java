@@ -21,12 +21,12 @@ public class RenderBuffer {
      * 
      * @param rdata list with the data for all the instances to render
      */
-    public RenderBuffer(List<RenderData> rdata) {
+    public RenderBuffer(List<RenderJob> rdata) {
         size = rdata.size();
         trscBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
         sinCosBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
         texOffsetBuffer = BufferUtils.allocateFloatBuffer(size * RENDERDATA_ELEMENTS);
-        for (RenderData r : rdata) {
+        for (RenderJob r : rdata) {
             trscBuffer.put(r.getTrSc());
             sinCosBuffer.put(r.getSinCos());
             texOffsetBuffer.put(r.getTexOffset());

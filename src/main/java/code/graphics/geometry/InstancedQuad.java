@@ -6,6 +6,8 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL33.glVertexAttribDivisor;
 
 /**
+ * Represents a quad that can be used in instanced rendering
+ * 
  * Created by theod on 16-7-2017.
  */
 public class InstancedQuad extends Quad {
@@ -20,6 +22,9 @@ public class InstancedQuad extends Quad {
     private static final int ATTRIB_SIZE = 4;
     private static final int BYTES_INA_FLOAT = 4;
 
+    /**
+     * Create a new InstancedQuad
+     */
     public InstancedQuad() {
         super();
 

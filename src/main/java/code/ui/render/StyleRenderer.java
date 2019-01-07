@@ -5,7 +5,7 @@ import code.graphics.buffer.MasterBuffer;
 import code.graphics.texture.Renderable;
 import code.math.VectorD;
 import code.engine.Resources;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
 
 /**
@@ -84,18 +84,18 @@ public final class StyleRenderer {
     private static void renderAnimation(VectorD position, double rot, double scale, Style style,
             MasterBuffer buffer) {
         double completion = Double.parseDouble(style.getProperty("completion"));
-        RenderData data = Resources.get().getAnimationAtlas().get(style.getProperty("animation"))
+        RenderJob data = Resources.get().getAnimationAtlas().get(style.getProperty("animation"))
                 .getDataAt(completion);
         data.applyTranslation(position);
         data.applyRot(rot);
         data.applyScale(scale);
 
-        buffer.addNewSprite(RenderLayer.UI, data);
+        buffer.addNewRenderJob(RenderLayer.UI, data);
     }
 
     private static void renderSprite(VectorD position, double rot, double scale, Style style,
             MasterBuffer buffer) {
-        RenderData data = new RenderData();
+        RenderJob data = new RenderJob();
         Renderable sprite = Resources.get().getRenderables().get(style.getProperty("sprite"));
 
         data.setRenderable(sprite);
@@ -103,6 +103,6 @@ public final class StyleRenderer {
         data.applyScale(scale);
         data.applyRot(rot);
 
-        buffer.addNewSprite(RenderLayer.UI, data);
+        buffer.addNewRenderJob(RenderLayer.UI, data);
     }
 }

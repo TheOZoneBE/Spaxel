@@ -2,7 +2,7 @@ package code.graphics.animation;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 
 /**
  * Abstract superclass for all Animators. An animator is an object that animates a certain property
@@ -34,7 +34,7 @@ public abstract class Animator {
      * @param percentage the completion percentage
      * @param data       the renderdata
      */
-    public abstract void animate(double percentage, RenderData data);
+    public abstract void animate(double percentage, RenderJob data);
 
     /**
      * @return the type

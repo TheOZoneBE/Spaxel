@@ -4,7 +4,7 @@ import code.components.ComponentType;
 import code.engine.Engine;
 import code.engine.SystemType;
 import code.graphics.buffer.MasterBuffer;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
 import code.graphics.texture.Renderable;
 import code.math.VectorD;
@@ -83,11 +83,11 @@ public final class DebugRenderer {
                 Engine.get().getGameState().getScreenOffset().getValue(1) % DOT_SEPARATION);
         for (int i = 0; i < Constants.GAME_WIDTH; i += DOT_SEPARATION) {
             for (int j = 0; j < Constants.GAME_HEIGHT; j += DOT_SEPARATION) {
-                RenderData data = new RenderData();
+                RenderJob data = new RenderJob();
                 data.applyTranslation(origin.sum(new VectorD(i, j)));
                 data.applyRot(0);
                 data.setRenderable(dot);
-                buffer.addNewSprite(RenderLayer.GAME, data);
+                buffer.addNewRenderJob(RenderLayer.GAME, data);
             }
         }
     }

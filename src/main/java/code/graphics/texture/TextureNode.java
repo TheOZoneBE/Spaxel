@@ -2,6 +2,9 @@ package code.graphics.texture;
 
 import code.math.VectorD;
 
+/**
+ * Represents a node in the tree representing the sprites in the packed texture
+ */
 public class TextureNode {
     private static final int DIM_BASE = 2;
     private Texture texture;
@@ -14,22 +17,28 @@ public class TextureNode {
     private TextureNode botLeft;
     private TextureNode botRight;
 
+    /**
+     * Create a new leaf TextureNode
+     * 
+     * @param texture the leaf content
+     */
     public TextureNode(Texture texture) {
         this.texture = texture;
         int maxDim = (int) Math.max(texture.getDim().getValue(0), texture.getDim().getValue(1));
-        calcDim(maxDim);
-    }
-
-    public TextureNode(int dim) {
-        this.dim = dim;
-        this.placement = NodePlacement.TOP_LEFT;
-    }
-
-    private void calcDim(int maxDim) {
         this.dim = DIM_BASE;
         while (dim < maxDim) {
             dim *= DIM_BASE;
         }
+    }
+
+    /**
+     * Create a new TextureNode with the specified dimension
+     * 
+     * @param dim the dimension of the texturenode
+     */
+    public TextureNode(int dim) {
+        this.dim = dim;
+        this.placement = NodePlacement.TOP_LEFT;
     }
 
     public Texture getTexture() {
@@ -69,10 +78,6 @@ public class TextureNode {
         return dim;
     }
 
-    public NodePlacement getPlacement() {
-        return placement;
-    }
-
     public void setPlacement(NodePlacement placement) {
         this.placement = placement;
     }
@@ -95,13 +100,6 @@ public class TextureNode {
 
     public TextureNode getBotRight() {
         return botRight;
-    }
-
-    /**
-     * @return the parent
-     */
-    public TextureNode getParent() {
-        return parent;
     }
 
     /**
@@ -140,6 +138,11 @@ public class TextureNode {
         botRight.setParent(this);
     }
 
+    /**
+     * Initialize the texture coordinates of all the leaf textures in this tree
+     * 
+     * @param packedTexture the packedTexture of this tree
+     */
     public void initializeCoordinates(PackedTexture packedTexture) {
         if (texture != null) {
             texture.setPackedTexture(packedTexture);

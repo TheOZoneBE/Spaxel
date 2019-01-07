@@ -9,7 +9,7 @@ import code.graphics.texture.Renderable;
  * 
  * Created by theod on 22/10/2016.
  */
-public class RenderData {
+public class RenderJob {
     private static final int ATTRIB_DIM = 4;
     private static final int SCALE_OFFSET = 2;
     private static final int ALPHA_INDEX = 2;
@@ -24,7 +24,7 @@ public class RenderData {
     /**
      * Create a new RenderData
      */
-    public RenderData() {
+    public RenderJob() {
         trSc = new float[] {0.0F, 0.0F, 1.0F, 1.0F};
         sinCos = new float[ATTRIB_DIM];
         texOffset = new float[ATTRIB_DIM];

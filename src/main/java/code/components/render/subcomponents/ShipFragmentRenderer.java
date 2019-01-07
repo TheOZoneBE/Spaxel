@@ -3,7 +3,7 @@ package code.components.render.subcomponents;
 import code.components.ComponentType;
 import code.components.age.AgeComponent;
 import code.engine.NEntity;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.math.VectorD;
 
 /**
@@ -12,7 +12,7 @@ import code.math.VectorD;
 public class ShipFragmentRenderer extends Renderer {
     private static final double FACTOR_MULT = 2.0;
 
-    public void apply(RenderData data, NEntity entity) {
+    public void apply(RenderJob data, NEntity entity) {
         AgeComponent ac = (AgeComponent) entity.getComponent(ComponentType.AGE);
 
         double factor = ac.getLife() * FACTOR_MULT / ac.getMaxLife();

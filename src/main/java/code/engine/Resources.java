@@ -51,7 +51,7 @@ public final class Resources {
 		renderables = new HashMap<>();
 		Map<String, Texture> textures = loadTextures(resourcePaths.get("texture"));
 		PackedTexture packedTexture = TextureUtil.packTextures(textures.values());
-		packedTexture.initialize();
+		packedTexture.load();
 		packedTexture.initializeCoordinates();
 		Map<String, TexturePart> textureParts = loadTextureParts(resourcePaths.get("texture_part"));
 		for (TexturePart tPart : textureParts.values()) {

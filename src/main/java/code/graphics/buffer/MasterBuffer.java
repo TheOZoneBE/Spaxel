@@ -14,12 +14,15 @@ import code.graphics.texture.PackedTexture;
  * Created by theod on 15/10/2016.
  */
 public class MasterBuffer {
-    private EnumMap<RenderLayer, Map<Integer, List<RenderData>>> layers;
+    private EnumMap<RenderLayer, Map<Integer, List<RenderJob>>> layers;
 
+    /**
+     * Create a new MasterBuffer and initialize the layer map
+     */
     public MasterBuffer() {
         layers = new EnumMap<>(RenderLayer.class);
         for (RenderLayer l : RenderLayer.values()) {
-            Map<Integer, List<RenderData>> data = new HashMap<>();
+            Map<Integer, List<RenderJob>> data = new HashMap<>();
             data.put(0, new ArrayList<>());
             data.put(((PackedTexture) Resources.get().getRenderables().get("packed")).getID(),
                     new ArrayList<>());
@@ -28,20 +31,36 @@ public class MasterBuffer {
         }
     }
 
-    public void addNewSprite(RenderLayer layer, RenderData rdata) {
-        layers.get(layer).get(rdata.getSpriteSheetID()).add(rdata);
+    /**
+     * Add a new Render job to the MasterBuffer
+     * 
+     * @param layer the layer to render the job on
+     * @param job   the renderjob to render
+     */
+    public void addNewRenderJob(RenderLayer layer, RenderJob job) {
+        layers.get(layer).get(job.getSpriteSheetID()).add(job);
     }
 
+    /**
+     * Clear all jobs from the buffer
+     */
     public void clear() {
-        for (Map<Integer, List<RenderData>> layer : layers.values()) {
-            for (List<RenderData> datalist : layer.values()) {
+        for (Map<Integer, List<RenderJob>> layer : layers.values()) {
+            for (List<RenderJob> datalist : layer.values()) {
                 datalist.clear();
             }
         }
 
     }
 
-    public Map<Integer, List<RenderData>> getData(RenderLayer layer) {
+    /**
+     * Get all jobs for a layer from the masterbuffer
+     * 
+     * @param layer the layer to get
+     * 
+     * @return all jobs
+     */
+    public Map<Integer, List<RenderJob>> getJobs(RenderLayer layer) {
         return layers.get(layer);
     }
 

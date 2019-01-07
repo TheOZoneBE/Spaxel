@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import code.engine.Resources;
 import code.graphics.buffer.MasterBuffer;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.graphics.buffer.RenderLayer;
 import code.graphics.texture.Renderable;
 import code.math.VectorD;
@@ -118,12 +118,12 @@ public final class TextRenderer {
          */
         public void render(VectorD position, double scale, MasterBuffer buffer) {
             if (sprite != null) {
-                RenderData data = new RenderData();
+                RenderJob data = new RenderJob();
                 data.applyTranslation(position);
                 data.applyRot(0);
                 data.applyScale(scale);
                 data.setRenderable(sprite);
-                buffer.addNewSprite(RenderLayer.UI, data);
+                buffer.addNewRenderJob(RenderLayer.UI, data);
             }
         }
     }

@@ -7,14 +7,14 @@ import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.engine.NEntity;
-import code.graphics.buffer.RenderData;
+import code.graphics.buffer.RenderJob;
 import code.math.VectorD;
 
 /**
  * Created by theo on 8/07/17.
  */
 public class LinkLinkVelocityRenderer extends Renderer {
-    public void apply(RenderData data, NEntity entity) {
+    public void apply(RenderJob data, NEntity entity) {
         NEntity link = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
         NEntity linkLink = ((LinkComponent) link.getComponent(ComponentType.LINK)).getLink();
         PositionComponent pc = (PositionComponent) linkLink.getComponent(ComponentType.POSITION);

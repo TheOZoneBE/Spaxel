@@ -18,6 +18,9 @@ public class GameState {
     private VectorD screenOffset;
     private double updateTime;
 
+    /**
+     * Create a new GameState
+     */
     public GameState() {
         super();
         this.cursorFollow = new VectorD(Constants.HALF_GAME_WIDTH, Constants.HALF_GAME_HEIGHT);
@@ -28,6 +31,11 @@ public class GameState {
         return score;
     }
 
+    /**
+     * Add score to the game score
+     * 
+     * @param value the score to add
+     */
     public void addScore(int value) {
         score += value;
     }
@@ -40,6 +48,9 @@ public class GameState {
         return debug;
     }
 
+    /**
+     * Toggle the debug value
+     */
     public void toggleDebug() {
         debug = !debug;
     }
@@ -48,10 +59,18 @@ public class GameState {
         return logging;
     }
 
+    /**
+     * Toggle the logging value
+     */
     public void toggleLogging() {
         logging = !logging;
     }
 
+    /**
+     * Add time to the current game time
+     * 
+     * @param updateTime the time to add
+     */
     public void addTime(long updateTime) {
         timeOverflow += updateTime;
         gameTime += timeOverflow / Constants.NS_PER_SECOND;

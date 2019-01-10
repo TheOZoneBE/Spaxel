@@ -3,7 +3,6 @@ package code.system;
 import code.engine.Engine;
 import code.system.SystemType;
 import code.sound.Music;
-import code.engine.Resources;
 
 public class SoundSystem extends GameSystem {
 	private Music currentMusic;

@@ -4,7 +4,6 @@ import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
 import code.engine.Engine;
 import code.entity.Entity;
-import code.system.SystemType;
 import java.util.Set;
 
 /**

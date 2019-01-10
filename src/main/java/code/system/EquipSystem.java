@@ -9,7 +9,6 @@ import code.components.position.PositionComponent;
 import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
 import code.entity.Entity;
-import code.system.SystemType;
 import code.math.MatrixD;
 import code.util.MatrixUtil;
 import java.util.Set;

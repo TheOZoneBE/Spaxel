@@ -1,7 +1,6 @@
 package code.system;
 
 import code.engine.Engine;
-import code.system.SystemType;
 
 /**
  * The UISystem is responsible for updating the current UI.

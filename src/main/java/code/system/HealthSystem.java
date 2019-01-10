@@ -5,7 +5,6 @@ import code.components.death.DeathComponent;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
 import code.entity.Entity;
-import code.system.SystemType;
 import java.util.Set;
 
 /**

@@ -9,7 +9,6 @@ import code.engine.Engine;
 import code.entity.EntityType;
 import code.entity.Entity;
 import code.engine.EntityStream;
-import code.system.SystemType;
 
 /**
  * The SpawnerSystem is responsible for updating the entities with SpawnerComponents

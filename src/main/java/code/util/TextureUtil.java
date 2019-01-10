@@ -143,6 +143,7 @@ public final class TextureUtil {
         int height = (int) texture.getDim().getValue(1);
         String path = texture.getPath();
         int[] pixels = new int[width * height];
+        LOGGER.log(Level.INFO, "loading {0}", path);
         try {
             BufferedImage image = ImageIO.read(TextureUtil.class.getResource(path));
             image.getRGB(0, 0, width, height, pixels, 0, width);

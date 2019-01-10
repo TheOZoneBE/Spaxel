@@ -29,5 +29,5 @@ def generate_json(root, resource_root, w, h):
         output.write(json.dumps(sprites))
 
 
-generate_json("../src/main/resources/textures/animations",
-              "/textures/animations/cooldown/", 32, 32)
+rename_files("../src/main/resources/textures/animations",
+             "cd_anim")

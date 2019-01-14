@@ -34,8 +34,8 @@
     },
     ".item_stacks": {
         "position": "relative",
-        "x": 20,
-        "y": 20
+        "x": 24,
+        "y": -26
     },
     ".debug_label": {
         "width": 100,

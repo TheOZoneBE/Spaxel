@@ -27,10 +27,8 @@ public class HitSystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> entities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
-        Set<Entity> colliders =
-                Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
+        Set<Entity> entities = Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
+        Set<Entity> colliders = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
         for (Entity entity : entities) {
             checkColliders(entity, colliders);
         }
@@ -43,7 +41,7 @@ public class HitSystem extends GameSystem {
      * @param colliders the list of all entities the entity can collide with
      */
     public void checkColliders(Entity entity, Iterable<Entity> colliders) {
-        Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        Entity parent = entity.getParent();
         CollisionComponent cc = (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());

@@ -2,11 +2,11 @@
     "white": {
         "sheetName": "ships",
         "dim": {
-            "x": 16,
+            "x": 12,
             "y": 16
         },
         "pos": {
-            "x": 0,
+            "x": 2,
             "y": 0
         }
     },
@@ -24,11 +24,11 @@
     "blue": {
         "sheetName": "ships",
         "dim": {
-            "x": 16,
+            "x": 12,
             "y": 16
         },
         "pos": {
-            "x": 0,
+            "x": 2,
             "y": 16
         }
     },
@@ -43,94 +43,6 @@
             "y": 16
         }
     },
-    "button_normal": {
-        "sheetName": "button",
-        "dim": {
-            "x": 64,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 0
-        }
-    },
-    "button_hover": {
-        "sheetName": "button",
-        "dim": {
-            "x": 64,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 16
-        }
-    },
-    "button_click": {
-        "sheetName": "button",
-        "dim": {
-            "x": 64,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 32
-        }
-    },
-    "button_locked": {
-        "sheetName": "button",
-        "dim": {
-            "x": 64,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 48
-        }
-    },
-    "large_button_normal": {
-        "sheetName": "large_button",
-        "dim": {
-            "x": 80,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 0
-        }
-    },
-    "large_button_hover": {
-        "sheetName": "large_button",
-        "dim": {
-            "x": 80,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 16
-        }
-    },
-    "large_button_click": {
-        "sheetName": "large_button",
-        "dim": {
-            "x": 80,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 32
-        }
-    },
-    "large_button_locked": {
-        "sheetName": "large_button",
-        "dim": {
-            "x": 80,
-            "y": 16
-        },
-        "pos": {
-            "x": 0,
-            "y": 48
-        }
-    },
     "ui_play_overlay": {
         "sheetName": "ui_play",
         "dim": {
@@ -143,9 +55,9 @@
         }
     },
     "basic_laser_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "laser_projectiles",
         "dim": {
-            "x": 8,
+            "x": 4,
             "y": 8
         },
         "pos": {
@@ -154,194 +66,128 @@
         }
     },
     "piercing_laser_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "laser_projectiles",
         "dim": {
-            "x": 8,
+            "x": 4,
             "y": 8
         },
         "pos": {
-            "x": 16,
+            "x": 8,
             "y": 0
         }
     },
     "disrupt_laser_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "laser_projectiles",
         "dim": {
-            "x": 8,
+            "x": 4,
             "y": 8
         },
         "pos": {
-            "x": 24,
+            "x": 12,
             "y": 0
         }
     },
     "slowing_laser_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "laser_projectiles",
         "dim": {
-            "x": 8,
+            "x": 4,
             "y": 8
         },
         "pos": {
-            "x": 8,
+            "x": 4,
             "y": 0
         }
     },
     "basic_missile_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "missile_projectiles",
         "dim": {
-            "x": 8,
-            "y": 8
+            "x": 6,
+            "y": 12
         },
         "pos": {
             "x": 0,
-            "y": 8
+            "y": 0
         }
     },
     "homing_missile_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "missile_projectiles",
         "dim": {
-            "x": 8,
-            "y": 8
+            "x": 6,
+            "y": 12
         },
         "pos": {
-            "x": 16,
-            "y": 8
+            "x": 12,
+            "y": 0
         }
     },
     "hacking_missile_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "missile_projectiles",
         "dim": {
-            "x": 8,
-            "y": 8
+            "x": 6,
+            "y": 12
         },
         "pos": {
-            "x": 24,
-            "y": 8
+            "x": 18,
+            "y": 0
         }
     },
     "cluster_missile_projectile": {
-        "sheetName": "projectiles",
+        "sheetName": "missile_projectiles",
         "dim": {
-            "x": 8,
-            "y": 8
+            "x": 6,
+            "y": 12
         },
         "pos": {
-            "x": 8,
-            "y": 8
+            "x": 6,
+            "y": 0
         }
     },
-    "basic_laser_item": {
-        "sheetName": "items",
+    "white_laser_trail": {
+        "sheetName": "laser_trails",
         "dim": {
-            "x": 32,
-            "y": 32
+            "x": 2,
+            "y": 2
         },
         "pos": {
             "x": 0,
             "y": 0
         }
     },
-    "slowing_laser_item": {
-        "sheetName": "items",
+    "red_laser_trail": {
+        "sheetName": "laser_trails",
         "dim": {
-            "x": 32,
-            "y": 32
+            "x": 2,
+            "y": 2
         },
         "pos": {
-            "x": 32,
+            "x": 2,
             "y": 0
         }
     },
-    "piercing_laser_item": {
-        "sheetName": "items",
+    "green_laser_trail": {
+        "sheetName": "laser_trails",
         "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 64,
-            "y": 0
-        }
-    },
-    "disrupt_laser_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 96,
-            "y": 0
-        }
-    },
-    "basic_missile_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
+            "x": 2,
+            "y": 2
         },
         "pos": {
             "x": 0,
-            "y": 32
+            "y": 2
         }
     },
-    "cluster_missile_item": {
-        "sheetName": "items",
+    "blue_laser_trail": {
+        "sheetName": "laser_trails",
         "dim": {
-            "x": 32,
-            "y": 32
+            "x": 2,
+            "y": 2
         },
         "pos": {
-            "x": 32,
-            "y": 32
+            "x": 2,
+            "y": 2
         }
     },
-    "homing_missile_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 64,
-            "y": 32
-        }
-    },
-    "hacking_missile_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 96,
-            "y": 32
-        }
-    },
-    "force_shield_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 64,
-            "y": 64
-        }
-    },
-    "anti_shield_item": {
-        "sheetName": "items",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 96,
-            "y": 64
-        }
-    },
-    "white_trail": {
-        "sheetName": "effects",
+    "white_missile_trail": {
+        "sheetName": "missile_trails",
         "dim": {
             "x": 4,
             "y": 4
@@ -351,8 +197,8 @@
             "y": 0
         }
     },
-    "red_trail": {
-        "sheetName": "effects",
+    "red_missile_trail": {
+        "sheetName": "missile_trails",
         "dim": {
             "x": 4,
             "y": 4
@@ -362,96 +208,8 @@
             "y": 0
         }
     },
-    "green_trail": {
-        "sheetName": "effects",
-        "dim": {
-            "x": 4,
-            "y": 4
-        },
-        "pos": {
-            "x": 8,
-            "y": 0
-        }
-    },
-    "blue_trail": {
-        "sheetName": "effects",
-        "dim": {
-            "x": 4,
-            "y": 4
-        },
-        "pos": {
-            "x": 12,
-            "y": 0
-        }
-    },
-    "active_shield_effect": {
-        "sheetName": "shield_effects",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 0,
-            "y": 0
-        }
-    },
-    "basic_shield_effect": {
-        "sheetName": "shield_effects",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 32,
-            "y": 0
-        }
-    },
-    "force_shield_effect": {
-        "sheetName": "shield_effects",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 0,
-            "y": 32
-        }
-    },
-    "anti_shield_effect": {
-        "sheetName": "shield_effects",
-        "dim": {
-            "x": 32,
-            "y": 32
-        },
-        "pos": {
-            "x": 32,
-            "y": 32
-        }
-    },
-    "class_select_hover": {
-        "sheetName": "class_select",
-        "dim": {
-            "x": 24,
-            "y": 24
-        },
-        "pos": {
-            "x": 0,
-            "y": 0
-        }
-    },
-    "class_select_click": {
-        "sheetName": "class_select",
-        "dim": {
-            "x": 24,
-            "y": 24
-        },
-        "pos": {
-            "x": 24,
-            "y": 0
-        }
-    },
-    "marker_white": {
-        "sheetName": "effects",
+    "green_missile_trail": {
+        "sheetName": "missile_trails",
         "dim": {
             "x": 4,
             "y": 4
@@ -461,36 +219,14 @@
             "y": 4
         }
     },
-    "marker_red": {
-        "sheetName": "effects",
+    "blue_missile_trail": {
+        "sheetName": "missile_trails",
         "dim": {
             "x": 4,
             "y": 4
         },
         "pos": {
             "x": 4,
-            "y": 4
-        }
-    },
-    "marker_green": {
-        "sheetName": "effects",
-        "dim": {
-            "x": 4,
-            "y": 4
-        },
-        "pos": {
-            "x": 8,
-            "y": 4
-        }
-    },
-    "marker_blue": {
-        "sheetName": "effects",
-        "dim": {
-            "x": 4,
-            "y": 4
-        },
-        "pos": {
-            "x": 12,
             "y": 4
         }
     }

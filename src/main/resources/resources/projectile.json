@@ -27,7 +27,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "white_trail",
+        "particle": "white_laser_trail",
         "scale": 2
       },
       {
@@ -78,7 +78,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "red_trail",
+        "particle": "red_laser_trail",
         "scale": 2
       },
       {
@@ -129,7 +129,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "green_trail",
+        "particle": "green_laser_trail",
         "scale": 2
       },
       {
@@ -180,7 +180,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "blue_trail",
+        "particle": "blue_laser_trail",
         "scale": 2
       },
       {
@@ -231,7 +231,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "white_trail",
+        "particle": "white_missile_trail",
         "scale": 2
       },
       {
@@ -282,7 +282,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "blue_trail",
+        "particle": "blue_missile_trail",
         "scale": 2
       },
       {
@@ -337,7 +337,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "blue_trail",
+        "particle": "blue_laser_trail",
         "scale": 2
       },
       {
@@ -388,7 +388,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "green_trail",
+        "particle": "green_missile_trail",
         "scale": 2
       },
       {
@@ -440,7 +440,7 @@
       },
       {
         "type": "PARTICLE",
-        "particle": "red_trail",
+        "particle": "red_missile_trail",
         "scale": 2
       },
       {

@@ -4,6 +4,8 @@ import code.components.Component;
 import code.components.ComponentType;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 import code.engine.Engine;
 
 /**
@@ -14,6 +16,8 @@ import code.engine.Engine;
 public class Entity {
     private EntityType type;
     private Map<ComponentType, Component> components;
+    private Entity parent;
+    private Set<Entity> links;
 
     /**
      * Create a new entity of the given type
@@ -23,6 +27,7 @@ public class Entity {
     public Entity(EntityType type) {
         this.type = type;
         this.components = new EnumMap<>(ComponentType.class);
+        this.links = new HashSet<>();
     }
 
     public EntityType getType() {
@@ -45,7 +50,14 @@ public class Entity {
      * @return the component
      */
     public Component getComponent(ComponentType type) {
-        return components.get(type);
+        Component result = components.get(type);
+        if (parent == null || result != null) {
+            return result;
+        } else {
+            return result;
+            // currently buggy with effects FIXME
+            // return parent.getComponent(type);
+        }
     }
 
     /**
@@ -99,5 +111,32 @@ public class Entity {
         // TODO figure out copy implementation
         return new Entity(type);
     }
+
+    public Entity getParent() {
+        return parent;
+    }
+
+    public void setParent(Entity parent) {
+        this.parent = parent;
+    }
+
+    public void addLink(Entity link) {
+        links.add(link);
+        link.setParent(this);
+    }
+
+    public void removeLink(Entity link) {
+        links.remove(link);
+    }
+
+    public void destroy() {
+        for (Entity link : links) {
+            Engine.get().getNEntityStream().removeEntity(link);
+        }
+        if (parent != null) {
+            // parent.removeLink(this);
+        }
+    }
+
 
 }

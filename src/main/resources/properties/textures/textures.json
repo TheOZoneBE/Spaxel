@@ -1,20 +1,27 @@
 {
-    "projectiles": {
-        "path": "/spritesheets/projectiles.png",
+    "laser_projectiles": {
+        "path": "/textures/projectiles/laser_projectiles.png",
         "dim": {
-            "x": 64,
-            "y": 64
+            "x": 16,
+            "y": 16
+        }
+    },
+    "missile_projectiles": {
+        "path": "/textures/projectiles/missile_projectiles.png",
+        "dim": {
+            "x": 24,
+            "y": 12
         }
     },
     "ships": {
-        "path": "/spritesheets/ships.png",
+        "path": "/textures/ships.png",
         "dim": {
             "x": 32,
             "y": 32
         }
     },
     "button": {
-        "path": "/spritesheets/button.png",
+        "path": "/textures/ui/button.png",
         "dim": {
             "x": 64,
             "y": 64
@@ -27,50 +34,29 @@
             "y": 360
         }
     },
-    "items": {
-        "path": "/spritesheets/items.png",
+    "laser_trails": {
+        "path": "/textures/effects/laser_trails.png",
         "dim": {
-            "x": 256,
-            "y": 256
+            "x": 4,
+            "y": 4
         }
     },
-    "effects": {
-        "path": "/spritesheets/effects.png",
+    "missile_trails": {
+        "path": "/textures/effects/missile_trails.png",
         "dim": {
-            "x": 16,
-            "y": 16
-        }
-    },
-    "shield_effects": {
-        "path": "/spritesheets/shield_effects.png",
-        "dim": {
-            "x": 64,
-            "y": 64
+            "x": 8,
+            "y": 8
         }
     },
     "class_select": {
-        "path": "/spritesheets/class_select.png",
+        "path": "/textures/ui/class_select.png",
         "dim": {
             "x": 48,
             "y": 24
         }
     },
-    "font_12x12": {
-        "path": "/spritesheets/font_12x12.png",
-        "dim": {
-            "x": 96,
-            "y": 192
-        }
-    },
-    "font_10x20": {
-        "path": "/spritesheets/font_10x20.png",
-        "dim": {
-            "x": 100,
-            "y": 100
-        }
-    },
     "large_button": {
-        "path": "/spritesheets/large_button.png",
+        "path": "/textures/ui/large_button.png",
         "dim": {
             "x": 80,
             "y": 64

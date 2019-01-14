@@ -7,14 +7,14 @@
         "rot": 0
     },
     "#score_counter": {
-        "y": 656,
+        "y": 650,
         "text-scale": 4,
         "text": "",
         "onUpdate": "updateScore"
     },
     "#game_time": {
         "x": 864,
-        "y": 704,
+        "y": 700,
         "text-scale": 2,
         "text": "",
         "onUpdate": "updateTime"

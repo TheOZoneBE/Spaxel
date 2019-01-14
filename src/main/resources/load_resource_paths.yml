@@ -10,7 +10,9 @@ texture:
   - /properties/textures/animations/cooldown.json
   - /properties/textures/items.json
   - /properties/textures/font.json
+  - /properties/textures/effects.json
 texture_part:
   - /properties/textures/textureParts.json
+  - /properties/textures/ui.json
 color_box:
   - /properties/textures/color_box.json

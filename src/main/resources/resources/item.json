@@ -4,7 +4,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "basic_laser_item",
+        "sprite": "basic_laser",
         "scale": 1
       },
       {
@@ -31,7 +31,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "piercing_laser_item",
+        "sprite": "piercing_laser",
         "scale": 1
       },
       {
@@ -58,7 +58,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "disrupt_laser_item",
+        "sprite": "disrupt_laser",
         "scale": 1
       },
       {
@@ -85,7 +85,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "slowing_laser_item",
+        "sprite": "slowing_laser",
         "scale": 1
       },
       {
@@ -112,7 +112,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "basic_missile_item",
+        "sprite": "basic_missile",
         "scale": 1
       },
       {
@@ -139,7 +139,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "cluster_missile_item",
+        "sprite": "cluster_missile",
         "scale": 1
       },
       {
@@ -166,7 +166,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "hacking_missile_item",
+        "sprite": "hacking_missile",
         "scale": 1
       },
       {
@@ -193,7 +193,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "homing_missile_item",
+        "sprite": "homing_missile",
         "scale": 1
       },
       {
@@ -275,7 +275,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "anti_shield_item",
+        "sprite": "anti_shield",
         "scale": 1
       },
       {
@@ -385,7 +385,7 @@
     "factories": [
       {
         "type": "SPRITE",
-        "sprite": "force_shield_item",
+        "sprite": "force_shield",
         "scale": 1
       },
       {

@@ -31,8 +31,8 @@ public class ClusterMissileDeathComponent extends DeathComponent {
                 .get("cluster_shrapnel_projectile_industry");
         double rot = 0;
         for (int i = 0; i < MISSILE_SPLIT; i++) {
-            Entity projectile = pri.produce(new PositionComponent(pc.getCoord(), rot),
-                    (LinkComponent) entity.getComponent(ComponentType.LINK));
+            Entity projectile =
+                    pri.produce(new PositionComponent(pc.getCoord(), rot), entity.getParent());
             MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
             double dx = Math.sin(rot) * pmc.getMaxSpeed();
             double dy = Math.cos(rot) * pmc.getMaxSpeed();

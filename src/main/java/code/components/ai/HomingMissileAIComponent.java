@@ -11,7 +11,6 @@ import code.engine.Engine;
 import code.entity.Entity;
 import code.math.VectorD;
 import code.util.EntityUtil;
-
 import java.util.Set;
 
 /**
@@ -34,7 +33,7 @@ public class HomingMissileAIComponent extends AIComponent {
         double minDist = -1;
         Entity closest = null;
         for (Entity e : enemies) {
-            if (e != ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink()) {
+            if (e != entity.getParent()) {
                 PositionComponent epc = (PositionComponent) e.getComponent(ComponentType.POSITION);
                 double dist = epc.getCoord().sum(pc.getCoord().multiplicate(-1)).length();
                 if (minDist < 0 || dist < minDist) {
@@ -44,7 +43,8 @@ public class HomingMissileAIComponent extends AIComponent {
             }
         }
         if (closest != null && minDist < DISTANCE_THRESHOLD) {
-            PositionComponent cpc = (PositionComponent) closest.getComponent(ComponentType.POSITION);
+            PositionComponent cpc =
+                    (PositionComponent) closest.getComponent(ComponentType.POSITION);
 
             VectorD diff = cpc.getCoord().sum(pc.getCoord().multiplicate(-1));
             double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
@@ -54,7 +54,8 @@ public class HomingMissileAIComponent extends AIComponent {
             double rotChange = rotToGet - pc.getRot();
             vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
 
-            vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot())).multiplicate(mc.getMaxSpeed()));
+            vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
+                    .multiplicate(mc.getMaxSpeed()));
         }
     }
 

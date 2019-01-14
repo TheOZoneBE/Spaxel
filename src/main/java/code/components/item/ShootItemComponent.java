@@ -32,11 +32,12 @@ public abstract class ShootItemComponent extends ItemComponent {
             Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
-            ProjectileIndustry pri = (ProjectileIndustry) Resources.get().getIndustryMap().get(factory);
+            ProjectileIndustry pri =
+                    (ProjectileIndustry) Resources.get().getIndustryMap().get(factory);
 
             double offset = (sc.getStacks() - 1) * -RADIAL_STEP;
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
-                Entity projectile = pri.produce((PositionComponent) pc.copy(), new LinkComponent(parent));
+                Entity projectile = pri.produce((PositionComponent) pc.copy(), parent);
                 MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
                 double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
                 double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();

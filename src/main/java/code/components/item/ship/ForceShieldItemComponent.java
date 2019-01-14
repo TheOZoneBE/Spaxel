@@ -11,7 +11,6 @@ import code.components.velocity.VelocityComponent;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.components.Component;
-
 import java.util.Set;
 
 /**
@@ -30,21 +29,25 @@ public class ForceShieldItemComponent extends ShieldItemComponent {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
-            Set<Entity> projectiles = Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
+            Set<Entity> projectiles =
+                    Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
             for (Entity p : projectiles) {
                 PositionComponent ppc = (PositionComponent) p.getComponent(ComponentType.POSITION);
-                Entity pParent = ((LinkComponent) p.getComponent(ComponentType.LINK)).getLink();
-                if (pParent != parent && pc.getCoord().sum(ppc.getCoord().multiplicate(-1)).length() < SHIELD_RADIUS) {
+                Entity pParent = p.getParent();
+                if (pParent != parent && pc.getCoord().sum(ppc.getCoord().multiplicate(-1))
+                        .length() < SHIELD_RADIUS) {
                     HitComponent phc = (HitComponent) p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity) {
                         capacity -= phc.getDamage();
-                        VelocityComponent vc = (VelocityComponent) p.getComponent(ComponentType.VELOCITY);
+                        VelocityComponent vc =
+                                (VelocityComponent) p.getComponent(ComponentType.VELOCITY);
                         vc.setVelocity(vc.getVelocity().multiplicate(-1));
                     } else {
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;
                         cc.setCd(cc.getCdAmount());
-                        ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(false);
+                        ((RenderComponent) effect.getComponent(ComponentType.RENDER))
+                                .setVisible(false);
                     }
                 }
             }

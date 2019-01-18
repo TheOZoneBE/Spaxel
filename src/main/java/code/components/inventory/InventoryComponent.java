@@ -3,11 +3,9 @@ package code.components.inventory;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.item.ItemComponent;
-import code.components.link.LinkComponent;
 import code.components.stack.StackComponent;
 import code.engine.Engine;
 import code.entity.Entity;
-
 import java.util.List;
 
 /**
@@ -49,7 +47,8 @@ public abstract class InventoryComponent extends Component {
     @Override
     public void addCascade(Entity entity) {
         for (Entity e : items) {
-            e.addComponent(new LinkComponent(entity));
+            // TODO linking ideally in additem method
+            entity.addLink(e);
             Engine.get().getNEntityStream().addEntity(e);
         }
     }
@@ -57,7 +56,7 @@ public abstract class InventoryComponent extends Component {
     @Override
     public void removeCascade() {
         for (Entity e : items) {
-            Engine.get().getNEntityStream().removeEntity(e);
+            e.destroy();
         }
     }
 }

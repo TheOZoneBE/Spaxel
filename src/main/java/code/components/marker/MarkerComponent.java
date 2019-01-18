@@ -81,7 +81,7 @@ public class MarkerComponent extends Component {
 
     @Override
     public void removeCascade() {
-        Engine.get().getNEntityStream().removeEntity(marker);
+        marker.destroy();
     }
 
     private static VectorD getIntersection(VectorD leftTop, VectorD rightBot, VectorD playerPos,

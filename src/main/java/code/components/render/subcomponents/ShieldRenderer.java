@@ -2,7 +2,6 @@ package code.components.render.subcomponents;
 
 import code.components.ComponentType;
 import code.components.item.ShieldItemComponent;
-import code.components.link.LinkComponent;
 import code.entity.Entity;
 import code.graphics.buffer.RenderJob;
 
@@ -14,7 +13,7 @@ public class ShieldRenderer extends Renderer {
     private static final double ALPHA_OFFSET = 0.15;
 
     public void apply(RenderJob data, Entity entity) {
-        Entity link = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        Entity link = entity.getParent();
         ShieldItemComponent shc = (ShieldItemComponent) link.getComponent(ComponentType.ITEM);
 
         data.applyAlpha(

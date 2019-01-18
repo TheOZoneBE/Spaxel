@@ -4,7 +4,6 @@ import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
 import code.components.hit.HitComponent;
 import code.components.item.ShieldItemComponent;
-import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
@@ -26,7 +25,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
         CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
         if (cc.getCd() == 0) {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
-            Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+            Entity parent = entity.getParent();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             Set<Entity> projectiles =
                     Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
@@ -38,7 +37,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
                     HitComponent phc = (HitComponent) p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity) {
                         capacity -= phc.getDamage();
-                        Engine.get().getNEntityStream().removeEntity(p);
+                        p.destroy();
                     } else {
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;

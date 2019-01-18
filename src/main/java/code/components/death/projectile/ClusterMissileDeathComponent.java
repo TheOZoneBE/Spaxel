@@ -5,7 +5,6 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
-import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.velocity.VelocityComponent;

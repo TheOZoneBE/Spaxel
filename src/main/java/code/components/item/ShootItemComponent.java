@@ -2,7 +2,6 @@ package code.components.item;
 
 import code.components.ComponentType;
 import code.components.cooldown.CooldownComponent;
-import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.stack.StackComponent;
@@ -29,7 +28,7 @@ public abstract class ShootItemComponent extends ItemComponent {
     public void activate(Entity entity) {
         CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
         if (cc.getCd() == 0) {
-            Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+            Entity parent = entity.getParent();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
             ProjectileIndustry pri =

@@ -4,7 +4,6 @@ import code.collision.HitShape;
 import code.components.ComponentType;
 import code.components.collision.CollisionComponent;
 import code.components.item.ItemComponent;
-import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
 import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
@@ -27,8 +26,7 @@ public class EquipSystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> entities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.EQUIP);
+        Set<Entity> entities = Engine.get().getNEntityStream().getEntities(ComponentType.EQUIP);
 
         Entity player = Engine.get().getNEntityStream().getPlayer();
 
@@ -72,7 +70,7 @@ public class EquipSystem extends GameSystem {
                     default:
                         break;
                 }
-                entity.addComponent(new LinkComponent(player));
+                player.addLink(entity);
             }
         }
     }

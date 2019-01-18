@@ -23,11 +23,12 @@ public class BasicLaserHitComponent extends HitComponent {
 
         SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);
         addParticleSpawner(entity,
-                new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
+                new ParticleComponent(
+                        SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
                         sc.getScale()),
                 "laser_hit_particle_spawner_industry");
 
-        Engine.get().getNEntityStream().removeEntity(entity);
+        entity.destroy();
     }
 
     public Component copy() {

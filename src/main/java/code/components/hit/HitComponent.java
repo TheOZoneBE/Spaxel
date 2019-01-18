@@ -6,7 +6,6 @@ import code.components.affect.AffectComponent;
 import code.components.damage.Damage;
 import code.components.damage.DamageComponent;
 import code.components.effect.EffectComponent;
-import code.components.link.LinkComponent;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.engine.Engine;
@@ -35,17 +34,21 @@ public abstract class HitComponent extends Component {
         dc.addDamage(new Damage(damage));
     }
 
-    public void addParticleSpawner(Entity entity, ParticleComponent particleComponent, String spawnerIndustry) {
-        SpawnerIndustry hpsi = (SpawnerIndustry) Resources.get().getIndustryMap().get(spawnerIndustry);
-        Engine.get().getNEntityStream().addEntity(hpsi
-                .produce((PositionComponent) entity.getComponent(ComponentType.POSITION).copy(), particleComponent));
+    public void addParticleSpawner(Entity entity, ParticleComponent particleComponent,
+            String spawnerIndustry) {
+        SpawnerIndustry hpsi =
+                (SpawnerIndustry) Resources.get().getIndustryMap().get(spawnerIndustry);
+        Engine.get().getNEntityStream()
+                .addEntity(hpsi.produce(
+                        (PositionComponent) entity.getComponent(ComponentType.POSITION).copy(),
+                        particleComponent));
     }
 
     public void addEffect(Entity victim, String effectIndustry) {
         EffectComponent ec = (EffectComponent) victim.getComponent(ComponentType.EFFECT);
         EffectIndustry efi = (EffectIndustry) Resources.get().getIndustryMap().get(effectIndustry);
         Entity effect = efi.produce();
-        effect.addComponent(new LinkComponent(victim));
+        victim.addLink(effect);
         ((AffectComponent) effect.getComponent(ComponentType.AFFECT)).affect(effect, victim);
         ec.getEffects().add(effect);
         Engine.get().getNEntityStream().addEntity(effect);

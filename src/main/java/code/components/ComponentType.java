@@ -28,8 +28,6 @@ public enum ComponentType {
 
     DAMAGE("damage"),
 
-    LINK("link"),
-
     COOLDOWN("cooldown"),
 
     ITEM("item"),

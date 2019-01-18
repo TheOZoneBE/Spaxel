@@ -1,7 +1,6 @@
 package code.components.render.subcomponents;
 
 import code.components.ComponentType;
-import code.components.link.LinkComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
 import code.components.velocity.VelocityComponent;
@@ -15,8 +14,8 @@ import code.math.VectorD;
  */
 public class LinkLinkVelocityRenderer extends Renderer {
     public void apply(RenderJob data, Entity entity) {
-        Entity link = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
-        Entity linkLink = ((LinkComponent) link.getComponent(ComponentType.LINK)).getLink();
+        Entity link = entity.getParent();
+        Entity linkLink = link.getParent();
         PositionComponent pc = (PositionComponent) linkLink.getComponent(ComponentType.POSITION);
         VelocityComponent vc = (VelocityComponent) linkLink.getComponent(ComponentType.VELOCITY);
         SpriteComponent sc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);

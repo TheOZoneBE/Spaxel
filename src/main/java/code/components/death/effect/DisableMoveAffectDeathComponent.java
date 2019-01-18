@@ -6,7 +6,6 @@ import code.components.Component;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.effect.EffectComponent;
-import code.components.link.LinkComponent;
 import code.entity.Entity;
 
 /**
@@ -18,7 +17,7 @@ public class DisableMoveAffectDeathComponent extends DeathComponent {
     }
 
     public void die(Entity entity) {
-        Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        Entity parent = entity.getParent();
         ActorComponent mc = (ActorComponent) parent.getComponent(ComponentType.ACTOR);
         mc.setCanMove(true);
         EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);

@@ -7,7 +7,6 @@ import code.components.ComponentType;
 import code.components.inventory.InventoryComponent;
 import code.components.item.ItemComponent;
 import code.components.item.ItemType;
-import code.components.link.LinkComponent;
 import code.engine.Resources;
 import code.entity.Entity;
 
@@ -57,7 +56,7 @@ public final class EntityUtil {
             // produce a random item of the given type
             Entity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
             ic.addItem(item);
-            item.addComponent(new LinkComponent(entity));
+            entity.addLink(item);
         }
     }
 

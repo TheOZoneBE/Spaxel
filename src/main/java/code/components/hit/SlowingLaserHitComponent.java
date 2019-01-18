@@ -22,14 +22,15 @@ public class SlowingLaserHitComponent extends HitComponent {
         dealDamage(victim);
 
         SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity, 
-                new ParticleComponent(SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
+        addParticleSpawner(entity,
+                new ParticleComponent(
+                        SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
                         sc.getScale()),
                 "laser_hit_particle_spawner_industry");
 
         addEffect(victim, "slow_effect_industry");
 
-        Engine.get().getNEntityStream().removeEntity(entity);
+        entity.destroy();
     }
 
     public Component copy() {

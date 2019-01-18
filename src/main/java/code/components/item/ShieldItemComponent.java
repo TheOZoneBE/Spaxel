@@ -1,6 +1,5 @@
 package code.components.item;
 
-import code.components.link.LinkComponent;
 import code.engine.Engine;
 import code.entity.Entity;
 
@@ -45,12 +44,13 @@ public abstract class ShieldItemComponent extends ItemComponent {
 
     @Override
     public void addCascade(Entity entity) {
-        effect.addComponent(new LinkComponent(entity));
+        // TODO linking ideally before
+        entity.addLink(effect);
         Engine.get().getNEntityStream().addEntity(effect);
     }
 
     @Override
     public void removeCascade() {
-        Engine.get().getNEntityStream().removeEntity(effect);
+        effect.destroy();
     }
 }

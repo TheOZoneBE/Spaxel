@@ -6,7 +6,6 @@ import code.components.affect.AffectComponent;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.effect.EffectComponent;
-import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
 import code.entity.Entity;
 
@@ -20,7 +19,7 @@ public class SlowAffectDeathComponent extends DeathComponent {
 
     public void die(Entity entity) {
         AffectComponent ac = (AffectComponent) entity.getComponent(ComponentType.AFFECT);
-        Entity parent = ((LinkComponent) entity.getComponent(ComponentType.LINK)).getLink();
+        Entity parent = entity.getParent();
         MoveComponent mc = (MoveComponent) parent.getComponent(ComponentType.MOVE);
         mc.setAcc(mc.getAcc() / ac.getFactor());
         mc.setMaxSpeed(mc.getMaxSpeed() / ac.getFactor());
@@ -28,7 +27,7 @@ public class SlowAffectDeathComponent extends DeathComponent {
         ec.getEffects().remove(entity);
     }
 
-    public Component copy(){
+    public Component copy() {
         return new SlowAffectDeathComponent();
     }
 }

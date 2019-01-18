@@ -130,13 +130,16 @@ public class Entity {
     }
 
     public void destroy() {
-        for (Entity link : links) {
-            Engine.get().getNEntityStream().removeEntity(link);
-        }
-        if (parent != null) {
-            // parent.removeLink(this);
-        }
+        destroy(true);
     }
 
-
+    private void destroy(boolean root) {
+        Engine.get().getNEntityStream().removeEntity(this);
+        for (Entity link : links) {
+            link.destroy(false);
+        }
+        if (root && parent != null) {
+            parent.removeLink(this);
+        }
+    }
 }

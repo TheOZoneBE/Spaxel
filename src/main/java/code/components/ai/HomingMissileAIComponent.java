@@ -3,7 +3,6 @@ package code.components.ai;
 import code.Constants;
 import code.components.ComponentType;
 import code.components.Component;
-import code.components.link.LinkComponent;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.velocity.VelocityComponent;

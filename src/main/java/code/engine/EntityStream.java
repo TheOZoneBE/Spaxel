@@ -116,7 +116,6 @@ public class EntityStream {
      */
     public void removeEntity(Entity entity) {
         entity.removeCascade();
-        entity.destroy();
         toRemoveEntityTypeMap.get(entity.getType()).add(entity);
     }
 

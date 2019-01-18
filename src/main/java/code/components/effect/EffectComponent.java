@@ -2,10 +2,8 @@ package code.components.effect;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.link.LinkComponent;
 import code.engine.Engine;
 import code.entity.Entity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +29,8 @@ public class EffectComponent extends Component {
     @Override
     public void addCascade(Entity entity) {
         for (Entity e : effects) {
-            e.addComponent(new LinkComponent(entity));
+            // TODO linking ideally somewhere else
+            entity.addLink(e);
             Engine.get().getNEntityStream().addEntity(e);
         }
     }
@@ -39,7 +38,7 @@ public class EffectComponent extends Component {
     @Override
     public void removeCascade() {
         for (Entity e : effects) {
-            Engine.get().getNEntityStream().removeEntity(e);
+            e.destroy();
         }
     }
 

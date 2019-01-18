@@ -22,8 +22,7 @@ public class AgeSystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> nEntities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.AGE);
+        Set<Entity> nEntities = Engine.get().getNEntityStream().getEntities(ComponentType.AGE);
         for (Entity ne : nEntities) {
             AgeComponent ac = (AgeComponent) ne.getComponent(ComponentType.AGE);
             if (ac.getLife() != 0) {
@@ -33,7 +32,7 @@ public class AgeSystem extends GameSystem {
                 if (dc != null) {
                     dc.die(ne);
                 }
-                Engine.get().getNEntityStream().removeEntity(ne);
+                ne.destroy();
             }
         }
     }

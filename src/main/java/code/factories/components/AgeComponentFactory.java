@@ -1,6 +1,6 @@
 package code.factories.components;
 
-import code.components.age.AgeComponent;
+import code.components.storage.age.AgeStorage;
 import code.components.Component;
 
 /**
@@ -16,7 +16,7 @@ public class AgeComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new AgeComponent(life, maxLife);
+        return new AgeStorage(life, maxLife);
     }
 
     public int getLife() {

@@ -1,7 +1,7 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import java.util.Set;
@@ -20,11 +20,10 @@ public class CooldownSystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> entities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.COOLDOWN);
+        Set<Entity> entities = Engine.get().getNEntityStream().getEntities(ComponentType.COOLDOWN);
         for (Entity entity : entities) {
-            CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
-            cc.setCd(cc.getCd() == 0 ? 0 : cc.getCd() - 1);
+            CooldownStorage cc = (CooldownStorage) entity.getComponent(ComponentType.COOLDOWN);
+            cc.setCurrentCooldown(cc.getCurrentCooldown() == 0 ? 0 : cc.getCurrentCooldown() - 1);
         }
     }
 }

@@ -2,7 +2,7 @@ package code.components.death.actor;
 
 import code.components.ComponentType;
 import code.components.Component;
-import code.components.age.AgeComponent;
+import code.components.storage.age.AgeStorage;
 import code.components.ai.DroppedItemAIComponent;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
@@ -62,7 +62,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             Entity item = Resources.get().getItems().produceRandom(
                     prop -> EntityUtil.getAllItemNames(entity).contains(prop.getName()));
             item.addComponent(new EquipComponent());
-            item.addComponent(new AgeComponent(ITEM_LIFETIME, ITEM_LIFETIME));
+            item.addComponent(new AgeStorage(ITEM_LIFETIME, ITEM_LIFETIME));
             item.addComponent(epc.copy());
             item.addComponent(entity.getComponent(ComponentType.VELOCITY));
             item.addComponent(entity.getComponent(ComponentType.RENDER));

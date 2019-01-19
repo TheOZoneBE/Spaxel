@@ -1,7 +1,7 @@
 package code.factories.elements;
 
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 import code.components.sprite.SpriteComponent;
 import code.components.stack.StackComponent;
 import code.entity.Entity;
@@ -27,7 +27,7 @@ public final class ElementCreator {
      */
     public static Element createItemView(Entity item) {
         SpriteComponent sc = (SpriteComponent) item.getComponent(ComponentType.SPRITE);
-        CooldownComponent cc = (CooldownComponent) item.getComponent(ComponentType.COOLDOWN);
+        CooldownStorage cc = (CooldownStorage) item.getComponent(ComponentType.COOLDOWN);
         StackComponent stc = (StackComponent) item.getComponent(ComponentType.STACK);
 
         Element base = new Element();
@@ -37,7 +37,7 @@ public final class ElementCreator {
         Element cooldown = new Element();
         cooldown.setClasses("item_cooldown");
         cooldown.getStyle().setProperty("completion",
-                String.valueOf((double) cc.getCd() / cc.getCdAmount()));
+                String.valueOf((double) cc.getCurrentCooldown() / cc.getMaxCooldown()));
 
         Element stacks = new Element();
         stacks.setClasses("item_stacks");

@@ -1,7 +1,7 @@
 package code.components.item.ship;
 
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 import code.components.hit.HitComponent;
 import code.components.item.ShieldItemComponent;
 import code.components.position.PositionComponent;
@@ -22,8 +22,8 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
     }
 
     public void activate(Entity entity) {
-        CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
-        if (cc.getCd() == 0) {
+        CooldownStorage cc = (CooldownStorage) entity.getComponent(ComponentType.COOLDOWN);
+        if (cc.getCurrentCooldown() == 0) {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             Entity parent = entity.getParent();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
@@ -41,7 +41,7 @@ public class BasicShieldItemComponent extends ShieldItemComponent {
                     } else {
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;
-                        cc.setCd(cc.getCdAmount());
+                        cc.setCurrentCooldown(cc.getMaxCooldown());
                         ((RenderComponent) effect.getComponent(ComponentType.RENDER))
                                 .setVisible(false);
                     }

@@ -1,7 +1,7 @@
 package code.components.item.ship;
 
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 import code.components.hit.HitComponent;
 import code.components.inventory.InventoryComponent;
 import code.components.item.ShieldItemComponent;
@@ -24,8 +24,8 @@ public class ActiveShieldItemComponent extends ShieldItemComponent {
     }
 
     public void activate(Entity entity) {
-        CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
-        if (cc.getCd() == 0) {
+        CooldownStorage cc = (CooldownStorage) entity.getComponent(ComponentType.COOLDOWN);
+        if (cc.getCurrentCooldown() == 0) {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             Entity parent = entity.getParent();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
@@ -47,7 +47,7 @@ public class ActiveShieldItemComponent extends ShieldItemComponent {
                         reduceCooldown(parent, cdReduction);
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;
-                        cc.setCd(cc.getCdAmount());
+                        cc.setCurrentCooldown(cc.getMaxCooldown());
                         ((RenderComponent) effect.getComponent(ComponentType.RENDER))
                                 .setVisible(false);
                     }
@@ -66,9 +66,10 @@ public class ActiveShieldItemComponent extends ShieldItemComponent {
 
     public void reduceCooldown(InventoryComponent inv, int cdReduction) {
         for (Entity item : inv.getItems()) {
-            CooldownComponent cc = (CooldownComponent) item.getComponent(ComponentType.COOLDOWN);
-            if (cc != null && cc.getCd() != 0) {
-                cc.setCd(cc.getCd() - cdReduction < 0 ? 0 : cc.getCd() - cdReduction);
+            CooldownStorage cc = (CooldownStorage) item.getComponent(ComponentType.COOLDOWN);
+            if (cc != null && cc.getCurrentCooldown() != 0) {
+                cc.setCurrentCooldown(cc.getCurrentCooldown() - cdReduction < 0 ? 0
+                        : cc.getCurrentCooldown() - cdReduction);
             }
         }
     }

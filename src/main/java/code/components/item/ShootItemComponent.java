@@ -1,7 +1,7 @@
 package code.components.item;
 
 import code.components.ComponentType;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.stack.StackComponent;
@@ -26,8 +26,8 @@ public abstract class ShootItemComponent extends ItemComponent {
     }
 
     public void activate(Entity entity) {
-        CooldownComponent cc = (CooldownComponent) entity.getComponent(ComponentType.COOLDOWN);
-        if (cc.getCd() == 0) {
+        CooldownStorage cc = (CooldownStorage) entity.getComponent(ComponentType.COOLDOWN);
+        if (cc.getCurrentCooldown() == 0) {
             Entity parent = entity.getParent();
             PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
             StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
@@ -44,7 +44,7 @@ public abstract class ShootItemComponent extends ItemComponent {
                 Engine.get().getNEntityStream().addEntity(projectile);
                 offset += RADIAL_OFFSET;
             }
-            cc.setCd(cc.getCdAmount());
+            cc.setCurrentCooldown(cc.getMaxCooldown());
         }
     }
 }

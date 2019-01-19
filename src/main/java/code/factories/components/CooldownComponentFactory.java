@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.cooldown.CooldownComponent;
+import code.components.storage.cooldown.CooldownStorage;
 
 /**
  * Created by theo on 19/06/17.
@@ -16,7 +16,7 @@ public class CooldownComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new CooldownComponent(cd, cdAmount);
+        return new CooldownStorage(cd, cdAmount);
     }
 
     public int getCd() {

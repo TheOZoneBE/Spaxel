@@ -4,7 +4,6 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.particle.ParticleComponent;
 import code.components.sprite.SpriteComponent;
-import code.engine.Engine;
 import code.entity.Entity;
 import code.util.SpriteDataUtil;
 

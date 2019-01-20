@@ -17,13 +17,14 @@ import code.system.ExperienceSystem;
 import code.system.GameSystem;
 import code.system.HealthSystem;
 import code.system.HitSystem;
-import code.system.InputSystem;
+import code.system.MouseSystem;
 import code.system.MarkerSystem;
 import code.system.ShipSystem;
 import code.system.SoundSystem;
 import code.system.SpawnerSystem;
 import code.system.UISystem;
 import code.system.VelocitySystem;
+import code.system.KeyboardSystem;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 /**
@@ -51,7 +52,8 @@ public class UpdateRunner implements Runnable {
         systems.put(SystemType.HEALTH, new HealthSystem());
         systems.put(SystemType.COOLDOWN, new CooldownSystem());
         systems.put(SystemType.HIT, new HitSystem());
-        systems.put(SystemType.INPUT, new InputSystem());
+        systems.put(SystemType.MOUSE, new MouseSystem());
+        systems.put(SystemType.KEYBOARD, new KeyboardSystem());
         systems.put(SystemType.EQUIP, new EquipSystem());
         systems.put(SystemType.EXPERIENCE, new ExperienceSystem());
         systems.put(SystemType.SHIP, new ShipSystem());
@@ -119,7 +121,7 @@ public class UpdateRunner implements Runnable {
             update(SystemType.HEALTH);
             update(SystemType.COOLDOWN);
             update(SystemType.HIT);
-            update(SystemType.INPUT);
+            update(SystemType.MOUSE);
             update(SystemType.EQUIP);
             update(SystemType.EXPERIENCE);
             update(SystemType.UI);

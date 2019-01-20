@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.stack.StackComponent;
+import code.components.storage.stack.StackStorage;
 
 /**
  * Created by theo on 19/06/17.
@@ -15,7 +15,7 @@ public class StackComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new StackComponent(stacks);
+        return new StackStorage(stacks);
     }
 
     public int getStacks() {

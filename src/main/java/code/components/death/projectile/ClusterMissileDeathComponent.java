@@ -5,8 +5,8 @@ import code.components.Component;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
-import code.components.move.MoveComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.move.MoveStorage;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -25,16 +25,16 @@ public class ClusterMissileDeathComponent extends DeathComponent {
     }
 
     public void die(Entity entity) {
-        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        TransformationStorage pc =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
         ProjectileIndustry pri = (ProjectileIndustry) Resources.get().getIndustryMap()
                 .get("cluster_shrapnel_projectile_industry");
         double rot = 0;
         for (int i = 0; i < MISSILE_SPLIT; i++) {
-            Entity projectile =
-                    pri.produce(new PositionComponent(pc.getCoord(), rot), entity.getParent());
-            MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
-            double dx = Math.sin(rot) * pmc.getMaxSpeed();
-            double dy = Math.cos(rot) * pmc.getMaxSpeed();
+            Entity projectile = pri.produce(pc.copy(), entity.getParent());
+            MoveStorage pmc = (MoveStorage) projectile.getComponent(ComponentType.MOVE);
+            double dx = Math.sin(rot) * pmc.getSpeed();
+            double dy = Math.cos(rot) * pmc.getSpeed();
             projectile.addComponent(new ChangeStorage(new VectorD(dx, dy), 0, 0));
             Engine.get().getNEntityStream().addEntity(projectile);
             rot += Constants.FULL_CIRCLE / MISSILE_SPLIT;

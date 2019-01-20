@@ -1,7 +1,7 @@
 {
   "slow_effect_industry": {
     "type": "EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "AGE",
         "life": 150,
@@ -20,7 +20,7 @@
   },
   "disable_shoot_effect_industry": {
     "type": "EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "AGE",
         "life": 150,
@@ -38,7 +38,7 @@
   },
   "disable_move_effect_industry": {
     "type": "EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "AGE",
         "life": 150,

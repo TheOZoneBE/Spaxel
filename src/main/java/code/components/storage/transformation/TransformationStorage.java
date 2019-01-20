@@ -9,6 +9,9 @@ public class TransformationStorage extends Storage {
     private double rotation;
     private double scale;
 
+    public TransformationStorage() {
+        super(ComponentType.TRANSFORMATION);
+    }
 
     public TransformationStorage(VectorD position, double rotation, double scale) {
         super(ComponentType.TRANSFORMATION);

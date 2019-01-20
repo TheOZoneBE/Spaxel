@@ -7,6 +7,10 @@ import code.graphics.texture.Renderable;
 public class RenderableStorage extends Storage {
     private Renderable renderable;
 
+    public RenderableStorage() {
+        super(ComponentType.RENDERABLE);
+    }
+
     public RenderableStorage(Renderable renderable) {
         super(ComponentType.RENDERABLE);
         this.renderable = renderable;

@@ -6,7 +6,7 @@ import code.components.affect.AffectComponent;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.effect.EffectComponent;
-import code.components.move.MoveComponent;
+import code.components.storage.move.MoveStorage;
 import code.entity.Entity;
 
 /**
@@ -20,9 +20,9 @@ public class SlowAffectDeathComponent extends DeathComponent {
     public void die(Entity entity) {
         AffectComponent ac = (AffectComponent) entity.getComponent(ComponentType.AFFECT);
         Entity parent = entity.getParent();
-        MoveComponent mc = (MoveComponent) parent.getComponent(ComponentType.MOVE);
-        mc.setAcc(mc.getAcc() / ac.getFactor());
-        mc.setMaxSpeed(mc.getMaxSpeed() / ac.getFactor());
+        MoveStorage mc = (MoveStorage) parent.getComponent(ComponentType.MOVE);
+        mc.setAcceleration(mc.getAcceleration() / ac.getFactor());
+        mc.setSpeed(mc.getSpeed() / ac.getFactor());
         EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);
         ec.getEffects().remove(entity);
     }

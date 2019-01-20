@@ -1,6 +1,6 @@
 package code.components.death.effect;
 
-import code.components.actor.ActorComponent;
+import code.components.storage.status.StatusStorage;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.death.DeathComponent;
@@ -18,7 +18,7 @@ public class DisableShootAffectDeathComponent extends DeathComponent {
 
     public void die(Entity entity) {
         Entity parent = entity.getParent();
-        ActorComponent mc = (ActorComponent) parent.getComponent(ComponentType.ACTOR);
+        StatusStorage mc = (StatusStorage) parent.getComponent(ComponentType.STATUS);
         mc.setCanShoot(true);
         EffectComponent ec = (EffectComponent) parent.getComponent(ComponentType.EFFECT);
         ec.getEffects().remove(entity);

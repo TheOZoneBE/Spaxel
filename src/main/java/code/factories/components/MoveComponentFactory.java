@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.move.MoveComponent;
+import code.components.storage.move.MoveStorage;
 
 /**
  * Created by theo on 3/06/17.
@@ -17,7 +17,7 @@ public class MoveComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new MoveComponent(maxSpeed, acc, turnRate);
+        return new MoveStorage(maxSpeed, acc, turnRate);
     }
 
     public double getMaxSpeed() {

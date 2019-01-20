@@ -2,8 +2,8 @@ package code.factories.elements;
 
 import code.components.ComponentType;
 import code.components.storage.cooldown.CooldownStorage;
-import code.components.sprite.SpriteComponent;
-import code.components.stack.StackComponent;
+import code.components.storage.renderable.RenderableStorage;
+import code.components.storage.stack.StackStorage;
 import code.entity.Entity;
 import code.ui.elements.Element;
 
@@ -26,13 +26,13 @@ public final class ElementCreator {
      * @return the created Element
      */
     public static Element createItemView(Entity item) {
-        SpriteComponent sc = (SpriteComponent) item.getComponent(ComponentType.SPRITE);
+        RenderableStorage sc = (RenderableStorage) item.getComponent(ComponentType.RENDERABLE);
         CooldownStorage cc = (CooldownStorage) item.getComponent(ComponentType.COOLDOWN);
-        StackComponent stc = (StackComponent) item.getComponent(ComponentType.STACK);
+        StackStorage stc = (StackStorage) item.getComponent(ComponentType.STACK);
 
         Element base = new Element();
         base.setClasses("inventory_item");
-        base.getStyle().setProperty("sprite", sc.getSprite().getName());
+        base.getStyle().setProperty("sprite", sc.getRenderable().getName());
 
         Element cooldown = new Element();
         cooldown.setClasses("item_cooldown");

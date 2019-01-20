@@ -62,9 +62,9 @@ public final class PlayController {
                 .getComponent(ComponentType.HEALTH);
 
         element.getStyle().setProperty("completion",
-                String.valueOf((double) hc.getHealth() / hc.getMaxHealth()));
+                String.valueOf((double) hc.getCurrentHealth() / hc.getMaxHealth()));
         element.findById("hp_label").getStyle().setProperty("text",
-                hc.getHealth() + " / " + hc.getMaxHealth());
+                hc.getCurrentHealth() + " / " + hc.getMaxHealth());
     }
 
     /**

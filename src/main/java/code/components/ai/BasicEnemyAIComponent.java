@@ -3,10 +3,10 @@ package code.components.ai;
 import code.Constants;
 import code.components.ComponentType;
 import code.components.Component;
-import code.components.actor.ActorComponent;
+import code.components.storage.status.StatusStorage;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.item.ItemComponent;
-import code.components.move.MoveComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.move.MoveStorage;
 import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
 import code.components.storage.change.ChangeStorage;
@@ -27,38 +27,37 @@ public class BasicEnemyAIComponent extends AIComponent {
     }
 
     public void execute(Entity entity) {
-        PositionComponent playerPos = (PositionComponent) Engine.get().getNEntityStream()
-                .getPlayer().getComponent(ComponentType.POSITION);
+        TransformationStorage playerPos = (TransformationStorage) Engine.get().getNEntityStream()
+                .getPlayer().getComponent(ComponentType.TRANSFORMATION);
 
-        ActorComponent ac = (ActorComponent) entity.getComponent(ComponentType.ACTOR);
-        PositionComponent entityPos =
-                (PositionComponent) entity.getComponent(ComponentType.POSITION);
-        MoveComponent entityMov = (MoveComponent) entity.getComponent(ComponentType.MOVE);
+        StatusStorage ac = (StatusStorage) entity.getComponent(ComponentType.STATUS);
+        TransformationStorage entityPos =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
+        MoveStorage entityMov = (MoveStorage) entity.getComponent(ComponentType.MOVE);
         ChangeStorage entityVel = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
-        VectorD diff = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1));
+        VectorD diff = playerPos.getPosition().sum(entityPos.getPosition().multiplicate(-1));
         if (ac.canMove()) {
             double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
             if (rotToGet < 0) {
                 rotToGet += Constants.FULL_CIRCLE;
             }
-            double rotChange = rotToGet - entityPos.getRot();
+            double rotChange = rotToGet - entityPos.getRotation();
             entityVel.setRotationChange(
                     EntityUtil.calculateDeltaRot(rotChange, entityMov.getTurnRate()));
 
-            VectorD velChange =
-                    new VectorD(Math.sin(entityPos.getRot()), Math.cos(entityPos.getRot()))
-                            .multiplicate(entityMov.getAcc());
+            VectorD velChange = new VectorD(Math.sin(entityPos.getRotation()),
+                    Math.cos(entityPos.getRotation())).multiplicate(entityMov.getAcceleration());
 
-            double dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
+            double dist =
+                    playerPos.getPosition().sum(entityPos.getPosition().multiplicate(-1)).length();
             if (dist > DISTANCE_THRESHOLD) {
-                if (entityVel.getPositionChange().sum(velChange).length() < entityMov
-                        .getMaxSpeed()) {
+                if (entityVel.getPositionChange().sum(velChange).length() < entityMov.getSpeed()) {
                     entityVel.setPositionChange(entityVel.getPositionChange().sum(velChange));
                 } else {
                     // TODO needs a rewrite
                     entityVel.setPositionChange(entityVel.getPositionChange()
                             .sum(entityVel.getPositionChange()
-                                    .multiplicate(-1 / entityMov.getMaxSpeed() * SPEED_MULTIPLIER))
+                                    .multiplicate(-1 / entityMov.getSpeed() * SPEED_MULTIPLIER))
                             .sum(velChange));
                 }
             } else {

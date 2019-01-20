@@ -1,7 +1,7 @@
 {
     "laser_hit_particle_spawner_industry": {
         "type": "SPAWNER",
-        "factories": [
+        "blueprints": [
             {
                 "type": "AGE",
                 "life": 2,
@@ -19,7 +19,7 @@
     },
     "missile_hit_particle_spawner_industry": {
         "type": "SPAWNER",
-        "factories": [
+        "blueprints": [
             {
                 "type": "AGE",
                 "life": 3,
@@ -37,7 +37,7 @@
     },
     "enemy_death_particle_spawner_industry": {
         "type": "SPAWNER",
-        "factories": [
+        "blueprints": [
             {
                 "type": "AGE",
                 "life": 5,

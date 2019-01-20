@@ -3,7 +3,7 @@ package code.system;
 import java.util.Set;
 import code.Constants;
 import code.components.ComponentType;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -50,8 +50,8 @@ public class RenderSystem extends GameSystem {
 					.setCursorFollow(Engine.get().getGameState().getCursorFollow().sum(difference));
 
 			Entity player = Engine.get().getNEntityStream().getPlayer();
-			PositionComponent playerPos =
-					(PositionComponent) player.getComponent(ComponentType.POSITION);
+			TransformationStorage playerPos =
+					(TransformationStorage) player.getComponent(ComponentType.TRANSFORMATION);
 
 			Engine.get().getGameState().setScreenOffset(calculateScreenOffset(playerPos));
 		}
@@ -65,11 +65,11 @@ public class RenderSystem extends GameSystem {
 	/**
 	 * Calculate the screenOffset based on the player position
 	 */
-	private static VectorD calculateScreenOffset(PositionComponent playerPos) {
+	private static VectorD calculateScreenOffset(TransformationStorage playerPos) {
 		VectorD dim = new VectorD(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 		return dim.multiplicate(DIM_REDUCTION).diff(
 				Engine.get().getGameState().getCursorFollow().multiplicate(MOUSE_POS_REDUCTION))
-				.diff(playerPos.getCoord());
+				.diff(playerPos.getPosition());
 	}
 
 	/**

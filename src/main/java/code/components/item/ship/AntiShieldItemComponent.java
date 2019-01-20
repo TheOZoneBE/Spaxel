@@ -5,7 +5,7 @@ import code.components.storage.cooldown.CooldownStorage;
 import code.components.health.HealthComponent;
 import code.components.hit.HitComponent;
 import code.components.item.ShieldItemComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -28,13 +28,15 @@ public class AntiShieldItemComponent extends ShieldItemComponent {
         if (cc.getCurrentCooldown() == 0) {
             ((RenderComponent) effect.getComponent(ComponentType.RENDER)).setVisible(true);
             Entity parent = entity.getParent();
-            PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
+            TransformationStorage pc =
+                    (TransformationStorage) parent.getComponent(ComponentType.TRANSFORMATION);
             Set<Entity> projectiles =
                     Engine.get().getNEntityStream().getEntities(ComponentType.HIT);
             for (Entity p : projectiles) {
-                PositionComponent ppc = (PositionComponent) p.getComponent(ComponentType.POSITION);
+                TransformationStorage ppc =
+                        (TransformationStorage) p.getComponent(ComponentType.TRANSFORMATION);
                 Entity pParent = p.getParent();
-                if (pParent != parent && pc.getCoord().sum(ppc.getCoord().multiplicate(-1))
+                if (pParent != parent && pc.getPosition().sum(ppc.getPosition().multiplicate(-1))
                         .length() < SHIELD_RADIUS) {
                     HitComponent phc = (HitComponent) p.getComponent(ComponentType.HIT);
                     HealthComponent hc =
@@ -42,15 +44,15 @@ public class AntiShieldItemComponent extends ShieldItemComponent {
                     if (phc.getDamage() < capacity) {
                         capacity -= phc.getDamage();
                         int healthGain = phc.getDamage() / HEAL_DIVISION;
-                        hc.setHealth(
-                                hc.getHealth() + healthGain > hc.getMaxHealth() ? hc.getMaxHealth()
-                                        : hc.getHealth() + healthGain);
+                        hc.setCurrentHealth(hc.getCurrentHealth() + healthGain > hc.getMaxHealth()
+                                ? hc.getMaxHealth()
+                                : hc.getCurrentHealth() + healthGain);
                         p.destroy();
                     } else {
                         int healthGain = (phc.getDamage() - capacity) / HEAL_DIVISION;
-                        hc.setHealth(
-                                hc.getHealth() + healthGain > hc.getMaxHealth() ? hc.getMaxHealth()
-                                        : hc.getHealth() + healthGain);
+                        hc.setCurrentHealth(hc.getCurrentHealth() + healthGain > hc.getMaxHealth()
+                                ? hc.getMaxHealth()
+                                : hc.getCurrentHealth() + healthGain);
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;
                         cc.setCurrentCooldown(cc.getMaxCooldown());

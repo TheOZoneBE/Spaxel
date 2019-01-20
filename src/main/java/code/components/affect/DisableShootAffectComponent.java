@@ -1,6 +1,6 @@
 package code.components.affect;
 
-import code.components.actor.ActorComponent;
+import code.components.storage.status.StatusStorage;
 import code.components.Component;
 import code.components.ComponentType;
 import code.entity.Entity;
@@ -13,12 +13,12 @@ public class DisableShootAffectComponent extends AffectComponent {
         super(AffectType.DISABLE_SHOOT, 0);
     }
 
-    public void affect(Entity entity, Entity victim){
-        ActorComponent ac = (ActorComponent)victim.getComponent(ComponentType.ACTOR);
+    public void affect(Entity entity, Entity victim) {
+        StatusStorage ac = (StatusStorage) victim.getComponent(ComponentType.STATUS);
         ac.setCanShoot(false);
     }
 
-    public Component copy(){
+    public Component copy() {
         return new DisableShootAffectComponent();
     }
 }

@@ -3,7 +3,7 @@ package code.components.marker;
 import code.Constants;
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.render.RenderComponent;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -28,12 +28,13 @@ public class MarkerComponent extends Component {
 
     public void update(Entity entity) {
         Entity player = Engine.get().getNEntityStream().getPlayer();
-        PositionComponent playerPos =
-                (PositionComponent) player.getComponent(ComponentType.POSITION);
-        PositionComponent entityPos =
-                (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        TransformationStorage playerPos =
+                (TransformationStorage) player.getComponent(ComponentType.TRANSFORMATION);
+        TransformationStorage entityPos =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
         RenderComponent mrc = (RenderComponent) marker.getComponent(ComponentType.RENDER);
-        VectorD renderPos = entityPos.getCoord().sum(Engine.get().getGameState().getScreenOffset());
+        VectorD renderPos =
+                entityPos.getPosition().sum(Engine.get().getGameState().getScreenOffset());
         if (renderPos.getValue(0) < -MARKER_THRESHOLD
                 || renderPos.getValue(0) > Constants.GAME_WIDTH + MARKER_THRESHOLD
                 || renderPos.getValue(1) < -MARKER_THRESHOLD
@@ -41,17 +42,17 @@ public class MarkerComponent extends Component {
             VectorD intersect = getIntersection(new VectorD(MARKER_OFFSET, MARKER_OFFSET),
                     new VectorD(Constants.GAME_WIDTH - MARKER_OFFSET,
                             Constants.GAME_HEIGHT - MARKER_OFFSET),
-                    playerPos.getCoord().sum(Engine.get().getGameState().getScreenOffset()),
+                    playerPos.getPosition().sum(Engine.get().getGameState().getScreenOffset()),
                     renderPos);
 
             if (intersect != null) {
                 mrc.setVisible(true);
-                VectorD diff = entityPos.getCoord().diff(playerPos.getCoord());
+                VectorD diff = entityPos.getPosition().diff(playerPos.getPosition());
                 double rot = Math.atan2(diff.getValue(0), diff.getValue(1));
-                PositionComponent mpc =
-                        (PositionComponent) marker.getComponent(ComponentType.POSITION);
-                mpc.setCoord(intersect);
-                mpc.setRot(rot);
+                TransformationStorage mpc =
+                        (TransformationStorage) marker.getComponent(ComponentType.TRANSFORMATION);
+                mpc.setPosition(intersect);
+                mpc.setRotation(rot);
             }
         } else {
             mrc.setVisible(false);

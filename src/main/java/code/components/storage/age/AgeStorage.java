@@ -12,8 +12,12 @@ public class AgeStorage extends Storage {
     private int currentLife;
     private int maxLife;
 
+    public AgeStorage() {
+        super(ComponentType.AGE);
+    }
+
     /**
-     * Create a new AgeComponent with the specified life
+     * Create a new AgeStorage with the specified life
      * 
      * @param currentLife the current life of the component
      * @param maxLife     the maximum life of the component

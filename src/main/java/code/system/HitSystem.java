@@ -4,7 +4,7 @@ import code.collision.HitShape;
 import code.components.ComponentType;
 import code.components.storage.hitshape.HitshapeStorage;
 import code.components.hit.HitComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.system.SystemType;
@@ -42,17 +42,18 @@ public class HitSystem extends GameSystem {
     public void checkColliders(Entity entity, Iterable<Entity> colliders) {
         Entity parent = entity.getParent();
         HitshapeStorage cc = (HitshapeStorage) entity.getComponent(ComponentType.HITSHAPE);
-        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
-        MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
+        TransformationStorage pc =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
+        MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getPosition(), pc.getRotation());
         HitShape updated = cc.getHitShape().update(eTransform);
         for (Entity collider : colliders) {
             if (collider != parent) {
                 HitshapeStorage ccc =
                         (HitshapeStorage) collider.getComponent(ComponentType.HITSHAPE);
-                PositionComponent cpc =
-                        (PositionComponent) collider.getComponent(ComponentType.POSITION);
+                TransformationStorage cpc =
+                        (TransformationStorage) collider.getComponent(ComponentType.TRANSFORMATION);
                 MatrixD cTransform =
-                        MatrixUtil.getTransRotationMatrix(cpc.getCoord(), cpc.getRot());
+                        MatrixUtil.getTransRotationMatrix(cpc.getPosition(), cpc.getRotation());
                 if (ccc.getHitShape().update(cTransform).collision(updated)) {
                     HitComponent hc = (HitComponent) entity.getComponent(ComponentType.HIT);
                     hc.hit(entity, collider);

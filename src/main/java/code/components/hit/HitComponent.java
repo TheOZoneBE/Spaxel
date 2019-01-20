@@ -3,11 +3,11 @@ package code.components.hit;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.affect.AffectComponent;
-import code.components.damage.Damage;
-import code.components.damage.DamageComponent;
+import code.components.storage.damage.Damage;
+import code.components.storage.damage.DamageStorage;
 import code.components.effect.EffectComponent;
-import code.components.particle.ParticleComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.renderable.RenderableStorage;
+import code.components.storage.transformation.TransformationStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.factories.entities.EffectIndustry;
@@ -30,18 +30,17 @@ public abstract class HitComponent extends Component {
     public abstract void hit(Entity entity, Entity victim);
 
     public void dealDamage(Entity victim) {
-        DamageComponent dc = (DamageComponent) victim.getComponent(ComponentType.DAMAGE);
+        DamageStorage dc = (DamageStorage) victim.getComponent(ComponentType.DAMAGE);
         dc.addDamage(new Damage(damage));
     }
 
-    public void addParticleSpawner(Entity entity, ParticleComponent particleComponent,
+    public void addParticleSpawner(Entity entity, RenderableStorage particleComponent,
             String spawnerIndustry) {
         SpawnerIndustry hpsi =
                 (SpawnerIndustry) Resources.get().getIndustryMap().get(spawnerIndustry);
-        Engine.get().getNEntityStream()
-                .addEntity(hpsi.produce(
-                        (PositionComponent) entity.getComponent(ComponentType.POSITION).copy(),
-                        particleComponent));
+        Engine.get().getNEntityStream().addEntity(hpsi.produce(
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION).copy(),
+                particleComponent));
     }
 
     public void addEffect(Entity victim, String effectIndustry) {

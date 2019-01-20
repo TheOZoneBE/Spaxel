@@ -1,7 +1,7 @@
 {
   "marker_white_industry": {
     "type": "VISUAL_EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "RENDER",
         "visible": false,
@@ -11,7 +11,7 @@
             "type": "ABSOLUTE"
           },
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "MARKER"
@@ -19,12 +19,12 @@
         ]
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "marker_white",
         "scale": 4
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -35,7 +35,7 @@
   },
   "marker_red_industry": {
     "type": "VISUAL_EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "RENDER",
         "visible": false,
@@ -45,7 +45,7 @@
             "type": "ABSOLUTE"
           },
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "MARKER"
@@ -53,12 +53,12 @@
         ]
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "marker_red",
         "scale": 4
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -69,7 +69,7 @@
   },
   "marker_green_industry": {
     "type": "VISUAL_EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "RENDER",
         "visible": false,
@@ -79,7 +79,7 @@
             "type": "ABSOLUTE"
           },
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "MARKER"
@@ -87,12 +87,12 @@
         ]
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "marker_green",
         "scale": 4
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -103,7 +103,7 @@
   },
   "marker_blue_industry": {
     "type": "VISUAL_EFFECT",
-    "factories": [
+    "blueprints": [
       {
         "type": "RENDER",
         "visible": false,
@@ -113,7 +113,7 @@
             "type": "ABSOLUTE"
           },
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "MARKER"
@@ -121,12 +121,12 @@
         ]
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "marker_blue",
         "scale": 4
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0

@@ -1,6 +1,6 @@
 package code.components.affect;
 
-import code.components.actor.ActorComponent;
+import code.components.storage.status.StatusStorage;
 import code.components.ComponentType;
 import code.components.Component;
 import code.entity.Entity;
@@ -14,7 +14,7 @@ public class DisableMoveAffectComponent extends AffectComponent {
     }
 
     public void affect(Entity entity, Entity victim) {
-        ActorComponent ac = (ActorComponent) victim.getComponent(ComponentType.ACTOR);
+        StatusStorage ac = (StatusStorage) victim.getComponent(ComponentType.STATUS);
         ac.setCanMove(false);
     }
 

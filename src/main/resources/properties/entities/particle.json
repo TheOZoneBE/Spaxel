@@ -1,14 +1,14 @@
 {
     "hit_particle_industry": {
         "type": "HITPARTICLE",
-        "factories": [
+        "blueprints": [
             {
                 "type": "RENDER",
                 "visible": true,
                 "layer": "GAME",
                 "renderers": [
                     {
-                        "type": "SPRITESHEET"
+                        "type": "RENDERABLESHEET"
                     },
                     {
                         "type": "VELOCITY"
@@ -19,7 +19,7 @@
     },
     "trail_segment_industry": {
         "type": "TRAILSEGMENT",
-        "factories": [
+        "blueprints": [
             {
                 "type": "AGE",
                 "life": 50,
@@ -31,7 +31,7 @@
                 "layer": "GAME",
                 "renderers": [
                     {
-                        "type": "SPRITESHEET"
+                        "type": "RENDERABLESHEET"
                     },
                     {
                         "type": "STATIONARY"
@@ -45,7 +45,7 @@
     },
     "ship_fragment_industry": {
         "type": "TRAILSEGMENT",
-        "factories": [
+        "blueprints": [
             {
                 "type": "AGE",
                 "life": 20,
@@ -57,7 +57,7 @@
                 "layer": "GAME",
                 "renderers": [
                     {
-                        "type": "SPRITESHEET"
+                        "type": "RENDERABLESHEET"
                     },
                     {
                         "type": "STATIONARY"

@@ -2,9 +2,9 @@ package code.components.item;
 
 import code.components.ComponentType;
 import code.components.storage.cooldown.CooldownStorage;
-import code.components.move.MoveComponent;
-import code.components.position.PositionComponent;
-import code.components.stack.StackComponent;
+import code.components.storage.move.MoveStorage;
+import code.components.storage.transformation.TransformationStorage;
+import code.components.storage.stack.StackStorage;
 import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -29,17 +29,18 @@ public abstract class ShootItemComponent extends ItemComponent {
         CooldownStorage cc = (CooldownStorage) entity.getComponent(ComponentType.COOLDOWN);
         if (cc.getCurrentCooldown() == 0) {
             Entity parent = entity.getParent();
-            PositionComponent pc = (PositionComponent) parent.getComponent(ComponentType.POSITION);
-            StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
+            TransformationStorage pc =
+                    (TransformationStorage) parent.getComponent(ComponentType.TRANSFORMATION);
+            StackStorage sc = (StackStorage) entity.getComponent(ComponentType.STACK);
             ProjectileIndustry pri =
                     (ProjectileIndustry) Resources.get().getIndustryMap().get(factory);
 
             double offset = (sc.getStacks() - 1) * -RADIAL_STEP;
             for (int i = 0; i <= (sc.getStacks() - 1); i++) {
-                Entity projectile = pri.produce((PositionComponent) pc.copy(), parent);
-                MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
-                double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
-                double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();
+                Entity projectile = pri.produce((TransformationStorage) pc.copy(), parent);
+                MoveStorage pmc = (MoveStorage) projectile.getComponent(ComponentType.MOVE);
+                double dx = Math.sin(pc.getRotation() + offset) * pmc.getSpeed();
+                double dy = Math.cos(pc.getRotation() + offset) * pmc.getSpeed();
                 projectile.addComponent(new ChangeStorage(new VectorD(dx, dy), 0, 0));
                 Engine.get().getNEntityStream().addEntity(projectile);
                 offset += RADIAL_OFFSET;

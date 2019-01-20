@@ -4,7 +4,7 @@ import code.collision.HitShape;
 import code.components.ComponentType;
 import code.components.storage.hitshape.HitshapeStorage;
 import code.components.item.ItemComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.inventory.InventoryComponent;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -32,18 +32,22 @@ public class EquipSystem extends GameSystem {
 
         for (Entity entity : entities) {
             HitshapeStorage cc = (HitshapeStorage) entity.getComponent(ComponentType.HITSHAPE);
-            PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
-            MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
+            TransformationStorage pc =
+                    (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
+            MatrixD eTransform =
+                    MatrixUtil.getTransRotationMatrix(pc.getPosition(), pc.getRotation());
             HitShape updated = cc.getHitShape().update(eTransform);
 
             HitshapeStorage ccc = (HitshapeStorage) player.getComponent(ComponentType.HITSHAPE);
-            PositionComponent cpc = (PositionComponent) player.getComponent(ComponentType.POSITION);
-            MatrixD cTransform = MatrixUtil.getTransRotationMatrix(cpc.getCoord(), cpc.getRot());
+            TransformationStorage cpc =
+                    (TransformationStorage) player.getComponent(ComponentType.TRANSFORMATION);
+            MatrixD cTransform =
+                    MatrixUtil.getTransRotationMatrix(cpc.getPosition(), cpc.getRotation());
             if (ccc.getHitShape().update(cTransform).collision(updated)) {
                 // remove render, equip, position, age, velocity
                 entity.removeComponent(ComponentType.RENDER);
                 entity.removeComponent(ComponentType.EQUIP);
-                entity.removeComponent(ComponentType.POSITION);
+                entity.removeComponent(ComponentType.TRANSFORMATION);
                 entity.removeComponent(ComponentType.AGE);
                 entity.removeComponent(ComponentType.CHANGE);
                 entity.removeComponent(ComponentType.AI);

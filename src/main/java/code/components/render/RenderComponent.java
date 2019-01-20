@@ -2,7 +2,7 @@ package code.components.render;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.render.subcomponents.Renderer;
+import code.components.render.renderers.Renderer;
 import code.entity.Entity;
 import code.graphics.buffer.MasterBuffer;
 import code.graphics.buffer.RenderJob;
@@ -17,6 +17,10 @@ public class RenderComponent extends Component {
     private List<Renderer> renderers;
     private boolean visible;
     private RenderLayer layer;
+
+    public RenderComponent() {
+        super(ComponentType.RENDER);
+    }
 
     public RenderComponent(List<Renderer> renderers, boolean visible, RenderLayer layer) {
         super(ComponentType.RENDER);
@@ -49,6 +53,20 @@ public class RenderComponent extends Component {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    /**
+     * @return the layer
+     */
+    public RenderLayer getLayer() {
+        return layer;
+    }
+
+    /**
+     * @param layer the layer to set
+     */
+    public void setLayer(RenderLayer layer) {
+        this.layer = layer;
     }
 
     public Component copy() {

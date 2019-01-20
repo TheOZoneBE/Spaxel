@@ -12,8 +12,12 @@ public class CooldownStorage extends Storage {
     private int currentCooldown;
     private int maxCooldown;
 
+    public CooldownStorage() {
+        super(ComponentType.COOLDOWN);
+    }
+
     /**
-     * Create a new CooldownComponent with the specified cooldown
+     * Create a new CooldownStorage with the specified cooldown
      * 
      * @param currentCooldown the current cooldown
      * @param maxCooldown     the maximum cooldown

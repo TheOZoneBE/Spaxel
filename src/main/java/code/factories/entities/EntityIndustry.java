@@ -4,7 +4,6 @@ import code.components.ComponentType;
 import code.components.Component;
 import code.entity.EntityType;
 import code.entity.Entity;
-import code.factories.components.ComponentFactory;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.EnumMap;
@@ -18,8 +17,8 @@ import java.util.Map;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type",
         visible = true)
-@JsonSubTypes({@JsonSubTypes.Type(value = HitParticleIndustry.class, name = "HITPARTICLE"),
-        @JsonSubTypes.Type(value = TrailSegmentIndustry.class, name = "TRAILSEGMENT"),
+@JsonSubTypes({@JsonSubTypes.Type(value = RandomParticleIndustry.class, name = "RANDOM_PARTICLE"),
+        @JsonSubTypes.Type(value = StaticParticleIndustry.class, name = "STATIC_PARTICLE"),
         @JsonSubTypes.Type(value = SpawnerIndustry.class, name = "SPAWNER"),
         @JsonSubTypes.Type(value = EnemyIndustry.class, name = "ENEMY"),
         @JsonSubTypes.Type(value = ProjectileIndustry.class, name = "PROJECTILE"),
@@ -29,7 +28,8 @@ import java.util.Map;
         @JsonSubTypes.Type(value = EffectIndustry.class, name = "VISUAL_EFFECT"),})
 public class EntityIndustry {
     private EntityType type;
-    private List<ComponentFactory> factories;
+    private List<Component> blueprints;
+    private List<String> links;
 
     /**
      * Creates a new EntityIndustry
@@ -56,19 +56,19 @@ public class EntityIndustry {
      */
     public Map<ComponentType, Component> buildComponents() {
         EnumMap<ComponentType, Component> components = new EnumMap<>(ComponentType.class);
-        for (ComponentFactory factory : factories) {
-            Component c = factory.make();
+        for (Component blueprint : blueprints) {
+            Component c = blueprint.copy();
             components.put(c.getType(), c);
         }
         return components;
     }
 
-    public List<ComponentFactory> getFactories() {
-        return factories;
+    public List<Component> getBlueprints() {
+        return blueprints;
     }
 
-    public void setFactories(List<ComponentFactory> factories) {
-        this.factories = factories;
+    public void setBlueprints(List<Component> blueprints) {
+        this.blueprints = blueprints;
     }
 
     public EntityType getType() {
@@ -77,5 +77,19 @@ public class EntityIndustry {
 
     public void setType(EntityType type) {
         this.type = type;
+    }
+
+    /**
+     * @return the links
+     */
+    public List<String> getLinks() {
+        return links;
+    }
+
+    /**
+     * @param links the links to set
+     */
+    public void setLinks(List<String> links) {
+        this.links = links;
     }
 }

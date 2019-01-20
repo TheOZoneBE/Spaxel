@@ -1,6 +1,6 @@
 package code.factories.components;
 
-import code.components.actor.ActorComponent;
+import code.components.storage.status.StatusStorage;
 import code.components.Component;
 
 /**
@@ -16,7 +16,7 @@ public class ActorComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new ActorComponent(canShoot, canMove);
+        return new StatusStorage(canShoot, canMove);
     }
 
     public boolean isCanShoot() {

@@ -3,7 +3,7 @@ package code.components.inventory;
 import code.components.Component;
 import code.components.ComponentType;
 import code.components.item.ItemComponent;
-import code.components.stack.StackComponent;
+import code.components.storage.stack.StackStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import java.util.List;
@@ -33,7 +33,7 @@ public abstract class InventoryComponent extends Component {
         for (Entity entity : items) {
             String otherName = ((ItemComponent) entity.getComponent(ComponentType.ITEM)).getName();
             if (itemName.equals(otherName)) {
-                StackComponent sc = (StackComponent) entity.getComponent(ComponentType.STACK);
+                StackStorage sc = (StackStorage) entity.getComponent(ComponentType.STACK);
                 sc.setStacks(sc.getStacks() + 1);
                 contains = true;
                 break;

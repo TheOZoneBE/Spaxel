@@ -26,7 +26,9 @@ public enum SystemType {
 
 	HIT("hit"),
 
-	INPUT("input"),
+	MOUSE("mouse"),
+
+	KEYBOARD("keyboard"),
 
 	EQUIP("equip"),
 

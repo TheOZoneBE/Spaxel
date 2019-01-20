@@ -12,8 +12,12 @@ import code.components.ComponentType;
 public class HitshapeStorage extends Storage {
     private HitShape hitShape;
 
+    public HitshapeStorage() {
+        super(ComponentType.HITSHAPE);
+    }
+
     /**
-     * Create a new CollisionComponent with the specified hitShape
+     * Create a new HitshapeStorage with the specified hitShape
      * 
      * @param hitShape the hitshape of the component
      */

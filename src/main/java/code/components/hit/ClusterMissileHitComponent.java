@@ -2,9 +2,9 @@ package code.components.hit;
 
 import code.components.ComponentType;
 import code.components.Component;
-import code.components.particle.ParticleComponent;
-import code.components.sprite.SpriteComponent;
+import code.components.storage.renderable.RenderableStorage;
 import code.entity.Entity;
+import code.graphics.texture.Texture;
 import code.util.SpriteDataUtil;
 
 /**
@@ -20,11 +20,10 @@ public class ClusterMissileHitComponent extends HitComponent {
     public void hit(Entity entity, Entity victim) {
         dealDamage(victim);
 
-        SpriteComponent sc = (SpriteComponent) victim.getComponent(ComponentType.SPRITE);
-        addParticleSpawner(entity,
-                new ParticleComponent(
-                        SpriteDataUtil.getRandomPart(sc.getSprite(), PARTICLE_SIZE, PARTICLE_SIZE),
-                        sc.getScale()),
+        RenderableStorage sc = (RenderableStorage) victim.getComponent(ComponentType.RENDERABLE);
+        addParticleSpawner(
+                entity, new RenderableStorage(SpriteDataUtil
+                        .getRandomPart((Texture) sc.getRenderable(), PARTICLE_SIZE, PARTICLE_SIZE)),
                 "missile_hit_particle_spawner_industry");
 
         entity.destroy();

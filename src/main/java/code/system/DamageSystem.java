@@ -1,8 +1,8 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.damage.Damage;
-import code.components.damage.DamageComponent;
+import code.components.storage.damage.Damage;
+import code.components.storage.damage.DamageStorage;
 import code.components.health.HealthComponent;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -22,13 +22,12 @@ public class DamageSystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> entities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
+        Set<Entity> entities = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
         for (Entity e : entities) {
-            DamageComponent dc = (DamageComponent) e.getComponent(ComponentType.DAMAGE);
+            DamageStorage dc = (DamageStorage) e.getComponent(ComponentType.DAMAGE);
             HealthComponent hc = (HealthComponent) e.getComponent(ComponentType.HEALTH);
             for (Damage d : dc.getDamages()) {
-                hc.setHealth(hc.getHealth() - d.getDamage());
+                hc.setCurrentHealth(hc.getCurrentHealth() - d.getDamage());
             }
             dc.getDamages().clear();
         }

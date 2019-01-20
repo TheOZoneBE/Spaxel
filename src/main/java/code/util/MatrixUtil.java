@@ -25,7 +25,7 @@ public final class MatrixUtil {
 	 * @return a {@link code.math.MatrixD} that combines all these transformations
 	 */
 	public static MatrixD getTransformationMatrix(VectorD coord, double rot, VectorD scale) {
-		return getRotationMatrix(rot).multiplicate(getScaleMatrix(scale))
+		return getRotationationMatrix(rot).multiplicate(getScaleMatrix(scale))
 				.sum(getTranslationMatrix(coord));
 	}
 
@@ -39,7 +39,7 @@ public final class MatrixUtil {
 	 * @return a {@link code.math.MatrixD} that combines these transformations.
 	 */
 	public static MatrixD getTransRotationMatrix(VectorD coord, double rot) {
-		return getRotationMatrix(rot).sum(getTranslationMatrix(coord));
+		return getRotationationMatrix(rot).sum(getTranslationMatrix(coord));
 	}
 
 	/**
@@ -49,7 +49,7 @@ public final class MatrixUtil {
 	 * 
 	 * @return a {@link code.math.MatrixD} that executes a rotation
 	 */
-	public static MatrixD getRotationMatrix(double rot) {
+	public static MatrixD getRotationationMatrix(double rot) {
 		double sin = Math.sin(rot);
 		double cos = Math.cos(rot);
 		return new MatrixD(MATRIX_DIM, MATRIX_DIM,

@@ -1,9 +1,9 @@
 {
   "basic_laser_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "basic_laser",
         "scale": 1
       },
@@ -28,9 +28,9 @@
   },
   "piercing_laser_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "piercing_laser",
         "scale": 1
       },
@@ -55,9 +55,9 @@
   },
   "disrupt_laser_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "disrupt_laser",
         "scale": 1
       },
@@ -82,9 +82,9 @@
   },
   "slowing_laser_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "slowing_laser",
         "scale": 1
       },
@@ -109,9 +109,9 @@
   },
   "basic_missile_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "basic_missile",
         "scale": 1
       },
@@ -136,9 +136,9 @@
   },
   "cluster_missile_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "cluster_missile",
         "scale": 1
       },
@@ -163,9 +163,9 @@
   },
   "hacking_missile_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "hacking_missile",
         "scale": 1
       },
@@ -190,9 +190,9 @@
   },
   "homing_missile_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "homing_missile",
         "scale": 1
       },
@@ -217,9 +217,9 @@
   },
   "basic_shield_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "basic_shield",
         "scale": 1
       },
@@ -235,9 +235,9 @@
         "maxCapacity": 50,
         "effectIndustry": {
           "type": "VISUAL_EFFECT",
-          "factories": [
+          "blueprints": [
             {
-              "type": "SPRITE",
+              "type": "RENDERABLE",
               "sprite": "basic_shield_effect",
               "scale": 4
             },
@@ -247,7 +247,7 @@
               "layer": "GAME",
               "renderers": [
                 {
-                  "type": "SPRITESHEET"
+                  "type": "RENDERABLESHEET"
                 },
                 {
                   "type": "LINK_LINK_VELOCITY"
@@ -272,9 +272,9 @@
   },
   "anti_shield_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "anti_shield",
         "scale": 1
       },
@@ -290,9 +290,9 @@
         "maxCapacity": 35,
         "effectIndustry": {
           "type": "VISUAL_EFFECT",
-          "factories": [
+          "blueprints": [
             {
-              "type": "SPRITE",
+              "type": "RENDERABLE",
               "sprite": "anti_shield_effect",
               "scale": 4
             },
@@ -302,7 +302,7 @@
               "layer": "GAME",
               "renderers": [
                 {
-                  "type": "SPRITESHEET"
+                  "type": "RENDERABLESHEET"
                 },
                 {
                   "type": "LINK_LINK_VELOCITY"
@@ -327,9 +327,9 @@
   },
   "active_shield_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "active_shield",
         "scale": 1
       },
@@ -345,9 +345,9 @@
         "maxCapacity": 35,
         "effectIndustry": {
           "type": "VISUAL_EFFECT",
-          "factories": [
+          "blueprints": [
             {
-              "type": "SPRITE",
+              "type": "RENDERABLE",
               "sprite": "active_shield_effect",
               "scale": 4
             },
@@ -357,7 +357,7 @@
               "layer": "GAME",
               "renderers": [
                 {
-                  "type": "SPRITESHEET"
+                  "type": "RENDERABLESHEET"
                 },
                 {
                   "type": "LINK_LINK_VELOCITY"
@@ -382,9 +382,9 @@
   },
   "force_shield_item_industry": {
     "type": "ITEM",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "force_shield",
         "scale": 1
       },
@@ -400,9 +400,9 @@
         "maxCapacity": 35,
         "effectIndustry": {
           "type": "VISUAL_EFFECT",
-          "factories": [
+          "blueprints": [
             {
-              "type": "SPRITE",
+              "type": "RENDERABLE",
               "sprite": "force_shield_effect",
               "scale": 4
             },
@@ -412,7 +412,7 @@
               "layer": "GAME",
               "renderers": [
                 {
-                  "type": "SPRITESHEET"
+                  "type": "RENDERABLESHEET"
                 },
                 {
                   "type": "LINK_LINK_VELOCITY"

@@ -6,21 +6,11 @@ package code.components;
  * Created by theo on 31/05/17.
  */
 public enum ComponentType {
-    POSITION("position"),
-
     HEALTH("health"),
-
-    SPRITE("sprite"),
-
-    MOVE("move"),
 
     RENDER("render"),
 
-    SPAWNER("spawner"),
-
     AI("ai"),
-
-    DAMAGE("damage"),
 
     ITEM("item"),
 
@@ -28,15 +18,11 @@ public enum ComponentType {
 
     HIT("hit"),
 
-    PARTICLE("particle"),
-
     PRIMARY("primary"),
 
     SECONDARY("secondary"),
 
     SHIP("ship"),
-
-    INPUT("input"),
 
     EQUIP("equip"),
 
@@ -47,8 +33,6 @@ public enum ComponentType {
     AFFECT("affect"),
 
     EFFECT("effect"),
-
-    ACTOR("actor"),
 
     MARKER("marker"),
 
@@ -64,8 +48,22 @@ public enum ComponentType {
 
     HITSHAPE("collision"),
 
-    CHANGE("velocity")
-    ;
+    CHANGE("velocity"),
+
+    SPAWN_PROPERTIES("spawn_properties"),
+
+    MOVE("move"),
+
+    STATUS("actor"),
+
+    DAMAGE("damage"),
+
+    // Behaviour components
+    SPAWN("spawn"),
+
+    KEYBOARD("keyboard"),
+
+    MOUSE("mouse");
 
 
 

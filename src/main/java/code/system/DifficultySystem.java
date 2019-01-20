@@ -3,7 +3,7 @@ package code.system;
 import code.components.ComponentType;
 import code.components.health.HealthComponent;
 import code.components.item.ItemType;
-import code.components.position.PositionComponent;
+import code.components.storage.transformation.TransformationStorage;
 import code.engine.Engine;
 import code.entity.EntityType;
 import code.entity.Entity;
@@ -21,77 +21,80 @@ import code.engine.Resources;
  * Created by theo on 3/01/18.
  */
 public class DifficultySystem extends GameSystem {
-    private static final int MIN_SPAWN_DISTANCE = 500;
-    private static final int MAX_SPAWN_DISTANCE = 1000;
-    private static final int ENEMY_LEVELUP_TICK = 60;
-    private static final int ENEMY_ITEMUP_TICK = 120;
-    private static final int TICKS_INA_SECOND = 50;
-    private static final int MAX_SPAWN_TIME = 7;
-    private static final int NUM_INVENTORIES = 3;
-    private int nextSpawn;
-    private int spawnCap = 1;
-    private int numItems = 1;
-    private int maxLevel = 1;
-    private String[] enemyIndustries = {"enemy_green_industry", "enemy_white_industry",
-            "enemy_red_industry", "enemy_blue_industry"};
-    private SpaxelRandom rand;
+        private static final int MIN_SPAWN_DISTANCE = 500;
+        private static final int MAX_SPAWN_DISTANCE = 1000;
+        private static final int ENEMY_LEVELUP_TICK = 60;
+        private static final int ENEMY_ITEMUP_TICK = 120;
+        private static final int TICKS_INA_SECOND = 50;
+        private static final int MAX_SPAWN_TIME = 7;
+        private static final int NUM_INVENTORIES = 3;
+        private int nextSpawn;
+        private int spawnCap = 1;
+        private int numItems = 1;
+        private int maxLevel = 1;
+        private String[] enemyIndustries = {"enemy_green_industry", "enemy_white_industry",
+                        "enemy_red_industry", "enemy_blue_industry"};
+        private SpaxelRandom rand;
 
-    /**
-     * Create a new DifficultySystem
-     */
-    public DifficultySystem() {
-        super(SystemType.DIFFICULTY);
-        rand = new SpaxelRandom();
-    }
-
-    public void update() {
-        if (nextSpawn > 0) {
-            nextSpawn--;
+        /**
+         * Create a new DifficultySystem
+         */
+        public DifficultySystem() {
+                super(SystemType.DIFFICULTY);
+                rand = new SpaxelRandom();
         }
-        Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(EntityType.ENEMY);
-        Entity player = Engine.get().getNEntityStream().getPlayer();
-        PositionComponent playerPos =
-                (PositionComponent) player.getComponent(ComponentType.POSITION);
 
-        if (nextSpawn == 0 && enemies.size() < spawnCap) {
-            EnemyIndustry ei = (EnemyIndustry) Resources.get().getIndustryMap()
-                    .get(rand.choose(enemyIndustries));
-            // entity settings
-            int xOffset = rand.choose(1, -1) * rand.between(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE);
-            int yOffset = rand.choose(1, -1) * rand.between(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE);
+        public void update() {
+                if (nextSpawn > 0) {
+                        nextSpawn--;
+                }
+                Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(EntityType.ENEMY);
+                Entity player = Engine.get().getNEntityStream().getPlayer();
+                TransformationStorage playerPos = (TransformationStorage) player
+                                .getComponent(ComponentType.TRANSFORMATION);
 
-            VectorD offset = new VectorD(xOffset, yOffset);
+                if (nextSpawn == 0 && enemies.size() < spawnCap) {
+                        EnemyIndustry ei = (EnemyIndustry) Resources.get().getIndustryMap()
+                                        .get(rand.choose(enemyIndustries));
+                        // entity settings
+                        int xOffset = rand.choose(1, -1)
+                                        * rand.between(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE);
+                        int yOffset = rand.choose(1, -1)
+                                        * rand.between(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE);
 
-            Entity entity = ei.produce(new PositionComponent(playerPos.getCoord().sum(offset), 0));
-            ((HealthComponent) entity.getComponent(ComponentType.HEALTH))
-                    .levelUp(rand.between(1, maxLevel + 1));
+                        VectorD offset = new VectorD(xOffset, yOffset);
 
-            // items
-            EntityUtil.addRandomItems(entity, (1 + 1 + numItems) / NUM_INVENTORIES,
-                    ItemType.PRIMARY, ComponentType.PRIMARY);
-            EntityUtil.addRandomItems(entity, (1 + numItems) / NUM_INVENTORIES, ItemType.SECONDARY,
-                    ComponentType.SECONDARY);
-            EntityUtil.addRandomItems(entity, numItems / NUM_INVENTORIES, ItemType.SHIP,
-                    ComponentType.SHIP);
+                        Entity entity = ei.produce(new TransformationStorage(
+                                        playerPos.getPosition().sum(offset), 0, 0));
+                        ((HealthComponent) entity.getComponent(ComponentType.HEALTH))
+                                        .levelUp(rand.between(1, maxLevel + 1));
 
-            // Add entity
-            Engine.get().getNEntityStream().addEntity(entity);
-            // update difficulty
-            updateDifficulty();
+                        // items
+                        EntityUtil.addRandomItems(entity, (1 + 1 + numItems) / NUM_INVENTORIES,
+                                        ItemType.PRIMARY, ComponentType.PRIMARY);
+                        EntityUtil.addRandomItems(entity, (1 + numItems) / NUM_INVENTORIES,
+                                        ItemType.SECONDARY, ComponentType.SECONDARY);
+                        EntityUtil.addRandomItems(entity, numItems / NUM_INVENTORIES, ItemType.SHIP,
+                                        ComponentType.SHIP);
+
+                        // Add entity
+                        Engine.get().getNEntityStream().addEntity(entity);
+                        // update difficulty
+                        updateDifficulty();
+                }
         }
-    }
 
-    /**
-     * Update the difficulty based on the time
-     */
-    public void updateDifficulty() {
-        int time = Engine.get().getGameState().getGameTime();
-        nextSpawn =
-                time < MAX_SPAWN_TIME * TICKS_INA_SECOND ? MAX_SPAWN_TIME * TICKS_INA_SECOND - time
-                        : TICKS_INA_SECOND;
+        /**
+         * Update the difficulty based on the time
+         */
+        public void updateDifficulty() {
+                int time = Engine.get().getGameState().getGameTime();
+                nextSpawn = time < MAX_SPAWN_TIME * TICKS_INA_SECOND
+                                ? MAX_SPAWN_TIME * TICKS_INA_SECOND - time
+                                : TICKS_INA_SECOND;
 
-        spawnCap = 1 + (int) Math.sqrt(time);
-        numItems = 1 + time / ENEMY_ITEMUP_TICK;
-        maxLevel = 1 + time / ENEMY_LEVELUP_TICK;
-    }
+                spawnCap = 1 + (int) Math.sqrt(time);
+                numItems = 1 + time / ENEMY_ITEMUP_TICK;
+                maxLevel = 1 + time / ENEMY_LEVELUP_TICK;
+        }
 }

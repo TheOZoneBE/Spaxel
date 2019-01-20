@@ -76,7 +76,7 @@ public class Texture extends Renderable {
         return textureCoord;
     }
 
-    public float[] getCoordinates() {
+    public float[] getPositioninates() {
         return coordinates;
     }
 

@@ -1,7 +1,7 @@
 package code.components.affect;
 
 import code.components.ComponentType;
-import code.components.move.MoveComponent;
+import code.components.storage.move.MoveStorage;
 import code.entity.Entity;
 import code.components.Component;
 
@@ -14,9 +14,9 @@ public class SlowAffectComponent extends AffectComponent {
     }
 
     public void affect(Entity entity, Entity victim) {
-        MoveComponent mc = (MoveComponent) victim.getComponent(ComponentType.MOVE);
-        mc.setAcc(mc.getAcc() * factor);
-        mc.setMaxSpeed(mc.getMaxSpeed() * factor);
+        MoveStorage mc = (MoveStorage) victim.getComponent(ComponentType.MOVE);
+        mc.setAcceleration(mc.getAcceleration() * factor);
+        mc.setSpeed(mc.getSpeed() * factor);
     }
 
     public Component copy() {

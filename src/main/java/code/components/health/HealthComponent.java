@@ -7,28 +7,28 @@ import code.components.ComponentType;
  * Created by theo on 3/06/17.
  */
 public class HealthComponent extends Component {
-    private int health;
+    private int currentHealth;
     private int baseHealth;
     private int maxHealth;
 
     public HealthComponent(int health, int baseHealth) {
         super(ComponentType.HEALTH);
-        this.health = health;
+        this.currentHealth = health;
         this.maxHealth = baseHealth;
         this.baseHealth = baseHealth;
     }
 
-    public void levelUp(int level){
-        maxHealth = baseHealth *level;
-        health = maxHealth;
+    public void levelUp(int level) {
+        maxHealth = baseHealth * level;
+        currentHealth = maxHealth;
     }
 
-    public int getHealth() {
-        return health;
+    public int getCurrentHealth() {
+        return currentHealth;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setCurrentHealth(int health) {
+        this.currentHealth = health;
     }
 
     public int getMaxHealth() {
@@ -47,7 +47,7 @@ public class HealthComponent extends Component {
         this.baseHealth = baseHealth;
     }
 
-    public Component copy(){
-        return new HealthComponent(health, baseHealth);
+    public Component copy() {
+        return new HealthComponent(currentHealth, baseHealth);
     }
 }

@@ -3,8 +3,8 @@ package code.components.ai;
 import code.Constants;
 import code.components.ComponentType;
 import code.components.Component;
-import code.components.move.MoveComponent;
-import code.components.position.PositionComponent;
+import code.components.storage.move.MoveStorage;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
@@ -23,8 +23,9 @@ public class HomingMissileAIComponent extends AIComponent {
     }
 
     public void execute(Entity entity) {
-        PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
-        MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
+        TransformationStorage pc =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
+        MoveStorage mc = (MoveStorage) entity.getComponent(ComponentType.MOVE);
         ChangeStorage vc = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
 
         Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
@@ -33,8 +34,9 @@ public class HomingMissileAIComponent extends AIComponent {
         Entity closest = null;
         for (Entity e : enemies) {
             if (e != entity.getParent()) {
-                PositionComponent epc = (PositionComponent) e.getComponent(ComponentType.POSITION);
-                double dist = epc.getCoord().sum(pc.getCoord().multiplicate(-1)).length();
+                TransformationStorage epc =
+                        (TransformationStorage) e.getComponent(ComponentType.TRANSFORMATION);
+                double dist = epc.getPosition().sum(pc.getPosition().multiplicate(-1)).length();
                 if (minDist < 0 || dist < minDist) {
                     minDist = dist;
                     closest = e;
@@ -42,19 +44,19 @@ public class HomingMissileAIComponent extends AIComponent {
             }
         }
         if (closest != null && minDist < DISTANCE_THRESHOLD) {
-            PositionComponent cpc =
-                    (PositionComponent) closest.getComponent(ComponentType.POSITION);
+            TransformationStorage cpc =
+                    (TransformationStorage) closest.getComponent(ComponentType.TRANSFORMATION);
 
-            VectorD diff = cpc.getCoord().sum(pc.getCoord().multiplicate(-1));
+            VectorD diff = cpc.getPosition().sum(pc.getPosition().multiplicate(-1));
             double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
             if (rotToGet < 0) {
                 rotToGet += Constants.FULL_CIRCLE;
             }
-            double rotChange = rotToGet - pc.getRot();
+            double rotChange = rotToGet - pc.getRotation();
             vc.setRotationChange(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
 
-            vc.setPositionChange(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
-                    .multiplicate(mc.getMaxSpeed()));
+            vc.setPositionChange(new VectorD(Math.sin(pc.getRotation()), Math.cos(pc.getRotation()))
+                    .multiplicate(mc.getSpeed()));
         }
     }
 

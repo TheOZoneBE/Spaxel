@@ -1,9 +1,9 @@
 {
   "basic_laser_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "basic_laser_projectile",
         "scale": 2
       },
@@ -36,7 +36,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -52,9 +52,9 @@
   },
   "piercing_laser_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "piercing_laser_projectile",
         "scale": 2
       },
@@ -87,7 +87,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -103,9 +103,9 @@
   },
   "disrupt_laser_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "disrupt_laser_projectile",
         "scale": 2
       },
@@ -138,7 +138,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -154,9 +154,9 @@
   },
   "slowing_laser_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "slowing_laser_projectile",
         "scale": 2
       },
@@ -189,7 +189,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -205,9 +205,9 @@
   },
   "basic_missile_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "basic_missile_projectile",
         "scale": 2
       },
@@ -240,7 +240,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -256,9 +256,9 @@
   },
   "cluster_missile_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "cluster_missile_projectile",
         "scale": 2
       },
@@ -291,7 +291,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -311,9 +311,9 @@
   },
   "cluster_shrapnel_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "cluster_missile_projectile",
         "scale": 2
       },
@@ -346,7 +346,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -362,9 +362,9 @@
   },
   "hacking_missile_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "hacking_missile_projectile",
         "scale": 2
       },
@@ -397,7 +397,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -413,9 +413,9 @@
   },
   "homing_missile_projectile_industry": {
     "type": "PROJECTILE",
-    "factories": [
+    "blueprints": [
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "homing_missile_projectile",
         "scale": 2
       },
@@ -449,7 +449,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"

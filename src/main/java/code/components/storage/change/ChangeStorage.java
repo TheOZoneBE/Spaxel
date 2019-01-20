@@ -1,16 +1,20 @@
 package code.components.storage.change;
 
-import code.components.Component;
+import code.components.Storage;
 import code.components.ComponentType;
 import code.math.VectorD;
 
 /**
  * Created by theo on 3/06/17.
  */
-public class ChangeStorage extends Component {
+public class ChangeStorage extends Storage {
     private VectorD positionChange;
     private double rotationChange;
     private double scaleChange;
+
+    public ChangeStorage() {
+        super(ComponentType.CHANGE);
+    }
 
     public ChangeStorage(VectorD positionChange, double rotationChange, double scaleChange) {
         super(ComponentType.CHANGE);
@@ -36,7 +40,7 @@ public class ChangeStorage extends Component {
     /**
      * @return the rotationChange
      */
-    public double getRotationChange() {
+    public double getRotationationChange() {
         return rotationChange;
     }
 
@@ -61,7 +65,7 @@ public class ChangeStorage extends Component {
         this.scaleChange = scaleChange;
     }
 
-    public Component copy() {
+    public ChangeStorage copy() {
         return new ChangeStorage(positionChange.copy(), rotationChange, scaleChange);
     }
 }

@@ -3,18 +3,18 @@ package code.components.death.actor;
 import code.components.ComponentType;
 import code.components.Component;
 import code.components.storage.age.AgeStorage;
+import code.components.storage.renderable.RenderableStorage;
+import code.components.storage.transformation.TransformationStorage;
 import code.components.ai.DroppedItemAIComponent;
 import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.equip.EquipComponent;
 import code.components.experience.ExperienceComponent;
-import code.components.particle.ParticleComponent;
-import code.components.position.PositionComponent;
-import code.components.sprite.SpriteComponent;
 import code.engine.Engine;
 import code.engine.Resources;
 import code.entity.Entity;
 import code.factories.entities.SpawnerIndustry;
+import code.graphics.texture.Texture;
 import code.util.SpriteDataUtil;
 import code.util.EntityUtil;
 import code.util.SpaxelRandom;
@@ -44,12 +44,15 @@ public class BasicEnemyDeathComponent extends DeathComponent {
     public void die(Entity entity) {
         SpawnerIndustry hpsi = (SpawnerIndustry) Resources.get().getIndustryMap()
                 .get("enemy_death_particle_spawner_industry");
-        SpriteComponent esc = (SpriteComponent) entity.getComponent(ComponentType.SPRITE);
-        PositionComponent epc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
-        ParticleComponent pac = new ParticleComponent(SpriteDataUtil.getRandomPart(esc.getSprite(),
-                DEATH_PARTICLE_SIZE, DEATH_PARTICLE_SIZE), esc.getScale());
+        RenderableStorage rndrStore =
+                (RenderableStorage) entity.getComponent(ComponentType.RENDERABLE);
+        TransformationStorage trnsStore =
+                (TransformationStorage) entity.getComponent(ComponentType.TRANSFORMATION);
+
+        RenderableStorage particle = new RenderableStorage(SpriteDataUtil.getRandomPart(
+                (Texture) rndrStore.getRenderable(), DEATH_PARTICLE_SIZE, DEATH_PARTICLE_SIZE));
         // add particle effect
-        Engine.get().getNEntityStream().addEntity(hpsi.produce(epc, pac));
+        Engine.get().getNEntityStream().addEntity(hpsi.produce(trnsStore, particle));
 
         Engine.get().getGameState().addScore(BASIC_ENEMY_SCORE);
         // add experience
@@ -63,7 +66,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
                     prop -> EntityUtil.getAllItemNames(entity).contains(prop.getName()));
             item.addComponent(new EquipComponent());
             item.addComponent(new AgeStorage(ITEM_LIFETIME, ITEM_LIFETIME));
-            item.addComponent(epc.copy());
+            item.addComponent(trnsStore.copy());
             item.addComponent(entity.getComponent(ComponentType.CHANGE));
             item.addComponent(entity.getComponent(ComponentType.RENDER));
             item.addComponent(new DroppedItemAIComponent());

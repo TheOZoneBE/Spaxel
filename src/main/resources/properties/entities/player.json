@@ -1,7 +1,7 @@
 {
   "player_white_industry": {
     "type": "PLAYER",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_white"
@@ -20,7 +20,7 @@
         "baseHealth": 100
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "white",
         "scale": 4
       },
@@ -30,7 +30,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -69,7 +69,7 @@
         ]
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -107,7 +107,7 @@
   },
   "player_red_industry": {
     "type": "PLAYER",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_red"
@@ -126,7 +126,7 @@
         "baseHealth": 50
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "red",
         "scale": 4
       },
@@ -136,7 +136,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -175,7 +175,7 @@
         ]
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -213,7 +213,7 @@
   },
   "player_green_industry": {
     "type": "PLAYER",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_green"
@@ -232,7 +232,7 @@
         "baseHealth": 100
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "green",
         "scale": 4
       },
@@ -242,7 +242,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -281,7 +281,7 @@
         ]
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0
@@ -319,7 +319,7 @@
   },
   "player_blue_industry": {
     "type": "PLAYER",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_blue"
@@ -338,7 +338,7 @@
         "baseHealth": 200
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "blue",
         "scale": 4
       },
@@ -348,7 +348,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -387,7 +387,7 @@
         ]
       },
       {
-        "type": "POSITION",
+        "type": "TRANSFORMATION",
         "coord": {
           "x": 0,
           "y": 0

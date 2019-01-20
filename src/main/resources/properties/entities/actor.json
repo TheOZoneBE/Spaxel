@@ -1,7 +1,7 @@
 {
   "enemy_white_industry": {
     "type": "ENEMY",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_white"
@@ -20,7 +20,7 @@
         "baseHealth": 20
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "white",
         "scale": 4
       },
@@ -30,7 +30,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -92,7 +92,7 @@
   },
   "enemy_red_industry": {
     "type": "ENEMY",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_red"
@@ -111,7 +111,7 @@
         "baseHealth": 10
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "red",
         "scale": 4
       },
@@ -121,7 +121,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -183,7 +183,7 @@
   },
   "enemy_green_industry": {
     "type": "ENEMY",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_green"
@@ -202,7 +202,7 @@
         "baseHealth": 20
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "green",
         "scale": 4
       },
@@ -212,7 +212,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"
@@ -274,7 +274,7 @@
   },
   "enemy_blue_industry": {
     "type": "ENEMY",
-    "factories": [
+    "blueprints": [
       {
         "type": "HITSHAPE",
         "hitShape": "hitshape_blue"
@@ -293,7 +293,7 @@
         "baseHealth": 40
       },
       {
-        "type": "SPRITE",
+        "type": "RENDERABLE",
         "sprite": "blue",
         "scale": 4
       },
@@ -303,7 +303,7 @@
         "layer": "GAME",
         "renderers": [
           {
-            "type": "SPRITESHEET"
+            "type": "RENDERABLESHEET"
           },
           {
             "type": "VELOCITY"

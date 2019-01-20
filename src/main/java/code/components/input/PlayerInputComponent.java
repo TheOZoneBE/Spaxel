@@ -8,7 +8,7 @@ import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.input.Keyboard;
@@ -44,11 +44,12 @@ public class PlayerInputComponent extends InputComponent {
     private static void handleMoving(Entity entity) {
         Keyboard keys = Engine.get().getKeyboard();
         MouseWrapper mouse = Engine.get().getMouseWrapper();
-        VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
+        ChangeStorage vc = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
 
-        VectorD velChange = vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT));
+        VectorD velChange =
+                vc.getPositionChange().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT));
         if (keys.get(Key.DOWN).isDown()) {
             velChange = new VectorD(-Math.sin(pc.getRot()), -Math.cos(pc.getRot()))
                     .multiplicate(mc.getAcc());
@@ -66,11 +67,11 @@ public class PlayerInputComponent extends InputComponent {
             velChange = new VectorD(Math.sin(pc.getRot() + Constants.HALF_CIRLCE),
                     Math.cos(pc.getRot() + Constants.HALF_CIRLCE)).multiplicate(mc.getAcc());
         }
-        if (vc.getVelocity().sum(velChange).length() < mc.getMaxSpeed()) {
-            vc.setVelocity(vc.getVelocity().sum(velChange));
+        if (vc.getPositionChange().sum(velChange).length() < mc.getMaxSpeed()) {
+            vc.setPositionChange(vc.getPositionChange().sum(velChange));
         } else {
-            vc.setVelocity(vc.getVelocity()
-                    .sum(vc.getVelocity().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT))));
+            vc.setPositionChange(vc.getPositionChange().sum(
+                    vc.getPositionChange().multiplicate(-1 / (mc.getMaxSpeed() * SPEED_MULT))));
         }
 
         VectorD mousePos = mouse.getPos();
@@ -84,7 +85,7 @@ public class PlayerInputComponent extends InputComponent {
         }
         double rotChange = rotToGet - pc.getRot();
 
-        vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
+        vc.setRotationChange(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
     }
 
     private static void handleShooting(Entity entity) {

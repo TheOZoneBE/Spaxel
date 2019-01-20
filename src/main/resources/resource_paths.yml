@@ -20,12 +20,13 @@ ui:
   - /ui/class_selection.xml
   - /ui/game_over.xml
 industry:
-  - /resources/entity.json
-  - /resources/actor.json
-  - /resources/projectile.json
-  - /resources/item.json
-  - /resources/player.json
-  - /resources/effect.json
-  - /resources/marker.json
+  - /properties/entities/particle.json
+  - /properties/entities/spawner.json
+  - /properties/entities/actor.json
+  - /properties/entities/projectile.json
+  - /properties/entities/item.json
+  - /properties/entities/player.json
+  - /properties/entities/effect.json
+  - /properties/entities/marker.json
 keys:
   - /keys/default.yml

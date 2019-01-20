@@ -17,7 +17,7 @@
         "damage": 10
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -68,7 +68,7 @@
         "damage": 5
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -119,7 +119,7 @@
         "damage": 5
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -170,7 +170,7 @@
         "damage": 10
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -221,7 +221,7 @@
         "damage": 25
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -272,7 +272,7 @@
         "damage": 20
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -327,7 +327,7 @@
         "damage": 10
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -378,7 +378,7 @@
         "damage": 20
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {
@@ -430,7 +430,7 @@
         "damage": 25
       },
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_single_point"
       },
       {

@@ -5,7 +5,7 @@ import code.components.storage.cooldown.CooldownStorage;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.stack.StackComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.factories.entities.ProjectileIndustry;
@@ -40,7 +40,7 @@ public abstract class ShootItemComponent extends ItemComponent {
                 MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
                 double dx = Math.sin(pc.getRot() + offset) * pmc.getMaxSpeed();
                 double dy = Math.cos(pc.getRot() + offset) * pmc.getMaxSpeed();
-                projectile.addComponent(new VelocityComponent(new VectorD(dx, dy), 0));
+                projectile.addComponent(new ChangeStorage(new VectorD(dx, dy), 0, 0));
                 Engine.get().getNEntityStream().addEntity(projectile);
                 offset += RADIAL_OFFSET;
             }

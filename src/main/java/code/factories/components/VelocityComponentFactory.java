@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.components.Component;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.math.VectorD;
 
 /**
@@ -17,7 +17,7 @@ public class VelocityComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new VelocityComponent(velocity.copy(), deltaRot);
+        return new ChangeStorage(velocity.copy(), deltaRot, 0);
     }
 
     public VectorD getVelocity() {

@@ -7,7 +7,7 @@ import code.components.death.DeathComponent;
 import code.components.death.DeathType;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.factories.entities.ProjectileIndustry;
@@ -35,7 +35,7 @@ public class ClusterMissileDeathComponent extends DeathComponent {
             MoveComponent pmc = (MoveComponent) projectile.getComponent(ComponentType.MOVE);
             double dx = Math.sin(rot) * pmc.getMaxSpeed();
             double dy = Math.cos(rot) * pmc.getMaxSpeed();
-            projectile.addComponent(new VelocityComponent(new VectorD(dx, dy), 0));
+            projectile.addComponent(new ChangeStorage(new VectorD(dx, dy), 0, 0));
             Engine.get().getNEntityStream().addEntity(projectile);
             rot += Constants.FULL_CIRCLE / MISSILE_SPLIT;
         }

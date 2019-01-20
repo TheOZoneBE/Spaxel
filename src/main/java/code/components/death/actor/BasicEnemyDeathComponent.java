@@ -64,7 +64,7 @@ public class BasicEnemyDeathComponent extends DeathComponent {
             item.addComponent(new EquipComponent());
             item.addComponent(new AgeStorage(ITEM_LIFETIME, ITEM_LIFETIME));
             item.addComponent(epc.copy());
-            item.addComponent(entity.getComponent(ComponentType.VELOCITY));
+            item.addComponent(entity.getComponent(ComponentType.CHANGE));
             item.addComponent(entity.getComponent(ComponentType.RENDER));
             item.addComponent(new DroppedItemAIComponent());
             Engine.get().getNEntityStream().addEntity(item);

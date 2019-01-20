@@ -6,7 +6,7 @@ import code.components.hit.HitComponent;
 import code.components.item.ShieldItemComponent;
 import code.components.position.PositionComponent;
 import code.components.render.RenderComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.components.Component;
@@ -38,9 +38,8 @@ public class ForceShieldItemComponent extends ShieldItemComponent {
                     HitComponent phc = (HitComponent) p.getComponent(ComponentType.HIT);
                     if (phc.getDamage() < capacity) {
                         capacity -= phc.getDamage();
-                        VelocityComponent vc =
-                                (VelocityComponent) p.getComponent(ComponentType.VELOCITY);
-                        vc.setVelocity(vc.getVelocity().multiplicate(-1));
+                        ChangeStorage vc = (ChangeStorage) p.getComponent(ComponentType.CHANGE);
+                        vc.setPositionChange(vc.getPositionChange().multiplicate(-1));
                     } else {
                         phc.setDamage(phc.getDamage() - capacity);
                         capacity = maxCapacity;

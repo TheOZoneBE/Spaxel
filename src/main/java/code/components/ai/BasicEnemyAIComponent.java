@@ -9,7 +9,7 @@ import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
 import code.components.primary.PrimaryComponent;
 import code.components.secondary.SecondaryComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.math.VectorD;
@@ -27,13 +27,14 @@ public class BasicEnemyAIComponent extends AIComponent {
     }
 
     public void execute(Entity entity) {
-        PositionComponent playerPos = (PositionComponent) Engine.get().getNEntityStream().getPlayer()
-                .getComponent(ComponentType.POSITION);
+        PositionComponent playerPos = (PositionComponent) Engine.get().getNEntityStream()
+                .getPlayer().getComponent(ComponentType.POSITION);
 
         ActorComponent ac = (ActorComponent) entity.getComponent(ComponentType.ACTOR);
-        PositionComponent entityPos = (PositionComponent) entity.getComponent(ComponentType.POSITION);
+        PositionComponent entityPos =
+                (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MoveComponent entityMov = (MoveComponent) entity.getComponent(ComponentType.MOVE);
-        VelocityComponent entityVel = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
+        ChangeStorage entityVel = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
         VectorD diff = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1));
         if (ac.canMove()) {
             double rotToGet = Math.atan2(diff.getValue(0), diff.getValue(1));
@@ -41,23 +42,28 @@ public class BasicEnemyAIComponent extends AIComponent {
                 rotToGet += Constants.FULL_CIRCLE;
             }
             double rotChange = rotToGet - entityPos.getRot();
-            entityVel.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, entityMov.getTurnRate()));
+            entityVel.setRotationChange(
+                    EntityUtil.calculateDeltaRot(rotChange, entityMov.getTurnRate()));
 
-            VectorD velChange = new VectorD(Math.sin(entityPos.getRot()), Math.cos(entityPos.getRot()))
-                    .multiplicate(entityMov.getAcc());
+            VectorD velChange =
+                    new VectorD(Math.sin(entityPos.getRot()), Math.cos(entityPos.getRot()))
+                            .multiplicate(entityMov.getAcc());
 
             double dist = playerPos.getCoord().sum(entityPos.getCoord().multiplicate(-1)).length();
             if (dist > DISTANCE_THRESHOLD) {
-                if (entityVel.getVelocity().sum(velChange).length() < entityMov.getMaxSpeed()) {
-                    entityVel.setVelocity(entityVel.getVelocity().sum(velChange));
+                if (entityVel.getPositionChange().sum(velChange).length() < entityMov
+                        .getMaxSpeed()) {
+                    entityVel.setPositionChange(entityVel.getPositionChange().sum(velChange));
                 } else {
                     // TODO needs a rewrite
-                    entityVel.setVelocity(entityVel.getVelocity()
-                            .sum(entityVel.getVelocity().multiplicate(-1 / entityMov.getMaxSpeed() * SPEED_MULTIPLIER))
+                    entityVel.setPositionChange(entityVel.getPositionChange()
+                            .sum(entityVel.getPositionChange()
+                                    .multiplicate(-1 / entityMov.getMaxSpeed() * SPEED_MULTIPLIER))
                             .sum(velChange));
                 }
             } else {
-                entityVel.setVelocity(entityVel.getVelocity().sum(velChange.multiplicate(-1)));
+                entityVel.setPositionChange(
+                        entityVel.getPositionChange().sum(velChange.multiplicate(-1)));
             }
         }
         if (ac.canShoot()) {
@@ -66,7 +72,8 @@ public class BasicEnemyAIComponent extends AIComponent {
                 ItemComponent ic = (ItemComponent) e.getComponent(ComponentType.ITEM);
                 ic.activate(e);
             }
-            SecondaryComponent src = (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
+            SecondaryComponent src =
+                    (SecondaryComponent) entity.getComponent(ComponentType.SECONDARY);
             for (Entity e : src.getItems()) {
                 ItemComponent ic = (ItemComponent) e.getComponent(ComponentType.ITEM);
                 ic.activate(e);

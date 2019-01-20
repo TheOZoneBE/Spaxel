@@ -1,0 +1,56 @@
+{
+    "laser_hit_particle_spawner_industry": {
+        "type": "SPAWNER",
+        "factories": [
+            {
+                "type": "AGE",
+                "life": 2,
+                "maxLife": 2
+            },
+            {
+                "type": "SPAWNER",
+                "spawnerType": "HITPARTICLE",
+                "rate": 5,
+                "maxDeltaRot": 0.1,
+                "maxSpeed": 2,
+                "maxLife": 100
+            }
+        ]
+    },
+    "missile_hit_particle_spawner_industry": {
+        "type": "SPAWNER",
+        "factories": [
+            {
+                "type": "AGE",
+                "life": 3,
+                "maxLife": 3
+            },
+            {
+                "type": "SPAWNER",
+                "spawnerType": "HITPARTICLE",
+                "rate": 4,
+                "maxDeltaRot": 0.15,
+                "maxSpeed": 5,
+                "maxLife": 125
+            }
+        ]
+    },
+    "enemy_death_particle_spawner_industry": {
+        "type": "SPAWNER",
+        "factories": [
+            {
+                "type": "AGE",
+                "life": 5,
+                "maxLife": 5
+            },
+            {
+                "type": "SPAWNER",
+                "spawnerType": "HITPARTICLE",
+                "rate": 4,
+                "maxDeltaRot": 0.05,
+                "maxSpeed": 3,
+                "maxLife": 150
+            }
+        ]
+    }
+}

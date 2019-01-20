@@ -2,7 +2,7 @@ package code.system;
 
 import code.collision.HitShape;
 import code.components.ComponentType;
-import code.components.collision.CollisionComponent;
+import code.components.storage.hitshape.HitshapeStorage;
 import code.components.hit.HitComponent;
 import code.components.position.PositionComponent;
 import code.engine.Engine;
@@ -41,14 +41,14 @@ public class HitSystem extends GameSystem {
      */
     public void checkColliders(Entity entity, Iterable<Entity> colliders) {
         Entity parent = entity.getParent();
-        CollisionComponent cc = (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
+        HitshapeStorage cc = (HitshapeStorage) entity.getComponent(ComponentType.HITSHAPE);
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
         HitShape updated = cc.getHitShape().update(eTransform);
         for (Entity collider : colliders) {
             if (collider != parent) {
-                CollisionComponent ccc =
-                        (CollisionComponent) collider.getComponent(ComponentType.COLLISION);
+                HitshapeStorage ccc =
+                        (HitshapeStorage) collider.getComponent(ComponentType.HITSHAPE);
                 PositionComponent cpc =
                         (PositionComponent) collider.getComponent(ComponentType.POSITION);
                 MatrixD cTransform =

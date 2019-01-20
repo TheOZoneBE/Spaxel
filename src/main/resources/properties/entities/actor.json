@@ -1,13 +1,13 @@
 {
-  "player_white_industry": {
-    "type": "PLAYER",
+  "enemy_white_industry": {
+    "type": "ENEMY",
     "factories": [
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_white"
       },
       {
-        "type": "VELOCITY",
+        "type": "CHANGE",
         "velocity": {
           "x": 0,
           "y": 0
@@ -16,8 +16,8 @@
       },
       {
         "type": "HEALTH",
-        "health": 100,
-        "baseHealth": 100
+        "health": 20,
+        "baseHealth": 20
       },
       {
         "type": "SPRITE",
@@ -44,54 +44,35 @@
         "acc": 0.25
       },
       {
-        "type": "INPUT",
-        "inputType": "PLAYER"
+        "type": "AI",
+        "subType": "BASIC_ENEMY"
       },
       {
         "type": "DAMAGE"
       },
       {
         "type": "PRIMARY",
-        "itemIndustries": [
-          "basic_laser_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SECONDARY",
-        "itemIndustries": [
-          "basic_missile_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SHIP",
-        "itemIndustries": [
-          "active_shield_item_industry"
-        ]
-      },
-      {
-        "type": "POSITION",
-        "coord": {
-          "x": 0,
-          "y": 0
-        },
-        "rot": 0
+        "itemIndustries": []
       },
       {
         "type": "DEATH",
-        "deathType": "PLAYER"
-      },
-      {
-        "type": "EXPERIENCE",
-        "xp": 0,
-        "level": 0
-      },
-      {
-        "type": "EFFECT"
+        "deathType": "BASIC_ENEMY"
       },
       {
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "EFFECT"
       },
       {
         "type": "SPAWNER",
@@ -102,18 +83,22 @@
         "type": "PARTICLE",
         "particle": "white",
         "scale": 4
+      },
+      {
+        "type": "MARKER",
+        "markerIndustry": "marker_white_industry"
       }
     ]
   },
-  "player_red_industry": {
-    "type": "PLAYER",
+  "enemy_red_industry": {
+    "type": "ENEMY",
     "factories": [
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_red"
       },
       {
-        "type": "VELOCITY",
+        "type": "CHANGE",
         "velocity": {
           "x": 0,
           "y": 0
@@ -122,8 +107,8 @@
       },
       {
         "type": "HEALTH",
-        "health": 50,
-        "baseHealth": 50
+        "health": 10,
+        "baseHealth": 10
       },
       {
         "type": "SPRITE",
@@ -150,54 +135,35 @@
         "acc": 0.3
       },
       {
-        "type": "INPUT",
-        "inputType": "PLAYER"
+        "type": "AI",
+        "subType": "BASIC_ENEMY"
       },
       {
         "type": "DAMAGE"
       },
       {
         "type": "PRIMARY",
-        "itemIndustries": [
-          "piercing_laser_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SECONDARY",
-        "itemIndustries": [
-          "homing_missile_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SHIP",
-        "itemIndustries": [
-          "force_shield_item_industry"
-        ]
-      },
-      {
-        "type": "POSITION",
-        "coord": {
-          "x": 0,
-          "y": 0
-        },
-        "rot": 0
+        "itemIndustries": []
       },
       {
         "type": "DEATH",
-        "deathType": "PLAYER"
-      },
-      {
-        "type": "EXPERIENCE",
-        "xp": 0,
-        "level": 0
-      },
-      {
-        "type": "EFFECT"
+        "deathType": "BASIC_ENEMY"
       },
       {
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "EFFECT"
       },
       {
         "type": "SPAWNER",
@@ -208,18 +174,22 @@
         "type": "PARTICLE",
         "particle": "red",
         "scale": 4
+      },
+      {
+        "type": "MARKER",
+        "markerIndustry": "marker_red_industry"
       }
     ]
   },
-  "player_green_industry": {
-    "type": "PLAYER",
+  "enemy_green_industry": {
+    "type": "ENEMY",
     "factories": [
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_green"
       },
       {
-        "type": "VELOCITY",
+        "type": "CHANGE",
         "velocity": {
           "x": 0,
           "y": 0
@@ -228,8 +198,8 @@
       },
       {
         "type": "HEALTH",
-        "health": 100,
-        "baseHealth": 100
+        "health": 20,
+        "baseHealth": 20
       },
       {
         "type": "SPRITE",
@@ -256,54 +226,35 @@
         "acc": 0.2
       },
       {
-        "type": "INPUT",
-        "inputType": "PLAYER"
+        "type": "AI",
+        "subType": "BASIC_ENEMY"
       },
       {
         "type": "DAMAGE"
       },
       {
         "type": "PRIMARY",
-        "itemIndustries": [
-          "disrupt_laser_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SECONDARY",
-        "itemIndustries": [
-          "hacking_missile_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SHIP",
-        "itemIndustries": [
-          "anti_shield_item_industry"
-        ]
-      },
-      {
-        "type": "POSITION",
-        "coord": {
-          "x": 0,
-          "y": 0
-        },
-        "rot": 0
+        "itemIndustries": []
       },
       {
         "type": "DEATH",
-        "deathType": "PLAYER"
-      },
-      {
-        "type": "EXPERIENCE",
-        "xp": 0,
-        "level": 0
-      },
-      {
-        "type": "EFFECT"
+        "deathType": "BASIC_ENEMY"
       },
       {
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "EFFECT"
       },
       {
         "type": "SPAWNER",
@@ -314,18 +265,22 @@
         "type": "PARTICLE",
         "particle": "green",
         "scale": 4
+      },
+      {
+        "type": "MARKER",
+        "markerIndustry": "marker_green_industry"
       }
     ]
   },
-  "player_blue_industry": {
-    "type": "PLAYER",
+  "enemy_blue_industry": {
+    "type": "ENEMY",
     "factories": [
       {
-        "type": "COLLISION",
+        "type": "HITSHAPE",
         "hitShape": "hitshape_blue"
       },
       {
-        "type": "VELOCITY",
+        "type": "CHANGE",
         "velocity": {
           "x": 0,
           "y": 0
@@ -334,8 +289,8 @@
       },
       {
         "type": "HEALTH",
-        "health": 200,
-        "baseHealth": 200
+        "health": 40,
+        "baseHealth": 40
       },
       {
         "type": "SPRITE",
@@ -362,54 +317,35 @@
         "acc": 0.25
       },
       {
-        "type": "INPUT",
-        "inputType": "PLAYER"
+        "type": "AI",
+        "subType": "BASIC_ENEMY"
       },
       {
         "type": "DAMAGE"
       },
       {
         "type": "PRIMARY",
-        "itemIndustries": [
-          "slowing_laser_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SECONDARY",
-        "itemIndustries": [
-          "cluster_missile_item_industry"
-        ]
+        "itemIndustries": []
       },
       {
         "type": "SHIP",
-        "itemIndustries": [
-          "basic_shield_item_industry"
-        ]
-      },
-      {
-        "type": "POSITION",
-        "coord": {
-          "x": 0,
-          "y": 0
-        },
-        "rot": 0
+        "itemIndustries": []
       },
       {
         "type": "DEATH",
-        "deathType": "PLAYER"
-      },
-      {
-        "type": "EXPERIENCE",
-        "xp": 0,
-        "level": 0
-      },
-      {
-        "type": "EFFECT"
+        "deathType": "BASIC_ENEMY"
       },
       {
         "type": "ACTOR",
         "canShoot": true,
         "canMove": true
+      },
+      {
+        "type": "EFFECT"
       },
       {
         "type": "SPAWNER",
@@ -420,6 +356,10 @@
         "type": "PARTICLE",
         "particle": "blue",
         "scale": 4
+      },
+      {
+        "type": "MARKER",
+        "markerIndustry": "marker_blue_industry"
       }
     ]
   }

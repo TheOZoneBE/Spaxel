@@ -8,17 +8,11 @@ package code.components;
 public enum ComponentType {
     POSITION("position"),
 
-    COLLISION("collision"),
-
-    AGE("age"),
-
     HEALTH("health"),
 
     SPRITE("sprite"),
 
     MOVE("move"),
-
-    VELOCITY("velocity"),
 
     RENDER("render"),
 
@@ -27,8 +21,6 @@ public enum ComponentType {
     AI("ai"),
 
     DAMAGE("damage"),
-
-    COOLDOWN("cooldown"),
 
     ITEM("item"),
 
@@ -58,7 +50,24 @@ public enum ComponentType {
 
     ACTOR("actor"),
 
-    MARKER("marker");
+    MARKER("marker"),
+
+    // after rework
+    // Storage components
+    AGE("age"),
+
+    RENDERABLE("renderable"),
+
+    COOLDOWN("cooldown"),
+
+    TRANSFORMATION("transformation"),
+
+    HITSHAPE("collision"),
+
+    CHANGE("velocity")
+    ;
+
+
 
     private final String name;
 

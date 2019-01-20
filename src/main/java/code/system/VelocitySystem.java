@@ -2,7 +2,7 @@ package code.system;
 
 import code.components.ComponentType;
 import code.components.position.PositionComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.system.SystemType;
@@ -23,13 +23,12 @@ public class VelocitySystem extends GameSystem {
     }
 
     public void update() {
-        Set<Entity> nEntities =
-                Engine.get().getNEntityStream().getEntities(ComponentType.VELOCITY);
+        Set<Entity> nEntities = Engine.get().getNEntityStream().getEntities(ComponentType.CHANGE);
         for (Entity ne : nEntities) {
             PositionComponent pc = (PositionComponent) ne.getComponent(ComponentType.POSITION);
-            VelocityComponent vc = (VelocityComponent) ne.getComponent(ComponentType.VELOCITY);
-            pc.setCoord(pc.getCoord().sum(vc.getVelocity()));
-            pc.setRot(pc.getRot() + vc.getDeltaRot());
+            ChangeStorage vc = (ChangeStorage) ne.getComponent(ComponentType.CHANGE);
+            pc.setCoord(pc.getCoord().sum(vc.getPositionChange()));
+            pc.setRot(pc.getRot() + vc.getRotationChange());
         }
     }
 }

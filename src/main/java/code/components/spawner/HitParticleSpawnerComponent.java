@@ -6,7 +6,7 @@ import code.components.storage.age.AgeStorage;
 import code.components.particle.ParticleComponent;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Resources;
 import code.entity.Entity;
 import code.factories.entities.HitParticleIndustry;
@@ -44,7 +44,7 @@ public class HitParticleSpawnerComponent extends SpawnerComponent {
             double dx = Math.sin(dir) * speed;
             double dy = Math.cos(dir) * speed;
             temp.add(hpi.produce((PositionComponent) pc.copy(), new AgeStorage(life, life),
-                    new VelocityComponent(new VectorD(dx, dy), deltaRot),
+                    new ChangeStorage(new VectorD(dx, dy), deltaRot, 0),
                     new SpriteComponent(pac.getParticle(), pac.getScale())));
         }
         return temp;

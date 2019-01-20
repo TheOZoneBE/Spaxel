@@ -2,7 +2,7 @@ package code.system;
 
 import code.collision.HitShape;
 import code.components.ComponentType;
-import code.components.collision.CollisionComponent;
+import code.components.storage.hitshape.HitshapeStorage;
 import code.components.item.ItemComponent;
 import code.components.position.PositionComponent;
 import code.components.inventory.InventoryComponent;
@@ -31,14 +31,12 @@ public class EquipSystem extends GameSystem {
         Entity player = Engine.get().getNEntityStream().getPlayer();
 
         for (Entity entity : entities) {
-            CollisionComponent cc =
-                    (CollisionComponent) entity.getComponent(ComponentType.COLLISION);
+            HitshapeStorage cc = (HitshapeStorage) entity.getComponent(ComponentType.HITSHAPE);
             PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
             MatrixD eTransform = MatrixUtil.getTransRotationMatrix(pc.getCoord(), pc.getRot());
             HitShape updated = cc.getHitShape().update(eTransform);
 
-            CollisionComponent ccc =
-                    (CollisionComponent) player.getComponent(ComponentType.COLLISION);
+            HitshapeStorage ccc = (HitshapeStorage) player.getComponent(ComponentType.HITSHAPE);
             PositionComponent cpc = (PositionComponent) player.getComponent(ComponentType.POSITION);
             MatrixD cTransform = MatrixUtil.getTransRotationMatrix(cpc.getCoord(), cpc.getRot());
             if (ccc.getHitShape().update(cTransform).collision(updated)) {
@@ -47,7 +45,7 @@ public class EquipSystem extends GameSystem {
                 entity.removeComponent(ComponentType.EQUIP);
                 entity.removeComponent(ComponentType.POSITION);
                 entity.removeComponent(ComponentType.AGE);
-                entity.removeComponent(ComponentType.VELOCITY);
+                entity.removeComponent(ComponentType.CHANGE);
                 entity.removeComponent(ComponentType.AI);
                 // add to inventory
                 ItemComponent ic = (ItemComponent) entity.getComponent(ComponentType.ITEM);

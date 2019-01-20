@@ -5,7 +5,7 @@ import code.components.ComponentType;
 import code.components.Component;
 import code.components.move.MoveComponent;
 import code.components.position.PositionComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.math.VectorD;
@@ -25,7 +25,7 @@ public class HomingMissileAIComponent extends AIComponent {
     public void execute(Entity entity) {
         PositionComponent pc = (PositionComponent) entity.getComponent(ComponentType.POSITION);
         MoveComponent mc = (MoveComponent) entity.getComponent(ComponentType.MOVE);
-        VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
+        ChangeStorage vc = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
 
         Set<Entity> enemies = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
 
@@ -51,9 +51,9 @@ public class HomingMissileAIComponent extends AIComponent {
                 rotToGet += Constants.FULL_CIRCLE;
             }
             double rotChange = rotToGet - pc.getRot();
-            vc.setDeltaRot(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
+            vc.setRotationChange(EntityUtil.calculateDeltaRot(rotChange, mc.getTurnRate()));
 
-            vc.setVelocity(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
+            vc.setPositionChange(new VectorD(Math.sin(pc.getRot()), Math.cos(pc.getRot()))
                     .multiplicate(mc.getMaxSpeed()));
         }
     }

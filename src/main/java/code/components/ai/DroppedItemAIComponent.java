@@ -2,7 +2,7 @@ package code.components.ai;
 
 import code.components.Component;
 import code.components.ComponentType;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.entity.Entity;
 
 /**
@@ -16,11 +16,11 @@ public class DroppedItemAIComponent extends AIComponent {
     }
 
     public void execute(Entity entity) {
-        VelocityComponent vc = (VelocityComponent) entity.getComponent(ComponentType.VELOCITY);
-        vc.setVelocity(vc.getVelocity().multiplicate(HALF));
+        ChangeStorage vc = (ChangeStorage) entity.getComponent(ComponentType.CHANGE);
+        vc.setPositionChange(vc.getPositionChange().multiplicate(HALF));
     }
 
-    public Component copy(){
+    public Component copy() {
         return new DroppedItemAIComponent();
     }
 }

@@ -3,7 +3,7 @@ package code.factories.entities;
 import code.components.storage.age.AgeStorage;
 import code.components.position.PositionComponent;
 import code.components.sprite.SpriteComponent;
-import code.components.velocity.VelocityComponent;
+import code.components.storage.change.ChangeStorage;
 import code.components.Component;
 import code.components.ComponentType;
 import code.entity.EntityType;
@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by theo on 5/06/17.
  */
 public class HitParticleIndustry extends EntityIndustry {
-    public Entity produce(PositionComponent pc, AgeStorage ac, VelocityComponent vc,
+    public Entity produce(PositionComponent pc, AgeStorage ac, ChangeStorage vc,
             SpriteComponent sc) {
         Entity entity = new Entity(EntityType.HITPARTICLE);
         Map<ComponentType, Component> components = buildComponents();

@@ -1,7 +1,7 @@
-package code.components.collision;
+package code.components.storage.hitshape;
 
 import code.collision.HitShape;
-import code.components.Component;
+import code.components.Storage;
 import code.components.ComponentType;
 
 /**
@@ -9,7 +9,7 @@ import code.components.ComponentType;
  * 
  * Created by theo on 3/06/17.
  */
-public class CollisionComponent extends Component {
+public class HitshapeStorage extends Storage {
     private HitShape hitShape;
 
     /**
@@ -17,8 +17,8 @@ public class CollisionComponent extends Component {
      * 
      * @param hitShape the hitshape of the component
      */
-    public CollisionComponent(HitShape hitShape) {
-        super(ComponentType.COLLISION);
+    public HitshapeStorage(HitShape hitShape) {
+        super(ComponentType.HITSHAPE);
         this.hitShape = hitShape;
     }
 
@@ -30,7 +30,7 @@ public class CollisionComponent extends Component {
         this.hitShape = hitShape;
     }
 
-    public Component copy() {
-        return new CollisionComponent(hitShape);
+    public HitshapeStorage copy() {
+        return new HitshapeStorage(hitShape);
     }
 }

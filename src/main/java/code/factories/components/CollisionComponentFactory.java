@@ -1,7 +1,7 @@
 package code.factories.components;
 
 import code.collision.HitShape;
-import code.components.collision.CollisionComponent;
+import code.components.storage.hitshape.HitshapeStorage;
 import code.components.Component;
 import code.engine.Resources;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -18,7 +18,7 @@ public class CollisionComponentFactory extends ComponentFactory {
 
     @Override
     public Component make() {
-        return new CollisionComponent(hitShape);
+        return new HitshapeStorage(hitShape);
     }
 
     public HitShape getHitShape() {

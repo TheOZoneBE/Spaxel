@@ -6,37 +6,6 @@ package code.components;
  * Created by theo on 31/05/17.
  */
 public enum ComponentType {
-    HEALTH("health"),
-
-    RENDER("render"),
-
-    AI("ai"),
-
-    ITEM("item"),
-
-    STACK("stack"),
-
-    HIT("hit"),
-
-    PRIMARY("primary"),
-
-    SECONDARY("secondary"),
-
-    SHIP("ship"),
-
-    EQUIP("equip"),
-
-    DEATH("death"),
-
-    EXPERIENCE("experience"),
-
-    AFFECT("affect"),
-
-    EFFECT("effect"),
-
-    MARKER("marker"),
-
-    // after rework
     // Storage components
     AGE("age"),
 
@@ -50,7 +19,7 @@ public enum ComponentType {
 
     CHANGE("velocity"),
 
-    SPAWN_PROPERTIES("spawn_properties"),
+    SPAWN_STORE("spawn_store"),
 
     MOVE("move"),
 
@@ -58,13 +27,44 @@ public enum ComponentType {
 
     DAMAGE("damage"),
 
+    HEALTH("health"),
+
+    EXPERIENCE("experience"),
+
+    ITEM("item"),
+
+    SHOOT("shoot"),
+
+    SHIELD("shield"),
+
+    STACK("stack"),
+
+    EVENT_STORE("event_store"),
+
+    AFFECT_STORE("affect_store"),
+
+    RENDER_STORE("render_store"),
+
+    PROJECTILE("projectile"),
+
     // Behaviour components
     SPAWN("spawn"),
 
     KEYBOARD("keyboard"),
 
-    MOUSE("mouse");
+    MOUSE("mouse"),
 
+    DEATH("death"),
+
+    AFFECT("affect"),
+
+    RENDER("render"),
+
+    AI("ai"),
+
+    HIT("hit"),
+
+    EVENT("event");
 
 
     private final String name;

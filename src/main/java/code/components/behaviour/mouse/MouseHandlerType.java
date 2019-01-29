@@ -1,5 +1,5 @@
 package code.components.behaviour.mouse;
 
 public enum MouseHandlerType {
-    PLAYER
+    PLAYER, SHOOT_PRIMARY, SHOOT_SECONDARY
 }

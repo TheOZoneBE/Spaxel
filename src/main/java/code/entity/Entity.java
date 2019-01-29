@@ -1,5 +1,6 @@
 package code.entity;
 
+import code.components.Behaviour;
 import code.components.Component;
 import code.components.ComponentType;
 import java.util.EnumMap;
@@ -38,6 +39,10 @@ public class Entity {
         return components;
     }
 
+    public boolean hasComponent(ComponentType type) {
+        return components.containsKey(type);
+    }
+
     public void setComponents(Map<ComponentType, Component> components) {
         this.components = components;
     }
@@ -66,7 +71,6 @@ public class Entity {
      * @param component the component to add
      */
     public void addComponent(Component component) {
-        component.addCascade(this);
         components.put(component.getType(), component);
         Engine.get().getNEntityStream().addComponent(component.getType(), this);
     }
@@ -77,39 +81,8 @@ public class Entity {
      * @param type the type of component to remove
      */
     public void removeComponent(ComponentType type) {
-        components.get(type).removeCascade();
         components.remove(type);
         Engine.get().getNEntityStream().removeComponent(type, this);
-    }
-
-    /**
-     * Call the cascading add method for all the component such that referenced entities are also
-     * added in the entitystream
-     */
-    public void addCascade() {
-        for (Component c : components.values()) {
-            c.addCascade(this);
-        }
-    }
-
-    /**
-     * Call the cascading remove method for all the component such that referenced entities are also
-     * removed in the entitystream
-     */
-    public void removeCascade() {
-        for (Component c : components.values()) {
-            c.removeCascade();
-        }
-    }
-
-    /**
-     * Copy the entity
-     * 
-     * @return a copy of this entity
-     */
-    public Entity copy() {
-        // TODO figure out copy implementation
-        return new Entity(type);
     }
 
     public Entity getParent() {
@@ -129,11 +102,35 @@ public class Entity {
         links.remove(link);
     }
 
+    public Set<Entity> getLinks(EntityFilter... filters) {
+        Set<Entity> result = new HashSet<>();
+        for (Entity link : links) {
+            boolean passed = true;
+            for (EntityFilter filter : filters) {
+                if (!filter.pass(link)) {
+                    passed = false;
+                    break;
+                }
+            }
+            if (passed) {
+                result.add(link);
+            }
+        }
+        return result;
+    }
+
+    public interface EntityFilter {
+        public boolean pass(Entity entity);
+    }
+
     public void destroy() {
         destroy(true);
     }
 
     private void destroy(boolean root) {
+        if (components.containsKey(ComponentType.DEATH)) {
+            ((Behaviour) components.get(ComponentType.DEATH)).execute(this);
+        }
         Engine.get().getNEntityStream().removeEntity(this);
         for (Entity link : links) {
             link.destroy(false);

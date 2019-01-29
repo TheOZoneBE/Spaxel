@@ -1,9 +1,10 @@
 package code.ui.controllers;
 
 import code.components.ComponentType;
-import code.components.experience.ExperienceComponent;
-import code.components.health.HealthComponent;
-import code.components.inventory.InventoryComponent;
+import code.components.storage.experience.ExperienceStorage;
+import code.components.storage.health.HealthStorage;
+import code.components.storage.item.ItemContainer;
+import code.components.storage.item.ItemStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.engine.Resources;
@@ -13,6 +14,7 @@ import code.input.Keyboard;
 import code.util.DebugRenderer;
 import code.ui.elements.Element;
 import code.ui.elements.UIType;
+import java.util.Set;
 import code.Constants;
 import code.logger.Logger;
 import code.input.Key;
@@ -58,7 +60,7 @@ public final class PlayController {
      * @param element the hp bar element
      */
     public static void updateHpBar(Element element) {
-        HealthComponent hc = (HealthComponent) Engine.get().getNEntityStream().getPlayer()
+        HealthStorage hc = (HealthStorage) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.HEALTH);
 
         element.getStyle().setProperty("completion",
@@ -73,19 +75,18 @@ public final class PlayController {
      * @param element the xp bar element
      */
     public static void updateXpBar(Element element) {
-        ExperienceComponent ec = (ExperienceComponent) Engine.get().getNEntityStream().getPlayer()
+        ExperienceStorage ec = (ExperienceStorage) Engine.get().getNEntityStream().getPlayer()
                 .getComponent(ComponentType.EXPERIENCE);
         element.getStyle().setProperty("completion",
-                String.valueOf((double) ec.getXp() / ec.getXpToLevel()));
+                String.valueOf((double) ec.getCurrentXp() / ec.getMaxXp()));
 
         element.findById("xp_label").getStyle().setProperty("text",
-                ec.getXp() + " / " + ec.getXpToLevel());
+                ec.getCurrentXp() + " / " + ec.getMaxXp());
     }
 
-    private static void updateContainer(Element element, InventoryComponent inventory) {
+    private static void updateContainer(Element element, Set<Entity> items) {
         element.clearChildren();
-        for (Entity item : inventory.getItems()) {
-
+        for (Entity item : items) {
             element.addElement(ElementCreator.createItemView(item));
         }
         element.initStyle();
@@ -97,8 +98,10 @@ public final class PlayController {
      * @param element the container
      */
     public static void updatePrimaryContainer(Element element) {
-        updateContainer(element, (InventoryComponent) Engine.get().getNEntityStream().getPlayer()
-                .getComponent(ComponentType.PRIMARY));
+        updateContainer(element,
+                Engine.get().getNEntityStream().getPlayer()
+                        .getLinks((e) -> ((ItemStorage) e.getComponent(ComponentType.ITEM))
+                                .getContainer() == ItemContainer.PRIMARY));
     }
 
     /**
@@ -107,8 +110,10 @@ public final class PlayController {
      * @param element the container
      */
     public static void updateSecondaryContainer(Element element) {
-        updateContainer(element, (InventoryComponent) Engine.get().getNEntityStream().getPlayer()
-                .getComponent(ComponentType.SECONDARY));
+        updateContainer(element,
+                Engine.get().getNEntityStream().getPlayer()
+                        .getLinks((e) -> ((ItemStorage) e.getComponent(ComponentType.ITEM))
+                                .getContainer() == ItemContainer.SECONDARY));
     }
 
 
@@ -118,8 +123,10 @@ public final class PlayController {
      * @param element the container
      */
     public static void updateShipContainer(Element element) {
-        updateContainer(element, (InventoryComponent) Engine.get().getNEntityStream().getPlayer()
-                .getComponent(ComponentType.SHIP));
+        updateContainer(element,
+                Engine.get().getNEntityStream().getPlayer()
+                        .getLinks((e) -> ((ItemStorage) e.getComponent(ComponentType.ITEM))
+                                .getContainer() == ItemContainer.SHIP));
     }
 
     /**

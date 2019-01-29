@@ -3,7 +3,7 @@ package code.system;
 import code.components.ComponentType;
 import code.components.storage.damage.Damage;
 import code.components.storage.damage.DamageStorage;
-import code.components.health.HealthComponent;
+import code.components.storage.health.HealthStorage;
 import code.engine.Engine;
 import code.entity.Entity;
 import java.util.Set;
@@ -25,7 +25,7 @@ public class DamageSystem extends GameSystem {
         Set<Entity> entities = Engine.get().getNEntityStream().getEntities(ComponentType.DAMAGE);
         for (Entity e : entities) {
             DamageStorage dc = (DamageStorage) e.getComponent(ComponentType.DAMAGE);
-            HealthComponent hc = (HealthComponent) e.getComponent(ComponentType.HEALTH);
+            HealthStorage hc = (HealthStorage) e.getComponent(ComponentType.HEALTH);
             for (Damage d : dc.getDamages()) {
                 hc.setCurrentHealth(hc.getCurrentHealth() - d.getDamage());
             }

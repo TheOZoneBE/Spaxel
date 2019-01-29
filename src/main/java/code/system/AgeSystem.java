@@ -1,8 +1,8 @@
 package code.system;
 
 import code.components.storage.age.AgeStorage;
+import code.components.Behaviour;
 import code.components.ComponentType;
-import code.components.death.DeathComponent;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.system.SystemType;
@@ -28,9 +28,9 @@ public class AgeSystem extends GameSystem {
             if (ac.getLife() != 0) {
                 ac.setLife(ac.getLife() - 1);
             } else {
-                DeathComponent dc = (DeathComponent) ne.getComponent(ComponentType.DEATH);
+                Behaviour dc = (Behaviour) ne.getComponent(ComponentType.DEATH);
                 if (dc != null) {
-                    dc.die(ne);
+                    dc.execute(ne);
                 }
                 ne.destroy();
             }

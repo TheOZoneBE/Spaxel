@@ -2,18 +2,20 @@ package code.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import code.components.ComponentType;
-import code.components.inventory.InventoryComponent;
-import code.components.item.ItemComponent;
-import code.components.item.ItemType;
+import code.components.storage.item.ItemContainer;
+import code.components.storage.item.ItemName;
+import code.components.storage.item.ItemStorage;
 import code.engine.Resources;
 import code.entity.Entity;
+import code.entity.EntityType;
 
 /**
  * Provides utility functions for entities
  */
 public final class EntityUtil {
+
+
     private EntityUtil() {
 
     }
@@ -25,18 +27,13 @@ public final class EntityUtil {
      * 
      * @return a list with item names
      */
-    public static List<String> getAllItemNames(Entity entity) {
-        List<String> items = new ArrayList<>();
-        // all inventory component types
-        ComponentType[] types =
-                {ComponentType.PRIMARY, ComponentType.SECONDARY, ComponentType.SHIP};
-        for (ComponentType type : types) {
-            InventoryComponent inventory = (InventoryComponent) entity.getComponent(type);
-            // collect all item names of this inventory
-            items.addAll(inventory.getItems().stream()
-                    .map((Entity item) -> ((ItemComponent) item.getComponent(ComponentType.ITEM))
-                            .getName())
-                    .collect(Collectors.toList()));
+    public static List<ItemName> getAllItemNames(Entity entity) {
+        List<ItemName> items = new ArrayList<>();
+
+        for (Entity link : entity.getLinks((e) -> e.getType() == EntityType.ITEM)) {
+            ItemStorage itemStore = (ItemStorage) link.getComponent(ComponentType.ITEM);
+
+            items.add(itemStore.getName());
         }
         return items;
     }
@@ -47,15 +44,11 @@ public final class EntityUtil {
      * @param entity the entity to add the items to
      * @param number the amount of items to add
      * @param type   the type of items to add
-     * @param ctype  the type of the component to add the items to
      */
-    public static void addRandomItems(Entity entity, int number, ItemType type,
-            ComponentType ctype) {
-        InventoryComponent ic = (InventoryComponent) entity.getComponent(ctype);
+    public static void addRandomItems(Entity entity, int number, ItemContainer type) {
         for (int i = 0; i < number; i++) {
             // produce a random item of the given type
             Entity item = Resources.get().getItems().produceRandom(prop -> prop.getType() == type);
-            ic.addItem(item);
             entity.addLink(item);
         }
     }
@@ -89,5 +82,9 @@ public final class EntityUtil {
             }
         }
         return deltaRot;
+    }
+
+    public static int healthAtLevel(int level, int baseHealth) {
+        return baseHealth * level;
     }
 }

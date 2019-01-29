@@ -1,8 +1,8 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.health.HealthComponent;
-import code.components.item.ItemType;
+import code.components.storage.health.HealthStorage;
+import code.components.storage.item.ItemContainer;
 import code.components.storage.transformation.TransformationStorage;
 import code.engine.Engine;
 import code.entity.EntityType;
@@ -66,16 +66,23 @@ public class DifficultySystem extends GameSystem {
 
                         Entity entity = ei.produce(new TransformationStorage(
                                         playerPos.getPosition().sum(offset), 0, 0));
-                        ((HealthComponent) entity.getComponent(ComponentType.HEALTH))
-                                        .levelUp(rand.between(1, maxLevel + 1));
+
+                        HealthStorage hlthStore =
+                                        (HealthStorage) entity.getComponent(ComponentType.HEALTH);
+
+                        int health = EntityUtil.healthAtLevel(rand.between(1, maxLevel + 1),
+                                        hlthStore.getBaseHealth());
+                        hlthStore.setMaxHealth(health);
+                        hlthStore.setCurrentHealth(health);
+
 
                         // items
                         EntityUtil.addRandomItems(entity, (1 + 1 + numItems) / NUM_INVENTORIES,
-                                        ItemType.PRIMARY, ComponentType.PRIMARY);
+                                        ItemContainer.PRIMARY);
                         EntityUtil.addRandomItems(entity, (1 + numItems) / NUM_INVENTORIES,
-                                        ItemType.SECONDARY, ComponentType.SECONDARY);
-                        EntityUtil.addRandomItems(entity, numItems / NUM_INVENTORIES, ItemType.SHIP,
-                                        ComponentType.SHIP);
+                                        ItemContainer.SECONDARY);
+                        EntityUtil.addRandomItems(entity, numItems / NUM_INVENTORIES,
+                                        ItemContainer.SHIP);
 
                         // Add entity
                         Engine.get().getNEntityStream().addEntity(entity);

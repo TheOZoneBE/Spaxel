@@ -44,6 +44,10 @@ public class CooldownStorage extends Storage {
         this.maxCooldown = maxCooldown;
     }
 
+    public void startCooldown(){
+        currentCooldown = maxCooldown;
+    }
+
     public CooldownStorage copy() {
         return new CooldownStorage(currentCooldown, maxCooldown);
     }

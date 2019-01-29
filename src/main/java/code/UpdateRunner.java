@@ -12,14 +12,11 @@ import code.system.AgeSystem;
 import code.system.CooldownSystem;
 import code.system.DamageSystem;
 import code.system.DifficultySystem;
-import code.system.EquipSystem;
 import code.system.ExperienceSystem;
 import code.system.GameSystem;
 import code.system.HealthSystem;
 import code.system.HitSystem;
 import code.system.MouseSystem;
-import code.system.MarkerSystem;
-import code.system.ShipSystem;
 import code.system.SoundSystem;
 import code.system.SpawnerSystem;
 import code.system.UISystem;
@@ -54,11 +51,8 @@ public class UpdateRunner implements Runnable {
         systems.put(SystemType.HIT, new HitSystem());
         systems.put(SystemType.MOUSE, new MouseSystem());
         systems.put(SystemType.KEYBOARD, new KeyboardSystem());
-        systems.put(SystemType.EQUIP, new EquipSystem());
         systems.put(SystemType.EXPERIENCE, new ExperienceSystem());
-        systems.put(SystemType.SHIP, new ShipSystem());
         systems.put(SystemType.DIFFICULTY, new DifficultySystem());
-        systems.put(SystemType.MARKER, new MarkerSystem());
     }
 
     public void run() {

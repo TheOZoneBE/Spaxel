@@ -7,7 +7,7 @@ import code.components.ComponentType;
 import code.components.storage.age.AgeStorage;
 import code.components.storage.change.ChangeStorage;
 import code.components.storage.renderable.RenderableStorage;
-import code.components.storage.spawn_properties.SpawnPropertiesStorage;
+import code.components.storage.spawn.SpawnStorage;
 import code.components.storage.transformation.TransformationStorage;
 import code.entity.Entity;
 import code.factories.entities.RandomParticleIndustry;
@@ -24,8 +24,8 @@ public class RandomSpawner extends Spawner {
         }
 
         public List<Entity> spawn(Entity entity) {
-                SpawnPropertiesStorage spwnStorage = (SpawnPropertiesStorage) entity
-                                .getComponent(ComponentType.SPAWN_PROPERTIES);
+                SpawnStorage spwnStorage =
+                                (SpawnStorage) entity.getComponent(ComponentType.SPAWN_STORE);
                 TransformationStorage trnsfrmStorage = (TransformationStorage) entity
                                 .getComponent(ComponentType.TRANSFORMATION);
                 RenderableStorage rndrStorage =

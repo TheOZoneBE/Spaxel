@@ -4,7 +4,7 @@ import java.util.Set;
 import code.Constants;
 import code.components.ComponentType;
 import code.components.storage.transformation.TransformationStorage;
-import code.components.render.RenderComponent;
+import code.components.behaviour.render.RenderBehaviour;
 import code.engine.Engine;
 import code.entity.Entity;
 import code.system.SystemType;
@@ -79,7 +79,7 @@ public class RenderSystem extends GameSystem {
 		Set<Entity> toRender =
 				Engine.get().getNEntityStream().getEntitiesCopy(ComponentType.RENDER);
 		for (Entity ne : toRender) {
-			((RenderComponent) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
+			((RenderBehaviour) ne.getComponent(ComponentType.RENDER)).render(ne, bufferBuffer);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package code.factories.entities;
 
 import code.components.ComponentType;
+import code.engine.Resources;
 import code.components.Component;
 import code.entity.EntityType;
 import code.entity.Entity;
@@ -46,6 +47,9 @@ public class EntityIndustry {
     public Entity produce() {
         Entity entity = new Entity(type);
         entity.setComponents(buildComponents());
+        for (String link : links) {
+            entity.addLink(Resources.get().getIndustryMap().get(link).produce());
+        }
         return entity;
     }
 

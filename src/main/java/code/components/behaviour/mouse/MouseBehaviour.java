@@ -12,7 +12,13 @@ public class MouseBehaviour extends Behaviour {
         super(ComponentType.MOUSE);
     }
 
+    public MouseBehaviour(MouseHandler handler) {
+        super(ComponentType.MOUSE);
+        this.handler = handler;
+    }
+
     public void execute(Entity entity) {
+        // TODO mouseStorage
         handler.handle(entity, Engine.get().getMouseWrapper());
     }
 
@@ -31,6 +37,6 @@ public class MouseBehaviour extends Behaviour {
     }
 
     public MouseBehaviour copy() {
-        return new MouseBehaviour();
+        return new MouseBehaviour(handler);
     }
 }

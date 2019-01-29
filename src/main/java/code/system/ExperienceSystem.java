@@ -1,10 +1,11 @@
 package code.system;
 
 import code.components.ComponentType;
-import code.components.experience.ExperienceComponent;
-import code.components.health.HealthComponent;
+import code.components.storage.experience.ExperienceStorage;
+import code.components.storage.health.HealthStorage;
 import code.engine.Engine;
 import code.entity.Entity;
+import code.util.EntityUtil;
 import java.util.Set;
 
 /**
@@ -24,13 +25,14 @@ public class ExperienceSystem extends GameSystem {
         Set<Entity> entities =
                 Engine.get().getNEntityStream().getEntities(ComponentType.EXPERIENCE);
         for (Entity entity : entities) {
-            ExperienceComponent ec =
-                    (ExperienceComponent) entity.getComponent(ComponentType.EXPERIENCE);
-            if (ec.getXpToLevel() <= ec.getXp()) {
-                ec.setXp(ec.getXp() - ec.getXpToLevel());
-                ec.setLevel(ec.getLevel() + 1);
-                HealthComponent hc = (HealthComponent) entity.getComponent(ComponentType.HEALTH);
-                hc.levelUp(ec.getLevel());
+            ExperienceStorage ec =
+                    (ExperienceStorage) entity.getComponent(ComponentType.EXPERIENCE);
+            if (ec.ding()) {
+                ec.levelUp();
+                HealthStorage hc = (HealthStorage) entity.getComponent(ComponentType.HEALTH);
+                int health = EntityUtil.healthAtLevel(ec.getLevel(), hc.getBaseHealth());
+                hc.setMaxHealth(health);
+                hc.setCurrentHealth(health);
             }
 
         }

@@ -1,6 +1,6 @@
 package code.engine;
 
-import code.components.item.ItemType;
+import code.components.storage.item.ItemContainer;
 
 /**
  * Represents the properties of an item
@@ -12,7 +12,7 @@ public class ItemProperties {
     private String industry;
     private int spawnRate;
     private Rarety rarety;
-    private ItemType type;
+    private ItemContainer type;
 
     /**
      * Create a new ItemProperties
@@ -53,11 +53,11 @@ public class ItemProperties {
         this.name = name;
     }
 
-    public ItemType getType() {
+    public ItemContainer getType() {
         return type;
     }
 
-    public void setType(ItemType type) {
+    public void setType(ItemContainer type) {
         this.type = type;
     }
 }

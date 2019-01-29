@@ -3,7 +3,7 @@ package code.components.behaviour.spawn;
 import java.util.Collections;
 import code.components.ComponentType;
 import code.components.storage.renderable.RenderableStorage;
-import code.components.storage.spawn_properties.SpawnPropertiesStorage;
+import code.components.storage.spawn.SpawnStorage;
 import code.components.storage.transformation.TransformationStorage;
 import code.engine.Resources;
 import code.entity.Entity;
@@ -17,8 +17,8 @@ public class StaticSpawner extends Spawner {
 
 
         public List<Entity> spawn(Entity entity) {
-                SpawnPropertiesStorage spwnStorage = (SpawnPropertiesStorage) entity
-                                .getComponent(ComponentType.SPAWN_PROPERTIES);
+                SpawnStorage spwnStorage =
+                                (SpawnStorage) entity.getComponent(ComponentType.SPAWN_STORE);
                 TransformationStorage trnsfrmStorage = (TransformationStorage) entity
                                 .getComponent(ComponentType.TRANSFORMATION);
                 RenderableStorage rndrStorage =

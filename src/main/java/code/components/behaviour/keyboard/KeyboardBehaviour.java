@@ -12,7 +12,12 @@ public class KeyboardBehaviour extends Behaviour {
         super(ComponentType.KEYBOARD);
     }
 
-    public void execute(Entity entity){
+    public KeyboardBehaviour(KeyboardHandler handler) {
+        super(ComponentType.KEYBOARD);
+        this.handler = handler;
+    }
+
+    public void execute(Entity entity) {
         handler.handle(entity, Engine.get().getKeyboard());
     }
 
@@ -31,7 +36,7 @@ public class KeyboardBehaviour extends Behaviour {
     }
 
 
-    public KeyboardBehaviour copy(){
-        return new KeyboardBehaviour();
+    public KeyboardBehaviour copy() {
+        return new KeyboardBehaviour(handler);
     }
 }

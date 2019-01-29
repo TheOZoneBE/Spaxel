@@ -35,6 +35,10 @@ public final class Constants {
         public static final String LOAD_RESOURCE_PATH = "/load_resource_paths.yml";
         // input constants
         public static final int SPEED_MULT = 2;
+        // experience constants
+        public static final int XP_FUNC_A = 25;
+        public static final int XP_FUNC_B = 25;
+        public static final int XP_FUNC_C = 50;
 
         private Constants() {
 

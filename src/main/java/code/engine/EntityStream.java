@@ -5,7 +5,6 @@ import code.components.ComponentType;
 import java.util.EnumMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import code.entity.Entity;
 import code.entity.EntityType;
@@ -92,21 +91,22 @@ public class EntityStream {
      * @param entity the entity to add
      */
     public void addEntity(Entity entity) {
-        entity.addCascade();
+        for (Entity link : entity.getLinks()) {
+            addEntity(link);
+        }
         toAddEntityTypeMap.get(entity.getType()).add(entity);
     }
 
     /**
-     * Add a list of entities to the stream, it is expected they are from the same type
+     * Add a list of entities to the stream
      * 
      * @param type     the type of the entities
      * @param entities the entities to add
      */
-    public void addEntities(EntityType type, List<Entity> entities) {
-        for (Entity e : entities) {
-            e.addCascade();
+    public void addEntities(Iterable<Entity> entities) {
+        for (Entity entity : entities) {
+            addEntity(entity);
         }
-        toAddEntityTypeMap.get(type).addAll(entities);
     }
 
     /**
@@ -115,7 +115,6 @@ public class EntityStream {
      * @param entity the entity to remove
      */
     public void removeEntity(Entity entity) {
-        entity.removeCascade();
         toRemoveEntityTypeMap.get(entity.getType()).add(entity);
     }
 

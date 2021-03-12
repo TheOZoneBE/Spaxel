@@ -1,24 +1,26 @@
 {
     "hit_particle_industry": {
-        "type": "HITPARTICLE",
+        "type": "RANDOM_PARTICLE",
         "blueprints": [
             {
-                "type": "RENDER",
+                "type": "RENDER_STORE",
                 "visible": true,
-                "layer": "GAME",
+                "layer": "GAME"
+            },
+            {
+                "type": "AGING"
+            },
+            {
+                "type": "RENDER",
                 "renderers": [
-                    {
-                        "type": "RENDERABLESHEET"
-                    },
-                    {
-                        "type": "VELOCITY"
-                    }
+                    "RENDERABLESHEET",
+                    "VELOCITY"
                 ]
             }
         ]
     },
     "trail_segment_industry": {
-        "type": "TRAILSEGMENT",
+        "type": "STATIC_PARTICLE",
         "blueprints": [
             {
                 "type": "AGE",
@@ -26,25 +28,25 @@
                 "maxLife": 100
             },
             {
-                "type": "RENDER",
+                "type": "RENDER_STORE",
                 "visible": true,
-                "layer": "GAME",
+                "layer": "GAME"
+            },
+            {
+                "type": "AGING"
+            },
+            {
+                "type": "RENDER",
                 "renderers": [
-                    {
-                        "type": "RENDERABLESHEET"
-                    },
-                    {
-                        "type": "STATIONARY"
-                    },
-                    {
-                        "type": "FADE"
-                    }
+                    "RENDERABLESHEET",
+                    "STATIONARY",
+                    "FADE"
                 ]
             }
         ]
     },
     "ship_fragment_industry": {
-        "type": "TRAILSEGMENT",
+        "type": "STATIC_PARTICLE",
         "blueprints": [
             {
                 "type": "AGE",
@@ -52,22 +54,20 @@
                 "maxLife": 40
             },
             {
-                "type": "RENDER",
+                "type": "RENDER_STORE",
                 "visible": true,
-                "layer": "GAME",
+                "layer": "GAME"
+            },
+            {
+                "type": "AGING"
+            },
+            {
+                "type": "RENDER",
                 "renderers": [
-                    {
-                        "type": "RENDERABLESHEET"
-                    },
-                    {
-                        "type": "STATIONARY"
-                    },
-                    {
-                        "type": "FADE"
-                    },
-                    {
-                        "type": "SHIP_FRAGMENT"
-                    }
+                    "RENDERABLESHEET",
+                    "STATIONARY",
+                    "FADE",
+                    "SHIP_FRAGMENT"
                 ]
             }
         ]

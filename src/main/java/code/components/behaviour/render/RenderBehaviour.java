@@ -46,6 +46,13 @@ public class RenderBehaviour extends Component {
         this.renderers = renderers;
     }
 
+    public void initRenderers(List<String> rendererNames) {
+        renderers = new ArrayList<>();
+        for (String name : rendererNames) {
+            renderers.add(Renderer.createRenderer(name));
+        }
+    }
+
     public Component copy() {
         return new RenderBehaviour(new ArrayList<>(renderers));
     }
